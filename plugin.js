@@ -580,6 +580,49 @@ module.exports = plugin(
       '.comment-body': {
         '@apply mb-4 break-keep': {}
       },
+      // Forms
+      '.formtastic :where(legend:has(span))': {
+        '@apply w-full mb-3': {}
+      },
+      '.formtastic :where(legend span)': {
+        '@apply block border-b font-bold text-lg': {}
+      },
+      '.formtastic :where(.label)': {
+        '@apply block mb-1.5': {}
+      },
+      '.formtastic :where(.label abbr)': {
+        '@apply ms-1 no-underline': {}
+      },
+      '.formtastic :where(.input)': {
+        '@apply py-2.5': {}
+      },
+      '.formtastic :where(.choice)': {
+        '@apply mb-1': {}
+      },
+      '.formtastic :where(.boolean label, .choice label)': {
+        '@apply flex gap-2 items-center': {}
+      },
+      '.formtastic :where(.fragments-group)': {
+        '@apply inline-flex flex-wrap gap-1': {}
+      },
+      '.formtastic :where(.fragment label)': {
+        '@apply sr-only': {}
+      },
+      '.formtastic :where(.inline-hints)': {
+        '@apply text-gray-500 text-sm mt-2': {}
+      },
+      '.formtastic :where(.errors)': {
+        '@apply p-4 mb-2 rounded-lg bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
+      },
+      '.formtastic :where(.errors > li)': {
+        '@apply list-disc ms-4 mb-1': {}
+      },
+      '.formtastic :where(.inline-errors)': {
+        '@apply font-bold mt-2 text-red-600 dark:text-red-300': {}
+      },
+      '.formtastic :where(.error [type=email], .error [type=number], .error [type=password], .error [type=tel], .error [type=text], .error [type=url], .error textarea)': {
+        '@apply border-red-500': {}
+      },
       // '': {
       //   '': {}
       // },
