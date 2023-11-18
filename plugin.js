@@ -587,7 +587,7 @@ module.exports = plugin(
         '@apply ms-1 no-underline': {}
       },
       '.formtastic :where(.input)': {
-        '@apply py-2.5': {}
+        '@apply py-3': {}
       },
       '.formtastic :where(.choice)': {
         '@apply mb-1': {}
