@@ -519,10 +519,6 @@ module.exports = plugin(
       '.panel-body': {
         '@apply py-6 px-4': {}
       },
-      // form fieldset.inputs
-      '.inputs': {
-        '@apply border rounded-lg shadow-sm p-4': {}
-      },
       '.attributes_table': {
         '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
       },
