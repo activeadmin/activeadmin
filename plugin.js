@@ -558,9 +558,6 @@ module.exports = plugin(
       '.comment-form': {
         '@apply mb-8 max-w-[700px]': {}
       },
-      '.comment-form fieldset.inputs, .comment-form fieldset ol > li': {
-        '@apply p-0': {}
-      },
       '.comment-container': {
         '@apply border-t dark:border-gray-600 py-4 mb-4 max-w-[700px]': {}
       },
