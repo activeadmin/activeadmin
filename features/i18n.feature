@@ -34,7 +34,7 @@ Feature: Internationalization
     When I set my locale to "en"
     And I go to the dashboard
     Then I should see "Bookstore"
-    And I should see "Logout"
+    And I should see "Sign out"
 
   Scenario: Overriding translations
     Given I am logged in

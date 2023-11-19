@@ -64,7 +64,7 @@ en:
       "no": "No"
       "unset": "Unknown"
     main_content: "Please implement %{model}#main_content to display content."
-    logout: "Logout"
+    logout: "Sign out"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filters"
@@ -126,9 +126,9 @@ en:
         title: "Sign up"
         submit: "Sign up"
       login:
-        title: "Login"
+        title: "Sign In"
         remember_me: "Remember me"
-        submit: "Login"
+        submit: "Sign In"
       reset_password:
         title: "Forgot your password?"
         submit: "Reset My Password"
