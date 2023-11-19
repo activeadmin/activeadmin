@@ -634,6 +634,36 @@ module.exports = plugin(
       '.formtastic :where(.error [type=email], .error [type=number], .error [type=password], .error [type=tel], .error [type=text], .error [type=url], .error textarea)': {
         '@apply border-red-500': {}
       },
+      '.formtastic :where(.buttons, .actions)': {
+        '@apply mt-3': {}
+      },
+      '.formtastic :where(.actions > ol:has(li + li))': {
+        '@apply flex items-center gap-6': {}
+      },
+      '.formtastic :where([type=submit], [type=button], button)': {
+        '@apply font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
+      },
+      '.formtastic :where(.actions .cancel-link)': {
+        '@apply font-semibold leading-6 text-gray-900 dark:text-white no-underline': {}
+      },
+      '.devise-body': {
+        '@apply bg-gray-50 dark:bg-gray-900': {}
+      },
+      '.devise-page-container': {
+        '@apply flex flex-col items-center justify-center min-h-screen py-4 sm:px-6 sm:py-8 mx-auto': {}
+      },
+      '.devise-form-container': {
+        '@apply p-6 sm:p-8 space-y-4 md:space-y-6 w-full sm:max-w-md bg-white sm:rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700': {}
+      },
+      '.devise-form-title': {
+        '@apply text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white': {}
+      },
+      '.devise-form-button': {
+        '@apply w-full': {}
+      },
+      '.devise-shared-links': {
+        '@apply mt-6 text-sm': {}
+      },
       // '': {
       //   '': {}
       // },

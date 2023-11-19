@@ -224,10 +224,10 @@ form {
   //   cursor: pointer;
   // }
 
-  .buttons, .actions {
-    margin-top: 15px;
-    input[type=submit], input[type=button], button { margin-right: 10px; }
-  }
+  // .buttons, .actions {
+  //   margin-top: 15px;
+  //   input[type=submit], input[type=button], button { margin-right: 10px; }
+  // }
 
   .actions .create_another {
     float: none;
@@ -239,12 +239,12 @@ form {
     }
   }
 
-  fieldset.buttons li, fieldset.actions li {
-    float:left;
-    padding: 0;
+  // fieldset.buttons li, fieldset.actions li {
+  //   float:left;
+  //   padding: 0;
 
-    &.cancel a { @include light-button; }
-  }
+  //   &.cancel a { @include light-button; }
+  // }
 }
 
 // -------------------------------------- Sidebar Forms

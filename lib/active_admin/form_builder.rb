@@ -22,7 +22,8 @@ module ActiveAdmin
     self.action_class_finder = ::Formtastic::ActionClassFinder
 
     def cancel_link(url = { action: "index" }, html_options = {}, li_attrs = {})
-      li_attrs[:class] ||= "cancel"
+      li_attrs[:class] ||= "action cancel"
+      html_options[:class] ||= "cancel-link"
       li_content = template.link_to I18n.t("active_admin.cancel"), url, html_options
       template.content_tag(:li, li_content, li_attrs)
     end

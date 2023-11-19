@@ -148,7 +148,7 @@ ActiveAdmin.register Post do
         t.input :_destroy, as: :boolean
       end
     end
-    para "Press cancel to return to the list without saving."
+    para "Press cancel to return to the list without saving.", class: "py-2"
     f.actions
   end
 end
