@@ -82,11 +82,26 @@ module.exports = plugin(
         color: theme('colors.gray.500', colors.gray[500]),
         opacity: '1',
       },
-      ['::-webkit-datetime-edit-fields-wrapper']: {
-        padding: '0',
+      ['::-webkit-datetime-edit']: {
+        display: 'inline-flex',
+      },
+      [[
+        '::-webkit-datetime-edit',
+        '::-webkit-datetime-edit-year-field',
+        '::-webkit-datetime-edit-month-field',
+        '::-webkit-datetime-edit-day-field',
+        '::-webkit-datetime-edit-hour-field',
+        '::-webkit-datetime-edit-minute-field',
+        '::-webkit-datetime-edit-second-field',
+        '::-webkit-datetime-edit-millisecond-field',
+        '::-webkit-datetime-edit-meridiem-field',
+      ]]: {
+        'padding-bottom': '0',
+        'padding-top': '0',
       },
       ['::-webkit-date-and-time-value']: {
         'min-height': '1.5em',
+        'text-align': 'inherit',
       },
       ['select']: {
         'background-image': `url("${svgToTinyDataUri(
