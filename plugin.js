@@ -344,7 +344,7 @@ module.exports = plugin(
         '@apply flex ps-3 pe-3': {}
       },
       '.page-footer': {
-        '@apply text-xs mt-10 mx-8 pt-9 pb-12 text-gray-500 border-t': {}
+        '@apply text-xs mt-16 mx-8 pt-9 pb-12 text-gray-500 border-t': {}
       },
       '.page-footer :where(a)': {
         '@apply text-blue-600 underline dark:text-white hover:no-underline': {}
