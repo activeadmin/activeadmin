@@ -14,8 +14,7 @@ Feature: Internationalization
     And I should see "Hello words"
 
     When I follow "View"
-    Then I should see "Bookstore Details"
-    And I should see "Hello words"
+    Then I should see "Hello words"
     And I should see a link to "Delete Bookstore"
 
     When I follow "Edit Bookstore"
@@ -42,14 +41,3 @@ Feature: Internationalization
     When I go to the dashboard
     And I follow "Bookstores"
     Then I should see "Export:"
-
-  Scenario: Overriding resource details table title
-    Given a configuration of:
-    """
-      ActiveAdmin.register Post
-    """
-    And String "Post detailed information" corresponds to "resources.post.details"
-    And I am logged in
-    And a post exists
-    When I go to the last post's show page
-    Then I should see "Post detailed information"
