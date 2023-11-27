@@ -383,7 +383,7 @@ module.exports = plugin(
         '@apply py-2.5 px-5 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
       },
       '.page-content-container': {
-        '@apply px-2.5 lg:px-5 lg:grid lg:gap-4 lg:gap-6 lg:grid-cols-1 lg:grid-flow-col lg:auto-cols-[minmax(0,280px)]': {}
+        '@apply px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,280px)]': {}
       },
       '.main-content-container': {
         /* @apply shadow-md sm:rounded-lg; */
