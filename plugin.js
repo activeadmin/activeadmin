@@ -658,6 +658,12 @@ module.exports = plugin(
       '.devise-shared-links': {
         '@apply mt-6 text-sm': {}
       },
+      '.blank-slate': {
+        '@apply relative block w-full rounded-lg border-2 border-dashed border-gray-300 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-600 px-6 py-12 text-center': {}
+      },
+      '.blank-slate-title': {
+        '@apply block mb-4 only:mb-0 font-semibold leading-6 text-gray-900 dark:text-gray-200': {}
+      },
       // '': {
       //   '': {}
       // },
