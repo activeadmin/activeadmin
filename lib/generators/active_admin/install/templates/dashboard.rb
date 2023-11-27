@@ -12,18 +12,14 @@ ActiveAdmin.register_page "Dashboard" do
 
     # Here is an example of a simple dashboard with columns and panels.
     #
-    # columns do
-    #   column do
+    # div class: "grid grid-cols-1 md:grid-cols-2 gap-4 my-4" do
+    #   div do
     #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
+    #       para "Display some recent posts."
     #     end
     #   end
 
-    #   column do
+    #   div do
     #     panel "Info" do
     #       para "Welcome to ActiveAdmin."
     #     end

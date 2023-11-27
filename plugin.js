@@ -504,12 +504,6 @@ module.exports = plugin(
       '.clear_filters_btn': {
         '@apply text-blue-700 hover:bg-gray-100 hover:text-blue-600 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 transition-colors no-underline': {}
       },
-      '.columns': {
-        display: 'grid',
-        'grid-auto-columns': '1fr',
-        'grid-auto-flow': 'column',
-        'grid-gap': '1rem',
-      },
       '.dropdown_menu': {
         '@apply relative': {}
       },
