@@ -76,12 +76,12 @@ module ActiveAdmin
         if block
           insert_tag(SemanticActionsProxy, form_builder, *args, &block)
         else
+          add_create_another_checkbox
           actions(*args) { commit_action_with_cancel_link }
         end
       end
 
       def commit_action_with_cancel_link
-        add_create_another_checkbox
         action(:submit)
         cancel_link
       end
@@ -110,14 +110,16 @@ module ActiveAdmin
         create_another = params[:create_another]
         label = @resource.class.model_name.human
         Arbre::Context.new do
-          li class: "create_another" do
-            input(
-              checked: create_another,
-              id: "create_another",
-              name: "create_another",
-              type: "checkbox"
-            )
-            label(I18n.t("active_admin.create_another", model: label), for: "create_another")
+          div class: "boolean input input-create-another" do
+            label for: "create_another" do
+              input(
+                checked: create_another,
+                id: "create_another",
+                name: "create_another",
+                type: "checkbox"
+              )
+              text_node I18n.t("active_admin.create_another", model: label)
+            end
           end
         end
       end
