@@ -24,7 +24,7 @@ ActiveAdmin.register_page "KitchenSink" do
           h3 "This is an h3"
         end
       end
-      div do
+      div class: "overflow-x-auto" do
         table_for User.all do
           column :id
           column :display_name

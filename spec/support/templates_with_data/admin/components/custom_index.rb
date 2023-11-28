@@ -5,9 +5,16 @@ module ActiveAdmin
 
       def build(page_presenter, collection)
         add_class "index"
-        resource_selection_toggle_panel if active_admin_config.batch_actions.any?
-        collection.each do |obj|
-          instance_exec(obj, &page_presenter.block)
+        if active_admin_config.batch_actions.any?
+          div class: "p-3" do
+            resource_selection_toggle_panel
+          end
+        end
+
+        div class: "p-3 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" do
+          collection.each do |obj|
+            instance_exec(obj, &page_presenter.block)
+          end
         end
       end
 
