@@ -508,10 +508,10 @@ module.exports = plugin(
         '@apply w-2.5 h-2.5 ms-1.5': {}
       },
       '.dropdown_menu :where(ul)': {
-        '@apply z-10 hidden bg-white rounded shadow dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
+        '@apply z-10 hidden min-w-full bg-white rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
       '.dropdown_menu :where(ul > li > a)': {
-        '@apply block px-2.5 py-2 no-underline hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white': {}
+        '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white': {}
       },
       '.panel': {
         '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
