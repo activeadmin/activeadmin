@@ -78,6 +78,12 @@ everyone is a beginner at first :smile_cat:
 Active Admin is meant to be used by humans, not cucumbers. So make sure to take
 a look at your changes in a browser.
 
+Before you can do this, you'll need to install [Foreman](https://github.com/ddollar/foreman):
+
+```sh
+gem install foreman
+```
+
 To boot up a test Rails app:
 
 ```sh
