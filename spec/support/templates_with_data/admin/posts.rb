@@ -137,7 +137,7 @@ ActiveAdmin.register Post do
       f.input :body
     end
     f.inputs "Tags", class: "mb-6" do
-      f.has_many :taggings, sortable: :position do |t|
+      f.has_many :taggings, heading: false, sortable: :position do |t|
         t.input :tag
         t.input :_destroy, as: :boolean
       end

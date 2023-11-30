@@ -580,11 +580,8 @@ module.exports = plugin(
         '@apply mb-4 break-keep': {}
       },
       // Forms
-      '.formtastic :where(legend:has(span))': {
-        '@apply w-full mb-3': {}
-      },
-      '.formtastic :where(legend span)': {
-        '@apply block border-b font-bold text-lg': {}
+      '.formtastic :where(.fieldset-title, .has-many-fields-title)': {
+        '@apply block w-full mb-3 border-b font-bold text-lg': {}
       },
       '.formtastic :where(.label)': {
         '@apply block mb-1.5': {}
@@ -633,6 +630,12 @@ module.exports = plugin(
       },
       '.formtastic :where(.actions .cancel-link)': {
         '@apply font-semibold leading-6 text-gray-900 dark:text-white no-underline': {}
+      },
+      '.formtastic :where(.has_many_add)': {
+        '@apply inline-block py-3': {}
+      },
+      '.formtastic :where(.has_many_fields)': {
+        '@apply my-5 border-s-2 border-s-gray-700 ps-3': {}
       },
       '.devise-body': {
         '@apply bg-gray-50 dark:bg-gray-900': {}
