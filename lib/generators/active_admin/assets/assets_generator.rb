@@ -6,7 +6,6 @@ module ActiveAdmin
       source_root File.expand_path("templates", __dir__)
 
       def install_assets
-        template "active_admin_old.scss", "app/assets/stylesheets/active_admin_old.scss"
         template "active_admin.js", "app/javascript/active_admin.js"
         template "active_admin.css", "app/assets/stylesheets/active_admin.css"
         template "package.json", "package.json"
