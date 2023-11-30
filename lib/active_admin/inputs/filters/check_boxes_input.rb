@@ -21,11 +21,6 @@ module ActiveAdmin
           end
         end
 
-        # Add whitespace before label
-        def choice_label(choice)
-          " " + super
-        end
-
         # Don't wrap in UL tag
         def choices_group_wrapping(&block)
           template.capture(&block)

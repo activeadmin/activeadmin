@@ -121,16 +121,20 @@ module ActiveAdmin
         end
 
         def render_blank_slate
-          blank_slate_content = I18n.t("active_admin.blank_slate.content", resource_name: active_admin_config.plural_resource_label)
-          if controller.action_methods.include?("new") && authorized?(ActiveAdmin::Auth::NEW, active_admin_config.resource_class)
-            blank_slate_content = [blank_slate_content, blank_slate_link].compact.join(" ")
+          content = I18n.t("active_admin.blank_slate.content", resource_name: active_admin_config.plural_resource_label)
+          blank_slate do
+            h2 content, class: "blank-slate-title"
+            if controller.action_methods.include?("new") && authorized?(ActiveAdmin::Auth::NEW, active_admin_config.resource_class)
+              text_node blank_slate_link
+            end
           end
-          insert_tag(view_factory.blank_slate, blank_slate_content)
         end
 
         def render_empty_results
-          empty_results_content = I18n.t("active_admin.pagination.empty", model: active_admin_config.plural_resource_label)
-          insert_tag(view_factory.blank_slate, empty_results_content)
+          content = I18n.t("active_admin.pagination.empty", model: active_admin_config.plural_resource_label)
+          blank_slate do
+            h2 content, class: "blank-slate-title"
+          end
         end
 
         def render_index

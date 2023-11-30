@@ -16,15 +16,15 @@ ActiveAdmin.register_page "KitchenSink" do
   end
 
   content do
-    columns do
-      column do
+    div class: "grid grid-cols-1 md:grid-cols-2 gap-4 my-4" do
+      div do
         panel "Panel title" do
           h1 "This is an h1"
           h2 "This is an h2"
           h3 "This is an h3"
         end
       end
-      column do
+      div class: "overflow-x-auto" do
         table_for User.all do
           column :id
           column :display_name

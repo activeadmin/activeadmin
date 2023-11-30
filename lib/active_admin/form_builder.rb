@@ -22,7 +22,8 @@ module ActiveAdmin
     self.action_class_finder = ::Formtastic::ActionClassFinder
 
     def cancel_link(url = { action: "index" }, html_options = {}, li_attrs = {})
-      li_attrs[:class] ||= "cancel"
+      li_attrs[:class] ||= "action cancel"
+      html_options[:class] ||= "cancel-link"
       li_content = template.link_to I18n.t("active_admin.cancel"), url, html_options
       template.content_tag(:li, li_content, li_attrs)
     end
@@ -57,7 +58,7 @@ module ActiveAdmin
 
     def render(&block)
       html = "".html_safe
-      html << template.content_tag(:h3) { heading } if heading.present?
+      html << template.content_tag(:h3, class: "has-many-fields-title") { heading } if heading.present?
       html << template.capture { content_has_many(&block) }
       html = wrap_div_or_li(html)
       template.concat(html) if template.output_buffer
@@ -108,7 +109,7 @@ module ActiveAdmin
 
     def has_many_actions(form_builder, contents)
       if form_builder.object.new_record?
-        contents << template.content_tag(:li) do
+        contents << template.content_tag(:li, class: "input") do
           remove_text = remove_record.is_a?(String) ? remove_record : I18n.t("active_admin.has_many_remove")
           template.link_to remove_text, "#", class: "button has_many_remove"
         end
@@ -122,9 +123,9 @@ module ActiveAdmin
       if sortable_column
         form_builder.input sortable_column, as: :hidden
 
-        contents << template.content_tag(:li, class: "handle") do
-          I18n.t("active_admin.move")
-        end
+        # contents << template.content_tag(:li, class: "handle") do
+        #   I18n.t("active_admin.move")
+        # end
       end
 
       contents
@@ -179,7 +180,8 @@ module ActiveAdmin
       template.content_tag(
         already_in_an_inputs_block ? :li : :div,
         html,
-        class: "has_many_container #{assoc}",
+        class: "has_many_container",
+        "data-has-many-association" => assoc,
         "data-sortable" => sortable_column,
         "data-sortable-start" => sortable_start)
     end

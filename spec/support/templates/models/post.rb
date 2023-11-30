@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :author
   accepts_nested_attributes_for :taggings, allow_destroy: true
 
+  # validates :title, :body, :author, :category, presence: true
+
   ransacker :custom_title_searcher do |parent|
     parent.table[:title]
   end
