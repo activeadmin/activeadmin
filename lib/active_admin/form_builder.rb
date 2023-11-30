@@ -123,9 +123,9 @@ module ActiveAdmin
       if sortable_column
         form_builder.input sortable_column, as: :hidden
 
-        contents << template.content_tag(:li, class: "handle") do
-          I18n.t("active_admin.move")
-        end
+        # contents << template.content_tag(:li, class: "handle") do
+        #   I18n.t("active_admin.move")
+        # end
       end
 
       contents
