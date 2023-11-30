@@ -4,6 +4,9 @@ ActiveAdmin.register User do
 
   permit_params :first_name, :last_name, :username, :age
 
+  preserve_default_filters!
+  filter :first_name_or_last_name_cont, as: :string, label: "First or Last Name"
+
   index do
     selectable_column
     id_column
