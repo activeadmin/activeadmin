@@ -4,7 +4,7 @@ def ensure_user_created(email)
 end
 
 Given /^(?:I am logged|log) out$/ do
-  click_link "Logout" if page.all(:css, "a", text: "Logout").any?
+  click_link "Sign out" if page.all(:css, "a", text: "Sign out").any?
 end
 
 Given /^I am logged in$/ do
@@ -19,7 +19,7 @@ Given /^I am logged in with capybara$/ do
   visit new_admin_user_session_path
   fill_in "Email", with: "admin@example.com"
   fill_in "Password", with: "password"
-  click_button "Login"
+  click_button "Sign In"
 end
 
 Given /^an admin user "([^"]*)" exists$/ do |email|

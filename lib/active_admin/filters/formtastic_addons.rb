@@ -47,7 +47,7 @@ module ActiveAdmin
       #
 
       def searchable_has_many_through?
-        if reflection && reflection.options[:through]
+        if klass.ransackable_associations.include?(method.to_s) && reflection && reflection.options[:through]
           reflection.through_reflection.klass.ransackable_attributes.include? reflection.foreign_key
         else
           false

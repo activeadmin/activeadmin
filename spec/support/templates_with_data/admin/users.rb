@@ -4,16 +4,29 @@ ActiveAdmin.register User do
 
   permit_params :first_name, :last_name, :username, :age
 
+  preserve_default_filters!
+  filter :first_name_or_last_name_cont, as: :string, label: "First or Last Name"
+
+  index do
+    selectable_column
+    id_column
+    column :first_name
+    column :last_name
+    column :username
+    column :age
+    column :created_at
+    column :updated_at
+    actions dropdown: true
+  end
+
   index as: ActiveAdmin::Views::CustomIndex do |user|
-    div for: user do
-      resource_selection_cell user
-      h2 link_to(user.display_name, admin_user_path(user)), style: "margin-bottom: 0"
-      para do
-        strong user.username, style: "text-transform: uppercase; font-size: 10px;"
-        br
-        em user.age
-        text_node "years old"
+    label do
+      div class: "flex items-center gap-2 text-xl mb-2" do
+        resource_selection_cell user
+        span link_to(user.display_name, admin_user_path(user))
       end
+      div "@#{user.username}", class: "mb-2"
+      div "#{user.age} years old", class: "mb-2 font-semibold"
     end
   end
 
@@ -42,7 +55,7 @@ ActiveAdmin.register User do
         end
       end
 
-      para do
+      div class: "mt-4" do
         link_to "View all posts", admin_user_posts_path(user)
       end
     end
