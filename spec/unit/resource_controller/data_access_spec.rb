@@ -30,10 +30,11 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "searching" do
+    let(:ransack_options) { { auth_object: controller.send(:active_admin_authorization) } }
     let(:http_params) { { q: {} } }
     it "should call the search method" do
       chain = double "ChainObj"
-      expect(chain).to receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
+      expect(chain).to receive(:ransack).with(params[:q], ransack_options).once.and_return(Post.ransack)
       controller.send :apply_filtering, chain
     end
 
@@ -42,7 +43,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
         { q: { id_eq: 1, position_eq: "" } }
       end
       it "should return relation without empty filters" do
-        expect(Post).to receive(:ransack).with(params[:q]).once.and_wrap_original do |original, *args|
+        expect(Post).to receive(:ransack).with(params[:q], ransack_options).once.and_wrap_original do |original, *args|
           chain = original.call(*args)
           expect(chain.conditions.size).to eq(1)
           chain
