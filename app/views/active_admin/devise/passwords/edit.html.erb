@@ -1,5 +1,7 @@
-<div id="login">
-  <h2><%= active_admin_application.site_title(self) %> <%= title t('active_admin.devise.change_password.title') %></h2>
+<div class="devise-form-container">
+  <h2 class="devise-form-title">
+    <%= active_admin_application.site_title(self) %> <%= title t('active_admin.devise.change_password.title') %>
+  </h2>
 
   <%= render partial: "active_admin/devise/shared/error_messages", resource: resource %>
   <%= active_admin_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
@@ -9,10 +11,12 @@
       f.input :reset_password_token, as: :hidden, input_html: { value: resource.reset_password_token }
     end
     f.actions do
-      f.action :submit, label: t('active_admin.devise.change_password.submit'), button_html: { value: t('active_admin.devise.change_password.submit') }
+      f.action :submit, label: t('active_admin.devise.change_password.submit'), button_html: { class: "devise-form-button", value: t('active_admin.devise.change_password.submit') }
     end
   end
   %>
 
-  <%= render 'active_admin/devise/shared/links' %>
+  <div class="devise-shared-links">
+    <%= render 'active_admin/devise/shared/links' %>
+  </div>
 </div>

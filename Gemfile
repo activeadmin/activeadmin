@@ -28,7 +28,7 @@ group :test do
 
   gem "simplecov", require: false # Test coverage generator. Go to /coverage/ after running tests
   gem "simplecov-cobertura", require: false
-  gem "cucumber-rails", require: false, github: "cucumber/cucumber-rails", branch: "main"
+  gem "cucumber-rails", require: false
   gem "cucumber"
   gem "database_cleaner"
   gem "launchy"

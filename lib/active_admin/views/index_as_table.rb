@@ -388,6 +388,10 @@ module ActiveAdmin
           def item *args, **kwargs
             text_node link_to(*args, **kwargs)
           end
+
+          def default_class_name
+            "data-table-default-actions"
+          end
         end
       end # IndexTableFor
 

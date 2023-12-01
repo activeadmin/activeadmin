@@ -190,7 +190,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         f.actions
       end
       expect(body).to have_css("[type=submit]", count: 1)
-      expect(body).to have_css("[class=cancel]", count: 1)
+      expect(body).to have_css(".cancel", count: 1)
     end
 
     it "should generate multiple actions" do
@@ -201,7 +201,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
       end
       expect(body).to have_css("[type=submit]", count: 2)
-      expect(body).to have_css("[class=cancel]", count: 0)
+      expect(body).to have_css(".cancel", count: 0)
     end
   end
 
