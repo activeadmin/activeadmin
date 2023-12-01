@@ -173,6 +173,21 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         }
         body
       end
+
+      context "and a statement timeout error occurs" do
+        let(:body) { filter :title, as: :select, collection: ["foo"] }
+        let(:input_super_class) { Formtastic::Inputs::Base::Collections }
+        let(:db_timeout_exception) { ActiveRecord::QueryCanceled.new("ERROR: canceling statement due to statement timeout") }
+        let(:expected_exception_message) { "ERROR: canceling statement due to statement timeout while querying the values for the ActiveAdmin :title filter" }
+
+        before do
+          expect_any_instance_of(input_super_class).to receive(:collection).and_raise(db_timeout_exception)
+        end
+
+        it "should raise a database timeout error with a message indicating which filter was the cause" do
+          expect { body }.to raise_error(ActiveRecord::QueryCanceled, expected_exception_message)
+        end
+      end
     end
   end
 
