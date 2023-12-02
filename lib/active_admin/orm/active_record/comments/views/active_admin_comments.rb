@@ -22,6 +22,10 @@ module ActiveAdmin
 
         protected
 
+        def default_class_name
+          "comments"
+        end
+
         def title
           I18n.t "active_admin.comments.title_content", count: @comments.total_count
         end

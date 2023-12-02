@@ -20,6 +20,10 @@ module ActiveAdmin
 
       protected
 
+      def default_class_name
+        "sidebar_section"
+      end
+
       def build_sidebar_content
         if @section.block
           rvalue = instance_exec(&@section.block)

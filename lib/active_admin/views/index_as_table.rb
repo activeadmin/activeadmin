@@ -395,6 +395,11 @@ module ActiveAdmin
         end
       end # IndexTableFor
 
+      protected
+
+      def default_class_name
+        "index_as_table"
+      end
     end
   end
 end

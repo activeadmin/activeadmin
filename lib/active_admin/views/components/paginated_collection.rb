@@ -66,6 +66,10 @@ module ActiveAdmin
 
       protected
 
+      def default_class_name
+        "paginated_collection"
+      end
+
       def build_pagination_with_formats(options)
         div class: "paginated-collection-pagination" do
           div page_entries_info(options).html_safe, class: "pagination_information"

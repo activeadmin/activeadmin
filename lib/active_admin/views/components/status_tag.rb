@@ -57,6 +57,10 @@ module ActiveAdmin
 
       protected
 
+      def default_class_name
+        "status_tag"
+      end
+
       def convert_to_boolean_status(status)
         case status
         when true, "true"
