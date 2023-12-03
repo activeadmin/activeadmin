@@ -350,7 +350,7 @@ module.exports = plugin(
         '@apply text-blue-600 underline dark:text-white hover:no-underline': {}
       },
       '.page-title-bar': {
-        '@apply bg-gray-50 border-b p-4 mb-8 gap-4 items-center flex justify-between dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply bg-gray-50 border-b p-4 mb-8 flex flex-col gap-4 md:flex-row md:items-center justify-between dark:border-gray-700 dark:bg-gray-800': {}
       },
       '.page-title-bar-content': {
         '@apply flex flex-col gap-3 pt-1': {}
@@ -359,7 +359,7 @@ module.exports = plugin(
         '@apply text-2xl font-semibold': {}
       },
       '.page-title-bar-actions': {
-        '@apply flex gap-2 flex-wrap justify-end': {}
+        '@apply flex gap-2 flex-wrap lg:justify-end': {}
       },
       '.breadcrumb-arrow': {
         'background-image': `url("${svgToTinyDataUri(
