@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 require "active_admin/views"
-require "active_admin/views/components/panel"
 
 module ActiveAdmin
   module Comments
     module Views
-
-      class Comments < ActiveAdmin::Views::Panel
+      class Comments < ActiveAdmin::Component
         builder_method :active_admin_comments_for
 
         attr_accessor :resource
@@ -15,7 +13,7 @@ module ActiveAdmin
           if authorized?(ActiveAdmin::Auth::READ, ActiveAdmin::Comment)
             @resource = resource
             @comments = active_admin_authorization.scope_collection(ActiveAdmin::Comment.find_for_resource_in_namespace(resource, active_admin_namespace.name).includes(:author).page(params[:page]))
-            super(title, for: resource)
+            super(for: resource)
             build_comments
           end
         end
@@ -26,13 +24,17 @@ module ActiveAdmin
           "comments"
         end
 
-        def title
-          I18n.t "active_admin.comments.title_content", count: @comments.total_count
-        end
-
         def build_comments
+          div class: "comments-header" do
+            ActiveAdmin::Comment.model_name.human(count: 2)
+          end
+
           if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment)
             build_comment_form
+          end
+
+          div class: "comments-header" do
+            I18n.t "active_admin.comments.title_content", count: @comments.total_count
           end
 
           if @comments.any?
@@ -67,7 +69,7 @@ module ActiveAdmin
         end
 
         def build_empty_message
-          span I18n.t("active_admin.comments.no_comments_yet"), class: "empty"
+          div I18n.t("active_admin.comments.no_comments_yet"), class: "comments-empty-label"
         end
 
         def comments_url(*args)
@@ -103,7 +105,6 @@ module ActiveAdmin
           "active_admin_comments_for"
         end
       end
-
     end
   end
 end

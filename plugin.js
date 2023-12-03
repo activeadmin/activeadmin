@@ -561,11 +561,20 @@ module.exports = plugin(
       '.tabs-content': {
         '@apply p-4 mb-6': {}
       },
+      '.comments': {
+        '@apply max-w-[700px]': {}
+      },
+      '.comments-header': {
+        '@apply font-bold py-3 border-b dark:border-gray-600': {}
+      },
       '.comment-form': {
-        '@apply mb-8 max-w-[700px]': {}
+        '@apply mb-12 max-w-[700px]': {}
+      },
+      '.comments-empty-label': {
+        '@apply p-8 text-center': {}
       },
       '.comment-container': {
-        '@apply border-t dark:border-gray-600 py-4 mb-4 max-w-[700px]': {}
+        '@apply border-b dark:border-gray-600 py-6 max-w-[700px]': {}
       },
       '.comment-header': {
         '@apply flex gap-4 items-end mb-2': {}
