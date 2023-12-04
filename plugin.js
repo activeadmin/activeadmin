@@ -474,6 +474,9 @@ module.exports = plugin(
         '@apply w-5 h-5 shrink-0': {}
       },
       '.flash_alert': {
+        '@apply bg-yellow-50 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-300': {}
+      },
+      '.flash_error': {
         '@apply bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
       },
       '.flash_notice': {
