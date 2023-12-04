@@ -18,20 +18,8 @@ module ActiveAdmin
     # Set the site title image displayed in the main layout (has precendence over :site_title)
     register :site_title_image, "", :string_symbol_or_proc
 
-    # Add to the site head
-    register :head, "", :string_symbol_or_proc
-
     # Set the site footer text (defaults to Powered by ActiveAdmin text with version)
     register :footer, "", :string_symbol_or_proc
-
-    # Set a favicon
-    register :favicon, false
-
-    # Additional meta tags to place in head of logged in pages
-    register :meta_tags, {}
-
-    # Additional meta tags to place in head of logged out pages
-    register :meta_tags_for_logged_out_pages, { robots: "noindex, nofollow" }
 
     # The view factory to use to generate all the view classes. Take
     # a look at ActiveAdmin::ViewFactory

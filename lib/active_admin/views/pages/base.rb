@@ -10,7 +10,6 @@ module ActiveAdmin
           build_page
         end
 
-        alias_method :html_title, :title # Arbre::HTML::Title
         def title
           self.class.name
         end
@@ -25,34 +24,8 @@ module ActiveAdmin
 
         def build_active_admin_head
           within head do
-            html_title [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
-
-            text_node(active_admin_namespace.head)
-
-            active_admin_application.stylesheets.each do |style, options|
-              stylesheet_tag = stylesheet_link_tag(style, **options)
-              text_node(stylesheet_tag.html_safe) if stylesheet_tag
-            end
-
-            text_node(meta(name: "viewport", content: "width=device-width, initial-scale=1"))
-
-            active_admin_namespace.meta_tags.each do |name, content|
-              text_node(meta(name: name, content: content))
-            end
-
-            active_admin_application.javascripts.each do |path, options|
-              javascript_tag = javascript_include_tag(path, **options)
-              text_node(javascript_tag)
-            end
-
-            if active_admin_namespace.favicon
-              favicon = active_admin_namespace.favicon
-              favicon_tag = favicon_link_tag(favicon)
-              text_node(favicon_tag)
-            end
-
-            text_node csrf_meta_tags
-            text_node csp_meta_tag
+            render "active_admin/html_head/title", title: [title, helpers.active_admin_namespace.site_title(self)].compact.join(" - ")
+            render "active_admin/head"
           end
         end
 

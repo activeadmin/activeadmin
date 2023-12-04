@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 # Rails template to build the sample app for specs
 
-create_file "app/assets/stylesheets/some-random-css.css"
-create_file "app/assets/javascripts/some-random-js.js"
-create_file "app/assets/images/a/favicon.ico"
-
 initial_timestamp = Time.now.strftime("%Y%M%d%H%M%S").to_i
 
 template File.expand_path("templates/migrations/create_posts.tt", __dir__), "db/migrate/#{initial_timestamp}_create_posts.rb"
@@ -81,10 +77,6 @@ inject_into_file "config/environments/test.rb", after: "config.cache_classes = !
   RUBY
 end
 
-inject_into_file "config/environments/test.rb", after: "  config.action_mailer.default_url_options = {host: 'example.com'}" do
-  "\n  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )\n"
-end
-
 gsub_file "config/boot.rb", /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
   ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
 RUBY
@@ -112,14 +104,6 @@ append_file "config/locales/en.yml", File.read(File.expand_path("templates/en.ym
 directory File.expand_path("templates/admin", __dir__), "app/admin"
 directory File.expand_path("templates/views", __dir__), "app/views"
 directory File.expand_path("templates/policies", __dir__), "app/policies"
-
-inject_into_file "config/initializers/active_admin.rb", before: /^end$/ do
-  <<-RUBY
-  config.clear_stylesheets!
-  config.register_stylesheet 'active_admin_old.css', media: "all"
-  config.register_stylesheet 'active_admin.css', media: "all"
-  RUBY
-end
 
 if ENV["RAILS_ENV"] != "test"
   inject_into_file "config/routes.rb", "\n  root to: redirect('admin')", after: /.*routes.draw do/
