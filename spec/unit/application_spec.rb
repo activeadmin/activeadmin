@@ -26,22 +26,9 @@ RSpec.describe ActiveAdmin::Application do
     expect(application.site_title).to eq "New Title"
   end
 
-  it "should store the site's title link" do
-    expect(application.site_title_link).to eq ""
-  end
-
-  it "should set the site's title link" do
-    application.site_title_link = "https://mygreatsite.example.com"
-    expect(application.site_title_link).to eq "https://mygreatsite.example.com"
-  end
-
-  it "should store the site's title image" do
-    expect(application.site_title_image).to eq ""
-  end
-
-  it "should set the site's title image" do
-    application.site_title_image = "https://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
-    expect(application.site_title_image).to eq "https://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+  it "should set the site title using a block" do
+    application.site_title = proc { "Block Title" }
+    expect(application.site_title).to eq "Block Title"
   end
 
   it "should return default localize format" do
