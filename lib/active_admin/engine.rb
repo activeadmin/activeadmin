@@ -8,11 +8,8 @@ module ActiveAdmin
     end
 
     initializer "active_admin.precompile", group: :all do |app|
-      ActiveAdmin.application.stylesheets.each do |path, _|
-        app.config.assets.precompile << path
-      end
-      ActiveAdmin.application.javascripts.each do |path, _|
-        app.config.assets.precompile << path
+      if app.config.respond_to?(:assets)
+        app.config.assets.precompile += %w(active_admin.js active_admin.css)
       end
     end
 

@@ -15,7 +15,6 @@ module ActiveAdmin
 
   autoload :VERSION, "active_admin/version"
   autoload :Application, "active_admin/application"
-  autoload :AssetRegistration, "active_admin/asset_registration"
   autoload :Authorization, "active_admin/authorization_adapter"
   autoload :AuthorizationAdapter, "active_admin/authorization_adapter"
   autoload :Callbacks, "active_admin/callbacks"
