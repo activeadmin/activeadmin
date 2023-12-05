@@ -75,7 +75,10 @@
   const tableRowClick = function(event) {
     const type = event.target.type;
     if (typeof type === "undefined" || type !== "checkbox" && type !== "button" && type !== "") {
-      event.target.closest("tr").querySelector("input[type=checkbox]").click();
+      const checkbox = event.target.closest("tr").querySelector("input[type=checkbox]");
+      if (checkbox) {
+        checkbox.click();
+      }
     }
   };
   Rails.delegate(document, ".paginated_collection tbody td", "click", tableRowClick);
