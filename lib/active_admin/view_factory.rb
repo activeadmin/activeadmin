@@ -9,7 +9,6 @@ module ActiveAdmin
              utility_navigation: ActiveAdmin::Views::TabbedNavigation,
              title_bar: ActiveAdmin::Views::TitleBar,
              header: ActiveAdmin::Views::Header,
-             footer: ActiveAdmin::Views::Footer,
              index_scopes: ActiveAdmin::Views::Scopes,
              blank_slate: ActiveAdmin::Views::BlankSlate
 

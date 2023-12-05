@@ -12,9 +12,6 @@ module ActiveAdmin
     # The title which gets displayed in the main layout
     register :site_title, "", :string_symbol_or_proc
 
-    # Set the site footer text (defaults to Powered by ActiveAdmin text with version)
-    register :footer, "", :string_symbol_or_proc
-
     # The view factory to use to generate all the view classes. Take
     # a look at ActiveAdmin::ViewFactory
     register :view_factory, ActiveAdmin::ViewFactory.new

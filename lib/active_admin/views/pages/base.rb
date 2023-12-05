@@ -35,7 +35,7 @@ module ActiveAdmin
               header active_admin_namespace, current_menu
               title_bar title, action_items_for_action
               build_page_content
-              footer active_admin_namespace
+              render "active_admin/site_footer"
             end
           end
         end
