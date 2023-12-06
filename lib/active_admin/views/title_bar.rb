@@ -21,8 +21,10 @@ module ActiveAdmin
       end
 
       def build_titlebar_right
-        div class: "page-title-bar-actions" do
-          build_action_items
+        if @action_items.present?
+          div class: "page-title-bar-actions" do
+            build_action_items
+          end
         end
       end
 

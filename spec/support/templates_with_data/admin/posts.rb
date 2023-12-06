@@ -42,7 +42,7 @@ ActiveAdmin.register Post do
     posts.where(author_id: current_admin_user.id)
   end
 
-  batch_action :set_starred, partial: "starred_batch_action_form", link_html_options: { "data-modal-toggle": "starred-batch-action-modal" } do |ids, inputs|
+  batch_action :set_starred, partial: "starred_batch_action_form", link_html_options: { "data-modal-target": "starred-batch-action-modal", "data-modal-show": "starred-batch-action-modal" } do |ids, inputs|
     Post.where(id: ids).update_all(starred: inputs["starred"].present?)
     redirect_to collection_path(user_id: params["user_id"]), notice: "The posts have been updated."
   end

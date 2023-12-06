@@ -9,7 +9,7 @@ Feature: Switch Index View
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index as: :table do
+        index do
           column :title
         end
         index as: CustomIndexView do |post|
@@ -27,7 +27,7 @@ Feature: Switch Index View
         index as: CustomIndexView do |post|
           span(link_to(post.title, admin_post_path(post)))
         end
-        index as: :table, default: true do
+        index default: true do
           column :title
         end
       end
@@ -44,7 +44,7 @@ Feature: Switch Index View
   #       index as: CustomIndexView do |post|
   #         span(link_to(post.title, admin_post_path(post)))
   #       end
-  #       index as: :table, default: true do
+  #       index default: true do
   #         column :title
   #         column :body
   #       end

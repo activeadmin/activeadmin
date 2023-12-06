@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     activeadmin (3.1.0)
-      arbre (~> 1.2, >= 1.2.1)
+      arbre (~> 2.0)
       formtastic (>= 3.1)
       formtastic_i18n (>= 0.4)
       inherited_resources (~> 1.7)
@@ -93,7 +93,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
-    arbre (1.7.0)
+    arbre (2.0.0)
       activesupport (>= 3.0.0)
       ruby2_keywords (>= 0.0.2)
     ast (2.4.2)

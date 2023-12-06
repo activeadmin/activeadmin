@@ -49,6 +49,10 @@ module ActiveAdmin
         "attributes_table"
       end
 
+      def default_class_name
+        "attributes_table"
+      end
+
       # Build Colgroups
       #
       # Colgroups are only necessary for a collection of records; not

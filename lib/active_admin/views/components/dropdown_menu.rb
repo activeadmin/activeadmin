@@ -46,6 +46,12 @@ module ActiveAdmin
         end
       end
 
+      protected
+
+      def default_class_name
+        "dropdown_menu"
+      end
+
       private
 
       def build_button(name, options)

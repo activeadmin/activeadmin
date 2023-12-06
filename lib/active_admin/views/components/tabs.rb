@@ -29,6 +29,12 @@ module ActiveAdmin
         div(options, &block)
       end
 
+      protected
+
+      def default_class_name
+        "tabs"
+      end
+
       private
 
       def fragmentize(string)

@@ -350,7 +350,7 @@ module.exports = plugin(
         '@apply text-blue-600 underline dark:text-white hover:no-underline': {}
       },
       '.page-title-bar': {
-        '@apply bg-gray-50 border-b p-4 mb-8 gap-4 items-center flex justify-between dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply bg-gray-50 border-b p-4 mb-8 flex flex-col gap-4 md:flex-row md:items-center justify-between dark:border-gray-700 dark:bg-gray-800': {}
       },
       '.page-title-bar-content': {
         '@apply flex flex-col gap-3 pt-1': {}
@@ -359,7 +359,7 @@ module.exports = plugin(
         '@apply text-2xl font-semibold': {}
       },
       '.page-title-bar-actions': {
-        '@apply flex gap-2 flex-wrap justify-end': {}
+        '@apply flex gap-2 flex-wrap lg:justify-end': {}
       },
       '.breadcrumb-arrow': {
         'background-image': `url("${svgToTinyDataUri(
@@ -474,6 +474,9 @@ module.exports = plugin(
         '@apply w-5 h-5 shrink-0': {}
       },
       '.flash_alert': {
+        '@apply bg-yellow-50 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-300': {}
+      },
+      '.flash_error': {
         '@apply bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
       },
       '.flash_notice': {
@@ -508,7 +511,7 @@ module.exports = plugin(
         '@apply w-2.5 h-2.5 ms-1.5': {}
       },
       '.dropdown_menu :where(ul)': {
-        '@apply z-10 hidden min-w-full bg-white rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
+        '@apply z-10 hidden min-w-max bg-white rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
       '.dropdown_menu :where(ul > li > a)': {
         '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white': {}
@@ -526,7 +529,7 @@ module.exports = plugin(
         '@apply py-6 px-4': {}
       },
       '.attributes_table': {
-        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply overflow-hidden mb-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
       },
       '.attributes_table > :where(table)': {
         '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
@@ -561,11 +564,20 @@ module.exports = plugin(
       '.tabs-content': {
         '@apply p-4 mb-6': {}
       },
+      '.comments': {
+        '@apply max-w-[700px]': {}
+      },
+      '.comments-header': {
+        '@apply font-bold py-3 border-b dark:border-gray-600': {}
+      },
       '.comment-form': {
-        '@apply mb-8 max-w-[700px]': {}
+        '@apply mb-12 max-w-[700px]': {}
+      },
+      '.comments-empty-label': {
+        '@apply p-8 text-center': {}
       },
       '.comment-container': {
-        '@apply border-t dark:border-gray-600 py-4 mb-4 max-w-[700px]': {}
+        '@apply border-b dark:border-gray-600 py-6 max-w-[700px]': {}
       },
       '.comment-header': {
         '@apply flex gap-4 items-end mb-2': {}

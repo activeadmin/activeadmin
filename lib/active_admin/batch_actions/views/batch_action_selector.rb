@@ -28,14 +28,14 @@ module ActiveAdmin
 
         dropdown_menu (I18n.t("active_admin.batch_actions.button_label") + svg).html_safe,
                       class: "batch_actions_selector dropdown_menu",
-                      button: { disabled: "disabled" } do
+                      button: { disabled: "" } do
           batch_actions_to_display.each do |batch_action|
             confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)
 
             options = {
               "data-action": batch_action.sym,
               "data-confirm": confirmation_text.presence,
-              "data-batch-action-item": "data-batch-action-item"
+              "data-batch-action-item": ""
             }.compact.reverse_merge(batch_action.link_html_options)
 
             default_title = render_or_call_method_or_proc_on(self, batch_action.title)
