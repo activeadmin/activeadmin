@@ -1,3 +1,4 @@
+// https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.js
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -2128,17 +2129,25 @@ var Default = {
     onClose: function () { },
     onToggle: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Accordion = /** @class */ (function () {
-    function Accordion(accordionEl, items, options) {
+    function Accordion(accordionEl, items, options, instanceOptions) {
         if (accordionEl === void 0) { accordionEl = null; }
         if (items === void 0) { items = []; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : accordionEl.id;
         this._accordionEl = accordionEl;
         this._items = items;
         this._options = __assign(__assign({}, Default), options);
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Accordion', this, this._accordionEl.id, true);
+        instances_1.default.addInstance('Accordion', this, this._instanceId, instanceOptions.override);
     }
     Accordion.prototype.init = function () {
         var _this = this;
@@ -2169,7 +2178,7 @@ var Accordion = /** @class */ (function () {
         }
     };
     Accordion.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Accordion', this._accordionEl.id);
+        instances_1.default.removeInstance('Accordion', this._instanceId);
     };
     Accordion.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -2315,11 +2324,19 @@ var Default = {
     onPrev: function () { },
     onChange: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Carousel = /** @class */ (function () {
-    function Carousel(carouselEl, items, options) {
+    function Carousel(carouselEl, items, options, instanceOptions) {
         if (carouselEl === void 0) { carouselEl = null; }
         if (items === void 0) { items = []; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : carouselEl.id;
         this._carouselEl = carouselEl;
         this._items = items;
         this._options = __assign(__assign(__assign({}, Default), options), { indicators: __assign(__assign({}, Default.indicators), options.indicators) });
@@ -2329,7 +2346,7 @@ var Carousel = /** @class */ (function () {
         this._intervalInstance = null;
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Carousel', this, this._carouselEl.id, true);
+        instances_1.default.addInstance('Carousel', this, this._instanceId, instanceOptions.override);
     }
     /**
      * initialize carousel and items based on active one
@@ -2361,7 +2378,7 @@ var Carousel = /** @class */ (function () {
         }
     };
     Carousel.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Carousel', this._carouselEl.id);
+        instances_1.default.removeInstance('Carousel', this._instanceId);
     };
     Carousel.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -2580,18 +2597,26 @@ var Default = {
     onExpand: function () { },
     onToggle: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Collapse = /** @class */ (function () {
-    function Collapse(targetEl, triggerEl, options) {
+    function Collapse(targetEl, triggerEl, options, instanceOptions) {
         if (targetEl === void 0) { targetEl = null; }
         if (triggerEl === void 0) { triggerEl = null; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : targetEl.id;
         this._targetEl = targetEl;
         this._triggerEl = triggerEl;
         this._options = __assign(__assign({}, Default), options);
         this._visible = false;
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Collapse', this, this._targetEl.id, true);
+        instances_1.default.addInstance('Collapse', this, this._instanceId, instanceOptions.override);
     }
     Collapse.prototype.init = function () {
         var _this = this;
@@ -2618,7 +2643,7 @@ var Collapse = /** @class */ (function () {
         }
     };
     Collapse.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Collapse', this._targetEl.id);
+        instances_1.default.removeInstance('Collapse', this._instanceId);
     };
     Collapse.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -2662,7 +2687,17 @@ function initCollapses() {
         var $targetEl = document.getElementById(targetId);
         // check if the target element exists
         if ($targetEl) {
-            new Collapse($targetEl, $triggerEl);
+            if (!instances_1.default.instanceExists('Collapse', $targetEl.getAttribute('id'))) {
+                new Collapse($targetEl, $triggerEl);
+            }
+            else {
+                // if instance exists already for the same target element then create a new one with a different trigger element
+                new Collapse($targetEl, $triggerEl, {}, {
+                    id: $targetEl.getAttribute('id') +
+                        '_' +
+                        instances_1.default._generateRandomId(),
+                });
+            }
         }
         else {
             console.error("The target element with id \"".concat(targetId, "\" does not exist. Please check the data-collapse-toggle attribute."));
@@ -2703,12 +2738,20 @@ var Default = {
     onHide: function () { },
     onToggle: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Dial = /** @class */ (function () {
-    function Dial(parentEl, triggerEl, targetEl, options) {
+    function Dial(parentEl, triggerEl, targetEl, options, instanceOptions) {
         if (parentEl === void 0) { parentEl = null; }
         if (triggerEl === void 0) { triggerEl = null; }
         if (targetEl === void 0) { targetEl = null; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : targetEl.id;
         this._parentEl = parentEl;
         this._triggerEl = triggerEl;
         this._targetEl = targetEl;
@@ -2716,7 +2759,7 @@ var Dial = /** @class */ (function () {
         this._visible = false;
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Dial', this, this._targetEl.id, true);
+        instances_1.default.addInstance('Dial', this, this._instanceId, instanceOptions.override);
     }
     Dial.prototype.init = function () {
         var _this = this;
@@ -2755,7 +2798,7 @@ var Dial = /** @class */ (function () {
         }
     };
     Dial.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Dial', this._targetEl.id);
+        instances_1.default.removeInstance('Dial', this._instanceId);
     };
     Dial.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -2876,17 +2919,25 @@ var Default = {
     timing: 'ease-out',
     onHide: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Dismiss = /** @class */ (function () {
-    function Dismiss(targetEl, triggerEl, options) {
+    function Dismiss(targetEl, triggerEl, options, instanceOptions) {
         if (targetEl === void 0) { targetEl = null; }
         if (triggerEl === void 0) { triggerEl = null; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : targetEl.id;
         this._targetEl = targetEl;
         this._triggerEl = triggerEl;
         this._options = __assign(__assign({}, Default), options);
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Dismiss', this, this._targetEl.id, true);
+        instances_1.default.addInstance('Dismiss', this, this._instanceId, instanceOptions.override);
     }
     Dismiss.prototype.init = function () {
         var _this = this;
@@ -2905,7 +2956,7 @@ var Dismiss = /** @class */ (function () {
         }
     };
     Dismiss.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Dismiss', this._targetEl.id);
+        instances_1.default.removeInstance('Dismiss', this._instanceId);
     };
     Dismiss.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -2968,21 +3019,30 @@ var Default = {
     backdrop: true,
     edge: false,
     edgeOffset: 'bottom-[60px]',
-    backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-30',
+    backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30',
     onShow: function () { },
     onHide: function () { },
     onToggle: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Drawer = /** @class */ (function () {
-    function Drawer(targetEl, options) {
+    function Drawer(targetEl, options, instanceOptions) {
         if (targetEl === void 0) { targetEl = null; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._eventListenerInstances = [];
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : targetEl.id;
         this._targetEl = targetEl;
         this._options = __assign(__assign({}, Default), options);
         this._visible = false;
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Drawer', this, this._targetEl.id, true);
+        instances_1.default.addInstance('Drawer', this, this._instanceId, instanceOptions.override);
     }
     Drawer.prototype.init = function () {
         var _this = this;
@@ -3010,14 +3070,15 @@ var Drawer = /** @class */ (function () {
     };
     Drawer.prototype.destroy = function () {
         if (this._initialized) {
-            this.hide();
+            this.removeAllEventListenerInstances();
+            this._destroyBackdropEl();
             // Remove the keyboard event listener
             document.removeEventListener('keydown', this._handleEscapeKey);
             this._initialized = false;
         }
     };
     Drawer.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Drawer', this._targetEl.id);
+        instances_1.default.removeInstance('Drawer', this._instanceId);
     };
     Drawer.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -3164,6 +3225,22 @@ var Drawer = /** @class */ (function () {
     Drawer.prototype.isVisible = function () {
         return this._visible;
     };
+    Drawer.prototype.addEventListenerInstance = function (element, type, handler) {
+        this._eventListenerInstances.push({
+            element: element,
+            type: type,
+            handler: handler,
+        });
+    };
+    Drawer.prototype.removeAllEventListenerInstances = function () {
+        this._eventListenerInstances.map(function (eventListenerInstance) {
+            eventListenerInstance.element.removeEventListener(eventListenerInstance.type, eventListenerInstance.handler);
+        });
+        this._eventListenerInstances = [];
+    };
+    Drawer.prototype.getAllEventListenerInstances = function () {
+        return this._eventListenerInstances;
+    };
     return Drawer;
 }());
 function initDrawers() {
@@ -3172,33 +3249,26 @@ function initDrawers() {
         var drawerId = $triggerEl.getAttribute('data-drawer-target');
         var $drawerEl = document.getElementById(drawerId);
         if ($drawerEl) {
-            // optional
             var placement = $triggerEl.getAttribute('data-drawer-placement');
             var bodyScrolling = $triggerEl.getAttribute('data-drawer-body-scrolling');
             var backdrop = $triggerEl.getAttribute('data-drawer-backdrop');
             var edge = $triggerEl.getAttribute('data-drawer-edge');
             var edgeOffset = $triggerEl.getAttribute('data-drawer-edge-offset');
-            if (!instances_1.default.instanceExists('Drawer', $drawerEl.getAttribute('id'))) {
-                new Drawer($drawerEl, {
-                    placement: placement ? placement : Default.placement,
-                    bodyScrolling: bodyScrolling
-                        ? bodyScrolling === 'true'
-                            ? true
-                            : false
-                        : Default.bodyScrolling,
-                    backdrop: backdrop
-                        ? backdrop === 'true'
-                            ? true
-                            : false
-                        : Default.backdrop,
-                    edge: edge
-                        ? edge === 'true'
-                            ? true
-                            : false
-                        : Default.edge,
-                    edgeOffset: edgeOffset ? edgeOffset : Default.edgeOffset,
-                });
-            }
+            new Drawer($drawerEl, {
+                placement: placement ? placement : Default.placement,
+                bodyScrolling: bodyScrolling
+                    ? bodyScrolling === 'true'
+                        ? true
+                        : false
+                    : Default.bodyScrolling,
+                backdrop: backdrop
+                    ? backdrop === 'true'
+                        ? true
+                        : false
+                    : Default.backdrop,
+                edge: edge ? (edge === 'true' ? true : false) : Default.edge,
+                edgeOffset: edgeOffset ? edgeOffset : Default.edgeOffset,
+            });
         }
         else {
             console.error("Drawer with id ".concat(drawerId, " not found. Are you sure that the data-drawer-target attribute points to the correct drawer id?"));
@@ -3208,11 +3278,13 @@ function initDrawers() {
         var drawerId = $triggerEl.getAttribute('data-drawer-toggle');
         var $drawerEl = document.getElementById(drawerId);
         if ($drawerEl) {
-            var drawer_1 = instances_1.default.getInstance('Drawer', $drawerEl.getAttribute('id'));
+            var drawer_1 = instances_1.default.getInstance('Drawer', drawerId);
             if (drawer_1) {
-                $triggerEl.addEventListener('click', function () {
+                var toggleDrawer = function () {
                     drawer_1.toggle();
-                });
+                };
+                $triggerEl.addEventListener('click', toggleDrawer);
+                drawer_1.addEventListenerInstance($triggerEl, 'click', toggleDrawer);
             }
             else {
                 console.error("Drawer with id ".concat(drawerId, " has not been initialized. Please initialize it using the data-drawer-target attribute."));
@@ -3230,11 +3302,13 @@ function initDrawers() {
             : $triggerEl.getAttribute('data-drawer-hide');
         var $drawerEl = document.getElementById(drawerId);
         if ($drawerEl) {
-            var drawer_2 = instances_1.default.getInstance('Drawer', $drawerEl.getAttribute('id'));
+            var drawer_2 = instances_1.default.getInstance('Drawer', drawerId);
             if (drawer_2) {
-                $triggerEl.addEventListener('click', function () {
+                var hideDrawer = function () {
                     drawer_2.hide();
-                });
+                };
+                $triggerEl.addEventListener('click', hideDrawer);
+                drawer_2.addEventListenerInstance($triggerEl, 'click', hideDrawer);
             }
             else {
                 console.error("Drawer with id ".concat(drawerId, " has not been initialized. Please initialize it using the data-drawer-target attribute."));
@@ -3248,11 +3322,13 @@ function initDrawers() {
         var drawerId = $triggerEl.getAttribute('data-drawer-show');
         var $drawerEl = document.getElementById(drawerId);
         if ($drawerEl) {
-            var drawer_3 = instances_1.default.getInstance('Drawer', $drawerEl.getAttribute('id'));
+            var drawer_3 = instances_1.default.getInstance('Drawer', drawerId);
             if (drawer_3) {
-                $triggerEl.addEventListener('click', function () {
+                var showDrawer = function () {
                     drawer_3.show();
-                });
+                };
+                $triggerEl.addEventListener('click', showDrawer);
+                drawer_3.addEventListenerInstance($triggerEl, 'click', showDrawer);
             }
             else {
                 console.error("Drawer with id ".concat(drawerId, " has not been initialized. Please initialize it using the data-drawer-target attribute."));
@@ -3313,11 +3389,19 @@ var Default = {
     onHide: function () { },
     onToggle: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Dropdown = /** @class */ (function () {
-    function Dropdown(targetElement, triggerElement, options) {
+    function Dropdown(targetElement, triggerElement, options, instanceOptions) {
         if (targetElement === void 0) { targetElement = null; }
         if (triggerElement === void 0) { triggerElement = null; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : targetElement.id;
         this._targetEl = targetElement;
         this._triggerEl = triggerElement;
         this._options = __assign(__assign({}, Default), options);
@@ -3325,7 +3409,7 @@ var Dropdown = /** @class */ (function () {
         this._visible = false;
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Dropdown', this, this._targetEl.id, true);
+        instances_1.default.addInstance('Dropdown', this, this._instanceId, instanceOptions.override);
     }
     Dropdown.prototype.init = function () {
         if (this._triggerEl && this._targetEl && !this._initialized) {
@@ -3358,7 +3442,7 @@ var Dropdown = /** @class */ (function () {
         this._initialized = false;
     };
     Dropdown.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Dropdown', this._targetEl.id);
+        instances_1.default.removeInstance('Dropdown', this._instanceId);
     };
     Dropdown.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -3579,6 +3663,7 @@ var dial_1 = __webpack_require__(556);
 var dismiss_1 = __webpack_require__(791);
 var drawer_1 = __webpack_require__(340);
 var dropdown_1 = __webpack_require__(316);
+var input_counter_1 = __webpack_require__(656);
 var modal_1 = __webpack_require__(16);
 var popover_1 = __webpack_require__(903);
 var tabs_1 = __webpack_require__(247);
@@ -3595,11 +3680,171 @@ function initFlowbite() {
     (0, tooltip_1.initTooltips)();
     (0, popover_1.initPopovers)();
     (0, dial_1.initDials)();
+    (0, input_counter_1.initInputCounters)();
 }
 exports.initFlowbite = initFlowbite;
 if (typeof window !== 'undefined') {
     window.initFlowbite = initFlowbite;
 }
+
+
+/***/ }),
+
+/***/ 656:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.initInputCounters = void 0;
+var instances_1 = __webpack_require__(423);
+var Default = {
+    minValue: null,
+    maxValue: null,
+    onIncrement: function () { },
+    onDecrement: function () { },
+};
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
+var InputCounter = /** @class */ (function () {
+    function InputCounter(targetEl, incrementEl, decrementEl, options, instanceOptions) {
+        if (targetEl === void 0) { targetEl = null; }
+        if (incrementEl === void 0) { incrementEl = null; }
+        if (decrementEl === void 0) { decrementEl = null; }
+        if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : targetEl.id;
+        this._targetEl = targetEl;
+        this._incrementEl = incrementEl;
+        this._decrementEl = decrementEl;
+        this._options = __assign(__assign({}, Default), options);
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('InputCounter', this, this._instanceId, instanceOptions.override);
+    }
+    InputCounter.prototype.init = function () {
+        var _this = this;
+        if (this._targetEl && !this._initialized) {
+            this._inputHandler = function (event) {
+                {
+                    var target = event.target;
+                    // check if the value is numeric
+                    if (!/^\d*$/.test(target.value)) {
+                        // Regex to check if the value is numeric
+                        target.value = target.value.replace(/[^\d]/g, ''); // Remove non-numeric characters
+                    }
+                    // check for max value
+                    if (_this._options.maxValue !== null &&
+                        parseInt(target.value) > _this._options.maxValue) {
+                        target.value = _this._options.maxValue.toString();
+                    }
+                    // check for min value
+                    if (_this._options.minValue !== null &&
+                        parseInt(target.value) < _this._options.minValue) {
+                        target.value = _this._options.minValue.toString();
+                    }
+                }
+            };
+            this._incrementClickHandler = function () {
+                _this.increment();
+            };
+            this._decrementClickHandler = function () {
+                _this.decrement();
+            };
+            // Add event listener to restrict input to numeric values only
+            this._targetEl.addEventListener('input', this._inputHandler);
+            if (this._incrementEl) {
+                this._incrementEl.addEventListener('click', this._incrementClickHandler);
+            }
+            if (this._decrementEl) {
+                this._decrementEl.addEventListener('click', this._decrementClickHandler);
+            }
+            this._initialized = true;
+        }
+    };
+    InputCounter.prototype.destroy = function () {
+        if (this._targetEl && this._initialized) {
+            this._targetEl.removeEventListener('input', this._inputHandler);
+            if (this._incrementEl) {
+                this._incrementEl.removeEventListener('click', this._incrementClickHandler);
+            }
+            if (this._decrementEl) {
+                this._decrementEl.removeEventListener('click', this._decrementClickHandler);
+            }
+            this._initialized = false;
+        }
+    };
+    InputCounter.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('InputCounter', this._instanceId);
+    };
+    InputCounter.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
+    };
+    InputCounter.prototype.getCurrentValue = function () {
+        return parseInt(this._targetEl.value) || 0;
+    };
+    InputCounter.prototype.increment = function () {
+        // don't increment if the value is already at the maximum value
+        if (this._options.maxValue !== null &&
+            this.getCurrentValue() >= this._options.maxValue) {
+            return;
+        }
+        this._targetEl.value = (this.getCurrentValue() + 1).toString();
+        this._options.onIncrement(this);
+    };
+    InputCounter.prototype.decrement = function () {
+        // don't decrement if the value is already at the minimum value
+        if (this._options.minValue !== null &&
+            this.getCurrentValue() <= this._options.minValue) {
+            return;
+        }
+        this._targetEl.value = (this.getCurrentValue() - 1).toString();
+        this._options.onDecrement(this);
+    };
+    return InputCounter;
+}());
+function initInputCounters() {
+    document.querySelectorAll('[data-input-counter]').forEach(function ($targetEl) {
+        var targetId = $targetEl.id;
+        var $incrementEl = document.querySelector('[data-input-counter-increment="' + targetId + '"]');
+        var $decrementEl = document.querySelector('[data-input-counter-decrement="' + targetId + '"]');
+        var minValue = $targetEl.getAttribute('data-input-counter-min');
+        var maxValue = $targetEl.getAttribute('data-input-counter-max');
+        // check if the target element exists
+        if ($targetEl) {
+            if (!instances_1.default.instanceExists('InputCounter', $targetEl.getAttribute('id'))) {
+                new InputCounter($targetEl, $incrementEl ? $incrementEl : null, $decrementEl ? $decrementEl : null, {
+                    minValue: minValue ? parseInt(minValue) : null,
+                    maxValue: maxValue ? parseInt(maxValue) : null,
+                });
+            }
+        }
+        else {
+            console.error("The target element with id \"".concat(targetId, "\" does not exist. Please check the data-input-counter attribute."));
+        }
+    });
+}
+exports.initInputCounters = initInputCounters;
+if (typeof window !== 'undefined') {
+    window.InputCounter = InputCounter;
+    window.initInputCounters = initInputCounters;
+}
+exports["default"] = InputCounter;
 
 
 /***/ }),
@@ -3624,24 +3869,33 @@ exports.initModals = void 0;
 var instances_1 = __webpack_require__(423);
 var Default = {
     placement: 'center',
-    backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+    backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
     backdrop: 'dynamic',
     closable: true,
     onHide: function () { },
     onShow: function () { },
     onToggle: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Modal = /** @class */ (function () {
-    function Modal(targetEl, options) {
+    function Modal(targetEl, options, instanceOptions) {
         if (targetEl === void 0) { targetEl = null; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._eventListenerInstances = [];
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : targetEl.id;
         this._targetEl = targetEl;
         this._options = __assign(__assign({}, Default), options);
         this._isHidden = true;
         this._backdropEl = null;
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Modal', this, this._targetEl.id, true);
+        instances_1.default.addInstance('Modal', this, this._instanceId, instanceOptions.override);
     }
     Modal.prototype.init = function () {
         var _this = this;
@@ -3654,12 +3908,13 @@ var Modal = /** @class */ (function () {
     };
     Modal.prototype.destroy = function () {
         if (this._initialized) {
-            this.hide();
+            this.removeAllEventListenerInstances();
+            this._destroyBackdropEl();
             this._initialized = false;
         }
     };
     Modal.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Modal', this._targetEl.id);
+        instances_1.default.removeInstance('Modal', this._instanceId);
     };
     Modal.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -3787,6 +4042,22 @@ var Modal = /** @class */ (function () {
     Modal.prototype.isHidden = function () {
         return this._isHidden;
     };
+    Modal.prototype.addEventListenerInstance = function (element, type, handler) {
+        this._eventListenerInstances.push({
+            element: element,
+            type: type,
+            handler: handler,
+        });
+    };
+    Modal.prototype.removeAllEventListenerInstances = function () {
+        this._eventListenerInstances.map(function (eventListenerInstance) {
+            eventListenerInstance.element.removeEventListener(eventListenerInstance.type, eventListenerInstance.handler);
+        });
+        this._eventListenerInstances = [];
+    };
+    Modal.prototype.getAllEventListenerInstances = function () {
+        return this._eventListenerInstances;
+    };
     return Modal;
 }());
 function initModals() {
@@ -3797,41 +4068,31 @@ function initModals() {
         if ($modalEl) {
             var placement = $modalEl.getAttribute('data-modal-placement');
             var backdrop = $modalEl.getAttribute('data-modal-backdrop');
-            if (instances_1.default.instanceExists('Modal', $modalEl.getAttribute('id'))) {
-                new Modal($modalEl, {
-                    placement: placement ? placement : Default.placement,
-                    backdrop: backdrop ? backdrop : Default.backdrop,
-                });
-            }
+            new Modal($modalEl, {
+                placement: placement ? placement : Default.placement,
+                backdrop: backdrop ? backdrop : Default.backdrop,
+            });
         }
         else {
             console.error("Modal with id ".concat(modalId, " does not exist. Are you sure that the data-modal-target attribute points to the correct modal id?."));
         }
     });
-    // support pre v1.6.0 data-modal-toggle initialization
+    // toggle modal visibility
     document.querySelectorAll('[data-modal-toggle]').forEach(function ($triggerEl) {
         var modalId = $triggerEl.getAttribute('data-modal-toggle');
         var $modalEl = document.getElementById(modalId);
         if ($modalEl) {
-            var placement = $modalEl.getAttribute('data-modal-placement');
-            var backdrop = $modalEl.getAttribute('data-modal-backdrop');
-            var modal_1;
-            if (instances_1.default.instanceExists('Modal', $modalEl.getAttribute('id'))) {
-                modal_1 = instances_1.default.getInstance('Modal', $modalEl.getAttribute('id'));
+            var modal_1 = instances_1.default.getInstance('Modal', modalId);
+            if (modal_1) {
+                var toggleModal = function () {
+                    modal_1.toggle();
+                };
+                $triggerEl.addEventListener('click', toggleModal);
+                modal_1.addEventListenerInstance($triggerEl, 'click', toggleModal);
             }
             else {
-                {
-                    modal_1 = new Modal($modalEl, {
-                        placement: placement
-                            ? placement
-                            : Default.placement,
-                        backdrop: backdrop ? backdrop : Default.backdrop,
-                    });
-                }
+                console.error("Modal with id ".concat(modalId, " has not been initialized. Please initialize it using the data-modal-target attribute."));
             }
-            $triggerEl.addEventListener('click', function () {
-                modal_1.toggle();
-            });
         }
         else {
             console.error("Modal with id ".concat(modalId, " does not exist. Are you sure that the data-modal-toggle attribute points to the correct modal id?"));
@@ -3842,11 +4103,13 @@ function initModals() {
         var modalId = $triggerEl.getAttribute('data-modal-show');
         var $modalEl = document.getElementById(modalId);
         if ($modalEl) {
-            if (instances_1.default.instanceExists('Modal', $modalEl.getAttribute('id'))) {
-                var modal_2 = instances_1.default.getInstance('Modal', $modalEl.getAttribute('id'));
-                $triggerEl.addEventListener('click', function () {
+            var modal_2 = instances_1.default.getInstance('Modal', modalId);
+            if (modal_2) {
+                var showModal = function () {
                     modal_2.show();
-                });
+                };
+                $triggerEl.addEventListener('click', showModal);
+                modal_2.addEventListenerInstance($triggerEl, 'click', showModal);
             }
             else {
                 console.error("Modal with id ".concat(modalId, " has not been initialized. Please initialize it using the data-modal-target attribute."));
@@ -3861,11 +4124,13 @@ function initModals() {
         var modalId = $triggerEl.getAttribute('data-modal-hide');
         var $modalEl = document.getElementById(modalId);
         if ($modalEl) {
-            if (instances_1.default.instanceExists('Modal', $modalEl.getAttribute('id'))) {
-                var modal_3 = instances_1.default.getInstance('Modal', $modalEl.getAttribute('id'));
-                $triggerEl.addEventListener('click', function () {
+            var modal_3 = instances_1.default.getInstance('Modal', modalId);
+            if (modal_3) {
+                var hideModal = function () {
                     modal_3.hide();
-                });
+                };
+                $triggerEl.addEventListener('click', hideModal);
+                modal_3.addEventListenerInstance($triggerEl, 'click', hideModal);
             }
             else {
                 console.error("Modal with id ".concat(modalId, " has not been initialized. Please initialize it using the data-modal-target attribute."));
@@ -3923,11 +4188,19 @@ var Default = {
     onHide: function () { },
     onToggle: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Popover = /** @class */ (function () {
-    function Popover(targetEl, triggerEl, options) {
+    function Popover(targetEl, triggerEl, options, instanceOptions) {
         if (targetEl === void 0) { targetEl = null; }
         if (triggerEl === void 0) { triggerEl = null; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : targetEl.id;
         this._targetEl = targetEl;
         this._triggerEl = triggerEl;
         this._options = __assign(__assign({}, Default), options);
@@ -3935,7 +4208,7 @@ var Popover = /** @class */ (function () {
         this._visible = false;
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Popover', this, this._targetEl.id, true);
+        instances_1.default.addInstance('Popover', this, instanceOptions.id ? instanceOptions.id : this._targetEl.id, instanceOptions.override);
     }
     Popover.prototype.init = function () {
         if (this._triggerEl && this._targetEl && !this._initialized) {
@@ -3969,7 +4242,7 @@ var Popover = /** @class */ (function () {
         }
     };
     Popover.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Popover', this._targetEl.id);
+        instances_1.default.removeInstance('Popover', this._instanceId);
     };
     Popover.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -4168,18 +4441,25 @@ var Default = {
     inactiveClasses: 'dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300',
     onShow: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Tabs = /** @class */ (function () {
-    function Tabs(accordionEl, items, options) {
-        if (accordionEl === void 0) { accordionEl = null; }
+    function Tabs(tabsEl, items, options, instanceOptions) {
+        if (tabsEl === void 0) { tabsEl = null; }
         if (items === void 0) { items = []; }
         if (options === void 0) { options = Default; }
-        this._accordionEl = accordionEl;
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id ? instanceOptions.id : tabsEl.id;
+        this._tabsEl = tabsEl;
         this._items = items;
         this._activeTab = options ? this.getTab(options.defaultTabId) : null;
         this._options = __assign(__assign({}, Default), options);
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Tabs', this, this._accordionEl.id, true);
+        instances_1.default.addInstance('Tabs', this, this._tabsEl.id, true);
+        instances_1.default.addInstance('Tabs', this, this._instanceId, instanceOptions.override);
     }
     Tabs.prototype.init = function () {
         var _this = this;
@@ -4205,7 +4485,7 @@ var Tabs = /** @class */ (function () {
     };
     Tabs.prototype.removeInstance = function () {
         this.destroy();
-        instances_1.default.removeInstance('Tabs', this._accordionEl.id);
+        instances_1.default.removeInstance('Tabs', this._instanceId);
     };
     Tabs.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -4319,11 +4599,19 @@ var Default = {
     onHide: function () { },
     onToggle: function () { },
 };
+var DefaultInstanceOptions = {
+    id: null,
+    override: true,
+};
 var Tooltip = /** @class */ (function () {
-    function Tooltip(targetEl, triggerEl, options) {
+    function Tooltip(targetEl, triggerEl, options, instanceOptions) {
         if (targetEl === void 0) { targetEl = null; }
         if (triggerEl === void 0) { triggerEl = null; }
         if (options === void 0) { options = Default; }
+        if (instanceOptions === void 0) { instanceOptions = DefaultInstanceOptions; }
+        this._instanceId = instanceOptions.id
+            ? instanceOptions.id
+            : targetEl.id;
         this._targetEl = targetEl;
         this._triggerEl = triggerEl;
         this._options = __assign(__assign({}, Default), options);
@@ -4331,7 +4619,7 @@ var Tooltip = /** @class */ (function () {
         this._visible = false;
         this._initialized = false;
         this.init();
-        instances_1.default.addInstance('Tooltip', this, this._targetEl.id, true);
+        instances_1.default.addInstance('Tooltip', this, this._instanceId, instanceOptions.override);
     }
     Tooltip.prototype.init = function () {
         if (this._triggerEl && this._targetEl && !this._initialized) {
@@ -4363,7 +4651,7 @@ var Tooltip = /** @class */ (function () {
         }
     };
     Tooltip.prototype.removeInstance = function () {
-        instances_1.default.removeInstance('Tooltip', this._targetEl.id);
+        instances_1.default.removeInstance('Tooltip', this._instanceId);
     };
     Tooltip.prototype.destroyAndRemoveInstance = function () {
         this.destroy();
@@ -4574,17 +4862,21 @@ var Instances = /** @class */ (function () {
             Popover: {},
             Tabs: {},
             Tooltip: {},
+            InputCounter: {},
         };
     }
-    Instances.prototype.addInstance = function (component, instance, id, forceOverride) {
-        if (forceOverride === void 0) { forceOverride = false; }
+    Instances.prototype.addInstance = function (component, instance, id, override) {
+        if (override === void 0) { override = false; }
         if (!this._instances[component]) {
             console.warn("Flowbite: Component ".concat(component, " does not exist."));
             return false;
         }
-        if (this._instances[component][id] && !forceOverride) {
+        if (this._instances[component][id] && !override) {
             console.warn("Flowbite: Instance with ID ".concat(id, " already exists."));
             return;
+        }
+        if (override && this._instances[component][id]) {
+            this._instances[component][id].destroyAndRemoveInstance();
         }
         this._instances[component][id ? id : this._generateRandomId()] =
             instance;
@@ -4620,7 +4912,7 @@ var Instances = /** @class */ (function () {
         if (!this._componentAndInstanceCheck(component, id)) {
             return;
         }
-        this._instances[component][id].removeInstance();
+        delete this._instances[component][id];
     };
     Instances.prototype.destroyInstanceObject = function (component, id) {
         if (!this._componentAndInstanceCheck(component, id)) {
@@ -4646,7 +4938,7 @@ var Instances = /** @class */ (function () {
             return false;
         }
         if (!this._instances[component][id]) {
-            console.warn("Flowbite: Instance with ID ".concat(id, " already exists."));
+            console.warn("Flowbite: Instance with ID ".concat(id, " does not exist."));
             return false;
         }
         return true;
@@ -4737,6 +5029,7 @@ var modal_1 = __webpack_require__(16);
 var popover_1 = __webpack_require__(903);
 var tabs_1 = __webpack_require__(247);
 var tooltip_1 = __webpack_require__(671);
+var input_counter_1 = __webpack_require__(656);
 __webpack_require__(311);
 var events_1 = __webpack_require__(947);
 var events = new events_1.default('load', [
@@ -4751,6 +5044,7 @@ var events = new events_1.default('load', [
     tooltip_1.initTooltips,
     popover_1.initPopovers,
     dial_1.initDials,
+    input_counter_1.initInputCounters,
 ]);
 events.init();
 exports["default"] = {
@@ -4765,6 +5059,7 @@ exports["default"] = {
     Popover: popover_1.default,
     Tabs: tabs_1.default,
     Tooltip: tooltip_1.default,
+    InputCounter: input_counter_1.default,
     Events: events_1.default,
 };
 

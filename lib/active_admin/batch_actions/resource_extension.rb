@@ -109,7 +109,7 @@ module ActiveAdmin
     #   BatchAction.new(:flag, confirm: "Are you sure?") { |selection| }
     # => You can pass a custom confirmation message through `:confirm`
     #
-    #   BatchAction.new(:flag, partial: "flag_form", link_html_options: { "data-modal-toggle": "flag-form-modal" }) { |selection, inputs| }
+    #   BatchAction.new(:flag, partial: "flag_form", link_html_options: { "data-modal-target": "modal-id", "data-modal-show": "modal-id" }) { |selection, inputs| }
     # => Pass a partial that contains a modal and with a data attribute that opens the modal with the form for the user to fill out.
     #
     def initialize(sym, title, options = {}, &block)
