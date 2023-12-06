@@ -34,7 +34,7 @@
     "gherkin-lint": "gherkin-lint",
     "build": "rollup --config rollup.config.js",
     "eslint": "eslint .",
-    "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src && cp -R app/assets/stylesheets/active_admin src/scss"
+    "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src"
   },
   "dependencies": {
     "@rails/ujs": "^7.1.1",
