@@ -61,9 +61,9 @@ class ReleaseManager
   private
 
   def assert_compatible_ruby!
-    incompatible_ruby = Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.7.0")
+    incompatible_ruby = Gem::Version.new(RUBY_VERSION) < Gem::Version.new("3.0.0")
 
-    raise "Unsupported ruby version. Use ruby 2.7.0 or higher to release" if incompatible_ruby
+    raise "Unsupported ruby version. Use ruby 3.0.0 or higher to release" if incompatible_ruby
   end
 
   def assert_synced_versioning!
