@@ -45,7 +45,7 @@ module ActiveAdmin
             "data-rails-action": params[:action],
             "data-rails-controller": params[:controller].tr("/", "_"),
             "data-active-admin-namespace": active_admin_namespace.name.to_s,
-            "data-active-admin-logged-in": "true"
+            "data-active-admin-logged-in": ""
           }
         end
 
