@@ -529,7 +529,7 @@ module.exports = plugin(
         '@apply py-6 px-4': {}
       },
       '.attributes_table': {
-        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply overflow-hidden mb-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
       },
       '.attributes_table > :where(table)': {
         '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
