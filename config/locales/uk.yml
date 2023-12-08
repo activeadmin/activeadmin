@@ -1,9 +1,6 @@
 uk:
   active_admin:
     dashboard: "Панель керування"
-    dashboard_welcome:
-      welcome: "Ласкаво просимо до Active Admin. Це стандартна сторінка керування сайтом."
-      call_to_action: "Щоб додати сюди що-небудь, зазирніть у 'app/admin/dashboard.rb'"
     view: "Переглянути"
     edit: "Змінити"
     delete: "Видалити"

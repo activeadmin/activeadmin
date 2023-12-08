@@ -1,9 +1,6 @@
 id:
   active_admin:
     dashboard: Dashboard
-    dashboard_welcome:
-      welcome: "Selamat datang di Active Admin. Ini adalah tampilan standar halaman dashboard."
-      call_to_action: "Tampilan halaman ini bisa diubah di file 'app/admin/dashboard.rb'"
     view: "Lihat"
     edit: "Ubah"
     delete: "Hapus"

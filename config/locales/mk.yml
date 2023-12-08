@@ -9,9 +9,6 @@ mk:
         other: "Коментари"
   active_admin:
     dashboard: "Почетна"
-    dashboard_welcome:
-      welcome: "Добредојдовте во Active Admin. Ова е стандардна верзија на почетната страна."
-      call_to_action: "За да додадете секции на почетната страна, прегледајте го 'app/admin/dashboard.rb'."
     view: "Прегледај"
     edit: "Измени"
     delete: "Избриши"

@@ -1,9 +1,6 @@
 fa:
   active_admin:
     dashboard: "داشبرد"
-    dashboard_welcome:
-      welcome: "به اکتیو ادمین خوش آمدید. این صفحه اول داشبرد است."
-      call_to_action: "برای اضافه کردن قسمت‌هایی به داشبرد اینجا را چک کنید: 'app/admin/dashboard.rb'"
     view: "نمایش"
     edit: "ویرایش"
     delete: "حذف"

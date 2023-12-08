@@ -1,9 +1,6 @@
 az:
   active_admin:
     dashboard: "İdarəetmə paneli"
-    dashboard_welcome:
-      welcome: "Active Admin-ə xoş gəlmişsiniz. Bu saytla idarəetmənin standart səhifəsidir."
-      call_to_action: "Buraya nə isə əlavə etmək üçün 'app/admin/dashboard.rb' sənədini dəyişin"
     view: "Aç"
     edit: "Dəyiş"
     delete: "Sil"

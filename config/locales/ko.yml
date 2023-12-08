@@ -1,9 +1,6 @@
 ko:
   active_admin:
     dashboard: "대시보드"
-    dashboard_welcome:
-      welcome: "ActiveAdmin에 오신 것을 환영합니다. 기본 대시보드 페이지 입니다."
-      call_to_action: "대시보드에 섹션을 추가하시려면 'app/admin/dashboard.rb' 파일을 수정하십시오."
     view: "보기"
     edit: "수정"
     delete: "삭제"

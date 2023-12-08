@@ -1,9 +1,6 @@
 tr:
   active_admin:
     dashboard: "Gösterge Paneli"
-    dashboard_welcome:
-      welcome: "Active Admin'e hoş geldiniz. Burası varsayılan gösterge paneli sayfasıdır."
-      call_to_action: "Buraya bölümler eklemek için 'app/admin/dashboard.rb' dosyasına bakabilirsiniz."
     view: "Görüntüle"
     edit: "Düzenle"
     delete: "Sil"

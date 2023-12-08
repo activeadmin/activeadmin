@@ -1,9 +1,6 @@
 lv:
   active_admin:
     dashboard: Panelis
-    dashboard_welcome:
-      welcome: "Laipni lūgti Active Admin."
-      call_to_action: "Izmantojiet 'app/admin/dashboard.rb', lai pievienotu sadaļas panelim."
     view: "Apskatīt"
     edit: "Labot"
     delete: "Dzēst"

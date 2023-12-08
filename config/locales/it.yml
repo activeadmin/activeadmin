@@ -17,9 +17,6 @@ it:
         updated_at: "Aggiornato il"
   active_admin:
     dashboard: Dashboard
-    dashboard_welcome:
-      welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
-      call_to_action: "Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'"
     view: "Mostra"
     edit: "Modifica"
     delete: "Rimuovi"

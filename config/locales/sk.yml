@@ -21,9 +21,6 @@ sk:
         updated_at: "Upravený"
   active_admin:
     dashboard: Úvod
-    dashboard_welcome:
-      welcome: "Vitajte v Active Admin. Toto je nástenka."
-      call_to_action: "Pre pridanie sekcie na nástenku se pozrite do súboru 'app/admin/dashboard.rb'"
     view: "Zobraziť"
     edit: "Upraviť"
     delete: "Zmazať"

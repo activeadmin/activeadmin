@@ -1,9 +1,6 @@
 "pt-PT":
   active_admin:
     dashboard: "Painel de Administração"
-    dashboard_welcome:
-      welcome: "Bem-vindo ao Active Admin. Esta é a página padrão."
-      call_to_action: "Se pretende adicionar seções ao painel, consulte 'app/admin/dashboard.rb'"
     view: "Visualizar"
     edit: "Editar"
     delete: "Remover"

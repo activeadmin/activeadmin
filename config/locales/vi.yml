@@ -17,9 +17,6 @@ vi:
         updated_at: "Đã cập nhật"
   active_admin:
     dashboard: Bảng điều khiển
-    dashboard_welcome:
-      welcome: "Chào mừng bạn đến với Active Admin. Đây là trang điều khiển mặc định."
-      call_to_action: "Để thêm thành phần cho trang điều khiển hãy chỉnh sửa 'app/admin/dashboard.rb'"
     view: "Xem"
     edit: "Chỉnh sửa"
     delete: "Xóa"

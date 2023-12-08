@@ -1,9 +1,6 @@
 ar:
   active_admin:
     dashboard: "لوحة تحكم"
-    dashboard_welcome:
-      welcome: "مرحبًا بك في في صفحة الإدارة، وهذه هي الصفحة الإفتراضيّة."
-      call_to_action: "لإضافة أقسام إلى  لوحة التحكم, راجع: 'app/admin/dashboard.rb'"
     view: "عرض"
     edit: "تعديل"
     delete: "حذف"

@@ -1,9 +1,6 @@
 cs:
   active_admin:
     dashboard: Úvod
-    dashboard_welcome:
-      welcome: "Vítejte v Active Admin. Toto je nástěnka."
-      call_to_action: "Pro přidání sekcí na nástěnku se podívejte do souboru 'app/admin/dashboard.rb'"
     view: "Zobrazit"
     edit: "Upravit"
     delete: "Smazat"

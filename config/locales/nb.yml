@@ -1,9 +1,6 @@
 nb:
   active_admin:
     dashboard: Oversikt
-    dashboard_welcome:
-      welcome: "Velkommen til Active Admin. Dette er standardoversiktssiden."
-      call_to_action: "Rediger 'app/admin/dashboard.rb' for å legge til elementer i oversikten."
     view: "Vis"
     edit: "Rediger"
     delete: "Slett"

@@ -1,9 +1,6 @@
 ro:
   active_admin:
     dashboard: "Pagina Principala"
-    dashboard_welcome:
-      welcome: "Bine ati venit pe Active Admin. Aceasta este pagina principala."
-      call_to_action: "Pentru a adauga sectiuni, vedeti 'app/admin/dashboard.rb'"
     view: "Vizualizati"
     edit: "Modificati"
     delete: "Stergeti"

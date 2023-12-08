@@ -1,9 +1,6 @@
 fr:
   active_admin:
     dashboard: "Tableau de bord"
-    dashboard_welcome:
-      welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
-      call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
     view: "Voir"
     edit: "Modifier"
     delete: "Supprimer"

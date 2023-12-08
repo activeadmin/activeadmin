@@ -17,9 +17,6 @@ de:
         updated_at: "Aktualisiert"
   active_admin:
     dashboard: Übersicht
-    dashboard_welcome:
-      welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
-      call_to_action: "Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen."
     view: "Anzeigen"
     edit: "Bearbeiten"
     delete: "Löschen"

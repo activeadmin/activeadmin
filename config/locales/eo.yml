@@ -1,9 +1,6 @@
 eo:
   active_admin:
     dashboard: Panelo
-    dashboard_welcome:
-      welcome: "Bonvenon al Active Admin. Jen la defaŭlta panela paĝo."
-      call_to_action: "Por aldoni sekciojn al via panelo, vidu 'app/admin/dashboard.rb'"
     view: "Vidi"
     edit: "Redakti"
     delete: "Forigi"

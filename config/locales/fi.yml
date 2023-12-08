@@ -1,9 +1,6 @@
 fi:
   active_admin:
     dashboard: Etusivu
-    dashboard_welcome:
-      welcome: "Tervetuloa! Tämä on Active Adminin oletusetusivu."
-      call_to_action: "Lisätäksesi etusivun osioita katso: 'app/admin/dashboard.rb'"
     view: "Katso"
     edit: "Muokkaa"
     delete: "Poista"

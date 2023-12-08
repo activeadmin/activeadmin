@@ -21,9 +21,6 @@ pl:
         updated_at: "Zaktualizowany"
   active_admin:
     dashboard: Pulpit
-    dashboard_welcome:
-      welcome: "Witaj w Active Adminie. To jest domyślny pulpit."
-      call_to_action: "Aby dodać sekcje do pulpitu, sprawdź 'app/admin/dashboard.rb'"
     view: "Podgląd"
     edit: "Edytuj"
     delete: "Usuń"

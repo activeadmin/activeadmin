@@ -17,9 +17,6 @@
         updated_at: "Aktualiserad"
   active_admin:
     dashboard: Skrivbord
-    dashboard_welcome:
-      welcome: "Välkommen till Active Admin. Detta är ditt standardskrivbord."
-      call_to_action: "För att lägga till sektioner, gå till 'app/admin/dashboard.rb'"
     view: "Visa"
     edit: "Redigera"
     delete: "Ta bort"
