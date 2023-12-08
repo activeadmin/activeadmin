@@ -122,7 +122,7 @@ module ActiveAdmin
 
         def render_blank_slate
           content = I18n.t("active_admin.blank_slate.content", resource_name: active_admin_config.plural_resource_label)
-          blank_slate do
+          div class: "blank-slate" do
             h2 content, class: "blank-slate-title"
             if controller.action_methods.include?("new") && authorized?(ActiveAdmin::Auth::NEW, active_admin_config.resource_class)
               text_node blank_slate_link
@@ -132,7 +132,7 @@ module ActiveAdmin
 
         def render_empty_results
           content = I18n.t("active_admin.pagination.empty", model: active_admin_config.plural_resource_label)
-          blank_slate do
+          div class: "blank-slate" do
             h2 content, class: "blank-slate-title"
           end
         end
