@@ -48,6 +48,7 @@ module ActiveAdmin
       #   menu.add parent: 'Dashboard', label: 'My Child Dashboard'
       #
       def add(options)
+        options = options.dup # Make sure parameter is not modified
         parent_chain = Array.wrap(options.delete(:parent))
 
         item = if parent = parent_chain.shift
