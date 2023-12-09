@@ -338,12 +338,6 @@ module.exports = plugin(
       '#utility_nav :where(li > a)': {
         '@apply flex ps-3 pe-3': {}
       },
-      '.page-footer': {
-        '@apply text-xs mt-16 mx-8 pt-9 pb-12 text-gray-500 border-t': {}
-      },
-      '.page-footer :where(a)': {
-        '@apply text-blue-600 underline dark:text-white hover:no-underline': {}
-      },
       '.page-title-bar': {
         '@apply bg-gray-50 border-b p-4 mb-8 flex flex-col gap-4 md:flex-row md:items-center justify-between dark:border-gray-700 dark:bg-gray-800': {}
       },
