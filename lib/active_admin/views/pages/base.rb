@@ -53,7 +53,7 @@ module ActiveAdmin
           build_flash_messages
           div class: "page-content-container" do
             build_main_content_wrapper
-            sidebar sidebar_sections_for_action, id: "sidebar" unless skip_sidebar?
+            render "active_admin/base_page/sidebar", sections: sidebar_sections_for_action
           end
         end
 
@@ -82,10 +82,6 @@ module ActiveAdmin
           else
             []
           end
-        end
-
-        def skip_sidebar?
-          sidebar_sections_for_action.empty? || assigns[:skip_sidebar] == true
         end
 
       end

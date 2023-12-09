@@ -6,7 +6,6 @@ require "active_admin/resource_controller/decorators"
 require "active_admin/resource_controller/polymorphic_routes"
 require "active_admin/resource_controller/scoping"
 require "active_admin/resource_controller/streaming"
-require "active_admin/resource_controller/sidebars"
 require "active_admin/resource_controller/resource_class_methods"
 
 module ActiveAdmin
@@ -24,7 +23,6 @@ module ActiveAdmin
     include PolymorphicRoutes
     include Scoping
     include Streaming
-    include Sidebars
     include ViewHelpers::DownloadFormatLinksHelper
     extend ResourceClassMethods
 
