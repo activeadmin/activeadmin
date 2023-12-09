@@ -74,10 +74,6 @@ RSpec.describe ActiveAdmin::Application do
     it "should have a logout link path (Devise's default)" do
       expect(application.logout_link_path).to eq :destroy_admin_user_session_path
     end
-
-    it "should have a logout link method (Devise's default)" do
-      expect(application.logout_link_method).to eq :get
-    end
   end
 
   describe "files in load path" do

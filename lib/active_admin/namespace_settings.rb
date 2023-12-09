@@ -27,9 +27,6 @@ module ActiveAdmin
     # that it's a method to call which returns the path
     register :logout_link_path, :destroy_admin_user_session_path
 
-    # The method to use when generating the link for user logout
-    register :logout_link_method, :get
-
     # Whether the batch actions are enabled or not
     register :batch_actions, false
 

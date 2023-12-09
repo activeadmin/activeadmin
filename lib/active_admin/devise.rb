@@ -10,8 +10,7 @@ module ActiveAdmin
       {
         path: ActiveAdmin.application.default_namespace || "/",
         controllers: ActiveAdmin::Devise.controllers,
-        path_names: { sign_in: "login", sign_out: "logout" },
-        sign_out_via: [*::Devise.sign_out_via, ActiveAdmin.application.logout_link_method].uniq
+        path_names: { sign_in: "login", sign_out: "logout" }
       }
     end
 
