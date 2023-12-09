@@ -1,0 +1,2 @@
+# frozen_string_literal: true
+menu current_menu, id: "tabs", class: "header-item tabs"

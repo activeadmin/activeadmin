@@ -10,5 +10,5 @@ Around "@site_title" do |scenario, block|
 end
 
 Then /^I should see the site title "([^"]*)"$/ do |title|
-  expect(page).to have_css "h1#site_title", text: title
+  expect(page).to have_css "[data-test-site-title]", text: title
 end
