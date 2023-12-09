@@ -33,7 +33,7 @@ module ActiveAdmin
           within body(data_attributes) do
             div id: "wrapper" do
               header active_admin_namespace, current_menu
-              title_bar title, action_items_for_action
+              render "active_admin/page_header", breadcrumb_links: breadcrumb_links, title: title, action_items: action_items_for_action
               build_page_content
               render "active_admin/site_footer"
             end
@@ -83,7 +83,6 @@ module ActiveAdmin
             []
           end
         end
-
       end
     end
   end

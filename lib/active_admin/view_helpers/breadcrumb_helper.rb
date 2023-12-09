@@ -6,6 +6,15 @@ module ActiveAdmin
 
       # Returns an array of links to use in a breadcrumb
       def breadcrumb_links(path = request.path)
+        config = active_admin_config.breadcrumb
+        if config.is_a?(Proc)
+          instance_exec(controller, &config)
+        elsif config.present?
+          default_breadcrumb_links(path)
+        end
+      end
+
+      def default_breadcrumb_links(path)
         # remove leading "/" and split up the URL
         # and remove last since it's used as the page title
         parts = path.split("/").select(&:present?)[0..-2]

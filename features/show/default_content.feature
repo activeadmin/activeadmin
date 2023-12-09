@@ -15,8 +15,8 @@ Feature: Show - Default Content
     And I should see the attribute "Created At" with a nicely formatted datetime
     And I should see the attribute "Author" with "Jane Doe"
     And I should see the attribute "Starred" with "No"
-    And I should see an action item button "Delete Post"
-    And I should see an action item button "Edit Post"
+    And I should see an action item link to "Delete Post"
+    And I should see an action item link to "Edit Post"
 
   Scenario: Attributes should link when linked resource is registered
     Given a show configuration of:

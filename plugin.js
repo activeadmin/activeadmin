@@ -338,36 +338,6 @@ module.exports = plugin(
       '#utility_nav :where(li > a)': {
         '@apply flex ps-3 pe-3': {}
       },
-      '.page-title-bar': {
-        '@apply bg-gray-50 border-b p-4 mb-8 flex flex-col gap-4 md:flex-row md:items-center justify-between dark:border-gray-700 dark:bg-gray-800': {}
-      },
-      '.page-title-bar-content': {
-        '@apply flex flex-col gap-3 pt-1': {}
-      },
-      '.page-title-bar-heading': {
-        '@apply text-2xl font-semibold': {}
-      },
-      '.page-title-bar-actions': {
-        '@apply flex gap-2 flex-wrap lg:justify-end': {}
-      },
-      '.breadcrumb-arrow': {
-        'background-image': `url("${svgToTinyDataUri(
-          `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="${theme('colors.gray.500', colors.gray[500])}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg>`
-        )}")`,
-        'background-repeat': 'no-repeat',
-        'background-size': '.8em .8em',
-        'background-position': 'center center',
-        height: '100%',
-      },
-      '.breadcrumbs': {
-        '@apply flex text-xs': {}
-      },
-      '.breadcrumbs-item': {
-        '@apply inline-flex items-center': {}
-      },
-      ':where(.breadcrumbs-item) + .breadcrumbs-item:before': {
-        '@apply px-2 content-[""] breadcrumb-arrow': {}
-      },
       '.action-item-button': {
         '@apply py-2.5 px-5 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
       },
