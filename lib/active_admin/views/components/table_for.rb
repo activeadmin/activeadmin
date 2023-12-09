@@ -68,20 +68,22 @@ module ActiveAdmin
       end
 
       def build_table_header(col)
-        classes = Arbre::HTML::ClassList.new
         sort_key = sortable? && col.sortable? && col.sort_key
         params = request.query_parameters.except :page, :order, :commit, :format
 
-        classes << "sortable" if sort_key
-        classes << "sorted-#{current_sort[1]}" if sort_key && current_sort[0] == sort_key
-        classes << col.html_class
+        attributes = {
+          class: col.html_class,
+          "data-column": col.title_id.presence,
+          "data-sortable": (sort_key.present?) ? "" : nil,
+          "data-sort-direction": (sort_key && current_sort[0] == sort_key) ? current_sort[1] : nil
+        }
 
         if sort_key
-          th class: classes do
+          th(attributes) do
             link_to col.pretty_title, params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key)}"
           end
         else
-          th col.pretty_title, class: classes
+          th col.pretty_title, attributes
         end
       end
 
@@ -89,19 +91,13 @@ module ActiveAdmin
         @tbody = tbody do
           # Build enough rows for our collection
           @collection.each do |elem|
-            classes = [helpers.cycle("odd", "even")]
-
-            if @row_class
-              classes << @row_class.call(elem)
-            end
-
-            tr(class: classes.flatten.join(" "), id: dom_id_for(elem))
+            tr(id: dom_id_for(elem), class: @row_class&.call(elem))
           end
         end
       end
 
       def build_table_cell(col, resource)
-        td class: col.html_class do
+        td class: col.html_class, "data-column": col.title_id.presence do
           html = helpers.format_attribute(resource, col.data)
           # Don't add the same Arbre twice, while still allowing format_attribute to call status_tag
           current_arbre_element << html unless current_arbre_element.children.include? html
@@ -141,19 +137,13 @@ module ActiveAdmin
 
       class Column
 
-        attr_accessor :title, :data, :html_class
+        attr_accessor :title, :title_id, :data, :html_class
 
         def initialize(*args, &block)
           @options = args.extract_options!
-
           @title = args[0]
-          html_classes = [:col]
-          if @options.has_key?(:class)
-            html_classes << @options.delete(:class)
-          elsif @title.present?
-            html_classes << "col-#{@title.to_s.parameterize(separator: "_")}"
-          end
-          @html_class = html_classes.join(" ")
+          @title_id = @title.to_s.parameterize(separator: "_") if @title.present? && !title.is_a?(Arbre::Element)
+          @html_class = @options.delete(:class)
           @data = args[1] || args[0]
           @data = block if block
           @resource_class = args[2]

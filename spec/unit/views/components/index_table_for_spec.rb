@@ -24,7 +24,7 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
       let(:table) do
         render_arbre_component assigns, helpers do
           insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, { sortable: true }) do
-            selectable_column
+            selectable_column(class: "selectable")
           end
         end
       end
@@ -35,11 +35,11 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
         end
 
         it "with selectable column class name" do
-          expect(header.attributes[:class]).to include "col-selectable"
+          expect(header.attributes[:class]).to include "selectable"
         end
 
         it "not sortable" do
-          expect(header.attributes[:class]).not_to include "sortable"
+          expect(header.attributes).not_to include("data-sortable": "")
         end
       end
     end

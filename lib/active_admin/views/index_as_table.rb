@@ -253,9 +253,9 @@ module ActiveAdmin
         builder_method :index_table_for
 
         # Display a column for checkbox
-        def selectable_column
+        def selectable_column(**options)
           return unless active_admin_config.batch_actions.any?
-          column resource_selection_toggle_cell, class: "col-selectable", sortable: false do |resource|
+          column resource_selection_toggle_cell, class: options[:class], sortable: false do |resource|
             resource_selection_cell resource
           end
         end
@@ -271,9 +271,9 @@ module ActiveAdmin
           raise "#{resource_class.name} has no primary_key!" unless resource_class.primary_key
           column(resource_class.human_attribute_name(resource_class.primary_key), sortable: resource_class.primary_key) do |resource|
             if controller.action_methods.include?("show")
-              link_to resource.id, resource_path(resource), class: "resource_id_link"
+              link_to resource.id, resource_path(resource)
             elsif controller.action_methods.include?("edit")
-              link_to resource.id, edit_resource_path(resource), class: "resource_id_link"
+              link_to resource.id, edit_resource_path(resource)
             else
               resource.id
             end
@@ -309,8 +309,6 @@ module ActiveAdmin
         def actions(options = {}, &block)
           name = options.delete(:name) { "" }
           defaults = options.delete(:defaults) { true }
-
-          options[:class] ||= "col-actions"
 
           column name, options do |resource|
             table_actions do

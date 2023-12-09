@@ -48,9 +48,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(table.find_by_tag("th").last.content).to eq "Created At"
       end
 
-      it "should add a class to each table header based on the col name" do
-        expect(table.find_by_tag("th").first.class_list.to_a.join(" ")).to eq "col col-title"
-        expect(table.find_by_tag("th").last.class_list.to_a.join(" ")).to eq "col col-created_at"
+      it "should add a data attribute to each table header based on the column name" do
+        expect(table.find_by_tag("th").first.attributes).to include("data-column": "title")
+        expect(table.find_by_tag("th").last.attributes).to include("data-column": "created_at")
       end
 
       it "should create a table row for each element in the collection" do
@@ -61,9 +61,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(table.find_by_tag("td").size).to eq 6
       end
 
-      it "should add a class for each cell based on the col name" do
-        expect(table.find_by_tag("td").first.class_list.to_a.join(" ")).to eq "col col-title"
-        expect(table.find_by_tag("td").last.class_list.to_a.join(" ")).to eq "col col-created_at"
+      it "should add a data attribute for each cell based on the column name" do
+        expect(table.find_by_tag("td").first.attributes).to include("data-column": "title")
+        expect(table.find_by_tag("td").last.attributes).to include("data-column": "created_at")
       end
     end
 
@@ -81,9 +81,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(table.find_by_tag("th").last.content).to eq "Created At"
       end
 
-      it "should add a class to each table header based on the col name" do
-        expect(table.find_by_tag("th").first.class_list.to_a.join(" ")).to eq "col col-title"
-        expect(table.find_by_tag("th").last.class_list.to_a.join(" ")).to eq "col col-created_at"
+      it "should add a data attribute to each table header based on the column name" do
+        expect(table.find_by_tag("th").first.attributes).to include("data-column": "title")
+        expect(table.find_by_tag("th").last.attributes).to include("data-column": "created_at")
       end
 
       it "should create a table row for each element in the collection" do
@@ -94,9 +94,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(table.find_by_tag("td").size).to eq 6
       end
 
-      it "should add a class for each cell based on the col name" do
-        expect(table.find_by_tag("td").first.class_list.to_a.join(" ")).to eq "col col-title"
-        expect(table.find_by_tag("td").last.class_list.to_a.join(" ")).to eq "col col-created_at"
+      it "should add a data attribute for each cell based on the column name" do
+        expect(table.find_by_tag("td").first.attributes).to include("data-column": "title")
+        expect(table.find_by_tag("td").last.attributes).to include("data-column": "created_at")
       end
     end
 
@@ -139,9 +139,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(table.find_by_tag("th").last.content).to eq "Created At"
       end
 
-      it "should add a class to each table header based on the col name" do
-        expect(table.find_by_tag("th").first.class_list.to_a.join(" ")).to eq "col col-title"
-        expect(table.find_by_tag("th").last.class_list.to_a.join(" ")).to eq "col col-created_at"
+      it "should add a data attribute to each table header based on the column name" do
+        expect(table.find_by_tag("th").first.attributes).to include("data-column": "title")
+        expect(table.find_by_tag("th").last.attributes).to include("data-column": "created_at")
       end
 
       it "should create a table row for each element in the collection" do
@@ -152,9 +152,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(table.find_by_tag("td").size).to eq 6
       end
 
-      it "should add a class for each cell based on the col name" do
-        expect(table.find_by_tag("td").first.class_list.to_a.join(" ")).to eq "col col-title"
-        expect(table.find_by_tag("td").last.class_list.to_a.join(" ")).to eq "col col-created_at"
+      it "should add a data attribute for each cell based on the column name" do
+        expect(table.find_by_tag("td").first.attributes).to include("data-column": "title")
+        expect(table.find_by_tag("td").last.attributes).to include("data-column": "created_at")
       end
     end
 
@@ -169,8 +169,8 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         end
       end
 
-      it "should add a class to each table header based on the col name" do
-        expect(table.find_by_tag("th").first.class_list).to include("col-title")
+      it "should add a data attribute to each table header based on the column name" do
+        expect(table.find_by_tag("th").first.attributes).to include("data-column": "title")
       end
 
       [ "<span>First Post</span>",
@@ -212,14 +212,20 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         end
       end
 
-      it "should add a class to each header based on class option or the col name" do
-        expect(table.find_by_tag("th").first.class_list.to_a.join(" ")).to eq "col col-my_custom_title"
-        expect(table.find_by_tag("th").last.class_list.to_a.join(" ")).to eq "col datetime"
+      it "should add a data attribute to each header based on class option or the column name" do
+        expect(table.find_by_tag("th").first.attributes).to include("data-column": "my_custom_title")
+        expect(table.find_by_tag("th").last.attributes).to include("data-column": "created_at")
+        expect(table.find_by_tag("th").last.class_list.to_s).to eq "datetime"
       end
 
-      it "should add a class to each cell based on class option or the col name" do
-        expect(table.find_by_tag("td").first.class_list.to_a.join(" ")).to eq "col col-my_custom_title"
-        expect(table.find_by_tag("td").last.class_list.to_a.join(" ")).to eq "col datetime"
+      it "should add a class to each cell based on class option" do
+        expect(table.find_by_tag("td").first.class_list.to_s).to eq ""
+        expect(table.find_by_tag("td").last.class_list.to_s).to eq "datetime"
+      end
+
+      it "should add a data attribute for each cell based on the column name" do
+        expect(table.find_by_tag("td").first.attributes).to include("data-column": "my_custom_title")
+        expect(table.find_by_tag("td").last.attributes).to include("data-column": "created_at")
       end
     end
 
@@ -281,9 +287,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should render boolean attribute within status tag" do
-        expect(table.find_by_tag("span").first.class_list.to_a.join(" ")).to eq "status-tag yes"
+        expect(table.find_by_tag("span").first.class_list.to_s).to eq "status-tag yes"
         expect(table.find_by_tag("span").first.content).to eq "Yes"
-        expect(table.find_by_tag("span").last.class_list.to_a.join(" ")).to eq "status-tag no"
+        expect(table.find_by_tag("span").last.class_list.to_s).to eq "status-tag no"
         expect(table.find_by_tag("span").last.content).to eq "No"
       end
     end
@@ -300,10 +306,10 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       it "should render boolean attribute within status tag" do
         trs = table.find_by_tag("tr")
         expect(trs.size).to eq 4
-        expect(trs.first.class_list.to_a.join(" ")).to eq ""
-        expect(trs.second.class_list.to_a.join(" ")).to eq "odd starred"
-        expect(trs.third.class_list.to_a.join(" ")).to eq "even"
-        expect(trs.fourth.class_list.to_a.join(" ")).to eq "odd"
+        expect(trs.first.class_list.to_s).to eq ""
+        expect(trs.second.class_list.to_s).to eq "starred"
+        expect(trs.third.class_list.to_s).to eq ""
+        expect(trs.fourth.class_list.to_s).to eq ""
       end
     end
 
