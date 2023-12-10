@@ -24,7 +24,7 @@ module ActiveAdmin
       def build(scopes, options = {})
         super({ role: "toolbar" })
         scopes.group_by(&:group).each do |group, group_scopes|
-          div class: "scopes-group table_tools_segmented_control #{group_class(group)}", role: "group" do
+          div class: "index-button-group", role: "group", data: { "group": group_name(group) } do
             group_scopes.each do |scope|
               build_scope(scope, options) if call_method_or_exec_proc(scope.display_if_block)
             end
@@ -39,17 +39,17 @@ module ActiveAdmin
       def build_scope(scope, options)
         params = request.query_parameters.except :page, :scope, :commit, :format
 
-        a href: url_for(scope: scope.id, params: params), class: "#{classes_for_scope(scope)} table_tools_button" do
+        a href: url_for(scope: scope.id, params: params), class: classes_for_scope(scope) do
           text_node scope_name(scope)
-          span class: "count" do
-            "#{get_scope_count(scope)}"
-          end if options[:scope_count] && scope.show_count
+          if options[:scope_count] && scope.show_count
+            span get_scope_count(scope), class: "scopes-count"
+          end
         end
       end
 
       def classes_for_scope(scope)
-        classes = ["scope", scope.id]
-        classes << "selected" if current_scope?(scope)
+        classes = ["index-button"]
+        classes << "index-button-selected" if current_scope?(scope)
         classes.join(" ")
       end
 
@@ -66,8 +66,8 @@ module ActiveAdmin
         collection_size(scope_chain(scope, collection_before_scope))
       end
 
-      def group_class(group)
-        group.present? ? "scope-group-#{group}" : "scope-default-group"
+      def group_name(group)
+        group.present? ? group : "default"
       end
     end
   end

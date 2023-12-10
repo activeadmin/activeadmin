@@ -397,20 +397,20 @@ module.exports = plugin(
       '.scopes': {
         '@apply flex flex-wrap gap-1.5': {}
       },
-      '.scopes-group': {
+      '.index-button-group': {
         '@apply inline-flex flex-wrap items-stretch rounded': {}
       },
       // Prevent double borders when buttons are next to each other
-      '.scopes-group > :where(*:not(:first-child))': {
+      '.index-button-group > :where(*:not(:first-child))': {
         '@apply -ml-px my-0': {}
       },
-      '.table_tools_button': {
+      '.index-button': {
         '@apply transition-colors inline-flex items-center justify-center px-4 py-2 text-sm font-medium no-underline text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 first:rounded-s-lg last:rounded-e-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white': {}
       },
-      '.table_tools_button.selected': {
+      '.index-button-selected': {
         '@apply text-blue-700 dark:text-blue-400': {}
       },
-      '.table_tools_button > :where(.count)': {
+      '.scopes-count': {
         '@apply inline-flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-500 px-2 py-1 text-xs font-medium ms-2 leading-none': {}
       },
       '.paginated_collection': {

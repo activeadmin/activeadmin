@@ -202,7 +202,7 @@ Feature: Index Scoping
       scope(:hidden_as_well, if: proc { false }) { |posts| posts }
     end
     """
-    Then I should see empty scopes
+    Then I should not see any scopes
 
   Scenario: Viewing resources with multiple scopes as blocks
     Given 3 posts exist
@@ -330,6 +330,6 @@ Feature: Index Scoping
         end
       end
       """
-    Then I should see an empty group with the scope "All"
+    Then I should see a default group with a single scope "All"
     And I should see a group "status" with the scopes "Published" and "Unpublished"
     And I should see a group "date" with the scopes "Today" and "Tomorrow"
