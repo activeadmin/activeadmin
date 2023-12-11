@@ -1,4 +1,5 @@
 import Rails from '@rails/ujs';
+import { nextSibling } from '../utils/dom'
 
 const disableEmptyFields = function(event) {
   Array.from(this.querySelectorAll("input, select, textarea"))
@@ -8,16 +9,8 @@ const disableEmptyFields = function(event) {
 
 Rails.delegate(document, ".filters-form", "submit", disableEmptyFields)
 
-const next = function next(el, selector) {
-  const nextEl = el.nextElementSibling;
-  if (!selector || (nextEl && nextEl.matches(selector))) {
-    return nextEl;
-  }
-  return null;
-}
-
 const setSearchType = function(event) {
-  const input = next(this, "input")
+  const input = nextSibling(this, "input")
   if (input) {
     input.name = `q[${this.value}]`
   }

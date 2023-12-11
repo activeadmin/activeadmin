@@ -1,6 +1,7 @@
 import './features/batch_actions'
 import './features/has_many'
 import './features/filters'
+import './features/main_menu'
 import './features/per_page'
 
 // On page load or when changing themes, best to add inline in `head` to avoid FOUC

@@ -1,8 +1,4 @@
 # frozen_string_literal: true
-Then(/^the "([^"]*)" tab should be selected$/) do |name|
-  step %{I should see "#{name}" within "ul#tabs li.current"}
-end
-
 Then("I should see tabs:") do |table|
   table.rows.each do |title, _|
     expect(page).to have_css(".tabs .tabs-nav :not(.hidden)", text: title)

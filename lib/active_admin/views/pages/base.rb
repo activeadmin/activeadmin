@@ -31,7 +31,7 @@ module ActiveAdmin
 
         def build_page
           within body(data_attributes) do
-            div id: "wrapper" do
+            div class: "inner-body-container" do
               render "active_admin/site_header"
               render "active_admin/page_header", breadcrumb_links: breadcrumb_links, title: title, action_items: action_items_for_action
               build_page_content

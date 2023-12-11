@@ -61,9 +61,9 @@ Feature: Menu
     """
     When I am on the dashboard
     Then I should see a menu item for "Users"
-    And I should not see a menu item for "Posts"
+    And the "Posts" menu item should be hidden
     When I follow "Users"
-    Then the "Users" tab should be selected
+    Then the "Users" menu item should be selected
     And I should see a nested menu item for "Posts"
 
   Scenario: Adding a resources as a sub menu items
@@ -77,8 +77,8 @@ Feature: Menu
       end
     """
     When I am on the dashboard
-    Then I should see a menu item for "Anything"
-    And I should not see a menu item for "Categories"
-    And I should not see a menu item for "Posts"
+    Then I should see a menu parent for "Anything"
+    And the "Categories" menu item should be hidden
+    And the "Posts" menu item should be hidden
     And I should see a nested menu item for "Categories"
     And I should see a nested menu item for "Posts"

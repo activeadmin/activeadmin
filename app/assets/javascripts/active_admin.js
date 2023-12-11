@@ -102,24 +102,43 @@
     this.before(tempEl.firstChild);
   };
   Rails.delegate(document, "a.button.has_many_add", "click", hasManyAddClick);
+  const nextSibling = function next(element, selector) {
+    let sibling = element.nextElementSibling;
+    if (!selector) {
+      return sibling;
+    }
+    while (sibling) {
+      if (sibling && sibling.matches(selector)) {
+        return sibling;
+      }
+      sibling = sibling.nextElementSibling;
+    }
+  };
   const disableEmptyFields = function(event) {
     Array.from(this.querySelectorAll("input, select, textarea")).filter((el => el.value === "")).forEach((el => el.disabled = true));
   };
   Rails.delegate(document, ".filters-form", "submit", disableEmptyFields);
-  const next = function next(el, selector) {
-    const nextEl = el.nextElementSibling;
-    if (!selector || nextEl && nextEl.matches(selector)) {
-      return nextEl;
-    }
-    return null;
-  };
   const setSearchType = function(event) {
-    const input = next(this, "input");
+    const input = nextSibling(this, "input");
     if (input) {
       input.name = `q[${this.value}]`;
     }
   };
   Rails.delegate(document, ".filters-form-field [data-search-methods]", "change", setSearchType);
+  const toggleMenu = function(event) {
+    const parent = this.parentNode;
+    const menu = nextSibling(this, "[data-menu-list]");
+    if (!("open" in parent.dataset)) {
+      parent.dataset.open = "";
+      menu.classList.remove("hidden");
+      this.querySelector("[data-menu-icon]").classList.add("rotate-90");
+    } else {
+      delete parent.dataset.open;
+      menu.classList.add("hidden");
+      this.querySelector("[data-menu-icon]").classList.remove("rotate-90");
+    }
+  };
+  Rails.delegate(document, "#main-menu [data-menu-button]", "click", toggleMenu);
   const setPerPage = function(event) {
     const params = new URLSearchParams(window.location.search);
     params.set("per_page", this.value);
