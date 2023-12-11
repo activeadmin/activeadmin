@@ -59,8 +59,6 @@ module.exports = plugin(
         'padding-right': spacing[3],
         'padding-bottom': spacing[2],
         'padding-left': spacing[3],
-        'font-size': baseFontSize,
-        'line-height': baseLineHeight,
         '--tw-shadow': '0 0 #0000',
         '&:focus': {
           outline: '2px solid transparent',
