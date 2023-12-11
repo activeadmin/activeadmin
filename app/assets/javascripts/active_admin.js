@@ -105,7 +105,7 @@
   const disableEmptyFields = function(event) {
     Array.from(this.querySelectorAll("input, select, textarea")).filter((el => el.value === "")).forEach((el => el.disabled = true));
   };
-  Rails.delegate(document, ".filter_form", "submit", disableEmptyFields);
+  Rails.delegate(document, ".filters-form", "submit", disableEmptyFields);
   const next = function next(el, selector) {
     const nextEl = el.nextElementSibling;
     if (!selector || nextEl && nextEl.matches(selector)) {
@@ -119,7 +119,7 @@
       input.name = `q[${this.value}]`;
     }
   };
-  Rails.delegate(document, ".filter_form_field.select_and_search select", "change", setSearchType);
+  Rails.delegate(document, ".filters-form-field [data-search-methods]", "change", setSearchType);
   const setPerPage = function(event) {
     const params = new URLSearchParams(window.location.search);
     params.set("per_page", this.value);

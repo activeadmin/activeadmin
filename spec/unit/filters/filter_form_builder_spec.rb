@@ -35,7 +35,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :title }
 
     it "should generate a form which submits via get" do
-      expect(body).to have_css("form.filter_form[method=get]")
+      expect(body).to have_css("form.filters-form[method=get]")
     end
 
     it "should generate a filter button" do
@@ -47,7 +47,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should generate a clear filters link" do
-      expect(body).to have_link("Clear Filters", class: "clear_filters_btn")
+      expect(body).to have_link("Clear Filters", class: "filters-form-clear")
     end
 
     describe "label as proc" do

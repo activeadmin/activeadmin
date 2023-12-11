@@ -49,12 +49,14 @@ module ActiveAdmin
       def active_admin_filters_form_for(search, filters, options = {})
         defaults = { builder: ActiveAdmin::Filters::FormBuilder,
                      url: collection_path,
-                     html: { class: "filter_form" } }
+                     html: { class: "filters-form" } }
         required = { html: { method: :get },
                      as: :q }
         options = defaults.deep_merge(options).deep_merge(required)
 
         form_for search, options do |f|
+          f.template.concat hidden_field_tags_for(params, except: except_hidden_fields)
+
           filters.each do |attribute, opts|
             next if opts.key?(:if) && !call_method_or_proc_on(self, opts[:if])
             next if opts.key?(:unless) && call_method_or_proc_on(self, opts[:unless])
@@ -65,10 +67,9 @@ module ActiveAdmin
             f.filter attribute, filter_opts
           end
 
-          buttons = content_tag :div, class: "buttons" do
-            f.submit(I18n.t("active_admin.filters.buttons.filter")) +
-              link_to(I18n.t("active_admin.filters.buttons.clear"), collection_path, class: "clear_filters_btn") +
-              hidden_field_tags_for(params, except: except_hidden_fields)
+          buttons = content_tag :div, class: "filters-form-buttons" do
+            f.submit(I18n.t("active_admin.filters.buttons.filter"), class: "filters-form-submit") +
+              link_to(I18n.t("active_admin.filters.buttons.clear"), collection_path, class: "filters-form-clear")
           end
 
           f.template.concat buttons

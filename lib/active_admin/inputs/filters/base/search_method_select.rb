@@ -30,17 +30,11 @@ module ActiveAdmin
             end
           end
 
-          def wrapper_html_options
-            opts = super
-            (opts[:class] ||= "") << " select_and_search" unless seems_searchable?
-            opts
-          end
-
           def to_html
             input_wrapping do
               [
                 label_html, # your label
-                '<div class="filter-input-group">',
+                '<div class="filters-form-input-group">',
                 select_html, # the dropdown that holds the available search methods
                 input_html, # your input field
                 '</div>'
@@ -53,7 +47,7 @@ module ActiveAdmin
           end
 
           def select_html
-            template.select_tag "", template.options_for_select(filter_options, current_filter)
+            template.select_tag "", template.options_for_select(filter_options, current_filter), "data-search-methods": ""
           end
 
           def filters

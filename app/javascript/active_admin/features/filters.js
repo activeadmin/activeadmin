@@ -6,7 +6,7 @@ const disableEmptyFields = function(event) {
     .forEach((el) => el.disabled = true)
 };
 
-Rails.delegate(document, ".filter_form", "submit", disableEmptyFields)
+Rails.delegate(document, ".filters-form", "submit", disableEmptyFields)
 
 const next = function next(el, selector) {
   const nextEl = el.nextElementSibling;
@@ -23,4 +23,4 @@ const setSearchType = function(event) {
   }
 };
 
-Rails.delegate(document, ".filter_form_field.select_and_search select", "change", setSearchType)
+Rails.delegate(document, ".filters-form-field [data-search-methods]", "change", setSearchType)
