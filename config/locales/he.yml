@@ -23,9 +23,6 @@ he:
         filter: "סינון"
         clear: "איפוס שדות"
     search_status:
-      headline: "תוצאות חיפוש:"
-      current_scope: "תחום:"
-      current_filters: "מסננים:"
       no_current_filters: "ללא"
     status_tag:
       "yes": "כן"

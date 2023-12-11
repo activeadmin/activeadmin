@@ -28,14 +28,14 @@ Then /^I should see the following filters:$/ do |table|
 end
 
 Then /^I should see current filter "([^"]*)" equal to "([^"]*)" with label "([^"]*)"$/ do |name, value, label|
-  expect(page).to have_css "li.current_filter_#{name} span", text: label
-  expect(page).to have_css "li.current_filter_#{name} b", text: value
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] span", text: label
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] b", text: value
 end
 
 Then /^I should see current filter "([^"]*)" equal to "([^"]*)"$/ do |name, value|
-  expect(page).to have_css "li.current_filter_#{name} b", text: value
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] b", text: value
 end
 
 Then /^I should see link "([^"]*)" in current filters/ do |label|
-  expect(page).to have_css "li.current_filter b a", text: label
+  expect(page).to have_css ".active-filters [data-filter] b a", text: label
 end

@@ -45,9 +45,6 @@
     scopes:
       all: "Alla"
     search_status:
-      headline: "Sökstatus:"
-      current_scope: "Omfattning:"
-      current_filters: "Aktiva filter:"
       no_current_filters: "Inga"
     status_tag:
       "yes": "Ja"

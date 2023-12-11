@@ -22,9 +22,6 @@ az:
         filter: "Filtrlə"
         clear: "Təmizlə"
     search_status:
-      headline: "Axtarışın statusu:"
-      current_scope: "Sahə:"
-      current_filters: "Cari filter:"
       no_current_filters: "Heç biri"
     status_tag:
       "yes": "Bəli"

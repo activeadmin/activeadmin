@@ -45,9 +45,6 @@
     scopes:
       all: "所有"
     search_status:
-      headline: "搜索条件："
-      current_scope: "范围："
-      current_filters: "过滤条件："
       no_current_filters: "无"
     status_tag:
       "yes": "是"

@@ -27,10 +27,7 @@ nl:
         from: Van
         to: Tot
     search_status:
-      current_scope: "Scope:"
-      current_filters: "Huidige filters:"
       no_current_filters: "Geen"
-      headline: "Zoek status"
     status_tag:
       "yes": "Ja"
       "no": "Geen"

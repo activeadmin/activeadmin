@@ -24,9 +24,6 @@ tr:
         filter: "Filtrele"
         clear: "Filtreleri Temizle"
     search_status:
-      headline: "Arama"
-      current_scope: "Kapsam:"
-      current_filters: "Seçili filtreler:"
       no_current_filters: "Yok"
     status_tag:
       "yes": "Evet"

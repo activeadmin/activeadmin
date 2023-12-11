@@ -22,9 +22,6 @@ ar:
         filter: "تصفية"
         clear: "تفريغ التصفية"
     search_status:
-      headline: "حالات البحث:"
-      current_scope: "المجال:"
-      current_filters: "المُرشحات الحاليّة:"
       no_current_filters: "بدون"
     status_tag:
       "yes": "نعم"

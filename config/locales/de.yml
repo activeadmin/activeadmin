@@ -45,9 +45,6 @@ de:
     scopes:
       all: "Alle"
     search_status:
-      headline: "Filter"
-      current_scope: "Anwendungsbereich:"
-      current_filters: "Aktuelle Filter:"
       no_current_filters: "Keine"
     status_tag:
       "yes": "Ja"

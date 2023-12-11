@@ -23,9 +23,6 @@ da:
         filter: "Filtrer"
         clear: "Ryd filtre"
     search_status:
-      headline: "Søgestatus:"
-      current_scope: "Perspektiv:"
-      current_filters: "Valgte filtre:"
       no_current_filters: "Ingen"
     status_tag:
       "yes": "Ja"

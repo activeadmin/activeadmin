@@ -27,9 +27,6 @@ eo:
         from: "De"
         to: "Al"
     search_status:
-      headline: "Serĉstato:"
-      current_scope: "Regiono:"
-      current_filters: "Nunaj filtriloj:"
       no_current_filters: "Neniu"
     status_tag:
       "yes": "Jes"

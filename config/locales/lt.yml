@@ -25,9 +25,6 @@ lt:
         from: "Nuo"
         to: "Iki"
     search_status:
-      headline: "Paieškos būsena:"
-      current_scope: "Apimtis:"
-      current_filters: "Esami filtrai:"
       no_current_filters: "nėra"
     status_tag:
       "yes": "Taip"

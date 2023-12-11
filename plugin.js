@@ -499,6 +499,15 @@ module.exports = plugin(
       '.clear_filters_btn': {
         '@apply text-blue-700 hover:bg-gray-100 hover:text-blue-600 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 transition-colors no-underline': {}
       },
+      '.active-filters': {
+        '@apply mb-6 py-6': {}
+      },
+      '.active-filters-title': {
+        '@apply text-gray-700 dark:text-gray-200 font-bold text-lg mb-4': {}
+      },
+      '.active-filters-list': {
+        '@apply ps-5 list-disc space-y-2 text-gray-700 dark:text-gray-200': {}
+      },
       '.dropdown_menu': {
         '@apply relative': {}
       },

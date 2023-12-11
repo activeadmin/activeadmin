@@ -26,9 +26,6 @@ fr:
         from: "De"
         to: "À"
     search_status:
-      headline: "Statut de la recherche :"
-      current_scope: "Périmètre :"
-      current_filters: "Filtres actuels :"
       no_current_filters: "Aucun filtre"
     status_tag:
       "yes": "Oui"

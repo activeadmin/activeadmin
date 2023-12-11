@@ -49,9 +49,6 @@ pl:
     scopes:
       all: "Wszystko"
     search_status:
-      headline: "Status wyszukiwania:"
-      current_scope: "Aktywny zakres:"
-      current_filters: "Aktywne filtry:"
       no_current_filters: "Brak"
     status_tag:
       "yes": "Tak"

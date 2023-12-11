@@ -52,10 +52,9 @@ en:
     scopes:
       all: "All"
     search_status:
-      headline: "Search status:"
-      current_scope: "Scope:"
-      current_filters: "Current filters:"
-      no_current_filters: "None"
+      title: "Active Search"
+      title_with_scope: "Active Search for %{name}"
+      no_current_filters: "No filters applied"
     status_tag:
       "yes": "Yes"
       "no": "No"

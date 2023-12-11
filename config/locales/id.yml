@@ -22,9 +22,6 @@ id:
         filter: "Filter"
         clear: "Hapus Filters"
     search_status:
-      headline: "Status Pencarian:"
-      current_scope: "Scope:"
-      current_filters: "Filter kini:"
       no_current_filters: "Tidak ada"
     status_tag:
       "yes": "Ya"

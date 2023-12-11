@@ -15,23 +15,25 @@ module ActiveAdmin
         filters_list(active_filters, active_scopes)
       end
 
-      def scope_block(current_scope)
-        return unless current_scope
+      def default_class_name
+        "active-filters"
+      end
 
-        h4 I18n.t("active_admin.search_status.current_scope"), style: "display: inline"
-        b scope_name(current_scope), class: "current_scope_name"
+      def scope_block(current_scope)
+        if current_scope
+          h3 I18n.t("active_admin.search_status.title_with_scope", name: scope_name(current_scope)), class: "active-filters-title"
+        else
+          h3 I18n.t("active_admin.search_status.title"), class: "active-filters-title"
+        end
       end
 
       def filters_list(active_filters, active_scopes)
-        div style: "margin-top: 10px" do
-          h4 I18n.t("active_admin.search_status.current_filters"), style: "margin-bottom: 10px"
-          ul do
-            if active_filters.filters.blank? && active_scopes.blank?
-              li I18n.t("active_admin.search_status.no_current_filters")
-            else
-              active_filters.filters.each { |filter| filter_item(filter) }
-              active_scopes.each { |name, value| scope_item(name, value) }
-            end
+        ul class: "active-filters-list" do
+          if active_filters.filters.blank? && active_scopes.blank?
+            li I18n.t("active_admin.search_status.no_current_filters")
+          else
+            active_filters.filters.each { |filter| filter_item(filter) }
+            active_scopes.each { |name, value| scope_item(name, value) }
           end
         end
       end
@@ -48,7 +50,7 @@ module ActiveAdmin
         filter = active_admin_config.filters[filter_name.to_sym]
         label = filter.try(:[], :label) || filter_name.titleize
 
-        li class: "current_filter_#{name}" do
+        li "data-filter": name do
           span "#{label} #{Ransack::Translate.predicate('eq')}"
           b value
         end

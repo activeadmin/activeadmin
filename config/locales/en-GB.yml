@@ -23,9 +23,6 @@
         filter: "Filter"
         clear: "Clear Filters"
     search_status:
-      headline: "Search status:"
-      current_scope: "Scope:"
-      current_filters: "Current filters:"
       no_current_filters: "None"
     status_tag:
       "yes": "Yes"

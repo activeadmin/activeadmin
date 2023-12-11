@@ -45,9 +45,6 @@ it:
     scopes:
       all: "Tutti"
     search_status:
-      headline: "Situazione filtri:"
-      current_scope: "Contesto selezionato:"
-      current_filters: "Filtri attivi:"
       no_current_filters: "Nessuno"
     status_tag:
       "yes": "Sì"
