@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+## 3.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.1.0..v3.2.0)
+
+### Security Fixes
+
+* Backport protect against CSV Injection. [#8167] by [@mgrunberg]
+
+### Enhancements
+
+* Backport support citext column type in string filter. [#8165] by [@mgrunberg]
+* Backport provide detail in DB statement timeout error for filters. [#8163] by [@mgrunberg]
+
+### Bug Fixes
+
+* Backport make sure menu creation does not modify menu options. [#8166] by [@mgrunberg]
+* Backport ransack error with filters when ActiveStorage is used. [#8164] by [@mgrunberg]
+
 ## 3.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.0.0..v3.1.0)
 
 ### Enhancements
@@ -877,6 +893,11 @@ Please check [0-6-stable] for previous changes.
 [#8102]: https://github.com/activeadmin/activeadmin/pull/8102
 [#8105]: https://github.com/activeadmin/activeadmin/pull/8105
 [#8106]: https://github.com/activeadmin/activeadmin/pull/8106
+[#8163]: https://github.com/activeadmin/activeadmin/pull/8163
+[#8164]: https://github.com/activeadmin/activeadmin/pull/8164
+[#8165]: https://github.com/activeadmin/activeadmin/pull/8165
+[#8166]: https://github.com/activeadmin/activeadmin/pull/8166
+[#8167]: https://github.com/activeadmin/activeadmin/pull/8167
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
