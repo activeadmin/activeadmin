@@ -541,12 +541,6 @@ module.exports = plugin(
       '.attributes_table :where(tbody > tr > th, tbody > tr > td)': {
         '@apply px-5 py-3': {}
       },
-      ':where(.sidebar) .attributes_table :where(tbody > tr > th)': {
-        '@apply w-auto w-min': {}
-      },
-      ':where(.sidebar) .attributes_table :where(tbody > tr > th, tbody > tr > td)': {
-        '@apply px-2.5 py-2': {}
-      },
       '.status_tag': {
         '@apply bg-gray-200 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400': {}
       },
