@@ -459,7 +459,7 @@ module.exports = plugin(
       '.data-table :where(td)': {
         '@apply px-5 py-3': {}
       },
-      '.data-table-default-actions': {
+      '.data-table-resource-actions': {
         '@apply flex gap-2': {}
       },
       '.flashes': {

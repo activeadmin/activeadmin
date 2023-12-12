@@ -326,7 +326,7 @@ module ActiveAdmin
 
           column name, options do |resource|
             table_actions do
-              defaults(resource, css_class: :member_link) if defaults
+              defaults(resource) if defaults
               if block
                 block_result = instance_exec(resource, &block)
                 text_node block_result unless block_result.is_a? Arbre::Element
@@ -359,7 +359,7 @@ module ActiveAdmin
           end
 
           def default_class_name
-            "data-table-default-actions"
+            "data-table-resource-actions"
           end
         end
       end # IndexTableFor
