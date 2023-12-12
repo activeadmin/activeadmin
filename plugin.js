@@ -532,12 +532,9 @@ module.exports = plugin(
         '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white': {}
       },
       '.panel': {
-        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply mb-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
       },
-      '.panel + :where(.panel)': {
-        '@apply mt-6': {}
-      },
-      '.panel > :where(h3)': {
+      '.panel-title': {
         '@apply font-bold bg-gray-100 dark:bg-gray-900 rounded-t-lg p-3': {}
       },
       '.panel-body': {
