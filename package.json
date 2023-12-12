@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/activeadmin/activeadmin/issues"
   },
-  "homepage": "htts://activeadmin.info",
+  "homepage": "https://activeadmin.info",
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.3",
     "eslint": "^8.52.0",
