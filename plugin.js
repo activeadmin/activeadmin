@@ -312,9 +312,6 @@ module.exports = plugin(
       'body': {
         '@apply bg-white dark:bg-gray-950 dark:text-white antialiased': {}
       },
-      'a': {
-        '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
-      },
       '[type=checkbox]': {
         '@apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600': {}
       },
@@ -382,6 +379,9 @@ module.exports = plugin(
       },
       '.page-content-container': {
         '@apply px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,280px)]': {}
+      },
+      '.page-content-container :where(a)': {
+        '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
       '.main-content-container': {
         /* @apply shadow-md sm:rounded-lg; */
