@@ -626,7 +626,7 @@ module.exports = plugin(
       '.formtastic :where(.buttons, .actions)': {
         '@apply mt-3': {}
       },
-      '.formtastic :where(.actions > ol:has(li + li))': {
+      '.formtastic :where(.actions > ol)': {
         '@apply flex items-center gap-6': {}
       },
       '.formtastic :where([type=submit], [type=button], button)': {
