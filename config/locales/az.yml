@@ -50,8 +50,6 @@ az:
     blank_slate:
       content: "%{resource_name} hələ yoxdur."
       link: "Yarat"
-    dropdown_actions:
-      button_label: "Əməliyyatlar"
     batch_actions:
       button_label: "Qrup əməliyyatları"
       default_confirmation: "Siz bunu etməyinizə əminsiniz?"

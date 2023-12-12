@@ -72,7 +72,7 @@ index do
   selectable_column
   column :title
   actions do |post|
-    item "Preview", admin_preview_post_path(post), class: "member_link"
+    item "Preview", admin_preview_post_path(post), class: "preview-link"
   end
 end
 ```
@@ -95,18 +95,6 @@ index do
   column :title
   actions do |post|
     a "View", href: admin_post_path(post)
-  end
-end
-```
-
-In case you prefer to list actions links in a dropdown menu:
-
-```ruby
-index do
-  selectable_column
-  column :title
-  actions dropdown: true do |post|
-    item "Preview", admin_preview_post_path(post)
   end
 end
 ```

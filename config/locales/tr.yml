@@ -52,8 +52,6 @@ tr:
     blank_slate:
       content: "Henüz %{resource_name} yok."
       link: "Bir tane oluşturun"
-    dropdown_actions:
-      button_label: "İşlemler"
     batch_actions:
       button_label: "Toplu İşlemler"
       default_confirmation: "Bunu yapmak istediğinizden emin misiniz?"

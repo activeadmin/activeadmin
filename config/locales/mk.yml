@@ -62,8 +62,6 @@ mk:
     blank_slate:
       content: "Не се креирани записи од типот на %{resource_name}."
       link: "Креирај нов"
-    dropdown_actions:
-      button_label: "Активности"
     batch_actions:
       button_label: "Групни активности"
       default_confirmation: "Дали сте сигурни?"

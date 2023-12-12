@@ -49,8 +49,6 @@ ko:
     blank_slate:
       content: "아직 %{resource_name} 이/가 없습니다."
       link: "추가하기"
-    dropdown_actions:
-      button_label: "작업"
     batch_actions:
       button_label: "배치 작업"
       default_confirmation: "확실하십니까?"

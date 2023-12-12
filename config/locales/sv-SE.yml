@@ -73,8 +73,6 @@
     blank_slate:
       content: "Det finns inga %{resource_name} än."
       link: "Skapa en"
-    dropdown_actions:
-      button_label: "Åtgärder"
     batch_actions:
       button_label: "Batch-åtgärder"
       default_confirmation: "Är du säker på att du vill göra detta?"

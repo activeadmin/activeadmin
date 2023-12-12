@@ -49,8 +49,6 @@ ar:
     blank_slate:
       content: "لايوجد %{resource_name} بعد."
       link: "إنشاء"
-    dropdown_actions:
-      button_label: "إجراءات"
     batch_actions:
       button_label: "إجراءات متعددة"
       default_confirmation: "هل أنت متأكّد؟"

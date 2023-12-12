@@ -55,8 +55,6 @@ eo:
     blank_slate:
       content: "Ankoraŭ ne estas %{resource_name}."
       link: "Krei novan"
-    dropdown_actions:
-      button_label: "Agoj"
     batch_actions:
       button_label: "Amasagoj"
       default_confirmation: "Ĉu vi certas, ke vi volas fari tion?"

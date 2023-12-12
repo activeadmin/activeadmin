@@ -77,8 +77,6 @@ sk:
     blank_slate:
       content: "Zatiaľ tu nie je žiadny obsah."
       link: "Vytvoriť"
-    dropdown_actions:
-      button_label: "Akcie"
     batch_actions:
       button_label: "Hromadné akcie"
       default_confirmation: "Ste si istí, že to chcete spraviť?"

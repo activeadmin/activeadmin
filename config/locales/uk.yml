@@ -54,8 +54,6 @@ uk:
     blank_slate:
       content: "Поки-що немає %{resource_name}."
       link: "Створити"
-    dropdown_actions:
-      button_label: "Oперації"
     batch_actions:
       button_label: "Групові операції"
       default_confirmation: "Ви справді бажаєте це зробити?"

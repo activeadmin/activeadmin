@@ -43,8 +43,6 @@ el:
     blank_slate:
       content: "Δεν υπάρχουν %{resource_name} ακόμα."
       link: "Δημιουργήστε μία εγγραφή"
-    dropdown_actions:
-      button_label: "Ενέργειες"
     batch_actions:
       button_label: "Μαζικές Ενέργειες"
       default_confirmation: "Είστε σίγουρος πως θέλετε να το κάνετε αυτό;"

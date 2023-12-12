@@ -49,8 +49,6 @@ id:
     blank_slate:
       content: "%{resource_name} masih belum ada sama sekali."
       link: "Tambah data"
-    dropdown_actions:
-      button_label: "Tindakan"
     batch_actions:
       button_label: "Tindakan Serentak"
       default_confirmation: "Apakah anda yakin akan melakukan ini?"
