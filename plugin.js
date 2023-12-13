@@ -555,10 +555,10 @@ module.exports = plugin(
       '.attributes_table :where(tbody > tr > th, tbody > tr > td)': {
         '@apply px-5 py-3': {}
       },
-      '.status_tag': {
+      '.status-tag': {
         '@apply bg-gray-200 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400': {}
       },
-      '.status_tag:where(.yes)': {
+      '.status-tag:where(.yes)': {
         '@apply bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300': {}
       },
       '.tabs-nav': {

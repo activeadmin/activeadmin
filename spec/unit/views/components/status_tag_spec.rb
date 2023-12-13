@@ -22,7 +22,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag") }
+        it { is_expected.to contain_exactly("status-tag") }
       end
 
       describe "#content" do
@@ -36,7 +36,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag") }
+        it { is_expected.to contain_exactly("status-tag") }
       end
 
       describe "#content" do
@@ -50,7 +50,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag") }
+        it { is_expected.to contain_exactly("status-tag") }
       end
 
       describe "#content" do
@@ -64,7 +64,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag") }
+        it { is_expected.to contain_exactly("status-tag") }
       end
 
       describe "#content" do
@@ -78,7 +78,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag", "no") }
+        it { is_expected.to contain_exactly("status-tag", "no") }
       end
 
       describe "#content" do
@@ -92,7 +92,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag", "no") }
+        it { is_expected.to contain_exactly("status-tag", "no") }
       end
 
       describe "#content" do
@@ -106,7 +106,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag", "unset") }
+        it { is_expected.to contain_exactly("status-tag", "unset") }
       end
 
       describe "#content" do
@@ -123,7 +123,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
         describe "#class_list" do
           subject { super().class_list.to_a }
-          it { is_expected.to contain_exactly("status_tag", "unset") }
+          it { is_expected.to contain_exactly("status-tag", "unset") }
         end
 
         describe "#content" do
@@ -143,7 +143,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag", "ok") }
+        it { is_expected.to contain_exactly("status-tag", "ok") }
       end
     end
 
@@ -157,7 +157,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag") }
+        it { is_expected.to contain_exactly("status-tag") }
       end
     end
 
@@ -171,7 +171,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag", "woot", "awesome") }
+        it { is_expected.to contain_exactly("status-tag", "woot", "awesome") }
       end
 
       describe "#id" do
@@ -190,7 +190,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
 
       describe "#class_list" do
         subject { super().class_list.to_a }
-        it { is_expected.to contain_exactly("status_tag") }
+        it { is_expected.to contain_exactly("status-tag") }
       end
     end
   end
