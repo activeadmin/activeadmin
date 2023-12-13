@@ -49,19 +49,19 @@ module ActiveAdmin
       protected
 
       def default_class_name
-        "dropdown_menu"
+        "dropdown"
       end
 
       private
 
       def build_button(name, options)
-        options[:class] = "#{options[:class]} dropdown_menu_button"
+        options[:class] = "#{options[:class]} dropdown-toggle"
 
         button name, type: :button, "data-dropdown-toggle": dom_id, "data-dropdown-offset-distance": 3, "data-dropdown-placement": "bottom-start", **options
       end
 
       def build_menu(options)
-        options[:class] = "#{options[:class]} dropdown_menu_list"
+        options[:class] = "#{options[:class]} dropdown-menu"
         options[:id] = dom_id
         ul(options)
       end
