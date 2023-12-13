@@ -43,7 +43,7 @@
   Rails.delegate(document, "[data-batch-action-item]", "click", batchActionClick);
   Rails.delegate(document, "form[data-batch-action-form]", "submit", batchActionFormSubmit);
   const toggleDropdown = function(condition) {
-    const button = document.querySelector(".batch_actions_selector > button");
+    const button = document.querySelector(".batch-actions-dropdown > button");
     if (button) {
       button.disabled = condition;
     }

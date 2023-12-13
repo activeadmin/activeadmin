@@ -17,11 +17,11 @@ When /^I check the (\d+)(?:st|nd|rd|th) record$/ do |index|
 end
 
 Then /^I should see that the batch action button is disabled$/ do
-  expect(page).to have_css ".batch_actions_selector button[disabled]"
+  expect(page).to have_css ".batch-actions-dropdown button[disabled]"
 end
 
 Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
-  selector = ".batch_actions_selector"
+  selector = ".batch-actions-dropdown"
   selector += " button" if maybe == "should" && type == "button"
 
   verb = maybe == "should" ? :to : :to_not
@@ -29,7 +29,7 @@ Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe,
 end
 
 Then /^I should see the batch action popover$/ do
-  expect(page).to have_css ".batch_actions_selector"
+  expect(page).to have_css ".batch-actions-dropdown"
 end
 
 Given /^I submit the batch action form with "([^"]*)"$/ do |action|
