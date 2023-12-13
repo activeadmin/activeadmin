@@ -45,9 +45,6 @@ it:
     scopes:
       all: "Tutti"
     search_status:
-      headline: "Situazione filtri:"
-      current_scope: "Contesto selezionato:"
-      current_filters: "Filtri attivi:"
       no_current_filters: "Nessuno"
     status_tag:
       "yes": "Sì"
@@ -73,8 +70,6 @@ it:
     blank_slate:
       content: "Non sono presenti %{resource_name}"
       link: "Crea nuovo/a"
-    dropdown_actions:
-      button_label: "Azioni"
     batch_actions:
       button_label: "Azioni multiple"
       default_confirmation: "Sei sicuro di che voler proseguire?"

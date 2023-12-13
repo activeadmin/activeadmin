@@ -27,9 +27,6 @@ eo:
         from: "De"
         to: "Al"
     search_status:
-      headline: "Serĉstato:"
-      current_scope: "Regiono:"
-      current_filters: "Nunaj filtriloj:"
       no_current_filters: "Neniu"
     status_tag:
       "yes": "Jes"
@@ -55,8 +52,6 @@ eo:
     blank_slate:
       content: "Ankoraŭ ne estas %{resource_name}."
       link: "Krei novan"
-    dropdown_actions:
-      button_label: "Agoj"
     batch_actions:
       button_label: "Amasagoj"
       default_confirmation: "Ĉu vi certas, ke vi volas fari tion?"

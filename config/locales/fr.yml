@@ -26,9 +26,6 @@ fr:
         from: "De"
         to: "À"
     search_status:
-      headline: "Statut de la recherche :"
-      current_scope: "Périmètre :"
-      current_filters: "Filtres actuels :"
       no_current_filters: "Aucun filtre"
     status_tag:
       "yes": "Oui"
@@ -54,8 +51,6 @@ fr:
     blank_slate:
       content: "Il n'y a pas encore de %{resource_name}."
       link: "Créez en un"
-    dropdown_actions:
-      button_label: "Actions"
     batch_actions:
       button_label: "Actions groupées"
       default_confirmation: "Voulez-vous vraiment faire cela ?"

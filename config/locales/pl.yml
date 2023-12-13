@@ -49,9 +49,6 @@ pl:
     scopes:
       all: "Wszystko"
     search_status:
-      headline: "Status wyszukiwania:"
-      current_scope: "Aktywny zakres:"
-      current_filters: "Aktywne filtry:"
       no_current_filters: "Brak"
     status_tag:
       "yes": "Tak"
@@ -77,8 +74,6 @@ pl:
     blank_slate:
       content: "Nie ma jeszcze zasobu %{resource_name}."
       link: "Utwórz go"
-    dropdown_actions:
-      button_label: "Akcje"
     batch_actions:
       button_label: "Akcje na partiach"
       default_confirmation: "Czy na pewno chcesz to zrobić?"

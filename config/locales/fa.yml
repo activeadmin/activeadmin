@@ -43,8 +43,6 @@ fa:
     blank_slate:
       content: "هنوز هیچ رکوردی از %{resource_name} درج نشده."
       link: "درج اولین رکورد"
-    dropdown_actions:
-      button_label: "عملیات"
     batch_actions:
       button_label: "عملیات‌های دسته‌ای"
       default_confirmation: "آیا برای اجرای این عملیات اطمینان دارید؟"

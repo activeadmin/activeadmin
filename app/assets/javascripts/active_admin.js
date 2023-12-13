@@ -43,7 +43,7 @@
   Rails.delegate(document, "[data-batch-action-item]", "click", batchActionClick);
   Rails.delegate(document, "form[data-batch-action-form]", "submit", batchActionFormSubmit);
   const toggleDropdown = function(condition) {
-    const button = document.querySelector(".batch_actions_selector > button");
+    const button = document.querySelector(".batch-actions-dropdown > button");
     if (button) {
       button.disabled = condition;
     }
@@ -53,7 +53,7 @@
     for (const checkbox of checkboxes) {
       checkbox.checked = this.checked;
     }
-    const rows = document.querySelectorAll(".paginated_collection tbody tr");
+    const rows = document.querySelectorAll(".paginated-collection tbody tr");
     for (const row of rows) {
       row.classList.toggle("selected", this.checked);
     }
@@ -81,7 +81,7 @@
       }
     }
   };
-  Rails.delegate(document, ".paginated_collection tbody td", "click", tableRowClick);
+  Rails.delegate(document, ".paginated-collection tbody td", "click", tableRowClick);
   const hasManyRemoveClick = function(event) {
     event.preventDefault();
     const oldGroup = this.closest("fieldset");
@@ -105,7 +105,7 @@
   const disableEmptyFields = function(event) {
     Array.from(this.querySelectorAll("input, select, textarea")).filter((el => el.value === "")).forEach((el => el.disabled = true));
   };
-  Rails.delegate(document, ".filter_form", "submit", disableEmptyFields);
+  Rails.delegate(document, ".filters-form", "submit", disableEmptyFields);
   const next = function next(el, selector) {
     const nextEl = el.nextElementSibling;
     if (!selector || nextEl && nextEl.matches(selector)) {
@@ -119,7 +119,7 @@
       input.name = `q[${this.value}]`;
     }
   };
-  Rails.delegate(document, ".filter_form_field.select_and_search select", "change", setSearchType);
+  Rails.delegate(document, ".filters-form-field [data-search-methods]", "change", setSearchType);
   const setPerPage = function(event) {
     const params = new URLSearchParams(window.location.search);
     params.set("per_page", this.value);

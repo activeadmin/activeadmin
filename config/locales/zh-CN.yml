@@ -45,9 +45,6 @@
     scopes:
       all: "所有"
     search_status:
-      headline: "搜索条件："
-      current_scope: "范围："
-      current_filters: "过滤条件："
       no_current_filters: "无"
     status_tag:
       "yes": "是"
@@ -73,8 +70,6 @@
     blank_slate:
       content: "暂时还没有%{resource_name}。"
       link: "新增一个"
-    dropdown_actions:
-      button_label: "操作"
     batch_actions:
       button_label: "批处理"
       default_confirmation: "你确定要这样做？"

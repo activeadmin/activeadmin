@@ -22,9 +22,6 @@
         filter: "篩選"
         clear: "清除篩選條件"
     search_status:
-      headline: "搜尋條件:"
-      current_scope: "子集："
-      current_filters: "目前篩選條件："
       no_current_filters: "無"
     status_tag:
       "yes": "是"
@@ -49,8 +46,6 @@
     blank_slate:
       content: "尚無 %{resource_name}"
       link: "建立一筆"
-    dropdown_actions:
-      button_label: "操作"
     batch_actions:
       button_label: "批次作業"
       default_confirmation: "你確定你要這樣做？"

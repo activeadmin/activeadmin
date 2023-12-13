@@ -45,9 +45,6 @@ de:
     scopes:
       all: "Alle"
     search_status:
-      headline: "Filter"
-      current_scope: "Anwendungsbereich:"
-      current_filters: "Aktuelle Filter:"
       no_current_filters: "Keine"
     status_tag:
       "yes": "Ja"
@@ -73,8 +70,6 @@ de:
     blank_slate:
       content: "Es gibt noch keine %{resource_name}."
       link: "Erstellen"
-    dropdown_actions:
-      button_label: "Aktionen"
     batch_actions:
       button_label: "Stapelverarbeitung"
       default_confirmation: "Bist du sicher, dass Sie dies tun wollen?"

@@ -59,8 +59,6 @@ module.exports = plugin(
         'padding-right': spacing[3],
         'padding-bottom': spacing[2],
         'padding-left': spacing[3],
-        'font-size': baseFontSize,
-        'line-height': baseLineHeight,
         '--tw-shadow': '0 0 #0000',
         '&:focus': {
           outline: '2px solid transparent',
@@ -314,9 +312,6 @@ module.exports = plugin(
       'body': {
         '@apply bg-white dark:bg-gray-950 dark:text-white antialiased': {}
       },
-      'a': {
-        '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
-      },
       '[type=checkbox]': {
         '@apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600': {}
       },
@@ -383,40 +378,37 @@ module.exports = plugin(
         '@apply py-2.5 px-5 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
       },
       '.page-content-container': {
-        '@apply px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,280px)]': {}
+        '@apply px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,250px)]': {}
       },
-      '.main-content-container': {
-        /* @apply shadow-md sm:rounded-lg; */
-        /* @apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800; */
-        /* overflow: auto; */
-        '': {}
+      '.page-content-container :where(a)': {
+        '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
-      '.table_tools': {
+      '.index-data-table-toolbar': {
         '@apply flex flex-col lg:flex-row gap-4 mb-4': {}
       },
       '.scopes': {
         '@apply flex flex-wrap gap-1.5': {}
       },
-      '.scopes-group': {
+      '.index-button-group': {
         '@apply inline-flex flex-wrap items-stretch rounded': {}
       },
       // Prevent double borders when buttons are next to each other
-      '.scopes-group > :where(*:not(:first-child))': {
+      '.index-button-group > :where(*:not(:first-child))': {
         '@apply -ml-px my-0': {}
       },
-      '.table_tools_button': {
+      '.index-button': {
         '@apply transition-colors inline-flex items-center justify-center px-4 py-2 text-sm font-medium no-underline text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 first:rounded-s-lg last:rounded-e-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white': {}
       },
-      '.table_tools_button.selected': {
+      '.index-button-selected': {
         '@apply text-blue-700 dark:text-blue-400': {}
       },
-      '.table_tools_button > :where(.count)': {
+      '.scopes-count': {
         '@apply inline-flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-500 px-2 py-1 text-xs font-medium ms-2 leading-none': {}
       },
-      '.paginated_collection': {
+      '.paginated-collection': {
         '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800 overflow-hidden': {}
       },
-      '.paginated_collection_contents': {
+      '.paginated-collection-contents': {
         '@apply overflow-x-auto': {}
       },
       '.paginated-collection-pagination': {
@@ -446,7 +438,7 @@ module.exports = plugin(
       '.pagination-per-page': {
         '@apply text-sm py-1 pe-7 w-auto w-min': {}
       },
-      '.index_as_table': {
+      '.index-as-table': {
         '@apply relative overflow-x-auto': {}
       },
       '.data-table': {
@@ -461,7 +453,7 @@ module.exports = plugin(
       '.data-table :where(td)': {
         '@apply px-5 py-3': {}
       },
-      '.data-table-default-actions': {
+      '.data-table-resource-actions': {
         '@apply flex gap-2': {}
       },
       '.flashes': {
@@ -482,47 +474,61 @@ module.exports = plugin(
       '.flash_notice': {
         '@apply bg-green-50 text-green-800 dark:bg-green-800 dark:text-green-400': {}
       },
-      '.filter_form :where(.label)': {
+      '.filters-form': {
+        '@apply text-sm mb-6': {}
+      },
+      '.filters-form-title': {
+        '@apply text-gray-700 dark:text-gray-200 font-bold text-lg mb-4': {}
+      },
+      '.filters-form :where(.label)': {
         '@apply block mb-1.5 text-sm': {}
       },
-      '.filter-input-group': {
-        //   display: grid;
-        //   grid-auto-columns: minmax(0, 1fr);
-        //   grid-auto-flow: column;
-        //   gap: 0.5rem;
+      '.filters-form-input-group': {
         '@apply grid grid-cols-2 gap-2': {}
       },
-      '.filter_form_field': {
+      '.filters-form-field': {
         '@apply mb-4': {}
       },
-      '.filter_form_field :where(.choices > label)': {
+      '.filters-form-field :where(.choices > label)': {
         '@apply flex gap-2 items-center mb-1': {}
       },
-      '.clear_filters_btn': {
+      '.filters-form-buttons': {
+        '@apply flex gap-2 items-center': {}
+      },
+      '.filters-form-submit': {
+        '@apply font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
+      },
+      '.filters-form-clear': {
         '@apply text-blue-700 hover:bg-gray-100 hover:text-blue-600 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 transition-colors no-underline': {}
       },
-      '.dropdown_menu': {
+      '.active-filters': {
+        '@apply mb-6 py-6': {}
+      },
+      '.active-filters-title': {
+        '@apply text-gray-700 dark:text-gray-200 font-bold text-lg mb-4': {}
+      },
+      '.active-filters-list': {
+        '@apply ps-5 list-disc space-y-2 text-gray-700 dark:text-gray-200': {}
+      },
+      '.dropdown': {
         '@apply relative': {}
       },
-      '.dropdown_menu_button': {
+      '.dropdown-toggle': {
         '@apply transition-colors transition-opacity rounded-lg inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white disabled:opacity-30 disabled:pointer-events-none': {}
       },
-      '.dropdown-menu-button-arrow': {
+      '.dropdown-toggle-arrow': {
         '@apply w-2.5 h-2.5 ms-1.5': {}
       },
-      '.dropdown_menu :where(ul)': {
-        '@apply z-10 hidden min-w-max bg-white rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
+      '.dropdown-menu': {
+        '@apply z-10 hidden min-w-[7rem] bg-white rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
-      '.dropdown_menu :where(ul > li > a)': {
+      '.dropdown-menu :where(ul > li > a)': {
         '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white': {}
       },
       '.panel': {
-        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply mb-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
       },
-      '.panel + :where(.panel)': {
-        '@apply mt-6': {}
-      },
-      '.panel > :where(h3)': {
+      '.panel-title': {
         '@apply font-bold bg-gray-100 dark:bg-gray-900 rounded-t-lg p-3': {}
       },
       '.panel-body': {
@@ -543,16 +549,10 @@ module.exports = plugin(
       '.attributes_table :where(tbody > tr > th, tbody > tr > td)': {
         '@apply px-5 py-3': {}
       },
-      ':where(.sidebar) .attributes_table :where(tbody > tr > th)': {
-        '@apply w-auto w-min': {}
-      },
-      ':where(.sidebar) .attributes_table :where(tbody > tr > th, tbody > tr > td)': {
-        '@apply px-2.5 py-2': {}
-      },
-      '.status_tag': {
+      '.status-tag': {
         '@apply bg-gray-200 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400': {}
       },
-      '.status_tag:where(.yes)': {
+      '.status-tag:where(.yes)': {
         '@apply bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300': {}
       },
       '.tabs-nav': {
@@ -634,7 +634,7 @@ module.exports = plugin(
       '.formtastic :where(.buttons, .actions)': {
         '@apply mt-3': {}
       },
-      '.formtastic :where(.actions > ol:has(li + li))': {
+      '.formtastic :where(.actions > ol)': {
         '@apply flex items-center gap-6': {}
       },
       '.formtastic :where([type=submit], [type=button], button)': {

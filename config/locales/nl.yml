@@ -27,10 +27,7 @@ nl:
         from: Van
         to: Tot
     search_status:
-      current_scope: "Scope:"
-      current_filters: "Huidige filters:"
       no_current_filters: "Geen"
-      headline: "Zoek status"
     status_tag:
       "yes": "Ja"
       "no": "Geen"
@@ -55,8 +52,6 @@ nl:
     blank_slate:
       content: "Er zijn geen %{resource_name} gevonden."
       link: "Maak aan"
-    dropdown_actions:
-      button_label: "Acties"
     batch_actions:
       button_label: "Batch acties"
       default_confirmation: "Weet u zeker dat u dit wilt doen?"

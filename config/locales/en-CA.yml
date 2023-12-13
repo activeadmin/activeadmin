@@ -23,9 +23,6 @@
         filter: "Filter"
         clear: "Clear Filters"
     search_status:
-      headline: "Search status:"
-      current_scope: "Scope:"
-      current_filters: "Current filters:"
       no_current_filters: "None"
     status_tag:
       "yes": "Yes"
@@ -51,8 +48,6 @@
     blank_slate:
       content: "There are no %{resource_name} yet."
       link: "Create one"
-    dropdown_actions:
-      button_label: "Actions"
     batch_actions:
       button_label: "Batch Actions"
       default_confirmation: "Are you sure you want to do this?"

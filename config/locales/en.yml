@@ -52,10 +52,9 @@ en:
     scopes:
       all: "All"
     search_status:
-      headline: "Search status:"
-      current_scope: "Scope:"
-      current_filters: "Current filters:"
-      no_current_filters: "None"
+      title: "Active Search"
+      title_with_scope: "Active Search for %{name}"
+      no_current_filters: "No filters applied"
     status_tag:
       "yes": "Yes"
       "no": "No"
@@ -80,8 +79,6 @@ en:
     blank_slate:
       content: "There are no %{resource_name} yet."
       link: "Create one"
-    dropdown_actions:
-      button_label: "Actions"
     batch_actions:
       button_label: "Batch Actions"
       default_confirmation: "Are you sure you want to do this?"

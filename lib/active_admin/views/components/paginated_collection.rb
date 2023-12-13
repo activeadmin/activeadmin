@@ -50,7 +50,7 @@ module ActiveAdmin
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
         end
 
-        @contents = div(class: "paginated_collection_contents")
+        @contents = div(class: "paginated-collection-contents")
         build_pagination_with_formats(options)
         @built = true
       end
@@ -67,12 +67,12 @@ module ActiveAdmin
       protected
 
       def default_class_name
-        "paginated_collection"
+        "paginated-collection"
       end
 
       def build_pagination_with_formats(options)
         div class: "paginated-collection-pagination" do
-          div page_entries_info(options).html_safe, class: "pagination_information"
+          div page_entries_info(options).html_safe, class: "pagination-information"
           build_pagination
         end
         formats = build_download_formats @download_links

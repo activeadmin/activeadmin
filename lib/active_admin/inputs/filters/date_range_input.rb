@@ -8,7 +8,7 @@ module ActiveAdmin
         def to_html
           input_wrapping do
             [ label_html,
-              '<div class="filter-input-group">',
+              '<div class="filters-form-input-group">',
               builder.date_field(gt_input_name, input_html_options_for(gt_input_name, gt_input_placeholder)),
               builder.date_field(lt_input_name, input_html_options_for(lt_input_name, lt_input_placeholder)),
               '</div>'

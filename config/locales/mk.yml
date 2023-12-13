@@ -35,8 +35,6 @@ mk:
         from: "Од"
         to: "До"
     search_status:
-      headline: "Пронајдени резултати:"
-      current_filters: "Резултати врз основа на следниве филтри:"
       no_current_filters: "Моментално нема филтри"
     status_tag:
       "yes": "Да"
@@ -62,8 +60,6 @@ mk:
     blank_slate:
       content: "Не се креирани записи од типот на %{resource_name}."
       link: "Креирај нов"
-    dropdown_actions:
-      button_label: "Активности"
     batch_actions:
       button_label: "Групни активности"
       default_confirmation: "Дали сте сигурни?"

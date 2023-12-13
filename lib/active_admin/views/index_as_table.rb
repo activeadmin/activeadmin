@@ -72,7 +72,7 @@ module ActiveAdmin
     #   selectable_column
     #   column :title
     #   actions do |post|
-    #     item "Preview", admin_preview_post_path(post), class: "member_link"
+    #     item "Preview", admin_preview_post_path(post), class: "preview-link"
     #   end
     # end
     # ```
@@ -95,18 +95,6 @@ module ActiveAdmin
     #   column :title
     #   actions do |post|
     #     a "View", href: admin_post_path(post)
-    #   end
-    # end
-    # ```
-    #
-    # In case you prefer to list actions links in a dropdown menu:
-    #
-    # ```ruby
-    # index do
-    #   selectable_column
-    #   column :title
-    #   actions dropdown: true do |post|
-    #     item "Preview", admin_preview_post_path(post)
     #   end
     # end
     # ```
@@ -329,38 +317,19 @@ module ActiveAdmin
         #   item 'Grant Admin', grant_admin_admin_user_path(admin_user)
         # end
         #
-        # # Append some actions onto the end of the default actions displayed in a Dropdown Menu
-        # actions dropdown: true do |admin_user|
-        #   item 'Grant Admin', grant_admin_admin_user_path(admin_user)
-        # end
-        #
-        # # Custom actions without the defaults displayed in a Dropdown Menu.
-        # actions defaults: false, dropdown: true, dropdown_name: 'Additional actions' do |admin_user|
-        #   item 'Grant Admin', grant_admin_admin_user_path(admin_user)
-        # end
-        #
         # ```
         def actions(options = {}, &block)
           name = options.delete(:name) { "" }
           defaults = options.delete(:defaults) { true }
-          dropdown = options.delete(:dropdown) { false }
-          dropdown_name = options.delete(:dropdown_name) { I18n.t "active_admin.dropdown_actions.button_label", default: "Actions" }
 
           options[:class] ||= "col-actions"
 
           column name, options do |resource|
-            if dropdown
-              dropdown_menu dropdown_name do
-                defaults(resource) if defaults
-                instance_exec(resource, &block) if block
-              end
-            else
-              table_actions do
-                defaults(resource, css_class: :member_link) if defaults
-                if block
-                  block_result = instance_exec(resource, &block)
-                  text_node block_result unless block_result.is_a? Arbre::Element
-                end
+            table_actions do
+              defaults(resource) if defaults
+              if block
+                block_result = instance_exec(resource, &block)
+                text_node block_result unless block_result.is_a? Arbre::Element
               end
             end
           end
@@ -390,7 +359,7 @@ module ActiveAdmin
           end
 
           def default_class_name
-            "data-table-default-actions"
+            "data-table-resource-actions"
           end
         end
       end # IndexTableFor
@@ -398,7 +367,7 @@ module ActiveAdmin
       protected
 
       def default_class_name
-        "index_as_table"
+        "index-as-table"
       end
     end
   end

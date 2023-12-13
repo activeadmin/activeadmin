@@ -152,7 +152,7 @@ Feature: Index Filtering
     And I should see "Mystery" within ".index_table"
     And I should see "Non-Fiction" within ".index_table"
     And the "Jane Doe" checkbox should not be checked
-    And I should not see "Search status:"
+    And I should not see "Active Search"
 
   Scenario: Checkboxes - Filtering categories via posts written by Jane Doe
     Given a category named "Mystery" exists
@@ -201,7 +201,7 @@ Feature: Index Filtering
 
     When I select "Non-Fiction" from "Category"
     And I press "Filter"
-    Then I should see "Search status:"
+    Then I should see "Active Search"
     And I should see link "Non-Fiction" in current filters
 
   Scenario: Enabling filters status sidebar
@@ -213,7 +213,7 @@ Feature: Index Filtering
       end
     """
     And I press "Filter"
-    Then I should see "Search status:"
+    Then I should see "Active Search"
 
   Scenario: Disabling filters status sidebar
     Given an index configuration of:
@@ -224,7 +224,7 @@ Feature: Index Filtering
       end
     """
     And I press "Filter"
-    Then I should not see "Search status:"
+    Then I should not see "Active Search"
 
   Scenario: Filters and nested resources
     Given a post with the title "The arrogant president" written by "Jane Doe" exists

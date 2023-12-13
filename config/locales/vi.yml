@@ -45,9 +45,6 @@ vi:
     scopes:
       all: "Tất cả"
     search_status:
-      headline: "Danh sách tìm kiếm:"
-      current_scope: "Phạm vi:"
-      current_filters: "Bộ lọc hiện tại:"
       no_current_filters: "Không có"
     status_tag:
       "yes": "Có"
@@ -73,8 +70,6 @@ vi:
     blank_slate:
       content: "Chưa có %{resource_name}."
       link: "Tạo mới"
-    dropdown_actions:
-      button_label: "Hành động"
     batch_actions:
       button_label: "Hành động hàng loạt"
       default_confirmation: "Bạn có chắc bạn muốn làm điều này?"

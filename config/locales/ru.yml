@@ -25,9 +25,6 @@ ru:
         from: "От"
         to: "До"
     search_status:
-      headline: "Статус поиска:"
-      current_scope: "Область:"
-      current_filters: "Текущий фильтр:"
       no_current_filters: "Ни один"
     status_tag:
       "yes": "Да"
@@ -54,8 +51,6 @@ ru:
     blank_slate:
       content: "Пока нет %{resource_name}."
       link: "Создать"
-    dropdown_actions:
-      button_label: "Oперации"
     batch_actions:
       button_label: "Групповые операции"
       default_confirmation: "Вы уверены, что вы хотите это сделать?"

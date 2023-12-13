@@ -68,7 +68,7 @@ module ActiveAdmin
         include ::ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper
 
         def build_table_tools
-          div class: "table_tools" do
+          div class: "index-data-table-toolbar" do
             build_batch_actions_selector
             build_scopes
             build_index_list
@@ -152,9 +152,7 @@ module ActiveAdmin
                         paginator: paginator,
                         per_page: per_page,
                         pagination_total: pagination_total) do
-            div class: "index_content" do
-              insert_tag(renderer_class, config, collection)
-            end
+            insert_tag(renderer_class, config, collection)
           end
         end
 

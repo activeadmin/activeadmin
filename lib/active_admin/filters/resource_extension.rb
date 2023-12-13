@@ -13,7 +13,7 @@ module ActiveAdmin
       def initialize(*)
         super
         add_filters_sidebar_section
-        add_search_status_sidebar_section
+        add_active_search_sidebar_section
       end
 
       # Returns the filters for this resource. If filters are not enabled,
@@ -167,13 +167,20 @@ module ActiveAdmin
       def filters_sidebar_section
         name = :filters
         ActiveAdmin::SidebarSection.new name, only: :index, if: -> { active_admin_config.filters.any? } do
-          h3 I18n.t("active_admin.sidebars.#{name}", default: name.to_s.titlecase)
+          h3 I18n.t("active_admin.sidebars.#{name}", default: name.to_s.titlecase), class: "filters-form-title"
           active_admin_filters_form_for assigns[:search], **active_admin_config.filters
         end
       end
 
-      def add_search_status_sidebar_section
-        self.sidebar_sections << ActiveAdmin::Filters::ActiveSidebar.new
+      def add_active_search_sidebar_section
+        self.sidebar_sections << active_search_sidebar_section
+      end
+
+      def active_search_sidebar_section
+        name = :active_search
+        ActiveAdmin::SidebarSection.new name, only: :index, if: -> { active_admin_config.current_filters_enabled? && (params[:q] || params[:scope]) } do
+          active_filters_sidebar_content
+        end
       end
 
     end
