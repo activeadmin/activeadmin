@@ -408,24 +408,6 @@ module.exports = plugin(
       '.data-table-resource-actions': {
         '@apply flex gap-2': {}
       },
-      '.flashes': {
-        '@apply px-2.5 lg:px-5 mb-8': {}
-      },
-      '.flash': {
-        '@apply flex items-center gap-3 p-4 mb-2 rounded-lg': {}
-      },
-      '.flash-icon': {
-        '@apply w-5 h-5 shrink-0': {}
-      },
-      '.flash_alert': {
-        '@apply bg-yellow-50 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-300': {}
-      },
-      '.flash_error': {
-        '@apply bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
-      },
-      '.flash_notice': {
-        '@apply bg-green-50 text-green-800 dark:bg-green-800 dark:text-green-400': {}
-      },
       '.filters-form': {
         '@apply text-sm mb-6': {}
       },
