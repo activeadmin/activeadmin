@@ -28,7 +28,7 @@ module ActiveAdmin
 
         dropdown_menu (I18n.t("active_admin.batch_actions.button_label") + svg).html_safe,
                       class: "batch-actions-dropdown",
-                      button: { disabled: "" } do
+                      button: { disabled: "", "data-dropdown-offset-distance": 5, "data-dropdown-placement": "bottom-start" } do
           batch_actions_to_display.each do |batch_action|
             confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)
 
