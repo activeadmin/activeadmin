@@ -53,7 +53,7 @@
     for (const checkbox of checkboxes) {
       checkbox.checked = this.checked;
     }
-    const rows = document.querySelectorAll(".paginated_collection tbody tr");
+    const rows = document.querySelectorAll(".paginated-collection tbody tr");
     for (const row of rows) {
       row.classList.toggle("selected", this.checked);
     }
@@ -81,7 +81,7 @@
       }
     }
   };
-  Rails.delegate(document, ".paginated_collection tbody td", "click", tableRowClick);
+  Rails.delegate(document, ".paginated-collection tbody td", "click", tableRowClick);
   const hasManyRemoveClick = function(event) {
     event.preventDefault();
     const oldGroup = this.closest("fieldset");

@@ -411,10 +411,10 @@ module.exports = plugin(
       '.scopes-count': {
         '@apply inline-flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-500 px-2 py-1 text-xs font-medium ms-2 leading-none': {}
       },
-      '.paginated_collection': {
+      '.paginated-collection': {
         '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800 overflow-hidden': {}
       },
-      '.paginated_collection_contents': {
+      '.paginated-collection-contents': {
         '@apply overflow-x-auto': {}
       },
       '.paginated-collection-pagination': {

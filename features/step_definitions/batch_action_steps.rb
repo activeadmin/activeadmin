@@ -54,5 +54,5 @@ When /^I click "(.*?)" and accept confirmation$/ do |link|
 end
 
 Then /^I should not see checkboxes in the table$/ do
-  expect(page).to_not have_css ".paginated_collection table input[type=checkbox]"
+  expect(page).to_not have_css ".paginated-collection table input[type=checkbox]"
 end

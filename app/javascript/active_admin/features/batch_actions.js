@@ -50,7 +50,7 @@ const toggleAllChange = function(event) {
     checkbox.checked = this.checked
   }
 
-  const rows = document.querySelectorAll(".paginated_collection tbody tr")
+  const rows = document.querySelectorAll(".paginated-collection tbody tr")
   for (const row of rows) {
     row.classList.toggle("selected", this.checked);
   }
@@ -86,4 +86,4 @@ const tableRowClick = function(event) {
   }
 }
 
-Rails.delegate(document, ".paginated_collection tbody td", "click", tableRowClick)
+Rails.delegate(document, ".paginated-collection tbody td", "click", tableRowClick)
