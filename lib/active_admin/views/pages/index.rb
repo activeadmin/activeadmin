@@ -152,9 +152,7 @@ module ActiveAdmin
                         paginator: paginator,
                         per_page: per_page,
                         pagination_total: pagination_total) do
-            div class: "index_content" do
-              insert_tag(renderer_class, config, collection)
-            end
+            insert_tag(renderer_class, config, collection)
           end
         end
 
