@@ -383,13 +383,7 @@ module.exports = plugin(
       '.page-content-container :where(a)': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
-      '.main-content-container': {
-        /* @apply shadow-md sm:rounded-lg; */
-        /* @apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800; */
-        /* overflow: auto; */
-        '': {}
-      },
-      '.table_tools': {
+      '.index-data-table-toolbar': {
         '@apply flex flex-col lg:flex-row gap-4 mb-4': {}
       },
       '.scopes': {
@@ -444,7 +438,7 @@ module.exports = plugin(
       '.pagination-per-page': {
         '@apply text-sm py-1 pe-7 w-auto w-min': {}
       },
-      '.index_as_table': {
+      '.index-as-table': {
         '@apply relative overflow-x-auto': {}
       },
       '.data-table': {

@@ -367,7 +367,7 @@ module ActiveAdmin
       protected
 
       def default_class_name
-        "index_as_table"
+        "index-as-table"
       end
     end
   end

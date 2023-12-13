@@ -68,7 +68,7 @@ module ActiveAdmin
         include ::ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper
 
         def build_table_tools
-          div class: "table_tools" do
+          div class: "index-data-table-toolbar" do
             build_batch_actions_selector
             build_scopes
             build_index_list
