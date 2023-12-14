@@ -27,6 +27,18 @@ Then /^I should see the following filters:$/ do |table|
   end
 end
 
+Given(/^I add parameter "([^"]*)" with value "([^"]*)" to the URL$/) do |key, value|
+  url = page.current_url
+  separator = url.include?("?") ? "&" : "?"
+  visit url + separator + key.to_s + "=" + value.to_s
+end
+
+Then(/^I should have parameter "([^"]*)" with value "([^"]*)"$/) do |key, value|
+  query = URI(page.current_url).query
+  params = Rack::Utils.parse_query query
+  expect(params[key]).to eq value
+end
+
 Then /^I should see current filter "([^"]*)" equal to "([^"]*)" with label "([^"]*)"$/ do |name, value, label|
   expect(page).to have_css ".active-filters [data-filter='#{name}'] span", text: label
   expect(page).to have_css ".active-filters [data-filter='#{name}'] b", text: value
