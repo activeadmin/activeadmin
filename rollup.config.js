@@ -15,7 +15,7 @@ const terserOptions = {
   output: {
     beautify: true,
     indent_level: 2,
-    comments: "all"
+    // comments: "all"
   }
 }
 
@@ -23,8 +23,8 @@ export default {
   input: "app/javascript/active_admin/index.js",
   output: {
     file: "app/assets/javascripts/active_admin.js",
-    format: "umd",
-    banner: banner,
+    format: "es",
+    // banner: banner,
     globals: {
       "@rails/ujs": "Rails"
     }

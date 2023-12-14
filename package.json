@@ -2,7 +2,8 @@
   "name": "@activeadmin/activeadmin",
   "version": "3.1.0",
   "description": "The administration framework for Ruby on Rails.",
-  "main": "app/assets/javascripts/active_admin.js",
+  "main": "app/javascript/active_admin/index.js",
+  "module": "app/javascript/active_admin/index.js",
   "type": "module",
   "files": [
     "app/assets/javascripts/*.js",

@@ -10,14 +10,18 @@ task :local do
 
   test_application.soft_generate
 
-  system "bin/yarn build"
+  system "yarn link"
+  Dir.chdir(test_application.app_dir) do
+    system "yarn link @activeadmin/activeadmin"
+    system "yarn install"
+  end
 
   # Discard the "local" argument (name of the task)
   argv = ARGV[1..-1]
 
   if argv.any?
     if %w(server s).include?(argv[0])
-      command = "foreman start -f Procfile.dev"
+      command = "foreman start -f Procfile.dev && yarn unlink @activeadmin/activeadmin"
     # If it's a rails command, auto add the rails script
     elsif %w(generate console dbconsole g c routes runner).include?(argv[0]) || argv[0].include?('db:')
       argv.unshift("rails")

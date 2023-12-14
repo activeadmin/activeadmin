@@ -45,10 +45,25 @@ module ActiveAdmin
 
       env = { "BUNDLE_GEMFILE" => expanded_gemfile, "RAILS_ENV" => rails_env }
 
-      Bundler.with_original_env do
-        Kernel.system(env, command)
-        Dir.chdir(app_dir) do
-          Kernel.system("yarn install")
+      if rails_env == "test"
+        Bundler.with_original_env do
+          Kernel.system(env, command)
+          Kernel.system("yarn link")
+          Dir.chdir(app_dir) do
+            Kernel.system("yarn install")
+            Kernel.system("yarn link @activeadmin/activeadmin")
+            Kernel.system("yarn build:css")
+            Kernel.system("yarn build:js")
+            # TODO: only run this in test env
+            Kernel.system("yarn unlink @activeadmin/activeadmin")
+          end
+        end
+      else
+        Bundler.with_original_env do
+          Kernel.system(env, command)
+          # Dir.chdir(app_dir) do
+          #   Kernel.system("yarn install")
+          # end
         end
       end
     end
