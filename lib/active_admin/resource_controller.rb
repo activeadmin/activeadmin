@@ -95,13 +95,6 @@ module ActiveAdmin
       end
     end
 
-    # Returns the renderer class to use for the given action.
-    def renderer_for(action)
-      active_admin_namespace.view_factory["#{action}_page"]
-    end
-
-    helper_method :renderer_for
-
     def restrict_format_access!
       unless request.format.html?
         presenter = active_admin_config.get_page_presenter(:index)
