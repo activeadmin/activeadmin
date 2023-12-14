@@ -1,6 +1,6 @@
 <div class="devise-form-container">
   <h2 class="devise-form-title">
-    <%= active_admin_application.site_title(self) %> <%= title t('active_admin.devise.login.title') %>
+    <%= site_title %> <%= set_page_title t('active_admin.devise.login.title') %>
   </h2>
 
   <% scope = Devise::Mapping.find_scope!(resource_name) %>

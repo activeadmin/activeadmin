@@ -12,10 +12,10 @@ module ActiveAdmin
     include MethodOrProcHelper
     include SidebarHelper
     include FormHelper
-    include TitleHelper
     include ViewFactoryHelper
     include FlashHelper
     include ScopeNameHelper
+    include LayoutHelper
 
   end
 end
