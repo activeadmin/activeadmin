@@ -24,16 +24,12 @@
   },
   "homepage": "https://activeadmin.info",
   "devDependencies": {
-    "@rollup/plugin-terser": "^0.4.3",
     "eslint": "^8.52.0",
-    "gherkin-lint": "^4.2.2",
-    "rollup": "^4.1.4"
+    "gherkin-lint": "^4.2.2"
   },
   "scripts": {
     "gherkin-lint": "gherkin-lint",
-    "build": "rollup --config rollup.config.js",
-    "eslint": "eslint .",
-    "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src"
+    "eslint": "eslint ."
   },
   "dependencies": {
     "@rails/ujs": "^7.1.1",
