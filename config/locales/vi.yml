@@ -50,7 +50,6 @@ vi:
       "yes": "Có"
       "no": "Không Có"
       "unset": "Không Có"
-    main_content: "Xin bổ sung %{model}#main_content để hiển thị nội dung."
     logout: "Đăng xuất"
     powered_by: "Bản quyền bởi %{active_admin} %{version}"
     sidebars:

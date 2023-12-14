@@ -26,7 +26,6 @@ az:
     status_tag:
       "yes": "Bəli"
       "no": "Xeyr"
-    main_content: "Создайте %{model}#main_content для отображения содержимого."
     logout: "Çıxış"
     powered_by: "Работает на %{active_admin} %{version}"
     sidebars:
