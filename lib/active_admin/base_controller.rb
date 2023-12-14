@@ -66,6 +66,28 @@ module ActiveAdmin
       { controller: controller, action: action }
     end
 
+    def page_presenter
+      active_admin_config.get_page_presenter(params[:action].to_sym) || default_page_presenter
+    end
+    helper_method :page_presenter
+
+    def default_page_presenter
+      PagePresenter.new
+    end
+
+    def page_title
+      if page_presenter[:title]
+        helpers.render_or_call_method_or_proc_on(self, page_presenter[:title])
+      else
+        default_page_title
+      end
+    end
+    helper_method :page_title
+
+    def default_page_title
+      active_admin_config.name
+    end
+
     ActiveSupport.run_load_hooks(:active_admin_controller, self)
   end
 end
