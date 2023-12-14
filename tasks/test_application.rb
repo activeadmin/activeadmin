@@ -16,6 +16,14 @@ module ActiveAdmin
       else
         generate
       end
+      Bundler.with_original_env do
+        Kernel.system("yarn install") # so tailwindcss/plugin is available for test app
+        Dir.chdir(app_dir) do
+          Kernel.system("yarn install")
+          Kernel.system("yarn build:css")
+          Kernel.system("yarn build:js")
+        end
+      end
     end
 
     def generate
@@ -47,9 +55,6 @@ module ActiveAdmin
 
       Bundler.with_original_env do
         Kernel.system(env, command)
-        Dir.chdir(app_dir) do
-          Kernel.system("yarn install")
-        end
       end
     end
 

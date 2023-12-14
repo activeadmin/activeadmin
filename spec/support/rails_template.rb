@@ -92,6 +92,10 @@ gsub_file "tailwind.config.js", /^.*const gemPath.*$/, <<~JS
   const gemPath = '../../../';
 JS
 
+gsub_file "app/javascript/active_admin.js", /^.*@activeadmin\/activeadmin.*$/, <<~JS
+  import "../../../../../"
+JS
+
 # Force strong parameters to raise exceptions
 inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
   "\n    config.action_controller.action_on_unpermitted_parameters = :raise\n"
