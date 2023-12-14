@@ -192,7 +192,7 @@ config.comments_menu = { parent: 'Admin', priority: 1 }
 Remember to indicate where to place the comments and form with:
 
 ```ruby
-active_admin_comments
+active_admin_comments_for(resource)
 ```
 
 ## Utility Navigation
