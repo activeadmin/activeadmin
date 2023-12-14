@@ -10,5 +10,5 @@ Then("I should see tab content {string}") do |string|
 end
 
 Then("I should not see tab content {string}") do |string|
-  expect(page).to have_css(".tabs .tabs-content .hidden", text: string)
+  expect(page).to have_css(".tabs .tabs-content .hidden", text: string, visible: :hidden)
 end

@@ -201,15 +201,19 @@ Feature: Batch Actions
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        batch_action :set_starred, partial: "starred_batch_action_form", link_html_options: { "data-modal-toggle": "starred-batch-action-modal" } do |ids, inputs|
-          redirect_to collection_path, notice: "Successfully flagged 10 posts"
+        batch_action :set_starred, partial: "starred_batch_action_form", link_html_options: { "data-modal-target": "starred-batch-action-modal", "data-modal-show": "starred-batch-action-modal" } do |ids, inputs|
+          if inputs["starred"].present?
+            redirect_to collection_path, notice: "Successfully flagged 10 posts"
+          end
         end
       end
       """
     When I check the 2nd record
     And I press "Batch Actions"
     And I click "Set Starred"
-    Then I should see the element "input[type=checkbox][name=starred]"
+    Then I should see "Toggle Starred"
+    And I should see the field "Starred" of type "checkbox"
+    And I check "Starred"
 
     When I press "Submit"
     Then I should see a flash with "Successfully flagged 10 posts"
