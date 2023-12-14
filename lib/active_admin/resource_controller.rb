@@ -12,8 +12,6 @@ module ActiveAdmin
   # All Resources Controller inherits from this controller.
   # It implements actions and helpers for resources.
   class ResourceController < BaseController
-    layout :determine_active_admin_layout
-
     respond_to :html, :xml, :json
     respond_to :csv, only: :index
 

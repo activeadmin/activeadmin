@@ -2,7 +2,15 @@
 module ActiveAdmin
   module Views
     module Pages
-      class Page < Base
+      class Page < Arbre::Element
+        def build(*args)
+          set_page_title(title)
+          div class: "main-content-container" do
+            main_content
+          end
+        end
+
+        delegate :active_admin_config, :controller, :params, to: :helpers
 
         def main_content
           if page_presenter.block

@@ -3,7 +3,15 @@ module ActiveAdmin
   module Views
     module Pages
 
-      class Form < Base
+      class Form < Arbre::Element
+        def build(*args)
+          set_page_title(title)
+          div class: "main-content-container" do
+            main_content
+          end
+        end
+
+        delegate :active_admin_config, :controller, :params, to: :helpers
 
         def title
           if form_presenter[:title]

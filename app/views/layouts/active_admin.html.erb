@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="<%= I18n.locale %>">
+<head>
+  <%= render "active_admin/html_head/title", title: html_head_site_title %>
+  <%= render "active_admin/html_head/defaults" %>
+</head>
+<body>
+  <div class="inner-body-container">
+    <%= render "active_admin/site_header", title: site_title %>
+    <%= render "active_admin/page_header", breadcrumb_links: breadcrumb_links, title: @page_title || page_title, action_items: action_items_for_action %>
+    <%= render "active_admin/flash_messages" %>
+    <div class="page-content-container">
+      <%= yield %>
+      <%= render "active_admin/base_page/sidebar", sections: sidebar_sections_for_action %>
+    </div>
+    <%= render "active_admin/site_footer" %>
+  </div>
+</body>
+</html>

@@ -4,8 +4,15 @@ require "active_admin/helpers/collection"
 module ActiveAdmin
   module Views
     module Pages
+      class Index < Arbre::Element
+        def build(*args)
+          set_page_title(title)
+          div class: "main-content-container" do
+            main_content
+          end
+        end
 
-      class Index < Base
+        delegate :active_admin_config, :controller, :params, to: :helpers
 
         def title
           if Proc === config[:title]

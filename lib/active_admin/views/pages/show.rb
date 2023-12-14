@@ -2,10 +2,18 @@
 module ActiveAdmin
   module Views
     module Pages
-      class Show < Base
+      class Show < Arbre::Element
+        def build(*args)
+          set_page_title(title)
+          div class: "main-content-container" do
+            main_content
+          end
+        end
+
+        delegate :active_admin_config, :controller, :params, to: :helpers
 
         def config
-          active_admin_config.get_page_presenter(:show) || super
+          active_admin_config.get_page_presenter(:show) || ActiveSupport::OrderedOptions.new
         end
 
         def title
