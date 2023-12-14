@@ -40,10 +40,6 @@ RSpec.describe ActiveAdmin::Application do
     expect(application.localize_format).to eq :default
   end
 
-  it "should have a view factory" do
-    expect(application.view_factory).to be_an_instance_of(ActiveAdmin::ViewFactory)
-  end
-
   it "should allow comments by default" do
     expect(application.comments).to eq true
   end

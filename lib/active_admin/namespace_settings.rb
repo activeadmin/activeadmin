@@ -12,10 +12,6 @@ module ActiveAdmin
     # The title which gets displayed in the main layout
     register :site_title, "", :string_symbol_or_proc
 
-    # The view factory to use to generate all the view classes. Take
-    # a look at ActiveAdmin::ViewFactory
-    register :view_factory, ActiveAdmin::ViewFactory.new
-
     # The method to call in controllers to get the current user
     register :current_user_method, false
 

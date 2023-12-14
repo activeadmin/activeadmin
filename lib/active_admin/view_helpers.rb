@@ -12,7 +12,6 @@ module ActiveAdmin
     include MethodOrProcHelper
     include SidebarHelper
     include FormHelper
-    include ViewFactoryHelper
     include FlashHelper
     include ScopeNameHelper
     include LayoutHelper
