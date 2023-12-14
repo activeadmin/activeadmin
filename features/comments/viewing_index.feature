@@ -15,4 +15,4 @@ Feature: Viewing Index of Comments
     And I should see "Hello from Comment"
     And I should see a link to "Hello World"
     And I should see "admin@example.com"
-    And I should not see an action item button "New Comment"
+    And I should not see an action item link to "New Comment"

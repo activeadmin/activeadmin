@@ -124,3 +124,7 @@ end
 Then(/^I should see content "(.*?)" above other content "(.*?)"$/) do |top_title, bottom_title|
   expect(page).to have_css %Q(div:contains('#{top_title}') + div:contains('#{bottom_title}'))
 end
+
+Then /^I should see a flash with "([^"]*)"$/ do |text|
+  expect(page).to have_content text
+end

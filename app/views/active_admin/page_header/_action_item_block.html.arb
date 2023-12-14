@@ -1,0 +1,2 @@
+# frozen_string_literal: true
+text_node instance_exec(&action_item.block)

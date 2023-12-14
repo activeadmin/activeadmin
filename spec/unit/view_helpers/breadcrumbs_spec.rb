@@ -18,7 +18,7 @@ RSpec.describe "Breadcrumbs" do
     let(:post) { double display_name: "Hello World" }
     let(:post_config) do
       double find_resource: post, resource_name: double(route_key: "posts"),
-             defined_actions: actions, belongs_to_config: double(target: user_config)
+             defined_actions: actions, breadcrumb: true, belongs_to_config: double(target: user_config)
     end
 
     let :active_admin_config do
@@ -251,6 +251,7 @@ RSpec.describe "Breadcrumbs" do
       let(:post_config) do
         double find_resource: post, resource_name: double(route_key: "posts"),
                defined_actions: actions - [:show], # this is the change
+               breadcrumb: true,
                belongs_to_config: double(target: user_config)
       end
 

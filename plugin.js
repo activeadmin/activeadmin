@@ -323,59 +323,11 @@ module.exports = plugin(
       },
     });
     addComponents({
-      /* .link-default {
-        @apply text-blue-600 underline dark:text-white hover:no-underline;
-      } */
-      '#header': {
-        '@apply border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800 p-2 flex items-center': {}
-      },
-      '#utility_nav': {
-        '@apply flex flex-wrap ms-auto': {}
-      },
-      '#utility_nav :where(li)': {
-        '@apply flex': {}
-      },
-      '#utility_nav :where(li > a)': {
-        '@apply flex ps-3 pe-3': {}
-      },
-      '.page-footer': {
-        '@apply text-xs mt-16 mx-8 pt-9 pb-12 text-gray-500 border-t': {}
-      },
-      '.page-footer :where(a)': {
-        '@apply text-blue-600 underline dark:text-white hover:no-underline': {}
-      },
-      '.page-title-bar': {
-        '@apply bg-gray-50 border-b p-4 mb-8 flex flex-col gap-4 md:flex-row md:items-center justify-between dark:border-gray-700 dark:bg-gray-800': {}
-      },
-      '.page-title-bar-content': {
-        '@apply flex flex-col gap-3 pt-1': {}
-      },
-      '.page-title-bar-heading': {
-        '@apply text-2xl font-semibold': {}
-      },
-      '.page-title-bar-actions': {
-        '@apply flex gap-2 flex-wrap lg:justify-end': {}
-      },
-      '.breadcrumb-arrow': {
-        'background-image': `url("${svgToTinyDataUri(
-          `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="${theme('colors.gray.500', colors.gray[500])}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg>`
-        )}")`,
-        'background-repeat': 'no-repeat',
-        'background-size': '.8em .8em',
-        'background-position': 'center center',
-        height: '100%',
-      },
-      '.breadcrumbs': {
-        '@apply flex text-xs': {}
-      },
-      '.breadcrumbs-item': {
-        '@apply inline-flex items-center': {}
-      },
-      ':where(.breadcrumbs-item) + .breadcrumbs-item:before': {
-        '@apply px-2 content-[""] breadcrumb-arrow': {}
-      },
       '.action-item-button': {
-        '@apply py-2.5 px-5 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
+        '@apply py-2 px-3 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
+      },
+      '.inner-body-container': {
+        '@apply xl:ms-64': {}
       },
       '.page-content-container': {
         '@apply px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,250px)]': {}
@@ -390,20 +342,20 @@ module.exports = plugin(
         '@apply flex flex-wrap gap-1.5': {}
       },
       '.index-button-group': {
-        '@apply inline-flex flex-wrap items-stretch rounded': {}
+        '@apply inline-flex flex-wrap items-stretch rounded-md': {}
       },
       // Prevent double borders when buttons are next to each other
       '.index-button-group > :where(*:not(:first-child))': {
         '@apply -ml-px my-0': {}
       },
       '.index-button': {
-        '@apply transition-colors inline-flex items-center justify-center px-4 py-2 text-sm font-medium no-underline text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 first:rounded-s-lg last:rounded-e-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white': {}
+        '@apply inline-flex items-center justify-center px-3 py-2 text-sm font-medium no-underline text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 first:rounded-s-md last:rounded-e-md dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-800 dark:focus:ring-blue-500 dark:focus:text-white': {}
       },
       '.index-button-selected': {
-        '@apply text-blue-700 dark:text-blue-400': {}
+        '@apply dark:bg-gray-800 bg-gray-100 hover:bg-gray-100': {}
       },
       '.scopes-count': {
-        '@apply inline-flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-500 px-2 py-1 text-xs font-medium ms-2 leading-none': {}
+        '@apply inline-flex items-center justify-center rounded-full bg-indigo-200/80 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-200 px-1.5 py-1 text-xs font-normal ms-2 leading-none': {}
       },
       '.paginated-collection': {
         '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800 overflow-hidden': {}
@@ -427,7 +379,7 @@ module.exports = plugin(
         '@apply p-0': {}
       },
       '.pagination-link': {
-        '@apply hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white rounded transition-colors no-underline': {}
+        '@apply hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white rounded no-underline': {}
       },
       '.pagination-link-active': {
         '@apply text-white bg-blue-500 hover:bg-blue-500 hover:text-white dark:text-white dark:bg-blue-500 dark:hover:bg-blue-500': {}
@@ -456,24 +408,6 @@ module.exports = plugin(
       '.data-table-resource-actions': {
         '@apply flex gap-2': {}
       },
-      '.flashes': {
-        '@apply px-2.5 lg:px-5 mb-8': {}
-      },
-      '.flash': {
-        '@apply flex items-center gap-3 p-4 mb-2 rounded-lg': {}
-      },
-      '.flash-icon': {
-        '@apply w-5 h-5 shrink-0': {}
-      },
-      '.flash_alert': {
-        '@apply bg-yellow-50 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-300': {}
-      },
-      '.flash_error': {
-        '@apply bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
-      },
-      '.flash_notice': {
-        '@apply bg-green-50 text-green-800 dark:bg-green-800 dark:text-green-400': {}
-      },
       '.filters-form': {
         '@apply text-sm mb-6': {}
       },
@@ -496,10 +430,10 @@ module.exports = plugin(
         '@apply flex gap-2 items-center': {}
       },
       '.filters-form-submit': {
-        '@apply font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
+        '@apply min-w-[6rem] font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-md px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
       },
       '.filters-form-clear': {
-        '@apply text-blue-700 hover:bg-gray-100 hover:text-blue-600 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 transition-colors no-underline': {}
+        '@apply rounded-md bg-white px-3 py-2 font-semibold text-gray-700 hover:bg-gray-100 no-underline dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:focus:ring-blue-800': {}
       },
       '.active-filters': {
         '@apply mb-6 py-6': {}
@@ -514,13 +448,13 @@ module.exports = plugin(
         '@apply relative': {}
       },
       '.dropdown-toggle': {
-        '@apply transition-colors transition-opacity rounded-lg inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white disabled:opacity-30 disabled:pointer-events-none': {}
+        '@apply transition-opacity rounded-md inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white disabled:opacity-30 disabled:pointer-events-none': {}
       },
       '.dropdown-toggle-arrow': {
-        '@apply w-2.5 h-2.5 ms-1.5': {}
+        '@apply w-2.5 h-2.5': {}
       },
       '.dropdown-menu': {
-        '@apply z-10 hidden min-w-[7rem] bg-white rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
+        '@apply z-10 hidden min-w-[7rem] bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
       '.dropdown-menu :where(ul > li > a)': {
         '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white': {}
@@ -638,7 +572,7 @@ module.exports = plugin(
         '@apply flex items-center gap-6': {}
       },
       '.formtastic :where([type=submit], [type=button], button)': {
-        '@apply font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
+        '@apply font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
       },
       '.formtastic :where(.actions .cancel-link)': {
         '@apply font-semibold leading-6 text-gray-900 dark:text-white no-underline': {}

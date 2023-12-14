@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+if section.block
+  result = instance_exec(&section.block)
+  text_node result unless result.is_a?(Arbre::Element)
+end

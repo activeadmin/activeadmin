@@ -1,0 +1,28 @@
+<div data-test-page-header class="bg-gray-50 border-b p-4 mb-8 flex flex-col gap-4 md:flex-row md:items-center justify-between dark:border-gray-700 dark:bg-gray-800">
+  <div class="flex flex-col gap-3 pt-1">
+    <% if breadcrumb_links.present? %>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumbs flex flex-wrap text-xs">
+          <% breadcrumb_links.each_with_index do |link, index| %>
+            <li class="inline-flex items-center h-5" data-test-breadcrumb>
+              <% if index > 0 %>
+                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/>
+                </svg>
+              <% end %>
+              <%= link %>
+            </li>
+          <% end %>
+        </ol>
+      </nav>
+    <% end %>
+    <h2 class="text-2xl font-semibold"><%= title %></h2>
+  </div>
+  <% if action_items.present? %>
+    <div data-test-action-items class="flex gap-2 flex-wrap lg:justify-end">
+      <% action_items.each do |action_item| %>
+        <%= render "active_admin/page_header/action_item_block", action_item: action_item %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

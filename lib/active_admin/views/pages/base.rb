@@ -31,9 +31,9 @@ module ActiveAdmin
 
         def build_page
           within body(data_attributes) do
-            div id: "wrapper" do
-              header active_admin_namespace, current_menu
-              title_bar title, action_items_for_action
+            div class: "inner-body-container" do
+              render "active_admin/site_header"
+              render "active_admin/page_header", breadcrumb_links: breadcrumb_links, title: title, action_items: action_items_for_action
               build_page_content
               render "active_admin/site_footer"
             end
@@ -53,7 +53,7 @@ module ActiveAdmin
           build_flash_messages
           div class: "page-content-container" do
             build_main_content_wrapper
-            sidebar sidebar_sections_for_action, id: "sidebar" unless skip_sidebar?
+            render "active_admin/base_page/sidebar", sections: sidebar_sections_for_action
           end
         end
 
@@ -83,11 +83,6 @@ module ActiveAdmin
             []
           end
         end
-
-        def skip_sidebar?
-          sidebar_sections_for_action.empty? || assigns[:skip_sidebar] == true
-        end
-
       end
     end
   end

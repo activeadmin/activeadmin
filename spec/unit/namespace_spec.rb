@@ -74,10 +74,6 @@ RSpec.describe ActiveAdmin::Namespace do
       expect(namespace.fetch_menu(:default)).to be_an_instance_of(ActiveAdmin::Menu)
     end
 
-    it "should have utility nav menu" do
-      expect(namespace.fetch_menu(:utility_navigation)).to be_an_instance_of(ActiveAdmin::Menu)
-    end
-
     it "should raise an exception if the menu doesn't exist" do
       expect do
         namespace.fetch_menu(:not_a_menu_that_exists)
@@ -102,27 +98,6 @@ RSpec.describe ActiveAdmin::Namespace do
       end
 
       expect(namespace.fetch_menu(:test)["menu item"]).to_not eq nil
-    end
-  end
-
-  describe "utility navigation" do
-    let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
-    let(:menu) do
-      namespace.build_menu :utility_navigation do |menu|
-        menu.add label: "ActiveAdmin.info", url: "https://www.activeadmin.info", html_options: { target: :blank }
-        namespace.add_logout_button_to_menu menu, 1, class: "matt"
-      end
-      namespace.fetch_menu(:utility_navigation)
-    end
-
-    it "should have a logout button to the far left" do
-      expect(menu["Logout"]).to_not eq nil
-      expect(menu["Logout"].priority).to eq 1
-    end
-
-    it "should have a static link with a target of :blank" do
-      expect(menu["ActiveAdmin.info"]).to_not eq nil
-      expect(menu["ActiveAdmin.info"].html_options).to include(target: :blank)
     end
   end
 end
