@@ -3,8 +3,6 @@ name: ci
 on:
   pull_request:
   push:
-    branches:
-      - master
 
 concurrency:
   group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
