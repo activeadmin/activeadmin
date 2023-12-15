@@ -329,10 +329,7 @@ module.exports = plugin(
       '.inner-body-container': {
         '@apply xl:ms-64': {}
       },
-      '.page-content-container': {
-        '@apply px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,250px)]': {}
-      },
-      '.page-content-container :where(a)': {
+      '.link-default :where(a)': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
       '.index-data-table-toolbar': {
