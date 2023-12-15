@@ -1,13 +1,11 @@
 const plugin = require('tailwindcss/plugin')
 const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
-const [baseFontSize, { lineHeight: baseLineHeight }] = defaultTheme.fontSize.base;
 const { spacing, borderWidth, borderRadius } = defaultTheme;
 
 // https://github.com/tailwindlabs/tailwindcss/discussions/9336
 // https://github.com/tailwindlabs/tailwindcss/discussions/2049
 // https://github.com/tailwindlabs/tailwindcss/discussions/2049#discussioncomment-45546
-// console.log('activeadmin tailwind plugin loaded')
 
 const svgToTinyDataUri = (() => {
 	// Source: https://github.com/tigt/mini-svg-data-uri
@@ -585,19 +583,7 @@ module.exports = plugin(
       },
       '.blank-slate-title': {
         '@apply block mb-4 only:mb-0 font-semibold leading-6 text-gray-900 dark:text-gray-200': {}
-      },
-      // '': {
-      //   '': {}
-      // },
-      // '': {
-      //   '': {}
-      // },
-      // '': {
-      //   '': {}
-      // },
-      // '': {
-      //   '': {}
-      // },
+      }
     });
   }
 )
