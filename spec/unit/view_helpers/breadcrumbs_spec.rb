@@ -7,6 +7,7 @@ RSpec.describe "Breadcrumbs" do
   describe "generating a trail from paths" do
     def params; {}; end
     def link_to(name, url); { name: name, path: url }; end
+    def url_options; {}; end
 
     actions = ActiveAdmin::BaseController::ACTIVE_ADMIN_ACTIONS
 
@@ -273,6 +274,28 @@ RSpec.describe "Breadcrumbs" do
 
       it "should not link to the show view for the post" do
         expect(trail[2]).to eq "Hello World"
+      end
+    end
+
+    context "url options" do
+      let(:path) { "/admin/users" }
+
+      context "params" do
+        context "non-hash" do
+          def url_options; { params: [5, 1] }; end
+
+          it "should append the query" do
+            expect(trail[0][:path]).to eq "/admin?params%5B%5D=5&params%5B%5D=1"
+          end
+        end
+
+        context "hash" do
+          def url_options; { params: { a: 5 } }; end
+
+          it "should append the query" do
+            expect(trail[0][:path]).to eq "/admin?a=5"
+          end
+        end
       end
     end
   end
