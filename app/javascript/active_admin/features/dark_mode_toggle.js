@@ -9,12 +9,12 @@ const setTheme = () => {
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
   if (localStorage.getItem(THEME_KEY) === 'dark' || (!(THEME_KEY in localStorage) && darkModeMedia.matches)) {
     document.documentElement.classList.add('dark');
-    lightIcon.classList.add('hidden');
-    darkIcon.classList.remove('hidden');
+    lightIcon?.classList.add('hidden');
+    darkIcon?.classList.remove('hidden');
   } else {
     document.documentElement.classList.remove('dark');
-    darkIcon.classList.add('hidden');
-    lightIcon.classList.remove('hidden');
+    darkIcon?.classList.add('hidden');
+    lightIcon?.classList.remove('hidden');
   }
 }
 
