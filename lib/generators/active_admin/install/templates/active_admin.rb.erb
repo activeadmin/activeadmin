@@ -2,14 +2,9 @@ ActiveAdmin.setup do |config|
   # == Site Title
   #
   # Set the title that is displayed on the main layout
-  # for each of the active admin pages.
-  #
-  # Can also be customized with a block or by extracting a partial.
-  #
-  #   config.site_title = proc { "<%= Rails.application.class.name.split("::").first.titlecase %>" }
-  #
-  # Extract the app/views/active_admin/_site_header_title.html.erb partial into
-  # your project to override the output to use your own logo, styles, etc.
+  # for each of the active admin pages. Can also be customized
+  # by extracting the _site_header partial into your project
+  # to use your own logo, styles, etc.
   #
   config.site_title = "<%= Rails.application.class.name.split("::").first.titlecase %>"
 
