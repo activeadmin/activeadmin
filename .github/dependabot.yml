@@ -4,11 +4,19 @@ updates:
     directory: /
     schedule:
       interval: daily
+    groups:
+      github_actions:
+        patterns:
+          - "*"
   - package-ecosystem: bundler
     directory: /
     schedule:
       interval: monthly
     versioning-strategy: lockfile-only
+    groups:
+      rails_default:
+        patterns:
+          - "*"
   - package-ecosystem: npm
     directory: /
     schedule:
