@@ -73,7 +73,7 @@ jobs:
           bin/cucumber --profile class-reloading
       - name: Rename coverage file by matrix run
         run: mv coverage/coverage.xml coverage/coverage-ruby-${{ matrix.ruby }}-${{ matrix.deps }}.xml
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage
