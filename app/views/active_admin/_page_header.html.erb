@@ -18,11 +18,9 @@
     <% end %>
     <h2 class="text-2xl font-semibold"><%= title %></h2>
   </div>
-  <% if action_items.present? %>
+  <% if action_items_for_action.present? %>
     <div data-test-action-items class="flex gap-2 flex-wrap lg:justify-end">
-      <% action_items.each do |action_item| %>
-        <%= render "active_admin/page_header/action_item_block", action_item: action_item %>
-      <% end %>
+      <%= render "active_admin/shared/action_items" %>
     </div>
   <% end %>
 </div>

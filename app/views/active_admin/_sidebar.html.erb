@@ -1,9 +1,9 @@
-<% unless skip_sidebar? || sections.blank? %>
+<% unless skip_sidebar? || sidebar_sections_for_action.blank? %>
   <div id="sidebar" class="sidebar">
-    <% sections.each do |section| %>
+    <% sidebar_sections_for_action.each do |section| %>
       <%= content_tag :div, id: section.id, class: section.custom_class do %>
         <% if section.block %>
-          <%= render "active_admin/base_page/sidebar_section_block", section: section %>
+          <%= render "active_admin/shared/sidebar_section_block", section: section %>
         <% else %>
           <%= render(section.partial_name) %>
         <% end %>
