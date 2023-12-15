@@ -3,11 +3,10 @@
 [Active Admin](https://activeadmin.info) is a Ruby on Rails framework for
 creating elegant backends for website administration.
 
-[![Version         ][rubygems_badge]][rubygems]
-[![Github Actions  ][actions_badge]][actions]
-[![Coverage        ][coverage_badge]][coverage]
-[![Tidelift        ][tidelift_badge]][tidelift]
-[![Inch CI         ][inch_badge]][inch]
+[![Version][rubygems_badge]][rubygems]
+[![Github Actions][actions_badge]][actions]
+[![Coverage][coverage_badge]][coverage]
+[![Tidelift][tidelift_badge]][tidelift]
 
 ## Goals
 
@@ -17,22 +16,14 @@ creating elegant backends for website administration.
 
 ## Getting started
 
-* Check out [the docs][docs].
+* Review [the documentation][docs].
+* For help, questions, etc. [discuss ActiveAdmin on GitHub](https://github.com/activeadmin/activeadmin/discussions) or use [StackOverflow][stackoverflow]
 * The [wiki] includes links to tutorials, articles and sample projects.
 
 ## For enterprise
 
 Active Admin for enterprise is available via the Tidelift subscription. [Learn
 More][tidelift_enterprise].
-
-## Need help?
-
-Please use [StackOverflow][stackoverflow] for help requests and how-to questions.
-
-Please open GitHub issues for bugs and enhancements only, not general help requests.
-Please search previous issues (and Google and StackOverflow) before creating a new issue.
-
-Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 ## Want to contribute?
 
@@ -57,14 +48,14 @@ sponsor for the project, and also submit expenses to it.
 
 We try not to reinvent the wheel, so Active Admin is built with other open source projects:
 
-Tool                  | Description
---------------------- | -----------
-[Arbre]               | Ruby -> HTML, just like that.
-[Devise]              | Powerful, extensible user authentication
-[Formtastic]          | A Rails form builder plugin with semantically rich and accessible markup
-[Inherited Resources] | Simplifies controllers with pre-built RESTful controller actions
-[Kaminari]            | Elegant pagination for any sort of collection
-[Ransack]             | Provides a simple search API to query your data
+* [Arbre]
+* [Devise]
+* [Flowbite](https://flowbite.com)
+* [Formtastic]
+* [Inherited Resources]
+* [Kaminari]
+* [Ransack]
+* [TailwindCSS](https://tailwindcss.com)
 
 ## Security contact information
 
@@ -96,8 +87,6 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [actions]: https://github.com/activeadmin/activeadmin/actions
 [coverage_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg?token=NAjeBdkQXW
 [coverage]: https://codecov.io/gh/activeadmin/activeadmin
-[inch_badge]: https://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
-[inch]: https://inch-ci.org/github/activeadmin/activeadmin
 [tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
 [tidelift]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=readme
 [tidelift_enterprise]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=referral&utm_campaign=enterprise
