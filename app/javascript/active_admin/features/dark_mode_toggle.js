@@ -32,10 +32,10 @@ window.addEventListener("storage", (event) => {
 });
 
 const toggleDarkMode = () => {
-  if (localStorage.getItem(THEME_KEY) === 'light') {
-    localStorage.setItem(THEME_KEY, 'dark');
-  } else {
+  if (localStorage.getItem(THEME_KEY) === 'dark' || (!(THEME_KEY in localStorage) && darkModeMedia.matches)) {
     localStorage.setItem(THEME_KEY, 'light');
+  } else {
+    localStorage.setItem(THEME_KEY, 'dark');
   }
   setTheme();
 };
