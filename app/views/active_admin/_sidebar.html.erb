@@ -1,5 +1,5 @@
 <% unless skip_sidebar? || sidebar_sections_for_action.blank? %>
-  <div id="sidebar" class="sidebar">
+  <div class="sidebar">
     <% sidebar_sections_for_action.each do |section| %>
       <%= content_tag :div, id: section.id, class: section.custom_class do %>
         <% if section.block %>

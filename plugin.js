@@ -1,33 +1,31 @@
 const plugin = require('tailwindcss/plugin')
 const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
-const [baseFontSize, { lineHeight: baseLineHeight }] = defaultTheme.fontSize.base;
 const { spacing, borderWidth, borderRadius } = defaultTheme;
 
 // https://github.com/tailwindlabs/tailwindcss/discussions/9336
 // https://github.com/tailwindlabs/tailwindcss/discussions/2049
 // https://github.com/tailwindlabs/tailwindcss/discussions/2049#discussioncomment-45546
-// console.log('activeadmin tailwind plugin loaded')
 
 const svgToTinyDataUri = (() => {
-	// Source: https://github.com/tigt/mini-svg-data-uri
-	const reWhitespace = /\s+/g,
-		reUrlHexPairs = /%[\dA-F]{2}/g,
-		hexDecode = {'%20': ' ', '%3D': '=', '%3A': ':', '%2F': '/'},
-		specialHexDecode = match => hexDecode[match] || match.toLowerCase(),
-		svgToTinyDataUri = svg => {
-			svg = String(svg);
-			if(svg.charCodeAt(0) === 0xfeff) svg = svg.slice(1);
-			svg = svg
-				.trim()
-				.replace(reWhitespace, ' ')
-				.replaceAll('"', '\'');
-			svg = encodeURIComponent(svg);
-			svg = svg.replace(reUrlHexPairs, specialHexDecode);
-			return 'data:image/svg+xml,' + svg;
-		};
-	svgToTinyDataUri.toSrcset = svg => svgToTinyDataUri(svg).replace(/ /g, '%20');
-	return svgToTinyDataUri;
+  // Source: https://github.com/tigt/mini-svg-data-uri
+  const reWhitespace = /\s+/g,
+    reUrlHexPairs = /%[\dA-F]{2}/g,
+    hexDecode = { '%20': ' ', '%3D': '=', '%3A': ':', '%2F': '/' },
+    specialHexDecode = match => hexDecode[match] || match.toLowerCase(),
+    svgToTinyDataUri = svg => {
+      svg = String(svg);
+      if (svg.charCodeAt(0) === 0xfeff) svg = svg.slice(1);
+      svg = svg
+        .trim()
+        .replace(reWhitespace, ' ')
+        .replaceAll('"', '\'');
+      svg = encodeURIComponent(svg);
+      svg = svg.replace(reUrlHexPairs, specialHexDecode);
+      return 'data:image/svg+xml,' + svg;
+    };
+  svgToTinyDataUri.toSrcset = svg => svgToTinyDataUri(svg).replace(/ /g, '%20');
+  return svgToTinyDataUri;
 })();
 
 module.exports = plugin(
@@ -104,11 +102,8 @@ module.exports = plugin(
       ['select']: {
         'background-image': `url("${svgToTinyDataUri(
           `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-    <path stroke="${theme(
-            'colors.gray.500',
-            colors.gray[500]
-          )}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-    </svg>`
+            <path stroke="${theme('colors.gray.500', colors.gray[500])}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+          </svg>`
         )}")`,
         'background-position': `right ${spacing[3]} center`,
         'background-repeat': `no-repeat`,
@@ -329,10 +324,7 @@ module.exports = plugin(
       '.inner-body-container': {
         '@apply xl:ms-64': {}
       },
-      '.page-content-container': {
-        '@apply px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,250px)]': {}
-      },
-      '.page-content-container :where(a)': {
+      '.link-default :where(a)': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
       '.index-data-table-toolbar': {
@@ -368,24 +360,6 @@ module.exports = plugin(
       },
       '.paginated-collection-footer': {
         '@apply p-3 flex gap-2 items-center justify-between text-sm border-t border-gray-200 dark:border-gray-700': {}
-      },
-      '.pagination': {
-        '@apply inline-flex flex-wrap -space-x-px text-sm gap-1': {}
-      },
-      '.pagination-link, .pagination-gap': {
-        '@apply flex items-center justify-center px-2.5 py-3 h-8 leading-tight text-gray-500 bg-white dark:bg-gray-800 dark:text-gray-400': {}
-      },
-      '.pagination-gap': {
-        '@apply p-0': {}
-      },
-      '.pagination-link': {
-        '@apply hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white rounded no-underline': {}
-      },
-      '.pagination-link-active': {
-        '@apply text-white bg-blue-500 hover:bg-blue-500 hover:text-white dark:text-white dark:bg-blue-500 dark:hover:bg-blue-500': {}
-      },
-      '.pagination-icon-arrow': {
-        '@apply w-2.5 h-2.5': {}
       },
       '.pagination-per-page': {
         '@apply text-sm py-1 pe-7 w-auto w-min': {}
@@ -583,42 +557,12 @@ module.exports = plugin(
       '.formtastic :where(.has_many_fields)': {
         '@apply my-5 border-s-2 border-s-gray-700 ps-3': {}
       },
-      '.devise-body': {
-        '@apply bg-gray-50 dark:bg-gray-900': {}
-      },
-      '.devise-page-container': {
-        '@apply flex flex-col items-center justify-center min-h-screen py-4 sm:px-6 sm:py-8 mx-auto': {}
-      },
-      '.devise-form-container': {
-        '@apply p-6 sm:p-8 space-y-4 md:space-y-6 w-full sm:max-w-md bg-white sm:rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700': {}
-      },
-      '.devise-form-title': {
-        '@apply text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white': {}
-      },
-      '.devise-form-button': {
-        '@apply w-full': {}
-      },
-      '.devise-shared-links': {
-        '@apply mt-6 text-sm': {}
-      },
       '.blank-slate': {
         '@apply relative block w-full rounded-lg border-2 border-dashed border-gray-300 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-600 px-6 py-12 text-center': {}
       },
       '.blank-slate-title': {
         '@apply block mb-4 only:mb-0 font-semibold leading-6 text-gray-900 dark:text-gray-200': {}
-      },
-      // '': {
-      //   '': {}
-      // },
-      // '': {
-      //   '': {}
-      // },
-      // '': {
-      //   '': {}
-      // },
-      // '': {
-      //   '': {}
-      // },
+      }
     });
   }
 )

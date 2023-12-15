@@ -67,7 +67,7 @@ Then /^the "([^"]*)" field should contain the option "([^"]*)"$/ do |field, opti
 end
 
 Then /^I should see the content "([^"]*)"$/ do |content|
-  expect(page).to have_css ".page-content-container", text: content
+  expect(page).to have_css "[data-test-page-content]", text: content
 end
 
 Then /^I should see a validation error "([^"]*)"$/ do |error_message|
