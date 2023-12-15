@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 module ActiveAdminIntegrationSpecHelper
+  def with_temp_application(application)
+    original_application = ActiveAdmin.application
+    ActiveAdmin.application = application
+    reload_routes!
+    yield
+  ensure
+    ActiveAdmin.application = original_application
+  end
+
   def with_resources_during(example)
     load_resources { yield }
 

@@ -66,18 +66,9 @@ RSpec.describe ActiveAdmin::Application, type: :request do
     application = ActiveAdmin::Application.new
     application.default_namespace = namespace
 
-    with_temp_application(application) { yield }
-  end
-
-  def with_temp_application(application)
-    original_application = ActiveAdmin.application
-    ActiveAdmin.application = application
-
-    load_resources { ActiveAdmin.register(Category) }
-
-    yield
-
-  ensure
-    ActiveAdmin.application = original_application
+    with_temp_application(application) do
+      load_resources { ActiveAdmin.register(Category) }
+      yield
+    end
   end
 end
