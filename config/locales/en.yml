@@ -5,7 +5,6 @@ en:
       last: "Last"
       previous: "Previous"
       next: "Next"
-      # truncate: "&hellip;"
   activerecord:
     models:
       comment:
