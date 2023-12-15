@@ -1,5 +1,5 @@
-<div class="devise-form-container">
-  <h2 class="devise-form-title">
+<div class="p-6 sm:p-8 space-y-4 md:space-y-6 w-full sm:max-w-md bg-white sm:rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700">
+  <h2 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
     <%= active_admin_application.site_title(self) %> <%= set_page_title t('active_admin.devise.reset_password.title') %>
   </h2>
 
@@ -8,11 +8,9 @@
       f.input :email
     end
     f.actions do
-      f.action :submit, label: t('active_admin.devise.reset_password.submit'), button_html: { class: "devise-form-button", value: t('active_admin.devise.reset_password.submit') }
+      f.action :submit, label: t('active_admin.devise.reset_password.submit'), button_html: { class: "w-full", value: t('active_admin.devise.reset_password.submit') }
     end
   end %>
 
-  <div class="devise-shared-links">
-    <%= render partial: "active_admin/devise/shared/links" %>
-  </div>
+  <%= render partial: "active_admin/devise/shared/links" %>
 </div>

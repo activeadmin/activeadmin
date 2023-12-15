@@ -557,24 +557,6 @@ module.exports = plugin(
       '.formtastic :where(.has_many_fields)': {
         '@apply my-5 border-s-2 border-s-gray-700 ps-3': {}
       },
-      '.devise-body': {
-        '@apply bg-gray-50 dark:bg-gray-900': {}
-      },
-      '.devise-page-container': {
-        '@apply flex flex-col items-center justify-center min-h-screen py-4 sm:px-6 sm:py-8 mx-auto': {}
-      },
-      '.devise-form-container': {
-        '@apply p-6 sm:p-8 space-y-4 md:space-y-6 w-full sm:max-w-md bg-white sm:rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700': {}
-      },
-      '.devise-form-title': {
-        '@apply text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white': {}
-      },
-      '.devise-form-button': {
-        '@apply w-full': {}
-      },
-      '.devise-shared-links': {
-        '@apply mt-6 text-sm': {}
-      },
       '.blank-slate': {
         '@apply relative block w-full rounded-lg border-2 border-dashed border-gray-300 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-600 px-6 py-12 text-center': {}
       },
