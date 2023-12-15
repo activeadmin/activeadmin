@@ -369,24 +369,6 @@ module.exports = plugin(
       '.paginated-collection-footer': {
         '@apply p-3 flex gap-2 items-center justify-between text-sm border-t border-gray-200 dark:border-gray-700': {}
       },
-      '.pagination': {
-        '@apply inline-flex flex-wrap -space-x-px text-sm gap-1': {}
-      },
-      '.pagination-link, .pagination-gap': {
-        '@apply flex items-center justify-center px-2.5 py-3 h-8 leading-tight text-gray-500 bg-white dark:bg-gray-800 dark:text-gray-400': {}
-      },
-      '.pagination-gap': {
-        '@apply p-0': {}
-      },
-      '.pagination-link': {
-        '@apply hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white rounded no-underline': {}
-      },
-      '.pagination-link-active': {
-        '@apply text-white bg-blue-500 hover:bg-blue-500 hover:text-white dark:text-white dark:bg-blue-500 dark:hover:bg-blue-500': {}
-      },
-      '.pagination-icon-arrow': {
-        '@apply w-2.5 h-2.5': {}
-      },
       '.pagination-per-page': {
         '@apply text-sm py-1 pe-7 w-auto w-min': {}
       },
