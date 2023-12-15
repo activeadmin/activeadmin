@@ -71,6 +71,8 @@ jobs:
           bin/parallel_cucumber --fail-fast
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
+      - name: Rename coverage file by matrix run
+        run: mv coverage/coverage.xml coverage/coverage-ruby-${{ matrix.ruby }}-${{ matrix.deps }}.xml
       - uses: actions/upload-artifact@v3
         with:
           name: coverage
