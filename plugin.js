@@ -8,24 +8,24 @@ const { spacing, borderWidth, borderRadius } = defaultTheme;
 // https://github.com/tailwindlabs/tailwindcss/discussions/2049#discussioncomment-45546
 
 const svgToTinyDataUri = (() => {
-	// Source: https://github.com/tigt/mini-svg-data-uri
-	const reWhitespace = /\s+/g,
-		reUrlHexPairs = /%[\dA-F]{2}/g,
-		hexDecode = {'%20': ' ', '%3D': '=', '%3A': ':', '%2F': '/'},
-		specialHexDecode = match => hexDecode[match] || match.toLowerCase(),
-		svgToTinyDataUri = svg => {
-			svg = String(svg);
-			if(svg.charCodeAt(0) === 0xfeff) svg = svg.slice(1);
-			svg = svg
-				.trim()
-				.replace(reWhitespace, ' ')
-				.replaceAll('"', '\'');
-			svg = encodeURIComponent(svg);
-			svg = svg.replace(reUrlHexPairs, specialHexDecode);
-			return 'data:image/svg+xml,' + svg;
-		};
-	svgToTinyDataUri.toSrcset = svg => svgToTinyDataUri(svg).replace(/ /g, '%20');
-	return svgToTinyDataUri;
+  // Source: https://github.com/tigt/mini-svg-data-uri
+  const reWhitespace = /\s+/g,
+    reUrlHexPairs = /%[\dA-F]{2}/g,
+    hexDecode = { '%20': ' ', '%3D': '=', '%3A': ':', '%2F': '/' },
+    specialHexDecode = match => hexDecode[match] || match.toLowerCase(),
+    svgToTinyDataUri = svg => {
+      svg = String(svg);
+      if (svg.charCodeAt(0) === 0xfeff) svg = svg.slice(1);
+      svg = svg
+        .trim()
+        .replace(reWhitespace, ' ')
+        .replaceAll('"', '\'');
+      svg = encodeURIComponent(svg);
+      svg = svg.replace(reUrlHexPairs, specialHexDecode);
+      return 'data:image/svg+xml,' + svg;
+    };
+  svgToTinyDataUri.toSrcset = svg => svgToTinyDataUri(svg).replace(/ /g, '%20');
+  return svgToTinyDataUri;
 })();
 
 module.exports = plugin(
@@ -102,11 +102,8 @@ module.exports = plugin(
       ['select']: {
         'background-image': `url("${svgToTinyDataUri(
           `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-    <path stroke="${theme(
-            'colors.gray.500',
-            colors.gray[500]
-          )}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-    </svg>`
+            <path stroke="${theme('colors.gray.500', colors.gray[500])}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+          </svg>`
         )}")`,
         'background-position': `right ${spacing[3]} center`,
         'background-repeat': `no-repeat`,
