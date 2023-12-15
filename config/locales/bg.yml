@@ -25,7 +25,6 @@ bg:
       "yes": "Да"
       "no": "не"
       "unset": "не"
-    main_content: "Добавете %{model}#main_content за да видите съдържание."
     logout: "Изход"
     powered_by: "Задвижва се от %{active_admin} %{version}"
     sidebars:

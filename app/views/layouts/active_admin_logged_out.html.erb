@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="<%=I18n.locale%>">
+<!doctype html>
+<html lang="<%= I18n.locale %>">
 <head>
-  <%= render "active_admin/html_head/title", title: [@page_title, ActiveAdmin.application.site_title(self)].compact.join(" | ") %>
-  <%= render "active_admin/head" %>
+  <%= render "active_admin/html_head/title", title: html_head_site_title %>
+  <%= render "active_admin/html_head/defaults" %>
 </head>
 <body class="devise-body">
   <div class="devise-page-container">
-    <%= render partial: "active_admin/flash_messages" %>
+    <%= render "active_admin/flash_messages" %>
     <%= yield %>
   </div>
 </body>

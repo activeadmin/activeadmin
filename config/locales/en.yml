@@ -59,7 +59,6 @@ en:
       "yes": "Yes"
       "no": "No"
       "unset": "Unknown"
-    main_content: "Please implement %{model}#main_content to display content."
     logout: "Sign out"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:

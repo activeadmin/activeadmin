@@ -191,7 +191,7 @@ Feature: Commenting
           end
 
           show do |post|
-            active_admin_comments
+            active_admin_comments_for(post)
           end
         end
       """

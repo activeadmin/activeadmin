@@ -41,7 +41,7 @@ ActiveAdmin.register Ad do
         image_tag ad.image.url
       end
     end
-    active_admin_comments
+    active_admin_comments_for(resource)
   end
 end
 ```
@@ -66,7 +66,7 @@ ActiveAdmin.register Book do
         column :page
       end
     end
-    active_admin_comments
+    active_admin_comments_for(resource)
   end
 
   sidebar "Details", only: :show do

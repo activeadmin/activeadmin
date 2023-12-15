@@ -12,8 +12,6 @@ module ActiveAdmin
   # All Resources Controller inherits from this controller.
   # It implements actions and helpers for resources.
   class ResourceController < BaseController
-    layout :determine_active_admin_layout
-
     respond_to :html, :xml, :json
     respond_to :csv, only: :index
 
@@ -44,12 +42,58 @@ module ActiveAdmin
 
     private
 
-    # Returns the renderer class to use for the given action.
-    def renderer_for(action)
-      active_admin_namespace.view_factory["#{action}_page"]
+    def page_presenter
+      case params[:action].to_sym
+      when :index
+        active_admin_config.get_page_presenter(params[:action], params[:as])
+      when :new, :edit
+        active_admin_config.get_page_presenter(:form)
+      end || super
     end
 
-    helper_method :renderer_for
+    def default_page_presenter
+      case params[:action].to_sym
+      when :index
+        PagePresenter.new(as: :table)
+      when :new, :edit
+        PagePresenter.new
+      end || super
+    end
+
+    def page_title
+      if page_presenter[:title]
+        case params[:action].to_sym
+        when :index
+          case page_presenter[:title]
+          when Symbol, Proc
+            instance_exec(&page_presenter[:title])
+          else
+            page_presenter[:title]
+          end
+        else
+          helpers.render_or_call_method_or_proc_on(resource, page_presenter[:title])
+        end
+      else
+        default_page_title
+      end
+    end
+
+    def default_page_title
+      case params[:action].to_sym
+      when :index
+        active_admin_config.plural_resource_label
+      when :show
+        helpers.display_name(resource)
+      when :new, :edit
+        normalized_action = params[:action]
+        normalized_action = 'new' if normalized_action == 'create'
+        normalized_action = 'edit' if normalized_action == 'update'
+
+        ActiveAdmin::Localizers.resource(active_admin_config).t("#{normalized_action}_model")
+      else
+        I18n.t("active_admin.#{params[:action]}", default: params[:action].to_s.titleize)
+      end
+    end
 
     def restrict_format_access!
       unless request.format.html?
