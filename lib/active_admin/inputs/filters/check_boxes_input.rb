@@ -10,7 +10,7 @@ module ActiveAdmin
         end
 
         def selected_values
-          @object.public_send("#{searchable_method_name}_in") || []
+          @object.public_send(:"#{searchable_method_name}_in") || []
         end
 
         def searchable_method_name
