@@ -33,6 +33,14 @@ module ActiveAdmin
           end
         end
       end
+
+      def url_for_comments(*args)
+        parts = []
+        parts << active_admin_namespace.name unless active_admin_namespace.root?
+        parts << active_admin_namespace.comments_registration_name.underscore
+        parts << "path"
+        send parts.join("_"), *args
+      end
     end
   end
 end
