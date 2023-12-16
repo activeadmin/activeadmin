@@ -20,7 +20,7 @@ module ActiveAdmin
         private
 
         def remove_action_methods(actions_type)
-          active_admin_config.public_send("#{actions_type}_actions").each do |action|
+          active_admin_config.public_send(:"#{actions_type}_actions").each do |action|
             remove_method action.name
           end
         end

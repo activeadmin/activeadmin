@@ -57,7 +57,7 @@ module ActiveAdmin
       def find_collection(options = {})
         collection = scoped_collection
         collection_applies(options).each do |applyer|
-          collection = send("apply_#{applyer}", collection)
+          collection = send(:"apply_#{applyer}", collection)
         end
         collection
       end

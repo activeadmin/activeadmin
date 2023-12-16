@@ -24,14 +24,14 @@ module NavigationHelpers
 
     # the index page for posts in the user_admin namespace
     when /^the index page for (.*) in the (.*) namespace$/
-      send "#{$2}_#{$1}_path"
+      send :"#{$2}_#{$1}_path"
 
     # same as above, except defaults to admin namespace
     when /^the index page for (.*)$/
-      send "admin_#{$1}_path"
+      send :"admin_#{$1}_path"
 
     when /^the (.*) index page for (.*)$/
-      send "admin_#{$2}_path", format: $1
+      send :"admin_#{$2}_path", format: $1
 
     when /^the last author's posts$/
       admin_user_posts_path(User.last)
