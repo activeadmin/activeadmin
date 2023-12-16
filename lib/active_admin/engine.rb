@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 module ActiveAdmin
   class Engine < ::Rails::Engine
+    isolate_namespace ActiveAdmin
+
     # Set default values for app_path and load_paths before running initializers
     initializer "active_admin.load_app_path", before: :load_config_initializers do |app|
       ActiveAdmin::Application.setting :app_path, app.root
