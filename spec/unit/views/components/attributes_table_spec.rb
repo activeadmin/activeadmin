@@ -78,7 +78,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
           [
             ["Id", "1"],
             ["Title", "Hello World"],
-            ["Body", "<span class=\"empty\">Empty</span>"]
+            ["Body", "<span class=\"empty-value\">Empty</span>"]
           ].each_with_index do |(title, content), i|
             describe "for #{title}" do
               let(:current_row) { table.find_by_tag("tr")[i] }
