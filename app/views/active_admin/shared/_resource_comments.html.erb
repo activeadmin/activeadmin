@@ -1,12 +1,12 @@
-<div class="comments">
-  <div class="comments-header">
+<div class="max-w-[700px]">
+  <div class="font-bold py-3 border-b dark:border-gray-600">
     <%= ActiveAdmin::Comment.model_name.human(count: 2) %>
   </div>
   <% if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment) %>
-    <%= active_admin_form_for(ActiveAdmin::Comment.new, url: comment_form_url, html: { class: "comment-form", novalidate: false }) do |f|
+    <%= active_admin_form_for(ActiveAdmin::Comment.new, url: comment_form_url, html: { class: "mb-12 max-w-[700px]", novalidate: false }) do |f|
       f.inputs do
-        f.input :resource_type, as: :hidden, input_html: { value: ActiveAdmin::Comment.resource_type(parent.resource) }
-        f.input :resource_id, as: :hidden, input_html: { value: parent.resource.id }
+        f.input :resource_type, as: :hidden, input_html: { value: ActiveAdmin::Comment.resource_type(resource) }
+        f.input :resource_id, as: :hidden, input_html: { value: resource.id }
         f.input :body, label: false, input_html: { size: "80x4", required: true }
       end
       f.actions do
@@ -15,21 +15,21 @@
     end
     %>
   <% end %>
-  <div class="comments-header">
+  <div class="font-bold py-3 border-b dark:border-gray-600">
     <%= I18n.t "active_admin.comments.title_content", count: comments.total_count %>
   </div>
   <% if comments.any? %>
     <% comments.each do |comment| %>
-      <div id="<%= dom_id(comment, :active_admin) %>" class="comment-container">
-        <div class="comment-header">
-          <span class="comment-author">
+      <div class="border-b dark:border-gray-600 py-6 max-w-[700px]" id="<%= dom_id(comment, :active_admin) %>" data-test-comment-container>
+        <div class="flex gap-4 items-end mb-2">
+          <span class="font-semibold">
             <%= comment.author ? auto_link(comment.author) : I18n.t("active_admin.comments.author_missing") %>
           </span>
-          <span class="comment-date">
+          <span class="text-xs text-gray-400">
             <%= pretty_format comment.created_at %>
           </span>
         </div>
-        <div class="comment-body">
+        <div class="mb-4 break-keep">
           <%= simple_format(comment.body) %>
         </div>
         <% if authorized?(ActiveAdmin::Auth::DESTROY, comment) %>
@@ -37,14 +37,14 @@
         <% end %>
       </div>
     <% end %>
-    <div class="paginated-collection-pagination">
+    <div class="p-2 lg:p-4 flex flex-col-reverse lg:flex-row gap-4 items-center justify-between">
       <div>
         <%= page_entries_info(comments).html_safe %>
       </div>
       <%= paginate(comments, theme: :active_admin, outer_window: 1, window: 2) %>
     </div>
   <% else %>
-    <div class="comments-empty-label">
+    <div class="p-8 text-center">
       <%= I18n.t("active_admin.comments.no_comments_yet") %>
     </div>
   <% end %>

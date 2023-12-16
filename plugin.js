@@ -472,33 +472,6 @@ module.exports = plugin(
       '.tabs-content': {
         '@apply p-4 mb-6': {}
       },
-      '.comments': {
-        '@apply max-w-[700px]': {}
-      },
-      '.comments-header': {
-        '@apply font-bold py-3 border-b dark:border-gray-600': {}
-      },
-      '.comment-form': {
-        '@apply mb-12 max-w-[700px]': {}
-      },
-      '.comments-empty-label': {
-        '@apply p-8 text-center': {}
-      },
-      '.comment-container': {
-        '@apply border-b dark:border-gray-600 py-6 max-w-[700px]': {}
-      },
-      '.comment-header': {
-        '@apply flex gap-4 items-end mb-2': {}
-      },
-      '.comment-author': {
-        '@apply font-semibold': {}
-      },
-      '.comment-date': {
-        '@apply text-xs text-gray-400': {}
-      },
-      '.comment-body': {
-        '@apply mb-4 break-keep': {}
-      },
       // Forms
       '.formtastic :where(.fieldset-title, .has-many-fields-title)': {
         '@apply block w-full mb-3 border-b font-bold text-lg': {}
