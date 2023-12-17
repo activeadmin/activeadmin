@@ -416,7 +416,7 @@ module.exports = plugin(
         '@apply text-gray-700 dark:text-gray-200 font-bold text-lg mb-4': {}
       },
       '.active-filters-list': {
-        '@apply ps-5 list-disc space-y-2 text-gray-700 dark:text-gray-200': {}
+        '@apply ps-5 list-disc space-y-1 text-gray-700 dark:text-gray-200': {}
       },
       '.dropdown': {
         '@apply relative': {}
