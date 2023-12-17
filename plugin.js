@@ -412,9 +412,6 @@ module.exports = plugin(
       '.filters-form-clear': {
         '@apply rounded-md bg-white px-3 py-2 font-semibold text-gray-700 hover:bg-gray-100 no-underline dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:focus:ring-blue-800': {}
       },
-      '.active-filters': {
-        '@apply mb-6 py-6': {}
-      },
       '.active-filters-title': {
         '@apply text-gray-700 dark:text-gray-200 font-bold text-lg mb-4': {}
       },
