@@ -4,7 +4,7 @@
   </h2>
 
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
-  <%= active_admin_form_for(resource, as: resource_name, url: send(:"#{scope}_session_path")) do |f|
+  <%= active_admin_form_for(resource, as: resource_name, url: main_app.send(:"#{scope}_session_path")) do |f|
     f.inputs do
       resource.class.authentication_keys.each_with_index { |key, index|
         f.input key, label: t("active_admin.devise.#{key}.title"), input_html: { autofocus: index.zero? }
