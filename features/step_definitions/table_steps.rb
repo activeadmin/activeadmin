@@ -4,6 +4,10 @@ Then /^I should see (\d+) ([\w]*) in the table$/ do |count, resource_type|
     have_css("table.index_table tr > td:first-child", count: count.to_i)
 end
 
+Then /^I should see an id_column link to edit page$/ do
+  expect(page).to have_css(".data-table a[href*='/edit']", text: /^\d+$/)
+end
+
 # TODO: simplify this, if possible?
 class HtmlTableToTextHelper
   def initialize(html, table_css_selector = "table")
