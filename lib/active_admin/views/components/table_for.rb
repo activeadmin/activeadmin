@@ -18,10 +18,9 @@ module ActiveAdmin
         @columns = []
         @row_class = options.delete(:row_class)
 
-        options[:class] = "#{options[:class]} data-table".strip
-
         build_table
         super(options)
+        add_class("data-table")
         columns(*attrs)
       end
 
