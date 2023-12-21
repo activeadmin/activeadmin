@@ -48,7 +48,7 @@ module ActiveAdmin
 
   class << self
 
-    attr_accessor :application
+    attr_accessor :application, :importmap
 
     def application
       @application ||= ::ActiveAdmin::Application.new
@@ -56,6 +56,11 @@ module ActiveAdmin
 
     def deprecator
       @deprecator ||= ActiveSupport::Deprecation.new("4.1", "active-admin")
+    end
+
+    def importmap
+      require "importmap-rails"
+      @importmap ||= Importmap::Map.new
     end
 
     # Gets called within the initializer

@@ -11,8 +11,20 @@ module ActiveAdmin
 
     initializer "active_admin.precompile", group: :all do |app|
       if app.config.respond_to?(:assets)
-        app.config.assets.precompile += %w(active_admin.js active_admin.css)
+        app.config.assets.precompile += %w(active_admin.js active_admin.css active_admin_manifest.js)
       end
+    end
+
+    # initializer "active_admin.importmap", before: "importmap" do |app|
+    #   package_path = Engine.root.join("app/javascript")
+    #   app.config.assets.paths << package_path
+    #   app.config.importmap.paths << Engine.root.join("config/importmap.rb")
+    # end
+
+    initializer "active_admin.importmap", before: "importmap" do |app|
+      ActiveAdmin.importmap.draw(Engine.root.join("config", "importmap.rb"))
+      package_path = Engine.root.join("app/javascript")
+      app.config.assets.paths << package_path
     end
 
     initializer "active_admin.routes" do

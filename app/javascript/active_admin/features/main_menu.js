@@ -1,5 +1,5 @@
 import Rails from '@rails/ujs';
-import { nextSibling } from '../utils/dom'
+import { nextSibling } from 'active_admin/utils/dom'
 
 const toggleMenu = function(event) {
   const parent = this.parentNode

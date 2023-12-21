@@ -18,6 +18,7 @@ group :development, :test do
 
   gem "cssbundling-rails"
   gem "jsbundling-rails"
+  gem "importmap-rails"
 end
 
 group :test do

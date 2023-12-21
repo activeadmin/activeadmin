@@ -217,6 +217,10 @@ GEM
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
+    importmap-rails (1.2.3)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     inherited_resources (1.14.0)
       actionpack (>= 6.0)
       has_scope (>= 0.6)
@@ -467,6 +471,7 @@ DEPENDENCIES
   formtastic (>= 5.0.0)
   i18n-spec
   i18n-tasks
+  importmap-rails
   jsbundling-rails
   kramdown
   launchy
