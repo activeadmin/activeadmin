@@ -2,14 +2,9 @@
   "name": "app",
   "private": "true",
   "dependencies": {
-    "@activeadmin/activeadmin": "^3.0.0",
-    "@rails/ujs": "^7.1.1",
-    "esbuild": "^0.18.7",
-    "flowbite": "^2.0.0",
     "tailwindcss": "^3.3.2"
   },
   "scripts": {
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify",
-    "build:js": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets"
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
   }
 }

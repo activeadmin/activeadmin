@@ -15,16 +15,18 @@ module ActiveAdmin
       end
     end
 
-    # initializer "active_admin.importmap", before: "importmap" do |app|
-    #   package_path = Engine.root.join("app/javascript")
-    #   app.config.assets.paths << package_path
-    #   app.config.importmap.paths << Engine.root.join("config/importmap.rb")
-    # end
-
     initializer "active_admin.importmap", before: "importmap" do |app|
       ActiveAdmin.importmap.draw(Engine.root.join("config", "importmap.rb"))
       package_path = Engine.root.join("app/javascript")
       app.config.assets.paths << package_path
+      app.config.assets.paths << Engine.root.join("vendor/javascript")
+
+      if app.config.importmap.sweep_cache
+        ActiveAdmin.importmap.cache_sweeper(watches: package_path)
+        ActiveSupport.on_load(:action_controller_base) do
+          before_action { ActiveAdmin.importmap.cache_sweeper.execute_if_updated }
+        end
+      end
     end
 
     initializer "active_admin.routes" do

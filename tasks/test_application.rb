@@ -21,7 +21,6 @@ module ActiveAdmin
         Dir.chdir(app_dir) do
           Kernel.system("yarn install")
           Kernel.system("yarn build:css")
-          Kernel.system("yarn build:js")
         end
       end
     end
@@ -45,7 +44,7 @@ module ActiveAdmin
         --skip-test
         --skip-system-test
         --skip-webpack-install
-        --javascript=esbuild
+        --javascript=importmap
         --css=tailwind
       )
 
