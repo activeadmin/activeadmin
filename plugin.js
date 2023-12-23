@@ -324,9 +324,6 @@ module.exports = plugin(
       '.empty-value': {
         '@apply text-stone-400/50 text-xs uppercase font-medium': {}
       },
-      '.inner-body-container': {
-        '@apply xl:ms-64': {}
-      },
       '.link-default :where(a)': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
