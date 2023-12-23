@@ -458,10 +458,10 @@ module.exports = plugin(
         '@apply px-5 py-3': {}
       },
       '.status-tag': {
-        '@apply bg-gray-200 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400': {}
+        '@apply bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400 text-sm font-medium px-2.5 py-0.5 rounded': {}
       },
-      '.status-tag:where(.yes)': {
-        '@apply bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300': {}
+      '.status-tag:where([data-status=yes])': {
+        '@apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 text-sm font-medium px-2.5 py-0.5 rounded': {}
       },
       '.tabs-nav': {
         '@apply flex flex-wrap mb-2 text-sm font-medium text-center border-b border-gray-200 dark:border-gray-700': {}

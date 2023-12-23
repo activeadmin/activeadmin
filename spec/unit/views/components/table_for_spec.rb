@@ -287,9 +287,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should render boolean attribute within status tag" do
-        expect(table.find_by_tag("span").first.class_list.to_s).to eq "status-tag yes"
+        expect(table.find_by_tag("span").first.class_list.to_s).to eq "status-tag"
         expect(table.find_by_tag("span").first.content).to eq "Yes"
-        expect(table.find_by_tag("span").last.class_list.to_s).to eq "status-tag no"
+        expect(table.find_by_tag("span").last.class_list.to_s).to eq "status-tag"
         expect(table.find_by_tag("span").last.content).to eq "No"
       end
     end
