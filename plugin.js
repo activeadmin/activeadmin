@@ -442,19 +442,19 @@ module.exports = plugin(
       '.panel-body': {
         '@apply py-6 px-4': {}
       },
-      '.attributes_table': {
+      '.attributes-table': {
         '@apply overflow-hidden mb-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
       },
-      '.attributes_table > :where(table)': {
+      '.attributes-table > :where(table)': {
         '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
       },
-      '.attributes_table :where(tbody > tr)': {
+      '.attributes-table :where(tbody > tr)': {
         '@apply bg-white border-b dark:bg-gray-800 dark:border-gray-700': {}
       },
-      '.attributes_table :where(tbody > tr > th)': {
+      '.attributes-table :where(tbody > tr > th)': {
         '@apply w-40 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400': {}
       },
-      '.attributes_table :where(tbody > tr > th, tbody > tr > td)': {
+      '.attributes-table :where(tbody > tr > th, tbody > tr > td)': {
         '@apply px-5 py-3': {}
       },
       '.status-tag': {
