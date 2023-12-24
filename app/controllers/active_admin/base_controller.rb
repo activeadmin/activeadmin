@@ -1,7 +1,4 @@
 # frozen_string_literal: true
-require "active_admin/base_controller/authorization"
-require "active_admin/base_controller/menu"
-
 module ActiveAdmin
   # BaseController for ActiveAdmin.
   # It implements ActiveAdmin controllers core features.
@@ -22,8 +19,8 @@ module ActiveAdmin
       attr_accessor :active_admin_config
     end
 
-    include Authorization
-    include Menu
+    include BaseController::Authorization
+    include BaseController::Menu
 
     private
 

@@ -9,7 +9,7 @@ Then /^I should( not)? be able to add a comment$/ do |negate|
 end
 
 When /^I add a comment "([^"]*)"$/ do |comment|
-  step %{I fill in "active_admin_comment_body" with "#{comment}"}
+  step %{I fill in "comment_body" with "#{comment}"}
   step %{I press "Add Comment"}
 end
 
