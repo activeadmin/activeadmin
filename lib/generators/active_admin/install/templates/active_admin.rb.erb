@@ -217,11 +217,10 @@ ActiveAdmin.setup do |config|
   #     # Disable the links entirely
   #     admin.download_links = false
   #
-  #     # Only show XML & PDF options
+  #     # Only show XML & PDF options. You must register the format mime type with `Mime::Type.register`.
   #     admin.download_links = [:xml, :pdf]
   #
-  #     # Enable/disable the links based on block
-  #     #   (for example, with cancan)
+  #     # Enable/disable the links based on block (for example, with cancan)
   #     admin.download_links = proc { can?(:view_download_links) }
   #
   #   end

@@ -85,6 +85,20 @@ module ActiveAdmin
       active_admin_config.name
     end
 
+    DEFAULT_DOWNLOAD_FORMATS = [:csv, :xml, :json]
+
+    def build_download_formats(download_links)
+      download_links = instance_exec(&download_links) if download_links.is_a?(Proc)
+      if download_links.is_a?(Array) && !download_links.empty?
+        download_links
+      elsif download_links == false
+        []
+      else
+        DEFAULT_DOWNLOAD_FORMATS
+      end
+    end
+    helper_method :build_download_formats
+
     ActiveSupport.run_load_hooks(:active_admin_controller, self)
   end
 end
