@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require "active_admin/helpers/collection"
-require "active_admin/view_helpers/download_format_links_helper"
 
 module ActiveAdmin
   module Views
@@ -79,7 +78,7 @@ module ActiveAdmin
         if @per_page.is_a?(Array) || formats.any?
           div class: "paginated-collection-footer" do
             build_per_page_select if @per_page.is_a?(Array)
-            build_download_format_links formats if formats.any?
+            render("active_admin/shared/download_format_links", formats: formats) if formats.any?
           end
         end
       end
@@ -119,7 +118,6 @@ module ActiveAdmin
       end
 
       include ::ActiveAdmin::Helpers::Collection
-      include ::ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper
 
       # modified from will_paginate
       def page_entries_info(options = {})

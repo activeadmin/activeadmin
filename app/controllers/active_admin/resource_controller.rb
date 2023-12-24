@@ -8,13 +8,14 @@ module ActiveAdmin
     respond_to :html, :xml, :json
     respond_to :csv, only: :index
 
+    before_action :restrict_download_format_access!, only: [:index, :show]
+
     include ResourceController::ActionBuilder
     include ResourceController::Decorators
     include ResourceController::DataAccess
     include ResourceController::PolymorphicRoutes
     include ResourceController::Scoping
     include ResourceController::Streaming
-    include ViewHelpers::DownloadFormatLinksHelper
     extend ResourceClassMethods
 
     def self.active_admin_config=(config)
@@ -88,7 +89,7 @@ module ActiveAdmin
       end
     end
 
-    def restrict_format_access!
+    def restrict_download_format_access!
       unless request.format.html?
         presenter = active_admin_config.get_page_presenter(:index)
         download_formats = (presenter || {}).fetch(:download_links, active_admin_config.namespace.download_links)
@@ -97,7 +98,5 @@ module ActiveAdmin
         end
       end
     end
-
-    before_action :restrict_format_access!, only: [:index, :show]
   end
 end

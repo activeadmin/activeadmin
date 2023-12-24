@@ -1,0 +1,7 @@
+<% params = request.query_parameters.except :format, :commit %>
+<div>
+  <span><%= I18n.t("active_admin.download") %></span>
+  <% formats.each do |format| %>
+    <%= link_to format.upcase, url_for(params: params, format: format) %>
+  <% end %>
+</div>

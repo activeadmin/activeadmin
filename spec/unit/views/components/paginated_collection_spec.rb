@@ -11,6 +11,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       view = mock_action_view
       allow(view.request).to receive(:query_parameters).and_return page: "1"
       allow(view.request).to receive(:path_parameters).and_return controller: "admin/posts", action: "index"
+      allow(view).to receive(:build_download_formats).and_return([:csv, :xml, :json])
       view
     end
 
