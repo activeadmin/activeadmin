@@ -19,9 +19,9 @@ end
 def build_collection
   if collection_size(collection) == 0
     if params[:q] || params[:scope]
-      render_empty_results
+      render("active_admin/resource/index_empty_results")
     else
-      render_blank_slate
+      render("active_admin/resource/index_blank_slate")
     end
   else
     render_index
@@ -81,23 +81,6 @@ def find_index_renderer_class(klass)
   end
 end
 
-def render_blank_slate
-  content = I18n.t("active_admin.blank_slate.content", resource_name: active_admin_config.plural_resource_label)
-  div class: "blank-slate" do
-    h2 content, class: "blank-slate-title"
-    if controller.action_methods.include?("new") && authorized?(ActiveAdmin::Auth::NEW, active_admin_config.resource_class)
-      text_node blank_slate_link
-    end
-  end
-end
-
-def render_empty_results
-  content = I18n.t("active_admin.pagination.empty", model: active_admin_config.plural_resource_label)
-  div class: "blank-slate" do
-    h2 content, class: "blank-slate-title"
-  end
-end
-
 def render_index
   renderer_class = find_index_renderer_class(page_presenter[:as])
 
@@ -114,17 +97,6 @@ def render_index
                 per_page: per_page,
                 pagination_total: pagination_total) do
     insert_tag(renderer_class, page_presenter, collection)
-  end
-end
-
-def blank_slate_link
-  if page_presenter.options.has_key?(:blank_slate_link)
-    blank_slate_link = page_presenter.options[:blank_slate_link]
-    if blank_slate_link.is_a?(Proc)
-      instance_exec(&blank_slate_link)
-    end
-  else
-    link_to(I18n.t("active_admin.blank_slate.link"), new_resource_path)
   end
 end
 

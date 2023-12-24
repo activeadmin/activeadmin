@@ -529,12 +529,6 @@ module.exports = plugin(
       },
       '.formtastic :where(.has_many_fields)': {
         '@apply my-5 border-s-2 border-s-gray-700 ps-3': {}
-      },
-      '.blank-slate': {
-        '@apply relative block w-full rounded-lg border-2 border-dashed border-gray-300 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-600 px-6 py-12 text-center': {}
-      },
-      '.blank-slate-title': {
-        '@apply block mb-4 only:mb-0 font-semibold leading-6 text-gray-900 dark:text-gray-200': {}
       }
     });
   }
