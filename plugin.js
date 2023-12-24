@@ -321,6 +321,9 @@ module.exports = plugin(
       '.action-item-button': {
         '@apply py-2 px-3 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
       },
+      '.empty-value': {
+        '@apply text-stone-400/50 text-xs uppercase font-medium': {}
+      },
       '.inner-body-container': {
         '@apply xl:ms-64': {}
       },
@@ -409,20 +412,17 @@ module.exports = plugin(
       '.filters-form-clear': {
         '@apply rounded-md bg-white px-3 py-2 font-semibold text-gray-700 hover:bg-gray-100 no-underline dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:focus:ring-blue-800': {}
       },
-      '.active-filters': {
-        '@apply mb-6 py-6': {}
-      },
       '.active-filters-title': {
         '@apply text-gray-700 dark:text-gray-200 font-bold text-lg mb-4': {}
       },
       '.active-filters-list': {
-        '@apply ps-5 list-disc space-y-2 text-gray-700 dark:text-gray-200': {}
+        '@apply ps-5 list-disc space-y-1 text-gray-700 dark:text-gray-200': {}
       },
       '.dropdown': {
         '@apply relative': {}
       },
       '.dropdown-toggle': {
-        '@apply transition-opacity rounded-md inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white disabled:opacity-30 disabled:pointer-events-none': {}
+        '@apply transition-opacity rounded-md inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white disabled:text-gray-400 disabled:border-gray-200/70 dark:disabled:bg-gray-900 dark:disabled:text-gray-700 dark:disabled:border-gray-800 disabled:pointer-events-none': {}
       },
       '.dropdown-toggle-arrow': {
         '@apply w-2.5 h-2.5': {}
@@ -442,26 +442,26 @@ module.exports = plugin(
       '.panel-body': {
         '@apply py-6 px-4': {}
       },
-      '.attributes_table': {
+      '.attributes-table': {
         '@apply overflow-hidden mb-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
       },
-      '.attributes_table > :where(table)': {
+      '.attributes-table > :where(table)': {
         '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
       },
-      '.attributes_table :where(tbody > tr)': {
+      '.attributes-table :where(tbody > tr)': {
         '@apply bg-white border-b dark:bg-gray-800 dark:border-gray-700': {}
       },
-      '.attributes_table :where(tbody > tr > th)': {
+      '.attributes-table :where(tbody > tr > th)': {
         '@apply w-40 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400': {}
       },
-      '.attributes_table :where(tbody > tr > th, tbody > tr > td)': {
+      '.attributes-table :where(tbody > tr > th, tbody > tr > td)': {
         '@apply px-5 py-3': {}
       },
       '.status-tag': {
-        '@apply bg-gray-200 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400': {}
+        '@apply bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400 text-sm font-medium px-2.5 py-0.5 rounded': {}
       },
-      '.status-tag:where(.yes)': {
-        '@apply bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300': {}
+      '.status-tag:where([data-status=yes])': {
+        '@apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 text-sm font-medium px-2.5 py-0.5 rounded': {}
       },
       '.tabs-nav': {
         '@apply flex flex-wrap mb-2 text-sm font-medium text-center border-b border-gray-200 dark:border-gray-700': {}
@@ -471,33 +471,6 @@ module.exports = plugin(
       },
       '.tabs-content': {
         '@apply p-4 mb-6': {}
-      },
-      '.comments': {
-        '@apply max-w-[700px]': {}
-      },
-      '.comments-header': {
-        '@apply font-bold py-3 border-b dark:border-gray-600': {}
-      },
-      '.comment-form': {
-        '@apply mb-12 max-w-[700px]': {}
-      },
-      '.comments-empty-label': {
-        '@apply p-8 text-center': {}
-      },
-      '.comment-container': {
-        '@apply border-b dark:border-gray-600 py-6 max-w-[700px]': {}
-      },
-      '.comment-header': {
-        '@apply flex gap-4 items-end mb-2': {}
-      },
-      '.comment-author': {
-        '@apply font-semibold': {}
-      },
-      '.comment-date': {
-        '@apply text-xs text-gray-400': {}
-      },
-      '.comment-body': {
-        '@apply mb-4 break-keep': {}
       },
       // Forms
       '.formtastic :where(.fieldset-title, .has-many-fields-title)': {
@@ -556,12 +529,6 @@ module.exports = plugin(
       },
       '.formtastic :where(.has_many_fields)': {
         '@apply my-5 border-s-2 border-s-gray-700 ps-3': {}
-      },
-      '.blank-slate': {
-        '@apply relative block w-full rounded-lg border-2 border-dashed border-gray-300 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-600 px-6 py-12 text-center': {}
-      },
-      '.blank-slate-title': {
-        '@apply block mb-4 only:mb-0 font-semibold leading-6 text-gray-900 dark:text-gray-200': {}
       }
     });
   }

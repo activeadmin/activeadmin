@@ -1,0 +1,5 @@
+<% sidebar_sections_for_action.each do |section| %>
+  <%= content_tag :div, id: section.id, class: section.custom_class do %>
+    <%= render "active_admin/shared/sidebar_section", section: section %>
+  <% end %>
+<% end %>

@@ -8,15 +8,15 @@ Then /^I should not see a table header with "([^"]*)"$/ do |content|
 end
 
 Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
-  expect(page).to have_css "th.sortable", text: content
+  expect(page).to have_css "th[data-sortable]", text: content
 end
 
 Then /^I should not see a sortable table header with "([^"]*)"$/ do |content|
-  expect(page).to_not have_css "th.sortable", text: content
+  expect(page).to_not have_css "th[data-sortable]", text: content
 end
 
 Then /^I should not see a sortable table header$/ do
-  step %{I should not see "th.sortable"}
+  step %{I should not see "th[data-sortable]"}
 end
 
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|

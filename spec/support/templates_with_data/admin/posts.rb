@@ -31,11 +31,11 @@ ActiveAdmin.register Post do
   end
 
   scope :scheduled, group: :status do |posts|
-    posts.where(["posts.published_date IS NOT NULL AND posts.published_date > ?", Time.now.utc])
+    posts.where(["posts.published_date IS NOT NULL AND posts.published_date > ?", Time.current])
   end
 
   scope :published, group: :status do |posts|
-    posts.where(["posts.published_date IS NOT NULL AND posts.published_date < ?", Time.now.utc])
+    posts.where(["posts.published_date IS NOT NULL AND posts.published_date < ?", Time.current])
   end
 
   scope :my_posts, group: :author do |posts|
@@ -61,7 +61,7 @@ ActiveAdmin.register Post do
   end
 
   sidebar :author, only: :show do
-    attributes_table_for post.author do
+    attributes_table_for resource.author do
       row :id do |author|
         link_to author.id, admin_user_path(author)
       end
@@ -78,10 +78,10 @@ ActiveAdmin.register Post do
   end
 
   action_item :toggle_starred, only: :show do
-    link_to "Toggle Starred", toggle_starred_admin_user_post_path(post.author, post), method: :put
+    link_to "Toggle Starred", toggle_starred_admin_user_post_path(resource.author, resource), method: :put
   end
 
-  show do |post|
+  show do
     attributes_table do
       row :id
       row :title

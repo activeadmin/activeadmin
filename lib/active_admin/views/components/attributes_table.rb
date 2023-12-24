@@ -23,13 +23,7 @@ module ActiveAdmin
       def row(*args, &block)
         title = args[0]
         options = args.extract_options!
-        classes = [:row]
-        if options[:class]
-          classes << options[:class]
-        elsif title.present?
-          classes << "row-#{title.to_s.parameterize(separator: "_")}"
-        end
-        options[:class] = classes.join(" ")
+        options["data-row"] = title.to_s.parameterize(separator: "_") if title.present?
 
         @table << tr(options) do
           th do
@@ -50,7 +44,7 @@ module ActiveAdmin
       end
 
       def default_class_name
-        "attributes_table"
+        "attributes-table"
       end
 
       # Build Colgroups
@@ -63,10 +57,7 @@ module ActiveAdmin
         within @table do
           col # column for row headers
           @collection.each do |record|
-            classes = Arbre::HTML::ClassList.new
-            classes << cycle(:even, :odd, name: self.class.to_s)
-            classes << dom_class_name_for(record)
-            col(id: dom_id_for(record), class: classes)
+            col(id: dom_id_for(record))
           end
         end
       end
@@ -80,7 +71,7 @@ module ActiveAdmin
       end
 
       def empty_value
-        span I18n.t("active_admin.empty"), class: "empty"
+        span I18n.t("active_admin.empty"), class: "empty-value"
       end
 
       def content_for(record, attr)
