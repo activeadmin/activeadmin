@@ -5,16 +5,16 @@ module ActiveAdmin
       ID_FORMAT_REGEXP = /\A(\d+|[a-f0-9]{24}|(?:[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}))\z/.freeze
 
       # Returns an array of links to use in a breadcrumb
-      def breadcrumb_links(path = request.path)
+      def build_breadcrumb_links(path = request.path, html_options = {})
         config = active_admin_config.breadcrumb
         if config.is_a?(Proc)
           instance_exec(controller, &config)
         elsif config.present?
-          default_breadcrumb_links(path)
+          default_breadcrumb_links(path, html_options)
         end
       end
 
-      def default_breadcrumb_links(path)
+      def default_breadcrumb_links(path, html_options = {})
         # remove leading "/" and split up the URL
         # and remove last since it's used as the page title
         parts = path.split("/").select(&:present?)[0..-2]
@@ -32,7 +32,7 @@ module ActiveAdmin
 
           # Don't create a link if the resource's show action is disabled
           if !config || config.defined_actions.include?(:show)
-            link_to name, "/" + parts[0..index].join("/")
+            link_to name, "/" + parts[0..index].join("/"), html_options
           else
             name
           end

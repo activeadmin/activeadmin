@@ -6,7 +6,7 @@ RSpec.describe "Breadcrumbs" do
 
   describe "generating a trail from paths" do
     def params; {}; end
-    def link_to(name, url); { name: name, path: url }; end
+    def link_to(name, url, html_options = {}); { name: name, path: url }; end
 
     actions = ActiveAdmin::BaseController::ACTIVE_ADMIN_ACTIONS
 
@@ -25,7 +25,7 @@ RSpec.describe "Breadcrumbs" do
       post_config
     end
 
-    let(:trail) { breadcrumb_links(path) }
+    let(:trail) { build_breadcrumb_links(path) }
 
     context "when request '/admin'" do
       let(:path) { "/admin" }
