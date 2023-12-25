@@ -1,8 +1,6 @@
 en:
   views:
     pagination:
-      first: "First"
-      last: "Last"
       previous: "Previous"
       next: "Next"
   activerecord:
