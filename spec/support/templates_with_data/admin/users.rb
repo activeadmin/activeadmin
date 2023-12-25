@@ -14,8 +14,8 @@ ActiveAdmin.register User do
     column :last_name
     column :username
     column :age
-    column :created_at
-    column :updated_at
+    column :created_at, class: "min-w-[13rem]"
+    column :updated_at, class: "min-w-[13rem]"
     actions dropdown: true
   end
 
@@ -41,23 +41,23 @@ ActiveAdmin.register User do
       row :updated_at
     end
 
-    panel "Posts" do
-      paginated_collection(user.posts.includes(:category).order(:updated_at).page(params[:page]).per(10), download_links: false) do
-        table_for(collection) do
-          column :id do |post|
-            link_to post.id, admin_user_post_path(post.author, post)
-          end
-          column :title
-          column :published_date
-          column :category
-          column :created_at
-          column :updated_at
-        end
-      end
+    h3 "Posts", class: "font-bold py-5 text-2xl"
 
-      div class: "mt-4" do
-        link_to "View all posts", admin_user_posts_path(user)
+    paginated_collection(user.posts.includes(:category).order(:updated_at).page(params[:page]).per(10), download_links: false) do
+      table_for(collection) do
+        column :id do |post|
+          link_to post.id, admin_user_post_path(post.author, post)
+        end
+        column :title
+        column :published_date
+        column :category
+        column :created_at
+        column :updated_at
       end
+    end
+
+    div class: "mt-4" do
+      link_to "View all posts", admin_user_posts_path(user)
     end
   end
 end
