@@ -88,11 +88,13 @@ ActiveAdmin.after_load do |app|
 
       index do
         column I18n.t("active_admin.comments.resource_type"), :resource_type
+        column I18n.t("active_admin.comments.resource"), :resource, class: "min-w-[7rem]"
         column I18n.t("active_admin.comments.author_type"), :author_type
-        column I18n.t("active_admin.comments.resource"), :resource
         column I18n.t("active_admin.comments.author"), :author
-        column I18n.t("active_admin.comments.body"), :body
-        column I18n.t("active_admin.comments.created_at"), :created_at
+        column I18n.t("active_admin.comments.body"), :body, class: "min-w-[16rem]" do |comment|
+          truncate(comment.body, length: 60, separator: " ")
+        end
+        column I18n.t("active_admin.comments.created_at"), :created_at, class: "min-w-[13rem]"
         actions
       end
     end
