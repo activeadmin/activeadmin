@@ -6,5 +6,4 @@
     per_page:      number of items to fetch per page
     remote:        data-remote
 -%>
-
-<%= link_to_unless current_page.first?, t('views.pagination.first').html_safe, url, remote: remote, class: "flex items-center justify-center px-2.5 py-3 h-8 leading-tight text-gray-500 bg-white dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white rounded no-underline" %>
+<%= link_to_unless current_page.first?, t('views.pagination.first').html_safe, url, remote: remote, class: "flex items-center justify-center px-2.5 py-3 h-8 leading-tight text-gray-500 dark:text-gray-400 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-800 dark:hover:text-white rounded no-underline" %>
