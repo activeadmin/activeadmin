@@ -1,24 +1,24 @@
-<div id="main-menu" class="fixed top-14 left-0 z-40 w-60 h-screen p-4 overflow-y-auto transition-transform duration-200 -translate-x-full xl:translate-x-0 xl:border-r xl:border-gray-200 xl:dark:border-gray-700 bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
+<div id="main-menu" class="fixed xl:top-16 left-0 z-40 w-72 xl:w-60 h-screen p-4 overflow-y-auto transition-transform duration-200 -translate-x-full xl:translate-x-0 bg-white dark:bg-gray-950 xl:border-r xl:border-gray-200 xl:dark:border-white/10" tabindex="-1" aria-labelledby="drawer-navigation-label">
   <ul role="list" class="flex flex-1 flex-col space-y-1.5">
     <% current_menu.items(self).each do |item| %>
       <% children = item.items(self).presence %>
       <li <%= current_menu_item?(item) && "data-open" %> data-item-id="<%= item.id %>">
         <% if children %>
-          <button data-menu-button class="hover:bg-gray-50 flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-700">
+          <button data-menu-button class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white flex items-center w-full text-left rounded-md p-2 gap-x-2 text-sm">
             <%= item.label(self) %>
-            <svg data-menu-icon class="ms-auto text-gray-500 h-5 w-5 shrink-0 <%= current_menu_item?(item) && "rotate-90" %>" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <svg data-menu-icon class="ms-auto h-5 w-5 shrink-0 <%= current_menu_item?(item) && "rotate-90" %>" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
             </svg>
           </button>
           <ul data-menu-list role="list" class="mt-1 space-y-1 <%= current_menu_item?(item) ? "" : "hidden" %>">
             <% children.each do |j| %>
               <li data-item-id="<%= j.id %>">
-                <%= link_to j.label(self), j.url(self), j.html_options.merge(class: "hover:bg-gray-50 block rounded-md py-1.5 px-2 text-sm leading-6 text-gray-700 #{(current_menu_item?(j) ? "bg-gray-50 selected" : "")}") %>
+                <%= link_to j.label(self), j.url(self), j.html_options.merge(class: "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white block rounded-md py-1.5 px-2 text-sm #{(current_menu_item?(j) ? "bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white selected" : "")}") %>
               </li>
             <% end %>
           </ul>
         <% elsif url = item.url(self) %>
-          <%= link_to item.label(self), url, item.html_options.merge(class: "hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-700 #{(current_menu_item?(item) ? "bg-gray-50 selected" : "")}") %>
+          <%= link_to item.label(self), url, item.html_options.merge(class: "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white flex items-center w-full text-left rounded-md p-2 gap-x-2 text-sm #{(current_menu_item?(item) ? "bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white selected" : "")}") %>
         <% else %>
           <%= item.label(self) %>
         <% end %>

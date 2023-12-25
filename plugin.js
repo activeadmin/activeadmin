@@ -311,7 +311,7 @@ module.exports = plugin(
         '@apply w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600': {}
       },
       [['[type=date]', '[type=email]', '[type=number]', '[type=password]', '[type=tel]', '[type=text]', '[type=time]', '[type=url]', 'select', 'textarea']]: {
-        '@apply bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
+        '@apply bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
       },
     });
     addComponents({
@@ -319,7 +319,7 @@ module.exports = plugin(
         '@apply py-2 px-3 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
       },
       '.empty-value': {
-        '@apply text-stone-400/50 text-xs uppercase font-medium': {}
+        '@apply text-gray-400/50 dark:text-gray-700/60 text-xs uppercase font-semibold': {}
       },
       '.link-default :where(a)': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
@@ -341,22 +341,22 @@ module.exports = plugin(
         '@apply inline-flex items-center justify-center px-3 py-2 text-sm font-medium no-underline text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 first:rounded-s-md last:rounded-e-md dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-800 dark:focus:ring-blue-500 dark:focus:text-white': {}
       },
       '.index-button-selected': {
-        '@apply dark:bg-gray-800 bg-gray-100 hover:bg-gray-100': {}
+        '@apply bg-gray-100 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-800': {}
       },
       '.scopes-count': {
         '@apply inline-flex items-center justify-center rounded-full bg-indigo-200/80 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-200 px-1.5 py-1 text-xs font-normal ms-2 leading-none': {}
       },
       '.paginated-collection': {
-        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800 overflow-hidden': {}
+        '@apply border border-gray-200 dark:border-gray-800 rounded-md shadow-sm overflow-hidden': {}
       },
       '.paginated-collection-contents': {
         '@apply overflow-x-auto': {}
       },
       '.paginated-collection-pagination': {
-        '@apply p-2 lg:p-4 flex flex-col-reverse lg:flex-row gap-4 items-center justify-between': {}
+        '@apply p-2 lg:p-3 flex flex-col-reverse lg:flex-row gap-4 items-center justify-between': {}
       },
       '.paginated-collection-footer': {
-        '@apply p-3 flex gap-2 items-center justify-between text-sm border-t border-gray-200 dark:border-gray-700': {}
+        '@apply p-3 flex gap-2 items-center justify-between text-sm border-t border-gray-200 dark:border-gray-800': {}
       },
       '.pagination-per-page': {
         '@apply text-sm py-1 pe-7 w-auto w-min': {}
@@ -368,13 +368,16 @@ module.exports = plugin(
         '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
       },
       '.data-table :where(thead > tr > th)': {
-        '@apply px-5 py-3 whitespace-nowrap text-xs text-gray-700 uppercase bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300': {}
+        '@apply px-3 py-3.5 whitespace-nowrap font-semibold text-xs uppercase border-b text-gray-700 bg-gray-50 dark:bg-gray-950/50 dark:border-gray-800 dark:text-white': {}
+      },
+      '.data-table :where(thead > tr > th > a)': {
+        '@apply text-inherit no-underline': {}
       },
       '.data-table :where(tbody > tr)': {
-        '@apply bg-white border-b dark:bg-gray-900 dark:border-gray-700': {}
+        '@apply border-b dark:border-gray-800': {}
       },
       '.data-table :where(td)': {
-        '@apply px-5 py-3': {}
+        '@apply px-3 py-4': {}
       },
       '.data-table-resource-actions': {
         '@apply flex gap-2': {}
@@ -404,7 +407,7 @@ module.exports = plugin(
         '@apply min-w-[6rem] font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-md px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
       },
       '.filters-form-clear': {
-        '@apply rounded-md bg-white px-3 py-2 font-semibold text-gray-700 hover:bg-gray-100 no-underline dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:focus:ring-blue-800': {}
+        '@apply rounded-md px-3 py-2 font-semibold text-gray-700 hover:bg-gray-100 no-underline dark:text-gray-400 dark:hover:bg-inherit dark:hover:text-gray-100 dark:focus:ring-blue-800': {}
       },
       '.active-filters-title': {
         '@apply text-gray-700 dark:text-gray-200 font-bold text-lg mb-4': {}
@@ -428,28 +431,28 @@ module.exports = plugin(
         '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white': {}
       },
       '.panel': {
-        '@apply mb-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply mb-6 border border-gray-200 rounded-md shadow-sm dark:border-gray-800': {}
       },
       '.panel-title': {
-        '@apply font-bold bg-gray-100 dark:bg-gray-900 rounded-t-lg p-3': {}
+        '@apply font-bold bg-gray-100 dark:bg-gray-900 rounded-t-md p-3': {}
       },
       '.panel-body': {
-        '@apply py-6 px-4': {}
+        '@apply py-5 px-3': {}
       },
       '.attributes-table': {
-        '@apply overflow-hidden mb-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply overflow-hidden mb-6 border border-gray-200 rounded-md shadow-sm dark:border-gray-800': {}
       },
       '.attributes-table > :where(table)': {
         '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr)': {
-        '@apply bg-white border-b dark:bg-gray-800 dark:border-gray-700': {}
+        '@apply border-b dark:border-gray-800': {}
       },
       '.attributes-table :where(tbody > tr > th)': {
-        '@apply w-40 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400': {}
+        '@apply w-32 sm:w-40 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800/60 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr > th, tbody > tr > td)': {
-        '@apply px-5 py-3': {}
+        '@apply p-3': {}
       },
       '.status-tag': {
         '@apply bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400 text-sm font-medium px-2.5 py-0.5 rounded': {}
