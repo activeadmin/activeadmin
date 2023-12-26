@@ -15,7 +15,7 @@ group :development, :test do
   gem "sprockets-rails"
 
   gem "cssbundling-rails"
-  gem "jsbundling-rails"
+  gem "importmap-rails"
 end
 
 group :test do

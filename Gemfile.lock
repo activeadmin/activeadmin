@@ -232,8 +232,6 @@ GEM
       reline (>= 0.3.8)
     iso (0.4.0)
       i18n
-    jsbundling-rails (1.2.1)
-      railties (>= 6.0.0)
     json (2.7.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -472,7 +470,6 @@ DEPENDENCIES
   i18n-spec
   i18n-tasks
   importmap-rails
-  jsbundling-rails
   kramdown
   launchy
   octokit
