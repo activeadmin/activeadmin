@@ -50,16 +50,12 @@ module ActiveAdmin
         end
 
         super(content, options)
-
+        add_class "status-tag"
         set_attribute("data-status", convert_status(status)) if status
         add_class(classes) if classes
       end
 
       protected
-
-      def default_class_name
-        "status-tag"
-      end
 
       def convert_to_boolean_status(status)
         case status

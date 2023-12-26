@@ -11,10 +11,6 @@ module ActiveAdmin
 
       include ::ActiveAdmin::Helpers::Collection
 
-      def default_class_name
-        "index-button-group index-list"
-      end
-
       def tag_name
         "div"
       end
@@ -23,6 +19,7 @@ module ActiveAdmin
       #
       # @param [Array] index_classes The class constants that represent index page presenters
       def build(index_classes)
+        add_class "index-button-group index-list"
         unless current_filter_search_empty?
           index_classes.each do |index_class|
             build_index_list(index_class)

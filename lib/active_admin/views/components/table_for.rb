@@ -20,7 +20,7 @@ module ActiveAdmin
 
         build_table
         super(options)
-        add_class("data-table")
+        add_class "data-table"
         columns(*attrs)
       end
 

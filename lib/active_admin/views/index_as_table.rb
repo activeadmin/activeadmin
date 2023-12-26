@@ -209,6 +209,7 @@ module ActiveAdmin
     #
     class IndexAsTable < ActiveAdmin::Component
       def build(page_presenter, collection)
+        add_class "index-as-table"
         table_options = {
           id: "index_table_#{active_admin_config.resource_name.plural}",
           sortable: true,
@@ -320,21 +321,16 @@ module ActiveAdmin
         class TableActions < ActiveAdmin::Component
           builder_method :table_actions
 
+          def initialize(*)
+            super
+            add_class "data-table-resource-actions"
+          end
+
           def item *args, **kwargs
             text_node link_to(*args, **kwargs)
           end
-
-          def default_class_name
-            "data-table-resource-actions"
-          end
         end
       end # IndexTableFor
-
-      protected
-
-      def default_class_name
-        "index-as-table"
-      end
     end
   end
 end

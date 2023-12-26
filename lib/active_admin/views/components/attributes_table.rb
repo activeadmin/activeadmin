@@ -11,6 +11,7 @@ module ActiveAdmin
         options = {}
         options[:for] = @collection.first if single_record?
         super(options)
+        add_class "attributes-table"
         @table = table
         build_colgroups
         rows(*attrs)
@@ -41,10 +42,6 @@ module ActiveAdmin
 
       def default_id_for_prefix
         "attributes_table"
-      end
-
-      def default_class_name
-        "attributes-table"
       end
 
       # Build Colgroups

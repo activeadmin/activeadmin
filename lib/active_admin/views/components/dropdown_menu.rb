@@ -34,6 +34,7 @@ module ActiveAdmin
         @menu = build_menu(menu_options)
 
         super(options)
+        add_class "dropdown"
       end
 
       def item(*args, **kwargs, &block)
@@ -44,12 +45,6 @@ module ActiveAdmin
             li link_to(*args, **kwargs)
           end
         end
-      end
-
-      protected
-
-      def default_class_name
-        "dropdown"
       end
 
       private
