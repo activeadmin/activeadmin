@@ -455,10 +455,10 @@ module.exports = plugin(
         '@apply p-3': {}
       },
       '.status-tag': {
-        '@apply bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400 text-sm font-medium px-2.5 py-0.5 rounded': {}
+        '@apply bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400 inline-flex items-center rounded-full text-sm font-medium px-2.5 py-0.5 whitespace-nowrap': {}
       },
       '.status-tag:where([data-status=yes])': {
-        '@apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 text-sm font-medium px-2.5 py-0.5 rounded': {}
+        '@apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300': {}
       },
       '.tabs-nav': {
         '@apply flex flex-wrap mb-2 text-sm font-medium text-center border-b border-gray-200 dark:border-gray-700': {}
