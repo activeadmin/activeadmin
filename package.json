@@ -2,7 +2,7 @@
   "name": "@activeadmin/activeadmin",
   "version": "3.1.0",
   "description": "The administration framework for Ruby on Rails.",
-  "main": "app/javascript/active_admin/index.js",
+  "main": "app/javascript/active_admin.js",
   "type": "module",
   "files": [
     "app/javascript/**/*.js",
@@ -25,15 +25,11 @@
   "homepage": "https://activeadmin.info",
   "devDependencies": {
     "eslint": "^8.52.0",
-    "gherkin-lint": "^4.2.2"
+    "gherkin-lint": "^4.2.2",
+    "tailwindcss": "^3.3.5"
   },
   "scripts": {
     "gherkin-lint": "gherkin-lint",
     "eslint": "eslint ."
-  },
-  "dependencies": {
-    "@rails/ujs": "^7.1.1",
-    "flowbite": "^2.0.0",
-    "tailwindcss": "^3.3.5"
   }
 }

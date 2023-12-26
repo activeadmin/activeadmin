@@ -1,5 +1,5 @@
 import Rails from '@rails/ujs';
-import { nextSibling } from '../utils/dom'
+import { nextSibling } from 'active_admin/utils/dom'
 
 const disableEmptyFields = function(event) {
   Array.from(this.querySelectorAll("input, select, textarea"))

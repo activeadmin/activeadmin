@@ -197,6 +197,10 @@ GEM
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
+    importmap-rails (1.2.3)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     inherited_resources (1.14.0)
       actionpack (>= 6.0)
       has_scope (>= 0.6)
@@ -206,8 +210,6 @@ GEM
       i18n
     jdbc-sqlite3 (3.28.0)
     jruby-openssl (0.14.2-java)
-    jsbundling-rails (1.2.1)
-      railties (>= 6.0.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -234,7 +236,6 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.5)
     minitest (5.20.0)
     multi_test (1.1.0)
     net-imap (0.4.7)
@@ -248,9 +249,6 @@ GEM
       net-protocol
     nio4r (2.6.1)
     nio4r (2.6.1-java)
-    nokogiri (1.15.5)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.15.5-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.5-java)
@@ -351,8 +349,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.9)
-      mini_portile2 (~> 2.8.0)
     sqlite3 (1.6.9-arm64-darwin)
     sqlite3 (1.6.9-x86_64-linux)
     sys-uname (1.2.3)
@@ -380,7 +376,6 @@ PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
   java
-  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -397,8 +392,8 @@ DEPENDENCIES
   draper
   i18n-spec
   i18n-tasks
+  importmap-rails
   jruby-openssl
-  jsbundling-rails
   launchy
   parallel_tests
   pundit

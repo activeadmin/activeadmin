@@ -1,6 +1,6 @@
 import Rails from '@rails/ujs';
 
-const THEME_KEY = "color-scheme";
+const THEME_KEY = "theme";
 const darkModeMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
 const setTheme = () => {

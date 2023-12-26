@@ -1,6 +1,0 @@
-import './features/batch_actions'
-import './features/dark_mode_toggle'
-import './features/has_many'
-import './features/filters'
-import './features/main_menu'
-import './features/per_page'
