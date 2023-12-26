@@ -1,4 +1,4 @@
-<div id="main-menu" class="fixed xl:top-16 left-0 z-40 w-72 xl:w-60 h-screen p-4 overflow-y-auto transition-transform duration-200 -translate-x-full xl:translate-x-0 bg-white dark:bg-gray-950 xl:border-r xl:border-gray-200 xl:dark:border-white/10" tabindex="-1" aria-labelledby="drawer-navigation-label">
+<div id="main-menu" class="fixed top-0 xl:top-16 bottom-0 left-0 z-40 w-72 xl:w-60 p-4 overflow-y-auto transition-transform duration-200 -translate-x-full xl:translate-x-0 bg-white dark:bg-gray-950 xl:border-r xl:border-gray-200 xl:dark:border-white/10" tabindex="-1" aria-labelledby="drawer-navigation-label">
   <ul role="list" class="flex flex-1 flex-col space-y-1.5">
     <% current_menu.items(self).each do |item| %>
       <% children = item.items(self).presence %>
