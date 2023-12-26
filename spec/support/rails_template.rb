@@ -91,6 +91,7 @@ generate "active_admin:install"
 gsub_file "tailwind.config.js", /^.*const gemPath.*$/, <<~JS
   const gemPath = '../../../';
 JS
+gsub_file "tailwind.config.js", /@activeadmin\/activeadmin/, "${gemPath}"
 
 # Force strong parameters to raise exceptions
 inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
