@@ -4,7 +4,8 @@ require "bundler/inline"
 gemfile(true) do
   source "https://rubygems.org"
 
-  # Use local changes or ActiveAdmin master.
+  # Use `ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb` to run
+  # locally, otherwise run against the default branch.
   if ENV["ACTIVE_ADMIN_PATH"]
     gem "activeadmin", path: ENV["ACTIVE_ADMIN_PATH"], require: false
   else
@@ -15,6 +16,7 @@ gemfile(true) do
   gem "rails", "~> 7.0.0"
 
   gem "sprockets", "~> 4.0"
+  gem "importmap-rails"
   gem "sqlite3", platform: :mri
 
   # Fixes an issue on CI with default gems when using inline bundle with default

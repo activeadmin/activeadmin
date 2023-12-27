@@ -6,6 +6,8 @@ on:
     paths-ignore:
       - '.github/workflows/bug-report-template.yml'
       - 'tasks/bug_report_template.rb'
+      - 'Gemfile'
+      - '*.gemspec'
 
 jobs:
   bug_report_template_test:

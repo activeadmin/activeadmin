@@ -9,6 +9,8 @@ on:
     paths:
       - '.github/workflows/bug-report-template.yml'
       - 'tasks/bug_report_template.rb'
+      - 'Gemfile'
+      - '*.gemspec'
 
 concurrency:
   group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
