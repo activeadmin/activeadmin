@@ -95,7 +95,7 @@ module ActiveAdmin
       end
 
       def build_pagination
-        options = { theme: :active_admin, outer_window: 1, window: 2 }
+        options = { views_prefix: :active_admin, outer_window: 1, window: 2 }
         options[:params] = @params if @params
         options[:param_name] = @param_name if @param_name
 
