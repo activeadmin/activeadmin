@@ -16,18 +16,4 @@ RSpec.describe ActiveAdmin::Component do
   it "should not have a CSS class name by default" do
     expect(component.class_list.empty?).to eq true
   end
-
-  describe "#default_class_name" do
-    let(:component_class) do
-      Class.new(described_class) do
-        def default_class_name
-          "my-component"
-        end
-      end
-    end
-
-    it "should add a default CSS class name if provided" do
-      expect(component.class_list).to include("my-component")
-    end
-  end
 end

@@ -13,16 +13,13 @@ module ActiveAdmin
       include ActiveAdmin::ScopeChain
       include ::ActiveAdmin::Helpers::Collection
 
-      def default_class_name
-        "scopes"
-      end
-
       def tag_name
         "div"
       end
 
       def build(scopes, options = {})
         super({ role: "toolbar" })
+        add_class "scopes"
         scopes.group_by(&:group).each do |group, group_scopes|
           div class: "index-button-group", role: "group", data: { "group": group_name(group) } do
             group_scopes.each do |scope|

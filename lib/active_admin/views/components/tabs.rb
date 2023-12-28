@@ -12,6 +12,7 @@ module ActiveAdmin
 
       def build(attributes = {}, &block)
         super(attributes)
+        add_class "tabs"
         @menu = nav(class: "tabs-nav", role: "tablist", "data-tabs-toggle": "#tabs-container-#{object_id}")
         @tabs_content = div(class: "tabs-content", id: "tabs-container-#{object_id}")
       end
@@ -27,12 +28,6 @@ module ActiveAdmin
       def build_content_item(title, options, &block)
         options = options.reverse_merge(id: fragmentize(title), class: "hidden", role: "tabpanel", "aria-labelledby": "#{title}-tab")
         div(options, &block)
-      end
-
-      protected
-
-      def default_class_name
-        "tabs"
       end
 
       private
