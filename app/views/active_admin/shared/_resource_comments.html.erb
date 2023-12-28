@@ -41,7 +41,7 @@
       <div>
         <%= page_entries_info(comments).html_safe %>
       </div>
-      <%= paginate(comments, theme: :active_admin, outer_window: 1, window: 2) %>
+      <%= paginate(comments, views_prefix: :active_admin, outer_window: 1, window: 2) %>
     </div>
   <% else %>
     <div class="p-8 text-center">
