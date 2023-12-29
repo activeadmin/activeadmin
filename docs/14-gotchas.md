@@ -27,14 +27,8 @@ post](https://www.mobomo.com/2013/03/rails-assets-prefix-may-disable-your-sessio
 
 ## Helpers
 
-There are two known gotchas with helpers. This hopefully will help you to
+There is a known gotcha with helpers. This hopefully will help you to
 find a solution.
-
-### Helpers are not reloading in development
-
-This is a known and still open
-[issue](https://github.com/activeadmin/activeadmin/issues/697) the only way is
-to restart your server each time you change a helper.
 
 ### Helper maybe not included by default
 
