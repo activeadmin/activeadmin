@@ -1,4 +1,24 @@
 fr:
+  views:
+    pagination:
+      previous: "Précédent"
+      next: "Suivant"
+  activerecord:
+    models:
+      comment:
+        one: "Commentaire"
+        other: "Commentaires"
+      active_admin/comment:
+        one: "Commentaire"
+        other: "Commentaires"
+    attributes:
+      active_admin/comment:
+        author_type: "Type d'auteur"
+        body: "Corps"
+        created_at: "Créé le"
+        namespace: "Espace de nom"
+        resource_type: "Type de ressource"
+        updated_at: "Mis à jour le"
   active_admin:
     dashboard: "Tableau de bord"
     view: "Voir"
@@ -26,11 +46,13 @@ fr:
         from: "De"
         to: "À"
     search_status:
-      no_current_filters: "Aucun filtre"
+      title: "Recherche active"
+      title_with_scope: "Recherche active pour %{name}"
+      no_current_filters: "Aucun filtre appliqué"
     status_tag:
       "yes": "Oui"
       "no": "Non"
-      "unset": "Non"
+      "unset": "Inconnu"
     logout: "Déconnexion"
     powered_by: "Propulsé par %{active_admin} %{version}"
     sidebars:
@@ -38,11 +60,11 @@ fr:
       search_status: "Statut de la recherche"
     pagination:
       empty: "Aucun(e) %{model} trouvé(e)"
-      one: "Affichage de <b>1</b> %{model}"
-      one_page: "Affichage des <b>%{n}</b> %{model}"
-      multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
-      multiple_without_total: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Par page: "
+      one: "Affichage de <b>1</b> sur <b>1</b>"
+      one_page: "Affichage de <b>tous les %{n}</b>"
+      multiple: "Affichage de <b>%{from}-%{to}</b> sur <b>%{total}</b>"
+      multiple_without_total: "Affichage de <b>%{from}-%{to}</b>"
+      per_page: "Par page "
       entry:
         one: "entrée"
         other: "entrées"
@@ -55,8 +77,8 @@ fr:
       default_confirmation: "Voulez-vous vraiment faire cela ?"
       delete_confirmation: "Voulez-vous vraiment supprimer ces %{plural_model} ?"
       succesfully_destroyed:
-        one: "1 %{model} supprimé"
-        other: "%{count} %{plural_model} supprimés"
+        one: "1 %{model} supprimé(e)"
+        other: "%{count} %{plural_model} supprimé(e)s"
       selection_toggle_explanation: "(Inverser la sélection)"
       action_label: "%{title} les éléments sélectionnés"
       labels:
@@ -73,7 +95,7 @@ fr:
       resource: "Ressource"
       no_comments_yet: "Aucun commentaire actuellement"
       author_missing: "Anonyme"
-      title_content: "Commentaires (%{count})"
+      title_content: "Tous les commentaires (%{count})"
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
     devise:
