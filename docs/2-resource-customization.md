@@ -175,11 +175,10 @@ The menu method accepts a hash with the following options:
 
 * `:label` - The string or proc label to display in the menu. If it's a proc, it
   will be called each time the menu is rendered.
-* `:parent` - The string id (or label) of the parent used for this menu, or an array
-  of string ids (or labels) for a nested menu
+* `:parent` - The string id (or label) of the parent used for this menu.
 * `:if` - A block or a symbol of a method to call to decide if the menu item
-  should be displayed
-* `:priority` - The integer value of the priority, which defaults to `10`
+  should be displayed.
+* `:priority` - The integer value of the priority, which defaults to `10`.
 
 ### Labels
 
@@ -238,14 +237,6 @@ end
 
 Note that the "Blog" parent menu item doesn't even have to exist yet; it can be
 dynamically generated for you.
-
-To further nest an item under a submenu, provide an array of parents.
-
-```ruby
-ActiveAdmin.register Post do
-  menu parent: ["Admin", "Blog"]
-end
-```
 
 ### Customizing Parent Menu Items
 
