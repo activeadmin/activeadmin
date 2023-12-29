@@ -27,14 +27,8 @@ post](https://www.mobomo.com/2013/03/rails-assets-prefix-may-disable-your-sessio
 
 ## Helpers
 
-There are two known gotchas with helpers. This hopefully will help you to
+There is a known gotcha with helpers. This hopefully will help you to
 find a solution.
-
-### Helpers are not reloading in development
-
-This is a known and still open
-[issue](https://github.com/activeadmin/activeadmin/issues/697) the only way is
-to restart your server each time you change a helper.
 
 ### Helper maybe not included by default
 
@@ -43,12 +37,12 @@ application config, you need to include it by hand.
 
 #### Solutions
 
-##### First use a monkey patch
+##### First use an override
 
-This works for all ActiveAdmin resources at once.
+This works for all ActiveAdmin resources at once. Please [follow the Rails
+guidelines for overriding](https://guides.rubyonrails.org/engines.html#improving-engine-functionality) this safely alongside Zeitwerk.
 
 ```ruby
-# config/initializers/active_admin_helpers.rb
 ActiveAdmin::BaseController.class_eval do
   helper ApplicationHelper
 end
@@ -65,16 +59,6 @@ ActiveAdmin.register User do
   end
 end
 ```
-
-## CSS
-
-In order to avoid the override of your application style with the Active Admin
-one, you can do one of these things:
-
-* You can properly move the generated file `active_admin.scss` from
-  `app/assets/stylesheets` to `vendor/assets/stylesheets`.
-* You can remove all `require_tree` commands from your root level css files,
-  where the `active_admin.scss` is in the tree.
 
 ## Conflicts
 
