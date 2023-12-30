@@ -1,4 +1,8 @@
 nl:
+  views:
+    pagination:
+      previous: "Vorige"
+      next: "Volgende"
   active_admin:
     dashboard: Dashboard
     view: "Bekijk"
@@ -26,7 +30,11 @@ nl:
       predicates:
         from: Van
         to: Tot
+    scopes:
+      all: "Alle"
     search_status:
+      title: "Huidige filter"
+      title_with_scope: "Huidige filter voor %{name}"
       no_current_filters: "Geen"
     status_tag:
       "yes": "Ja"
@@ -39,14 +47,14 @@ nl:
       search_status: "Zoek status"
     pagination:
       empty: "Geen %{model} gevonden"
-      one: "Geeft <b>1</b> %{model} weer"
-      one_page: "Geeft <b>%{n}</b> %{model} weer"
-      multiple: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> van de <b>%{total}</b> weer"
-      multiple_without_total: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      one: "Toont <b>1</b> van <b>1</b>"
+      one_page: "Toont <b>alle %{n}</b>"
+      multiple: "Toont <b>%{from}-%{to}</b> van <b>%{total}</b>"
+      multiple_without_total: "Toont <b>%{from}-%{to}</b>"
+      per_page: "Per pagina: "
       entry:
         one: "entry"
         other: "entries"
-      per_page: "Per pagina: "
     any: "Alle"
     blank_slate:
       content: "Er zijn geen %{resource_name} gevonden."
@@ -63,18 +71,18 @@ nl:
       labels:
         destroy: "Verwijder"
     comments:
-      created_at: 'Aangemaakt op'
+      created_at: "Aangemaakt op"
       resource_type: "Resource Type"
       author_type: "Auteur Type"
       body: "Tekst"
       author: "Auteur"
-      add: "Voeg commentaar toe"
-      delete: 'Verwijder commentaar'
-      delete_confirmation: "Weet u zeker dat u dit commentaar wilt verwijderen?"
+      add: "Voeg reactie toe"
+      delete: "Verwijder reactie"
+      delete_confirmation: "Weet u zeker dat u deze reactie wilt verwijderen?"
       resource: "Resource"
       no_comments_yet: "Nog geen reacties."
       author_missing: "Anoniem"
-      title_content: "Reacties (%{count})"
+      title_content: "Alle reacties (%{count})"
       errors:
         empty_text: "De reactie is niet opgeslagen, de tekst was leeg."
     devise:
@@ -92,9 +100,9 @@ nl:
         title: "Registreren"
         submit: "Registreren"
       login:
-        title: "inloggen"
+        title: "Inloggen"
         remember_me: "Onthoud mij"
-        submit: "inloggen"
+        submit: "Inloggen"
       reset_password:
         title: "Wachtwoord vergeten?"
         submit: "Reset mijn wachtwoord"
