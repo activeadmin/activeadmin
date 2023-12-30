@@ -71,6 +71,19 @@ The `column` method can take a title as its first argument and data
 (`:your_method`) as its second (or first if no title provided). Column also
 takes a block.
 
+### Responsive Support
+
+For a mobile friendly `table_for`, you'll need to wrap it with a `div` and apply
+horizontal overflow to enable horizontal scrolling.
+
+```ruby
+div class: "overflow-x-auto" do
+  table_for payments do
+    # ...
+  end
+end
+```
+
 ### Internationalization
 
 To customize the internationalization for the component, specify a resource to
