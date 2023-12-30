@@ -108,15 +108,18 @@ module.exports = plugin(
         'background-position': `right ${spacing[3]} center`,
         'background-repeat': `no-repeat`,
         'background-size': `0.75em 0.75em`,
-        'padding-right': spacing[8],
+        'padding-inline-end': spacing[8],
         'print-color-adjust': `exact`,
+      },
+      [':is(:where([dir=rtl]) select)']: {
+        'background-position': `left ${spacing[3]} center`,
       },
       ['[multiple]']: {
         'background-image': 'initial',
         'background-position': 'initial',
         'background-repeat': 'unset',
         'background-size': 'initial',
-        'padding-right': spacing[3],
+        'padding-inline-end': spacing[3],
         'print-color-adjust': 'unset',
       },
       [[`[type='checkbox']`, `[type='radio']`]]: {
@@ -227,8 +230,8 @@ module.exports = plugin(
         cursor: 'pointer',
         'padding-top': spacing[2.5],
         'padding-bottom': spacing[2.5],
-        'padding-left': spacing[8],
-        'padding-right': spacing[4],
+        'padding-inline-start': spacing[8],
+        'padding-inline-end': spacing[4],
         'margin-inline-start': '-1rem',
         'margin-inline-end': '1rem',
         '&:hover': {
@@ -335,7 +338,7 @@ module.exports = plugin(
       },
       // Prevent double borders when buttons are next to each other
       '.index-button-group > :where(*:not(:first-child))': {
-        '@apply -ml-px my-0': {}
+        '@apply -ms-px my-0': {}
       },
       '.index-button': {
         '@apply inline-flex items-center justify-center px-3 py-2 text-sm font-medium no-underline text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 first:rounded-s-md last:rounded-e-md dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-800 dark:focus:ring-blue-500 dark:focus:text-white': {}
@@ -365,10 +368,10 @@ module.exports = plugin(
         '@apply relative overflow-x-auto': {}
       },
       '.data-table': {
-        '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
+        '@apply w-full text-sm text-gray-800 dark:text-gray-300': {}
       },
       '.data-table :where(thead > tr > th)': {
-        '@apply px-3 py-3.5 whitespace-nowrap font-semibold text-xs uppercase border-b text-gray-700 bg-gray-50 dark:bg-gray-950/50 dark:border-gray-800 dark:text-white': {}
+        '@apply px-3 py-3.5 whitespace-nowrap font-semibold text-start text-xs uppercase border-b text-gray-700 bg-gray-50 dark:bg-gray-950/50 dark:border-gray-800 dark:text-white': {}
       },
       '.data-table :where(thead > tr > th > a)': {
         '@apply text-inherit no-underline': {}
@@ -443,13 +446,13 @@ module.exports = plugin(
         '@apply overflow-hidden mb-6 border border-gray-200 rounded-md shadow-sm dark:border-gray-800': {}
       },
       '.attributes-table > :where(table)': {
-        '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
+        '@apply w-full text-sm text-gray-800 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr)': {
         '@apply border-b dark:border-gray-800': {}
       },
       '.attributes-table :where(tbody > tr > th)': {
-        '@apply w-32 sm:w-40 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800/60 dark:text-gray-300': {}
+        '@apply w-32 sm:w-40 text-start text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800/60 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr > th, tbody > tr > td)': {
         '@apply p-3': {}
