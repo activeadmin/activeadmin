@@ -961,34 +961,4 @@ RSpec.describe ActiveAdmin::FormBuilder do
       expect(body).to have_selector("[id=#{selector}]", count: 2, visible: :all)
     end
   end
-
-  describe "datepicker input" do
-    context "with default options" do
-      let :body do
-        build_form do |f|
-          f.inputs do
-            f.input :created_at, as: :datepicker
-          end
-        end
-      end
-
-      it "should generate a date input with the class of datepicker" do
-        expect(body).to have_field("post[created_at]", type: "date", class: "datepicker")
-      end
-    end
-
-    describe "with label as proc" do
-      let :body do
-        build_form do |f|
-          f.inputs do
-            f.input :created_at, as: :datepicker, label: proc { "Title from proc" }
-          end
-        end
-      end
-
-      it "should render proper label" do
-        expect(body).to have_css("label", text: "Title from proc")
-      end
-    end
-  end
 end
