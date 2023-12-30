@@ -536,8 +536,11 @@ module.exports = plugin(
       '.formtastic :where(.has_many_add)': {
         '@apply inline-block py-3': {}
       },
+      '.formtastic :where(.has_many_container)': {
+        '@apply space-y-8': {}
+      },
       '.formtastic :where(.has_many_fields)': {
-        '@apply my-5 border-s-2 border-s-gray-700 ps-3': {}
+        '@apply ps-3 border-s-4 border-s-gray-200 dark:border-s-gray-700': {}
       }
     });
   }
