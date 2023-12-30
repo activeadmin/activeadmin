@@ -169,33 +169,6 @@ end
 
 This is particularly useful to display errors on virtual or hidden attributes.
 
-# Tabs
-
-You can arrange content in tabs as shown below:
-
-```ruby
-  form do |f|
-    tabs do
-      tab 'Basic' do
-        f.inputs 'Basic Details' do
-          f.input :email
-          f.input :password
-          f.input :password_confirmation
-        end
-      end
-
-      tab 'Advanced', html_options: { class: 'specific_css_class' } do
-        f.inputs 'Advanced Details' do
-          f.input :role
-        end
-      end
-    end
-    f.actions
-  end
-```
-
-`html_options` allows you set additional html params for tab's menu item.
-
 # Customize the Create Another checkbox
 
 In order to simplify creating multiple resources you may enable ActiveAdmin to

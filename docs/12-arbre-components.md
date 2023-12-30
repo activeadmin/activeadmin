@@ -147,10 +147,12 @@ tabs do
     end
   end
 
-  tab :inactive do
+  tab :inactive, html_options: { class: "specific_css_class" } do
     table_for orders.inactive do
       ...
     end
   end
 end
 ```
+
+The `html_options` will set additional HTML attributes on the tab button.
