@@ -29,14 +29,18 @@
     "eslint": "^8.52.0",
     "gherkin-lint": "^4.2.2",
     "rollup": "^4.9.4",
-    "tailwindcss": "^3.3.5"
+    "tailwindcss": "^3.3.5",
+    "vitepress": "^1.0.0-rc.33"
   },
   "scripts": {
     "gherkin-lint": "gherkin-lint",
     "eslint": "eslint .",
     "prebuild": "rm -rf dist",
     "build": "rollup --config rollup.config.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@rails/ujs": "7.1.2",
