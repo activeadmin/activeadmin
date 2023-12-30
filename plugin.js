@@ -374,7 +374,16 @@ module.exports = plugin(
         '@apply px-3 py-3.5 whitespace-nowrap font-semibold text-start text-xs uppercase border-b text-gray-700 bg-gray-50 dark:bg-gray-950/50 dark:border-gray-800 dark:text-white': {}
       },
       '.data-table :where(thead > tr > th > a)': {
-        '@apply text-inherit no-underline': {}
+        '@apply text-inherit no-underline inline-flex items-center gap-2': {}
+      },
+      '.data-table :where(th[data-sortable] .data-table-sorted-icon) ': {
+        '@apply invisible w-2': {}
+      },
+      '.data-table :where(th[data-sort-direction] .data-table-sorted-icon)': {
+        '@apply visible': {}
+      },
+      '.data-table :where(th[data-sort-direction="asc"] .data-table-sorted-icon)': {
+        '@apply rotate-180': {}
       },
       '.data-table :where(tbody > tr)': {
         '@apply border-b dark:border-gray-800': {}
