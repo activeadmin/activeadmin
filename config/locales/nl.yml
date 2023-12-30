@@ -39,7 +39,7 @@ nl:
     status_tag:
       "yes": "Ja"
       "no": "Geen"
-      "unset": "Geen"
+      "unset": "Onbekend"
     logout: "Uitloggen"
     powered_by: "Mogelijk gemaakt door %{active_admin} %{version}"
     sidebars:
