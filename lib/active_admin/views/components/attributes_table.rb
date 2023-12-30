@@ -68,7 +68,7 @@ module ActiveAdmin
       end
 
       def empty_value
-        span I18n.t("active_admin.empty"), class: "empty-value"
+        span I18n.t("active_admin.empty"), class: "attributes-table-empty-value"
       end
 
       def content_for(record, attr)

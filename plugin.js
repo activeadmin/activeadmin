@@ -321,9 +321,6 @@ module.exports = plugin(
       '.action-item-button': {
         '@apply py-2 px-3 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
       },
-      '.empty-value': {
-        '@apply text-gray-400/50 dark:text-gray-700/60 text-xs uppercase font-semibold': {}
-      },
       '.link-default :where(a)': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
@@ -465,6 +462,9 @@ module.exports = plugin(
       },
       '.attributes-table :where(tbody > tr > th, tbody > tr > td)': {
         '@apply p-3': {}
+      },
+      '.attributes-table-empty-value': {
+        '@apply text-gray-400/50 dark:text-gray-700/60 text-xs uppercase font-semibold': {}
       },
       '.status-tag': {
         '@apply bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400 inline-flex items-center rounded-full text-sm font-medium px-2.5 py-0.5 whitespace-nowrap': {}
