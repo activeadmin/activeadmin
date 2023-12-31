@@ -42,7 +42,7 @@ module ActiveAdmin
         end
 
         case v
-        when String
+        when String, TrueClass, FalseClass
           { k => v }
         when Symbol
           { k => v.to_s }
@@ -54,8 +54,6 @@ module ActiveAdmin
           end
         when nil
           { k => "" }
-        when TrueClass, FalseClass
-          { k => v }
         else
           raise "I don't know what to do with #{v.class} params: #{v.inspect}"
         end
@@ -64,11 +62,8 @@ module ActiveAdmin
 
     # Helper method to render a filter form
     def active_admin_filters_form_for(search, filters, options = {})
-      defaults = { builder: ActiveAdmin::Filters::FormBuilder,
-                    url: collection_path,
-                    html: { class: "filters-form" } }
-      required = { html: { method: :get },
-                    as: :q }
+      defaults = { builder: ActiveAdmin::Filters::FormBuilder, url: collection_path, html: { class: "filters-form" } }
+      required = { html: { method: :get }, as: :q }
       options = defaults.deep_merge(options).deep_merge(required)
 
       form_for search, options do |f|
