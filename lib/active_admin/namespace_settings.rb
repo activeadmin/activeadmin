@@ -71,7 +71,8 @@ module ActiveAdmin
       :utf8, :_method, :authenticity_token, :commit, :id
     ]
 
-    # Set flash message keys that shouldn't show in ActiveAdmin
+    # Set flash message keys that shouldn't show in ActiveAdmin.
+    # By default, we remove the `timedout` key from Devise.
     register :flash_keys_to_except, ["timedout"]
 
     # Include association filters by default

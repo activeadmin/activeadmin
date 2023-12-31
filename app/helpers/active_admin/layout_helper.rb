@@ -41,6 +41,10 @@ module ActiveAdmin
       @skip_sidebar == true
     end
 
+    def flash_messages
+      @flash_messages ||= flash.to_hash.except(*active_admin_application.flash_keys_to_except)
+    end
+
     def url_for_comments(*args)
       parts = []
       parts << active_admin_namespace.name unless active_admin_namespace.root?

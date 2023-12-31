@@ -11,7 +11,6 @@ module ActiveAdmin
     include DisplayHelper
     include MethodOrProcHelper
     include FormHelper
-    include FlashHelper
     include ScopeNameHelper
 
   end
