@@ -4,6 +4,7 @@ module ActiveAdmin
   # It implements ActiveAdmin controllers core features.
   class BaseController < ::InheritedResources::Base
     helper ::ActiveAdmin::ViewHelpers
+    helper LayoutHelper
 
     layout "active_admin"
 

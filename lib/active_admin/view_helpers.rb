@@ -10,11 +10,9 @@ module ActiveAdmin
     include BreadcrumbHelper
     include DisplayHelper
     include MethodOrProcHelper
-    include SidebarHelper
     include FormHelper
     include FlashHelper
     include ScopeNameHelper
-    include LayoutHelper
 
   end
 end

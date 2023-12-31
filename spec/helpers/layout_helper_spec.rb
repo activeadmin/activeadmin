@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe ActiveAdmin::ViewHelpers::SidebarHelper, type: :helper do
+RSpec.describe ActiveAdmin::LayoutHelper, type: :helper do
   describe "skip_sidebar?" do
     it "should return true if skipped" do
       helper.skip_sidebar!
