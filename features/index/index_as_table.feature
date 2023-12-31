@@ -223,13 +223,13 @@ Feature: Index as Table
     When I am on the index page for posts
     Then I should see the "index_table_posts" table:
       | [ ] | Id | Title        | Body | Published Date | Author | Position | Category | Starred | Foo | Created At | Updated At | |
-      | [ ] | 2 | Bye bye world | Move your...  |  |  |  |  | Unknown |  | /.*/ | /.*/ | ViewEditDelete |
-      | [ ] | 1 | Hello World   | From the body |  |  |  |  | Unknown |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  |  |  | Unknown |  | /.*/ | /.*/ | View   Edit   Delete |
+      | [ ] | 1 | Hello World   | From the body |  |  |  |  | Unknown |  | /.*/ | /.*/ | View   Edit   Delete |
     When I follow "Id"
     Then I should see the "index_table_posts" table:
       | [ ] | Id | Title        | Body | Published Date | Author | Position | Category | Starred | Foo | Created At | Updated At | |
-      | [ ] | 1 | Hello World   | From the body |  |  |  |  | Unknown |  | /.*/ | /.*/ | ViewEditDelete |
-      | [ ] | 2 | Bye bye world | Move your...  |  |  |  |  | Unknown |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 1 | Hello World   | From the body |  |  |  |  | Unknown |  | /.*/ | /.*/ | View   Edit   Delete |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  |  |  | Unknown |  | /.*/ | /.*/ | View   Edit   Delete |
 
   Scenario: Sorting by a virtual column
     Given a post with the title "Hello World" exists
