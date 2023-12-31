@@ -1,24 +1,11 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe ActiveAdmin::Filters::ViewHelper do
-  # Setup an ActionView::Base object which can be used for
-  # generating the form for.
-  let(:helpers) do
-    view = mock_action_view
-    def view.collection_path
-      "/posts"
-    end
-
-    def view.a_helper_method
-      "A Helper Method"
-    end
-
-    view
-  end
-
+RSpec.describe ActiveAdmin::FormHelper, type: :helper do
   def render_filter(search, filters)
-    render_arbre_component({ filter_args: [search, filters] }, helpers) do
+    allow(helper).to receive(:collection_path).and_return("/posts")
+    allow(helper).to receive(:a_helper_method).and_return("A Helper Method")
+    render_arbre_component({ filter_args: [search, filters] }, helper) do
       args = assigns[:filter_args]
       kwargs = args.pop if args.last.is_a?(Hash)
       text_node active_admin_filters_form_for *args, **kwargs
@@ -448,24 +435,6 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
   end
 
   describe "has_many :through" do
-    # Setup an ActionView::Base object which can be used for
-    # generating the form for.
-    let(:helpers) do
-      view = mock_action_view
-      def view.collection_path
-        "/categories"
-      end
-
-      def view.protect_against_forgery?
-        false
-      end
-
-      def view.a_helper_method
-        "A Helper Method"
-      end
-
-      view
-    end
     let(:scope) { Category.ransack }
 
     let!(:john) { User.create first_name: "John", last_name: "Doe", username: "john_doe" }

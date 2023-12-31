@@ -5,6 +5,7 @@ module ActiveAdmin
   class BaseController < ::InheritedResources::Base
     helper ::ActiveAdmin::ViewHelpers
     helper LayoutHelper
+    helper FormHelper
 
     layout "active_admin"
 

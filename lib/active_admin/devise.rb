@@ -30,6 +30,7 @@ module ActiveAdmin
         layout "active_admin_logged_out"
         helper ::ActiveAdmin::ViewHelpers
         helper ::ActiveAdmin::LayoutHelper
+        helper ::ActiveAdmin::FormHelper
       end
 
       # Redirect to the default namespace on logout
