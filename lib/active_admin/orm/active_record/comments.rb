@@ -75,6 +75,11 @@ ActiveAdmin.after_load do |app|
         def destroy
           destroy! do |success, failure|
             success.html do
+              # If deleting from the Comments resource page then this will fail, as redirecting back
+              # will be to the comment show page, but comment was deleted. The following can be used
+              # to alleviate that, but then deleting comments on commentable resource pages will
+              # redirect to the comments index which may be undesirable.
+              # redirect_to({ action: :index }, fallback_location: active_admin_root)
               redirect_back fallback_location: active_admin_root
             end
             failure.html do
