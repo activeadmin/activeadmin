@@ -3,6 +3,7 @@ require "rails_helper"
 
 RSpec.describe "Breadcrumbs" do
   include ActiveAdmin::ViewHelpers
+  include ActiveAdmin::LayoutHelper
 
   describe "generating a trail from paths" do
     def params; {}; end

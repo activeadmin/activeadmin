@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 module ActiveAdmin
   module LayoutHelper
+    # Returns the current Active Admin application instance
+    def active_admin_application
+      ActiveAdmin.application
+    end
+
     def set_page_title(title)
       @page_title = title
     end

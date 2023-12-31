@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require "rails_helper"
-require "active_admin/view_helpers/active_admin_application_helper"
 require "active_admin/view_helpers/auto_link_helper"
 require "active_admin/view_helpers/display_helper"
 require "active_admin/view_helpers/method_or_proc_helper"
@@ -8,7 +7,7 @@ require "active_admin/view_helpers/method_or_proc_helper"
 RSpec.describe "#auto_link" do
   let(:view_klass) do
     Class.new(ActionView::Base) do
-      include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
+      include ActiveAdmin::LayoutHelper
       include ActiveAdmin::ViewHelpers::AutoLinkHelper
       include ActiveAdmin::ViewHelpers::DisplayHelper
       include MethodOrProcHelper

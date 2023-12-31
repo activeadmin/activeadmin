@@ -5,6 +5,7 @@ require "active_admin/view_helpers/display_helper"
 RSpec.describe "#pretty_format" do
   let(:view_klass) do
     Class.new(ActionView::Base) do
+      include ActiveAdmin::LayoutHelper
       include ActiveAdmin::ViewHelpers
     end
   end
