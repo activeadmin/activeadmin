@@ -9,8 +9,6 @@ require "formtastic_i18n"
 require "inherited_resources"
 require "arbre"
 
-require "active_admin/helpers/i18n"
-
 module ActiveAdmin
 
   autoload :VERSION, "active_admin/version"

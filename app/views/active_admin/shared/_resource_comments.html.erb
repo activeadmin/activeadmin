@@ -1,6 +1,6 @@
 <div class="max-w-[700px]">
   <div class="font-bold py-3 border-b dark:border-gray-600">
-    <%= ActiveAdmin::Comment.model_name.human(count: 2) %>
+    <%= ActiveAdmin::Comment.model_name.human(count: 2.1) %>
   </div>
   <% if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment) %>
     <%= active_admin_form_for(ActiveAdmin::Comment.new, url: comment_form_url, html: { class: "mb-12 max-w-[700px]", novalidate: false }) do |f|
