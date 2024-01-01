@@ -32,6 +32,10 @@ module ActiveAdmin
       end
     end
 
+    def auto_logout_link_path
+      render_or_call_method_or_proc_on(self, active_admin_namespace.logout_link_path)
+    end
+
     private
 
     # Returns the ActiveAdmin::Resource instance for a class
