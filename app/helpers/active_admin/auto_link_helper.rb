@@ -7,7 +7,7 @@ module ActiveAdmin
     # the resource has not been registered, a string representation of
     # the object is returned.
     #
-    # The default content in the link is returned from ActiveAdmin::ViewHelpers::DisplayHelper#display_name
+    # The default content in the link is returned from ActiveAdmin::DisplayHelper#display_name
     #
     # You can pass in the content to display
     #   eg: auto_link(@post, "My Link")

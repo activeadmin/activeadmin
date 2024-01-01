@@ -8,6 +8,7 @@ module ActiveAdmin
     helper FormHelper
     helper BreadcrumbHelper
     helper AutoLinkHelper
+    helper DisplayHelper
 
     layout "active_admin"
 

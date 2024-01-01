@@ -1,30 +1,16 @@
 # frozen_string_literal: true
 require "rails_helper"
-require "active_admin/view_helpers/display_helper"
-require "active_admin/view_helpers/method_or_proc_helper"
 
-RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
-  let(:view_klass) do
-    Class.new(ActionView::Base) do
-      include ActiveAdmin::LayoutHelper
-      include ActiveAdmin::AutoLinkHelper
-      include ActiveAdmin::ViewHelpers::DisplayHelper
-      include MethodOrProcHelper
-      include ActionView::Helpers::UrlHelper
-      include ActionView::Helpers::TranslationHelper
-    end
-  end
-
-  let(:active_admin_namespace) { view.active_admin_application.namespaces[:admin] }
-
-  let(:view) { mock_action_view(view_klass) }
-
-  let(:displayed_name) { view.display_name(resource) }
+RSpec.describe ActiveAdmin::DisplayHelper, type: :helper do
+  let(:active_admin_namespace) { helper.active_admin_application.namespaces[:admin] }
+  let(:displayed_name) { helper.display_name(resource) }
 
   before do
-    allow(view).to receive(:authorized?).and_return(true)
-    allow(view).to receive(:active_admin_namespace).and_return(active_admin_namespace)
-    allow(view).to receive(:url_options).and_return(locale: nil)
+    helper.class.send(:include, ActiveAdmin::LayoutHelper)
+    helper.class.send(:include, ActiveAdmin::AutoLinkHelper)
+    allow(helper).to receive(:authorized?).and_return(true)
+    allow(helper).to receive(:active_admin_namespace).and_return(active_admin_namespace)
+    allow(helper).to receive(:url_options).and_return(locale: nil)
 
     load_resources do
       ActiveAdmin.register(User)
@@ -141,26 +127,26 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
 
   describe "#format_attribute" do
     it "calls the provided block to format the value" do
-      value = view.format_attribute double(foo: 2), ->r { r.foo + 1 }
+      value = helper.format_attribute double(foo: 2), ->r { r.foo + 1 }
 
       expect(value).to eq "3"
     end
 
     it "finds values as methods" do
-      value = view.format_attribute double(name: "Joe"), :name
+      value = helper.format_attribute double(name: "Joe"), :name
 
       expect(value).to eq "Joe"
     end
 
     it "finds values from hashes" do
-      value = view.format_attribute({ id: 100 }, :id)
+      value = helper.format_attribute({ id: 100 }, :id)
 
       expect(value).to eq "100"
     end
 
     [1, 1.2, :a_symbol].each do |val|
       it "calls to_s to format the value of type #{val.class}" do
-        value = view.format_attribute double(foo: val), :foo
+        value = helper.format_attribute double(foo: val), :foo
 
         expect(value).to eq val.to_s
       end
@@ -169,7 +155,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it "localizes dates" do
       date = Date.parse "2016/02/28"
 
-      value = view.format_attribute double(date: date), :date
+      value = helper.format_attribute double(date: date), :date
 
       expect(value).to eq "February 28, 2016"
     end
@@ -177,7 +163,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it "localizes times" do
       time = Time.parse "2016/02/28 9:34 PM"
 
-      value = view.format_attribute double(time: time), :time
+      value = helper.format_attribute double(time: time), :time
 
       expect(value).to eq "February 28, 2016 21:34"
     end
@@ -185,7 +171,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it "uses a display_name method for arbitrary objects" do
       object = double to_s: :wrong, display_name: :right
 
-      value = view.format_attribute double(object: object), :object
+      value = helper.format_attribute double(object: object), :object
 
       expect(value).to eq "right"
     end
@@ -193,7 +179,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it "auto-links ActiveRecord records by association with display name fallback" do
       post = Post.create! author: User.new(first_name: "", last_name: "")
 
-      value = view.format_attribute post, :author
+      value = helper.format_attribute post, :author
 
       expect(value).to match /<a href="\/admin\/users\/\d+">User \#\d+<\/a>/
     end
@@ -201,7 +187,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it "auto-links ActiveRecord records & uses a display_name method" do
       post = Post.create! author: User.new(first_name: "A", last_name: "B")
 
-      value = view.format_attribute post, :author
+      value = helper.format_attribute post, :author
 
       expect(value).to match /<a href="\/admin\/users\/\d+">A B<\/a>/
     end
@@ -209,7 +195,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it "calls status_tag for boolean values" do
       post = Post.new starred: true
 
-      value = view.format_attribute post, :starred
+      value = helper.format_attribute post, :starred
 
       expect(value.to_s).to eq "<span class=\"status-tag\" data-status=\"yes\">Yes</span>\n"
     end
@@ -222,9 +208,9 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       post.define_singleton_method(:false_method) do
         false
       end
-      true_value = view.format_attribute post, :true_method
+      true_value = helper.format_attribute post, :true_method
       expect(true_value.to_s).to eq "<span class=\"status-tag\" data-status=\"yes\">Yes</span>\n"
-      false_value = view.format_attribute post, :false_method
+      false_value = helper.format_attribute post, :false_method
       expect(false_value.to_s).to eq "<span class=\"status-tag\" data-status=\"no\">No</span>\n"
     end
 
@@ -234,7 +220,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       end
       post = Post.create!(tags: tags)
 
-      value = view.format_attribute post, :tags
+      value = helper.format_attribute post, :tags
 
       expect(value.to_s).to eq "abc1, abc2, abc3"
     end
@@ -244,9 +230,132 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       post = Post.create!
       allow(post).to receive(:items).and_return(items)
 
-      value = view.format_attribute post, :items
+      value = helper.format_attribute post, :items
 
       expect(value.to_s).to eq "abc1, abc2, abc3"
+    end
+  end
+
+  describe "#pretty_format" do
+    let(:formatted_obj) { helper.pretty_format(obj) }
+
+    shared_examples_for "an object convertible to string" do
+      it "should call `to_s` on the given object" do
+        expect(formatted_obj).to eq obj.to_s
+      end
+    end
+
+    context "when given a string" do
+      let(:obj) { "hello" }
+
+      it_behaves_like "an object convertible to string"
+    end
+
+    context "when given an integer" do
+      let(:obj) { 23 }
+
+      it_behaves_like "an object convertible to string"
+    end
+
+    context "when given a float" do
+      let(:obj) { 5.67 }
+
+      it_behaves_like "an object convertible to string"
+    end
+
+    context "when given an exponential" do
+      let(:obj) { 10**30 }
+
+      it_behaves_like "an object convertible to string"
+    end
+
+    context "when given a symbol" do
+      let(:obj) { :foo }
+
+      it_behaves_like "an object convertible to string"
+    end
+
+    context "when given an arbre element" do
+      let(:obj) { Arbre::Element.new.br }
+
+      it_behaves_like "an object convertible to string"
+    end
+
+    shared_examples_for "a time-ish object" do
+      it "formats it with the default long format" do
+        expect(formatted_obj).to eq "February 28, 1985 20:15"
+      end
+
+      it "formats it with a customized long format" do
+        with_translation %i[time formats long], "%B %d, %Y, %l:%M%P" do
+          expect(formatted_obj).to eq "February 28, 1985,  8:15pm"
+        end
+      end
+
+      context "with a custom localize format" do
+        around do |example|
+          previous_localize_format = ActiveAdmin.application.localize_format
+          ActiveAdmin.application.localize_format = :short
+          example.call
+          ActiveAdmin.application.localize_format = previous_localize_format
+        end
+
+        it "formats it with the default custom format" do
+          expect(formatted_obj).to eq "28 Feb 20:15"
+        end
+
+        it "formats it with i18n custom format" do
+          with_translation %i[time formats short], "%-m %d %Y" do
+            expect(formatted_obj).to eq "2 28 1985"
+          end
+        end
+      end
+
+      context "with non-English locale" do
+        around do |example|
+          I18n.with_locale(:es, &example)
+        end
+
+        it "formats it with the default long format" do
+          expect(formatted_obj).to eq "28 de febrero de 1985 20:15"
+        end
+
+        it "formats it with a customized long format" do
+          with_translation %i[time formats long], "El %d de %B de %Y a las %H horas y %M minutos" do
+            expect(formatted_obj).to eq "El 28 de febrero de 1985 a las 20 horas y 15 minutos"
+          end
+        end
+      end
+    end
+
+    context "when given a Time in utc" do
+      let(:obj) { Time.utc(1985, "feb", 28, 20, 15, 1) }
+
+      it_behaves_like "a time-ish object"
+    end
+
+    context "when given a DateTime" do
+      let(:obj) { DateTime.new(1985, 2, 28, 20, 15, 1) }
+
+      it_behaves_like "a time-ish object"
+    end
+
+    context "given an ActiveRecord object" do
+      let(:obj) { Post.new }
+
+      it "should delegate to auto_link" do
+        expect(view).to receive(:auto_link).with(obj).and_return("model name")
+        expect(formatted_obj).to eq "model name"
+      end
+    end
+
+    context "given an arbitrary object" do
+      let(:obj) { Class.new.new }
+
+      it "should delegate to `display_name`" do
+        expect(view).to receive(:display_name).with(obj) { "I'm not famous" }
+        expect(formatted_obj).to eq "I'm not famous"
+      end
     end
   end
 end

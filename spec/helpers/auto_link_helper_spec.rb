@@ -8,7 +8,7 @@ RSpec.describe ActiveAdmin::AutoLinkHelper, type: :helper do
   let(:post) { Post.create! title: "Hello World" }
 
   before do
-    helper.class.send(:include, ActiveAdmin::ViewHelpers::DisplayHelper)
+    helper.class.send(:include, ActiveAdmin::DisplayHelper)
     helper.class.send(:include, ActiveAdmin::LayoutHelper)
     allow(helper).to receive(:authorized?).and_return(true)
     allow(helper).to receive(:active_admin_namespace).and_return(active_admin_namespace)

@@ -21,7 +21,7 @@ RSpec.describe ActiveAdmin::BreadcrumbHelper, type: :helper do
     end
 
     let(:trail) do
-      helper.class.send(:include, ActiveAdmin::ViewHelpers::DisplayHelper)
+      helper.class.send(:include, ActiveAdmin::DisplayHelper)
       helper.class.send(:include, ActiveAdmin::LayoutHelper)
       allow(helper).to receive(:link_to) { |name, url| { name: name, path: url } }
       allow(helper).to receive(:active_admin_config).and_return(active_admin_config)

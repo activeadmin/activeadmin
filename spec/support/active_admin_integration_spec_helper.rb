@@ -45,6 +45,7 @@ module ActiveAdminIntegrationSpecHelper
   class MockActionView < ::ActionView::Base
     include ActiveAdmin::LayoutHelper
     include ActiveAdmin::AutoLinkHelper
+    include ActiveAdmin::DisplayHelper
     include ActiveAdmin::ViewHelpers
     include Rails.application.routes.url_helpers
 
