@@ -6,6 +6,7 @@ module ActiveAdmin
     helper ::ActiveAdmin::ViewHelpers
     helper LayoutHelper
     helper FormHelper
+    helper BreadcrumbHelper
 
     layout "active_admin"
 

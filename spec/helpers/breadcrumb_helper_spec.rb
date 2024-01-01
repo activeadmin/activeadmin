@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe "Breadcrumbs" do
-  include ActiveAdmin::ViewHelpers
-  include ActiveAdmin::LayoutHelper
-
+RSpec.describe ActiveAdmin::BreadcrumbHelper, type: :helper do
   describe "generating a trail from paths" do
-    def params; {}; end
-    def link_to(name, url, html_options = {}); { name: name, path: url }; end
-
-    actions = ActiveAdmin::BaseController::ACTIVE_ADMIN_ACTIONS
+    let(:actions) { ActiveAdmin::BaseController::ACTIVE_ADMIN_ACTIONS }
 
     let(:user) { double display_name: "Jane Doe" }
     let(:user_config) do
@@ -26,7 +20,13 @@ RSpec.describe "Breadcrumbs" do
       post_config
     end
 
-    let(:trail) { build_breadcrumb_links(path) }
+    let(:trail) do
+      helper.class.send(:include, ActiveAdmin::ViewHelpers::DisplayHelper)
+      helper.class.send(:include, ActiveAdmin::LayoutHelper)
+      allow(helper).to receive(:link_to) { |name, url| { name: name, path: url } }
+      allow(helper).to receive(:active_admin_config).and_return(active_admin_config)
+      helper.build_breadcrumb_links(path)
+    end
 
     context "when request '/admin'" do
       let(:path) { "/admin" }

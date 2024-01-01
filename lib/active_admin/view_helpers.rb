@@ -6,7 +6,6 @@ module ActiveAdmin
     Dir[File.expand_path("view_helpers", __dir__) + "/*.rb"].each { |f| require f }
 
     include AutoLinkHelper
-    include BreadcrumbHelper
     include DisplayHelper
     include MethodOrProcHelper
 
