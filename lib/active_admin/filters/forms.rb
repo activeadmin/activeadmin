@@ -41,47 +41,5 @@ module ActiveAdmin
         end
       end
     end
-
-    # This module is included into the view
-    module ViewHelper
-
-      # Helper method to render a filter form
-      def active_admin_filters_form_for(search, filters, options = {})
-        defaults = { builder: ActiveAdmin::Filters::FormBuilder,
-                     url: collection_path,
-                     html: { class: "filters-form" } }
-        required = { html: { method: :get },
-                     as: :q }
-        options = defaults.deep_merge(options).deep_merge(required)
-
-        form_for search, options do |f|
-          f.template.concat hidden_field_tags_for(params, except: except_hidden_fields)
-
-          filters.each do |attribute, opts|
-            next if opts.key?(:if) && !call_method_or_proc_on(self, opts[:if])
-            next if opts.key?(:unless) && call_method_or_proc_on(self, opts[:unless])
-
-            filter_opts = opts.except(:if, :unless)
-            filter_opts[:input_html] = instance_exec(&filter_opts[:input_html]) if filter_opts[:input_html].is_a?(Proc)
-
-            f.filter attribute, filter_opts
-          end
-
-          buttons = content_tag :div, class: "filters-form-buttons" do
-            f.submit(I18n.t("active_admin.filters.buttons.filter"), class: "filters-form-submit") +
-              link_to(I18n.t("active_admin.filters.buttons.clear"), collection_path, class: "filters-form-clear")
-          end
-
-          f.template.concat buttons
-        end
-      end
-
-      private
-
-      def except_hidden_fields
-        [:q, :page]
-      end
-    end
-
   end
 end

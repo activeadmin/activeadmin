@@ -22,7 +22,7 @@
     <ul>
       <% if current_active_admin_user? %>
         <li><%= auto_link current_active_admin_user, class: "block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white" %></li>
-        <li><%= link_to I18n.t("active_admin.logout"), render_or_call_method_or_proc_on(self, active_admin_namespace.logout_link_path), class: "block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white", data: { method: :delete } %></li>
+        <li><%= link_to I18n.t("active_admin.logout"), auto_logout_link_path, class: "block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white", data: { method: :delete } %></li>
       <% end %>
     </ul>
   </div>
