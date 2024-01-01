@@ -78,7 +78,7 @@ ActiveAdmin.register Post do
   end
 
   action_item :toggle_starred, only: :show do
-    link_to "Toggle Starred", toggle_starred_admin_user_post_path(resource.author, resource), method: :put
+    link_to "Toggle Starred", toggle_starred_admin_user_post_path(resource.author, resource), method: :put, class: "action-item-button"
   end
 
   show do

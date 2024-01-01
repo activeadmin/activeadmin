@@ -9,8 +9,6 @@ require "formtastic_i18n"
 require "inherited_resources"
 require "arbre"
 
-require "active_admin/helpers/i18n"
-
 module ActiveAdmin
 
   autoload :VERSION, "active_admin/version"
@@ -131,4 +129,3 @@ require "active_admin/filters"
 
 # Require ORM-specific plugins
 require "active_admin/orm/active_record" if defined? ActiveRecord
-require "active_admin/orm/mongoid" if defined? Mongoid

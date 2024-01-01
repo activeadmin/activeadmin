@@ -79,8 +79,7 @@ module ActiveAdmin
     end
 
     def default_heading
-      assoc_klass.model_name.
-        human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
+      assoc_klass.model_name.human(count: 2.1)
     end
 
     def assoc_klass
