@@ -6,7 +6,7 @@ RSpec.describe MethodOrProcHelper do
 
   let(:context) do
     obj = double receiver_in_context: receiver
-    obj.extend MethodOrProcHelper
+    obj.extend described_class
     obj
   end
 
