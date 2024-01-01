@@ -16,7 +16,7 @@ module ActiveAdmin
       # Collection can be scoped conditionally with an :if or :unless proc.
       def begin_of_association_chain
         return nil unless active_admin_config.scope_to?(self)
-        MethodOrProcHelper.render_in_context(self, active_admin_config.scope_to_method)
+        helpers.render_in_context(self, active_admin_config.scope_to_method)
       end
 
       # Overriding from InheritedResources::BaseHelpers
