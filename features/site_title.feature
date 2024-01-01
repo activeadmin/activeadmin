@@ -23,3 +23,15 @@ Feature: Site title
     """
     When I am on the dashboard
     And I should see the site title "Hello admin@example.com"
+
+  Scenario: Set the site title by namespace
+    Given a configuration of:
+    """
+      ActiveAdmin.application.site_title = "My Great Site"
+      ActiveAdmin.application.namespace(:superadmin).site_title = "Namespace Site Title"
+      ActiveAdmin.register AdminUser, namespace: :superadmin
+    """
+    When I am on the index page for admin_users in the superadmin namespace
+    Then I should see the site title "Namespace Site Title"
+    When I am on the dashboard
+    Then I should see the site title "My Great Site"

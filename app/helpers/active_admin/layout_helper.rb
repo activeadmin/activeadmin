@@ -11,7 +11,9 @@ module ActiveAdmin
     end
 
     def site_title
-      active_admin_application.site_title(self)
+      # Prioritize namespace and account for Devise views where namespace is not available
+      namespace = active_admin_namespace if respond_to?(:active_admin_namespace)
+      (namespace || active_admin_application).site_title(self)
     end
 
     def html_head_site_title(separator: "-")
