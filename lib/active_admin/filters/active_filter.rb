@@ -3,8 +3,6 @@ module ActiveAdmin
   module Filters
 
     class ActiveFilter
-      include ActiveAdmin::ViewHelpers
-
       attr_reader :resource, :condition, :related_class
 
       # Instantiate a `ActiveFilter`

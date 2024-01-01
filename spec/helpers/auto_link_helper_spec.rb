@@ -10,6 +10,7 @@ RSpec.describe ActiveAdmin::AutoLinkHelper, type: :helper do
   before do
     helper.class.send(:include, ActiveAdmin::DisplayHelper)
     helper.class.send(:include, ActiveAdmin::LayoutHelper)
+    helper.class.send(:include, MethodOrProcHelper)
     allow(helper).to receive(:authorized?).and_return(true)
     allow(helper).to receive(:active_admin_namespace).and_return(active_admin_namespace)
     allow(helper).to receive(:url_options).and_return({})

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 module ActiveAdmin
   module AutoLinkHelper
-    include MethodOrProcHelper
-
     # Automatically links objects to their resource controllers. If
     # the resource has not been registered, a string representation of
     # the object is returned.

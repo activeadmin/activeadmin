@@ -46,7 +46,7 @@ module ActiveAdminIntegrationSpecHelper
     include ActiveAdmin::LayoutHelper
     include ActiveAdmin::AutoLinkHelper
     include ActiveAdmin::DisplayHelper
-    include ActiveAdmin::ViewHelpers
+    include MethodOrProcHelper
     include Rails.application.routes.url_helpers
 
     def compiled_method_container

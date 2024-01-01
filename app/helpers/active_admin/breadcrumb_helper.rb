@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 module ActiveAdmin
   module BreadcrumbHelper
-    include MethodOrProcHelper
-
     ID_FORMAT_REGEXP = /\A(\d+|[a-f0-9]{24}|(?:[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}))\z/.freeze
 
     # Returns an array of links to use in a breadcrumb

@@ -18,6 +18,10 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
 
   let(:scope) { Post.ransack }
 
+  before do
+    helper.class.send(:include, MethodOrProcHelper)
+  end
+
   describe "the form in general" do
     let(:body) { filter :title }
 

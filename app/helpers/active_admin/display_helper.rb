@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 module ActiveAdmin
   module DisplayHelper
-    include MethodOrProcHelper
-
     DISPLAY_NAME_FALLBACK = -> {
       klass = self.class
       name = if klass.respond_to?(:model_name)

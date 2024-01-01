@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 module ActiveAdmin
   module FormHelper
-    include MethodOrProcHelper
-
     RESERVED_PARAMS = %w(controller action commit utf8).freeze
 
     def active_admin_form_for(resource, options = {}, &block)
