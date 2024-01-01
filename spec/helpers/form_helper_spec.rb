@@ -78,5 +78,13 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     it "should work with booleans" do
       expect(helper.fields_for_params(booleantest: false)).to eq [ { booleantest: false } ]
     end
+
+    it "should work with nil" do
+      expect(helper.fields_for_params(a: nil)).to eq [ { a: "" } ]
+    end
+
+    it "should raise an error with an unsupported type" do
+      expect { helper.fields_for_params(a: 1) }.to raise_error(TypeError, "Cannot convert Integer value: 1")
+    end
   end
 end

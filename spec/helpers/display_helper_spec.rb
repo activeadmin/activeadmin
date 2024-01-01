@@ -19,6 +19,28 @@ RSpec.describe ActiveAdmin::DisplayHelper, type: :helper do
     end
   end
 
+  describe "display name fallback constant" do
+    let(:fallback_proc) { described_class::DISPLAY_NAME_FALLBACK }
+
+    it "sets the proc to be inspectable" do
+      expect(fallback_proc.inspect).to eq "DISPLAY_NAME_FALLBACK"
+    end
+
+    it "returns a primary key only if class has no model name" do
+      resource_class = Class.new do
+        def self.primary_key
+          :id
+        end
+
+        def id
+          123
+        end
+      end
+
+      expect(helper.render_in_context(resource_class.new, fallback_proc)).to eq " #123"
+    end
+  end
+
   describe "#display_name" do
     let(:resource) { klass.new }
 

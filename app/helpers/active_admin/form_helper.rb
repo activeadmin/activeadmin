@@ -53,7 +53,7 @@ module ActiveAdmin
         when nil
           { k => "" }
         else
-          raise "I don't know what to do with #{v.class} params: #{v.inspect}"
+          raise TypeError, "Cannot convert #{v.class} value: #{v.inspect}"
         end
       end.compact
     end
