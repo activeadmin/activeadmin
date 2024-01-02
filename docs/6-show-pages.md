@@ -81,14 +81,12 @@ ActiveAdmin.register Book do
 end
 ```
 
-If you want to keep the default show data, but add something extra to it:
+If you want to keep the default show data, but add something else around it:
 
 ```ruby
 show do
-  div do
-    h3 'Some custom charts about this object'
-    render partial: 'charts'
-  end
-  default_main_content
+  render "show_default"
+  h3 "Other Details"
+  # ...
 end
 ```
