@@ -64,8 +64,7 @@ module ActiveAdmin
 
       # Adds the default New link on index
       def add_default_new_action_item
-        block = -> { controller.action_methods.include?("new") && authorized?(ActiveAdmin::Auth::NEW, active_admin_config.resource_class) }
-        add_action_item :new, only: :index, if: block do
+        add_action_item :new, only: :index, if: -> { new_action_authorized?(active_admin_config.resource_class) } do
           localizer = ActiveAdmin::Localizers.resource(active_admin_config)
           link_to localizer.t(:new_model), new_resource_path, class: "action-item-button"
         end
@@ -73,8 +72,7 @@ module ActiveAdmin
 
       # Adds the default Edit link on show
       def add_default_edit_action_item
-        block = -> { controller.action_methods.include?("edit") && authorized?(ActiveAdmin::Auth::EDIT, resource) }
-        add_action_item :edit, only: :show, if: block do
+        add_action_item :edit, only: :show, if: -> { edit_action_authorized?(resource) } do
           localizer = ActiveAdmin::Localizers.resource(active_admin_config)
           link_to localizer.t(:edit_model), edit_resource_path(resource), class: "action-item-button"
         end
@@ -82,8 +80,7 @@ module ActiveAdmin
 
       # Adds the default Destroy link on show
       def add_default_show_action_item
-        block = -> { controller.action_methods.include?("destroy") && authorized?(ActiveAdmin::Auth::DESTROY, resource) }
-        add_action_item :destroy, only: :show, if: block do
+        add_action_item :destroy, only: :show, if: -> { destroy_action_authorized?(resource) } do
           localizer = ActiveAdmin::Localizers.resource(active_admin_config)
           link_to(
             localizer.t(:delete_model),
