@@ -30,12 +30,12 @@ ActiveAdmin.register Post do
 end
 ```
 
-If you'd like to keep the default AA look, you can use `attributes_table`:
+If you'd like to keep the default AA look, you can use `attributes_table_for`:
 
 ```ruby
 ActiveAdmin.register Ad do
   show do
-    attributes_table do
+    attributes_table_for(resource) do
       row :title
       row :image do |ad|
         image_tag ad.image.url
