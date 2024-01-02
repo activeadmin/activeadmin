@@ -85,7 +85,7 @@ If you want to keep the default show contents, but add something else around it:
 
 ```ruby
 show do
-  default_main_content
+  render "show_default"
   h3 "Other Details"
   # ...
 end
