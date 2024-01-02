@@ -52,7 +52,7 @@ Feature: Decorators
         decorate_with PostDecorator
 
         show do
-          attributes_table :title, :decorator_method
+          attributes_table_for(resource, :title, :decorator_method)
         end
       end
     """

@@ -31,7 +31,7 @@ ActiveAdmin.register User do
   end
 
   show do
-    attributes_table do
+    attributes_table_for(resource) do
       row :id
       row :first_name
       row :last_name
