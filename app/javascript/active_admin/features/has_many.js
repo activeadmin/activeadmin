@@ -8,11 +8,11 @@ const hasManyRemoveClick = function(event) {
   }
 }
 
-Rails.delegate(document, "a.button.has_many_remove", "click", hasManyRemoveClick)
+Rails.delegate(document, "form .has-many-remove", "click", hasManyRemoveClick)
 
 const hasManyAddClick = function(event) {
   event.preventDefault()
-  const parent = this.closest(".has_many_container")
+  const parent = this.closest(".has-many-container")
 
   let index = parseInt(parent.dataset.has_many_index || (parent.querySelectorAll('fieldset').length - 1), 10)
   parent.dataset.has_many_index = ++index
@@ -25,4 +25,4 @@ const hasManyAddClick = function(event) {
   this.before(tempEl.firstChild)
 }
 
-Rails.delegate(document, "a.button.has_many_add", "click", hasManyAddClick)
+Rails.delegate(document, "form .has-many-add", "click", hasManyAddClick)

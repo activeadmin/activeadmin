@@ -533,13 +533,13 @@ module.exports = plugin(
       '.formtastic :where(.actions .cancel-link)': {
         '@apply font-semibold leading-6 text-gray-900 dark:text-white no-underline': {}
       },
-      '.formtastic :where(.has_many_add)': {
+      '.formtastic :where(.has-many-add)': {
         '@apply inline-block py-3': {}
       },
-      '.formtastic :where(.has_many_container)': {
+      '.formtastic :where(.has-many-container)': {
         '@apply space-y-8': {}
       },
-      '.formtastic :where(.has_many_fields)': {
+      '.formtastic :where(.has-many-fields)': {
         '@apply ps-3 border-s-4 border-s-gray-200 dark:border-s-gray-700': {}
       }
     });

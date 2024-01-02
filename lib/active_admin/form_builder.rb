@@ -49,7 +49,7 @@ module ActiveAdmin
       @assoc = assoc
       @options = extract_custom_settings!(options.dup)
       @options.reverse_merge!(for: assoc)
-      @options[:class] = [options[:class], "inputs has_many_fields"].compact.join(" ")
+      @options[:class] = [options[:class], "inputs has-many-fields"].compact.join(" ")
 
       if sortable_column
         @options[:for] = [assoc, sorted_children(sortable_column)]
@@ -110,12 +110,12 @@ module ActiveAdmin
       if form_builder.object.new_record?
         contents << template.content_tag(:li, class: "input") do
           remove_text = remove_record.is_a?(String) ? remove_record : I18n.t("active_admin.has_many_remove")
-          template.link_to remove_text, "#", class: "button has_many_remove"
+          template.link_to remove_text, "#", class: "has-many-remove"
         end
       elsif allow_destroy?(form_builder.object)
         form_builder.input(
           :_destroy, as: :boolean,
-                     wrapper_html: { class: "has_many_delete" },
+                     wrapper_html: { class: "has-many-delete" },
                      label: I18n.t("active_admin.has_many_delete"))
       end
 
@@ -170,7 +170,7 @@ module ActiveAdmin
       html = template.capture { __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
       text = new_record.is_a?(String) ? new_record : I18n.t("active_admin.has_many_new", model: assoc_name.human)
 
-      template.link_to text, "#", class: "button has_many_add", data: {
+      template.link_to text, "#", class: "has-many-add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
       }
     end
@@ -179,7 +179,7 @@ module ActiveAdmin
       template.content_tag(
         already_in_an_inputs_block ? :li : :div,
         html,
-        class: "has_many_container",
+        class: "has-many-container",
         "data-has-many-association" => assoc,
         "data-sortable" => sortable_column,
         "data-sortable-start" => sortable_start)
