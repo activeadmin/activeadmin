@@ -41,13 +41,13 @@ end
 
 Then /^I should see current filter "([^"]*)" equal to "([^"]*)" with label "([^"]*)"$/ do |name, value, label|
   expect(page).to have_css ".active-filters [data-filter='#{name}'] span", text: label
-  expect(page).to have_css ".active-filters [data-filter='#{name}'] b", text: value
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] strong", text: value
 end
 
 Then /^I should see current filter "([^"]*)" equal to "([^"]*)"$/ do |name, value|
-  expect(page).to have_css ".active-filters [data-filter='#{name}'] b", text: value
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] strong", text: value
 end
 
 Then /^I should see link "([^"]*)" in current filters/ do |label|
-  expect(page).to have_css ".active-filters [data-filter] b a", text: label
+  expect(page).to have_css ".active-filters [data-filter] strong a", text: label
 end
