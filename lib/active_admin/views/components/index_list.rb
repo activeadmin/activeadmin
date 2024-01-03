@@ -4,8 +4,6 @@ module ActiveAdmin
     # Renders a collection of index views available to the resource
     # as a list with a separator
     class IndexList < ActiveAdmin::Component
-      builder_method :index_list_renderer
-
       def tag_name
         "div"
       end

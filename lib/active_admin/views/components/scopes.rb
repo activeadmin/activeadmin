@@ -6,8 +6,6 @@ module ActiveAdmin
     # Renders a collection of ActiveAdmin::Scope objects as a
     # simple list with a seperator
     class Scopes < ActiveAdmin::Component
-      builder_method :scopes_renderer
-
       include ActiveAdmin::ScopeChain
 
       def tag_name

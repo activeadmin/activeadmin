@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 def wrap_with_batch_action_form(&block)
   if active_admin_config.batch_actions.any?
-    batch_action_form(&block)
+    insert_tag(ActiveAdmin::BatchActions::BatchActionForm, &block)
     batch_actions_to_display.each do |batch_action|
       if batch_action.partial.present?
         render(batch_action.partial)
@@ -40,11 +40,8 @@ end
 
 def build_scopes
   if active_admin_config.scopes.any?
-    scope_options = {
-      scope_count: page_presenter.fetch(:scope_count, true)
-    }
-
-    scopes_renderer active_admin_config.scopes, scope_options
+    scope_options = { scope_count: page_presenter.fetch(:scope_count, true) }
+    insert_tag(ActiveAdmin::Views::Scopes, active_admin_config.scopes, scope_options)
   end
 end
 
@@ -57,7 +54,7 @@ def build_index_list
       index_classes << find_index_renderer_class(page_presenter[:as])
     end
 
-    index_list_renderer index_classes
+    insert_tag(ActiveAdmin::Views::IndexList, index_classes)
   end
 end
 
