@@ -237,8 +237,6 @@ module ActiveAdmin
       # methods for quickly displaying items on the index page
       #
       class IndexTableFor < ::ActiveAdmin::Views::TableFor
-        builder_method :index_table_for
-
         # Display a column for checkbox
         def selectable_column(**options)
           return unless active_admin_config.batch_actions.any?
@@ -292,8 +290,8 @@ module ActiveAdmin
           defaults = options.delete(:defaults) { true }
 
           column name, options do |resource|
-            table_actions do
-              defaults(resource) if defaults
+            insert_tag(TableActions, class: "data-table-resource-actions") do
+              render "index_table_actions_default", defaults_data(resource) if defaults
               if block
                 block_result = instance_exec(resource, &block)
                 text_node block_result unless block_result.is_a? Arbre::Element
@@ -304,28 +302,18 @@ module ActiveAdmin
 
         private
 
-        def defaults(resource, options = {})
+        def defaults_data(resource)
           localizer = ActiveAdmin::Localizers.resource(active_admin_config)
-          if controller.action_methods.include?("show") && authorized?(ActiveAdmin::Auth::READ, resource)
-            item localizer.t(:view), resource_path(resource), class: "view_link #{options[:css_class]}", title: localizer.t(:view)
-          end
-          if controller.action_methods.include?("edit") && authorized?(ActiveAdmin::Auth::EDIT, resource)
-            item localizer.t(:edit), edit_resource_path(resource), class: "edit_link #{options[:css_class]}", title: localizer.t(:edit)
-          end
-          if controller.action_methods.include?("destroy") && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-            item localizer.t(:delete), resource_path(resource), class: "delete_link #{options[:css_class]}", title: localizer.t(:delete),
-                                                                method: :delete, data: { confirm: localizer.t(:delete_confirmation) }
-          end
+          {
+            resource: resource,
+            view_label: localizer.t(:view),
+            edit_label: localizer.t(:edit),
+            delete_label: localizer.t(:delete),
+            delete_confirmation_text: localizer.t(:delete_confirmation)
+          }
         end
 
         class TableActions < ActiveAdmin::Component
-          builder_method :table_actions
-
-          def initialize(*)
-            super
-            add_class "data-table-resource-actions"
-          end
-
           def item *args, **kwargs
             text_node link_to(*args, **kwargs)
           end

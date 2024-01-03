@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+require "active_admin/filters/active"
+
 module ActiveAdmin
   module Filters
-
     class Disabled < RuntimeError
       def initialize(action)
         super "Cannot #{action} a filter when filters are disabled. Enable filters with 'config.filters = true'"
@@ -9,7 +10,6 @@ module ActiveAdmin
     end
 
     module ResourceExtension
-
       def initialize(*)
         super
         add_filters_sidebar_section
@@ -179,11 +179,10 @@ module ActiveAdmin
       def active_search_sidebar_section
         name = :active_search
         ActiveAdmin::SidebarSection.new name, only: :index, if: -> { active_admin_config.current_filters_enabled? && (params[:q] || params[:scope]) } do
-          active_filters_sidebar_content
+          filters = ActiveAdmin::Filters::Active.new(active_admin_config, assigns[:search])
+          render "active_filters", active_filters: filters
         end
       end
-
     end
-
   end
 end

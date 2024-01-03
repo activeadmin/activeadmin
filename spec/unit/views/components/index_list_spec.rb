@@ -37,7 +37,7 @@ RSpec.describe ActiveAdmin::Views::IndexList do
 
     subject do
       render_arbre_component({ index_classes: index_classes }, helpers) do
-        index_list_renderer(index_classes)
+        insert_tag(ActiveAdmin::Views::IndexList, index_classes)
       end
     end
 

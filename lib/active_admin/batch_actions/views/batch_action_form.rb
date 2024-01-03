@@ -5,8 +5,6 @@ module ActiveAdmin
   module BatchActions
     # Build a BatchActionForm
     class BatchActionForm < ActiveAdmin::Component
-      builder_method :batch_action_form
-
       def build(options = {}, &block)
         options[:id] ||= "collection_selection"
 

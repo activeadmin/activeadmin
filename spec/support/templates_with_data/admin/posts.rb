@@ -82,7 +82,7 @@ ActiveAdmin.register Post do
   end
 
   show do
-    attributes_table do
+    attributes_table_for(resource) do
       row :id
       row :title
       row :published_date

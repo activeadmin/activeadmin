@@ -34,7 +34,7 @@ Feature: Renamed Resource
     """
       ActiveAdmin.register User, as: 'Author' do
         show do |author|
-          attributes_table do
+          attributes_table_for(resource) do
             row :articles do
               link_to 'Author Articles', admin_author_articles_path(author)
             end

@@ -1,17 +1,12 @@
 # frozen_string_literal: true
-require "active_admin/helpers/collection"
 require "active_admin/view_helpers/method_or_proc_helper"
 
 module ActiveAdmin
   module Views
-
     # Renders a collection of ActiveAdmin::Scope objects as a
     # simple list with a seperator
     class Scopes < ActiveAdmin::Component
-      builder_method :scopes_renderer
-
       include ActiveAdmin::ScopeChain
-      include ::ActiveAdmin::Helpers::Collection
 
       def tag_name
         "div"

@@ -1,23 +1,19 @@
 # frozen_string_literal: true
 def wrap_with_batch_action_form(&block)
   if active_admin_config.batch_actions.any?
-    batch_action_form(&block)
+    insert_tag(ActiveAdmin::BatchActions::BatchActionForm, &block)
+    batch_actions_to_display.each do |batch_action|
+      if batch_action.partial.present?
+        render(batch_action.partial)
+      end
+    end
   else
     block.call
   end
 end
 
-def collection_size(c = collection)
-  return c.count if c.is_a?(Array)
-  return c.length if c.limit_value
-
-  c = c.except :select, :order
-
-  c.group_values.present? ? c.count.count : c.count
-end
-
 def build_collection
-  if collection_size(collection) == 0
+  if collection_empty?(collection)
     if params[:q] || params[:scope]
       render("active_admin/resource/index_empty_results")
     else
@@ -30,7 +26,7 @@ end
 
 def build_table_tools
   div class: "index-data-table-toolbar" do
-    build_batch_actions_selector
+    render "batch_actions_dropdown"
     build_scopes
     build_index_list
   end if any_table_tools?
@@ -42,19 +38,10 @@ def any_table_tools?
   active_admin_config.page_presenters[:index].try(:size).try(:>, 1)
 end
 
-def build_batch_actions_selector
-  if active_admin_config.batch_actions.any?
-    batch_action_selector active_admin_config.batch_actions
-  end
-end
-
 def build_scopes
   if active_admin_config.scopes.any?
-    scope_options = {
-      scope_count: page_presenter.fetch(:scope_count, true)
-    }
-
-    scopes_renderer active_admin_config.scopes, scope_options
+    scope_options = { scope_count: page_presenter.fetch(:scope_count, true) }
+    insert_tag(ActiveAdmin::Views::Scopes, active_admin_config.scopes, scope_options)
   end
 end
 
@@ -67,7 +54,7 @@ def build_index_list
       index_classes << find_index_renderer_class(page_presenter[:as])
     end
 
-    index_list_renderer index_classes
+    insert_tag(ActiveAdmin::Views::IndexList, index_classes)
   end
 end
 
@@ -104,10 +91,5 @@ div class: "main-content-container" do
   wrap_with_batch_action_form do
     build_table_tools
     build_collection
-  end
-  active_admin_config.batch_actions.each do |batch_action|
-    if batch_action.partial.present?
-      render(batch_action.partial)
-    end
   end
 end

@@ -1,0 +1,19 @@
+<% if batch_actions_to_display.any? %>
+  <div class="batch-actions-dropdown">
+    <button type="button" class="batch-actions-dropdown-toggle" data-dropdown-toggle="batch-action-menu" disabled data-dropdown-offset-distance="5" data-dropdown-placement="bottom-start">
+      <%= I18n.t("active_admin.batch_actions.button_label") %>
+      <svg class="batch-actions-dropdown-arrow" aria-hidden="true" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+    </button>
+    <ul class="batch-actions-dropdown-menu" id="batch-action-menu">
+      <% batch_actions_to_display.each do |batch_action| %>
+        <li>
+          <% confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm) %>
+          <% default_title = render_or_call_method_or_proc_on(self, batch_action.title) %>
+          <% title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", default: default_title) %>
+          <% label = I18n.t("active_admin.batch_actions.action_label", title: title) %>
+          <%= link_to(label, "#", batch_action.link_html_options.merge(data: { action: batch_action.sym, confirm: confirmation_text.presence, batch_action_item: "" })) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

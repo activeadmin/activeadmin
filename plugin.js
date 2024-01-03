@@ -424,19 +424,19 @@ module.exports = plugin(
       '.active-filters-list': {
         '@apply ps-5 list-disc space-y-1 text-gray-700 dark:text-gray-200': {}
       },
-      '.dropdown': {
+      '.batch-actions-dropdown': {
         '@apply relative': {}
       },
-      '.dropdown-toggle': {
+      '.batch-actions-dropdown-toggle': {
         '@apply transition-opacity rounded-md inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white disabled:text-gray-400 disabled:border-gray-200/70 dark:disabled:bg-gray-900 dark:disabled:text-gray-700 dark:disabled:border-gray-800 disabled:pointer-events-none': {}
       },
-      '.dropdown-toggle-arrow': {
+      '.batch-actions-dropdown-arrow': {
         '@apply w-2.5 h-2.5': {}
       },
-      '.dropdown-menu': {
+      '.batch-actions-dropdown-menu': {
         '@apply z-10 hidden min-w-[7rem] bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
-      '.dropdown-menu :where(ul > li > a)': {
+      '.batch-actions-dropdown-menu :where(li > a)': {
         '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white': {}
       },
       '.panel': {
@@ -533,13 +533,13 @@ module.exports = plugin(
       '.formtastic :where(.actions .cancel-link)': {
         '@apply font-semibold leading-6 text-gray-900 dark:text-white no-underline': {}
       },
-      '.formtastic :where(.has_many_add)': {
+      '.formtastic :where(.has-many-add)': {
         '@apply inline-block py-3': {}
       },
-      '.formtastic :where(.has_many_container)': {
+      '.formtastic :where(.has-many-container)': {
         '@apply space-y-8': {}
       },
-      '.formtastic :where(.has_many_fields)': {
+      '.formtastic :where(.has-many-fields)': {
         '@apply ps-3 border-s-4 border-s-gray-200 dark:border-s-gray-700': {}
       }
     });

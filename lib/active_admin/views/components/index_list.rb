@@ -1,16 +1,9 @@
 # frozen_string_literal: true
-require "active_admin/helpers/collection"
-
 module ActiveAdmin
   module Views
-
     # Renders a collection of index views available to the resource
     # as a list with a separator
     class IndexList < ActiveAdmin::Component
-      builder_method :index_list_renderer
-
-      include ::ActiveAdmin::Helpers::Collection
-
       def tag_name
         "div"
       end
@@ -57,9 +50,8 @@ module ActiveAdmin
       end
 
       def current_filter_search_empty?
-        params.include?(:q) && collection_is_empty?
+        params.include?(:q) && collection_empty?
       end
-
     end
   end
 end

@@ -33,7 +33,7 @@ Feature: Show - Default Content
       ActiveAdmin.register Post do
 
         show do
-          attributes_table :title, :body, :created_at, :updated_at
+          attributes_table_for(resource, :title, :body, :created_at, :updated_at)
         end
 
       end

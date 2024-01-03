@@ -18,7 +18,7 @@ module ActiveAdmin
       end
     end
 
-    # Like `auto_link`, except that it only returns a URL instead of a full <a> tag
+    # Like `auto_link`, except that it only returns a URL for the resource
     def auto_url_for(resource)
       config = active_admin_resource_for(resource.class)
       return unless config
@@ -30,6 +30,22 @@ module ActiveAdmin
         authorized?(ActiveAdmin::Auth::EDIT, resource)
         url_for config.route_edit_instance_path resource, url_options
       end
+    end
+
+    def new_action_authorized?(resource_or_class)
+      controller.action_methods.include?("new") && authorized?(ActiveAdmin::Auth::NEW, resource_or_class)
+    end
+
+    def show_action_authorized?(resource_or_class)
+      controller.action_methods.include?("show") && authorized?(ActiveAdmin::Auth::READ, resource_or_class)
+    end
+
+    def edit_action_authorized?(resource_or_class)
+      controller.action_methods.include?("edit") && authorized?(ActiveAdmin::Auth::EDIT, resource_or_class)
+    end
+
+    def destroy_action_authorized?(resource_or_class)
+      controller.action_methods.include?("destroy") && authorized?(ActiveAdmin::Auth::DESTROY, resource_or_class)
     end
 
     def auto_logout_link_path
