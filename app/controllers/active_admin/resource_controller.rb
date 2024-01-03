@@ -10,7 +10,7 @@ module ActiveAdmin
 
     before_action :restrict_download_format_access!, only: [:index, :show]
 
-    helper IndexScopesHelper
+    helper IndexHelper
 
     include ResourceController::ActionBuilder
     include ResourceController::Decorators

@@ -2,6 +2,11 @@
 def wrap_with_batch_action_form(&block)
   if active_admin_config.batch_actions.any?
     batch_action_form(&block)
+    batch_actions_to_display.each do |batch_action|
+      if batch_action.partial.present?
+        render(batch_action.partial)
+      end
+    end
   else
     block.call
   end
@@ -30,7 +35,7 @@ end
 
 def build_table_tools
   div class: "index-data-table-toolbar" do
-    build_batch_actions_selector
+    render "batch_actions_dropdown"
     build_scopes
     build_index_list
   end if any_table_tools?
@@ -40,12 +45,6 @@ def any_table_tools?
   active_admin_config.batch_actions.any? ||
   active_admin_config.scopes.any? ||
   active_admin_config.page_presenters[:index].try(:size).try(:>, 1)
-end
-
-def build_batch_actions_selector
-  if active_admin_config.batch_actions.any?
-    batch_action_selector active_admin_config.batch_actions
-  end
 end
 
 def build_scopes
@@ -104,10 +103,5 @@ div class: "main-content-container" do
   wrap_with_batch_action_form do
     build_table_tools
     build_collection
-  end
-  active_admin_config.batch_actions.each do |batch_action|
-    if batch_action.partial.present?
-      render(batch_action.partial)
-    end
   end
 end
