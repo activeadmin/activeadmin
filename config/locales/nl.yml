@@ -126,6 +126,3 @@ nl:
       message: "U bent niet gemachtigd voor deze actie."
     index_list:
       table: "Tabel"
-      block: "Lijst"
-      grid: "Rooster"
-      blog: "Blog"

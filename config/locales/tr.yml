@@ -115,6 +115,3 @@ tr:
       message: "Bu işlemi gerçekleştirmek için yetkiniz yok."
     index_list:
       table: "Tablo"
-      block: "Liste"
-      grid: "Izgara"
-      blog: "Blog"

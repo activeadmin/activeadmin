@@ -105,6 +105,3 @@ hr:
       message: "Nemaš dopuštenja."
     index_list:
       table: "Tabela"
-      block: "Lista"
-      grid: "Rešetka"
-      blog: "Blog"

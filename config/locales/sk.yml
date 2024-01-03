@@ -142,6 +142,3 @@ sk:
       message: "Nemáte oprávnenie k vykonaniu tejto akcie."
     index_list:
       table: "Tabuľka"
-      block: "Zoznam"
-      grid: "Tabuľka"
-      blog: "Blog"

@@ -115,6 +115,3 @@ ja:
       message: "アクションを実行する権限がありません"
     index_list:
       table: "テーブル"
-      block: "リスト"
-      grid: "グリッド"
-      blog: "ブログ"

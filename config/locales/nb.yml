@@ -108,6 +108,3 @@ nb:
       message: "Du er ikke autorisert til å utføre denne handlingen."
     index_list:
       table: "Tabell"
-      block: "Liste"
-      grid: "Gitter"
-      blog: "Blogg"

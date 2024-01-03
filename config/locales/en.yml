@@ -142,6 +142,3 @@ en:
       message: "You are not authorized to perform this action."
     index_list:
       table: "Table"
-      block: "List"
-      grid: "Grid"
-      blog: "Blog"

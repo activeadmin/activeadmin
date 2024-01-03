@@ -13,7 +13,7 @@ RSpec.describe ActiveAdmin::Views::IndexList do
       end
 
       def self.index_name
-        "block"
+        "custom"
       end
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe ActiveAdmin::Views::IndexList do
       a_tags = subject.find_by_tag("a")
       expect(a_tags.size).to eq 2
       expect(a_tags.first.to_s).to include("Table")
-      expect(a_tags.last.to_s).to include("List")
+      expect(a_tags.last.to_s).to include("Custom")
     end
 
     it "should maintain index filter parameters" do
@@ -58,7 +58,7 @@ RSpec.describe ActiveAdmin::Views::IndexList do
       expect(a_tags.first.attributes[:href])
         .to eq("/?#{ { as: "table", q: { title_cont: "terms" } }.to_query }")
       expect(a_tags.last.attributes[:href])
-        .to eq("/?#{ { as: "block", q: { title_cont: "terms" } }.to_query }")
+        .to eq("/?#{ { as: "custom", q: { title_cont: "terms" } }.to_query }")
     end
   end
 end

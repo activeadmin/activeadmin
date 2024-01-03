@@ -114,6 +114,3 @@ he:
       message: "אינך רשאי לבצע פעולה זו."
     index_list:
       table: "טבלה"
-      block: "רשימה"
-      grid: "גריד"
-      blog: "בלוג"

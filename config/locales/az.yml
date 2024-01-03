@@ -113,6 +113,3 @@ az:
       message: "Bunu etmək üçün daxil olmalısınız."
     index_list:
       table: "Cədvəl"
-      block: "Siyahı"
-      grid: "Tor"
-      blog: "Bloq"

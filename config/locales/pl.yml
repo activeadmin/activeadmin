@@ -142,6 +142,3 @@ pl:
       message: "Nie masz uprawnień wystarczających do wykonania tej akcji."
     index_list:
       table: "Tabela"
-      block: "Lista"
-      grid: "Siatka"
-      blog: "Blog"

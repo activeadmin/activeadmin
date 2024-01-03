@@ -137,6 +137,3 @@ fr:
       message: "Vous n'êtes pas autorisé à exécuter cette action"
     index_list:
       table: "Tableau"
-      block: "Liste"
-      grid: "Grille"
-      blog: "Blog"

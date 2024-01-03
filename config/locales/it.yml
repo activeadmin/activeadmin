@@ -136,6 +136,3 @@ it:
       message: "Non hai le autorizzazioni necessarie per eseguire questa azione."
     index_list:
       table: "Tabella"
-      block: "Lista"
-      grid: "Griglia"
-      blog: "Blog"

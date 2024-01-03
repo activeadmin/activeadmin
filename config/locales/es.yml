@@ -136,6 +136,3 @@ es:
       message: "No está autorizado/a a realizar esta acción."
     index_list:
       table: "Tabla"
-      block: "Lista"
-      grid: "Grilla"
-      blog: "Blog"
