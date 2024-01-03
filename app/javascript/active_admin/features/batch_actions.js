@@ -37,8 +37,8 @@ Rails.delegate(document, "[data-batch-action-item]", "confirm:complete", batchAc
 Rails.delegate(document, "[data-batch-action-item]", "click", batchActionClick)
 Rails.delegate(document, "form[data-batch-action-form]", "submit", batchActionFormSubmit)
 
-const toggleDropdown = function(condition) {
-  const button = document.querySelector(".batch-actions-dropdown > button")
+const disableDropdown = function(condition) {
+  const button = document.querySelector(".batch-actions-dropdown-toggle")
   if (button) {
     button.disabled = condition
   }
@@ -55,7 +55,7 @@ const toggleAllChange = function(event) {
     row.classList.toggle("selected", this.checked);
   }
 
-  toggleDropdown(!this.checked)
+  disableDropdown(!this.checked)
 }
 
 Rails.delegate(document, "input[type=checkbox].toggle_all", "change", toggleAllChange)
@@ -71,7 +71,7 @@ const toggleCheckboxChange = function(event) {
     toggleAll.indeterminate = someChecked
   }
 
-  toggleDropdown(numChecked === 0)
+  disableDropdown(numChecked === 0)
 }
 
 Rails.delegate(document, "input[type=checkbox].collection_selection", "change", toggleCheckboxChange)
