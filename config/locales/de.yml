@@ -136,6 +136,3 @@ de:
       message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
     index_list:
       table: "Tabelle"
-      block: "Liste"
-      grid: "Gitter"
-      blog: "Blog"

@@ -91,6 +91,3 @@ cs:
       message: "Nemáte oprávnění k provedení této akce."
     index_list:
       table: "Tabulka"
-      block: "Seznam"
-      grid: "Tabulka"
-      blog: "Blog"

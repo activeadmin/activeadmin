@@ -136,6 +136,3 @@
       message: "Du har inte behörighet att utföra denna åtgärd."
     index_list:
       table: "Tabell"
-      block: "Lista"
-      grid: "Rutnät"
-      blog: "Blogg"

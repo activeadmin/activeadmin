@@ -116,6 +116,3 @@ lt:
       message: 'Jūs nesate įgaliotas atlikti šį veiksmą.'
     index_list:
       table: "Lentelė"
-      block: "Sąrašas"
-      grid: "Tinklelis"
-      blog: "Blog"

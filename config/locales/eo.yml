@@ -118,6 +118,3 @@ eo:
       message: "Vi ne rajtas fari tiun agon."
     index_list:
       table: "Tabelo"
-      block: "Listo"
-      grid: "Krado"
-      blog: "Blogo"

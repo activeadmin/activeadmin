@@ -87,6 +87,3 @@ ca:
       message: "No esta autoritzat a realitzar aquesta acció."
     index_list:
       table: "Taula"
-      block: "Llista"
-      grid: "Graella"
-      blog: "Bloc"

@@ -136,6 +136,3 @@
       message: "您无权处理此操作"
     index_list:
       table: "表格"
-      block: "列表"
-      grid: "网格"
-      blog: "博客"

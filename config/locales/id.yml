@@ -110,6 +110,3 @@ id:
       message: "Anda tidak diperkenankan melakukan aksi tersebut."
     index_list:
       table: "Tabel"
-      block: "Daftar"
-      grid: "Grid"
-      blog: "Blog"

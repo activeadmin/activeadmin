@@ -104,6 +104,3 @@ el:
       message: "Δεν έχετε πρόσβαση για αυτή την ενέργεια."
     index_list:
       table: "Πίνακας"
-      block: "Λίστα"
-      grid: "Πλέγμα"
-      blog: "Blog"

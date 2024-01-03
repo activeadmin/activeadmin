@@ -110,6 +110,3 @@ ar:
       message: "لم يُصرّح لك بهذا الإجراء."
     index_list:
       table: "جدول"
-      block: "قائمة"
-      grid: "شبكة"
-      blog: "مدونة"

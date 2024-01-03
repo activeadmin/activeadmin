@@ -94,6 +94,3 @@ fi:
       message: "Sinulla ei ole oikeuksia suorittaa yrittämääsi toimintoa."
     index_list:
       table: "Taulukko"
-      block: "Lista"
-      grid: "Ruudukko"
-      blog: "Blogi"

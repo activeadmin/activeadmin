@@ -112,6 +112,3 @@ da:
       message: "Du har ikke rettigheder til at udføre denne handling."
     index_list:
       table: "Tabel"
-      block: "Liste"
-      grid: "Gitter"
-      blog: "Blog"

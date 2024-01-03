@@ -117,6 +117,3 @@ pt-BR:
       message: "Você não tem permissão para realizar o solicitado"
     index_list:
       table: "Tabela"
-      block: "Lista"
-      grid: "Grid"
-      blog: "Blog"

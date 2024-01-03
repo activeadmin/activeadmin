@@ -79,6 +79,3 @@ es-MX:
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
     index_list:
       table: "Tabla"
-      block: "Lista"
-      grid: "Cuadrícula"
-      blog: "Blog"

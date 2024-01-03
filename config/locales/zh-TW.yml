@@ -110,6 +110,3 @@
       message: "您沒有權限執行此項操作"
     index_list:
       table: "表格"
-      block: "清單"
-      grid: "格狀"
-      blog: "部落格"
