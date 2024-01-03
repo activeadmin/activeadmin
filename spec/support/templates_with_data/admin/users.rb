@@ -16,7 +16,7 @@ ActiveAdmin.register User do
     column :age
     column :created_at, class: "min-w-[13rem]"
     column :updated_at, class: "min-w-[13rem]"
-    actions dropdown: true
+    actions
   end
 
   index as: ActiveAdmin::Views::CustomIndex do |user|
