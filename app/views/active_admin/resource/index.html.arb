@@ -12,17 +12,8 @@ def wrap_with_batch_action_form(&block)
   end
 end
 
-def collection_size(c = collection)
-  return c.count if c.is_a?(Array)
-  return c.length if c.limit_value
-
-  c = c.except :select, :order
-
-  c.group_values.present? ? c.count.count : c.count
-end
-
 def build_collection
-  if collection_size(collection) == 0
+  if collection_empty?(collection)
     if params[:q] || params[:scope]
       render("active_admin/resource/index_empty_results")
     else

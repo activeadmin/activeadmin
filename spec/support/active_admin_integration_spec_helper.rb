@@ -46,6 +46,7 @@ module ActiveAdminIntegrationSpecHelper
     include ActiveAdmin::LayoutHelper
     include ActiveAdmin::AutoLinkHelper
     include ActiveAdmin::DisplayHelper
+    include ActiveAdmin::IndexHelper
     include MethodOrProcHelper
     include Rails.application.routes.url_helpers
 
