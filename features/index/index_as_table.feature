@@ -128,7 +128,7 @@ Feature: Index as Table
         index do
           column :category
           actions do |resource|
-            link_to 'Custom Action', edit_admin_post_path(resource)
+            item 'Custom Action', edit_admin_post_path(resource)
           end
         end
       end
@@ -148,7 +148,7 @@ Feature: Index as Table
         index do
           column :category
           actions defaults: false do |resource|
-            link_to 'Custom Action', edit_admin_post_path(resource)
+            item 'Custom Action', edit_admin_post_path(resource)
           end
         end
       end
