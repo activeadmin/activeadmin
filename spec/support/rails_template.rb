@@ -3,6 +3,7 @@
 
 gem "cssbundling-rails"
 rails_command "css:install:tailwind"
+rails_command "importmap:install"
 
 initial_timestamp = Time.now.strftime("%Y%M%d%H%M%S").to_i
 
