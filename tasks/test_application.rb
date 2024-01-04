@@ -45,7 +45,6 @@ module ActiveAdmin
         --skip-system-test
         --skip-webpack-install
         --javascript=importmap
-        --css=tailwind
       )
 
       command = ["bundle", "exec", "rails", "new", app_dir, *args].join(" ")
