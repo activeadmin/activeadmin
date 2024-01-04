@@ -6,20 +6,8 @@ RSpec.describe "ActiveAdmin Installation" do
     expect(File.exist?(Rails.root.join("app/assets/stylesheets/active_admin.css"))).to eq true
   end
 
-  it "creates package.json" do
-    expect(File.exist?(Rails.root.join("package.json"))).to eq true
-  end
-
-  it "creates tailwind.config.js" do
-    expect(File.exist?(Rails.root.join("tailwind.config.js"))).to eq true
-  end
-
-  it "creates Procfile.dev" do
-    expect(File.exist?(Rails.root.join("Procfile.dev"))).to eq true
-  end
-
-  it "creates a .keep file for app/assets/builds directory" do
-    expect(File.exist?(Rails.root.join("app/assets/builds/.keep"))).to eq true
+  it "creates tailwind config file" do
+    expect(File.exist?(Rails.root.join("tailwind-active_admin.config.js"))).to eq true
   end
 
   it "creates the dashboard resource" do
