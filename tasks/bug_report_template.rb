@@ -16,7 +16,7 @@ gemfile(true) do
   gem "rails", "~> 7.0.0"
 
   gem "sprockets", "~> 4.0"
-  gem "importmap-rails"
+  gem "importmap-rails", "~> 2.0"
   gem "sqlite3", platform: :mri
 
   # Fixes an issue on CI with default gems when using inline bundle with default
