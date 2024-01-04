@@ -36,8 +36,8 @@ module ActiveAdmin
         --skip-active-storage
         --skip-action-cable
         --skip-bootsnap
-        --skip-bundle
-        --skip-gemfile
+        --skip-dev-gems
+        --skip-docker
         --skip-hotwire
         --skip-jbuilder
         --skip-listen
