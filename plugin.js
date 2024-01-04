@@ -373,13 +373,13 @@ module.exports = plugin(
       '.data-table :where(thead > tr > th > a)': {
         '@apply text-inherit no-underline inline-flex items-center gap-2': {}
       },
-      '.data-table :where(th[data-sortable] .data-table-sorted-icon) ': {
-        '@apply invisible w-2': {}
+      '.data-table-sorted-icon': {
+        '@apply invisible w-[8px] h-[5px]': {}
       },
-      '.data-table :where(th[data-sort-direction] .data-table-sorted-icon)': {
+      ':where(th[data-sort-direction]) .data-table-sorted-icon': {
         '@apply visible': {}
       },
-      '.data-table :where(th[data-sort-direction="asc"] .data-table-sorted-icon)': {
+      ':where(th[data-sort-direction="asc"]) .data-table-sorted-icon': {
         '@apply rotate-180': {}
       },
       '.data-table :where(tbody > tr)': {
