@@ -44,9 +44,9 @@ After installing the gem, you need to run the generator. Here are your options:
 The generator adds these core files, among others:
 
 * `app/admin/dashboard.rb`
-* `app/assets/javascripts/active_admin.js`
-* `app/assets/stylesheets/active_admin.scss`
+* `app/assets/stylesheets/active_admin.css`
 * `config/initializers/active_admin.rb`
+* `tailwind-active_admin.config.js`
 
 Now, migrate and seed your database before starting the server:
 
@@ -114,30 +114,6 @@ Draper::CollectionDecorator.send :delegate, :per_page_kaminari
 
 If you're getting the error `wrong number of arguments (6 for 4..5)`, [read #2703].
 
-## webpacker
-
-You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating your configuration to turn on the `use_webpacker` option, either at installation time or manually.
-
-* at active_admin installation:
-
-  ```sh
-  rails g active_admin:install --use_webpacker
-  ```
-
-* manually:
-
-  ```ruby
-  ActiveAdmin.setup do |config|
-    config.use_webpacker = true
-  end
-  ```
-
-  And run the generator to get default Active Admin assets:
-
-  ```sh
-  rails g active_admin:webpacker
-  ```
-
 ## vite_rails
 
 To use Active Admin with Vite, make sure the `@activeadmin/activeadmin` dependency is added to your `package.json` using e.g. Yarn:
@@ -147,7 +123,6 @@ yarn add @activeadmin/activeadmin@^3
 ```
 
 Then follow the steps outlined in this discussion comment: https://github.com/activeadmin/activeadmin/discussions/7947#discussioncomment-5867902
-
 
 [CHANGELOG]: https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md
 [dashboard.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb
