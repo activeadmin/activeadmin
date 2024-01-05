@@ -19,6 +19,8 @@ module ActiveAdmin
       Bundler.with_original_env do
         Kernel.system("yarn install") # so tailwindcss/plugin is available for test app
         Dir.chdir(app_dir) do
+          Kernel.system("yarn add @activeadmin/activeadmin")
+          Kernel.system('npm pkg set scripts.build:css="tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"')
           Kernel.system("yarn install")
           Kernel.system("yarn build:css")
         end
@@ -34,8 +36,10 @@ module ActiveAdmin
         --skip-active-storage
         --skip-action-cable
         --skip-bootsnap
-        --skip-bundle
-        --skip-gemfile
+        --skip-decrypted-diffs
+        --skip-dev-gems
+        --skip-docker
+        --skip-git
         --skip-hotwire
         --skip-jbuilder
         --skip-listen
@@ -45,7 +49,6 @@ module ActiveAdmin
         --skip-system-test
         --skip-webpack-install
         --javascript=importmap
-        --css=tailwind
       )
 
       command = ["bundle", "exec", "rails", "new", app_dir, *args].join(" ")
