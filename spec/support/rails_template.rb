@@ -57,12 +57,7 @@ inject_into_file "app/models/application_record.rb", before: "end" do
   RUBY
 end
 
-inject_into_file "config/environments/development.rb", before: /^end$/ do
-  <<-RUBY
-
-  config.hosts << ".ngrok-free.app"
-  RUBY
-end
+environment 'config.hosts << ".ngrok-free.app"', env: :development
 
 # Make sure we can turn on class reloading in feature specs.
 # Write this rule in a way that works even when the file doesn't set `config.cache_classes` (e.g. Rails 7.1).
@@ -110,9 +105,7 @@ directory File.expand_path("templates/admin", __dir__), "app/admin"
 directory File.expand_path("templates/views", __dir__), "app/views"
 directory File.expand_path("templates/policies", __dir__), "app/policies"
 
-if ENV["RAILS_ENV"] != "test"
-  inject_into_file "config/routes.rb", "\n  root to: redirect('admin')", after: /.*routes.draw do/
-end
+route "root to: redirect('admin')" if ENV["RAILS_ENV"] != "test"
 
 # Rails 7.1 doesn't write test.sqlite3 files if we run db:drop, db:create and db:migrate in a single command.
 # That's why we run it in two steps.
