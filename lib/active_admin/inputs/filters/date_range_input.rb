@@ -39,7 +39,7 @@ module ActiveAdmin
                             nil
                           end
           { placeholder: placeholder,
-            value: current_value ? current_value.to_s : "" }.merge(input_html_options)
+            value: current_value.to_s }.merge(input_html_options)
         end
 
         def gt_input_placeholder
