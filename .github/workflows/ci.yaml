@@ -42,10 +42,6 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - name: Setup git for test app setup
-        run: |
-          git config --global user.email activeadmin@ci.dummy
-          git config --global user.name ActiveAdmin
       - name: Create test app
         run: bin/rake setup
       - name: Restore cached RSpec runtimes

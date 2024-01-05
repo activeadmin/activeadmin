@@ -92,6 +92,3 @@ append_file "db/seeds.rb", "\n\n" + <<~RUBY
 RUBY
 
 rails_command "db:seed"
-
-git add: "."
-git commit: "-m 'Bare application with data'"
