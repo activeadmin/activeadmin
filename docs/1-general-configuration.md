@@ -138,8 +138,7 @@ end
 
 ## Comments
 
-By default Active Admin includes comments on resources. Sometimes, this is
-undesired. To disable comments:
+By default Active Admin includes comments on resources. To disable comments:
 
 ```ruby
 # For the entire application:
