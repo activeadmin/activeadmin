@@ -482,6 +482,9 @@ module.exports = plugin(
         '@apply p-4 mb-6': {}
       },
       // Forms
+      '.formtastic': {
+        '@apply text-sm': {}
+      },
       '.formtastic :where(.fieldset-title, .has-many-fields-title)': {
         '@apply block w-full mb-3 border-b font-bold text-lg': {}
       },
@@ -507,7 +510,7 @@ module.exports = plugin(
         '@apply sr-only': {}
       },
       '.formtastic :where(.inline-hints)': {
-        '@apply text-gray-500 text-sm mt-2': {}
+        '@apply text-gray-500 mt-2': {}
       },
       '.formtastic :where(.errors)': {
         '@apply p-4 mb-2 rounded-lg bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
