@@ -45,7 +45,7 @@ const disableDropdown = function(condition) {
 }
 
 const toggleAllChange = function(event) {
-  const checkboxes = document.querySelectorAll("input[type=checkbox].collection_selection")
+  const checkboxes = document.querySelectorAll(".batch-actions-resource-selection")
   for (const checkbox of checkboxes) {
     checkbox.checked = this.checked
   }
@@ -58,14 +58,14 @@ const toggleAllChange = function(event) {
   disableDropdown(!this.checked)
 }
 
-Rails.delegate(document, "input[type=checkbox].toggle_all", "change", toggleAllChange)
+Rails.delegate(document, ".batch-actions-toggle-all", "change", toggleAllChange)
 
 const toggleCheckboxChange = function(event) {
-  const numChecked = document.querySelectorAll("input[type=checkbox].collection_selection:checked").length;
-  const allChecked = numChecked === document.querySelectorAll("input[type=checkbox].collection_selection").length;
-  const someChecked = (numChecked > 0) && (numChecked < document.querySelectorAll("input[type=checkbox].collection_selection").length);
+  const numChecked = document.querySelectorAll(".batch-actions-resource-selection:checked").length;
+  const allChecked = numChecked === document.querySelectorAll(".batch-actions-resource-selection").length;
+  const someChecked = (numChecked > 0) && (numChecked < document.querySelectorAll(".batch-actions-resource-selection").length);
 
-  const toggleAll = document.querySelector("input[type=checkbox].toggle_all")
+  const toggleAll = document.querySelector(".batch-actions-toggle-all")
   if (toggleAll) {
     toggleAll.checked = allChecked
     toggleAll.indeterminate = someChecked
@@ -74,7 +74,7 @@ const toggleCheckboxChange = function(event) {
   disableDropdown(numChecked === 0)
 }
 
-Rails.delegate(document, "input[type=checkbox].collection_selection", "change", toggleCheckboxChange)
+Rails.delegate(document, ".batch-actions-resource-selection", "change", toggleCheckboxChange)
 
 const tableRowClick = function(event) {
   const type = event.target.type;
