@@ -96,7 +96,9 @@ Maintainers need to do the following to push out a release:
 * Make sure you have [chandler] properly configured. Chandler is used to
   automatically submit github release notes from the changelog right after
   pushing the gem to rubygems.
-* Run one of `bin/rake release:prepare_{prerelease,prepatch,patch,preminor,minor,premajor,major}`, push the result and create a PR.
+* Update the version in the `lib/active_admin/version.rb` file.
+* Run `bin/bundle` to update all gemfiles.
+* Update the `package.json` version. [Prerelease format is 1.0.0-beta1](https://github.com/rails/rails/blob/0d0c30e534af7f80ec8b18eb946aaa613ca30444/tasks/release.rb#L26).
 * Review and merge the PR. The generated changelog in the PR should include all user visible changes you intend to ship.
 * Run `bin/rake release` from the target branch once the PR is merged.
 
