@@ -4,7 +4,8 @@ module ActiveAdmin
     class CustomIndex < ActiveAdmin::Component
 
       def build(page_presenter, collection)
-        add_class "index"
+        add_class("custom-index")
+        set_attribute("data-index-as", "custom")
         if active_admin_config.batch_actions.any?
           div class: "p-3" do
             resource_selection_toggle_panel
