@@ -178,7 +178,7 @@ Feature: Registering Pages
       content do
         collection = Kaminari.paginate_array(User.all).page(params.fetch(:page, 1))
 
-        table_for(collection, class: "index_table") do
+        table_for(collection) do
           column :first_name
           column :last_name
         end
@@ -215,7 +215,7 @@ Feature: Registering Pages
      ActiveAdmin.register Post
      ActiveAdmin.register_page "Last Posts" do
        content do
-         table_for Post.last(2), sortable: true, class: "index_table" do
+         table_for Post.last(2), sortable: true do
            column :id
            column :title
            column :author

@@ -13,7 +13,7 @@ Then /^the (\d+)(?:st|nd|rd|th) batch action should be "([^"]*)"$/ do |index, ti
 end
 
 When /^I check the (\d+)(?:st|nd|rd|th) record$/ do |index|
-  page.all("table.index_table input[type=checkbox]")[index.to_i].set true
+  page.all(".batch-actions-resource-selection")[index.to_i].set true
 end
 
 Then /^I should see that the batch action button is disabled$/ do

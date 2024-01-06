@@ -15,7 +15,7 @@ Feature: Index Blank Slate
     Then I should not see a sortable table header
     And I should see "There are no Posts yet."
     And I should see "Create one"
-    And I should not see ".index_table"
+    And I should not see ".data-table"
     And I should not see pagination
     When I follow "Create one"
     Then I should be on the new post page

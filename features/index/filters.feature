@@ -21,7 +21,7 @@ Feature: Index Filtering
     When I fill in "Title" with "Hello World 2"
     And I press "Filter"
     And I should see 1 posts in the table
-    And I should see "Hello World 2" within ".index_table"
+    And I should see "Hello World 2" in the table
     And I should see current filter "title_cont" equal to "Hello World 2" with label "Title contains"
 
   Scenario: No XSS in Resources Filters
@@ -46,7 +46,7 @@ Feature: Index Filtering
 
     When I fill in "Title" with "THIS IS NOT AN EXISTING TITLE!!"
     And I press "Filter"
-    Then I should not see ".index_table"
+    Then I should not see ".data-table"
     And I should not see a sortable table header
     And I should not see pagination
     And I should see "No Posts found"
@@ -83,7 +83,7 @@ Feature: Index Filtering
     When I fill in "Title" with "Hello World 2"
     And I press "Filter"
     Then I should see 1 posts in the table
-    And I should see "Hello World 2" within ".index_table"
+    And I should see "Hello World 2" in the table
 
   Scenario: Checkboxes - Filtering posts written by anyone
     Given 1 post exists
@@ -96,7 +96,7 @@ Feature: Index Filtering
     """
     When I press "Filter"
     Then I should see 2 posts in the table
-    And I should see "Hello World" within ".index_table"
+    And I should see "Hello World" in the table
     And the "Jane Doe" checkbox should not be checked
 
   Scenario: Checkboxes - Filtering posts written by Jane Doe
@@ -111,7 +111,7 @@ Feature: Index Filtering
     When I check "Jane Doe"
     And I press "Filter"
     Then I should see 1 posts in the table
-    And I should see "Hello World" within ".index_table"
+    And I should see "Hello World" in the table
     And the "Jane Doe" checkbox should be checked
     And I should see current filter "author_id_in" equal to "Jane Doe"
 
@@ -134,8 +134,8 @@ Feature: Index Filtering
     When I select "Jane Doe" from "Authors"
     And I press "Filter"
     Then I should see 1 categories in the table
-    And I should see "Non-Fiction" within ".index_table"
-    And I should not see "Mystery" within ".index_table"
+    And I should see "Non-Fiction" in the table
+    And I should not see "Mystery" in the table
     And I should see current filter "posts_author_id_eq" equal to "Jane Doe"
 
   @javascript
@@ -171,8 +171,8 @@ Feature: Index Filtering
     """
     When I press "Filter"
     Then I should see 2 posts in the table
-    And I should see "Mystery" within ".index_table"
-    And I should see "Non-Fiction" within ".index_table"
+    And I should see "Mystery" in the table
+    And I should see "Non-Fiction" in the table
     And the "Jane Doe" checkbox should not be checked
     And I should not see "Active Search"
 
@@ -189,7 +189,7 @@ Feature: Index Filtering
     When I check "Jane Doe"
     And I press "Filter"
     Then I should see 1 categories in the table
-    And I should see "Non-Fiction" within ".index_table"
+    And I should see "Non-Fiction" in the table
     And the "Jane Doe" checkbox should be checked
 
   Scenario: Filtering posts without default scope
