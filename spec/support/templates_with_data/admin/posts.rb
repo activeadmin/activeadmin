@@ -60,18 +60,6 @@ ActiveAdmin.register Post do
     column :updated_at, class: "min-w-[200px]"
   end
 
-  sidebar :author, only: :show do
-    attributes_table_for resource.author do
-      row :id do |author|
-        link_to author.id, admin_user_path(author)
-      end
-      row :first_name
-      row :last_name
-      row :username
-      row :age
-    end
-  end
-
   member_action :toggle_starred, method: :put do
     resource.update(starred: !resource.starred)
     redirect_to resource_path, notice: "Post updated."

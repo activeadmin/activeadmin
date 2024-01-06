@@ -236,7 +236,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
       end
     end
 
-    let!(:category) { Category.create! }
+    let!(:category) { Category.create!(name: "Category") }
 
     let(:params) do
       ActionController::Parameters.new(user: { type: "User::VIP", posts_attributes: [custom_category_id: category.id] })

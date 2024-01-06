@@ -316,13 +316,13 @@ module.exports = plugin(
       [['[type=date]', '[type=email]', '[type=number]', '[type=password]', '[type=tel]', '[type=text]', '[type=time]', '[type=url]', 'select', 'textarea']]: {
         '@apply bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
       },
+      'a': {
+        '@apply text-blue-600 underline underline-offset-[.2rem]': {}
+      },
     });
     addComponents({
       '.action-item-button': {
         '@apply py-2 px-3 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
-      },
-      '.link-default :where(a)': {
-        '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
       '.index-data-table-toolbar': {
         '@apply flex flex-col lg:flex-row gap-4 mb-4': {}
@@ -482,6 +482,9 @@ module.exports = plugin(
         '@apply p-4 mb-6': {}
       },
       // Forms
+      '.formtastic': {
+        '@apply text-sm': {}
+      },
       '.formtastic :where(.fieldset-title, .has-many-fields-title)': {
         '@apply block w-full mb-3 border-b font-bold text-lg': {}
       },
@@ -507,7 +510,7 @@ module.exports = plugin(
         '@apply sr-only': {}
       },
       '.formtastic :where(.inline-hints)': {
-        '@apply text-gray-500 text-sm mt-2': {}
+        '@apply text-gray-500 mt-2': {}
       },
       '.formtastic :where(.errors)': {
         '@apply p-4 mb-2 rounded-lg bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
