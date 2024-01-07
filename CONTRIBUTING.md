@@ -92,13 +92,11 @@ A PR can only be merged into master by a maintainer if: CI is passing, approved 
 
 Maintainers need to do the following to push out a release:
 
-* Switch to the master branch and make sure it's up to date.
-* Make sure you have [chandler] properly configured. Chandler is used to
-  automatically submit github release notes from the changelog right after
-  pushing the gem to rubygems.
-* Run one of `bin/rake release:prepare_{prerelease,prepatch,patch,preminor,minor,premajor,major}`, push the result and create a PR.
-* Review and merge the PR. The generated changelog in the PR should include all user visible changes you intend to ship.
-* Run `bin/rake release` from the target branch once the PR is merged.
+* Create a feature branch from master and make sure it's up to date.
+* Run `bin/prep-release [version]` and commit the changes. Use Ruby version format. NPM is handled automatically.
+* Optional: To confirm the release contents, run `gem build` (extract contents) and `npm publish --dry-run`.
+* Review and merge the PR.
+* Run `bin/rake release` from the default branch once the PR is merged.
+* [Create a GitHub Release](https://github.com/activeadmin/activeadmin/releases/new) by selecting the tag and generating the release notes.
 
-[chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
 [new issue]: https://github.com/activeadmin/activeadmin/issues/new

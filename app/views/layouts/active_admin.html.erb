@@ -10,7 +10,7 @@
     <%= render "active_admin/main_navigation" %>
     <%= render "active_admin/page_header", title: @page_title || page_title %>
     <%= render "active_admin/flash_messages" %>
-    <div data-test-page-content class="link-default px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,250px)]">
+    <div data-test-page-content class="px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,250px)]">
       <%= yield %>
       <%= render "active_admin/sidebar" %>
     </div>

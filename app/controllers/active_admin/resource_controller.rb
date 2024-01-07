@@ -78,7 +78,7 @@ module ActiveAdmin
         active_admin_config.plural_resource_label
       when :show
         helpers.display_name(resource)
-      when :new, :edit
+      when :new, :edit, :create, :update
         normalized_action = params[:action]
         normalized_action = 'new' if normalized_action == 'create'
         normalized_action = 'edit' if normalized_action == 'update'
