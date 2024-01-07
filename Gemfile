@@ -41,11 +41,6 @@ group :test do
   gem "rails-i18n" # Provides default i18n for many languages
 end
 
-group :release do
-  gem "chandler" # Github releases from changelog
-  gem "octokit"
-end
-
 group :rubocop do
   gem "rubocop"
   gem "rubocop-capybara"
