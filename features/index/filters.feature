@@ -42,7 +42,7 @@ Feature: Index Filtering
     """
     When I set my locale to "de"
     When I am on the index page for posts
-    When I fill in "q_published_date_gteq" with "20.10.1999"
+    When I fill in "q[published_date_gteq]" with "20.10.1999"
     And I press "Filtern"
     Then the "q[published_date_gteq]" field should contain "20.10.1999"
     When I set my locale to "en"
