@@ -5,6 +5,7 @@
   "main": "dist/active_admin.js",
   "type": "module",
   "files": [
+    "app/views/**/*.{arb,erb}",
     "dist/**/*.js",
     "plugin.js",
     "vendor/javascript/*.js"
