@@ -25,12 +25,15 @@ module ActiveAdmin
           "#{method}_lteq"
         end
 
-        def input_html_options_for(input_name, placeholder)
-          { value: input_value_for(input_name),
-            placeholder: placeholder,
-            size: 12,
+        def input_html_options
+          { size: 12,
             class: "datepicker",
             maxlength: 10 }.merge(options[:input_html] || {})
+        end
+
+        def input_html_options_for(input_name, placeholder)
+          { value: input_value_for(input_name),
+            placeholder: placeholder }.merge(input_html_options)
         end
 
         def input_value_for(input_name)
