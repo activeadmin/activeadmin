@@ -35,6 +35,20 @@ Feature: Index Filtering
     And I press "Filter"
     Then I should see current filter "title_cont" equal to "<script>alert('hax')</script>" with label "Title contains"
 
+  Scenario: Daterange Filters Uses Locale Format
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post
+    """
+    When I set my locale to "de"
+    When I am on the index page for posts
+    When I fill in "q_published_date_gteq" with "20.10.1999"
+    And I press "Filtern"
+    Then the "q[published_date_gteq]" field should contain "20.10.1999"
+    When I set my locale to "en"
+    And I press "Filtern"
+    Then the "q[published_date_gteq]" field should contain "10-20-1999"
+
   Scenario: Filtering posts with no results
     Given 3 posts exist
     And an index configuration of:
