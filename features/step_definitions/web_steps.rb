@@ -60,7 +60,7 @@ When /^I visit (.+) twice$/ do |page_name|
 end
 
 When /^I press "([^"]*)"$/ do |button|
-  click_button(button)
+  click_on(button)
 end
 
 When /^I follow "([^"]*)"$/ do |link|
@@ -68,7 +68,7 @@ When /^I follow "([^"]*)"$/ do |link|
 end
 
 When /^I click "(.*?)"$/ do |link|
-  click_link(link)
+  click_on(link)
 end
 
 When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|

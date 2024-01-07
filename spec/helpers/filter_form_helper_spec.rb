@@ -102,7 +102,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       it "should not generate a select option for ends with" do
-        expect(body).not_to have_css("option[value=title_end]")
+        expect(body).to have_no_css("option[value=title_end]")
       end
     end
 
@@ -112,7 +112,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
           let(:body) { filter :"title_#{predicate}" }
 
           it "shouldn't include a select field" do
-            expect(body).not_to have_select
+            expect(body).to have_no_select
           end
 
           it "should build correctly" do
@@ -289,7 +289,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       it "should not generate a select option for less than" do
-        expect(body).not_to have_css("option[value=id_lt]")
+        expect(body).to have_no_css("option[value=id_lt]")
       end
     end
   end
@@ -364,8 +364,8 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       it "should create an option for each related object" do
-        expect(body).to have_selector("option[value='#{@john.id}']", text: "John Doe")
-        expect(body).to have_selector("option[value='#{@jane.id}']", text: "Jane Doe")
+        expect(body).to have_css("option[value='#{@john.id}']", text: "John Doe")
+        expect(body).to have_css("option[value='#{@jane.id}']", text: "Jane Doe")
       end
 
       context "with a proc" do
@@ -456,8 +456,8 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       it "should create an option for each related object" do
-        expect(body).to have_selector("option[value='#{john.id}']", text: "John Doe")
-        expect(body).to have_selector("option[value='#{jane.id}']", text: "Jane Doe")
+        expect(body).to have_css("option[value='#{john.id}']", text: "John Doe")
+        expect(body).to have_css("option[value='#{jane.id}']", text: "Jane Doe")
       end
     end
 
@@ -491,14 +491,14 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
           filters = { body: { verb => proc { verb == :unless } } }
           2.times do
             body = Capybara.string(render_filter scope, filters)
-            expect(body).not_to have_field("q[body_cont]")
+            expect(body).to have_no_field("q[body_cont]")
           end
         end
 
         it "should successfully keep rendering other filters after one is hidden" do
           filters = { body: { verb => proc { verb == :unless } }, author: {} }
           body = Capybara.string(render_filter scope, filters)
-          expect(body).not_to have_field("q[body_cont]")
+          expect(body).to have_no_field("q[body_cont]")
           expect(body).to have_select("q[author_id_eq]")
         end
       end
