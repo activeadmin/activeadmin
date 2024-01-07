@@ -25,21 +25,18 @@ module ActiveAdmin
           "#{method}_lteq"
         end
 
-        def input_html_options
-          { size: 12,
+        def input_html_options_for(input_name, placeholder)
+          { value: input_value_for(input_name),
+            placeholder: placeholder,
+            size: 12,
             class: "datepicker",
             maxlength: 10 }.merge(options[:input_html] || {})
         end
 
-        def input_html_options_for(input_name, placeholder)
-          current_value = begin
-                            #cast value to date object before rendering input
-                            @object.public_send(input_name).to_s.to_date
-                          rescue
-                            nil
-                          end
-          { placeholder: placeholder,
-            value: current_value.to_s }.merge(input_html_options)
+        def input_value_for(input_name)
+          @object.public_send(input_name).to_date.to_s
+        rescue
+          ""
         end
 
         def gt_input_placeholder
