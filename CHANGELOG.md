@@ -1,5 +1,7 @@
 # Changelog
 
+[Future changelogs have moved to GitHub Releases](https://github.com/activeadmin/activeadmin/releases)
+
 ## 3.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.1.0..v3.2.0)
 
 ### Security Fixes
