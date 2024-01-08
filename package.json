@@ -6,7 +6,8 @@
   "type": "module",
   "files": [
     "app/javascript/**/*.js",
-    "plugin.js"
+    "plugin.js",
+    "vendor/javascript/*.js"
   ],
   "repository": {
     "type": "git",
