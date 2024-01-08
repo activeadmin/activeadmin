@@ -1,8 +1,4 @@
 fr:
-  views:
-    pagination:
-      previous: "Précédent"
-      next: "Suivant"
   activerecord:
     models:
       comment:
@@ -65,6 +61,8 @@ fr:
       multiple: "Affichage de <b>%{from}-%{to}</b> sur <b>%{total}</b>"
       multiple_without_total: "Affichage de <b>%{from}-%{to}</b>"
       per_page: "Par page "
+      previous: "Précédent"
+      next: "Suivant"
       entry:
         one: "entrée"
         other: "entrées"
