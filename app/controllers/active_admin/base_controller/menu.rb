@@ -17,8 +17,8 @@ module ActiveAdmin
         active_admin_config.navigation_menu
       end
 
-      def current_menu_item?(item)
-        item.current?(@current_menu_item)
+      def current_menu_item?(item, children: true)
+        item.current?(@current_menu_item, children: children)
       end
 
       def set_current_menu_item
