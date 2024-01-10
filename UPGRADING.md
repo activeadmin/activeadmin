@@ -191,8 +191,7 @@ Note that `@post` can also be used here but make sure to call `authorize!` on it
 This release includes several locale changes. Please [reivew the en.yml locale](https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml) for the latest translations.
 
 - The `dashboard_welcome`, `dropdown_actions`, `main_content` and `unsupported_browser` keys have been removed.
-- Overriding Kaminari's `previous` and `next` pagination keys to only use words and remove HTML entities.
-- The `active_admin.pagination` keys have been rewritten to be less verbose.
+- The `active_admin.pagination` keys have been rewritten to be less verbose and include new entries: next and previous.
 
   ```diff
   - one: "Displaying <b>1</b> %{model}"
@@ -205,6 +204,8 @@ This release includes several locale changes. Please [reivew the en.yml locale](
   + multiple_without_total: "Showing <b>%{from}-%{to}</b>"
   - per_page: "Per page: "
   + per_page: "Per page "
+  + previous: "Previous"
+  + next: "Next"
   ```
 
 - The `search_status` key contents has multiple, breaking changes:
