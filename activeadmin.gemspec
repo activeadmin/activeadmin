@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
     "application patterns to make it simple for developers to implement " \
     "beautiful and elegant interfaces with very little effort."
 
-  s.files = Dir["LICENSE", "plugin.js", "{app,config,lib,vendor}/**/{.*,*}"].reject { |f| File.directory?(f) }
+  s.files = Dir["LICENSE", "plugin.js", 'config/importmap.rb', "{app,config/locales,lib,vendor}/**/{.*,*}"].reject { |f| File.directory?(f) }
 
   s.extra_rdoc_files = %w[CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md README.md UPGRADING.md]
 
