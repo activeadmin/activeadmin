@@ -9,6 +9,12 @@ require "formtastic_i18n"
 require "inherited_resources"
 require "arbre"
 
+begin
+  require "importmap-rails"
+rescue LoadError
+  # importmap-rails is optional
+end
+
 module ActiveAdmin
 
   autoload :VERSION, "active_admin/version"
@@ -57,7 +63,6 @@ module ActiveAdmin
     end
 
     def importmap
-      require "importmap-rails"
       @importmap ||= Importmap::Map.new
     end
 
