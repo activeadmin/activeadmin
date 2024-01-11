@@ -15,7 +15,10 @@ module ActiveAdmin
       end
     end
 
-    initializer "active_admin.importmap", before: "importmap" do |app|
+    initializer "active_admin.importmap", after: "importmap" do |app|
+      # Skip if importmap-rails is not installed
+      next unless app.config.respond_to?(:importmap)
+
       ActiveAdmin.importmap.draw(Engine.root.join("config", "importmap.rb"))
       package_path = Engine.root.join("app/javascript")
       if app.config.respond_to?(:assets)
