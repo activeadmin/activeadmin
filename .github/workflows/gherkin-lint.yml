@@ -2,13 +2,6 @@ name: Gherkin Lint
 
 on:
   pull_request:
-    # If updating `paths` then update gherkin-lint-none.yml to match
-    paths:
-      - '.github/workflows/gherkin-lint.yml'
-      - '.gherkin-lintignore'
-      - '.gherkin-lintrc'
-      - 'package*.json'
-      - '**.feature'
 
 env:
   NODE_VERSION: 20.x
@@ -19,9 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: tj-actions/changed-files@v41
+        id: changed-files
+        with:
+          files: |
+            **.feature
+            .gherkin-lintrc
+            package*.json
+            yarn.lock
+            .github/workflows/gherkin-lint.yml
       - uses: actions/setup-node@v4
+        if: steps.changed-files.outputs.any_changed == 'true'
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'yarn'
+          cache: yarn
       - run: bin/yarn install --frozen-lockfile --immutable
+        if: steps.changed-files.outputs.any_changed == 'true'
       - run: bin/yarn gherkin-lint
+        if: steps.changed-files.outputs.any_changed == 'true'
