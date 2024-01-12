@@ -16,8 +16,12 @@ module ActiveAdmin
         @attributes ||= class_name.constantize.new.attributes.keys
       end
 
+      def primary_key
+        @primary_key ||= [class_name.constantize.primary_key].flatten
+      end
+
       def assignable_attributes
-        @assignable_attributes ||= attributes - %w(id created_at updated_at)
+        @assignable_attributes ||= attributes - primary_key - %w(created_at updated_at)
       end
 
       def permit_params
@@ -33,7 +37,7 @@ module ActiveAdmin
       end
 
       def columns
-        attributes.map { |a| column(a) }.join("\n    ")
+        (attributes - primary_key).map { |a| column(a) }.join("\n    ")
       end
 
       def column(name)
