@@ -1,8 +1,4 @@
 nl:
-  views:
-    pagination:
-      previous: "Vorige"
-      next: "Volgende"
   active_admin:
     dashboard: Dashboard
     view: "Bekijk"
@@ -52,6 +48,8 @@ nl:
       multiple: "Toont <b>%{from}-%{to}</b> van <b>%{total}</b>"
       multiple_without_total: "Toont <b>%{from}-%{to}</b>"
       per_page: "Per pagina: "
+      previous: "Vorige"
+      next: "Volgende"
       entry:
         one: "entry"
         other: "entries"
