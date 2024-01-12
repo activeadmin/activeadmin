@@ -2,10 +2,10 @@
   "name": "@activeadmin/activeadmin",
   "version": "4.0.0-beta3",
   "description": "The administration framework for Ruby on Rails.",
-  "main": "app/javascript/active_admin.js",
+  "main": "dist/active_admin.js",
   "type": "module",
   "files": [
-    "app/javascript/**/*.js",
+    "dist/**/*.js",
     "plugin.js",
     "vendor/javascript/*.js"
   ],
@@ -25,13 +25,17 @@
   },
   "homepage": "https://activeadmin.info",
   "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
     "eslint": "^8.52.0",
     "gherkin-lint": "^4.2.2",
+    "rollup": "^4.9.4",
     "tailwindcss": "^3.3.5"
   },
   "scripts": {
     "gherkin-lint": "gherkin-lint",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "prebuild": "rm -rf dist",
+    "build": "rollup --config rollup.config.js"
   },
   "dependencies": {
     "@rails/ujs": "7.1.2",
