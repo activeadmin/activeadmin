@@ -180,7 +180,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       %w(show edit update).each do |action_name|
         it "doesn't generate create another checkbox on #{action_name} page" do
-          is_expected.not_to have_css("[name=create_another]", count: 1)
+          is_expected.to have_no_css("[name=create_another]", count: 1)
         end
       end
     end
@@ -583,11 +583,11 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should not add a header" do
-        expect(body).not_to have_css("h3", text: "Post")
+        expect(body).to have_no_css("h3", text: "Post")
       end
 
       it "should not add link to new nested records" do
-        expect(body).not_to have_css("a", text: "Add New Post")
+        expect(body).to have_no_css("a", text: "Add New Post")
       end
 
       it "should render the nested form" do
@@ -636,7 +636,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should have a check box with 'Remove' as its label" do
-          expect(body).to have_selector("label[for=category_posts_attributes_#{child_num}__destroy]", text: "Delete")
+          expect(body).to have_css("label[for=category_posts_attributes_#{child_num}__destroy]", text: "Delete")
         end
 
         it "should wrap the destroy field in an li with class 'has-many-delete'" do
@@ -650,11 +650,11 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should not have a boolean field for _destroy" do
-          expect(body).not_to have_field("category[posts_attributes][#{child_num}][_destroy]", visible: :all)
+          expect(body).to have_no_field("category[posts_attributes][#{child_num}][_destroy]", visible: :all)
         end
 
         it "should not have a check box with 'Remove' as its label" do
-          expect(body).not_to have_selector("label[for=category_posts_attributes_#{child_num}__destroy]", text: "Remove")
+          expect(body).to have_no_css("label[for=category_posts_attributes_#{child_num}__destroy]", text: "Remove")
         end
       end
 
@@ -894,7 +894,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should not contain invalid li children" do
-          expect(body).not_to have_css("div.has-many-container > li")
+          expect(body).to have_no_css("div.has-many-container > li")
         end
       end
 
@@ -921,7 +921,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should not contain invalid li children" do
-          expect(body).not_to have_css(".has-many-container div.has-many-container > li")
+          expect(body).to have_no_css(".has-many-container div.has-many-container > li")
         end
       end
     end
@@ -958,7 +958,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
           eval source
         end
       end
-      expect(body).to have_selector("[id=#{selector}]", count: 2, visible: :all)
+      expect(body).to have_css("[id=#{selector}]", count: 2, visible: :all)
     end
   end
 end

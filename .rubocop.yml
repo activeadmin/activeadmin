@@ -44,6 +44,9 @@ Capybara/MatchStyle:
 Capybara/NegationMatcher:
   Enabled: true
 
+Capybara/RedundantWithinFind:
+  Enabled: true
+
 Capybara/RSpec/HaveSelector:
   Enabled: true
 

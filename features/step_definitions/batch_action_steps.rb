@@ -49,7 +49,7 @@ end
 
 When /^I click "(.*?)" and accept confirmation$/ do |link|
   accept_confirm do
-    click_link(link)
+    click_on(link)
   end
 end
 

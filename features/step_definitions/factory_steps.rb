@@ -30,7 +30,7 @@ end
 
 Given /^I create a new post with the title "([^"]*)"$/ do |title|
   first(:link, "Posts").click
-  click_link "New Post"
+  click_on "New Post"
   fill_in "post_title", with: title
-  click_button "Create Post"
+  click_on "Create Post"
 end
