@@ -96,3 +96,25 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: coverage
           fail_ci_if_error: true
+
+  test_docs_build:
+    name: Build docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: tj-actions/changed-files@v44
+        id: changed-files
+        with:
+          files: |
+            docs/**
+            package*.json
+            yarn.lock
+      - uses: actions/setup-node@v4
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          node-version: 22
+          cache: yarn
+      - run: yarn install
+        if: steps.changed-files.outputs.any_changed == 'true'
+      - run: yarn docs:build
+        if: steps.changed-files.outputs.any_changed == 'true'
