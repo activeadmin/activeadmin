@@ -120,53 +120,52 @@ end
 ### Batch Action forms
 
 If you want to capture input from the user as they perform a batch action,
-Active Admin has just the thing for you:
+you can supply a partial (e.g. modal form) that will be included
+automatically in the index page output.
+
+Assuming a Post resource (in the default namespace) with a `mark_published`
+batch action, we set the partial name and a set of HTML data attributes to
+trigger a modal using Flowbite which is included by default.
 
 ```ruby
-batch_action :flag, form: {
-  type: %w[Offensive Spam Other],
-  reason: :text,
-  notes:  :textarea,
-  hide:   :checkbox,
-  date:   :datepicker
-} do |ids, inputs|
-  # inputs is a hash of all the form fields you requested
-  redirect_to collection_path, notice: [ids, inputs].to_s
+ActiveAdmin.register Post do
+  batch_action(
+    :mark_published,
+    partial: "mark_published_batch_action",
+    link_html_options: {
+      "data-modal-target": "mark-published-modal",
+      "data-modal-show": "mark-published-modal"
+    }
+  ) do |ids, inputs|
+    # inputs is a hash of all the form fields you requested
+    redirect_to collection_path, notice: [ids, inputs].to_s
+  end
 end
 ```
 
-If you pass a nested array, it will behave just like Formtastic would, with the first
-element being the text displayed and the second element being the value.
+::: tip
+You can use any modal JS library as long as it can be triggered to open
+using data attributes. Flowbite usage is optional.
+:::
 
-```ruby
-batch_action :doit, form: {user: [['Jake',2], ['Mary',3]]} do |ids, inputs|
-  User.find(inputs[:user])
-  # ...
-end
+Assuming a partial named `_mark_published_batch_action.html.erb` exists in
+the `app/views/admin/posts` directory, the contents will be included automatically
+in the index page output for you.
+
+Now update the partial with the modal form HTML where the root `id` attribute must
+match the data attributes supplied in the earlier `batch_action` example. The
+form **must** have an empty `data-batch-action-form` attribute.
+
+```erb
+<div id="mark-published-modal" class="hidden fixed top-0 ..." aria-hidden="true" ...>
+  <!-- ... other modal content --->
+  <%= form_tag false, "data-batch-action-form": "" do %>
+    <!-- Declare your form inputs. You can use a different form builder too. -->
+  <% end %>
+</div>
 ```
 
-When you have dynamic form inputs you can pass a proc instead:
-
-```ruby
-batch_action :doit, form: -> { {user: User.pluck(:name, :id)} } do |ids, inputs|
-  User.find(inputs[:user])
-  # ...
-end
-```
-
-Under the covers this is powered by the JS `ActiveAdmin.ModalDialog` which you
-can use yourself:
-
-```coffee
-if $('body.admin_users').length
-  $('a[data-prompt]').click ->
-    ActiveAdmin.ModalDialog $(@).data('prompt'), comment: 'textarea',
-      (inputs)=>
-        $.post "/admin/users/#{$(@).data 'id'}/change_state",
-          comment: inputs.comment, state: $(@).data('state'),
-          success: ->
-            window.location.reload()
-```
+The `data-batch-action-form` attribute is a hook for a delegated JS event so when you submit the form, it will post and run your batch action block with the supplied form data.
 
 ### Translation
 
@@ -194,38 +193,23 @@ en:
         publish: "Publish"
 ```
 
-### Support for other index types
+### Support for custom index views
 
-You can easily use `batch_action` in the other index views, *Grid*, *Block*,
-and *Blog*; however, these will require custom styling to fit your needs.
+You can use `batch_action` in a custom index view, however, these will require custom styling to fit your needs.
 
 ```ruby
 ActiveAdmin.register Post do
-
   # By default, the "Delete" batch action is provided
-
-  # Index as Grid
-  index as: :grid do |post|
+  index as: :custom do |post|
     resource_selection_cell post
     h2 auto_link post
   end
-
-  # Index as Blog requires nothing special
-
-  # Index as Block
-  index as: :block do |post|
-    div for: post do
-      resource_selection_cell post
-    end
-  end
-
-end
 ```
 
-### BTW
+### Note on implementation
 
-In order to perform the batch action, the entire *Table*, *Grid*, etc. is
-wrapped in a form that submits the IDs of the selected rows to your batch_action.
+In order to perform the batch action, the entire index view is
+wrapped in a form that submits the IDs of the selected rows to your `batch_action`.
 
 Since nested `<form>` tags in HTML often results in unexpected behavior, you
 may need to modify the custom behavior you've built using to prevent conflicts.
@@ -233,5 +217,5 @@ may need to modify the custom behavior you've built using to prevent conflicts.
 Specifically, if you are using HTTP methods like `PUT` or `PATCH` with a custom
 form on your index page this may result in your batch action being `PUT`ed
 instead of `POST`ed which will create a routing error. You can get around this
-by either moving the nested form to another page or using a POST so it doesn't
+by either moving the nested form to another page or using a `POST` so it doesn't
 override the batch action. As well, behavior may vary by browser.
