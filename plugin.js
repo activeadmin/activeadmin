@@ -513,10 +513,10 @@ module.exports = plugin(
         '@apply text-gray-500 mt-2': {}
       },
       '.formtastic :where(.errors)': {
-        '@apply p-4 mb-2 rounded-lg bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
+        '@apply p-4 mb-6 rounded-md space-y-2 bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
       },
       '.formtastic :where(.errors > li)': {
-        '@apply list-disc ms-4 mb-1': {}
+        '@apply list-disc ms-4': {}
       },
       '.formtastic :where(.inline-errors)': {
         '@apply font-bold mt-2 text-red-600 dark:text-red-300': {}
