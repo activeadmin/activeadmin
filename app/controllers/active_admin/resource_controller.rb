@@ -40,7 +40,7 @@ module ActiveAdmin
       case params[:action].to_sym
       when :index
         active_admin_config.get_page_presenter(params[:action], params[:as])
-      when :new, :edit
+      when :new, :edit, :create, :update
         active_admin_config.get_page_presenter(:form)
       end || super
     end
