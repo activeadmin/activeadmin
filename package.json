@@ -35,7 +35,8 @@
     "gherkin-lint": "gherkin-lint",
     "eslint": "eslint .",
     "prebuild": "rm -rf dist",
-    "build": "rollup --config rollup.config.js"
+    "build": "rollup --config rollup.config.js",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@rails/ujs": "7.1.2",
