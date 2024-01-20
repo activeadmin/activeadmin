@@ -45,23 +45,27 @@ it:
     scopes:
       all: "Tutti"
     search_status:
-      no_current_filters: "Nessuno"
+      title: "Ricerca corrente"
+      title_with_scope: "Ricerca corrente per %{name}"
+      no_current_filters: "Nessun filtro applicato"
     status_tag:
       "yes": "Sì"
       "no": "No"
-      "unset": "No"
+      "unset": "Vuoto"
     logout: "Esci"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtri"
       search_status: "Informazioni sulla ricerca"
     pagination:
-      empty: "Nessun %{model} trovato"
-      one: "Sto mostrando <b>1</b> %{model}"
-      one_page: "Sto mostrando <b>%{n}</b> %{model}. Lista completa."
-      multiple: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b> in totale"
-      multiple_without_total: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: "Nessun risultato per %{model}"
+      one: "Mostrando <b>1</b> di <b>1</b>"
+      one_page: "Mostrando <b>%{n}</b> %{model}. Lista completa."
+      multiple: "Mostrando <b>%{from}-%{to}</b> di <b>%{total}</b>"
+      multiple_without_total: "Mostrando <b>%{from}-%{to}</b>"
       per_page: "Oggetti per pagina: "
+      previous: "Precedente"
+      next: "Successiva"
       entry:
         one: "voce"
         other: "voci"
