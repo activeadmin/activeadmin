@@ -21,7 +21,15 @@ export default defineConfig({
       { text: 'MD', link: '/markdown-examples' },
       { text: 'Discuss', link: 'https://github.com/activeadmin/activeadmin/discussions' },
       {
-        text: version.replace("-", "."),
+        text: 'Demo',
+        items: [
+          { text: 'Repository', link: 'https://github.com/activeadmin/demo.activeadmin.info' },
+          { text: 'Demo App', link: 'https://demo.activeadmin.info/' },
+        ]
+      },
+      // Arbre ???
+      {
+        text: version.replace("-", "."), // use Ruby format for version text
         items: [
           {
             text: 'Changelog',
