@@ -19,8 +19,8 @@ module ActiveAdmin
 
       def build_menu_item(title, options, &block)
         fragment = options.fetch(:id, fragmentize(title))
-        html_options = options.fetch(:html_options, {}).merge("data-tabs-target": "##{fragment}", role: "tab", "aria-controls": fragment)
-        button html_options do
+        html_options = options.fetch(:html_options, {}).merge("data-tabs-target": "##{fragment}", role: "tab", "aria-controls": fragment, href: "#")
+        a html_options do
           title
         end
       end

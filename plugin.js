@@ -475,8 +475,8 @@ module.exports = plugin(
       '.tabs-nav': {
         '@apply flex flex-wrap mb-2 text-sm font-medium text-center border-b border-gray-200 dark:border-gray-700': {}
       },
-      '.tabs-nav > :where(button)': {
-        '@apply inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300': {}
+      '.tabs-nav > :where(a)': {
+        '@apply block p-4 border-b-2 border-transparent rounded-t-md hover:text-gray-600 dark:hover:text-gray-300 no-underline': {}
       },
       '.tabs-content': {
         '@apply p-4 mb-6': {}
