@@ -179,7 +179,7 @@ GEM
     has_scope (0.8.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
-    highline (2.1.0)
+    highline (3.0.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
@@ -234,14 +234,14 @@ GEM
     mini_mime (1.1.5)
     minitest (5.21.2)
     multi_test (1.1.0)
-    net-imap (0.4.9)
+    net-imap (0.4.9.1)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.4.0)
+    net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.0)
     nokogiri (1.16.0-arm64-darwin)
@@ -252,7 +252,7 @@ GEM
     parallel (1.24.0)
     parallel_tests (4.4.0)
       parallel
-    parser (3.2.2.4)
+    parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
     public_suffix (5.0.4)
