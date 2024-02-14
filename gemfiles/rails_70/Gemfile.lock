@@ -1,7 +1,7 @@
 PATH
   remote: ../..
   specs:
-    activeadmin (4.0.0.beta4)
+    activeadmin (4.0.0.beta5)
       arbre (~> 2.0)
       formtastic (>= 3.1)
       formtastic_i18n (>= 0.4)
