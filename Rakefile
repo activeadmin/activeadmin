@@ -3,6 +3,7 @@ require "bundler/gem_tasks"
 
 import "tasks/local.rake"
 import "tasks/test.rake"
+import "tasks/dependencies.rake"
 
 gemfile = ENV["BUNDLE_GEMFILE"]
 
