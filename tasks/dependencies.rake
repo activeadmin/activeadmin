@@ -3,9 +3,6 @@
 namespace :dependencies do
   desc "Copy package.json dependencies into vendor/javascript"
   task :vendor do
-    # Update dependencies
-    system "yarn install --frozen-lockfile"
-
     node_modules = File.expand_path("../node_modules", __dir__)
     vendor = File.expand_path("../vendor/javascript", __dir__)
 
@@ -21,5 +18,7 @@ namespace :dependencies do
 
       File.write(file, content.gsub(/\/\/# sourceMappingURL=\S+/, ''))
     end
+  rescue Errno::ENOENT
+    puts "Error: Missing node_modules. Run `yarn install`."
   end
 end
