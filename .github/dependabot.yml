@@ -27,15 +27,6 @@ updates:
         patterns:
           - "*"
   - package-ecosystem: bundler
-    directory: /docs
-    schedule:
-      interval: monthly
-    versioning-strategy: lockfile-only
-    groups:
-      docs:
-        patterns:
-          - "*"
-  - package-ecosystem: bundler
     directory: /gemfiles/rails_61
     schedule:
       interval: monthly
