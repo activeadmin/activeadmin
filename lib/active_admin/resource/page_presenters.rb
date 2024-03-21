@@ -51,7 +51,7 @@ module ActiveAdmin
       # Stores a config for all index actions supplied
       #
       # @param [Symbol] index_as The index type to store in the configuration
-      # @param [PagePresenter] page_presenter The intance of PagePresenter to store
+      # @param [PagePresenter] page_presenter The instance of PagePresenter to store
       def set_index_presenter(index_as, page_presenter)
         page_presenters[:index] ||= {}
 
@@ -64,7 +64,7 @@ module ActiveAdmin
         page_presenters[:index][index_as] = page_presenter
       end
 
-      # Returns the actual class for renderering the main content on the index
+      # Returns the actual class for rendering the main content on the index
       # page. To set this, use the :as option in the page_presenter block.
       #
       # @param [Symbol, Class] symbol_or_class The component symbol or class

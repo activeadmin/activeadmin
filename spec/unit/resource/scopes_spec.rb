@@ -17,7 +17,7 @@ module ActiveAdmin
         expect(config.scopes.first.name).to eq "Published"
       end
 
-      it "should retrive a scope by its id" do
+      it "should retrieve a scope by its id" do
         config.scope :published
         expect(config.get_scope_by_id(:published).name).to eq "Published"
       end

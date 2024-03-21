@@ -19,7 +19,7 @@ module ActiveAdmin
     end
 
     def scope_collection(collection, action = Auth::READ)
-      # scoping is appliable only to read/index action
+      # scoping is applicable only to read/index action
       # which means there is no way how to scope other actions
       Pundit.policy_scope!(user, namespace(collection))
     rescue Pundit::NotDefinedError => e

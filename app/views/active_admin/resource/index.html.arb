@@ -58,7 +58,7 @@ def build_index_list
   end
 end
 
-# Returns the actual class for renderering the main content on the index
+# Returns the actual class for rendering the main content on the index
 # page. To set this, use the :as option in the page_presenter block.
 def find_index_renderer_class(klass)
   if klass.is_a?(Class)

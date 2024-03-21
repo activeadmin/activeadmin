@@ -1,6 +1,6 @@
 Feature: Viewing Index of Comments
 
-  Scenario: Viewing all commments for a namespace
+  Scenario: Viewing all comments for a namespace
     Given a post with the title "Hello World" written by "Jane Doe" exists
     And a show configuration of:
       """
