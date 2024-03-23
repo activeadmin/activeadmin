@@ -45,6 +45,8 @@
     scopes:
       all: "所有"
     search_status:
+      title: "搜索条件"
+      title_with_scope: "搜索条件 %{name}"
       no_current_filters: "无"
     status_tag:
       "yes": "是"
@@ -62,6 +64,8 @@
       multiple: "显示所有 <b>%{total}</b> %{model}中的<b>%{from}&nbsp;-&nbsp;%{to}</b> 条"
       multiple_without_total: "%{model}中的<b>%{from}&nbsp;-&nbsp;%{to}</b> 条"
       per_page: "每页："
+      previous: "上一页"
+      next: "下一页"
       entry:
         one: "条目"
         other: "条目"
