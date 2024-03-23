@@ -40,7 +40,7 @@ module ActiveAdmin
       end
 
       # Authorize the action and subject. Available in the controller
-      # as well as all the views. If the action is not allowd, it raises
+      # as well as all the views. If the action is not allowed, it raises
       # an ActiveAdmin::AccessDenied exception.
       #
       # @param [Symbol] action The action to check if the user has permission

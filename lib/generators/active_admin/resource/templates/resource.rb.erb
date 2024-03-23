@@ -16,7 +16,7 @@ ActiveAdmin.register <%= class_name %> do
   # Add or remove filters to toggle their visibility
   <%= filters %>
 
-  # Add or remove columns to toggle their visiblity in the index action
+  # Add or remove columns to toggle their visibility in the index action
   index do
     selectable_column
     id_column
@@ -24,7 +24,7 @@ ActiveAdmin.register <%= class_name %> do
     actions
   end
 
-  # Add or remove rows to toggle their visiblity in the show action
+  # Add or remove rows to toggle their visibility in the show action
   show do
     attributes_table_for(resource) do
       <%= rows %>

@@ -95,7 +95,7 @@ module ActiveAdmin
     # => Will create an action that appears in the action list popover
     #
     #   BatchAction.new(:flag) { |selection| redirect_to collection_path, notice: "#{selection.length} users flagged" }
-    # => Will create an action that uses a block to process the request (which receives one paramater of the selected objects)
+    # => Will create an action that uses a block to process the request (which receives one parameter of the selected objects)
     #
     #   BatchAction.new("Perform Long Operation on") { |selection| }
     # => You can create batch actions with a title instead of a Symbol

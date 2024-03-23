@@ -198,7 +198,7 @@ module ActiveAdmin
         end
       end
 
-      it "should retrive a scope by its id" do
+      it "should retrieve a scope by its id" do
         config.scope :published
         expect(config.get_scope_by_id(:published).name).to eq "Published"
       end
@@ -218,7 +218,7 @@ module ActiveAdmin
       end
 
       context "when csv builder set" do
-        it "shuld return the csv_builder we set" do
+        it "should return the csv_builder we set" do
           csv_builder = CSVBuilder.new
           config.csv_builder = csv_builder
           expect(config.csv_builder).to eq csv_builder

@@ -30,7 +30,7 @@ module ActiveAdmin
       @config
     end
 
-    # Include a module with this resource. The modules's `included` method
+    # Include a module with this resource. The modules' `included` method
     # is called with the instance of the `ActiveAdmin::DSL` passed into it.
     #
     # eg:

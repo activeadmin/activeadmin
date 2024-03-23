@@ -4,7 +4,7 @@ require "active_admin/view_helpers/method_or_proc_helper"
 module ActiveAdmin
   module Views
     # Renders a collection of ActiveAdmin::Scope objects as a
-    # simple list with a seperator
+    # simple list with a separator
     class Scopes < ActiveAdmin::Component
       include ActiveAdmin::ScopeChain
 
