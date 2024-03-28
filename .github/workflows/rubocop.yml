@@ -24,7 +24,6 @@ jobs:
             **.rake
             **.arb
             bin/*
-            docs/Gemfile
             gemfiles/**/Gemfile
             Gemfile*
             Rakefile

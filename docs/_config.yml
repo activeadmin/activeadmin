@@ -1,4 +1,0 @@
-plugins:
-  - jekyll-default-layout
-  - jekyll-redirect-from
-  - jekyll-relative-links
