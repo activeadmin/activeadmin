@@ -26,8 +26,8 @@ module ActiveAdmin
     end
 
     it "should accept an options hash for link_to" do
-      item = MenuItem.new html_options: { target: :blank }
-      expect(item.html_options).to include(target: :blank)
+      item = MenuItem.new html_options: { target: "_blank" }
+      expect(item.html_options).to include(target: "_blank")
     end
 
     context "with no items" do
