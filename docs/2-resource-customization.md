@@ -300,7 +300,7 @@ config.namespace :admin do |admin|
     menu.add label: "Sites" do |sites|
       sites.add label: "Google",
                 url: "https://google.com",
-                html_options: { target: :blank }
+                html_options: { target: "_blank" }
 
       sites.add label: "Facebook",
                 url: "https://facebook.com"
