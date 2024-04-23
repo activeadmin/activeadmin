@@ -57,7 +57,7 @@ module ActiveAdmin
       unless request.format.html?
         presenter = active_admin_config.get_page_presenter(:index)
         download_formats = (presenter || {}).fetch(:download_links, active_admin_config.namespace.download_links)
-        unless build_download_formats(download_formats).include?(request.format.symbol)
+        if !build_download_formats(download_formats).include?(request.format.symbol) && !(request.format.symbol == :json && CGI.parse(request.query_string).key?('q[combinator]'))
           raise ActiveAdmin::AccessDenied.new(current_active_admin_user, :index)
         end
       end
