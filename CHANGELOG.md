@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 3.2.1 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.0..v3.2.1)
+
+### Enhancements
+
+* Backport Suppress ruby 3.3 warning [#8310] by [@mgrunberg]
+* Backport Recommend using target="_blank" instead of target="blank" [#8311] by [@mgrunberg]
+
 ## 3.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.1.0..v3.2.0)
 
 ### Security Fixes
@@ -898,6 +905,8 @@ Please check [0-6-stable] for previous changes.
 [#8165]: https://github.com/activeadmin/activeadmin/pull/8165
 [#8166]: https://github.com/activeadmin/activeadmin/pull/8166
 [#8167]: https://github.com/activeadmin/activeadmin/pull/8167
+[#8310]: https://github.com/activeadmin/activeadmin/pull/8310
+[#8311]: https://github.com/activeadmin/activeadmin/pull/8311
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
