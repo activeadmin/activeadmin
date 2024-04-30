@@ -289,7 +289,7 @@ config.namespace :admin do |admin|
     menu.add label: "Sites" do |sites|
       sites.add label: "Google",
                 url: "http://google.com",
-                html_options: { target: :blank }
+                html_options: { target: "_blank" }
 
       sites.add label: "Facebook",
                 url: "http://facebook.com"
