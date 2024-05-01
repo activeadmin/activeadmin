@@ -188,7 +188,7 @@ RSpec.describe ActiveAdmin::BreadcrumbHelper, type: :helper do
       end
     end
 
-    context "when path '/admin/users/1/coments/1'" do
+    context "when path '/admin/users/1/posts/1'" do
       let(:path) { "/admin/users/1/posts/1" }
 
       it "should have 4 items" do
@@ -216,7 +216,7 @@ RSpec.describe ActiveAdmin::BreadcrumbHelper, type: :helper do
       end
     end
 
-    context "when path '/admin/users/1/coments/1/edit'" do
+    context "when path '/admin/users/1/posts/1/edit'" do
       let(:path) { "/admin/users/1/posts/1/edit" }
 
       it "should have 5 items" do
