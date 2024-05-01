@@ -33,7 +33,7 @@ group :test do
   gem "launchy"
   gem "parallel_tests"
   gem "rspec-rails"
-  gem "sqlite3", platform: :mri
+  gem "sqlite3", "~> 1.7", platform: :mri # FIXME: relax this dependency when rails/rails#51636 will be released
 
   # Translations
   gem "i18n-tasks"

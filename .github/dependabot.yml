@@ -17,6 +17,9 @@ updates:
       rails_default:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: sqlite3
+        versions: ">= 2" # FIXME: Remove when rails/rails#51636 will be released
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -35,6 +38,9 @@ updates:
       rails_61:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: sqlite3
+        versions: ">= 2"
   - package-ecosystem: bundler
     directory: /gemfiles/rails_70
     schedule:
@@ -44,3 +50,6 @@ updates:
       rails_70:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: sqlite3
+        versions: ">= 2"
