@@ -19,17 +19,21 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
+          - 3.3
           - 3.2
           - 3.1
-          - '3.0'
         os:
           - ubuntu-latest
         deps:
-          - rails_61
-          - rails_70
           - rails_71
+          - rails_70
+          - rails_61
+        include:
+          - ruby: '3.0'
+            os: ubuntu-latest
+            deps: rails_71
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Configure bundler (default)
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
@@ -49,7 +53,7 @@ jobs:
       - name: Create test app
         run: bin/rake setup
       - name: Restore cached RSpec runtimes
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: tmp/parallel_runtime_rspec.log
           key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
@@ -60,7 +64,7 @@ jobs:
           bin/parallel_rspec
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
       - name: Restore cached cucumber runtimes
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: tmp/parallel_runtime_cucumber.log
           key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
@@ -71,9 +75,11 @@ jobs:
           bin/parallel_cucumber --fail-fast
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
-      - uses: actions/upload-artifact@v3
+      - name: Rename coverage file by matrix run
+        run: mv coverage/coverage.xml coverage/coverage-ruby-${{ matrix.ruby }}-${{ matrix.deps }}.xml
+      - uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: coverage-ruby-${{ matrix.ruby }}-${{ matrix.deps }}
           path: coverage
           if-no-files-found: error
 
@@ -82,12 +88,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          name: coverage
           path: coverage
-      - uses: codecov/codecov-action@v3
+          pattern: coverage-ruby-*
+          merge-multiple: true
+      - uses: codecov/codecov-action@v4
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           directory: coverage
           fail_ci_if_error: true

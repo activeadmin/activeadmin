@@ -25,13 +25,13 @@ group :test do
 
   gem "simplecov", require: false # Test coverage generator. Go to /coverage/ after running tests
   gem "simplecov-cobertura", require: false
-  gem "cucumber-rails", require: false, github: "cucumber/cucumber-rails", branch: "main"
+  gem "cucumber-rails", require: false
   gem "cucumber"
   gem "database_cleaner"
   gem "launchy"
   gem "parallel_tests"
   gem "rspec-rails"
-  gem "sqlite3", platform: :mri
+  gem "sqlite3", "~> 1.7", platform: :mri
 
   # Translations
   gem "i18n-tasks"
