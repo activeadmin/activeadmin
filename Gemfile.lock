@@ -484,7 +484,7 @@ DEPENDENCIES
   simplecov
   simplecov-cobertura
   sprockets-rails
-  sqlite3
+  sqlite3 (~> 1.7)
   webrick
   yard
 
