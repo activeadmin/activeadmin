@@ -16,7 +16,7 @@ de:
         resource_type: "Ressourcentyp"
         updated_at: "Aktualisiert"
   active_admin:
-    dashboard: Übersicht
+    dashboard: "Übersicht"
     view: "Anzeigen"
     edit: "Bearbeiten"
     delete: "Löschen"
@@ -34,7 +34,7 @@ de:
     has_many_new: "%{model} hinzufügen"
     has_many_delete: "Löschen"
     has_many_remove: "Entfernen"
-    move: "Bewegen"
+    move: "Verschieben"
     filters:
       buttons:
         filter: "Filtern"
@@ -45,6 +45,8 @@ de:
     scopes:
       all: "Alle"
     search_status:
+      title: "Aktive Filter"
+      title_with_scope: "Aktive Filter in %{name}"
       no_current_filters: "Keine"
     status_tag:
       "yes": "Ja"
@@ -54,14 +56,16 @@ de:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filter"
-      search_status: "Suchstatus"
+      search_status: "Aktive Filter"
     pagination:
       empty: "Keine %{model} gefunden"
-      one: "Zeige <b>1</b> %{model}"
-      one_page: "Zeige <b>alle %{n}</b> %{model}"
-      multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
-      multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
+      one: "<b>1</b> %{model}"
+      one_page: "<b>Alle %{n}</b> %{model}"
+      multiple: "%{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
+      multiple_without_total: "%{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
       per_page: "Pro Seite: "
+      previous: "Vorherige"
+      next: "Nächste"
       entry:
         one: "Eintrag"
         other: "Einträge"
@@ -71,15 +75,15 @@ de:
       link: "Erstellen"
     batch_actions:
       button_label: "Stapelverarbeitung"
-      default_confirmation: "Bist du sicher, dass Sie dies tun wollen?"
-      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen?"
+      default_confirmation: "Sind Sie sicher?"
+      delete_confirmation: "Sind Sie sicher dass Sie diese %{plural_model} löschen wollen?"
       succesfully_destroyed:
         one: "Erfolgreich 1 %{model} gelöscht"
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
       selection_toggle_explanation: "(Auswahl umschalten)"
-      action_label: "%{title} ausgewählte"
+      action_label: "Ausgewählte %{title}"
       labels:
-        destroy: "Lösche"
+        destroy: "löschen"
     comments:
       created_at: "Erstellt"
       resource_type: "Res­sour­cen-Typ"
@@ -88,7 +92,7 @@ de:
       author: "Autor"
       add: "Kommentar hinzufügen"
       delete: "Löschen"
-      delete_confirmation: "Sind Sie sicher dass sie diesen Kommentar löschen wollen?"
+      delete_confirmation: "Sind Sie sicher dass Sie diesen Kommentar löschen wollen?"
       resource: "Res­sour­ce"
       no_comments_yet: "Es gibt noch keine Kommentare."
       author_missing: "Unbekannt"
