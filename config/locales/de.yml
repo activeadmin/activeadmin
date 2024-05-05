@@ -45,6 +45,8 @@ de:
     scopes:
       all: "Alle"
     search_status:
+      title: "Aktive Filter"
+      title_with_scope: "Aktive Filter in %{name}"
       no_current_filters: "Keine"
     status_tag:
       "yes": "Ja"
@@ -62,6 +64,8 @@ de:
       multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
       multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
       per_page: "Pro Seite: "
+      previous: "Vorherige"
+      next: "Nächste"
       entry:
         one: "Eintrag"
         other: "Einträge"
