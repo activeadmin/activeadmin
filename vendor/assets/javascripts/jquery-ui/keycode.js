@@ -1,20 +1,22 @@
 //= require jquery-ui/version
 
 /*!
- * jQuery UI Keycode 1.12.1
- * http://jqueryui.com
+ * jQuery UI Keycode 1.13.3
+ * https://jqueryui.com
  *
- * Copyright jQuery Foundation and other contributors
+ * Copyright OpenJS Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  */
 
 //>>label: Keycode
 //>>group: Core
 //>>description: Provide keycodes as keynames
-//>>docs: http://api.jqueryui.com/jQuery.ui.keyCode/
+//>>docs: https://api.jqueryui.com/jQuery.ui.keyCode/
 
 ( function( factory ) {
+	"use strict";
+
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
@@ -24,7 +26,9 @@
 		// Browser globals
 		factory( jQuery );
 	}
-} ( function( $ ) {
+} )( function( $ ) {
+"use strict";
+
 return $.ui.keyCode = {
 	BACKSPACE: 8,
 	COMMA: 188,
@@ -44,4 +48,4 @@ return $.ui.keyCode = {
 	UP: 38
 };
 
-} ) );
+} );
