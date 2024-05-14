@@ -1,22 +1,25 @@
 //= require jquery-ui/version
 
 ( function( factory ) {
-  if ( typeof define === "function" && define.amd ) {
+	"use strict";
 
-    // AMD. Register as an anonymous module.
-    define( [ "jquery", "./version" ], factory );
-  } else {
+	if ( typeof define === "function" && define.amd ) {
 
-    // Browser globals
-    factory( jQuery );
-  }
-} ( function( $ ) {
+		// AMD. Register as an anonymous module.
+		define( [ "jquery", "./version" ], factory );
+	} else {
+
+		// Browser globals
+		factory( jQuery );
+	}
+} )( function( $ ) {
+"use strict";
 
 // Support: IE8 Only
 // IE8 does not support the form attribute and when it is supplied. It overwrites the form prop
 // with a string, so we need to find the proper form.
-  return $.fn.form = function() {
-    return typeof this[ 0 ].form === "string" ? this.closest( "form" ) : $( this[ 0 ].form );
-  };
+return $.fn._form = function() {
+	return typeof this[ 0 ].form === "string" ? this.closest( "form" ) : $( this[ 0 ].form );
+};
 
-} ) );
+} );
