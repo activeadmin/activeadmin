@@ -81,6 +81,21 @@ RSpec.describe ActiveAdmin::FormBuilder do
         expect(body).to have_css("fieldset[custom_attr='custom_attr']")
       end
     end
+
+    context "with XSS payload as name" do
+      let :body do
+        build_form do |f|
+          f.inputs name: '<script>alert(document.domain)</script>' do
+            f.input :title
+            f.input :body
+          end
+        end
+      end
+
+      it "should generate a fieldset with the proper legend" do
+        expect(body).to have_css("legend", text: "<script>alert(document.domain)</script>")
+      end
+    end
   end
 
   context "in general with actions" do
