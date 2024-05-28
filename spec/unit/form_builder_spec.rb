@@ -44,7 +44,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
   end
 
   context "in general" do
-    context "it without custom settings" do
+    context "without custom settings" do
       let :body do
         build_form do |f|
           f.inputs do
@@ -59,7 +59,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
 
-    context "it with custom settings" do
+    context "with custom settings" do
       let :body do
         build_form do |f|
           f.inputs class: "custom_class", name: "custom_name", custom_attr: "custom_attr" do
