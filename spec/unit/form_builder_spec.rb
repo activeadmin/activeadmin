@@ -44,7 +44,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
   end
 
   context "in general" do
-    context "it without custom settings" do
+    context "without custom settings" do
       let :body do
         build_form do |f|
           f.inputs do
@@ -59,7 +59,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
 
-    context "it with custom settings" do
+    context "with custom settings" do
       let :body do
         build_form do |f|
           f.inputs class: "custom_class", name: "custom_name", custom_attr: "custom_attr" do
@@ -79,6 +79,21 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       it "should generate a fieldset with a custom attributes" do
         expect(body).to have_css("fieldset[custom_attr='custom_attr']")
+      end
+    end
+
+    context "with XSS payload as name" do
+      let :body do
+        build_form do |f|
+          f.inputs name: '<script>alert(document.domain)</script>' do
+            f.input :title
+            f.input :body
+          end
+        end
+      end
+
+      it "should generate a fieldset with the proper legend" do
+        expect(body).to have_css("legend", text: "<script>alert(document.domain)</script>")
       end
     end
   end
