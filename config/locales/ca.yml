@@ -108,12 +108,15 @@ ca:
         title: "Subdomini"
       password:
         title: "Contrasenya"
-        password_confirmation: "Confirmació de la contrasenya"
-        title: "Confirmació de la contrasenya"
+      password_confirmation:
+        title: "Confirmeu la contrasenya"
+      sign_up:
+        title: "Doneu-vos d'alta"
+        submit: "Doneu-vos d'alta"
       login:
-        title: "Identificació"
-        remember_me: "Recorda'm"
-        submit: "Iniciar sessió"
+        title: "Identifiqueu-vos"
+        remember_me: "Remember me"
+        submit: "Identifiqueu-vos"
       reset_password:
         title: "Heu perdut la contrasenya?"
         submit: "Restablir la contrasenya"
