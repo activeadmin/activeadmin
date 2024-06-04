@@ -1,10 +1,27 @@
 ca:
+  activerecord:
+    models:
+      comment:
+        one: "Comentari"
+        other: "Comentaris"
+      active_admin/comment:
+        one: "Comentari"
+        other: "Comentaris"
+    attributes:
+      active_admin/comment:
+        author_type: "Tipus d'autor"
+        body: "Missatge"
+        created_at: "Creat el"
+        namespace: "Espai de noms"
+        resource_type: "Tipus de recurs"
+        updated_at: "Actualitzat el"
   active_admin:
-    dashboard: Tauler
+    dashboard: "Tauler d'activitat"
     view: "Mostra"
     edit: "Edita"
     delete: "Elimina"
-    delete_confirmation: "Segur que vols eliminar-ho?"
+    delete_confirmation: "Segur que voleu eliminar-ho?"
+    create_another: "Crear-ne un altre"
     new_model: "Crear %{model}"
     edit_model: "Editar %{model}"
     delete_model: "Eliminar %{model}"
@@ -17,24 +34,38 @@ ca:
     has_many_new: "Afegir %{model}"
     has_many_delete: "Eliminar"
     has_many_remove: "Treure"
+    move: "Moure"
     filters:
       buttons:
-        filter: "Filtrar"
-        clear: "Treure filtres"
+        filter: "Filtra"
+        clear: "Elimina els filtres"
+      predicates:
+        from: "Des de"
+        to: "Fins"
+    scopes:
+      all: "Tots"
+    search_status:
+      title: "Cerca activa"
+      title_with_scope: "Cerca activa per %{name}"
+      no_current_filters: "Sense filtres actius"
     status_tag:
       "yes": "Sí"
       "no": "No"
-      "unset": "No"
+      "unset": "Desconegut"
     logout: "Desconnecta't"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtres"
+      search_status: "Estat de la cerca"
     pagination:
-      empty: "No hi ha %{model}"
-      one: "S'està mostrant <b>1</b> %{model}"
-      one_page: "S'estan mostrant <b>tots %{n}</b> %{model}"
-      multiple: "S'estan mostrant %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> en total"
-      multiple_without_total: "S'estan mostrant %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: "No se n'ha trobat cap"
+      one: "Mostra <b>1</b> %{model}"
+      one_page: "%{model}, tots %{n}</b>"
+      multiple: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b> d'un total de <b>%{total}</b>"
+      multiple_without_total: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Per pàgina"
+      previous: "Anterior"
+      next: "Següent"
       entry:
         one: "entrada"
         other: "entrades"
@@ -43,30 +74,46 @@ ca:
       content: "Encara no hi ha cap %{resource_name}."
       link: "Crea'n un/a"
     batch_actions:
-      button_label: "les accions per lots"
-      default_confirmation: "¿Esteu segur que voleu fer-ho?"
-      delete_confirmation: "¿Està segur que desitja eliminar aquests %{plural_model}?"
+      button_label: "Accions per lots"
+      default_confirmation: "Segur que voleu fer-ho?"
+      delete_confirmation: "Segurs que voleu eliminar aquests %{plural_model}?"
       succesfully_destroyed:
-        one: "Va destruir amb èxit 1 %{model}"
-        other: "Va destruir amb èxit %{count} %{plural_model}"
-      selection_toggle_explanation: "(Selecció de Canviar)"
+        one: "1 %{model} eliminat"
+        other: "%{count} %{plural_model} eliminats"
+      selection_toggle_explanation: "(Invertir la selecció)"
       action_label: "%{title} seleccionat"
       labels:
-        destroy: "esborrar"
+        destroy: "Esborrar"
     comments:
-      body: "Cos"
-      author: "autor"
+      created_at: "Creat el"
+      resource_type: "Tipus de recurs"
+      author_type: "Tipus d'author"
+      body: "Missatge"
+      author: "Autor"
       add: "Afegeix comentari"
+      delete: "Elimina comentari"
+      delete_confirmation: "Esteu segurs que voleu eliminar aquest comentari?"
       resource: "Recurs"
       no_comments_yet: "No hi ha comentaris"
-      title_content: "comentaris (%{count})"
+      author_missing: "Anònim"
+      title_content: "Tots els comentaris (%{count})"
       errors:
-        empty_text: "El comentari no es va salvar, el text estava buida."
+        empty_text: "El comentari no s'ha desat, el text estava buit."
     devise:
+      username:
+        title: "Usuari"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Subdomini"
+      password:
+        title: "Contrasenya"
+        password_confirmation: "Confirmació de la contrasenya"
+        title: "Confirmació de la contrasenya"
       login:
-        title: "iniciar sessió"
-        remember_me: "Recordar"
-        submit: "iniciar sessió"
+        title: "Identificació"
+        remember_me: "Recorda'm"
+        submit: "Iniciar sessió"
       reset_password:
         title: "Heu perdut la contrasenya?"
         submit: "Restablir la contrasenya"
@@ -80,10 +127,13 @@ ca:
         title: "Reenviar instruccions de confirmació"
         submit: "Reenviar instruccions de confirmació"
       links:
-        sign_in: "Registrar"
+        sign_up: "Sign up"
+        sign_in: "Sign in"
         forgot_your_password: "Heu perdut la contrasenya?"
-        sign_in_with_omniauth_provider: "Connecta't amb %{provider}"
+        sign_in_with_omniauth_provider: "Identificació via %{provider}"
+        resend_unlock_instructions: "Reenviar les instruccions de desbloqueig"
+        resend_confirmation_instructions: "Reenviar les instruccions de confirmació"
     access_denied:
-      message: "No esta autoritzat a realitzar aquesta acció."
+      message: "No esteu autoritzats a realitzar aquesta acció"
     index_list:
       table: "Taula"
