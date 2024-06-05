@@ -21,7 +21,7 @@ ca:
     edit: "Edita"
     delete: "Elimina"
     delete_confirmation: "Segur que voleu eliminar-ho?"
-    create_another: "Crear-ne un altre"
+    create_another: "Crear un altre %{model}"
     new_model: "Crear %{model}"
     edit_model: "Editar %{model}"
     delete_model: "Eliminar %{model}"
@@ -31,7 +31,7 @@ ca:
     previous: "Anterior"
     next: "Següent"
     download: "Descarregar:"
-    has_many_new: "Afegir %{model}"
+    has_many_new: "Afegir un altre %{model}"
     has_many_delete: "Eliminar"
     has_many_remove: "Treure"
     move: "Moure"
@@ -52,17 +52,17 @@ ca:
       "yes": "Sí"
       "no": "No"
       "unset": "Desconegut"
-    logout: "Desconnecta't"
+    logout: "Tanca la sessió"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtres"
       search_status: "Estat de la cerca"
     pagination:
-      empty: "No se n'ha trobat cap"
-      one: "Mostra <b>1</b> %{model}"
+      empty: "No s'ha trobat cap %{model}"
+      one: "<b>1</b> %{model} de <b>1</b>"
       one_page: "%{model}, tots %{n}</b>"
-      multiple: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b> d'un total de <b>%{total}</b>"
-      multiple_without_total: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      multiple: "%{model}, <b>%{from}-%{to}</b> d'un total de <b>%{total}</b>"
+      multiple_without_total: "%{model}, <b>%{from}-%{to}</b>"
       per_page: "Per pàgina"
       previous: "Anterior"
       next: "Següent"
@@ -94,11 +94,11 @@ ca:
       delete: "Elimina comentari"
       delete_confirmation: "Esteu segurs que voleu eliminar aquest comentari?"
       resource: "Recurs"
-      no_comments_yet: "No hi ha comentaris"
+      no_comments_yet: "Sense comentaris"
       author_missing: "Anònim"
       title_content: "Tots els comentaris (%{count})"
       errors:
-        empty_text: "El comentari no s'ha desat, el text estava buit."
+        empty_text: "El comentari no s'ha desat, no hi havia text."
     devise:
       username:
         title: "Usuari"
@@ -115,14 +115,14 @@ ca:
         submit: "Doneu-vos d'alta"
       login:
         title: "Identifiqueu-vos"
-        remember_me: "Remember me"
+        remember_me: "Recorda'm"
         submit: "Identifiqueu-vos"
       reset_password:
-        title: "Heu perdut la contrasenya?"
+        title: "Heu oblidat la contrasenya?"
         submit: "Restablir la contrasenya"
       change_password:
         title: "Canvieu la contrasenya"
-        submit: "Canviar la contrasenya"
+        submit: "Canvia'm la contrasenya"
       unlock:
         title: "Reenvia instruccions per a desbloquejar"
         submit: "Reenvia instruccions per a desbloquejar"
