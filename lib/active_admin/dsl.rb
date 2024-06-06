@@ -53,7 +53,7 @@ module ActiveAdmin
     #
     # @return [Nil]
     def include(mod)
-      mod.included(self)
+      mod.send(:included, self)
     end
 
     # Returns the controller for this resource. If you pass a
