@@ -9,6 +9,9 @@ Active Admin is a Ruby Gem.
 ```ruby
 gem 'activeadmin'
 
+# If you're not using webpacker, ensure you have:
+# gem 'sass-rails'
+
 # Plus integrations with:
 gem 'devise'
 gem 'cancancan'
