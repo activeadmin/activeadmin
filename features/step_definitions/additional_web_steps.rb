@@ -4,7 +4,7 @@ Then /^I should see a table header with "([^"]*)"$/ do |content|
 end
 
 Then /^I should not see a table header with "([^"]*)"$/ do |content|
-  expect(page).to_not have_xpath "//th", text: content
+  expect(page).to have_no_xpath "//th", text: content
 end
 
 Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
@@ -12,7 +12,7 @@ Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
 end
 
 Then /^I should not see a sortable table header with "([^"]*)"$/ do |content|
-  expect(page).to_not have_css "th[data-sortable]", text: content
+  expect(page).to have_no_css "th[data-sortable]", text: content
 end
 
 Then /^I should not see a sortable table header$/ do

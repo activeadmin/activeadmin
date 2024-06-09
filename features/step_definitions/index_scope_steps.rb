@@ -7,7 +7,7 @@ end
 
 Then /^I should see the scope "([^"]*)" not selected$/ do |name|
   step %{I should see the scope "#{name}"}
-  expect(page).to_not have_css ".scopes .index-button-selected", text: name
+  expect(page).to have_no_css ".scopes .index-button-selected", text: name
 end
 
 Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|
@@ -21,7 +21,7 @@ end
 
 Then /^I should see the scope "([^"]*)" with no count$/ do |name|
   expect(page).to have_css ".scopes a", text: name
-  expect(page).to_not have_css ".scopes-count"
+  expect(page).to have_no_css ".scopes-count"
 end
 
 Then "I should see a group {string} with the scopes {string} and {string}" do |group, name1, name2|
@@ -35,5 +35,5 @@ Then "I should see a default group with a single scope {string}" do |name|
 end
 
 Then "I should not see any scopes" do
-  expect(page).to_not have_css ".scopes a"
+  expect(page).to have_no_css ".scopes a"
 end
