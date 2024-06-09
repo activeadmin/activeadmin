@@ -5,7 +5,7 @@ create_file "app/assets/stylesheets/some-random-css.css"
 create_file "app/assets/javascripts/some-random-js.js"
 create_file "app/assets/images/a/favicon.ico"
 
-initial_timestamp = Time.now.strftime("%Y%M%d%H%M%S").to_i
+initial_timestamp = Time.now.strftime("%Y%m%d%H%M%S").to_i
 
 template File.expand_path("templates/migrations/create_posts.tt", __dir__), "db/migrate/#{initial_timestamp}_create_posts.rb"
 
