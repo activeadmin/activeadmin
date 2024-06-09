@@ -46,6 +46,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+          rubygems: latest
       - name: Create test app
         run: bin/rake setup
       - name: Restore cached RSpec runtimes

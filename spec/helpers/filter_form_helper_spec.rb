@@ -563,14 +563,14 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
 
       it "should be able to be disabled" do
         body = filter :author, include_blank: false
-        expect(body).to_not have_css("option", text: "Any")
+        expect(body).to have_no_css("option", text: "Any")
       end
     end
 
     context "for a multi-select filter" do
       it "should not be there by default" do
         body = filter :author, multiple: true
-        expect(body).to_not have_css("option", text: "Any")
+        expect(body).to have_no_css("option", text: "Any")
       end
 
       it "should be able to be enabled" do

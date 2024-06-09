@@ -10,5 +10,5 @@ Then /^I should see the attribute "([^"]*)" with a nicely formatted datetime$/ d
 end
 
 Then /^I should not see the attribute "([^"]*)"$/ do |title|
-  expect(page).to_not have_css ".attributes-table th", text: title
+  expect(page).to have_no_css ".attributes-table th", text: title
 end

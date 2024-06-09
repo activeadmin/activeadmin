@@ -8,7 +8,7 @@ Then("I should see {string} in the table") do |string|
 end
 
 Then("I should not see {string} in the table") do |string|
-  expect(page).to_not have_css(".data-table tr > td", text: string)
+  expect(page).to have_no_css(".data-table tr > td", text: string)
 end
 
 Then /^I should see an id_column link to edit page$/ do
