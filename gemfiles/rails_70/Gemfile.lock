@@ -140,8 +140,6 @@ GEM
     cuprite (0.15)
       capybara (~> 3.0)
       ferrum (~> 0.14.0)
-    database_cleaner (2.0.2)
-      database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
@@ -382,7 +380,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails
   cuprite
-  database_cleaner
+  database_cleaner-active_record
   devise
   draper
   i18n-spec

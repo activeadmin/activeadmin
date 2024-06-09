@@ -29,7 +29,7 @@ group :test do
   gem "simplecov-cobertura", require: false
   gem "cucumber-rails", require: false
   gem "cucumber"
-  gem "database_cleaner"
+  gem "database_cleaner-active_record"
   gem "launchy"
   gem "parallel_tests"
   gem "rspec-rails"
