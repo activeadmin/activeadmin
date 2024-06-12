@@ -52,6 +52,10 @@ it:
       "yes": "Sì"
       "no": "No"
       "unset": "Vuoto"
+    toggle_dark_mode: Attiva/Disattiva tema scuro
+    toggle_main_navigation_menu: Espandi/Riduci menu di navigazione principale
+    toggle_section: Espandi/Riduci sezione
+    toggle_user_menu: Espandi/Riduci menu utente
     logout: "Esci"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
