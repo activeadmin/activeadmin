@@ -1,6 +1,6 @@
-# Active Admin
+# Active beta134
 
-[Active Admin](https://activeadmin.info) is a Ruby on Rails framework for
+[Active beta134](https://activeadmin.info) is a Ruby on Rails framework for
 creating elegant backends for website administration.
 
 [![Version][rubygems_badge]][rubygems]
