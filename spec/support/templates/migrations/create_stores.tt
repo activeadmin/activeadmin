@@ -3,6 +3,8 @@ class CreateStores < ActiveRecord::Migration[<%= Rails::VERSION::MAJOR %>.<%= Ra
     create_table :stores do |t|
       t.string :name
       t.integer :user_id
+      t.integer :review_status
+      t.integer :reject_reason
       t.datetime :created_at
       t.datetime :updated_at
     end
