@@ -44,9 +44,9 @@ After installing the gem, you need to run the generator. Here are your options:
 The generator adds these core files, among others:
 
 * `app/admin/dashboard.rb`
-* `app/assets/javascripts/active_admin.js`
-* `app/assets/stylesheets/active_admin.scss`
+* `app/assets/stylesheets/active_admin.css`
 * `config/initializers/active_admin.rb`
+* `tailwind-active_admin.config.js`
 
 Now, migrate and seed your database before starting the server:
 
@@ -66,17 +66,17 @@ Voila! You're on your brand new Active Admin dashboard.
 To register an existing model with Active Admin:
 
 ```sh
-rails generate active_admin:resource MyModel
+rails generate active_admin:resource Post
 ```
 
-This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your
-browser to see it.
+This creates a `app/admin/post.rb` file with some content to start. Preview
+any changes in your browser.
 
 # Upgrading
 
 When upgrading to a new version, it's a good idea to check the [CHANGELOG].
 
-To update the JS & CSS assets:
+To update the assets:
 
 ```sh
 rails generate active_admin:assets
@@ -86,6 +86,8 @@ You should also sync these files with their counterparts in the AA source code:
 
 * app/admin/dashboard.rb [~>][dashboard.rb]
 * config/initializers/active_admin.rb [~>][active_admin.rb]
+
+Along with any template partials you've copied and modified.
 
 # Gem compatibility
 
@@ -111,30 +113,6 @@ Draper::CollectionDecorator.send :delegate, :per_page_kaminari
 ## simple_form
 
 If you're getting the error `wrong number of arguments (6 for 4..5)`, [read #2703].
-
-## webpacker
-
-You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating your configuration to turn on the `use_webpacker` option, either at installation time or manually.
-
-* at active_admin installation:
-
-  ```sh
-  rails g active_admin:install --use_webpacker
-  ```
-
-* manually:
-
-  ```ruby
-  ActiveAdmin.setup do |config|
-    config.use_webpacker = true
-  end
-  ```
-
-  And run the generator to get default Active Admin assets:
-
-  ```sh
-  rails g active_admin:webpacker
-  ```
 
 [CHANGELOG]: https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md
 [dashboard.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb

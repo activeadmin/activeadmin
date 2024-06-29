@@ -38,7 +38,7 @@ A panel is a component that takes up all available horizontal space and takes a
 title and a hash of attributes as arguments. If a sidebar is present, a panel
 will take up the remaining space.
 
-This will create two stacked panels:
+This will create two vertically stacked panels:
 
 ```ruby
 show do
@@ -47,85 +47,7 @@ show do
   end
 
   panel "Post Tags" do
-    render partial: "tags",    locals: {post: post}
-  end
-end
-```
-
-## Columns
-
-The Columns component allows you draw content into scalable columns. All you
-need to do is define the number of columns and the component will take care of
-the rest.
-
-### Simple Columns
-
-To create simple columns, use the `columns` method. Within the block, call
-the #column method to create a new column.
-
-```ruby
-columns do
-  column do
-    span "Column #1"
-  end
-
-  column do
-    span "Column #2"
-  end
-end
-```
-
-### Spanning Multiple Columns
-
-To create columns that have multiple spans, pass the :span option to the column
-method.
-
-```ruby
-columns do
-  column span: 2 do
-    span "Column # 1"
-  end
-  column do
-    span "Column # 2"
-  end
-end
-```
-
-By default, each column spans 1 column. The above layout would have 2 columns,
-the first being twice as large as the second.
-
-### Custom Column Widths
-
-Active Admin uses a fluid width layout, causing column width to be defined
-using percentages. Due to using this style of layout, columns can shrink or
-expand past points that may not be desirable. To overcome this issue,
-columns provide `:max_width` and `:min_width` options.
-
-```ruby
-columns do
-  column max_width: "200px", min_width: "100px" do
-    span "Column # 1"
-  end
-  column do
-    span "Column # 2"
-  end
-end
-```
-
-In the above example, the first column will not grow larger than 200px and will
-not shrink less than 100px.
-
-### Custom Column Class
-
-Pass the `:class` option to the column method to set a custom class.
-
-```ruby
-columns do
-  column class: "important" do
-    span "Column # 1"
-  end
-  column do
-    span "Column # 2"
+    render partial: "tags", locals: {post: post}
   end
 end
 ```
@@ -149,6 +71,19 @@ The `column` method can take a title as its first argument and data
 (`:your_method`) as its second (or first if no title provided). Column also
 takes a block.
 
+### Responsive Support
+
+For a mobile friendly `table_for`, you'll need to wrap it with a `div` and apply
+horizontal overflow to enable horizontal scrolling.
+
+```ruby
+div class: "overflow-x-auto" do
+  table_for payments do
+    # ...
+  end
+end
+```
+
 ### Internationalization
 
 To customize the internationalization for the component, specify a resource to
@@ -164,31 +99,38 @@ end
 ## Status tag
 
 Status tags provide convenient syntactic sugar for styling items that have
-status. A common example of where the status tag could be useful is for orders
-that are complete or in progress. `status_tag` takes a status, like
-"In Progress", and a hash of options. The status_tag will generate HTML markup
-that Active Admin CSS uses in styling.
+status. A common usage is for boolean fields or a named status like "Complete"
+or "In progress". The `status_tag` will generate HTML markup and a base style
+is applied. Customize with your own CSS classes and styles.
 
 ```ruby
 status_tag 'In Progress'
-# => <span class='status_tag in_progress'>In Progress</span>
+# => <span class="status-tag" data-status="in_progress">In Progress</span>
 
-status_tag 'active', class: 'important', id: 'status_123', label: 'on'
-# => <span class='status_tag active important' id='status_123'>on</span>
+status_tag 'Active', class: 'important', id: 'status_123', label: 'on'
+# => <span class="status-tag important" id="status_123" data-status="active">on</span>
 ```
 
-When providing a `true` or `false` value, the `status_tag` will display "Yes"
-or "No". This can be configured through the `"en.active_admin.status_tag"`
-locale.
+When providing a `true`, `false`, or `nil` value, the `status_tag` will display
+"Yes", "No", or "Unknown" by default.
 
 ```ruby
 status_tag true
-# => <span class='status_tag yes'>Yes</span>
+# => <span class="status-tag" data-status="yes">Yes</span>
 ```
 
-In the case that a boolean field is `nil`, it will display "No" as a default.
-But using the `"en.active_admin.status_tag.unset"` locale key, it can be
-configured to display something else.
+```ruby
+status_tag false
+# => <span class="status-tag" data-status="yes">No</span>
+```
+
+```ruby
+status_tag nil
+# => <span class="status-tag" data-status="unset">Unknown</span>
+```
+
+The default labels can be configured through the `"en.active_admin.status_tag"`
+locale.
 
 ## Tabs
 
@@ -205,10 +147,12 @@ tabs do
     end
   end
 
-  tab :inactive do
+  tab :inactive, html_options: { class: "specific_css_class" } do
     table_for orders.inactive do
       ...
     end
   end
 end
 ```
+
+The `html_options` will set additional HTML attributes on the tab button.
