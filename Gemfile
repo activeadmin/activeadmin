@@ -10,10 +10,10 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 7.1.0"
+  gem "rails", "~> 7.2.0.beta2"
 
   gem "sprockets-rails"
-  gem "ransack", ">= 4.1.0"
+  gem 'ransack', github: 'saltlabsinc/ransack', branch: 'delegate-alias-tracker-to-relation-1491' # TODO: activerecord-hackery/ransack#1493
   gem "formtastic", ">= 5.0.0"
 
   gem "cssbundling-rails"
@@ -29,11 +29,12 @@ group :test do
   gem "simplecov-cobertura", require: false
   gem "cucumber-rails", require: false
   gem "cucumber"
-  gem "database_cleaner-active_record"
+  # TODO: use stable when DatabaseCleaner/database_cleaner-active_record#102 will be released
+  gem 'database_cleaner-active_record', github: 'DatabaseCleaner/database_cleaner-active_record'
   gem "launchy"
   gem "parallel_tests"
   gem "rspec-rails"
-  gem "sqlite3", "~> 1.7", platform: :mri # FIXME: relax this dependency when rails/rails#51636 will be released
+  gem "sqlite3", platform: :mri
 
   # Translations
   gem "i18n-tasks"
