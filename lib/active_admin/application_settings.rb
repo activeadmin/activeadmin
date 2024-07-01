@@ -39,5 +39,12 @@ module ActiveAdmin
 
     # Remove sensitive attributes from being displayed, made editable, or exported by default
     register :filter_attributes, [:encrypted_password, :password, :password_confirmation]
+
+    # Use pre-compiled, static assets included in the gem
+    register :use_static_assets, false # TODO: or default to true?
+
+    # Static assets are served from this path. It includes the VERSION to
+    # invalidate browser caches on gem updates.
+    register :static_assets_path, "/active_admin_static_assets/#{VERSION}"
   end
 end

@@ -25,6 +25,16 @@ ActiveAdmin.setup do |config|
   #     File.join(Rails.root, 'app', 'cashier')
   #   ]
 
+  # == Static assets
+  #
+  # This setting makes Active Admin use included static copies of all
+  # required assets, so that no precompilation and no asset gems are needed,
+  # except of importmap-rails.
+  # Please note that this will prevent you from customizing the tailwind setup
+  # or using tailwind classes that are not already used by Active Admin itself.
+  #
+  # config.use_static_assets = true
+
   # == Default Namespace
   #
   # Set the default namespace each administration resource

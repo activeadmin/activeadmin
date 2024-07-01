@@ -4,6 +4,7 @@ require "bundler/gem_tasks"
 import "tasks/local.rake"
 import "tasks/test.rake"
 import "tasks/dependencies.rake"
+import "tasks/static_assets.rake"
 
 gemfile = ENV["BUNDLE_GEMFILE"]
 
@@ -19,3 +20,6 @@ task :console do
   ARGV.clear
   IRB.start
 end
+
+# ensure fresh assets are included when packaging the gem
+task build: :static_assets
