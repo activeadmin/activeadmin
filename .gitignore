@@ -11,5 +11,6 @@
 /vendor/bundle
 /rails_70
 /dist
+/lib/active_admin/static_assets/assets
 docs/.vitepress/cache
 docs/.vitepress/dist

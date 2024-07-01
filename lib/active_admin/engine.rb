@@ -41,5 +41,17 @@ module ActiveAdmin
     initializer "active_admin.deprecator" do |app|
       app.deprecators[:activeadmin] = ActiveAdmin.deprecator if app.respond_to?(:deprecators)
     end
+
+    initializer "active_admin.static_assets" do |app|
+      next unless ActiveAdmin.application.use_static_assets
+
+      customizations = Dir[app.root.join('app/assets/{builds,stylesheets}/active_admin.*')]
+      customizations.any? and warn ""\
+        "ActiveAdmin's use_static_assets setting is not compatible with "\
+        "providing core activeadmin assets yourself. You can turn off the "\
+        "setting or remove your custom files: #{customizations}"
+
+      app.middleware.insert 0, ActiveAdmin::StaticAssetsMiddleware
+    end
   end
 end

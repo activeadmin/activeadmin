@@ -18,6 +18,7 @@ group :development, :test do
 
   gem "cssbundling-rails"
   gem "importmap-rails"
+  gem "tailwindcss-rails", "~> 2.6"
 end
 
 group :test do
