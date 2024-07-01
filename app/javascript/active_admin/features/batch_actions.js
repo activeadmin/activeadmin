@@ -1,11 +1,20 @@
 import Rails from '@rails/ujs';
 
+const submitForm = function() {
+  let form = document.getElementById("collection_selection")
+  if (form) {
+    form.submit()
+  }
+}
+
 const batchActionClick = function(event) {
   event.preventDefault()
   let batchAction = document.getElementById("batch_action")
   if (batchAction) {
     batchAction.value = this.dataset.action
   }
+
+  if (!event.target.dataset.confirm) { submitForm() }
 }
 
 const batchActionConfirmComplete = function(event) {
@@ -15,10 +24,7 @@ const batchActionConfirmComplete = function(event) {
     if (batchAction) {
       batchAction.value = this.dataset.action
     }
-    let form = document.getElementById("collection_selection")
-    if (form) {
-      form.submit()
-    }
+    submitForm()
   }
 }
 
