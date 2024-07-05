@@ -217,3 +217,23 @@ Feature: Batch Actions
 
     When I press "Submit"
     Then I should see a flash with "Successfully flagged 10 posts"
+
+  @javascript
+  Scenario: Use batch action without confirmation
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        batch_action :mark_not_starred do |ids|
+          Post.where(id: ids).update_all(starred: false)
+          redirect_to collection_path, notice: "#{ids.count} posts marked as not starred"
+        end
+      end
+      """
+    When I check the 1st record
+    And I check the 3rd record
+    And I press "Batch Actions"
+    Then I should see the batch action :mark_not_starred "Mark Not Starred"
+    When I click "Mark Not Starred"
+    Then I should see a flash with "2 posts marked as not starred"
+    And I should see 10 posts in the table
