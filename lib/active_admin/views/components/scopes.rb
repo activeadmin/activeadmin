@@ -15,6 +15,8 @@ module ActiveAdmin
       def build(scopes, options = {})
         super({ role: "toolbar" })
         add_class "scopes"
+        prepare_async_counts(scopes, options)
+
         scopes.group_by(&:group).each do |group, group_scopes|
           div class: "index-button-group", role: "group", data: { "group": group_name(group) } do
             group_scopes.each do |scope|
@@ -55,11 +57,29 @@ module ActiveAdmin
 
       # Return the count for the scope passed in.
       def get_scope_count(scope)
-        collection_size(scope_chain(scope, collection_before_scope))
+        chained = scope_chain(scope, collection_before_scope)
+
+        collection_size(@async_counts[scope] || chained)
       end
 
       def group_name(group)
         group.present? ? group : "default"
+      end
+
+      private
+
+      def async_counts?
+        collection_before_scope.respond_to?(:async_count)
+      end
+
+      def prepare_async_counts(scopes, options)
+        @async_counts = if options[:scope_count] && async_counts?
+                          scopes
+                            .select { |scope| scope.show_count && call_method_or_exec_proc(scope.display_if_block) }
+                            .index_with { |scope| AsyncCount.new(scope_chain(scope, collection_before_scope)) }
+                        else
+                          {}
+                        end
       end
     end
   end
