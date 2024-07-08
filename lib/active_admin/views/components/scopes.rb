@@ -22,6 +22,8 @@ module ActiveAdmin
       end
 
       def build(scopes, options = {})
+        @scope_counts = scopes.index_with { |scope| query_scope_count(scope) }
+
         scopes.group_by(&:group).each do |group, group_scopes|
           ul class: "table_tools_segmented_control #{group_class(group)}" do
             group_scopes.each do |scope|
@@ -62,9 +64,27 @@ module ActiveAdmin
         end
       end
 
+      def async_counts?
+        collection_before_scope.respond_to?(:async_count)
+      end
+
+      def query_scope_count(scope)
+        chained = scope_chain(scope, collection_before_scope)
+
+        if async_counts?
+          chained.async_count
+        else
+          collection_size(chain)
+        end
+      end
+
       # Return the count for the scope passed in.
       def get_scope_count(scope)
-        collection_size(scope_chain(scope, collection_before_scope))
+        if async_counts?
+          scope_chain(scope, collection_before_scope).group_values.present? ? @scope_counts[scope].value.count : @scope_counts[scope].value.value
+        else
+          @scope_counts[scope]
+        end
       end
 
       def group_class(group)
