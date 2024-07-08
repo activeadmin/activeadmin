@@ -22,7 +22,8 @@ module ActiveAdmin
       end
 
       def build(scopes, options = {})
-        @scope_counts = scopes.index_with { |scope| query_scope_count(scope) }
+        counted_scopes = scopes.select { |scope| scope.show_count && options[:scope_count] }
+        build_async_counts(counted_scopes)
 
         scopes.group_by(&:group).each do |group, group_scopes|
           ul class: "table_tools_segmented_control #{group_class(group)}" do
@@ -68,27 +69,44 @@ module ActiveAdmin
         collection_before_scope.respond_to?(:async_count)
       end
 
-      def query_scope_count(scope)
-        chained = scope_chain(scope, collection_before_scope)
-
-        if async_counts?
-          chained.async_count
-        else
-          collection_size(chain)
-        end
+      def build_async_counts(scopes)
+        @async_counts ||= if async_counts?
+                            scopes.index_with do |scope|
+                              AsyncCount.new(scope_chain(scope, collection_before_scope))
+                            end
+                          else
+                            {}
+                          end
       end
 
       # Return the count for the scope passed in.
       def get_scope_count(scope)
-        if async_counts?
-          scope_chain(scope, collection_before_scope).group_values.present? ? @scope_counts[scope].value.count : @scope_counts[scope].value.value
-        else
-          @scope_counts[scope]
-        end
+        chained = scope_chain(scope, collection_before_scope)
+
+        collection_size(@async_counts[scope] || chained)
       end
 
       def group_class(group)
         group.present? ? "scope-group-#{group}" : "scope-default-group"
+      end
+
+      class AsyncCount
+        def initialize(collection)
+          @collection = collection.except(:select, :order)
+          @promise = @collection.async_count
+        end
+
+        def count
+          value = @promise.value
+          # value.value due to Rails bug https://github.com/rails/rails/issues/50776
+          value.respond_to?(:value) ? value.value : value
+        end
+
+        def limit_value
+          nil
+        end
+
+        delegate :except, :group_values, to: :@collection
       end
     end
   end
