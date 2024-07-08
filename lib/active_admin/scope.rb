@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require "active_admin/async_count"
+
 module ActiveAdmin
   class Scope
 
