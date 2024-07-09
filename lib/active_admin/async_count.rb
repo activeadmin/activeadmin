@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module ActiveAdmin
   class AsyncCount
     def initialize(collection)
