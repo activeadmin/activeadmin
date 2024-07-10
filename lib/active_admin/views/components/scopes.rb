@@ -19,9 +19,9 @@ module ActiveAdmin
 
         scopes.group_by(&:group).each do |group, group_scopes|
           div class: "index-button-group", role: "group", data: { "group": group_name(group) } do
-            group_scopes.each do |scope|
-              build_scope(scope, options) if call_method_or_exec_proc(scope.display_if_block)
-            end
+            group_scopes
+              .select(&method(:display_scope?))
+              .each { |scope| build_scope(scope, options) }
 
             nil
           end
@@ -68,6 +68,10 @@ module ActiveAdmin
 
       private
 
+      def display_scope?(scope)
+        call_method_or_exec_proc(scope.display_if_block)
+      end
+
       def async_counts?
         collection_before_scope.respond_to?(:async_count)
       end
@@ -75,7 +79,8 @@ module ActiveAdmin
       def prepare_async_counts(scopes, options)
         @async_counts = if options[:scope_count] && async_counts?
                           scopes
-                            .select { |scope| scope.show_count && call_method_or_exec_proc(scope.display_if_block) }
+                            .select(&:show_count)
+                            .select(&method(:display_scope?))
                             .index_with { |scope| AsyncCount.new(scope_chain(scope, collection_before_scope)) }
                         else
                           {}
