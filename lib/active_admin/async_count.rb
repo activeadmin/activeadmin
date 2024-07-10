@@ -12,6 +12,8 @@ module ActiveAdmin
       value.respond_to?(:value) ? value.value : value
     end
 
+    alias size count
+
     delegate :except, :group_values, :length, :limit_value, to: :@collection
   end
 end
