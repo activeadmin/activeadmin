@@ -53,10 +53,10 @@ RSpec.describe ActiveAdmin::Views::Scopes do
 
     it "renders the scopes component" do
       html = Capybara.string(scopes.to_s)
-      expect(html).to have_selector("div.scopes")
+      expect(html).to have_css("div.scopes")
 
       configured_scopes.each do |scope|
-        expect(html).to have_selector("a[href='/admin/posts?scope=#{scope.id}']")
+        expect(html).to have_css("a[href='/admin/posts?scope=#{scope.id}']")
       end
     end
 

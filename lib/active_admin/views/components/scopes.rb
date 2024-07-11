@@ -21,7 +21,7 @@ module ActiveAdmin
         scopes.group_by(&:group).each do |group, group_scopes|
           div class: "index-button-group", role: "group", data: { "group": group_name(group) } do
             group_scopes
-              .select(&method(:display_scope?))
+              .select { |scope| display_scope?(scope) }
               .each { |scope| build_scope(scope, options) }
 
             nil
@@ -81,7 +81,7 @@ module ActiveAdmin
         @async_counts = if options[:scope_count] && async_counts?
                           scopes
                             .select(&:show_count)
-                            .select(&method(:display_scope?))
+                            .select { |scope| display_scope?(scope) }
                             .index_with { |scope| AsyncCount.new(scope_chain(scope, collection_before_scope)) }
                         else
                           {}
