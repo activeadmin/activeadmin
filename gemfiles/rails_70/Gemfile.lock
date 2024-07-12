@@ -83,8 +83,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.6)
-      public_suffix (>= 2.0.2, < 6.0)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
     arbre (2.0.0)
       activesupport (>= 3.0.0)
       ruby2_keywords (>= 0.0.2)
@@ -129,7 +129,7 @@ GEM
       bigdecimal
     cucumber-gherkin (27.0.0)
       cucumber-messages (>= 19.1.4, < 23)
-    cucumber-html-formatter (21.3.1)
+    cucumber-html-formatter (21.4.0)
       cucumber-messages (> 19, < 25)
     cucumber-messages (22.0.0)
     cucumber-rails (3.0.0)
@@ -140,7 +140,7 @@ GEM
     cuprite (0.15.1)
       capybara (~> 3.0)
       ferrum (~> 0.15.0)
-    database_cleaner-active_record (2.1.0)
+    database_cleaner-active_record (2.2.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
@@ -233,7 +233,7 @@ GEM
     mini_portile2 (2.8.7)
     minitest (5.24.1)
     multi_test (1.1.0)
-    net-imap (0.4.12)
+    net-imap (0.4.14)
       date
       net-protocol
     net-pop (0.1.2)
@@ -254,10 +254,10 @@ GEM
     parallel (1.25.1)
     parallel_tests (4.7.1)
       parallel
-    parser (3.3.3.0)
+    parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
-    public_suffix (5.0.5)
+    public_suffix (6.0.0)
     pundit (2.3.2)
       activesupport (>= 3.0.0)
     racc (1.8.0)
@@ -297,7 +297,7 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.2.1)
-    ransack (4.1.1)
+    ransack (4.2.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
@@ -307,7 +307,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.0)
+    rexml (3.3.1)
       strscan
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
@@ -400,4 +400,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-   2.5.13
+   2.5.15
