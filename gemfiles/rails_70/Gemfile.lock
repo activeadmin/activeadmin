@@ -129,7 +129,7 @@ GEM
       bigdecimal
     cucumber-gherkin (27.0.0)
       cucumber-messages (>= 19.1.4, < 23)
-    cucumber-html-formatter (21.4.0)
+    cucumber-html-formatter (21.4.1)
       cucumber-messages (> 19, < 25)
     cucumber-messages (22.0.0)
     cucumber-rails (3.0.0)
@@ -177,7 +177,8 @@ GEM
     has_scope (0.8.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
-    highline (3.0.1)
+    highline (3.1.0)
+      reline
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
@@ -201,6 +202,7 @@ GEM
       has_scope (>= 0.6)
       railties (>= 6.0)
       responders (>= 2)
+    io-console (0.7.2)
     iso (0.4.0)
       i18n
     kaminari (1.2.2)
@@ -257,7 +259,7 @@ GEM
     parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
-    public_suffix (6.0.0)
+    public_suffix (6.0.1)
     pundit (2.3.2)
       activesupport (>= 3.0.0)
     racc (1.8.0)
@@ -302,12 +304,14 @@ GEM
       activesupport (>= 6.1.5)
       i18n
     regexp_parser (2.9.2)
+    reline (0.5.9)
+      io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.1)
+    rexml (3.3.2)
       strscan
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
