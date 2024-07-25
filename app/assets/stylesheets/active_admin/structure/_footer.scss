@@ -10,10 +10,10 @@
 
 // -------------------------------------- Index Footer (Under Table)
 #index_footer {
-  @include clearfix;
   padding-top: 5px;
   text-align: right;
   font-size: 0.85em;
+  @include clearfix;
 }
 
 .index_content { clear: both; }

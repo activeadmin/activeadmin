@@ -38,8 +38,11 @@
   margin-left: 4px;
   select {
     @include light-button;
-    @include rounded(0px);
-    padding: 1px 5px;
+
+    & {
+      @include rounded(0px);
+      padding: 1px 5px;
+    }
   }
 }
 

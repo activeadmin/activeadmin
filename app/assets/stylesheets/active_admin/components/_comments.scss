@@ -2,10 +2,10 @@
 .comments {
 
   .active_admin_comment {
-    @include clearfix;
     margin-top: 10px;
     margin-bottom: 20px;
     max-width: 700px;
+    @include clearfix;
 
     .active_admin_comment_meta {
       width: 130px;

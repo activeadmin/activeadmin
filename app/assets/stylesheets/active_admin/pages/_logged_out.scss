@@ -28,13 +28,13 @@ body.logged_out {
         @include no-shadow;
         background: none;
         padding: 0;
+        margin-bottom: 0;
         li { padding: 10px 0; }
 
         input[type=text], input[type=email], input[type=password] {
           width: 70%;
         }
         &.buttons { margin-left: 20%; }
-        margin-bottom: 0;
       }
     }
 

@@ -1,6 +1,6 @@
 .table_tools {
-  @include clearfix;
   margin-bottom: 16px;
+  @include clearfix;
 }
 
 .table_tools .dropdown_menu {
@@ -9,11 +9,14 @@
 
 a.table_tools_button, .table_tools .dropdown_menu_button {
   @include light-button;
-  @include gradient(#FFFFFF, #F0F0F0);
-  @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);
-  font-size: 0.9em;
-  padding: 4px 14px 4px;
-  margin: 0;
+
+  & {
+    @include gradient(#FFFFFF, #F0F0F0);
+    @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);
+    font-size: 0.9em;
+    padding: 4px 14px 4px;
+    margin: 0;
+  }
 
   &:not(.disabled) {
     &:hover {

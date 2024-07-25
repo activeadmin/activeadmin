@@ -220,9 +220,8 @@ form {
   /* Buttons */
 
   input[type=submit], input[type=button], button {
-    @include dark-button;
     cursor: pointer;
-
+    @include dark-button;
   }
 
   .buttons, .actions {

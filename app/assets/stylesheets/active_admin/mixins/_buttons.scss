@@ -17,13 +17,13 @@
 }
 
 @mixin default-button {
-  @include basic-button;
   @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
   @include text-shadow(#000);
   box-shadow: 0 1px 1px rgba(0,0,0,0.10), 0 1px 0 0px rgba(255,255,255, 0.2) inset;
   border: solid 1px #484e53;
   @include border-colors(#616a71, #484e53, #363b3f);
   color: #efefef;
+  @include basic-button;
 
   &:not(.disabled) {
     &:hover{
@@ -38,13 +38,13 @@
 }
 
 @mixin light-button {
-  @include basic-button;
   @include gradient(#FFFFFF, #E7E7E7);
   box-shadow: 0 1px 1px rgba(0,0,0,0.10), 0 1px 0 0 rgba(255,255,255, 0.8) inset;
   border: solid 1px #c7c7c7;
   @include border-colors(#d3d3d3, #c7c7c7, #c2c2c2);
   @include text-shadow;
   color: $primary-color;
+  @include basic-button;
 
   &:not(.disabled) {
     &:hover {
