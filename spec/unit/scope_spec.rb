@@ -199,9 +199,31 @@ RSpec.describe ActiveAdmin::Scope do
       expect(scope.show_count).to eq false
     end
 
+    it "should allow setting of show_count to query counts asynchronously" do
+      scope = ActiveAdmin::Scope.new(:default, nil, show_count: :async)
+      expect(scope.show_count).to eq :async
+    end
+
     it "should set show_count to true if not passed in" do
       scope = ActiveAdmin::Scope.new(:default)
       expect(scope.show_count).to eq true
+    end
+  end
+
+  describe "#async_count?" do
+    it "should return true when show_count is :async" do
+      scope = ActiveAdmin::Scope.new(:default, nil, show_count: :async)
+      expect(scope.async_count?).to eq true
+    end
+
+    it "should return false show_count is not passed in" do
+      scope = ActiveAdmin::Scope.new(:default)
+      expect(scope.async_count?).to eq false
+    end
+
+    it "should return false when show_count is false" do
+      scope = ActiveAdmin::Scope.new(:default, nil, show_count: false)
+      expect(scope.async_count?).to eq false
     end
   end
 
