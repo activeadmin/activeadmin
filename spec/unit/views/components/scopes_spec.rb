@@ -60,56 +60,83 @@ RSpec.describe ActiveAdmin::Views::Scopes do
       end
     end
 
-    it "uses AsyncCounts when available", if: Post.respond_to?(:async_count) do
-      scopes
-
-      expect(ActiveAdmin::AsyncCount).to have_received(:new).with(Post.all)
-      expect(ActiveAdmin::AsyncCount).to have_received(:new).with(Post.where.not(published_date: nil))
-    end
-
-    it "avoids AsyncCounts when unavailable", unless: Post.respond_to?(:async_count) do
-      scopes
-
-      expect(ActiveAdmin::AsyncCount).not_to have_received(:new)
-    end
-
-    context "when an individual scope is configured to hide its count" do
+    context "when scopes are configured to query their counts asynchronously" do
       let(:configured_scopes) do
         [
-          ActiveAdmin::Scope.new(:all, nil, show_count: false)
+          ActiveAdmin::Scope.new(:all, nil, show_count: :async),
+          ActiveAdmin::Scope.new(:published, nil, show_count: :async) { |posts| posts.where.not(published_date: nil) }
         ]
       end
 
-      it "avoids AsyncCounts" do
-        scopes
-
-        expect(ActiveAdmin::AsyncCount).not_to have_received(:new)
-      end
-    end
-
-    context "when a scope is not to be displayed" do
-      let(:configured_scopes) do
-        [
-          ActiveAdmin::Scope.new(:all, nil, if: -> { false })
-        ]
+      it "raises an error when ActiveRecord async_count is unavailable", unless: Post.respond_to?(:async_count) do
+        expect { scopes }.to raise_error(NoMethodError, %r{async_count})
       end
 
-      it "avoids AsyncCounts" do
-        scopes
+      context "when async_count is available in Rails", if: Post.respond_to?(:async_count) do
+        it "uses AsyncCounts" do
+          scopes
 
-        expect(ActiveAdmin::AsyncCount).not_to have_received(:new)
+          expect(ActiveAdmin::AsyncCount).to have_received(:new).with(Post.all)
+          expect(ActiveAdmin::AsyncCount).to have_received(:new).with(Post.where.not(published_date: nil))
+        end
+
+        context "when an individual scope is configured to show its count async" do
+          let(:configured_scopes) do
+            [
+              ActiveAdmin::Scope.new(:all),
+              ActiveAdmin::Scope.new(:published, nil, show_count: :async) { |posts| posts.where.not(published_date: nil) }
+            ]
+          end
+
+          it "only uses AsyncCounts for the configured scopes" do
+            scopes
+
+            expect(ActiveAdmin::AsyncCount).not_to have_received(:new).with(Post.all)
+            expect(ActiveAdmin::AsyncCount).to have_received(:new).with(Post.where.not(published_date: nil))
+          end
+        end
+
+        context "when an individual scope is configured to hide its count" do
+          let(:configured_scopes) do
+            [
+              ActiveAdmin::Scope.new(:all, nil, show_count: false),
+              ActiveAdmin::Scope.new(:published, nil, show_count: :async) { |posts| posts.where.not(published_date: nil) }
+            ]
+          end
+
+          it "only uses AsyncCounts for the configured scopes" do
+            scopes
+
+            expect(ActiveAdmin::AsyncCount).not_to have_received(:new).with(Post.all)
+            expect(ActiveAdmin::AsyncCount).to have_received(:new).with(Post.where.not(published_date: nil))
+          end
+        end
+
+        context "when a scope is not to be displayed" do
+          let(:configured_scopes) do
+            [
+              ActiveAdmin::Scope.new(:all, nil, show_count: :async, if: -> { false })
+            ]
+          end
+
+          it "avoids AsyncCounts" do
+            scopes
+
+            expect(ActiveAdmin::AsyncCount).not_to have_received(:new)
+          end
+        end
       end
-    end
 
-    context "when :show_count is configured as false" do
-      let(:scope_options) do
-        { scope_count: false }
-      end
+      context "when :show_count is configured as false" do
+        let(:scope_options) do
+          { scope_count: false }
+        end
 
-      it "avoids AsyncCounts" do
-        scopes
+        it "avoids AsyncCounts" do
+          scopes
 
-        expect(ActiveAdmin::AsyncCount).not_to have_received(:new)
+          expect(ActiveAdmin::AsyncCount).not_to have_received(:new)
+        end
       end
     end
   end

@@ -73,14 +73,10 @@ module ActiveAdmin
         call_method_or_exec_proc(scope.display_if_block)
       end
 
-      def async_counts?
-        collection_before_scope.respond_to?(:async_count)
-      end
-
       def prepare_async_counts(scopes, options)
-        @async_counts = if options[:scope_count] && async_counts?
+        @async_counts = if options[:scope_count]
                           scopes
-                            .select(&:show_count)
+                            .select(&:async_count?)
                             .select { |scope| display_scope?(scope) }
                             .index_with { |scope| AsyncCount.new(scope_chain(scope, collection_before_scope)) }
                         else
