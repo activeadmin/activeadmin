@@ -224,4 +224,4 @@ This release includes several locale changes. Please [reivew the en.yml locale](
 - The `comments.title_content` text has been updated with an "All " prefix.
 - The `comments.delete_confirmation` text has been fixed to use singular form.
 - Inconsistent use of login/sign-in related terms so text now uses "Sign in", Sign out", and "Sign up" throughout.
-- The `toggle_dark_mode`, `toggle_main_navigation_menu`, `toggle_section`, and `toggle_user_menu` keys have been added
+- The `toggle_dark_mode`, `toggle_main_navigation_menu`, `toggle_section`, and `toggle_user_menu` keys have been added.
