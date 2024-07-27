@@ -44,7 +44,6 @@ module.exports = plugin(
         "[type='tel']",
         "[type='time']",
         "[type='week']",
-        '[multiple]',
         'textarea',
         'select',
       ]]: {
