@@ -46,6 +46,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+          rubygems: latest
       - name: Setup git for test app setup
         run: |
           git config --global user.email activeadmin@ci.dummy
