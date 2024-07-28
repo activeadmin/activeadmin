@@ -85,8 +85,8 @@ Thanks to [Tidelift][tidelift] and all our Tidelift subscribers.
 Thanks to [Open Collective][opencollective contributors] and all our Open Collective contributors.
 
 [Arbre]: https://github.com/activeadmin/arbre
-[Devise]: https://github.com/plataformatec/devise
-[Formtastic]: https://github.com/justinfrench/formtastic
+[Devise]: https://github.com/heartcombo/devise
+[Formtastic]: https://github.com/formtastic/formtastic
 [Inherited Resources]: https://github.com/activeadmin/inherited_resources
 [Kaminari]: https://github.com/kaminari/kaminari
 [Ransack]: https://github.com/activerecord-hackery/ransack
