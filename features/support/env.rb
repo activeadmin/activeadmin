@@ -58,7 +58,7 @@ DatabaseCleaner.strategy = :truncation
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 # Warden helpers to speed up login
-# See https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara
+# See https://github.com/heartcombo/devise/wiki/How-To:-Test-with-Capybara
 include Warden::Test::Helpers
 
 After do
