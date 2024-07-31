@@ -22,7 +22,7 @@ Then /^I should see a date range filter for "([^"]*)"$/ do |label|
 end
 
 Then /^I should see a number filter for "([^"]*)"$/ do |label|
-  expect(page).to have_css ".filters-form-field.numeric label", text: label
+  expect(page).to have_css ".filter_numeric label", text: label
 end
 
 Then /^I should see the following filters:$/ do |table|

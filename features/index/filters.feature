@@ -366,7 +366,7 @@ Feature: Index Filtering
       ActiveAdmin.register User
     """
     When I am on the index page for users
-    Then I should see "Showing 1 of 1"
+    Then I should see "Displaying 1 User"
     And I should see the following filters:
      | Sign in count  | number     |
 
