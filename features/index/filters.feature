@@ -358,3 +358,21 @@ Feature: Index Filtering
     And I press "Filter"
     Then I should see current filter "fancy_filter" equal to "Not Starred" with label "Ransackable Custom Filter"
     And I should see "Hello World"
+
+  Scenario: "counter cache"-like filters
+    Given a user named "Jane Doe" exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register User
+    """
+    When I am on the index page for users
+    Then I should see "Displaying 1 User"
+    And I should see the following filters:
+     | Sign in count  | number     |
+
+    When I fill in "Sign in count" with "0"
+    And I press "Filter"
+    Then I should see 1 users in the table
+    When I fill in "Sign in count" with "1"
+    And I press "Filter"
+    Then I should see "No Users found"

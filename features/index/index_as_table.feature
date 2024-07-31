@@ -25,6 +25,15 @@ Feature: Index as Table
     And I should see a link to "Edit"
     And I should see a link to "Delete"
 
+  Scenario: Viewing the default table with "counter-cache"-like columns
+    Given a user named "Jane Doe" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register User
+      """
+    When I am on the index page for users
+    Then I should see a sortable table header with "Sign In Count"
+
   Scenario: Customizing the columns with symbols
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
