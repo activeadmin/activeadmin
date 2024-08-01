@@ -3,6 +3,7 @@ class CreateCategories < ActiveRecord::Migration[<%= Rails::VERSION::MAJOR %>.<%
     create_table :categories do |t|
       t.string :name
       t.text :description
+      t.integer :posts_count, default: 0
       t.datetime :created_at
       t.datetime :updated_at
     end
