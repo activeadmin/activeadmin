@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 3.2.3 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.2..v3.2.3)
+
+### Enhancements
+
+* Backport better implementation of counter-cache-column check [#8412] by [@plashchynski]
+
+### Bug Fixes
+
+* Remove deprecation warnings when building with dart sass >= 1.77.7 [#8405] by [@mgrunberg]
+
 ## 3.2.2 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.1..v3.2.2)
 
 ### Security Fixes
@@ -920,6 +930,8 @@ Please check [0-6-stable] for previous changes.
 [#8311]: https://github.com/activeadmin/activeadmin/pull/8311
 [#8329]: https://github.com/activeadmin/activeadmin/pull/8329
 [#8349]: https://github.com/activeadmin/activeadmin/pull/8349
+[#8405]: https://github.com/activeadmin/activeadmin/pull/8405
+[#8412]: https://github.com/activeadmin/activeadmin/pull/8412
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -1014,6 +1026,7 @@ Please check [0-6-stable] for previous changes.
 [@orkhan]: https://github.com/orkhan
 [@panasyuk]: https://github.com/panasyuk
 [@PChambino]: https://github.com/PChambino
+[@plashchynski]: https://github.com/plashchynski
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
 [@ray-curran]: https://github.com/ray-curran
