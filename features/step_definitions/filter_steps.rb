@@ -55,3 +55,8 @@ end
 Then /^I should see link "([^"]*)" in current filters/ do |label|
   expect(page).to have_css ".active-filters [data-filter] strong a", text: label
 end
+
+Then /^I should( not)? see filter option "([^"]*)" for "([^"]*)"$/ do |negate, value, label|
+  method = negate ? :to_not : :to
+  expect(page).send method, have_select(label, with_options: [value])
+end

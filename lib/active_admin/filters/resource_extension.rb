@@ -110,7 +110,13 @@ module ActiveAdmin
         return {} unless association
 
         scoped_collection = proc do
-          active_admin_authorization.scope_collection(association.klass.all)
+          scope = association.klass.all
+          begin
+            active_admin_authorization.scope_collection(scope)
+          rescue ActiveAdmin::ScopeNotDefined
+            # There is no authorization scope defined for this resource? Use all then
+            scope
+          end
         end
         { collection: scoped_collection }
       end
@@ -157,7 +163,7 @@ module ActiveAdmin
             filters = poly.map(&:foreign_type) + low_arity.map(&:name) + high_arity
           end
 
-          filters.map &:to_sym
+          filters.map(&:to_sym)
         else
           []
         end

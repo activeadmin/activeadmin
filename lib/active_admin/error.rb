@@ -19,6 +19,16 @@ module ActiveAdmin
     end
   end
 
+  class ScopeNotDefined < StandardError
+    attr_reader :klass, :action
+
+    def initialize(msg, klass, action)
+      super(msg)
+      @klass = klass
+      @action = action
+    end
+  end
+
   class Error < RuntimeError
   end
 

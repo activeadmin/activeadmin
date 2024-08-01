@@ -17,6 +17,7 @@ Feature: Index Filtering
      | Published date | date range |
      | Created at     | date range |
      | Updated at     | date range |
+     | Tagging        | select     |
 
     When I fill in "Title" with "Hello World 2"
     And I press "Filter"
@@ -375,3 +376,18 @@ Feature: Index Filtering
     When I fill in "Sign in count" with "1"
     And I press "Filter"
     Then I should see "No Users found"
+
+  @authorization
+  Scenario: Authorizing filters
+    Given a visible category named "animals" exists
+    And a hidden category named "smart" exists
+    And a index configuration of:
+    """
+      ActiveAdmin.application.namespace(:admin).authorization_adapter = ActiveAdmin::PunditAdapter
+      ActiveAdmin.register Post
+    """
+    When I am on the index page for posts
+    Then I should see the following filters:
+     | Category       | select     |
+    And I should see filter option "animals" for "Category"
+    And I should not see filter option "smart" for "Category"
