@@ -1,6 +1,5 @@
 #title_bar {
   @include section-header;
-  @include clearfix;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
   display: table;
   border-bottom-color: #EEE;
@@ -9,6 +8,7 @@
   margin: 0;
   padding: 10px $horizontal-page-margin;
   z-index: 800;
+  @include clearfix;
 
   #titlebar_left, #titlebar_right {
     height: 50px;
@@ -32,8 +32,11 @@
     span.action_item {
       & > a, & > .dropdown_menu > a {
         @include light-button;
-        padding: 12px 17px 10px;
-        margin: 0px;
+
+        & {
+          padding: 12px 17px 10px;
+          margin: 0px;
+        }
       }
     }
   }
