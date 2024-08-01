@@ -115,7 +115,7 @@ GEM
       multi_test (~> 1.1)
       sys-uname (~> 1.2)
     cucumber-ci-environment (10.0.1)
-    cucumber-core (13.0.2)
+    cucumber-core (13.0.3)
       cucumber-gherkin (>= 27, < 28)
       cucumber-messages (>= 20, < 23)
       cucumber-tag-expressions (> 5, < 7)
@@ -146,7 +146,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
-    docile (1.4.0)
+    docile (1.4.1)
     draper (4.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -305,7 +305,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.2)
+    rexml (3.3.4)
       strscan
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
