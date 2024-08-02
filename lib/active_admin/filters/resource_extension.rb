@@ -113,7 +113,7 @@ module ActiveAdmin
           scope = association.klass.all
           begin
             active_admin_authorization.scope_collection(scope)
-          rescue ActiveAdmin::ScopeNotDefined
+          rescue ActiveAdmin::ScopeAuthorizationError
             # There is no authorization scope defined for this resource? Use all then
             scope
           end

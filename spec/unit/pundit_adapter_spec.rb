@@ -145,7 +145,7 @@ RSpec.describe ActiveAdmin::PunditAdapter do
         let(:default_policy_klass_name) { nil }
 
         it "raises the error" do
-          expect { subject }.to raise_error ActiveAdmin::ScopeNotDefined
+          expect { subject }.to raise_error ActiveAdmin::ScopeAuthorizationError
         end
       end
     end

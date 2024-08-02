@@ -19,7 +19,7 @@ module ActiveAdmin
     end
   end
 
-  class ScopeNotDefined < StandardError
+  class ScopeAuthorizationError < StandardError
     attr_reader :klass, :action
 
     def initialize(msg, klass, action)
