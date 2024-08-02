@@ -190,6 +190,24 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
         resource.add_filter(:title_or_body_cont, label: label)
         expect(subject.label).to eq("#{label} contains")
       end
+
+      context "when an additional filter exists for one of the fields" do
+        it "should use the filter label as the label prefix" do
+          label = "#{user.first_name}'s Post"
+          resource.add_filter(:title_or_body_cont, label: label)
+          resource.add_filter(:title)
+          expect(subject.label).to eq("#{label} contains")
+        end
+      end
+
+      context "when a filter with a dropdown is searched" do
+        it "should use the filter label as the label prefix" do
+          label = "#{user.first_name}'s Post"
+          resource.add_filter(:title_or_body, filters: [:contains, :equals], label: label)
+          resource.add_filter(:title)
+          expect(subject.label).to eq("#{label} contains")
+        end
+      end
     end
   end
 
