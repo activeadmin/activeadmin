@@ -378,7 +378,7 @@ Feature: Index Filtering
     Then I should see "No Users found"
 
   @authorization
-  Scenario: Authorizing filters
+  Scenario: Authorizing default filters
     Given a visible category named "animals" exists
     And a hidden category named "smart" exists
     And a index configuration of:
@@ -391,3 +391,37 @@ Feature: Index Filtering
      | Category       | select     |
     And I should see filter option "animals" for "Category"
     And I should not see filter option "smart" for "Category"
+
+  @authorization
+  Scenario: Authorizing filters
+    Given a visible category named "animals" exists
+    And a hidden category named "smart" exists
+    And a index configuration of:
+    """
+      ActiveAdmin.application.namespace(:admin).authorization_adapter = ActiveAdmin::PunditAdapter
+      ActiveAdmin.register Post do
+        filter :category
+      end
+    """
+    When I am on the index page for posts
+    Then I should see the following filters:
+     | Category       | select     |
+    And I should see filter option "animals" for "Category"
+    And I should not see filter option "smart" for "Category"
+
+  @authorization
+  Scenario: Not authorizing explicit filter
+    Given a visible category named "animals" exists
+    And a hidden category named "smart" exists
+    And a index configuration of:
+    """
+      ActiveAdmin.application.namespace(:admin).authorization_adapter = ActiveAdmin::PunditAdapter
+      ActiveAdmin.register Post do
+        filter :category, collection: Category.all
+      end
+    """
+    When I am on the index page for posts
+    Then I should see the following filters:
+     | Category       | select     |
+    And I should see filter option "animals" for "Category"
+    And I should see filter option "smart" for "Category"
