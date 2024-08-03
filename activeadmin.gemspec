@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.metadata = {
     "bug_tracker_uri" => "https://github.com/activeadmin/activeadmin/issues",
-    "changelog_uri" => "https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md",
+    "changelog_uri" => "https://github.com/activeadmin/activeadmin/releases",
     "documentation_uri" => "https://activeadmin.info",
     "homepage_uri" => "https://activeadmin.info",
     "mailing_list_uri" => "https://groups.google.com/group/activeadmin",
