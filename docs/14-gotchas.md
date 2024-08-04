@@ -43,12 +43,12 @@ application config, you need to include it by hand.
 
 #### Solutions
 
-##### First use a monkey patch
+##### First use an override
 
-This works for all ActiveAdmin resources at once.
+This works for all ActiveAdmin resources at once. Please [follow the Rails
+guidelines for overriding](https://guides.rubyonrails.org/engines.html#improving-engine-functionality) this safely alongside Zeitwerk.
 
 ```ruby
-# config/initializers/active_admin_helpers.rb
 ActiveAdmin::BaseController.class_eval do
   helper ApplicationHelper
 end
