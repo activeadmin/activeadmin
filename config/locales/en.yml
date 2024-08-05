@@ -52,6 +52,10 @@ en:
       "yes": "Yes"
       "no": "No"
       "unset": "Unknown"
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     logout: "Sign out"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
