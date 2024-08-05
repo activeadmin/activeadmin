@@ -66,17 +66,17 @@ Voila! You're on your brand new Active Admin dashboard.
 To register an existing model with Active Admin:
 
 ```sh
-rails generate active_admin:resource MyModel
+rails generate active_admin:resource Post
 ```
 
-This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your
-browser to see it.
+This creates a `app/admin/post.rb` file with some content to start. Preview
+any changes in your browser.
 
 # Upgrading
 
 When upgrading to a new version, it's a good idea to check the [CHANGELOG].
 
-To update the JS & CSS assets:
+To update the assets:
 
 ```sh
 rails generate active_admin:assets
@@ -86,6 +86,8 @@ You should also sync these files with their counterparts in the AA source code:
 
 * app/admin/dashboard.rb [~>][dashboard.rb]
 * config/initializers/active_admin.rb [~>][active_admin.rb]
+
+Along with any template partials you've copied and modified.
 
 # Gem compatibility
 
