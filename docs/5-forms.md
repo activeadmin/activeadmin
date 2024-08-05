@@ -152,28 +152,8 @@ in the list.
 
 ## Datepicker
 
-ActiveAdmin offers the `datepicker` input, which uses the [jQuery UI
-datepicker](https://jqueryui.com/datepicker/).  The datepicker input accepts any
-of the options available to the standard jQueryUI Datepicker. For example:
-
-```ruby
-form do |f|
-  f.input :starts_at, as: :datepicker,
-                      datepicker_options: {
-                        min_date: "2013-10-8",
-                        max_date: "+3D"
-                      }
-
-  f.input :ends_at, as: :datepicker,
-                    datepicker_options: {
-                      min_date: 3.days.ago.to_date,
-                      max_date: "+1W +5D"
-                    }
-end
-```
-
-Datepicker also accepts the `:label` option as a string or proc to display.
-If it's a proc, it will be called each time the datepicker is rendered.
+ActiveAdmin will use the native HTML date input as a default datepicker. You can
+supply your own datepicker alternative and use JS to override any date input.
 
 ## Displaying Errors
 
@@ -188,33 +168,6 @@ end
 ```
 
 This is particularly useful to display errors on virtual or hidden attributes.
-
-# Tabs
-
-You can arrange content in tabs as shown below:
-
-```ruby
-  form do |f|
-    tabs do
-      tab 'Basic' do
-        f.inputs 'Basic Details' do
-          f.input :email
-          f.input :password
-          f.input :password_confirmation
-        end
-      end
-
-      tab 'Advanced', html_options: { class: 'specific_css_class' } do
-        f.inputs 'Advanced Details' do
-          f.input :role
-        end
-      end
-    end
-    f.actions
-  end
-```
-
-`html_options` allows you set additional html params for tab's menu item.
 
 # Customize the Create Another checkbox
 

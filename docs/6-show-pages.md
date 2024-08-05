@@ -70,6 +70,7 @@ ActiveAdmin.register Book do
   end
 
   sidebar :details, only: :show do
+    h3 "Details"
     attributes_table_for book do
       row :title
       row :author
@@ -84,7 +85,7 @@ If you want to keep the default show contents, but add something else around it:
 
 ```ruby
 show do
-  default_main_content
+  render "show_default"
   h3 "Other Details"
   # ...
 end
