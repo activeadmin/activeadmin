@@ -196,6 +196,16 @@ index do
 end
 ```
 
+## Custom tbody data attributes
+
+In order to add special html attributes to table tbody pass a `:tbody_html` option of the `index` method.
+
+```ruby
+index tbody_html: { class: "my-class", data: { controller: 'stimulus-controller' } } do
+  # columns
+end
+```
+
 ## Custom row class
 
 In order to add special class to table rows pass the proc object as a `:row_class` option
@@ -203,6 +213,16 @@ of the `index` method.
 
 ```ruby
 index row_class: ->elem { 'active' if elem.active? } do
+  # columns
+end
+```
+
+## Custom row data attributes
+
+In order to add special data attributes to table rows pass the proc object as a `:row_data` option of the `index` method.
+
+```ruby
+index row_data: ->elem { 'element-id' => elem.id } do
   # columns
 end
 ```

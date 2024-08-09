@@ -294,6 +294,23 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
     end
 
+    context "when tbody_html" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, tbody_html: { class: "my-class", data: { size: collection.size } }) do
+            column :starred
+          end
+        end
+      end
+
+      it "should render data-size attribute within tbody tag" do
+        tbody = table.find_by_tag("tbody").first
+        expect(tbody.attributes).to include(
+          class: "my-class",
+          data: { size: 3 })
+      end
+    end
+
     context "when row_class" do
       let(:table) do
         render_arbre_component assigns, helpers do
@@ -310,6 +327,25 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(trs.second.class_list.to_s).to eq "starred"
         expect(trs.third.class_list.to_s).to eq ""
         expect(trs.fourth.class_list.to_s).to eq ""
+      end
+    end
+
+    context "when row_data" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, row_data: -> e { { title: e.title } }) do
+            column :title
+          end
+        end
+      end
+
+      it "should render data-title attribute within collection row" do
+        trs = table.find_by_tag("tr")
+        expect(trs.size).to eq 4
+        expect(trs.first.attributes.to_s).to eq ""
+        expect(trs.second.attributes).to include(data: { title: "First Post" })
+        expect(trs.third.attributes).to include(data: { title: "Second Post" })
+        expect(trs.fourth.attributes).to include(data: { title: "Third Post" })
       end
     end
 

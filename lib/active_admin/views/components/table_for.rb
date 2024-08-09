@@ -16,7 +16,9 @@ module ActiveAdmin
         @resource_class ||= @collection.klass if @collection.respond_to? :klass
 
         @columns = []
+        @tbody_html = options.delete(:tbody_html) || {}
         @row_class = options.delete(:row_class)
+        @row_data = options.delete(:row_data)
 
         build_table
         super(options)
@@ -91,10 +93,10 @@ module ActiveAdmin
       end
 
       def build_table_body
-        @tbody = tbody do
+        @tbody = tbody **@tbody_html do
           # Build enough rows for our collection
           @collection.each do |elem|
-            tr(id: dom_id_for(elem), class: @row_class&.call(elem))
+            tr(id: dom_id_for(elem), class: @row_class&.call(elem), data: @row_data&.call(elem))
           end
         end
       end
