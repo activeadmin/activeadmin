@@ -10,10 +10,10 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 7.2.0"
+  gem "rails", "~> 7.1.0"
 
   gem "sprockets-rails"
-  gem "ransack", ">= 4.2.0"
+  gem "ransack", ">= 4.1.0"
   gem "formtastic", ">= 5.0.0"
 
   gem "cssbundling-rails"
@@ -33,7 +33,7 @@ group :test do
   gem "launchy"
   gem "parallel_tests"
   gem "rspec-rails"
-  gem "sqlite3", platform: :mri
+  gem "sqlite3", "~> 1.7", platform: :mri # FIXME: relax this dependency when rails/rails#51636 will be released
 
   # Translations
   gem "i18n-tasks"
@@ -41,18 +41,4 @@ group :test do
   gem "rails-i18n" # Provides default i18n for many languages
 end
 
-group :rubocop do
-  gem "rubocop"
-  gem "rubocop-capybara"
-  gem "rubocop-packaging"
-  gem "rubocop-performance"
-  gem "rubocop-rspec"
-  gem "rubocop-rails"
-end
-
-group :docs do
-  gem "yard" # Documentation generator
-  gem "kramdown" # Markdown implementation (for yard)
-end
-
-gemspec path: "."
+gemspec path: "../.."
