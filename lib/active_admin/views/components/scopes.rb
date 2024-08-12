@@ -20,9 +20,9 @@ module ActiveAdmin
 
         scopes.group_by(&:group).each do |group, group_scopes|
           div class: "index-button-group", role: "group", data: { "group": group_name(group) } do
-            group_scopes
-              .select { |scope| display_scope?(scope) }
-              .each { |scope| build_scope(scope, options) }
+            group_scopes.each do |scope|
+              build_scope(scope, options) if display_scope?(scope)
+            end
 
             nil
           end
