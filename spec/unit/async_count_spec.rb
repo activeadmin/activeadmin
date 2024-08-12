@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe ActiveAdmin::AsyncCount, if: Post.respond_to?(:async_count) do
+RSpec.describe ActiveAdmin::AsyncCount do
   include ActiveAdmin::IndexHelper
 
   def seed_posts
@@ -10,7 +10,7 @@ RSpec.describe ActiveAdmin::AsyncCount, if: Post.respond_to?(:async_count) do
     end
   end
 
-  it "can be passed to the collection_size helper" do
+  it "can be passed to the collection_size helper", if: Post.respond_to?(:async_count) do
     seed_posts
 
     expect(collection_size(described_class.new(Post.all))).to eq(Post.count)
@@ -18,14 +18,21 @@ RSpec.describe ActiveAdmin::AsyncCount, if: Post.respond_to?(:async_count) do
   end
 
   describe "#initialize" do
-    it "initiates an async_count query" do
-      collection = Post.all
+    let(:collection) { Post.all }
+
+    it "initiates an async_count query", if: Post.respond_to?(:async_count) do
       expect(collection).to receive(:async_count)
       described_class.new(collection)
     end
+
+    it "raises an error when ActiveRecord async_count is unavailable", unless: Post.respond_to?(:async_count) do
+      expect do
+        described_class.new(collection)
+      end.to raise_error(ActiveAdmin::AsyncCount::NotSupportedError, %r{does not support :async_count})
+    end
   end
 
-  describe "#count" do
+  describe "#count", if: Post.respond_to?(:async_count) do
     before { seed_posts }
 
     it "returns the result of a count query" do
@@ -49,7 +56,7 @@ RSpec.describe ActiveAdmin::AsyncCount, if: Post.respond_to?(:async_count) do
     end
   end
 
-  describe "delegation" do
+  describe "delegation", if: Post.respond_to?(:async_count) do
     let(:collection) { Post.all }
 
     %i[

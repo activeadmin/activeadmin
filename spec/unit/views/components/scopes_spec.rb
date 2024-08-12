@@ -69,7 +69,7 @@ RSpec.describe ActiveAdmin::Views::Scopes do
       end
 
       it "raises an error when ActiveRecord async_count is unavailable", unless: Post.respond_to?(:async_count) do
-        expect { scopes }.to raise_error(NoMethodError, %r{async_count})
+        expect { scopes }.to raise_error(ActiveAdmin::AsyncCount::NotSupportedError, %r{does not support :async_count})
       end
 
       context "when async_count is available in Rails", if: Post.respond_to?(:async_count) do
