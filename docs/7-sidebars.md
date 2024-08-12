@@ -7,7 +7,7 @@ Sidebars allow you to put whatever content you want on the side the page.
 
 ```ruby
 sidebar :help do
-  "Need help? Email us at help@example.com"
+  para "Need help? Email us at help@example.com"
 end
 ```
 
@@ -29,7 +29,7 @@ Sidebars can be rendered on a specific action by passing `:only` or `:except`.
 
 ```ruby
 sidebar :help, only: :index do
-  "Need help? Email us at help@example.com"
+  para "Need help? Email us at help@example.com"
 end
 ```
 
@@ -38,7 +38,7 @@ pass it a proc which will be rendered within the view context.
 
 ```ruby
 sidebar :help, if: proc{ current_admin_user.super_admin? } do
-  "Only for super admins!"
+  span "Only for super admins!"
 end
 ```
 
