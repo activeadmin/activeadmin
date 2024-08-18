@@ -5,7 +5,12 @@ module ActiveAdmin
       klass = self.class
       name = if klass.respond_to?(:model_name)
                if klass.respond_to?(:primary_key)
-                 "#{klass.model_name.human} ##{send(klass.primary_key)}"
+                 primary_key = if klass.primary_key.is_a? Array
+                                 "(#{klass.primary_key.map { |key| "#{key}: #{send(key)}" }.join(" / ")})"
+                               else
+                                 send(klass.primary_key)
+                               end
+                 "#{klass.model_name.human} ##{primary_key}"
                else
                  klass.model_name.human
                end
