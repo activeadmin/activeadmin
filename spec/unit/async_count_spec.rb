@@ -50,7 +50,7 @@ RSpec.describe ActiveAdmin::AsyncCount do
       promise = instance_double(ActiveRecord::Promise, value: Post.count)
       promise_wrapper = instance_double(ActiveRecord::Promise, value: promise)
       collection = class_double(Post, async_count: promise_wrapper)
-      allow(collection).to receive(:except).and_return(collection)
+      expect(collection).to receive(:except).and_return(collection)
 
       expect(described_class.new(collection).count).to eq(Post.count)
     end
