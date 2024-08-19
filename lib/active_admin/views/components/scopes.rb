@@ -58,9 +58,9 @@ module ActiveAdmin
 
       # Return the count for the scope passed in.
       def get_scope_count(scope)
-        chained = scope_chain(scope, collection_before_scope)
+        chained = @async_counts[scope] || scope_chain(scope, collection_before_scope)
 
-        collection_size(@async_counts[scope] || chained)
+        collection_size(chained)
       end
 
       def group_name(group)
