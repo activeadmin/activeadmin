@@ -10,11 +10,11 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 7.2.0"
+  gem "rails", "~> 7.1.0"
 
   gem "sprockets-rails"
   gem "sassc-rails"
-  gem "ransack", ">= 4.2.0"
+  gem "ransack", ">= 4.1.0"
   gem "formtastic", ">= 5.0.0"
 end
 
@@ -31,7 +31,7 @@ group :test do
   gem "launchy"
   gem "parallel_tests"
   gem "rspec-rails"
-  gem "sqlite3", platform: :mri
+  gem "sqlite3", "~> 1.7", platform: :mri
 
   # Translations
   gem "i18n-tasks"
@@ -56,4 +56,4 @@ group :docs do
   gem "kramdown" # Markdown implementation (for yard)
 end
 
-gemspec path: "."
+gemspec path: "../.."
