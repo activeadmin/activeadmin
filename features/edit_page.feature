@@ -6,8 +6,11 @@ Feature: Edit Page
     Given a category named "Music" exists
     And a user named "John Doe" exists
     And a post with the title "Hello World" written by "John Doe" exists
+    And a tag named "Bugs" exists
     And I am logged in
-    And a configuration of:
+
+  Scenario: Default form with no config
+    Given a configuration of:
     """
       ActiveAdmin.register Post do
         permit_params :custom_category_id, :author_id, :title,
@@ -15,9 +18,7 @@ Feature: Edit Page
       end
     """
     When I am on the index page for posts
-
-  Scenario: Default form with no config
-    Given I follow "Edit"
+    And I follow "Edit"
     Then the "Title" field should contain "Hello World"
     And the "Body" field should contain ""
     And the "Category" field should contain ""
@@ -47,6 +48,7 @@ Feature: Edit Page
         end
       end
     """
+    When I am on the index page for posts
     And I follow "Edit"
     Then I should see a fieldset titled "Your Post"
     And I should see a fieldset titled "Publishing"
@@ -76,6 +78,7 @@ Feature: Edit Page
         end
       end
     """
+    When I am on the index page for posts
     And I follow "New"
     Then I follow "Posts"
     And I follow "Edit"
@@ -107,6 +110,7 @@ Feature: Edit Page
         form partial: "form"
       end
     """
+    When I am on the index page for posts
     And I follow "Edit"
     Then the "Title" field should contain "Hello World"
     And the "Body" field should contain ""
@@ -115,3 +119,20 @@ Feature: Edit Page
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
+
+  Scenario: Generating a custom form for Tag resource
+    Given a configuration of:
+    """
+      ActiveAdmin.register Tag do
+        form do |f|
+          f.inputs "Details" do
+            f.input :name
+          end
+          f.actions
+        end
+      end
+    """
+    When I am on the index page for tags
+    And I follow "Edit"
+    Then I should see a fieldset titled "Details"
+    And the "Name" field should contain "Bugs"
