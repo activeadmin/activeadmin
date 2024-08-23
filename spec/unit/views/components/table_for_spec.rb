@@ -294,7 +294,24 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
     end
 
-    context "when row_class" do
+    context "with tbody_html option" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, tbody_html: { class: "my-class", data: { size: collection.size } }) do
+            column :starred
+          end
+        end
+      end
+
+      it "should render data-size attribute within tbody tag" do
+        tbody = table.find_by_tag("tbody").first
+        expect(tbody.attributes).to include(
+          class: "my-class",
+          data: { size: 3 })
+      end
+    end
+
+    context "with row_class (soft deprecated)" do
       let(:table) do
         render_arbre_component assigns, helpers do
           table_for(collection, row_class: -> e { "starred" if e.starred }) do
@@ -310,6 +327,34 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(trs.second.class_list.to_s).to eq "starred"
         expect(trs.third.class_list.to_s).to eq ""
         expect(trs.fourth.class_list.to_s).to eq ""
+      end
+    end
+
+    context "with row_html options (takes precedence over deprecated row_class)" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(
+            collection,
+            row_class: -> e { "foo" },
+            row_html: -> e {
+              {
+                class: ("starred" if e.starred),
+                data: { title: e.title },
+              }
+            }
+          ) do
+            column :starred
+          end
+        end
+      end
+
+      it "should render html attributes within collection row" do
+        trs = table.find_by_tag("tr")
+        expect(trs.size).to eq 4
+        expect(trs.first.attributes).to be_empty
+        expect(trs.second.attributes).to include(class: "starred", data: { title: "First Post" })
+        expect(trs.third.attributes).to include(class: nil, data: { title: "Second Post" })
+        expect(trs.fourth.attributes).to include(class: nil, data: { title: "Third Post" })
       end
     end
 

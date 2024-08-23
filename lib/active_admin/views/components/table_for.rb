@@ -16,6 +16,9 @@ module ActiveAdmin
         @resource_class ||= @collection.klass if @collection.respond_to? :klass
 
         @columns = []
+        @tbody_html = options.delete(:tbody_html)
+        @row_html = options.delete(:row_html)
+        # To be deprecated, please use row_html instead.
         @row_class = options.delete(:row_class)
 
         build_table
@@ -91,10 +94,12 @@ module ActiveAdmin
       end
 
       def build_table_body
-        @tbody = tbody do
+        @tbody = tbody **(@tbody_html || {}) do
           # Build enough rows for our collection
           @collection.each do |elem|
-            tr(id: dom_id_for(elem), class: @row_class&.call(elem))
+            html_options = @row_html&.call(elem) || {}
+            html_options.reverse_merge!(class: @row_class&.call(elem))
+            tr(id: dom_id_for(elem), **html_options)
           end
         end
       end
