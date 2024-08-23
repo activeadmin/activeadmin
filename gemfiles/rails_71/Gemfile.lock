@@ -8,7 +8,7 @@ PATH
       formtastic_i18n (>= 0.4)
       inherited_resources (~> 2.0)
       kaminari (>= 1.2.1)
-      railties (>= 6.1)
+      railties (>= 7.0)
       ransack (>= 4.0)
 
 GEM
