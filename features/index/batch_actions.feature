@@ -204,6 +204,8 @@ Feature: Batch Actions
         batch_action :set_starred, partial: "starred_batch_action_form", link_html_options: { "data-modal-target": "starred-batch-action-modal", "data-modal-show": "starred-batch-action-modal" } do |ids, inputs|
           if inputs["starred"].present?
             redirect_to collection_path, notice: "Successfully flagged 10 posts"
+          else
+            redirect_to collection_path, notice: "Didn't flag any posts"
           end
         end
       end
