@@ -62,7 +62,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     context "with custom settings" do
       let :body do
         build_form do |f|
-          f.inputs class: "custom_class", name: "custom_name", custom_attr: "custom_attr" do
+          f.inputs class: "custom_class", name: "custom_name", custom_attr: "custom_attr", data: { test: "custom" } do
             f.input :title
             f.input :body
           end
@@ -79,6 +79,10 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       it "should generate a fieldset with a custom attributes" do
         expect(body).to have_selector("fieldset[custom_attr='custom_attr']")
+      end
+
+      it "should use the rails helper for rendering attributes" do
+        expect(body).to have_css("fieldset[data-test='custom']")
       end
     end
 

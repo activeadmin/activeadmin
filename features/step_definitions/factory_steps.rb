@@ -28,6 +28,10 @@ Given /^a store named "([^"]*)" exists$/ do |name|
   Store.create! name: name
 end
 
+Given /^a tag named "([^"]*)" exists$/ do |name|
+  Tag.create! name: name
+end
+
 Given /^I create a new post with the title "([^"]*)"$/ do |title|
   first(:link, "Posts").click
   click_link "New Post"
