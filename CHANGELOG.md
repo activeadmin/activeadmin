@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 3.2.4 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.3..v3.2.4)
+
+### Enhancements
+
+* Test against Rails 7.2 [#8434] by [@mgrunberg]
+
+### Bug Fixes
+
+* Backport Improve form f.inputs attributes rendering [#8446] by [@amiel]
+
 ## 3.2.3 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.2..v3.2.3)
 
 ### Enhancements
@@ -932,6 +942,8 @@ Please check [0-6-stable] for previous changes.
 [#8349]: https://github.com/activeadmin/activeadmin/pull/8349
 [#8405]: https://github.com/activeadmin/activeadmin/pull/8405
 [#8412]: https://github.com/activeadmin/activeadmin/pull/8412
+[#8434]: https://github.com/activeadmin/activeadmin/pull/8434
+[#8446]: https://github.com/activeadmin/activeadmin/pull/8446
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
