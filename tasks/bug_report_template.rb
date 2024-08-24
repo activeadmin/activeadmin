@@ -4,19 +4,20 @@ require "bundler/inline"
 gemfile(true) do
   source "https://rubygems.org"
 
-  # Use local changes or ActiveAdmin master.
+  # Use `ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb` to run
+  # locally, otherwise run against the default branch.
   if ENV["ACTIVE_ADMIN_PATH"]
     gem "activeadmin", path: ENV["ACTIVE_ADMIN_PATH"], require: false
   else
-    gem "activeadmin", github: "activeadmin/activeadmin", require: false
+    gem "activeadmin", github: "activeadmin/activeadmin", branch: "3-0-stable", require: false
   end
 
   # Change Rails version if necessary.
-  gem "rails", "~> 7.0.0"
+  gem "rails", "~> 7.2.0"
 
   gem "sprockets", "~> 3.7"
   gem "sassc-rails"
-  gem "sqlite3", platform: :mri
+  gem "sqlite3", force_ruby_platform: true, platform: :mri
   gem "activerecord-jdbcsqlite3-adapter", platform: :jruby
 
   # Fixes an issue on CI with default gems when using inline bundle with default
@@ -51,14 +52,13 @@ require "active_admin"
 
 class TestApp < Rails::Application
   config.root = __dir__
+  config.hosts << ".example.com"
   config.session_store :cookie_store, key: "cookie_store_key"
-  secrets.secret_token = "secret_token"
-  secrets.secret_key_base = "secret_key_base"
-
+  config.secret_key_base = "secret_key_base"
   config.eager_load = false
-  config.logger = Logger.new($stdout)
 
-  config.hosts = "www.example.com"
+  config.logger = Logger.new($stdout)
+  Rails.logger = config.logger
 end
 
 class ApplicationController < ActionController::Base
