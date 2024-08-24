@@ -39,7 +39,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@rails/ujs": "7.1.2",
+    "@rails/ujs": "7.1.400",
     "flowbite": "2.3.0"
   }
 }
