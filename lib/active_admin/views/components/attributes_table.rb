@@ -23,6 +23,7 @@ module ActiveAdmin
 
       def row(*args, &block)
         title = args[0]
+        data = args[1] || args[0]
         options = args.extract_options!
         options["data-row"] = title.to_s.parameterize(separator: "_") if title.present?
 
@@ -32,7 +33,7 @@ module ActiveAdmin
           end
           @collection.each do |record|
             td do
-              content_for(record, block || title)
+              content_for(record, block || data)
             end
           end
         end
