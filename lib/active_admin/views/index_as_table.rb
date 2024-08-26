@@ -196,17 +196,25 @@ module ActiveAdmin
     # end
     # ```
     #
-    # ## Custom row class
+    # ## Custom tbody HTML attributes
     #
-    # In order to add special class to table rows pass the proc object as a `:row_class` option
-    # of the `index` method.
+    # In order to add HTML attributes to the tbody use the `:tbody_html` option.
     #
     # ```ruby
-    # index row_class: ->elem { 'active' if elem.active? } do
+    # index tbody_html: { class: "my-class", data: { controller: 'stimulus-controller' } } do
     #   # columns
     # end
     # ```
     #
+    # ## Custom row HTML attributes
+    #
+    # In order to add HTML attributes to table rows, use a proc object in the `:row_html` option.
+    #
+    # ```ruby
+    # index row_html: ->elem { { class: ('active' if elem.active?), data: { 'element-id' => elem.id } } } do
+    #   # columns
+    # end
+    # ```
     class IndexAsTable < ActiveAdmin::Component
       def build(page_presenter, collection)
         add_class "index-as-table"
@@ -215,6 +223,9 @@ module ActiveAdmin
           sortable: true,
           i18n: active_admin_config.resource_class,
           paginator: page_presenter[:paginator] != false,
+          tbody_html: page_presenter[:tbody_html],
+          row_html: page_presenter[:row_html],
+          # To be deprecated, please use row_html instead.
           row_class: page_presenter[:row_class]
         }
 

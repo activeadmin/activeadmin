@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "active_admin/async_count"
 require "active_admin/view_helpers/method_or_proc_helper"
 
 module ActiveAdmin
@@ -15,10 +16,12 @@ module ActiveAdmin
       def build(scopes, options = {})
         super({ role: "toolbar" })
         add_class "scopes"
+        prepare_async_counts(scopes, options)
+
         scopes.group_by(&:group).each do |group, group_scopes|
           div class: "index-button-group", role: "group", data: { "group": group_name(group) } do
             group_scopes.each do |scope|
-              build_scope(scope, options) if call_method_or_exec_proc(scope.display_if_block)
+              build_scope(scope, options) if display_scope?(scope)
             end
 
             nil
@@ -55,11 +58,30 @@ module ActiveAdmin
 
       # Return the count for the scope passed in.
       def get_scope_count(scope)
-        collection_size(scope_chain(scope, collection_before_scope))
+        chained = @async_counts[scope] || scope_chain(scope, collection_before_scope)
+
+        collection_size(chained)
       end
 
       def group_name(group)
         group.present? ? group : "default"
+      end
+
+      private
+
+      def display_scope?(scope)
+        call_method_or_exec_proc(scope.display_if_block)
+      end
+
+      def prepare_async_counts(scopes, options)
+        @async_counts = if options[:scope_count]
+                          scopes
+                            .select(&:async_count?)
+                            .select { |scope| display_scope?(scope) }
+                            .index_with { |scope| AsyncCount.new(scope_chain(scope, collection_before_scope)) }
+                        else
+                          {}
+                        end
       end
     end
   end

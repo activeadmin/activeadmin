@@ -13,11 +13,11 @@ gemfile(true) do
   end
 
   # Change Rails version if necessary.
-  gem "rails", "~> 7.1.0"
+  gem "rails", "~> 7.2.0"
 
   gem "sprockets", "~> 4.0"
   gem "importmap-rails", "~> 2.0"
-  gem "sqlite3", "~> 1.x", force_ruby_platform: true, platform: :mri
+  gem "sqlite3", force_ruby_platform: true, platform: :mri
 
   # Fixes an issue on CI with default gems when using inline bundle with default
   # gems that are already activated
@@ -54,6 +54,7 @@ class TestApp < Rails::Application
   config.hosts << ".example.com"
   config.session_store :cookie_store, key: "cookie_store_key"
   config.secret_key_base = "secret_key_base"
+  config.eager_load = false
 
   config.logger = Logger.new($stdout)
   Rails.logger = config.logger

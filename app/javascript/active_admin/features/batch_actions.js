@@ -14,7 +14,7 @@ const batchActionClick = function(event) {
     batchAction.value = this.dataset.action
   }
 
-  if (!event.target.dataset.confirm) { submitForm() }
+  if (!event.target.dataset.confirm && !event.target.dataset.modalTarget) { submitForm() }
 }
 
 const batchActionConfirmComplete = function(event) {
