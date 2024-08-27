@@ -1,61 +1,53 @@
+# frozen_string_literal: true
 source "https://rubygems.org"
 
 group :development, :test do
   gem "rake"
-  gem "pry" # Easily debug from your console with `binding.pry`
-  gem "pry-byebug", platform: :mri # Step-by-step debugging
 
   gem "cancancan"
   gem "pundit"
-  gem "jruby-openssl", "~> 0.10.5", platform: :jruby
 
-  gem "draper", "~> 4.0"
+  gem "draper"
   gem "devise"
 
-  gem "rails", "~> 6.1.0"
-  gem "activerecord-jdbcsqlite3-adapter", "~> 61.0", platform: :jruby
+  gem "rails", "~> 7.2.0"
 
   gem "sprockets-rails"
-  gem "sassc-rails", "~> 2.1"
+  gem "ransack", ">= 4.2.0"
+  gem "formtastic", ">= 5.0.0"
 
-  gem "formtastic", "~> 4.0.rc1"
+  gem "cssbundling-rails"
+  gem "importmap-rails"
 end
 
 group :test do
-  gem "cuprite", "0.13"
-  gem "capybara", "~> 3.14"
-  gem "webrick", "~> 1.7"
-  gem "db-query-matchers", "0.10.0"
+  gem "cuprite"
+  gem "capybara"
+  gem "webrick"
 
-  gem "simplecov", "0.21.2", require: false # Test coverage generator. Go to /coverage/ after running tests
-  gem "cucumber-rails", "~> 2.0", require: false
+  gem "simplecov", require: false # Test coverage generator. Go to /coverage/ after running tests
+  gem "simplecov-cobertura", require: false
+  gem "cucumber-rails", require: false
   gem "cucumber"
-  gem "database_cleaner"
-  gem "jasmine"
-  gem "jasmine-core", "2.99.2" # last release with Ruby 2.2 support.
+  gem "database_cleaner-active_record"
   gem "launchy"
-  gem "parallel_tests", "~> 3.0"
-  gem "rails-i18n" # Provides default i18n for many languages
+  gem "parallel_tests"
   gem "rspec-rails"
-  gem "sqlite3", "~> 1.4", platform: :mri
-end
-
-group :release do
-  gem "chandler", "0.9.0" # Github releases from changelog
-  gem "octokit", "~> 4.18"
-end
-
-group :lint do
-  # Code style
-  gem "rubocop", "0.93.1"
-  gem "rubocop-packaging", "0.5.1"
-  gem "rubocop-rspec", "~> 1.30"
-  gem "rubocop-rails", "~> 2.3"
-  gem "mdl", "0.11.0"
+  gem "sqlite3", platform: :mri
 
   # Translations
   gem "i18n-tasks"
   gem "i18n-spec"
+  gem "rails-i18n" # Provides default i18n for many languages
+end
+
+group :rubocop do
+  gem "rubocop"
+  gem "rubocop-capybara"
+  gem "rubocop-packaging"
+  gem "rubocop-performance"
+  gem "rubocop-rspec"
+  gem "rubocop-rails"
 end
 
 group :docs do

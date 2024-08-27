@@ -1,1 +1,2 @@
-insert_tag renderer_for(:edit)
+# frozen_string_literal: true
+render "form"

@@ -1,13 +1,14 @@
-<div id="login">
-  <h2><%= active_admin_application.site_title(self) %> <%= title t('active_admin.devise.reset_password.title') %></h2>
+<div class="p-6 sm:p-8 space-y-4 md:space-y-6 w-full sm:max-w-md bg-white sm:rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700">
+  <h2 class="text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
+    <%= active_admin_application.site_title(self) %> <%= set_page_title t('active_admin.devise.reset_password.title') %>
+  </h2>
 
-  <%= render partial: "active_admin/devise/shared/error_messages", resource: resource %>
   <%= active_admin_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
     f.inputs do
       f.input :email
     end
     f.actions do
-      f.action :submit, label: t('active_admin.devise.reset_password.submit'), button_html: { value: t('active_admin.devise.reset_password.submit') }
+      f.action :submit, label: t('active_admin.devise.reset_password.submit'), button_html: { class: "w-full", value: t('active_admin.devise.reset_password.submit') }
     end
   end %>
 

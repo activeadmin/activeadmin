@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 def create_user(name, type = "User")
   first_name, last_name = name.split(" ")
   user = type.camelize.constantize.where(first_name: first_name, last_name: last_name).first_or_create(username: name.tr(" ", "").underscore)
@@ -27,9 +28,13 @@ Given /^a store named "([^"]*)" exists$/ do |name|
   Store.create! name: name
 end
 
+Given /^a tag named "([^"]*)" exists$/ do |name|
+  Tag.create! name: name
+end
+
 Given /^I create a new post with the title "([^"]*)"$/ do |title|
   first(:link, "Posts").click
-  click_link "New Post"
+  click_on "New Post"
   fill_in "post_title", with: title
-  click_button "Create Post"
+  click_on "Create Post"
 end

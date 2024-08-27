@@ -1,0 +1,3 @@
+<% action_items_for_action.each do |action_item| %>
+  <%= instance_exec(&action_item.block) %>
+<% end %>

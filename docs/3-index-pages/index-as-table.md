@@ -72,7 +72,7 @@ index do
   selectable_column
   column :title
   actions do |post|
-    item "Preview", admin_preview_post_path(post), class: "member_link"
+    item "Preview", admin_preview_post_path(post), class: "preview-link"
   end
 end
 ```
@@ -98,32 +98,6 @@ index do
   end
 end
 ```
-
-In case you prefer to list actions links in a dropdown menu:
-
-```ruby
-index do
-  selectable_column
-  column :title
-  actions dropdown: true do |post|
-    item "Preview", admin_preview_post_path(post)
-  end
-end
-```
-
-In addition, you can insert the position of the row in the greater
-collection by using the index_column special command:
-
-```ruby
-index do
-  selectable_column
-  index_column
-  column :title
-end
-```
-
-index_column take an optional offset parameter to allow a developer to set
-the starting number for the index (default is 1).
 
 ## Sorting
 
@@ -222,13 +196,22 @@ index do
 end
 ```
 
-## Custom row class
+## Custom tbody HTML attributes
 
-In order to add special class to table rows pass the proc object as a `:row_class` option
-of the `index` method.
+In order to add HTML attributes to the tbody use the `:tbody_html` option.
 
 ```ruby
-index row_class: ->elem { 'active' if elem.active? } do
+index tbody_html: { class: "my-class", data: { controller: 'stimulus-controller' } } do
+  # columns
+end
+```
+
+## Custom row HTML attributes
+
+In order to add HTML attributes to table rows, use a proc object in the `:row_html` option.
+
+```ruby
+index row_html: ->elem { { class: ('active' if elem.active?), data: { 'element-id' => elem.id } } } do
   # columns
 end
 ```

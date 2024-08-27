@@ -1,0 +1,45 @@
+name: Rubocop
+
+on:
+  pull_request:
+
+env:
+  RUBY_VERSION: ${{ vars.RUBOCOP_RUBY_VERSION || '3.3' }}
+
+jobs:
+  rubocop:
+    name: Run rubocop
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_ONLY: ${{ vars.RUBOCOP_BUNDLE_ONLY || 'rubocop' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: tj-actions/changed-files@v45
+        id: changed-files
+        with:
+          files: |
+            .github/workflows/rubocop.yml
+            .rubocop.yml
+            **.rb
+            **.rake
+            **.arb
+            bin/*
+            docs/Gemfile
+            gemfiles/**/Gemfile
+            Gemfile*
+            Rakefile
+            *.gemspec
+            .simplecov
+      - uses: ruby/setup-ruby@v1
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+      - uses: reviewdog/action-rubocop@v2
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          fail_on_error: true
+          filter_mode: nofilter # added (default), diff_context, file, nofilter
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          skip_install: true
+          use_bundler: true

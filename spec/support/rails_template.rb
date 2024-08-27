@@ -1,18 +1,11 @@
+# frozen_string_literal: true
 # Rails template to build the sample app for specs
 
-webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_61_webpacker/Gemfile", __dir__)
+gem "cssbundling-rails"
+rails_command "css:install:tailwind"
+rails_command "importmap:install"
 
-if webpacker_app
-  create_file "app/javascript/packs/some-random-css.css"
-  create_file "app/javascript/packs/some-random-js.js"
-else
-  create_file "app/assets/stylesheets/some-random-css.css"
-  create_file "app/assets/javascripts/some-random-js.js"
-end
-
-create_file "app/assets/images/a/favicon.ico"
-
-initial_timestamp = Time.now.strftime("%Y%M%d%H%M%S").to_i
+initial_timestamp = Time.now.strftime("%Y%m%d%H%M%S").to_i
 
 template File.expand_path("templates/migrations/create_posts.tt", __dir__), "db/migrate/#{initial_timestamp}_create_posts.rb"
 
@@ -49,33 +42,55 @@ template File.expand_path("templates/migrations/create_taggings.tt", __dir__), "
 
 copy_file File.expand_path("templates/models/tagging.rb", __dir__), "app/models/tagging.rb"
 
-gsub_file "config/environments/test.rb", /  config.cache_classes = true/, <<-RUBY
+copy_file File.expand_path("templates/helpers/time_helper.rb", __dir__), "app/helpers/time_helper.rb"
 
-  config.cache_classes = !ENV['CLASS_RELOADING']
-  config.action_mailer.default_url_options = {host: 'example.com'}
+inject_into_file "app/models/application_record.rb", before: "end" do
+  <<-RUBY
 
-  config.active_record.maintain_test_schema = false
-
-RUBY
-
-unless webpacker_app
-  inject_into_file "config/environments/test.rb", after: "  config.action_mailer.default_url_options = {host: 'example.com'}" do
-    "\n  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )\n"
+  def self.ransackable_attributes(auth_object=nil)
+    authorizable_ransackable_attributes
   end
+
+  def self.ransackable_associations(auth_object=nil)
+    authorizable_ransackable_associations
+  end
+  RUBY
+end
+
+environment 'config.hosts << ".ngrok-free.app"', env: :development
+
+# Make sure we can turn on class reloading in feature specs.
+# Write this rule in a way that works even when the file doesn't set `config.cache_classes` (e.g. Rails 7.1).
+gsub_file "config/environments/test.rb", /  config.cache_classes = true/, ""
+inject_into_file "config/environments/test.rb", after: "Rails.application.configure do" do
+  "\n" + <<-RUBY
+  config.cache_classes = !ENV['CLASS_RELOADING']
+  RUBY
+end
+gsub_file "config/environments/test.rb", /config.enable_reloading = false/, "config.enable_reloading = !!ENV['CLASS_RELOADING']"
+
+inject_into_file "config/environments/test.rb", after: "config.cache_classes = !ENV['CLASS_RELOADING']" do
+  "\n" + <<-RUBY
+  config.action_mailer.default_url_options = {host: 'example.com'}
+  config.active_record.maintain_test_schema = false
+  RUBY
 end
 
 gsub_file "config/boot.rb", /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
   ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
 RUBY
 
-# Setup webpacker if necessary
-if webpacker_app
-  rails_command "webpacker:install"
-  gsub_file "config/webpacker.yml", /^(.*)extract_css.*$/, '\1extract_css: true' if ENV["RAILS_ENV"] == "test"
-end
+# In https://github.com/rails/rails/pull/46699, Rails 7.1 changed sqlite directory from db/ storage/.
+# Since we test we deal with rails 6.1 and 7.0, let's go back to db/
+gsub_file "config/database.yml", /storage\/(.+)\.sqlite3$/, 'db/\1.sqlite3'
 
 # Setup Active Admin
-generate "active_admin:install#{" --use-webpacker" if webpacker_app}"
+generate "active_admin:install"
+
+gsub_file "tailwind-active_admin.config.js", /^.*const activeAdminPath.*$/, <<~JS
+  const activeAdminPath = '../../../';
+JS
+gsub_file "tailwind-active_admin.config.js", /@activeadmin\/activeadmin/, "${activeAdminPath}"
 
 # Force strong parameters to raise exceptions
 inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
@@ -87,20 +102,15 @@ append_file "config/locales/en.yml", File.read(File.expand_path("templates/en.ym
 
 # Add predefined admin resources
 directory File.expand_path("templates/admin", __dir__), "app/admin"
-
-# Add predefined policies
+directory File.expand_path("templates/views", __dir__), "app/views"
 directory File.expand_path("templates/policies", __dir__), "app/policies"
 
-# Require turbolinks if necessary
-if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_61_turbolinks/Gemfile", __dir__)
-  append_file "app/assets/javascripts/active_admin.js", "//= require turbolinks\n"
-end
+route "root to: redirect('admin')" if ENV["RAILS_ENV"] != "test"
 
-if ENV["RAILS_ENV"] != "test"
-  inject_into_file "config/routes.rb", "\n  root to: redirect('admin')", after: /.*routes.draw do/
-end
-
-rails_command "db:drop db:create db:migrate", env: ENV["RAILS_ENV"]
+# Rails 7.1 doesn't write test.sqlite3 files if we run db:drop, db:create and db:migrate in a single command.
+# That's why we run it in two steps.
+rails_command "db:drop db:create", env: ENV["RAILS_ENV"]
+rails_command "db:migrate", env: ENV["RAILS_ENV"]
 
 if ENV["RAILS_ENV"] == "test"
   inject_into_file "config/database.yml", "<%= ENV['TEST_ENV_NUMBER'] %>", after: "test.sqlite3"
@@ -108,8 +118,14 @@ if ENV["RAILS_ENV"] == "test"
   require "parallel_tests"
   ParallelTests.determine_number_of_processes(nil).times do |n|
     copy_file File.expand_path("db/test.sqlite3", destination_root), "db/test.sqlite3#{n + 1}"
+
+    # Copy Write-Ahead-Log (-wal) and Wal-Index (-shm) files.
+    # Files were introduced by rails 7.1 sqlite3 optimizations (https://github.com/rails/rails/pull/49349/files).
+    %w(shm wal).each do |suffix|
+      file = File.expand_path("db/test.sqlite3-#{suffix}", destination_root)
+      if File.exist?(file)
+        copy_file File.expand_path("db/test.sqlite3-#{suffix}", destination_root), "db/test.sqlite3#{n + 1}-#{suffix}", mode: :preserve
+      end
+    end
   end
 end
-
-git add: "."
-git commit: "-m 'Bare application'"

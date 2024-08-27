@@ -1,9 +1,6 @@
 fa:
   active_admin:
     dashboard: "داشبرد"
-    dashboard_welcome:
-      welcome: "به اکتیو ادمین خوش آمدید. این صفحه اول داشبرد است."
-      call_to_action: "برای اضافه کردن قسمت‌هایی به داشبرد اینجا را چک کنید: 'app/admin/dashboard.rb'"
     view: "نمایش"
     edit: "ویرایش"
     delete: "حذف"
@@ -24,18 +21,10 @@ fa:
       buttons:
         filter: "فیلتر"
         clear: "پاک کردن فیلتر"
-      predicates:
-        contains: "شامل"
-        equals: "برابر با"
-        starts_with: "شروع با"
-        ends_with: "پایان با"
-        greater_than: "بزرگتر از"
-        less_than: "کوچکتر از"
     status_tag:
       "yes": "بله"
       "no": "بدون"
       "unset": "بدون"
-    main_content: "لطفا %{model}#main_content را پیاده سازی کنید تا محتوی نمایش داده شود."
     logout: "خروج"
     powered_by: "قدرت گرفته از %{active_admin} %{version}"
     sidebars:
@@ -53,8 +42,6 @@ fa:
     blank_slate:
       content: "هنوز هیچ رکوردی از %{resource_name} درج نشده."
       link: "درج اولین رکورد"
-    dropdown_actions:
-      button_label: "عملیات"
     batch_actions:
       button_label: "عملیات‌های دسته‌ای"
       default_confirmation: "آیا برای اجرای این عملیات اطمینان دارید؟"
@@ -114,6 +101,3 @@ fa:
       message: "شما دسترسی لازم برای انجام این عملیات را ندارید."
     index_list:
       table: "جدول"
-      block: "لیست"
-      grid: "گرید"
-      blog: "وبلاگ"

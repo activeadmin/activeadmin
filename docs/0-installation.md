@@ -16,7 +16,7 @@ gem 'draper'
 gem 'pundit'
 ```
 
-More accurately, it's a [Rails Engine](http://guides.rubyonrails.org/engines.html)
+More accurately, it's a [Rails Engine](https://guides.rubyonrails.org/engines.html)
 that can be injected into your existing Ruby on Rails application.
 
 ## Setting up Active Admin
@@ -66,17 +66,17 @@ Voila! You're on your brand new Active Admin dashboard.
 To register an existing model with Active Admin:
 
 ```sh
-rails generate active_admin:resource MyModel
+rails generate active_admin:resource Post
 ```
 
-This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your
-browser to see it.
+This creates a `app/admin/post.rb` file with some content to start. Preview
+any changes in your browser.
 
 # Upgrading
 
 When upgrading to a new version, it's a good idea to check the [CHANGELOG].
 
-To update the JS & CSS assets:
+To update the assets:
 
 ```sh
 rails generate active_admin:assets
@@ -86,6 +86,8 @@ You should also sync these files with their counterparts in the AA source code:
 
 * app/admin/dashboard.rb [~>][dashboard.rb]
 * config/initializers/active_admin.rb [~>][active_admin.rb]
+
+Along with any template partials you've copied and modified.
 
 # Gem compatibility
 
@@ -114,7 +116,7 @@ If you're getting the error `wrong number of arguments (6 for 4..5)`, [read #270
 
 ## webpacker
 
-For new apps starting with Rails 6.0, Webpacker has become the default asset generator. You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating your configuration to turn on the `use_webpacker` option, either at installation time or manually.
+You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating your configuration to turn on the `use_webpacker` option, either at installation time or manually.
 
 * at active_admin installation:
 

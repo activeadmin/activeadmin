@@ -1,0 +1,5 @@
+<% unless skip_sidebar? || sidebar_sections_for_action.blank? %>
+  <div class="space-y-8">
+    <%= render "active_admin/shared/sidebar_sections" %>
+  </div>
+<% end %>

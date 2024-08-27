@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ENV["RAILS_ENV"] = "test"
 
 require "simplecov" if ENV["COVERAGE"] == "true"
@@ -11,6 +12,7 @@ require_relative "../../tasks/test_application"
 require "#{ActiveAdmin::TestApplication.new.full_app_dir}/config/environment.rb"
 
 require_relative "rails"
+require_relative "../../spec/support/active_support_deprecation"
 
 require "rspec/mocks"
 World(RSpec::Mocks::ExampleMethods)
@@ -56,7 +58,7 @@ DatabaseCleaner.strategy = :truncation
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 # Warden helpers to speed up login
-# See https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara
+# See https://github.com/heartcombo/devise/wiki/How-To:-Test-with-Capybara
 include Warden::Test::Helpers
 
 After do
@@ -64,17 +66,13 @@ After do
 end
 
 Before do
-  # We are caching classes, but need to manually clear references to
-  # the controllers. If they aren't clear, the router stores references
-  ActiveSupport::Dependencies.clear unless ActiveAdmin::Dependency.supports_zeitwerk?
-
   # Reload Active Admin
   ActiveAdmin.unload!
   ActiveAdmin.load!
 end
 
 # Force deprecations to raise an exception.
-ActiveSupport::Deprecation.behavior = :raise
+ActiveAdmin::DeprecationHelper.behavior = :raise
 
 After "@authorization" do |scenario, block|
   # Reset back to the default auth adapter
@@ -95,4 +93,18 @@ end
 
 Around "@locale_manipulation" do |scenario, block|
   I18n.with_locale(:en, &block)
+end
+
+class CustomIndexView < ActiveAdmin::Component
+  def build(page_presenter, collection)
+    add_class "custom-index-view"
+    resource_selection_toggle_panel if active_admin_config.batch_actions.any?
+    collection.each do |obj|
+      instance_exec(obj, &page_presenter.block)
+    end
+  end
+
+  def self.index_name
+    "custom"
+  end
 end

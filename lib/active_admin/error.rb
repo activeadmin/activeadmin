@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # Exception class to raise when there is an authorized access
   # exception thrown. The exception has a few goodies that may

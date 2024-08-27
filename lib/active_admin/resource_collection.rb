@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # This is a container for resources, which acts much like a Hash.
   # It's assumed that an added resource responds to `resource_name`.

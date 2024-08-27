@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ActiveAdmin.register Tag do
   config.create_another = true
 
@@ -8,7 +9,7 @@ ActiveAdmin.register Tag do
     id_column
     column :name
     column :created_at
-    actions dropdown: true do |tag|
+    actions do |tag|
       item "Preview", admin_tag_path(tag)
     end
   end

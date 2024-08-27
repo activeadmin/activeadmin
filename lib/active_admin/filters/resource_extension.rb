@@ -1,18 +1,19 @@
+# frozen_string_literal: true
+require "active_admin/filters/active"
+
 module ActiveAdmin
   module Filters
-
     class Disabled < RuntimeError
-      def initialize
-        super "Can't remove a filter when filters are disabled. Enable filters with 'config.filters = true'"
+      def initialize(action)
+        super "Cannot #{action} a filter when filters are disabled. Enable filters with 'config.filters = true'"
       end
     end
 
     module ResourceExtension
-
       def initialize(*)
         super
         add_filters_sidebar_section
-        add_search_status_sidebar_section
+        add_active_search_sidebar_section
       end
 
       # Returns the filters for this resource. If filters are not enabled,
@@ -60,7 +61,7 @@ module ActiveAdmin
       #
       # @param [Symbol] attributes The attributes to not filter on
       def remove_filter(*attributes)
-        raise Disabled unless filters_enabled?
+        raise Disabled, "remove" unless filters_enabled?
 
         attributes.each { |attribute| (@filters_to_remove ||= []) << attribute.to_sym }
       end
@@ -72,7 +73,7 @@ module ActiveAdmin
       # @param [Hash] options The set of options that are passed through to
       #                       ransack for the field definition.
       def add_filter(attribute, options = {})
-        raise Disabled unless filters_enabled?
+        raise Disabled, "add" unless filters_enabled?
 
         (@filters ||= {})[attribute.to_sym] = options
       end
@@ -97,7 +98,7 @@ module ActiveAdmin
         end
 
         if @filters_to_remove
-          @filters_to_remove.each &filters.method(:delete)
+          @filters_to_remove.each { |filter| filters.delete(filter) }
         end
 
         filters
@@ -138,7 +139,7 @@ module ActiveAdmin
             end
 
             # Remove high-arity associations with no searchable column
-            high_arity = high_arity.select(&method(:searchable_column_for))
+            high_arity = high_arity.select { |r| searchable_column_for(r) }
 
             high_arity = high_arity.map { |r| r.name.to_s + "_" + searchable_column_for(r) + namespace.filter_method_for_large_association }
 
@@ -164,16 +165,24 @@ module ActiveAdmin
       end
 
       def filters_sidebar_section
-        ActiveAdmin::SidebarSection.new :filters, only: :index, if: -> { active_admin_config.filters.any? } do
+        name = :filters
+        ActiveAdmin::SidebarSection.new name, only: :index, if: -> { active_admin_config.filters.any? } do
+          h3 I18n.t("active_admin.sidebars.#{name}", default: name.to_s.titlecase), class: "filters-form-title"
           active_admin_filters_form_for assigns[:search], **active_admin_config.filters
         end
       end
 
-      def add_search_status_sidebar_section
-        self.sidebar_sections << ActiveAdmin::Filters::ActiveSidebar.new
+      def add_active_search_sidebar_section
+        self.sidebar_sections << active_search_sidebar_section
       end
 
+      def active_search_sidebar_section
+        name = :active_search
+        ActiveAdmin::SidebarSection.new name, only: :index, if: -> { active_admin_config.current_filters_enabled? && (params[:q] || params[:scope]) } do
+          filters = ActiveAdmin::Filters::Active.new(active_admin_config, assigns[:search])
+          render "active_filters", active_filters: filters
+        end
+      end
     end
-
   end
 end

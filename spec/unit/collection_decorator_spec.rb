@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 class NumberDecorator
@@ -24,7 +25,7 @@ RSpec.describe ActiveAdmin::CollectionDecorator do
     subject { ActiveAdmin::CollectionDecorator.decorate((1..10).to_a, with: NumberDecorator) }
 
     it "delegates them to the decorated collection" do
-      expect(subject.select(&:selectable?).count).to eq(5)
+      expect(subject.count(&:selectable?)).to eq(5)
     end
   end
 end

@@ -1,9 +1,6 @@
 cs:
   active_admin:
     dashboard: Úvod
-    dashboard_welcome:
-      welcome: "Vítejte v Active Admin. Toto je nástěnka."
-      call_to_action: "Pro přidání sekcí na nástěnku se podívejte do souboru 'app/admin/dashboard.rb'"
     view: "Zobrazit"
     edit: "Upravit"
     delete: "Smazat"
@@ -24,18 +21,10 @@ cs:
       buttons:
         filter: "Filtrovat"
         clear: "Vyčistit filtry"
-      predicates:
-        contains: "Obsahuje"
-        equals: "Odpovídá"
-        starts_with: "Začíná na"
-        ends_with: "Končí na"
-        greater_than: "Větší než"
-        less_than: "Menší než"
     status_tag:
       "yes": "Ano"
       "no": "Ne"
       "unset": "Ne"
-    main_content: "Implementujte prosím %{model}#main_content pro zobrazení obsahu."
     logout: "Odhlásit"
     powered_by: "%{active_admin} %{version}"
     sidebars:
@@ -54,8 +43,6 @@ cs:
     blank_slate:
       content: "Zatím zde není žádný obsah."
       link: "Vytvořit"
-    dropdown_actions:
-      button_label: "Akce"
     batch_actions:
       button_label: "Hromadné akce"
       default_confirmation: "Jste si jisti, že chcete provést?"
@@ -104,6 +91,3 @@ cs:
       message: "Nemáte oprávnění k provedení této akce."
     index_list:
       table: "Tabulka"
-      block: "Seznam"
-      grid: "Tabulka"
-      blog: "Blog"

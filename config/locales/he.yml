@@ -1,9 +1,6 @@
 he:
   active_admin:
     dashboard: פנל ניהול
-    dashboard_welcome:
-      welcome: "ברוכים הבאים לאקטיב אדמין. זהו פנל הניהול"
-      call_to_action: "כדי להוסיף אזורים בפנל הניהול, אנא בדוק את,  'app/admin/dashboard.rb'"
     view: "צפייה"
     edit: "עריכה"
     delete: "מחיקה"
@@ -25,25 +22,12 @@ he:
       buttons:
         filter: "סינון"
         clear: "איפוס שדות"
-      predicates:
-        contains: "מכיל"
-        equals: "שווה ל"
-        starts_with: "מתחיל עם"
-        ends_with: "מסתיים ב"
-        greater_than: "גדול מ"
-        less_than: "פחות מ"
-        gteq_datetime: "אחרי או בתאריך"
-        lteq_datetime: "לפני או בתאריך"
     search_status:
-      headline: "תוצאות חיפוש:"
-      current_scope: "תחום:"
-      current_filters: "מסננים:"
       no_current_filters: "ללא"
     status_tag:
       "yes": "כן"
       "no": "לא"
       "unset": "לא"
-    main_content: "אנא הטמע את %{model}#main_content בכדי להציג תוכן."
     logout: "התנתקות"
     powered_by: "ממונע בעזרת %{active_admin} %{version}"
     sidebars:
@@ -63,8 +47,6 @@ he:
     blank_slate:
       content: "כרגע אין עוד אף %{resource_name}."
       link: "צור אחד"
-    dropdown_actions:
-      button_label: "פעולו"
     batch_actions:
       button_label: "פעולות מרובות"
       default_confirmation: "אתה בטוח שאתה רוצה לעשות את זה?"
@@ -128,14 +110,7 @@ he:
         sign_in_with_omniauth_provider: "%{provider} היכנס עם"
         resend_unlock_instructions: "שלח שוב הוראות שיחרור"
         resend_confirmation_instructions: "שלח שוב הוראות אישור"
-    unsupported_browser:
-      headline: "שים לב ש-ActiveAdmin אינו תומך יותר ב-Internet Explorer גרסא 8 ומטה."
-      recommendation: "אנו ממליצים <a href=\"http://browsehappy.com/\">לשדרג את הדפדפן שלך</a> על מנת לשפר את חווית הגלישה."
-      turn_off_compatibility_view: "אם אתה משתמש ב- IE 9 ואילך, ודא ש<a href=\"https://support.microsoft.com/he-il/help/17471\">כיבית \"תצוגת תאימות\"</a>."
     access_denied:
       message: "אינך רשאי לבצע פעולה זו."
     index_list:
       table: "טבלה"
-      block: "רשימה"
-      grid: "גריד"
-      blog: "בלוג"

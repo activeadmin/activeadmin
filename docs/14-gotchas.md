@@ -23,7 +23,7 @@ session from being committed. Flash messages won't work and you will be unable t
 use the session for storing anything.
 
 For more information see [the following
-post](http://www.intridea.com/blog/2013/3/20/rails-assets-prefix-may-disable-your-session).
+post](https://www.mobomo.com/2013/03/rails-assets-prefix-may-disable-your-session/).
 
 ## Helpers
 
@@ -43,12 +43,12 @@ application config, you need to include it by hand.
 
 #### Solutions
 
-##### First use a monkey patch
+##### First use an override
 
-This works for all ActiveAdmin resources at once.
+This works for all ActiveAdmin resources at once. Please [follow the Rails
+guidelines for overriding](https://guides.rubyonrails.org/engines.html#improving-engine-functionality) this safely alongside Zeitwerk.
 
 ```ruby
-# config/initializers/active_admin_helpers.rb
 ActiveAdmin::BaseController.class_eval do
   helper ApplicationHelper
 end
@@ -107,23 +107,6 @@ YourModel.__elasticsearch__.search
 
 ```ruby
 YourModel.solr_search
-```
-
-### Rails 5 scaffold generators
-
-Active Admin requires the `inherited_resources` gem which may break scaffolding
-under Rails 5 as it replaces the default scaffold generator. The solution is to
-configure the default controller in `config/application.rb` as outlined in
-[activeadmin/inherited_resources#195](https://github.com/activeadmin/inherited_resources/issues/195)
-
-```ruby
-module SampleApp
-  class Application < Rails::Application
-    ...
-    config.app_generators.scaffold_controller = :scaffold_controller
-    ...
-  end
-end
 ```
 
 ## Authentication & Application Controller

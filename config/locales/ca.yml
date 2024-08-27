@@ -1,13 +1,27 @@
 ca:
+  activerecord:
+    models:
+      comment:
+        one: "Comentari"
+        other: "Comentaris"
+      active_admin/comment:
+        one: "Comentari"
+        other: "Comentaris"
+    attributes:
+      active_admin/comment:
+        author_type: "Tipus d'autor"
+        body: "Missatge"
+        created_at: "Creat el"
+        namespace: "Espai de noms"
+        resource_type: "Tipus de recurs"
+        updated_at: "Actualitzat el"
   active_admin:
-    dashboard: Tauler
-    dashboard_welcome:
-      welcome: "Benvingut a Active Admin. Aquest és el tauler per defecte."
-      call_to_action: "Mira l'arxiu 'app/admin/dashboard.rb' per afegir seccions al tauler"
+    dashboard: "Tauler d'activitat"
     view: "Mostra"
     edit: "Edita"
     delete: "Elimina"
-    delete_confirmation: "Segur que vols eliminar-ho?"
+    delete_confirmation: "Segur que voleu eliminar-ho?"
+    create_another: "Crear un altre %{model}"
     new_model: "Crear %{model}"
     edit_model: "Editar %{model}"
     delete_model: "Eliminar %{model}"
@@ -17,35 +31,41 @@ ca:
     previous: "Anterior"
     next: "Següent"
     download: "Descarregar:"
-    has_many_new: "Afegir %{model}"
+    has_many_new: "Afegir un altre %{model}"
     has_many_delete: "Eliminar"
     has_many_remove: "Treure"
+    move: "Moure"
     filters:
       buttons:
-        filter: "Filtrar"
-        clear: "Treure filtres"
+        filter: "Filtra"
+        clear: "Elimina els filtres"
       predicates:
-        contains: "Conté"
-        equals: "Igual a"
-        starts_with: "Comença amb"
-        ends_with: "Acaba amb"
-        greater_than: "Més gran que"
-        less_than: "Més petit que"
+        from: "Des de"
+        to: "Fins"
+    scopes:
+      all: "Tots"
+    search_status:
+      title: "Cerca activa"
+      title_with_scope: "Cerca activa per %{name}"
+      no_current_filters: "Sense filtres actius"
     status_tag:
       "yes": "Sí"
       "no": "No"
-      "unset": "No"
-    main_content: "Implementa %{model}#main_content per mostrar contingut."
-    logout: "Desconnecta't"
+      "unset": "Desconegut"
+    logout: "Tanca la sessió"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtres"
+      search_status: "Estat de la cerca"
     pagination:
-      empty: "No hi ha %{model}"
-      one: "S'està mostrant <b>1</b> %{model}"
-      one_page: "S'estan mostrant <b>tots %{n}</b> %{model}"
-      multiple: "S'estan mostrant %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> en total"
-      multiple_without_total: "S'estan mostrant %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: "No s'ha trobat cap %{model}"
+      one: "S'està mostrant <b>1</b> de <b>1</b>"
+      one_page: "S'estan mostrant <b>tots %{n}</b>"
+      multiple: "Se n'estan mostrant <b>%{from}-%{to}</b> d'un total de <b>%{total}</b>"
+      multiple_without_total: "Se n'estan mostrant <b>%{from}-%{to}</b>"
+      per_page: "Per pàgina"
+      previous: "Anterior"
+      next: "Següent"
       entry:
         one: "entrada"
         other: "entrades"
@@ -53,39 +73,56 @@ ca:
     blank_slate:
       content: "Encara no hi ha cap %{resource_name}."
       link: "Crea'n un/a"
-    dropdown_actions:
-      button_label: "accions"
     batch_actions:
-      button_label: "les accions per lots"
-      default_confirmation: "¿Esteu segur que voleu fer-ho?"
-      delete_confirmation: "¿Està segur que desitja eliminar aquests %{plural_model}?"
+      button_label: "Accions per lots"
+      default_confirmation: "Segur que voleu fer-ho?"
+      delete_confirmation: "Segurs que voleu eliminar aquests %{plural_model}?"
       succesfully_destroyed:
-        one: "Va destruir amb èxit 1 %{model}"
-        other: "Va destruir amb èxit %{count} %{plural_model}"
-      selection_toggle_explanation: "(Selecció de Canviar)"
+        one: "1 %{model} eliminat"
+        other: "%{count} %{plural_model} eliminats"
+      selection_toggle_explanation: "(Invertir la selecció)"
       action_label: "%{title} seleccionat"
       labels:
-        destroy: "esborrar"
+        destroy: "Esborrar"
     comments:
-      body: "Cos"
-      author: "autor"
+      created_at: "Creat el"
+      resource_type: "Tipus de recurs"
+      author_type: "Tipus d'author"
+      body: "Missatge"
+      author: "Autor"
       add: "Afegeix comentari"
+      delete: "Elimina comentari"
+      delete_confirmation: "Esteu segurs que voleu eliminar aquest comentari?"
       resource: "Recurs"
-      no_comments_yet: "No hi ha comentaris"
-      title_content: "comentaris (%{count})"
+      no_comments_yet: "Sense comentaris"
+      author_missing: "Anònim"
+      title_content: "Tots els comentaris (%{count})"
       errors:
-        empty_text: "El comentari no es va salvar, el text estava buida."
+        empty_text: "El comentari no s'ha desat, no hi havia text."
     devise:
+      username:
+        title: "Usuari"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Subdomini"
+      password:
+        title: "Contrasenya"
+      password_confirmation:
+        title: "Confirmeu la contrasenya"
+      sign_up:
+        title: "Doneu-vos d'alta"
+        submit: "Doneu-vos d'alta"
       login:
-        title: "iniciar sessió"
-        remember_me: "Recordar"
-        submit: "iniciar sessió"
+        title: "Identifiqueu-vos"
+        remember_me: "Recorda'm"
+        submit: "Identifiqueu-vos"
       reset_password:
-        title: "Heu perdut la contrasenya?"
+        title: "Heu oblidat la contrasenya?"
         submit: "Restablir la contrasenya"
       change_password:
         title: "Canvieu la contrasenya"
-        submit: "Canviar la contrasenya"
+        submit: "Canvia'm la contrasenya"
       unlock:
         title: "Reenvia instruccions per a desbloquejar"
         submit: "Reenvia instruccions per a desbloquejar"
@@ -93,13 +130,13 @@ ca:
         title: "Reenviar instruccions de confirmació"
         submit: "Reenviar instruccions de confirmació"
       links:
-        sign_in: "Registrar"
+        sign_up: "Sign up"
+        sign_in: "Sign in"
         forgot_your_password: "Heu perdut la contrasenya?"
-        sign_in_with_omniauth_provider: "Connecta't amb %{provider}"
+        sign_in_with_omniauth_provider: "Identificació via %{provider}"
+        resend_unlock_instructions: "Reenviar les instruccions de desbloqueig"
+        resend_confirmation_instructions: "Reenviar les instruccions de confirmació"
     access_denied:
-      message: "No esta autoritzat a realitzar aquesta acció."
+      message: "No esteu autoritzats a realitzar aquesta acció"
     index_list:
       table: "Taula"
-      block: "Llista"
-      grid: "Graella"
-      blog: "Bloc"

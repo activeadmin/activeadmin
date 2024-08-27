@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # This is the class where all the register blocks are evaluated.
   class ResourceDSL < DSL
@@ -190,25 +191,9 @@ module ActiveAdmin
     delegate :before_save, :after_save, to: :controller
     delegate :before_destroy, :after_destroy, to: :controller
 
-    # This code defines both *_filter and *_action for Rails 5.0 and  *_action for Rails >= 5.1
-    phases = [
-      :before, :skip_before,
-      :after, :skip_after,
-      :around, :skip
-    ]
-    keywords = if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
-                 [:action]
-               else
-                 [:action, :filter]
-               end
-
-    keywords.each do |name|
-      phases.each do |action|
-       define_method "#{action}_#{name}" do |*args, &block|
-         controller.public_send "#{action}_action", *args, &block
-       end
-     end
-    end
+    standard_rails_filters =
+      AbstractController::Callbacks::ClassMethods.public_instance_methods.select { |m| m.end_with?('_action') }
+    delegate *standard_rails_filters, to: :controller
 
     # Specify which actions to create in the controller
     #

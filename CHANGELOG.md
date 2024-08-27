@@ -1,6 +1,190 @@
 # Changelog
 
-## Unreleased
+[Future changelogs have moved to GitHub Releases](https://github.com/activeadmin/activeadmin/releases)
+
+## 3.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.1.0..v3.2.0)
+
+### Security Fixes
+
+* Backport protect against CSV Injection. [#8167] by [@mgrunberg]
+
+### Enhancements
+
+* Backport support citext column type in string filter. [#8165] by [@mgrunberg]
+* Backport provide detail in DB statement timeout error for filters. [#8163] by [@mgrunberg]
+
+### Bug Fixes
+
+* Backport make sure menu creation does not modify menu options. [#8166] by [@mgrunberg]
+* Backport ransack error with filters when ActiveStorage is used. [#8164] by [@mgrunberg]
+
+## 3.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.0.0..v3.1.0)
+
+### Enhancements
+
+* Support Rails 7.1. [#8102] by [@mgrunberg]
+* Remove deprecated usage of ActiveSupport::Deprecation singleton. [#8106] by [@mgrunberg]
+* Replace to_formatted_s with to_s to convert date to string. [#8105] by [@mgrunberg]
+* Remove upper bound dependency limits from gemspec. [#8098] by [@javierjulio]
+
+## 3.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.14.0..v3.0.0)
+
+### Breaking Changes
+
+* Remove custom Ransack predicates that were MetaSearch backports. [#8010] by [@javierjulio]
+* Require Ransack v4. [#8009] by [@javierjulio]
+
+### Enhancements
+
+* Use display name fallback if blank display name result. [#6342] by [@javierjulio]
+
+### Translation Improvements
+
+* Improve Swedish translations. [#7993] by [@carlottostromstedt]
+
+## 2.14.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.13.1..v2.14.0)
+
+### Enhancements
+
+* Add csp_meta_tag to layout. [#7986] by [@javierjulio]
+* Update config.register_javascript with options support. [#7002] by [@lanzhiheng]
+* Use `csrf_meta_tags` in place of singular version. [#7985] by [@javierjulio]
+* Allow different new and edit rules in authorization adapters. [#6535] by [@timwis]
+
+### Bug Fixes
+
+* Fix form layout for hints and checkboxes. [#7772] by [@JewelSam]
+* Update filters disabled error to include specific action. [#6195] by [@javawizard]
+* Fix Comments controller destroy declaration. [#6482] by [@bliof]
+* Stop pagination elements from overflowing outside of panel container. [#7599] by [@ray-curran]
+
+### Translation Improvements
+
+* Update vi locale with more translations. [#7984] by [@rs-phunt]
+* Update zh-CN locale with multiple corrections. [#7944] by [@hfl]
+* Fix typo in Vietnamese locale for filter text. [#7920] by [@tvziet]
+* Improve French translation. [#7653] by [@cprodhomme]
+
+### Documentation
+
+* Add more documentation about PORO decorator requirements. [#7556] by [@sanfrecce-osaka]
+* Add Load Paths docs to the active_admin.rb template. [#7541] by [@gabo-cs]
+
+### Performance
+
+* Removes docs from exported gem. [#7013] by [@brunoarueira]
+
+## 2.13.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.13.0..v2.13.1)
+
+### Bug Fixes
+
+* Honor load paths order when loading admin files. [#7488] by [@tf]
+* Fix passing expected hash payload argument. [#7487] by [@ispyropoulos]
+
+## 2.13.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.12.0..v2.13.0)
+
+### Documentation
+
+* Update validation errors documentation to account for deprecated `ActiveModel::Errors#keys`. [#7475] by [@amit]
+
+### Dependency Changes
+
+* Drop rails 6.0 support. [#7476] by [@deivid-rodriguez]
+
+### Performance
+
+* Fix pundit performance. [#7479] by [@deivid-rodriguez]
+
+## 2.12.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.11.2..v2.12.0)
+
+### Enhancements
+
+* Add Ransack 3 compatibility. [#7453] by [@tagliala]
+
+### Bug Fixes
+
+* Fix pundit namespace detection. [#7144] by [@vlad-psh]
+
+### Documentation
+
+* Don't mention webpacker as the default asset generator in Rails. [#7377] by [@jaynetics]
+
+### Performance
+
+* Avoid duplicate work when downloading CSV. [#7336] by [@deivid-rodriguez]
+
+## 2.11.2 [☰](https://github.com/activeadmin/activeadmin/compare/v2.11.1..v2.11.2)
+
+### Bug Fixes
+
+* Fix disappearing BOM option for `CSVBuilder`. [#7170] by [@Karoid]
+
+## 2.11.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.11.0..v2.11.1)
+
+### Enhancements
+
+* Add turbolinks support to has many js. [#7384] by [@amiel]
+
+### Documentation
+
+* Remove `insert_tag` from Form-Partial docs. [#7394] by [@TonyArra]
+
+## 2.11.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.10.1..v2.11.0)
+
+### Enhancements
+
+* Add Rails 7 Support. [#7235] by [@tagliala]
+
+### Bug Fixes
+
+* Fix form SCSS variables no longer being defined in the outermost scope, so no longer being accessible. [#7341] by [@gigorok]
+
+## 2.10.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.10.0..v2.10.1)
+
+### Enhancements
+
+* Apply `box-sizing: border-box` globally. [#7349] by [@deivid-rodriguez]
+* Vendor normalize 8.0.1. [#7350] by [@deivid-rodriguez]
+* Remove deprecation warning using controller filters inside initializer. [#7340] by [@mgrunberg]
+
+### Bug Fixes
+
+* Fix frozen string error when downloading CSV and streaming disabled. [#7332] by [@deivid-rodriguez]
+
+## 2.10.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.9.0..v2.10.0)
+
+### Enhancements
+
+* Load favicon from Webpacker assets when use_webpacker is set to true. [#6954] by [@Fs00]
+* Don't apply sorting to collection until after scoping. [#7205] by [@agrobbin]
+* Resolve dart sass deprecation warning for division. [#7095] by [@tordans]
+* Use `instrument` from the Notifications API instead of low level `publish`. [#7262] by [@sprql]
+* Avoid mutating string literals. [#6936] by [@tomgilligan]
+* Include print styles in main stylesheet. [#6922] by [@deivid-rodriguez]
+* Use `POST` for OmniAuth links. [#6916] by [@deivid-rodriguez]
+* Scope new record instantiation by authorization scope. [#6884] by [@ngouy]
+* Make `permit_params` and `belongs_to` order independent. [#6906] by [@deivid-rodriguez]
+* Use collection length instead of running COUNTs for limited collections. [#5660] by [@MmKolodziej]
+
+### Bug Fixes
+
+* Show ransackable_scopes filters in search results. [#7127] by [@vlad-psh]
+
+### Translation Improvements
+
+* Fix Dutch translation for password reset button. [#7181] by [@mvz]
+* Add few key to RO pagination.entry. [#6915] by [@lubosch]
+* Change misleading Korean translation. [#6873] by [@1000ship]
+
+### Documentation
+
+* Replace deprecated update_attributes! with update!. [#6959] by [@sergey-alekseev]
+* Clarify docs on user setup. [#6872] by [@javawizard]
+
+### Dependency Changes
+
+* Drop rails 5.2 support. [#7293] by [@deivid-rodriguez]
+* Drop support for Ruby 2.5. [#7236] by [@alejandroperea]
 
 ## 2.9.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.8.1..v2.9.0)
 
@@ -267,7 +451,7 @@ _No changes_.
 * Fixed `if:` scope option when a lambda is passed. [#5501] by [@deivid-rodriguez]
 * Comment validation adding redundant errors when resource is missing. [#5517] by [@deivid-rodriguez]
 * Fixed resource filtering by association when the resource has custom primary key. [#5446] by [@wasifhossain]
-* Fixed "create anoter" checkbox styling. [#5324] by [@faucct]
+* Fixed "create another" checkbox styling. [#5324] by [@faucct]
 
 ## 1.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.0..v1.3.1)
 
@@ -427,7 +611,7 @@ _No changes_.
 
 * Prevents access to formats that the user not permitted to see. [#4867] by [@Fivell] and [@timoschilling]
 * Prevents potential DOS attack via Ruby symbols. [#1926] by [@seanlinsley]
-  * [this isn't an issue for those using Ruby >= 2.2](http://rubykaigi.org/2014/presentation/S-NarihiroNakamura)
+  * [this isn't an issue for those using Ruby >= 2.2](https://rubykaigi.org/2014/presentation/S-NarihiroNakamura)
 
 ### Bug Fixes
 
@@ -587,6 +771,7 @@ Please check [0-6-stable] for previous changes.
 [#5631]: https://github.com/activeadmin/activeadmin/pull/5631
 [#5632]: https://github.com/activeadmin/activeadmin/pull/5632
 [#5650]: https://github.com/activeadmin/activeadmin/pull/5650
+[#5660]: https://github.com/activeadmin/activeadmin/pull/5660
 [#5662]: https://github.com/activeadmin/activeadmin/pull/5662
 [#5710]: https://github.com/activeadmin/activeadmin/pull/5710
 [#5726]: https://github.com/activeadmin/activeadmin/pull/5726
@@ -630,6 +815,7 @@ Please check [0-6-stable] for previous changes.
 [#6099]: https://github.com/activeadmin/activeadmin/pull/6099
 [#6124]: https://github.com/activeadmin/activeadmin/pull/6124
 [#6149]: https://github.com/activeadmin/activeadmin/pull/6149
+[#6195]: https://github.com/activeadmin/activeadmin/pull/6195
 [#6198]: https://github.com/activeadmin/activeadmin/pull/6198
 [#6210]: https://github.com/activeadmin/activeadmin/pull/6210
 [#6221]: https://github.com/activeadmin/activeadmin/pull/6221
@@ -638,32 +824,97 @@ Please check [0-6-stable] for previous changes.
 [#6315]: https://github.com/activeadmin/activeadmin/pull/6315
 [#6318]: https://github.com/activeadmin/activeadmin/pull/6318
 [#6341]: https://github.com/activeadmin/activeadmin/pull/6341
+[#6342]: https://github.com/activeadmin/activeadmin/pull/6342
 [#6368]: https://github.com/activeadmin/activeadmin/pull/6368
 [#6393]: https://github.com/activeadmin/activeadmin/pull/6393
 [#6422]: https://github.com/activeadmin/activeadmin/pull/6422
 [#6451]: https://github.com/activeadmin/activeadmin/pull/6451
 [#6460]: https://github.com/activeadmin/activeadmin/pull/6460
 [#6462]: https://github.com/activeadmin/activeadmin/pull/6462
+[#6482]: https://github.com/activeadmin/activeadmin/pull/6482
 [#6487]: https://github.com/activeadmin/activeadmin/pull/6487
 [#6523]: https://github.com/activeadmin/activeadmin/pull/6523
+[#6535]: https://github.com/activeadmin/activeadmin/pull/6535
 [#6536]: https://github.com/activeadmin/activeadmin/pull/6536
 [#6548]: https://github.com/activeadmin/activeadmin/pull/6548
 [#6583]: https://github.com/activeadmin/activeadmin/pull/6583
 [#6584]: https://github.com/activeadmin/activeadmin/pull/6584
+[#6872]: https://github.com/activeadmin/activeadmin/pull/6872
+[#6873]: https://github.com/activeadmin/activeadmin/pull/6873
+[#6884]: https://github.com/activeadmin/activeadmin/pull/6884
+[#6906]: https://github.com/activeadmin/activeadmin/pull/6906
+[#6915]: https://github.com/activeadmin/activeadmin/pull/6915
+[#6916]: https://github.com/activeadmin/activeadmin/pull/6916
+[#6922]: https://github.com/activeadmin/activeadmin/pull/6922
+[#6936]: https://github.com/activeadmin/activeadmin/pull/6936
+[#6954]: https://github.com/activeadmin/activeadmin/pull/6954
+[#6959]: https://github.com/activeadmin/activeadmin/pull/6959
+[#7002]: https://github.com/activeadmin/activeadmin/pull/7002
+[#7013]: https://github.com/activeadmin/activeadmin/pull/7013
+[#7095]: https://github.com/activeadmin/activeadmin/pull/7095
+[#7127]: https://github.com/activeadmin/activeadmin/pull/7127
+[#7144]: https://github.com/activeadmin/activeadmin/pull/7144
+[#7170]: https://github.com/activeadmin/activeadmin/pull/7170
+[#7181]: https://github.com/activeadmin/activeadmin/pull/7181
+[#7205]: https://github.com/activeadmin/activeadmin/pull/7205
+[#7235]: https://github.com/activeadmin/activeadmin/pull/7235
+[#7236]: https://github.com/activeadmin/activeadmin/pull/7236
+[#7262]: https://github.com/activeadmin/activeadmin/pull/7262
+[#7293]: https://github.com/activeadmin/activeadmin/pull/7293
+[#7332]: https://github.com/activeadmin/activeadmin/pull/7332
+[#7336]: https://github.com/activeadmin/activeadmin/pull/7336
+[#7340]: https://github.com/activeadmin/activeadmin/pull/7340
+[#7341]: https://github.com/activeadmin/activeadmin/pull/7341
+[#7349]: https://github.com/activeadmin/activeadmin/pull/7349
+[#7350]: https://github.com/activeadmin/activeadmin/pull/7350
+[#7377]: https://github.com/activeadmin/activeadmin/pull/7377
+[#7384]: https://github.com/activeadmin/activeadmin/pull/7384
+[#7394]: https://github.com/activeadmin/activeadmin/pull/7394
+[#7453]: https://github.com/activeadmin/activeadmin/pull/7453
+[#7475]: https://github.com/activeadmin/activeadmin/pull/7475
+[#7476]: https://github.com/activeadmin/activeadmin/pull/7476
+[#7479]: https://github.com/activeadmin/activeadmin/pull/7479
+[#7487]: https://github.com/activeadmin/activeadmin/pull/7487
+[#7488]: https://github.com/activeadmin/activeadmin/pull/7488
+[#7541]: https://github.com/activeadmin/activeadmin/pull/7541
+[#7556]: https://github.com/activeadmin/activeadmin/pull/7556
+[#7599]: https://github.com/activeadmin/activeadmin/pull/7599
+[#7653]: https://github.com/activeadmin/activeadmin/pull/7653
+[#7772]: https://github.com/activeadmin/activeadmin/pull/7772
+[#7920]: https://github.com/activeadmin/activeadmin/pull/7920
+[#7944]: https://github.com/activeadmin/activeadmin/pull/7944
+[#7984]: https://github.com/activeadmin/activeadmin/pull/7984
+[#7985]: https://github.com/activeadmin/activeadmin/pull/7985
+[#7986]: https://github.com/activeadmin/activeadmin/pull/7986
+[#7993]: https://github.com/activeadmin/activeadmin/pull/7993
+[#8009]: https://github.com/activeadmin/activeadmin/pull/8009
+[#8010]: https://github.com/activeadmin/activeadmin/pull/8010
+[#8098]: https://github.com/activeadmin/activeadmin/pull/8098
+[#8102]: https://github.com/activeadmin/activeadmin/pull/8102
+[#8105]: https://github.com/activeadmin/activeadmin/pull/8105
+[#8106]: https://github.com/activeadmin/activeadmin/pull/8106
 
+
+[@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
 [@adler99]: https://github.com/adler99
+[@agrobbin]: https://github.com/agrobbin
 [@ajw725]: https://github.com/ajw725
+[@alejandroperea]: https://github.com/alejandroperea
 [@alex-bogomolov]: https://github.com/alex-bogomolov
 [@amiel]: https://github.com/amiel
+[@amit]: https://github.com/amit
 [@amiuhle]: https://github.com/amiuhle
 [@andreslemik]: https://github.com/andreslemik
 [@bartoszkopinski]: https://github.com/bartoszkopinski
+[@bliof]: https://github.com/bliof
 [@blocknotes]: https://github.com/blocknotes
 [@bolshakov]: https://github.com/bolshakov
+[@brunoarueira]: https://github.com/brunoarueira
 [@brunvez]: https://github.com/brunvez
 [@buren]: https://github.com/buren
+[@carlottostromstedt]: https://github.com/carlottostromstedt
 [@chancancode]: https://github.com/chancancode
 [@chrp]: https://github.com/chrp
 [@chumakoff]: https://github.com/chumakoff
@@ -681,71 +932,99 @@ Please check [0-6-stable] for previous changes.
 [@FabioRos]: https://github.com/FabioRos
 [@faucct]: https://github.com/faucct
 [@Fivell]: https://github.com/Fivell
+[@Fs00]: https://github.com/Fs00
 [@fuzziness]: https://github.com/fuzziness
+[@gabo-cs]: https://github.com/gabo-cs
 [@giapnhdev]: https://github.com/giapnhdev
+[@gigorok]: https://github.com/gigorok
 [@glebtv]: https://github.com/glebtv
 [@gonzedge]: https://github.com/gonzedge
 [@guigs]: https://github.com/guigs
 [@HappyKadaver]: https://github.com/HappyKadaver
+[@hfl]: https://github.com/hfl
 [@imcvampire]: https://github.com/imcvampire
 [@innparusu95]: https://github.com/innparusu95
 [@ionut998]: https://github.com/ionut998
 [@irmela]: https://github.com/irmela
+[@ispyropoulos]: https://github.com/ispyropoulos
 [@Ivanov-Anton]: https://github.com/Ivanov-Anton
 [@jasl]: https://github.com/jasl
+[@javawizard]: https://github.com/javawizard
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
+[@jaynetics]: https://github.com/jaynetics
+[@JewelSam]: https://github.com/JewelSam
 [@JiiHu]: https://github.com/JiiHu
 [@jiikko]: https://github.com/jiikko
 [@johnnyshields]: https://github.com/johnnyshields
 [@jscheid]: https://github.com/jscheid
 [@juril33t]: https://github.com/juril33t
 [@jwesorick]: https://github.com/jwesorick
+[@Karoid]: https://github.com/Karoid
 [@kjeldahl]: https://github.com/kjeldahl
 [@ko-lem]: https://github.com/ko-lem
 [@kobeumut]: https://github.com/kobeumut
 [@Kris-LIBIS]: https://github.com/Kris-LIBIS
 [@krzcho]: https://github.com/krzcho
 [@kwent]: https://github.com/kwent
+[@lanzhiheng]: https://github.com/lanzhiheng
 [@leio10]: https://github.com/leio10
 [@littleforest]: https://github.com/littleforest
 [@Looooong]: https://github.com/Looooong
+[@lubosch]: https://github.com/lubosch
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
 [@mconiglio]: https://github.com/mconiglio
+[@mgrunberg]: https://github.com/mgrunberg
 [@micred]: https://github.com/micred
 [@mirelon]: https://github.com/mirelon
+[@MmKolodziej]: https://github.com/MmKolodziej
 [@mshalaby]: https://github.com/mshalaby
 [@munen]: https://github.com/munen
+[@mvz]: https://github.com/mvz
 [@ndbroadbent]: https://github.com/ndbroadbent
+[@ngouy]: https://github.com/ngouy
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@orkhan]: https://github.com/orkhan
 [@panasyuk]: https://github.com/panasyuk
 [@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
+[@ray-curran]: https://github.com/ray-curran
 [@renotocn]: https://github.com/renotocn
 [@rn0rno]: https://github.com/rn0rno
 [@RobinvanderVliet]: https://github.com/RobinvanderVliet
 [@rogerkk]: https://github.com/rogerkk
 [@roramirez]: https://github.com/roramirez
+[@rs-phunt]: https://github.com/rs-phunt
+[@sanfrecce-osaka]: https://github.com/sanfrecce-osaka
 [@seanlinsley]: https://github.com/seanlinsley
+[@sergey-alekseev]: https://github.com/sergey-alekseev
 [@sgara]: https://github.com/sgara
 [@ShallmentMo]: https://github.com/ShallmentMo
 [@shekibobo]: https://github.com/shekibobo
 [@shouya]: https://github.com/shouya
 [@sjieg]: https://github.com/sjieg
+[@sprql]: https://github.com/sprql
 [@stefsava]: https://github.com/stefsava
 [@stereoscott]: https://github.com/stereoscott
+[@tagliala]: https://github.com/tagliala
 [@taralbass]: https://github.com/taralbass
+[@tf]: https://github.com/tf
 [@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
+[@timwis]: https://github.com/timwis
+[@tomgilligan]: https://github.com/tomgilligan
+[@TonyArra]: https://github.com/TonyArra
+[@tordans]: https://github.com/tordans
+[@tvziet]: https://github.com/tvziet
 [@utkarsh2102]: https://github.com/utkarsh2102
 [@varyonic]: https://github.com/varyonic
 [@vcsjones]: https://github.com/vcsjones
 [@vfonic]: https://github.com/vfonic
 [@violeta-p]: https://github.com/violeta-p
+[@vlad-psh]: https://github.com/vlad-psh
 [@WaKeMaTTa]: https://github.com/WaKeMaTTa
 [@wasifhossain]: https://github.com/wasifhossain
 [@westonganger]: https://github.com/westonganger

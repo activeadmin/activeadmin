@@ -1,9 +1,6 @@
 ja:
   active_admin:
     dashboard: "ダッシュボード"
-    dashboard_welcome:
-      welcome: "Active Admin へようこそ。ダッシュボードの初期ページを表示しています。"
-      call_to_action: "ダッシュボードに項目を追加するために 'app/admin/dashboard.rb' を編集してください。"
     view: "閲覧"
     edit: "編集"
     delete: "削除"
@@ -26,26 +23,14 @@ ja:
         filter: "絞り込む"
         clear: "条件を削除する"
       predicates:
-        contains: "を含む"
-        equals: "等しい"
-        starts_with: "で始まる"
-        ends_with: "で終わる"
-        greater_than: "より大きい"
-        less_than: "より小さい"
-        gteq_datetime: "以上"
-        lteq_datetime: "以下"
         from: "開始"
         to: "終了"
     search_status:
-      headline: "検索条件:"
-      current_scope: "範囲:"
-      current_filters: "現在の絞り込み:"
       no_current_filters: "なし"
     status_tag:
       "yes": "はい"
       "no": "いいえ"
       "unset": "いいえ"
-    main_content: "内容を表示するために %{model}#main_content を実装してください。"
     logout: "ログアウト"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -65,8 +50,6 @@ ja:
     blank_slate:
       content: "%{resource_name} はまだありません。"
       link: "作成する"
-    dropdown_actions:
-      button_label: "操作"
     batch_actions:
       button_label: "一括操作"
       default_confirmation: "本当によろしいですか？"
@@ -128,14 +111,7 @@ ja:
         sign_in_with_omniauth_provider: "%{provider}のアカウントを使ってログイン"
         resend_confirmation_instructions: "ユーザ確認手順を再送する"
         resend_unlock_instructions: "ロックの解除方法を再送する"
-    unsupported_browser:
-      headline: "ActiveAdminは、Internet Explorer 8以下はサポートはしていません。"
-      recommendation: "最新版の<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>、<a href=\"https://chrome.google.com/\">Google Chrome</a>、もしくは<a href=\"https://mozilla.org/firefox/\">Firefox</a>を使うことを推奨します。"
-      turn_off_compatibility_view: "Internet Explorer 9以降を使っている場合、<a href=\"https://support.microsoft.com/ja-jp/help/17471\">互換表示をオフ</a>にしてください。"
     access_denied:
       message: "アクションを実行する権限がありません"
     index_list:
       table: "テーブル"
-      block: "リスト"
-      grid: "グリッド"
-      blog: "ブログ"

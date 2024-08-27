@@ -1,219 +1,99 @@
----
-
 name: ci
 
 on:
   pull_request:
-
   push:
     branches:
       - master
 
+concurrency:
+  group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  lint:
-    name: lint (${{ matrix.ruby.name }})
-    runs-on: ${{ matrix.os }}
-
-    timeout-minutes: 15
-
-    strategy:
-      fail-fast: false
-
-      matrix:
-        ruby: [{ name: 2.7, value: 2.7.2 }]
-        os: [ubuntu-20.04]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Configure bundler
-        run: |
-          echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
-          echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
-
-      - name: Enable coverage tracking
-        run: echo "COVERAGE=true" >> $GITHUB_ENV
-
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby.value }}
-          bundler: none
-
-      - name: Install a specific rubygems version
-        run: gem update --system 3.2.15
-
-      - name: Install a specific bundler version
-        run: gem install bundler -v 2.2.15
-
-      - name: Cat current Gemfile to a specific file so caching works
-        run: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
-
-      - name: Restore cached dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.os }}-${{ matrix.ruby.name }}-rails_61-${{ hashFiles('current_gemfile.lock') }}
-
-      - name: Install dependencies
-        run: bundle install
-
-      - name: Generate docs
-        run: bin/rake docs:build
-
-      - name: Setup git
-        run: |
-          git config --global user.email activeadmin@ci.dummy
-          git config --global user.name ActiveAdmin
-
-      - name: Run lints
-        run: bin/rake lint
-
-      - name: Run bug report template
-        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
-
-      - name: Format coverage
-        run: |
-          bin/prepare_coverage
-          mv coverage/.resultset.json coverage/raw.lint.json
-
-      - name: Save partial coverage as an artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage
-          path: coverage/raw.lint.json
-
   test:
-    name: test (${{ matrix.ruby.name }}, ${{ matrix.deps }})
+    name: test (${{ matrix.ruby }}, ${{ matrix.rails }})
     runs-on: ${{ matrix.os }}
-
     timeout-minutes: 15
-
     strategy:
       fail-fast: false
-
       matrix:
-        ruby: [{ name: 2.7, value: 2.7.2 }, { name: 2.6, value: 2.6.6 }]
-
-        os: [ubuntu-20.04]
-
-        deps: [rails_52, rails_60, rails_61, rails_61_turbolinks, rails_61_webpacker]
-
+        ruby:
+          - "3.3"
+          - "3.2"
+          - "3.1"
+        os:
+          - ubuntu-latest
+        rails:
+          - rails_72
+          - rails_71
+          - rails_70
+          - rails_61
         include:
-          - ruby: { name: 2.5, value: 2.5.8 }
-            os: ubuntu-20.04
-            deps: rails_52
-
-          - ruby: { name: 2.5, value: 2.5.8 }
-            os: ubuntu-20.04
-            deps: rails_60
-
-          - ruby: { name: 2.5, value: 2.5.8 }
-            os: ubuntu-20.04
-            deps: rails_61
-
-    env:
-      COVERAGE: true
-
+          - ruby: '3.0'
+            os: ubuntu-latest
+            rails: rails_71
     steps:
-      - uses: actions/checkout@v2
-
+      - uses: actions/checkout@v4
       - name: Configure bundler (default)
         run: |
-          echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
-          echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps == 'rails_61'
-
+          echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
+        if: matrix.rails == 'rails_72'
       - name: Configure bundler (alternative)
         run: |
-          echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> $GITHUB_ENV
-          echo "BUNDLE_PATH=$(pwd)/gemfiles/${{ matrix.deps }}/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps != 'rails_61'
-
+          echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.rails }}/Gemfile" >> "$GITHUB_ENV"
+        if: matrix.rails != 'rails_72'
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby.value }}
-          bundler: none
-
-      - name: Install a specific rubygems version
-        run: gem update --system 3.2.15
-
-      - name: Install a specific bundler version
-        run: gem install bundler -v 2.2.15
-
-      - name: Cat current Gemfile to a specific file so caching works
-        run: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
-
-      - name: Restore cached dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.os }}-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
-
-      - name: Install dependencies
-        run: bundle install
-
-      - name: Setup git
-        run: |
-          git config --global user.email activeadmin@ci.dummy
-          git config --global user.name ActiveAdmin
-
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+          rubygems: latest
       - name: Create test app
         run: bin/rake setup
-
       - name: Restore cached RSpec runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: tmp/parallel_runtime_rspec.log
-          key: runtimes-rspec-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
-
+          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.rails }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
       - name: Run RSpec tests
+        env:
+          COVERAGE: true
         run: |
           bin/parallel_rspec
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
-
       - name: Restore cached cucumber runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: tmp/parallel_runtime_cucumber.log
-          key: runtimes-cucumber-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
-
+          key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.rails }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
       - name: Run Cucumber features
+        env:
+          COVERAGE: true
         run: |
           bin/parallel_cucumber --fail-fast
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
-
-      - name: Format coverage
-        run: |
-          bin/prepare_coverage
-          mv coverage/.resultset.json coverage/raw.${{ matrix.ruby.value }}.${{ matrix.deps }}.json
-
-      - name: Save partial coverage as an artifact
-        uses: actions/upload-artifact@v2
+      - name: Rename coverage file by matrix run
+        run: mv coverage/coverage.xml coverage/coverage-ruby-${{ matrix.ruby }}-${{ matrix.rails }}.xml
+      - uses: actions/upload-artifact@v4
         with:
-          name: coverage
-          path: coverage/raw.${{ matrix.ruby.value }}.${{ matrix.deps }}.json
+          name: coverage-ruby-${{ matrix.ruby }}-${{ matrix.rails }}
+          path: coverage
+          if-no-files-found: error
 
   upload_coverage:
-    runs-on: ubuntu-20.04
-
-    needs:
-      - lint
-      - test
-
+    name: Upload Coverage
+    runs-on: ubuntu-latest
+    needs: [test]
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Download partial coverages
-        uses: actions/download-artifact@v2
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          name: coverage
           path: coverage
-
-      - name: Format, sum & upload results to Code Climate
-        uses: paambaati/codeclimate-action@v2.7.4
-        env:
-          CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
+          pattern: coverage-ruby-*
+          merge-multiple: true
+      - uses: codecov/codecov-action@v4
         with:
-          debug: true
-          coverageLocations: coverage/raw.*.json:simplecov
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: coverage
+          fail_ci_if_error: true

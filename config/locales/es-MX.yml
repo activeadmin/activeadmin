@@ -1,9 +1,6 @@
 es-MX:
   active_admin:
     dashboard: Inicio
-    dashboard_welcome:
-      welcome: "Bienvenido a Active Admin. Esta es la página de inicio predeterminada."
-      call_to_action: "Para agregar secciones edite 'app/admin/dashboard.rb'"
     view: "Ver"
     edit: "Editar"
     delete: "Eliminar"
@@ -24,18 +21,10 @@ es-MX:
       buttons:
         filter: "Filtrar"
         clear: "Quitar Filtros"
-      predicates:
-        contains: "Contiene"
-        equals: "Igual a"
-        starts_with: "Empieza con"
-        ends_with: "Termina con"
-        greater_than: "Mayor que"
-        less_than: "Menor que"
     status_tag:
       "yes": "Sí"
       "no": "No"
       "unset": "No"
-    main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
     logout: "Salir"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -52,8 +41,6 @@ es-MX:
       content: "No hay %{resource_name} aún."
       link: "Añadir"
     any: "Cualquiera"
-    dropdown_actions:
-      button_label: "Acciones"
     batch_actions:
       button_label: "Acciones en masa"
       default_confirmation: "¿Seguro que quieres hacer esto?"
@@ -92,6 +79,3 @@ es-MX:
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
     index_list:
       table: "Tabla"
-      block: "Lista"
-      grid: "Cuadrícula"
-      blog: "Blog"

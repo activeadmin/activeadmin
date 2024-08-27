@@ -1,9 +1,6 @@
 lt:
   active_admin:
     dashboard: Valdymo skydelis
-    dashboard_welcome:
-      welcome: "Sveiki atvykę į Active Admin. Tai yra numatytasis valdymo skydelis."
-      call_to_action: 'Norėdami pridėti skydelyje skyrius, žiūrėkite app/admin/dashboard.rb'
     view: 'Žiūrėti'
     edit: 'Redaguoti'
     delete: 'Šalinti'
@@ -25,26 +22,14 @@ lt:
         filter: 'Filtras'
         clear: 'Išvalyti filtrus'
       predicates:
-        contains: "Sudėtyje yra"
-        equals: 'lygus'
-        starts_with: "Prasideda nuo"
-        ends_with: "Baigiasi"
-        greater_than: 'didesnis nei'
-        less_than: 'mažiau nei'
-        gteq_datetime: "daugiau arba lygu nei"
-        lteq_datetime: "mažiau arba lygu nei"
         from: "Nuo"
         to: "Iki"
     search_status:
-      headline: "Paieškos būsena:"
-      current_scope: "Apimtis:"
-      current_filters: "Esami filtrai:"
       no_current_filters: "nėra"
     status_tag:
       "yes": "Taip"
       "no": "Nėra"
       "unset": "Nėra"
-    main_content: 'Prašome realizuoti %{model}#main_content turiniui vaizduoti.'
     logout: 'Išeiti'
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -64,8 +49,6 @@ lt:
     blank_slate:
       content: 'Nėra %{resource_name}.'
       link: 'Sukurti'
-    dropdown_actions:
-      button_label: "Veiksmai"
     batch_actions:
       button_label: 'Veiksmai su pažymėtais'
       default_confirmation: 'Ar jūs tikrai norite tai padaryti?'
@@ -129,14 +112,7 @@ lt:
         sign_in_with_omniauth_provider: 'Prisijungti su %{provider}'
         resend_unlock_instructions: "Persiųsti pakartotinio atrakinimo instrukcijas"
         resend_confirmation_instructions: "Persiųsti patvirtinimo instrukcijas"
-    unsupported_browser:
-      headline: "Atkreipiame dėmesį, kad ActiveAdmin nebepalaiko Internet Explorer 8 arba žemesnių versijų."
-      recommendation: "Rekomenduojame atsinaujinti į naujausią <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, arba <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Jei naudojate IE 9 ar vėlesnę versiją, įsitikinkite kad <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">išjungėte \"Suderinamumo rodinį\"</a>."
     access_denied:
       message: 'Jūs nesate įgaliotas atlikti šį veiksmą.'
     index_list:
       table: "Lentelė"
-      block: "Sąrašas"
-      grid: "Tinklelis"
-      blog: "Blog"

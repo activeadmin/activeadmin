@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "uri"
 require File.expand_path(File.join(__dir__, "..", "support", "paths"))
 
@@ -22,9 +23,6 @@ module WithinHelpers
     #
     #  when /the header/
     #    [:xpath, "//header"]
-
-    when "index grid"
-      [:css, "table.index_grid"]
 
     when /^the "([^"]*)" sidebar$/
       [:css, "##{$1.tr(" ", '').underscore}_sidebar_section"]
@@ -57,12 +55,20 @@ When /^I go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+When /^I visit (.+) twice$/ do |page_name|
+  2.times { visit path_to(page_name) }
+end
+
 When /^I press "([^"]*)"$/ do |button|
-  click_button(button)
+  click_on(button)
 end
 
 When /^I follow "([^"]*)"$/ do |link|
   first(:link, link).click
+end
+
+When /^I click "(.*?)"$/ do |link|
+  click_on(link)
 end
 
 When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
@@ -113,4 +119,12 @@ end
 
 Then /^I should be on (.+)$/ do |page_name|
   expect(URI.parse(current_url).path).to eq path_to page_name
+end
+
+Then(/^I should see content "(.*?)" above other content "(.*?)"$/) do |top_title, bottom_title|
+  expect(page).to have_css %Q(div:contains('#{top_title}') + div:contains('#{bottom_title}'))
+end
+
+Then /^I should see a flash with "([^"]*)"$/ do |text|
+  expect(page).to have_content text
 end

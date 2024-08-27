@@ -1,9 +1,6 @@
 da:
   active_admin:
     dashboard: "Kontrolpanel"
-    dashboard_welcome:
-      welcome: "Velkommen til Active Admin. Dette er standardoversigtssiden."
-      call_to_action: "Rediger 'app/admin/dashboard.rb' for at tilføje nye elementer til oversigtssiden."
     view: "Vis"
     edit: "Rediger"
     delete: "Slet"
@@ -25,23 +22,12 @@ da:
       buttons:
         filter: "Filtrer"
         clear: "Ryd filtre"
-      predicates:
-        contains: "Indeholder"
-        equals: "Lig"
-        starts_with: "Begynder med"
-        ends_with: "Slutter med"
-        greater_than: "Større end"
-        less_than: "Mindre end"
     search_status:
-      headline: "Søgestatus:"
-      current_scope: "Perspektiv:"
-      current_filters: "Valgte filtre:"
       no_current_filters: "Ingen"
     status_tag:
       "yes": "Ja"
       "no": "Nej"
       "unset": "Nej"
-    main_content: "Implementer venligst %{model}#main_content for at vise noget indhold."
     logout: "Log ud"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -61,8 +47,6 @@ da:
     blank_slate:
       content: "Der er ingen %{resource_name} endnu."
       link: "Opret"
-    dropdown_actions:
-      button_label: "Handlinger"
     batch_actions:
       button_label: "Batch Handlinger"
       default_confirmation: "Er du sikker på du vil gøre dette?"
@@ -124,14 +108,7 @@ da:
         sign_in_with_omniauth_provider: "Log ind med %{provider}"
         resend_unlock_instructions: "Send oplåsningsinstruktioner igen"
         resend_confirmation_instructions: "Send oplåsningsinstruktioner igen"
-    unsupported_browser:
-      headline: "Vær venligst opmærksom på, at ActiveAdmin ikke længere understøtter Internet Explorer version 8 eller tidligere."
-      recommendation: "Vi anbefaler at du opgraderer til den nyeste <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, eller <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Hvis du bruger IE 9 eller senere, så vær sikker på, at du <a href=\"https://support.microsoft.com/da-dk/help/17471\">slår \"Compatibility View\" fra</a>."
     access_denied:
       message: "Du har ikke rettigheder til at udføre denne handling."
     index_list:
       table: "Tabel"
-      block: "Liste"
-      grid: "Gitter"
-      blog: "Blog"

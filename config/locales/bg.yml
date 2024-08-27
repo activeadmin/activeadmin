@@ -1,9 +1,6 @@
 bg:
   active_admin:
     dashboard: Табло
-    dashboard_welcome:
-      welcome: "Добре дошли в Active Admin. Това е таблото по подразбиране."
-      call_to_action: "За да добавите секции, редактирайте 'app/admin/dashboard.rb'"
     view: "Преглед"
     edit: "Редакция"
     delete: "Изтриване"
@@ -24,18 +21,10 @@ bg:
       buttons:
         filter: "Филтриране"
         clear: "Изчистване"
-      predicates:
-        contains: "съдържа"
-        equals: "равно на"
-        starts_with: "Започва с"
-        ends_with: "Завършва с"
-        greater_than: "по-голямо от"
-        less_than: "по-малко от"
     status_tag:
       "yes": "Да"
       "no": "не"
       "unset": "не"
-    main_content: "Добавете %{model}#main_content за да видите съдържание."
     logout: "Изход"
     powered_by: "Задвижва се от %{active_admin} %{version}"
     sidebars:
@@ -53,8 +42,6 @@ bg:
     blank_slate:
       content: "Все още няма добавени %{resource_name}."
       link: "Създаване"
-    dropdown_actions:
-      button_label: "действия"
     batch_actions:
       button_label: "Масови действия"
       default_confirmation: "Наистина ли искате да направите това?"
@@ -114,6 +101,3 @@ bg:
       message: "Нямате права да извършите това действие."
     index_list:
       table: "Таблица"
-      block: "Списък"
-      grid: "Грид"
-      blog: "Блог"

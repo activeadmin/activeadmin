@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/component"
 
 module ActiveAdmin
@@ -9,7 +10,7 @@ module ActiveAdmin
 
       def build(label_text = "")
         label do
-          input type: "checkbox", id: "collection_selection_toggle_all", name: "collection_selection_toggle_all", class: "toggle_all"
+          input type: "checkbox", id: "collection_selection_toggle_all", name: "collection_selection_toggle_all", class: "batch-actions-toggle-all"
           text_node label_text if label_text.present?
         end
       end
@@ -20,7 +21,7 @@ module ActiveAdmin
       builder_method :resource_selection_cell
 
       def build(resource)
-        input type: "checkbox", id: "batch_action_item_#{resource.id}", value: resource.id, class: "collection_selection", name: "collection_selection[]"
+        input type: "checkbox", id: "batch_action_item_#{resource.id}", value: resource.id, class: "batch-actions-resource-selection", name: "collection_selection[]"
       end
     end
 

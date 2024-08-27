@@ -1,8 +1,11 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::ResourceController::DataAccess do
-  before do
-    load_resources { config }
+  around do |example|
+    with_resources_during(example) do
+      config
+    end
   end
 
   let(:config) do
@@ -27,10 +30,11 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "searching" do
+    let(:ransack_options) { { auth_object: controller.send(:active_admin_authorization) } }
     let(:http_params) { { q: {} } }
     it "should call the search method" do
       chain = double "ChainObj"
-      expect(chain).to receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
+      expect(chain).to receive(:ransack).with(params[:q], ransack_options).once.and_return(Post.ransack)
       controller.send :apply_filtering, chain
     end
 
@@ -39,7 +43,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
         { q: { id_eq: 1, position_eq: "" } }
       end
       it "should return relation without empty filters" do
-        expect(Post).to receive(:ransack).with(params[:q]).once.and_wrap_original do |original, *args|
+        expect(Post).to receive(:ransack).with(params[:q], ransack_options).once.and_wrap_original do |original, *args|
           chain = original.call(*args)
           expect(chain.conditions.size).to eq(1)
           chain
@@ -143,6 +147,39 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     end
   end
 
+  describe "pagination" do
+    let(:collection) do
+      Post.create!
+      Post.all
+    end
+
+    let(:config) do
+      ActiveAdmin.register Post do
+        config.per_page = 1
+      end
+    end
+
+    context "when CSV format requested" do
+      let(:params) do
+        ActionController::Parameters.new(page: 2, format: "csv")
+      end
+
+      it "does not apply it" do
+        expect(controller.send(:apply_pagination, collection).size).to eq(1)
+      end
+    end
+
+    context "when CSV format not requested" do
+      let(:params) do
+        ActionController::Parameters.new(page: 2)
+      end
+
+      it "applies it" do
+        expect(controller.send(:apply_pagination, collection).size).to eq(0)
+      end
+    end
+  end
+
   describe "find_collection" do
     let(:appliers) do
       ActiveAdmin::ResourceController::DataAccess::COLLECTION_APPLIES
@@ -199,7 +236,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
       end
     end
 
-    let!(:category) { Category.create! }
+    let!(:category) { Category.create!(name: "Category") }
 
     let(:params) do
       ActionController::Parameters.new(user: { type: "User::VIP", posts_attributes: [custom_category_id: category.id] })
@@ -234,6 +271,18 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
           collection.where(age: "42")
         end
         expect(subject.age).to eq(42)
+      end
+    end
+  end
+
+  describe "in_paginated_batches" do
+    it "calls find_collection just once and disables the ActiveRecord query cache" do
+      expect(controller).to receive(:find_collection).once do
+        expect(ActiveRecord::Base.connection.query_cache_enabled).to be_falsy
+        Post.none
+      end
+      ActiveRecord::Base.cache do
+        controller.send(:in_paginated_batches, &Proc.new {})
       end
     end
   end

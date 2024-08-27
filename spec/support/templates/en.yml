@@ -1,8 +1,9 @@
 # Sample translations used to test ActiveAdmin's I18n integration.
+en:
   activerecord:
     models:
       store:
         one: Bookstore
         other: Bookstores
   active_admin:
-    download: "Download this:"
+    download: "Export:"

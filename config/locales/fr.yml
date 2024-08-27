@@ -1,9 +1,22 @@
 fr:
+  activerecord:
+    models:
+      comment:
+        one: "Commentaire"
+        other: "Commentaires"
+      active_admin/comment:
+        one: "Commentaire"
+        other: "Commentaires"
+    attributes:
+      active_admin/comment:
+        author_type: "Type d'auteur"
+        body: "Corps"
+        created_at: "Créé le"
+        namespace: "Espace de nom"
+        resource_type: "Type de ressource"
+        updated_at: "Mis à jour le"
   active_admin:
     dashboard: "Tableau de bord"
-    dashboard_welcome:
-      welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
-      call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
     view: "Voir"
     edit: "Modifier"
     delete: "Supprimer"
@@ -26,38 +39,30 @@ fr:
         filter: "Filtrer"
         clear: "Supprimer les filtres"
       predicates:
-        contains: "Contient"
-        equals: "Égal à"
-        starts_with: "Commence par"
-        ends_with: "Se termine par"
-        greater_than: "Plus grand que"
-        less_than: "Plus petit que"
-        gteq_datetime: "Ultérieur ou égal à"
-        lteq_datetime: "Antérieur ou égal à"
         from: "De"
         to: "À"
     search_status:
-      headline: "Statut de la recherche :"
-      current_scope: "Etendu du filtre :"
-      current_filters: "Filtres actuels :"
-      no_current_filters: "Aucun filtres"
+      title: "Recherche active"
+      title_with_scope: "Recherche active pour %{name}"
+      no_current_filters: "Aucun filtre appliqué"
     status_tag:
       "yes": "Oui"
       "no": "Non"
-      "unset": "Non"
-    main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
+      "unset": "Inconnu"
     logout: "Déconnexion"
     powered_by: "Propulsé par %{active_admin} %{version}"
     sidebars:
       filters: "Filtres"
       search_status: "Statut de la recherche"
     pagination:
-      empty: "Aucun %{model} trouvé"
-      one: "Affichage de <b>1</b> %{model}"
-      one_page: "Affichage des <b>%{n}</b> %{model}"
-      multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
-      multiple_without_total: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Par page: "
+      empty: "Aucun(e) %{model} trouvé(e)"
+      one: "Affichage de <b>1</b> sur <b>1</b>"
+      one_page: "Affichage de <b>tous les %{n}</b>"
+      multiple: "Affichage de <b>%{from}-%{to}</b> sur <b>%{total}</b>"
+      multiple_without_total: "Affichage de <b>%{from}-%{to}</b>"
+      per_page: "Par page "
+      previous: "Précédent"
+      next: "Suivant"
       entry:
         one: "entrée"
         other: "entrées"
@@ -65,15 +70,13 @@ fr:
     blank_slate:
       content: "Il n'y a pas encore de %{resource_name}."
       link: "Créez en un"
-    dropdown_actions:
-      button_label: "Actions"
     batch_actions:
       button_label: "Actions groupées"
       default_confirmation: "Voulez-vous vraiment faire cela ?"
       delete_confirmation: "Voulez-vous vraiment supprimer ces %{plural_model} ?"
       succesfully_destroyed:
-        one: "1 %{model} supprimé"
-        other: "%{count} %{plural_model} supprimés"
+        one: "1 %{model} supprimé(e)"
+        other: "%{count} %{plural_model} supprimé(e)s"
       selection_toggle_explanation: "(Inverser la sélection)"
       action_label: "%{title} les éléments sélectionnés"
       labels:
@@ -90,7 +93,7 @@ fr:
       resource: "Ressource"
       no_comments_yet: "Aucun commentaire actuellement"
       author_missing: "Anonyme"
-      title_content: "Commentaires (%{count})"
+      title_content: "Tous les commentaires (%{count})"
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
     devise:
@@ -128,14 +131,7 @@ fr:
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
         resend_unlock_instructions: "Renvoyer les informations de déverrouillage"
         resend_confirmation_instructions: "Renvoyer les instructions de confirmation"
-    unsupported_browser:
-      headline: "Veuillez noter que ActiveAdmin ne supporte plus les versions d'Internet Explorer 8 ou moins."
-      recommendation: "Nous vous recommandons de <a href=\"http://browsehappy.com/\">mettre à jour votre navigateur</a> pour améliorer votre expérience."
-      turn_off_compatibility_view: "Si vous utilisez IE 9 ou une version ultérieure, assurez-vous d'<a href=\"https://support.microsoft.com/fr-fr/help/17471\">activer \"Affichage de compatibilité\"</a>."
     access_denied:
       message: "Vous n'êtes pas autorisé à exécuter cette action"
     index_list:
       table: "Tableau"
-      block: "Liste"
-      grid: "Grille"
-      blog: "Blog"

@@ -1,9 +1,6 @@
 ko:
   active_admin:
     dashboard: "대시보드"
-    dashboard_welcome:
-      welcome: "ActiveAdmin에 오신 것을 환영합니다. 기본 대시보드 페이지 입니다."
-      call_to_action: "대시보드에 섹션을 추가하시려면 'app/admin/dashboard.rb' 파일을 수정하십시오."
     view: "보기"
     edit: "수정"
     delete: "삭제"
@@ -24,23 +21,12 @@ ko:
       buttons:
         filter: "필터"
         clear: "필터 초기화"
-      predicates:
-        contains: "포함하는 문구"
-        equals: "일치하는 문구"
-        starts_with: "시작하는 문구"
-        ends_with: "종료하는 문구"
-        greater_than: "초과"
-        less_than: "미만"
     search_status:
-      headline: "검색 상태:"
-      current_scope: "검색 범위:"
-      current_filters: "적용된 필터:"
       no_current_filters: "현재 적용된 필터가 없습니다"
     status_tag:
       "yes": "있음"
       "no": "없음"
       "unset": "없음"
-    main_content: "내용을 보시려면 %{model}#main_content의 코드를 먼저 구현해 주시기 바랍니다."
     logout: "로그아웃"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -59,8 +45,6 @@ ko:
     blank_slate:
       content: "아직 %{resource_name} 이/가 없습니다."
       link: "추가하기"
-    dropdown_actions:
-      button_label: "작업"
     batch_actions:
       button_label: "배치 작업"
       default_confirmation: "확실하십니까?"

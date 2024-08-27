@@ -56,7 +56,7 @@ Which looks for something like this:
 
 ```ruby
 # app/views/admin/posts/_form.html.arb
-insert_tag active_admin_form_for resource do |f|
+active_admin_form_for [:admin, resource] do |f|
   inputs :title, :body
   actions
 end
@@ -97,20 +97,19 @@ ActiveAdmin.register Post do
       f.input :published_at, label: 'Publish Post At'
     end
     f.inputs 'Content', :body
-    f.inputs do
-      f.has_many :categories, heading: 'Themes',
-                              allow_destroy: true,
-                              new_record: false do |a|
+    f.inputs 'Themes' do
+      f.has_many :categories, heading: false, allow_destroy: true, new_record: false do |a|
         a.input :title
       end
     end
-    f.inputs do
-      f.has_many :taggings, sortable: :position, sortable_start: 1 do |t|
+    f.inputs 'Tags' do
+      f.has_many :taggings, heading: false, sortable: :position, sortable_start: 1 do |t|
         t.input :tag
       end
     end
-    f.inputs do
+    f.inputs 'Comments' do
       f.has_many :comments,
+                 heading: false,
                  new_record: 'Leave Comment',
                  remove_record: 'Remove Comment',
                  allow_destroy: -> (c) { c.author?(current_admin_user) } do |b|
@@ -154,7 +153,7 @@ in the list.
 ## Datepicker
 
 ActiveAdmin offers the `datepicker` input, which uses the [jQuery UI
-datepicker](http://jqueryui.com/datepicker/).  The datepicker input accepts any
+datepicker](https://jqueryui.com/datepicker/).  The datepicker input accepts any
 of the options available to the standard jQueryUI Datepicker. For example:
 
 ```ruby
@@ -182,7 +181,8 @@ To display a list of all validation errors:
 
 ```ruby
 form do |f|
-  f.semantic_errors *f.object.errors.keys
+  f.semantic_errors *f.object.errors.attribute_names
+
   # ...
 end
 ```

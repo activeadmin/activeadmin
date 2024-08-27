@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   # The Active Admin DSL. This class is where all the registration blocks
@@ -12,7 +13,7 @@ module ActiveAdmin
 
     # Runs the registration block inside this object
     def run_registration_block(&block)
-      instance_exec &block if block_given?
+      instance_exec &block if block
     end
 
     # The instance of ActiveAdmin::Resource that's being registered
@@ -29,7 +30,7 @@ module ActiveAdmin
       @config
     end
 
-    # Include a module with this resource. The modules's `included` method
+    # Include a module with this resource. The modules' `included` method
     # is called with the instance of the `ActiveAdmin::DSL` passed into it.
     #
     # eg:
@@ -71,7 +72,7 @@ module ActiveAdmin
     #   end
     #
     def controller(&block)
-      @config.controller.class_exec(&block) if block_given?
+      @config.controller.class_exec(&block) if block
       @config.controller
     end
 

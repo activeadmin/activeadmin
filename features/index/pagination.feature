@@ -7,7 +7,7 @@ Feature: Index Pagination
     """
     And 20 posts exist
     When I am on the index page for posts
-    Then I should see "Displaying all 20 Posts"
+    Then I should see "Showing all 20"
     And I should not see pagination
 
   Scenario: Viewing index when multiple pages of resources exist
@@ -17,7 +17,8 @@ Feature: Index Pagination
     """
     And 31 posts exist
     When I am on the index page for posts
-    Then I should see pagination with 2 pages
+    Then I should see pagination page 1 link
+    And I should see pagination page 2 link
 
   Scenario: Viewing index with a custom per page set
     Given an index configuration of:
@@ -28,8 +29,9 @@ Feature: Index Pagination
     """
     And 3 posts exist
     When I am on the index page for posts
-    Then I should see pagination with 2 pages
-    And I should see "Displaying Posts 1 - 2 of 3 in total"
+    Then I should see pagination page 1 link
+    And I should see pagination page 2 link
+    And I should see "Showing 1-2 of 3"
 
   Scenario: Viewing index with pagination disabled
     Given an index configuration of:
@@ -53,12 +55,10 @@ Feature: Index Pagination
     """
     And 11 posts exist
     When I am on the index page for posts
-    Then I should see "Displaying Posts 1 - 10"
-    And I should not see "11 in total"
+    Then I should see "Showing 1-10"
+    And I should not see "of 11"
     And I should see the pagination "Next" link
-    And I should not see the pagination "Last" link
 
     When I follow "Next"
-    Then I should see "Displaying Posts 11 - 11"
+    Then I should see "Showing 11-11"
     And I should not see the pagination "Next" link
-    And I should not see the pagination "Last" link

@@ -1,6 +1,0 @@
-app/assets/**/*.js
-vendor/**/*.js
-lib/generators/**/*.js
-tmp/**/*.js
-spec/**/*.js
-src/**/*.js

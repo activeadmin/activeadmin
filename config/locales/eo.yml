@@ -1,9 +1,6 @@
 eo:
   active_admin:
     dashboard: Panelo
-    dashboard_welcome:
-      welcome: "Bonvenon al Active Admin. Jen la defaŭlta panela paĝo."
-      call_to_action: "Por aldoni sekciojn al via panelo, vidu 'app/admin/dashboard.rb'"
     view: "Vidi"
     edit: "Redakti"
     delete: "Forigi"
@@ -27,26 +24,14 @@ eo:
         filter: "Filtri"
         clear: "Viŝi filtrilojn"
       predicates:
-        contains: "Enhavas"
-        equals: "Egalas al"
-        starts_with: "Komenciĝas per"
-        ends_with: "Finiĝas per"
-        greater_than: "Pli grandas ol"
-        less_than: "Malpli grandas ol"
-        gteq_datetime: "Pli grandas ol aŭ egalas al"
-        lteq_datetime: "Malpli grandas ol aŭ egalas al"
         from: "De"
         to: "Al"
     search_status:
-      headline: "Serĉstato:"
-      current_scope: "Regiono:"
-      current_filters: "Nunaj filtriloj:"
       no_current_filters: "Neniu"
     status_tag:
       "yes": "Jes"
       "no": "Ne"
       "unset": "Ne"
-    main_content: "Aldonu %{model}#main_content por montri la enhavon."
     logout: "Elsaluti"
     powered_by: "Povigita de %{active_admin} %{version}"
     sidebars:
@@ -66,8 +51,6 @@ eo:
     blank_slate:
       content: "Ankoraŭ ne estas %{resource_name}."
       link: "Krei novan"
-    dropdown_actions:
-      button_label: "Agoj"
     batch_actions:
       button_label: "Amasagoj"
       default_confirmation: "Ĉu vi certas, ke vi volas fari tion?"
@@ -131,15 +114,7 @@ eo:
         sign_in_with_omniauth_provider: "Ensaluti per %{provider}"
         resend_unlock_instructions: "Resendi klarigojn por malŝlosi"
         resend_confirmation_instructions: "Resendi klarigojn por konfirmi"
-    unsupported_browser:
-      headline: "Rimarku ke ActiveAdmin ne plu subtenas versiojn 8 kaj mal
-      de Internet Explorer."
-      recommendation: "Ni rekomendas, ke vi <a href=\"http://browsehappy.com/\">ĝisdatigu vian retumilon</a> por plibonigi vian sperton."
-      turn_off_compatibility_view: "Se vi uzas version 8 aŭ pli novan de Internet Explorer, estu certa, ke vi <a href=\"https://support.microsoft.com/en-us/help/17471\">malŝaltu \"kongruecan reĝimon\"</a>."
     access_denied:
       message: "Vi ne rajtas fari tiun agon."
     index_list:
       table: "Tabelo"
-      block: "Listo"
-      grid: "Krado"
-      blog: "Blogo"

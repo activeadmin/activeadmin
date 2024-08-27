@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Provide version in Ruby format. NPM format will be handled automatically.
+#
+# > bin/prep-release 1.2.3
+# > bin/prep-release 2.0.0.beta1
+
+version = ARGV[0]
+
+if version.nil? || !version.match?(/\d+\.\d+\.\d+\.?[\w\d]*/)
+  puts "Error: Missing or invalid version."
+  puts "Usage: bin/prep-release [version]"
+  exit
+end
+
+def bump_version_file(version)
+  file = "lib/active_admin/version.rb"
+  new_content = File.read(file).gsub!(/VERSION = ".*"/, "VERSION = \"#{version}\"")
+  File.open(file, "w") { |f| f.puts new_content }
+end
+
+def bump_npm_package(version)
+  # See https://github.com/rails/rails/blob/0d0c30e534af7f80ec8b18eb946aaa613ca30444/tasks/release.rb#L26
+  npmified_version = version.gsub(/\./).with_index { |s, i| i == 2 ? "-" : s }
+  system "npm", "version", npmified_version, "--no-git-tag-version", exception: true
+end
+
+bump_version_file(version)
+system "bin/bundle"
+bump_npm_package(version)
+system "yarn install --frozen-lockfile"
+system "bin/rake", "dependencies:vendor"
+system "yarn build"

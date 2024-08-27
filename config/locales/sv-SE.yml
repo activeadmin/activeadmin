@@ -1,17 +1,31 @@
 "sv-SE":
+  activerecord:
+    models:
+      comment:
+        one: "Kommentar"
+        other: "Kommentarer"
+      active_admin/comment:
+        one: "Kommentar"
+        other: "Kommentarer"
+    attributes:
+      active_admin/comment:
+        author_type: "Författartyp"
+        body: "Innehåll"
+        created_at: "Skapad"
+        namespace: "Namnrymd"
+        resource_type: "Resurstyp"
+        updated_at: "Aktualiserad"
   active_admin:
     dashboard: Skrivbord
-    dashboard_welcome:
-      welcome: "Välkommen till Active Admin. Detta är ditt standardskrivbord."
-      call_to_action: "För att lägga till sektioner, gör en checkout på 'app/admin/dashboard.rb'"
     view: "Visa"
     edit: "Redigera"
     delete: "Ta bort"
-    delete_confirmation: "Är du säker att du vill ta bort denna?"
+    delete_confirmation: "Är du säker på att du vill ta bort detta?"
+    create_another: "Skapa en till %{model}"
     new_model: "Ny %{model}"
     edit_model: "Redigera %{model}"
     delete_model: "Ta bort %{model}"
-    details: "Detaljvy för %{model}"
+    details: "%{model}-detaljer"
     cancel: "Avbryt"
     empty: "Tom"
     previous: "Föregående"
@@ -20,82 +34,78 @@
     has_many_new: "Skapa en ny %{model}"
     has_many_delete: "Ta bort"
     has_many_remove: "Ta bort"
+    move: "Flytta"
     filters:
       buttons:
-        filter: "Filter"
+        filter: "Filtrera"
         clear: "Rensa filter"
       predicates:
-        contains: "Innehåller"
-        equals: "Lika med"
-        starts_with: "Börjar med"
-        ends_with: "Slutar med"
-        greater_than: "Större än"
-        less_than: "Mindre än"
         from: "Från"
         to: "Till"
+    scopes:
+      all: "Alla"
     search_status:
-      headline: "Sök status:"
-      current_scope: "Scope:"
-      current_filters: "Nuvarande filter:"
       no_current_filters: "Inga"
     status_tag:
       "yes": "Ja"
       "no": "Nej"
       "unset": "Nej"
-    main_content: "Implementera %{model}#main_content för att kunna visa något."
     logout: "Logga ut"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filter"
-      search_status: "Sök status"
+      search_status: "Sökstatus"
     pagination:
-      empty: "Ingen %{model} funnen"
-      one: "Visar <b>1</b> utav %{model}"
-      one_page: "Visar <b>alla %{n}</b> utav %{model}"
+      empty: "Ingen %{model} hittades"
+      one: "Visar <b>1</b> %{model}"
+      one_page: "Visar <b>alla %{n}</b> %{model}"
       multiple: "Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
       multiple_without_total: "Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Per sida: "
       entry:
         one: "inlägg"
         other: "inlägg"
-    any: "Någon"
+    any: "Alla"
     blank_slate:
-      content: "Finns inga %{resource_name} än."
+      content: "Det finns inga %{resource_name} än."
       link: "Skapa en"
-    dropdown_actions:
-      button_label: "Behandling"
     batch_actions:
-      button_label: "Batch behandling"
+      button_label: "Batch-åtgärder"
       default_confirmation: "Är du säker på att du vill göra detta?"
       delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}?"
       succesfully_destroyed:
         one: "Lyckades radera 1 %{model}"
         other: "Lyckades radera %{count} %{plural_model}"
-      selection_toggle_explanation: "(Toggle Selection)"
-      action_label: "%{title} Markerad"
+      selection_toggle_explanation: "(Byt markering)"
+      action_label: "%{title} markerad"
       labels:
         destroy: "Radera"
     comments:
       created_at: "Skapad"
-      resource_type: "Resurs typ"
-      author_type: "Författar typ"
+      resource_type: "Resurstyp"
+      author_type: "Författartyp"
       body: "Innehåll"
       author: "Författare"
       add: "Lägg till kommentar"
+      delete: "Radera kommentar"
+      delete_confirmation: "Är du säker på att du vill radera dessa kommentarer?"
       resource: "Resurs"
       no_comments_yet: "Inga kommentarer än."
       author_missing: "Anonym"
       title_content: "Kommentarer (%{count})"
       errors:
-        empty_text: "Kommentaren sparades inte, måste innehålla text."
+        empty_text: "Kommentaren sparades inte. Textfältet får inte vara tomt."
     devise:
       username:
         title: "Användarnamn"
       email:
-        title: "Epost"
+        title: "E-post"
       subdomain:
         title: "Subdomän"
       password:
         title: "Lösenord"
+      password_confirmation:
+        title: "Bekräfta lösenord"
       sign_up:
         title: "Registera"
         submit: "Registera"
@@ -105,31 +115,24 @@
         submit: "Inloggning"
       reset_password:
         title: "Glömt ditt lösenord?"
-        submit: "Återställa mitt lösenord"
+        submit: "Återställ mitt lösenord"
       change_password:
         title: "Ändra ditt lösenord"
         submit: "Ändra mitt lösenord"
       unlock:
-        title: "Skicka upplåsnings instruktioner"
-        submit: "Skicka upplåsnings instruktioner"
+        title: "Skicka upplåsningsinstruktioner"
+        submit: "Skicka upplåsningsinstruktioner"
       resend_confirmation_instructions:
-        title: "Skicka bekräftnings instruktioner"
-        submit: "Skicka bekräftnings instruktioner"
+        title: "Skicka bekräftelseinstruktioner"
+        submit: "Skicka bekräftelseinstruktioner"
       links:
         sign_up: "Registera"
         sign_in: "Logga in"
         forgot_your_password: "Glömt ditt lösenord?"
         sign_in_with_omniauth_provider: "Logga in med %{provider}"
-        resend_unlock_instructions: "Skicka upplåsnings instruktioner"
-        resend_confirmation_instructions: "Skicka bekräftnings instruktioner"
-    unsupported_browser:
-      headline: "Notera att ActiveAdmin inte längre stödjer Internet Explorer version 8 eller mindre."
-      recommendation: "Vi rekommenderar dig att uppgradera till den senaste versionen av <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, eller <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Om du använder IE 9 eller senare, se till att <a href=\"https://support.microsoft.com/sv-se/help/17471\">stäng av \"Compatibility View\"</a>."
+        resend_unlock_instructions: "Skicka upplåsningsinstruktioner igen"
+        resend_confirmation_instructions: "Skicka bekräftningsinstruktioner igen"
     access_denied:
-      message: "Du har inte rättighet att utföra denna åtgärd."
+      message: "Du har inte behörighet att utföra denna åtgärd."
     index_list:
       table: "Tabell"
-      block: "Lista"
-      grid: "Rutnät"
-      blog: "Blogg"

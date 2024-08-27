@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::OrderClause do
@@ -24,6 +25,15 @@ RSpec.describe ActiveAdmin::OrderClause do
 
     specify "#to_sql prepends table name" do
       expect(subject.to_sql).to eq '"posts"."id" asc'
+    end
+  end
+
+  describe "posts.id_asc" do
+    let(:clause) { "posts.id_asc" }
+
+    describe "#table_column" do
+      subject { super().table_column }
+      it { is_expected.to eq("posts.id") }
     end
   end
 

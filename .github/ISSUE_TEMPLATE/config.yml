@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Get Help
+    url: https://github.com/activeadmin/activeadmin/discussions/new?category=help
+    about: If you can't get something to work the way you expect, open a question in our discussion forums.
+  - name: Feature Request
+    url: https://github.com/activeadmin/activeadmin/discussions/new?category=ideas
+    about: Suggest any ideas you have using our discussion forums.
+  - name: Bug Report
+    url: https://github.com/activeadmin/activeadmin/issues/new?body=%3C%21--%20Please%20provide%20all%20of%20the%20information%20requested%20below.%20We%27re%20a%20small%20team%20and%20without%20detailed%20information%20it%27s%20not%20possible%20for%20us%20to%20help%20and%20your%20bug%20report%20will%20be%20closed.%20--%3E%0A%0ADescribe%20your%20issue%20with%20a%20%2A%2Aclear%20title%20and%20description%2A%2A.%20Make%20sure%20to%20include%20as%20much%20relevant%20information%20as%20possible%2C%20including%20a%20code%20sample%20or%20failing%20test%20that%20demonstrates%20the%20expected%20behavior%2C%20as%20well%20as%20your%20system%20configuration.%20Your%20goal%20should%20be%20to%20make%20it%20easy%20for%20yourself%20-%20and%20others%20-%20to%20reproduce%20the%20bug%20and%20figure%20out%20a%20fix.%0A%0A%23%23%23%20Expected%20behavior%0A%0AWhat%20do%20you%20think%20should%20happen%3F%0A%0A%23%23%23%20Actual%20behavior%0A%0AWhat%20actually%20happens%3F%0A%0A%23%23%23%20How%20to%20reproduce%0A%0AHaving%20a%20way%20to%20reproduce%20your%20issue%20will%20help%20people%20confirm%2C%20investigate%2C%20and%20ultimately%20fix%20your%20issue.%20You%20can%20do%20this%20by%20providing%20an%20executable%20test%20case.%20To%20make%20this%20process%20easier%2C%20please%20use%20%5Bour%20bug%20report%20template%20script%5D.%0A%0ACopy%20the%20content%20of%20the%20appropriate%20template%20into%20an%20%60.rb%60%20file%20and%20make%20the%20necessary%20changes%20to%20demonstrate%20the%20issue.%20You%20can%20execute%20it%20by%20running%20%60ruby%20the_file.rb%60%20in%20your%20terminal.%20If%20all%20goes%20well%2C%20you%20should%20see%20your%20test%20case%20failing.%0A%0A%5Bour%20bug%20report%20template%20script%5D%3A%20https%3A%2F%2Fgithub.com%2Factiveadmin%2Factiveadmin%2Fblob%2Fmaster%2Ftasks%2Fbug_report_template.rb
+    about: If you've already asked for help with a problem and confirmed something is broken with ActiveAdmin itself, create a bug report.
+  - name: Documentation Issue
+    url: https://github.com/activeadmin/activeadmin/pulls
+    about: For documentation improvements, feel free to create a pull request.
+  - name: Localization Issue
+    url: https://github.com/activeadmin/activeadmin/pulls
+    about: For any localization updates, create a pull request as we rely entirely on the community for these.

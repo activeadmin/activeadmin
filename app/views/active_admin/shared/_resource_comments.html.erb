@@ -1,0 +1,51 @@
+<div class="max-w-[700px]">
+  <div class="font-bold py-3 border-b dark:border-gray-600">
+    <%= ActiveAdmin::Comment.model_name.human(count: 2.1) %>
+  </div>
+  <% if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment) %>
+    <%= active_admin_form_for(ActiveAdmin::Comment.new, url: comment_form_url, html: { class: "mb-12 max-w-[700px]", novalidate: false }) do |f|
+      f.inputs do
+        f.input :resource_type, as: :hidden, input_html: { value: ActiveAdmin::Comment.resource_type(resource) }
+        f.input :resource_id, as: :hidden, input_html: { value: resource.id }
+        f.input :body, label: false, input_html: { size: "80x4", required: true }
+      end
+      f.actions do
+        f.action :submit, label: I18n.t("active_admin.comments.add")
+      end
+    end
+    %>
+  <% end %>
+  <div class="font-bold py-3 border-b dark:border-gray-600">
+    <%= I18n.t "active_admin.comments.title_content", count: comments.total_count %>
+  </div>
+  <% if comments.any? %>
+    <% comments.each do |comment| %>
+      <div class="border-b dark:border-gray-600 py-6 max-w-[700px]" id="<%= dom_id(comment, :active_admin) %>" data-test-comment-container>
+        <div class="flex gap-4 items-end mb-2">
+          <span class="font-semibold">
+            <%= comment.author ? auto_link(comment.author) : I18n.t("active_admin.comments.author_missing") %>
+          </span>
+          <span class="text-xs text-gray-400">
+            <%= pretty_format comment.created_at %>
+          </span>
+        </div>
+        <div class="mb-4 break-keep">
+          <%= simple_format(comment.body) %>
+        </div>
+        <% if authorized?(ActiveAdmin::Auth::DESTROY, comment) %>
+          <%= link_to I18n.t("active_admin.comments.delete"), url_for_comments(comment.id), method: :delete, data: { confirm: I18n.t("active_admin.comments.delete_confirmation") } %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="p-2 lg:p-4 flex flex-col-reverse lg:flex-row gap-4 items-center justify-between">
+      <div>
+        <%= page_entries_info(comments).html_safe %>
+      </div>
+      <%= paginate(comments, views_prefix: :active_admin, outer_window: 1, window: 2) %>
+    </div>
+  <% else %>
+    <div class="p-8 text-center">
+      <%= I18n.t("active_admin.comments.no_comments_yet") %>
+    </div>
+  <% end %>
+</div>

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Dependency
     module Requirements
@@ -53,10 +54,6 @@ module ActiveAdmin
 
     def self.[](name)
       Matcher.new name.to_s
-    end
-
-    def self.supports_zeitwerk?
-      rails >= "6.0.0.beta3" && RUBY_ENGINE != "jruby"
     end
 
     class Matcher

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class Resource
 
@@ -22,8 +23,7 @@ module ActiveAdmin
 
       # Returns the plural version of this resource such as "Bank Accounts"
       def plural_resource_label(options = {})
-        defaults = { count: Helpers::I18n::PLURAL_MANY_COUNT,
-                     default: resource_label.pluralize.titleize }
+        defaults = { count: 2.1, default: resource_label.pluralize.titleize }
         resource_name.translate defaults.merge options
       end
 

@@ -16,10 +16,7 @@ de:
         resource_type: "Ressourcentyp"
         updated_at: "Aktualisiert"
   active_admin:
-    dashboard: Übersicht
-    dashboard_welcome:
-      welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
-      call_to_action: "Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen."
+    dashboard: "Übersicht"
     view: "Anzeigen"
     edit: "Bearbeiten"
     delete: "Löschen"
@@ -37,46 +34,38 @@ de:
     has_many_new: "%{model} hinzufügen"
     has_many_delete: "Löschen"
     has_many_remove: "Entfernen"
-    move: "Bewegen"
+    move: "Verschieben"
     filters:
       buttons:
         filter: "Filtern"
         clear: "Filter entfernen"
       predicates:
-        contains: "Enthält"
-        equals: "Gleich"
-        starts_with: "Beginnt mit"
-        ends_with: "Endet mit"
-        greater_than: "Größer als"
-        less_than: "Kleiner als"
-        gteq_datetime: "Größer gleich"
-        lteq_datetime: "Kleiner gleich"
         from: "Von"
         to: "Bis"
     scopes:
       all: "Alle"
     search_status:
-      headline: "Filter"
-      current_scope: "Anwendungsbereich:"
-      current_filters: "Aktuelle Filter:"
+      title: "Aktive Filter"
+      title_with_scope: "Aktive Filter in %{name}"
       no_current_filters: "Keine"
     status_tag:
       "yes": "Ja"
       "no": "Nein"
       "unset": "Nein"
-    main_content: "Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen."
     logout: "Abmelden"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filter"
-      search_status: "Suchstatus"
+      search_status: "Aktive Filter"
     pagination:
       empty: "Keine %{model} gefunden"
-      one: "Zeige <b>1</b> %{model}"
-      one_page: "Zeige <b>alle %{n}</b> %{model}"
-      multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
-      multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
+      one: "<b>1</b> %{model}"
+      one_page: "<b>Alle %{n}</b> %{model}"
+      multiple: "%{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
+      multiple_without_total: "%{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
       per_page: "Pro Seite: "
+      previous: "Vorherige"
+      next: "Nächste"
       entry:
         one: "Eintrag"
         other: "Einträge"
@@ -84,19 +73,17 @@ de:
     blank_slate:
       content: "Es gibt noch keine %{resource_name}."
       link: "Erstellen"
-    dropdown_actions:
-      button_label: "Aktionen"
     batch_actions:
       button_label: "Stapelverarbeitung"
-      default_confirmation: "Bist du sicher, dass Sie dies tun wollen?"
-      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen?"
+      default_confirmation: "Sind Sie sicher?"
+      delete_confirmation: "Sind Sie sicher dass Sie diese %{plural_model} löschen wollen?"
       succesfully_destroyed:
         one: "Erfolgreich 1 %{model} gelöscht"
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
       selection_toggle_explanation: "(Auswahl umschalten)"
-      action_label: "%{title} ausgewählte"
+      action_label: "Ausgewählte %{title}"
       labels:
-        destroy: "Lösche"
+        destroy: "löschen"
     comments:
       created_at: "Erstellt"
       resource_type: "Res­sour­cen-Typ"
@@ -105,7 +92,7 @@ de:
       author: "Autor"
       add: "Kommentar hinzufügen"
       delete: "Löschen"
-      delete_confirmation: "Sind Sie sicher dass sie diesen Kommentar löschen wollen?"
+      delete_confirmation: "Sind Sie sicher dass Sie diesen Kommentar löschen wollen?"
       resource: "Res­sour­ce"
       no_comments_yet: "Es gibt noch keine Kommentare."
       author_missing: "Unbekannt"
@@ -149,14 +136,7 @@ de:
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
         resend_unlock_instructions: "Entsperrungsanweisung erneut senden"
         resend_confirmation_instructions: "Bestätigungsanweisung erneut senden"
-    unsupported_browser:
-      headline: "ActiveAdmin unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
-      recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Wenn sie IE 9 oder neuer benutzen, stellen sie sicher das sie den <a href=\"https://support.microsoft.com/de-de/help/17471\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
     access_denied:
       message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
     index_list:
       table: "Tabelle"
-      block: "Liste"
-      grid: "Gitter"
-      blog: "Blog"

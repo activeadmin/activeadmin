@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
     class FormtasticProxy < ::Arbre::Rails::Forms::FormBuilderProxy
@@ -16,7 +17,7 @@ module ActiveAdmin
       end
 
       def to_s
-        opening_tag << children.to_s << closing_tag
+        opening_tag + children.to_s + closing_tag
       end
     end
 
@@ -32,20 +33,20 @@ module ActiveAdmin
         end
 
         @opening_tag, @closing_tag = split_string_on(form_string, "</form>")
-        instance_eval(&block) if block_given?
+        instance_eval(&block) if block
 
         # Rails sets multipart automatically if a file field is present,
         # but the form tag has already been rendered before the block eval.
-        if multipart? && @opening_tag !~ /multipart/
+        if multipart? && !@opening_tag.include?('multipart')
           @opening_tag.sub!(/<form/, '<form enctype="multipart/form-data"')
         end
       end
 
       def inputs(*args, &block)
-        if block_given?
+        if block
           form_builder.template.assigns[:has_many_block] = true
         end
-        if block_given? && block.arity == 0
+        if block && block.arity == 0
           wrapped_block = proc do
             wrap_it = form_builder.already_in_an_inputs_block ? true : false
             form_builder.already_in_an_inputs_block = true
@@ -72,13 +73,15 @@ module ActiveAdmin
       end
 
       def actions(*args, &block)
-        block_given? ?
-          insert_tag(SemanticActionsProxy, form_builder, *args, &block) :
+        if block
+          insert_tag(SemanticActionsProxy, form_builder, *args, &block)
+        else
+          add_create_another_checkbox
           actions(*args) { commit_action_with_cancel_link }
+        end
       end
 
       def commit_action_with_cancel_link
-        add_create_another_checkbox
         action(:submit)
         cancel_link
       end
@@ -101,24 +104,22 @@ module ActiveAdmin
         form_builder.object
       end
 
-      def form_buffers
-        raise "'form_buffers' has been removed from ActiveAdmin::FormBuilder, please read https://github.com/activeadmin/activeadmin/blob/master/docs/5-forms.md for details."
-      end
-
       private
 
       def create_another_checkbox
         create_another = params[:create_another]
         label = @resource.class.model_name.human
         Arbre::Context.new do
-          li class: "create_another" do
-            input(
-              checked: create_another,
-              id: "create_another",
-              name: "create_another",
-              type: "checkbox"
-            )
-            label(I18n.t("active_admin.create_another", model: label), for: "create_another")
+          div class: "boolean input input-create-another" do
+            label for: "create_another" do
+              input(
+                checked: create_another,
+                id: "create_another",
+                name: "create_another",
+                type: "checkbox"
+              )
+              text_node I18n.t("active_admin.create_another", model: label)
+            end
           end
         end
       end
@@ -130,11 +131,23 @@ module ActiveAdmin
         html_options[:class] ||= "inputs"
         legend = args.shift if args.first.is_a?(::String)
         legend = html_options.delete(:name) if html_options.key?(:name)
-        legend_tag = legend ? "<legend><span>#{legend}</span></legend>" : ""
-        fieldset_attrs = html_options.map { |k, v| %Q{#{k}="#{v}"} }.join(" ")
+        legend_tag = legend ? helpers.tag.legend(legend, class: "fieldset-title") : ""
+        fieldset_attrs = tag_attributes html_options
         @opening_tag = "<fieldset #{fieldset_attrs}>#{legend_tag}<ol>"
         @closing_tag = "</ol></fieldset>"
         super(*(args << html_options), &block)
+      end
+
+      private
+
+      def tag_attributes(html_options)
+        if Rails::VERSION::MAJOR <= 6
+          # Reimplement tag.attributes to backport support for Rails 6.1.
+          # TODO: this can be removed when support for Rails 6.x is dropped
+          helpers.tag.tag_options(html_options.to_h).to_s.strip.html_safe
+        else
+          helpers.tag.attributes html_options
+        end
       end
     end
 

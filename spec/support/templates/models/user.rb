@@ -1,4 +1,5 @@
-class User < ActiveRecord::Base
+# frozen_string_literal: true
+class User < ApplicationRecord
   class VIP < self
   end
   has_many :posts, foreign_key: "author_id"

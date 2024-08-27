@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 module ActiveAdminReloading
   def load_aa_config(config_content)
-    ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, ActiveAdmin.application
+    ActiveSupport::Notifications.instrument ActiveAdmin::Application::BeforeLoadEvent, { active_admin_application: ActiveAdmin.application }
     eval(config_content)
-    ActiveSupport::Notifications.publish ActiveAdmin::Application::AfterLoadEvent, ActiveAdmin.application
+    ActiveSupport::Notifications.instrument ActiveAdmin::Application::AfterLoadEvent, { active_admin_application: ActiveAdmin.application }
     Rails.application.reload_routes!
     ActiveAdmin.application.namespaces.each &:reset_menu!
   end
@@ -21,6 +22,8 @@ Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
       step "I am on the index page for posts"
     when "Category"
       step "I am on the index page for categories"
+    when "User"
+      step "I am on the index page for users"
     else
       # :nocov:
       raise "#{resource} is not supported"
@@ -31,6 +34,14 @@ Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
     when "Post"
       step "I am logged in"
       step "I am on the index page for posts"
+      step 'I follow "View"'
+    when "User"
+      step "I am logged in"
+      step "I am on the index page for users"
+      step 'I follow "View"'
+    when "Category"
+      step "I am logged in"
+      step "I am on the index page for categories"
       step 'I follow "View"'
     when "Tag"
       step "I am logged in"

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This is a common set of Formtastic overrides needed to build a filter form
 # that lets you select from a set of search methods for a given attribute.
 #
@@ -8,7 +9,7 @@
 #     include Base
 #     include Base::SearchMethodSelect
 #
-#     filter :equals, :greater_than, :less_than
+#     filter :eq, :gt, :lt
 #   end
 #
 module ActiveAdmin
@@ -29,17 +30,15 @@ module ActiveAdmin
             end
           end
 
-          def wrapper_html_options
-            opts = super
-            (opts[:class] ||= "") << " select_and_search" unless seems_searchable?
-            opts
-          end
-
           def to_html
             input_wrapping do
-              label_html << # your label
-              select_html << # the dropdown that holds the available search methods
-              input_html # your input field
+              [
+                label_html, # your label
+                '<div class="filters-form-input-group">',
+                select_html, # the dropdown that holds the available search methods
+                input_html, # your input field
+                '</div>'
+              ].join("\n").html_safe
             end
           end
 
@@ -48,7 +47,7 @@ module ActiveAdmin
           end
 
           def select_html
-            template.select_tag "", template.options_for_select(filter_options, current_filter)
+            template.select_tag "", template.options_for_select(filter_options, current_filter), "data-search-methods": ""
           end
 
           def filters
@@ -64,7 +63,7 @@ module ActiveAdmin
 
           def filter_options
             filters.collect do |filter|
-              [I18n.t("active_admin.filters.predicates.#{filter}"), "#{method}_#{filter}"]
+              [I18n.t("ransack.predicates.#{filter}").capitalize, "#{method}_#{filter}"]
             end
           end
 

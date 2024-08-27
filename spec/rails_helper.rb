@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "spec_helper"
 
 ENV["RAILS_ENV"] = "test"
@@ -25,4 +26,4 @@ RSpec.configure do |config|
 end
 
 # Force deprecations to raise an exception.
-ActiveSupport::Deprecation.behavior = :raise
+ActiveAdmin::DeprecationHelper.behavior = :raise

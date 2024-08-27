@@ -1,6 +1,18 @@
+# frozen_string_literal: true
 Then /^I should see (\d+) ([\w]*) in the table$/ do |count, resource_type|
-  expect(page).to \
-    have_css("table.index_table tr > td:first-child", count: count.to_i)
+  expect(page).to have_css(".data-table tr > td:first-child", count: count.to_i)
+end
+
+Then("I should see {string} in the table") do |string|
+  expect(page).to have_css(".data-table tr > td", text: string)
+end
+
+Then("I should not see {string} in the table") do |string|
+  expect(page).to have_no_css(".data-table tr > td", text: string)
+end
+
+Then /^I should see an id_column link to edit page$/ do
+  expect(page).to have_css(".data-table a[href*='/edit']", text: /^\d+$/)
 end
 
 # TODO: simplify this, if possible?
@@ -26,10 +38,10 @@ class HtmlTableToTextHelper
     input = td.css("input").last
 
     if input
-      str << input_to_string(input)
+      str += input_to_string(input)
     end
 
-    str << td.content.strip.gsub("\n", " ")
+    str += td.content.strip.tr("\n", " ")
   end
 
   def input_to_string(input)
@@ -77,7 +89,7 @@ module TableMatchHelper
   end
 
   def assert_cells_match(cell, expected_cell)
-    if expected_cell =~ /^\/.*\/$/
+    if /^\/.*\/$/.match?(expected_cell)
       expect(cell).to match /#{expected_cell[1..-2]}/
     else
       expect((cell || "").strip).to eq expected_cell

@@ -1,21 +1,22 @@
+# frozen_string_literal: true
 Then /^I should see a table header with "([^"]*)"$/ do |content|
   expect(page).to have_xpath "//th", text: content
 end
 
 Then /^I should not see a table header with "([^"]*)"$/ do |content|
-  expect(page).to_not have_xpath "//th", text: content
+  expect(page).to have_no_xpath "//th", text: content
 end
 
 Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
-  expect(page).to have_css "th.sortable", text: content
+  expect(page).to have_css "th[data-sortable]", text: content
 end
 
 Then /^I should not see a sortable table header with "([^"]*)"$/ do |content|
-  expect(page).to_not have_css "th.sortable", text: content
+  expect(page).to have_no_css "th[data-sortable]", text: content
 end
 
 Then /^I should not see a sortable table header$/ do
-  step %{I should not see "th.sortable"}
+  step %{I should not see "th[data-sortable]"}
 end
 
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
@@ -28,7 +29,7 @@ Then /^the table "([^"]*)" should have (\d+) columns/ do |selector, count|
   expect(tds.size).to eq count.to_i
 end
 
-Then /^there should be (\d+) "([^"]*)" tags$/ do |count, tag|
+Then /^there should be (\d+) "([^"]*)" tags?$/ do |count, tag|
   expect(page.all(:css, tag).size).to eq count.to_i
 end
 
@@ -51,7 +52,7 @@ Then /^I should be in the resource section for (.+)$/ do |resource_name|
 end
 
 Then /^I should see the page title "([^"]*)"$/ do |title|
-  within("h2#page_title") do
+  within("[data-test-page-header]") do
     expect(page).to have_content title
   end
 end
@@ -66,7 +67,7 @@ Then /^the "([^"]*)" field should contain the option "([^"]*)"$/ do |field, opti
 end
 
 Then /^I should see the content "([^"]*)"$/ do |content|
-  expect(page).to have_css "#active_admin_content", text: content
+  expect(page).to have_css "[data-test-page-content]", text: content
 end
 
 Then /^I should see a validation error "([^"]*)"$/ do |error_message|

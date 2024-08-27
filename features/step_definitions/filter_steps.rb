@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Around "@filters" do |scenario, block|
   previous_current_filters = ActiveAdmin.application.current_filters
 
@@ -9,15 +10,19 @@ Around "@filters" do |scenario, block|
 end
 
 Then /^I should see a select filter for "([^"]*)"$/ do |label|
-  expect(page).to have_css ".filter_select label", text: label
+  expect(page).to have_css ".filters-form-field.select label", text: label
 end
 
 Then /^I should see a string filter for "([^"]*)"$/ do |label|
-  expect(page).to have_css ".filter_string label", text: label
+  expect(page).to have_css ".filters-form-field.string label", text: label
 end
 
 Then /^I should see a date range filter for "([^"]*)"$/ do |label|
-  expect(page).to have_css ".filter_date_range label", text: label
+  expect(page).to have_css ".filters-form-field.date_range label", text: label
+end
+
+Then /^I should see a number filter for "([^"]*)"$/ do |label|
+  expect(page).to have_css ".filters-form-field.numeric label", text: label
 end
 
 Then /^I should see the following filters:$/ do |table|
@@ -39,14 +44,14 @@ Then(/^I should have parameter "([^"]*)" with value "([^"]*)"$/) do |key, value|
 end
 
 Then /^I should see current filter "([^"]*)" equal to "([^"]*)" with label "([^"]*)"$/ do |name, value, label|
-  expect(page).to have_css "li.current_filter_#{name} span", text: label
-  expect(page).to have_css "li.current_filter_#{name} b", text: value
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] span", text: label
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] strong", text: value
 end
 
 Then /^I should see current filter "([^"]*)" equal to "([^"]*)"$/ do |name, value|
-  expect(page).to have_css "li.current_filter_#{name} b", text: value
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] strong", text: value
 end
 
 Then /^I should see link "([^"]*)" in current filters/ do |label|
-  expect(page).to have_css "li.current_filter b a", text: label
+  expect(page).to have_css ".active-filters [data-filter] strong a", text: label
 end

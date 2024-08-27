@@ -1,35 +1,36 @@
+# frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe ActiveAdmin::ResourceController do
+RSpec.describe ActiveAdmin::ResourceController, type: :controller do
   let(:controller) { Admin::PostsController.new }
 
   describe "callbacks" do
-    before :all do
-      application = ::ActiveAdmin::Application.new
-      namespace = ActiveAdmin::Namespace.new(application, :admin)
-      namespace.register Post do
-        after_build :call_after_build
-        before_save :call_before_save
-        after_save :call_after_save
-        before_create :call_before_create
-        after_create :call_after_create
-        before_update :call_before_update
-        after_update :call_after_update
-        before_destroy :call_before_destroy
-        after_destroy :call_after_destroy
+    around do |example|
+      with_resources_during(example) do
+        ActiveAdmin.register(Post) do
+          after_build :call_after_build
+          before_save :call_before_save
+          after_save :call_after_save
+          before_create :call_before_create
+          after_create :call_after_create
+          before_update :call_before_update
+          after_update :call_after_update
+          before_destroy :call_before_destroy
+          after_destroy :call_after_destroy
 
-        controller do
-          private
+          controller do
+            private
 
-          def call_after_build(obj); end
-          def call_before_save(obj); end
-          def call_after_save(obj); end
-          def call_before_create(obj); end
-          def call_after_create(obj); end
-          def call_before_update(obj); end
-          def call_after_update(obj); end
-          def call_before_destroy(obj); end
-          def call_after_destroy(obj); end
+            def call_after_build(obj); end
+            def call_before_save(obj); end
+            def call_after_save(obj); end
+            def call_before_create(obj); end
+            def call_after_create(obj); end
+            def call_before_update(obj); end
+            def call_after_update(obj); end
+            def call_before_destroy(obj); end
+            def call_after_destroy(obj); end
+          end
         end
       end
     end
@@ -112,8 +113,10 @@ RSpec.describe ActiveAdmin::ResourceController do
   end
 
   describe "action methods" do
-    before do
-      load_resources { ActiveAdmin.register Post }
+    around do |example|
+      with_resources_during(example) do
+        load_resources { ActiveAdmin.register Post }
+      end
     end
 
     it "should have actual action methods" do
@@ -124,10 +127,11 @@ RSpec.describe ActiveAdmin::ResourceController do
 end
 
 RSpec.describe "A specific resource controller", type: :controller do
-  before do
-    load_resources { ActiveAdmin.register Post }
-
-    @controller = Admin::PostsController.new
+  around do |example|
+    with_resources_during(example) do
+      ActiveAdmin.register Post
+      @controller = Admin::PostsController.new
+    end
   end
 
   describe "authenticating the user" do
@@ -279,14 +283,14 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
 
     describe "when params batch_action matches existing BatchAction and form inputs defined" do
-      let(:batch_action_args) { [:flag, "Flag", { form: { type: ["a", "b"] } }] }
+      let(:batch_action_args) { [:flag, "Flag"] }
 
       let(:http_params) do
-        { batch_action: "flag", collection_selection: ["1"], batch_action_inputs: '{ "type": "a", "bogus": "param" }' }
+        { batch_action: "flag", collection_selection: ["1"], batch_action_inputs: '{ "a": "1", "b": "2" }' }
       end
 
-      it "should filter permitted params" do
-        expect(controller).to receive(:instance_exec).with(["1"], { "type" => "a" })
+      it "should include params" do
+        expect(controller).to receive(:instance_exec).with(["1"], { "a" => "1", "b" => "2" })
         controller.batch_action
       end
     end

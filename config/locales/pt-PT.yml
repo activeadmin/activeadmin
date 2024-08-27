@@ -1,9 +1,6 @@
 "pt-PT":
   active_admin:
     dashboard: "Painel de Administração"
-    dashboard_welcome:
-      welcome: "Bem-vindo ao Active Admin. Esta é a página padrão."
-      call_to_action: "Se pretende adicionar seções ao painel, consulte 'app/admin/dashboard.rb'"
     view: "Visualizar"
     edit: "Editar"
     delete: "Remover"
@@ -24,18 +21,10 @@
       buttons:
         filter: "Filtrar"
         clear: "Limpar Filtros"
-      predicates:
-        contains: "Contém"
-        equals: "Igual A"
-        starts_with: "Começa com"
-        ends_with: "Termina com"
-        greater_than: "Maior Que"
-        less_than: "Menor Que"
     status_tag:
       "yes": "Sim"
       "no": "Não"
       "unset": "Não"
-    main_content: "Por favor implemente %{model}#main_content para mostrar o conteúdo."
     logout: "Sair"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -53,8 +42,6 @@
     blank_slate:
       content: "Ainda não existem %{resource_name}."
       link: "Novo"
-    dropdown_actions:
-      button_label: "Ações"
     batch_actions:
       button_label: "Ações em quantidade"
       default_confirmation: "Tem a certeza que quer fazer isso?"

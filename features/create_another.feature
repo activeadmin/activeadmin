@@ -40,7 +40,7 @@ Feature: Create Another checkbox
       end
     """
     When I am on the new post page
-    Then I should see the element ".create_another"
+    Then I should see the element ".input-create-another"
     And the "Create another Post" checkbox should not be checked
 
   Scenario: Application config of true and a resource config of false
@@ -52,4 +52,4 @@ Feature: Create Another checkbox
       end
     """
     When I am on the new post page
-    Then I should not see the element ".create_another"
+    Then I should not see the element ".input-create-another"

@@ -1,9 +1,6 @@
 tr:
   active_admin:
     dashboard: "Gösterge Paneli"
-    dashboard_welcome:
-      welcome: "Active Admin'e hoş geldiniz. Burası varsayılan gösterge paneli sayfasıdır."
-      call_to_action: "Buraya bölümler eklemek için 'app/admin/dashboard.rb' dosyasına bakabilirsiniz."
     view: "Görüntüle"
     edit: "Düzenle"
     delete: "Sil"
@@ -26,27 +23,12 @@ tr:
       buttons:
         filter: "Filtrele"
         clear: "Filtreleri Temizle"
-      predicates:
-        contains: "İçerir"
-        equals: "Eşittir"
-        starts_with: "İle başlar"
-        ends_with: "İle biter"
-        greater_than: "Büyüktür"
-        less_than: "Küçüktür"
-        gteq_datetime: "Büyük yada eşit"
-        lteq_datetime: "Küçük yada eşit"
-        from: "Başlangıç"
-        to: "Bitiş"
     search_status:
-      headline: "Arama"
-      current_scope: "Kapsam:"
-      current_filters: "Seçili filtreler:"
       no_current_filters: "Yok"
     status_tag:
       "yes": "Evet"
       "no": "Hayır"
       "unset": "Hayır"
-    main_content: "İçeriği görüntülemek için lütfen %{model}#main_content metodunu ekleyin."
     logout: "Çıkış Yap"
     powered_by: "%{active_admin} %{version} tarafından desteklenmektedir."
     sidebars:
@@ -66,8 +48,6 @@ tr:
     blank_slate:
       content: "Henüz %{resource_name} yok."
       link: "Bir tane oluşturun"
-    dropdown_actions:
-      button_label: "İşlemler"
     batch_actions:
       button_label: "Toplu İşlemler"
       default_confirmation: "Bunu yapmak istediğinizden emin misiniz?"
@@ -131,14 +111,7 @@ tr:
         sign_in_with_omniauth_provider: "%{provider} ile giriş yapın"
         resend_unlock_instructions: "Hesap geri açma talimatlarını tekrar gönder"
         resend_confirmation_instructions: "Onaylama talimatlarını tekrar gönder"
-    unsupported_browser:
-      headline: "ActiveAdmin Internet Explorer 8 ve altı artık desteklememektedir."
-      recommendation: "Son sürüm <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, ya da <a href=\"https://mozilla.org/firefox/\">Firefox</a> tarayıcılarından birine geçmenizi tavsiye ederiz."
-      turn_off_compatibility_view: "IE 9 ya da üstünü kullanıyorsanız, <a href=\"http://windows.microsoft.com/tr-tr/internet-explorer/use-compatibility-view\">\"Uyumluluk Görünümü\"</a>nü kapatmayı unutmayın."
     access_denied:
       message: "Bu işlemi gerçekleştirmek için yetkiniz yok."
     index_list:
       table: "Tablo"
-      block: "Liste"
-      grid: "Izgara"
-      blog: "Blog"

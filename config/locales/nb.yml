@@ -1,9 +1,6 @@
 nb:
   active_admin:
     dashboard: Oversikt
-    dashboard_welcome:
-      welcome: "Velkommen til Active Admin. Dette er standardoversiktssiden."
-      call_to_action: "Rediger 'app/admin/dashboard.rb' for å legge til elementer i oversikten."
     view: "Vis"
     edit: "Rediger"
     delete: "Slett"
@@ -25,26 +22,14 @@ nb:
         filter: "Filter"
         clear: "Fjern filter"
       predicates:
-        contains: "Inneholder"
-        equals: "Er lik"
-        starts_with: "Starter med"
-        ends_with: "Slutter med"
-        greater_than: "Større enn"
-        less_than: "Mindre enn"
-        gteq_datetime: "Større enn eller lik"
-        lteq_datetime: "Mindre enn eller lik"
         from: "Fra"
         to: "Til"
     search_status:
-      headline: "Søkestatus:"
-      current_scope: "Søkeområde:"
-      current_filters: "Gjeldende filtre:"
       no_current_filters: "Ingen"
     status_tag:
       "yes": "Ja"
       "no": "Nei"
       "unset": "Nei"
-    main_content: "Vennligst implementer %{model}#main_content for å vise innhold."
     logout: "Logg ut"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -62,8 +47,6 @@ nb:
     blank_slate:
       content: "Her er det ingen %{resource_name} enda."
       link: "Opprett en"
-    dropdown_actions:
-      button_label: "Handlinger"
     batch_actions:
       button_label: "Gruppehandlinger"
       delete_confirmation: "Er du sikker på at du vil slette disse %{plural_model}? Dette kan ikke reverseres."
@@ -125,6 +108,3 @@ nb:
       message: "Du er ikke autorisert til å utføre denne handlingen."
     index_list:
       table: "Tabell"
-      block: "Liste"
-      grid: "Gitter"
-      blog: "Blogg"

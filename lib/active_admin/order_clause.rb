@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class OrderClause
     attr_reader :field, :order, :active_admin_config
@@ -28,8 +29,11 @@ module ActiveAdmin
     end
 
     def table_column
-      (@column =~ /\./) ? @column :
+      if (@column.include?('.'))
+        @column
+      else
         [table, active_admin_config.resource_quoted_column_name(@column)].compact.join(".")
+      end
     end
 
     def sql

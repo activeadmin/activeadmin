@@ -1,0 +1,32 @@
+<div class="active-filters">
+  <h3 class="active-filters-title">
+    <% if current_scope %>
+      <%= I18n.t("active_admin.search_status.title_with_scope", name: scope_name(current_scope)) %>
+    <% else %>
+      <%= I18n.t("active_admin.search_status.title") %>
+    <% end %>
+  </h3>
+  <ul class="active-filters-list">
+    <% if active_filters.all_blank? %>
+      <li><%= I18n.t("active_admin.search_status.no_current_filters") %></li>
+    <% else %>
+      <% active_filters.filters.each do |filter| %>
+        <%= content_tag :li, filter.html_options do %>
+          <span>
+            <%= filter.label %>
+            <strong><%= to_sentence(filter.values.map { |v| pretty_format(v) }) %></strong>
+          </span>
+        <% end %>
+      <% end %>
+      <% active_filters.scopes.each do |name, value| %>
+        <% filter_name = name.gsub(/_eq$/, "") %>
+        <% filter = active_admin_config.filters[filter_name.to_sym] %>
+        <% label = filter.try(:[], :label) || filter_name.titleize %>
+        <li data-filter="<%= name %>">
+          <span><%= "#{label} #{Ransack::Translate.predicate('eq')}" %></span>
+          <strong><%= value %></strong>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

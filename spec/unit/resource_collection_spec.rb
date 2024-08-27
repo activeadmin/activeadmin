@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 require "active_admin/resource_collection"
 
@@ -169,6 +170,4 @@ RSpec.describe ActiveAdmin::ResourceCollection do
       end
     end
   end
-
-  skip "specs for subclasses of Page and Resource"
 end

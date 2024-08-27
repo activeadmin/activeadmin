@@ -1,9 +1,6 @@
 pt-BR:
   active_admin:
     dashboard: "Painel Administrativo"
-    dashboard_welcome:
-      welcome: "Bem vindo ao Active Admin. Esta é a página de painéis padrão."
-      call_to_action: "Para adicionar seções ao painel, verifique 'app/admin/dashboard.rb'"
     view: "Visualizar"
     edit: "Editar"
     delete: "Remover"
@@ -26,26 +23,14 @@ pt-BR:
         filter: "Filtrar"
         clear: "Limpar Filtros"
       predicates:
-        contains: "Contém"
-        equals: "Igual A"
-        starts_with: "Começa com"
-        ends_with: "Termina com"
-        greater_than: "Maior Que"
-        less_than: "Menor Que"
-        gteq_datetime: "Maior ou igual a"
-        lteq_datetime: "Menor ou igual a"
         from: "A partir de"
         to: "Até"
     search_status:
-      headline: "Buscou:"
-      current_scope: "Em:"
-      current_filters: "Filtros escolhidos:"
       no_current_filters: "Nenhum"
     status_tag:
       "yes": "Sim"
       "no": "Não"
       "unset": "Não"
-    main_content: "Por favor implemente %{model}#main_content para exibir conteúdo."
     logout: "Sair"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -65,8 +50,6 @@ pt-BR:
     blank_slate:
       content: "Não existem %{resource_name} ainda."
       link: "Novo"
-    dropdown_actions:
-      button_label: "Ações"
     batch_actions:
       button_label: "Ações em lote"
       default_confirmation: "Tem certeza que quer fazer isso?"
@@ -130,14 +113,7 @@ pt-BR:
         sign_in_with_omniauth_provider: "Entre com o %{provider}"
         resend_unlock_instructions: "Reenviar instruções de desbloqueio"
         resend_confirmation_instructions: "Reenviar instruções de confirmação"
-    unsupported_browser:
-      headline: "O ActiveAdmin não oferece suporte ao Internet Explorer versão 8 ou inferior."
-      recommendation: "Nós recomendamos atualizar para a última versão do <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, ou <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Se você está usando o IE 9 ou superior, <a href=\"https://support.microsoft.com/pt-br/help/17471\">desligue o \"Modo de Exibição de Compatibilidade\"</a>."
     access_denied:
       message: "Você não tem permissão para realizar o solicitado"
     index_list:
       table: "Tabela"
-      block: "Lista"
-      grid: "Grid"
-      blog: "Blog"

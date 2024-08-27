@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.shared_examples_for "ActiveAdmin::Resource" do
   describe "namespace" do
     it "should return the namespace" do

@@ -17,9 +17,6 @@ it:
         updated_at: "Aggiornato il"
   active_admin:
     dashboard: Dashboard
-    dashboard_welcome:
-      welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
-      call_to_action: "Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'"
     view: "Mostra"
     edit: "Modifica"
     delete: "Rimuovi"
@@ -43,40 +40,36 @@ it:
         filter: "Filtra"
         clear: "Rimuovi filtri"
       predicates:
-        contains: "Contiene"
-        equals: "Uguale a"
-        starts_with: "Inizia con"
-        ends_with: "Finisce con"
-        greater_than: "Maggiore di"
-        less_than: "Minore di"
-        gteq_datetime: "Maggiore o uguale a"
-        lteq_datetime: "Minore o uguale a"
         from: "Da"
         to: "A"
     scopes:
       all: "Tutti"
     search_status:
-      headline: "Situazione filtri:"
-      current_scope: "Contesto selezionato:"
-      current_filters: "Filtri attivi:"
-      no_current_filters: "Nessuno"
+      title: "Ricerca corrente"
+      title_with_scope: "Ricerca corrente per %{name}"
+      no_current_filters: "Nessun filtro applicato"
     status_tag:
       "yes": "Sì"
       "no": "No"
-      "unset": "No"
-    main_content: "Devi implemetare %{model}#main_content per mostrarne il contenuto."
+      "unset": "Vuoto"
+    toggle_dark_mode: Attiva/Disattiva tema scuro
+    toggle_main_navigation_menu: Espandi/Riduci menu di navigazione principale
+    toggle_section: Espandi/Riduci sezione
+    toggle_user_menu: Espandi/Riduci menu utente
     logout: "Esci"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtri"
       search_status: "Informazioni sulla ricerca"
     pagination:
-      empty: "Nessun %{model} trovato"
-      one: "Sto mostrando <b>1</b> %{model}"
-      one_page: "Sto mostrando <b>%{n}</b> %{model}. Lista completa."
-      multiple: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b> in totale"
-      multiple_without_total: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: "Nessun risultato per %{model}"
+      one: "Mostrando <b>1</b> di <b>1</b>"
+      one_page: "Mostrando <b>%{n}</b> %{model}. Lista completa."
+      multiple: "Mostrando <b>%{from}-%{to}</b> di <b>%{total}</b>"
+      multiple_without_total: "Mostrando <b>%{from}-%{to}</b>"
       per_page: "Oggetti per pagina: "
+      previous: "Precedente"
+      next: "Successiva"
       entry:
         one: "voce"
         other: "voci"
@@ -84,8 +77,6 @@ it:
     blank_slate:
       content: "Non sono presenti %{resource_name}"
       link: "Crea nuovo/a"
-    dropdown_actions:
-      button_label: "Azioni"
     batch_actions:
       button_label: "Azioni multiple"
       default_confirmation: "Sei sicuro di che voler proseguire?"
@@ -149,14 +140,7 @@ it:
         sign_in_with_omniauth_provider: "Collegati a %{provider}"
         resend_unlock_instructions: "Invia di nuovo le istruzioni per lo sblocco"
         resend_confirmation_instructions: "Invia di nuovo le istruzioni per la conferma"
-    unsupported_browser:
-      headline: "Avviso: ActiveAdmin non supporta Internet Explorer 8 o inferiore"
-      recommendation: "Ti raccomandiamo di aggiornare alla versione più recente di <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, o <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Se stai utilizzando Internet Explorer 9 o successivo, assicurati di <a href=\"https://support.microsoft.com/it-it/help/17471\">disabilitare la \"Modalità Compatibilità\"</a>."
     access_denied:
       message: "Non hai le autorizzazioni necessarie per eseguire questa azione."
     index_list:
       table: "Tabella"
-      block: "Lista"
-      grid: "Griglia"
-      blog: "Blog"

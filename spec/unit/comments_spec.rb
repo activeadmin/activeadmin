@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe "Comments" do
@@ -35,6 +36,14 @@ RSpec.describe "Comments" do
     it "needs a resource" do
       expect(comment).to_not be_valid
       expect(comment.errors[:resource]).to eq(["can't be blank"])
+    end
+
+    it "authorizes default ransackable attributes" do
+      expect(described_class.ransackable_attributes).to eq described_class.authorizable_ransackable_attributes
+    end
+
+    it "authorizes default ransackable associations" do
+      expect(described_class.ransackable_associations).to eq described_class.authorizable_ransackable_associations
     end
 
     describe ".find_for_resource_in_namespace" do

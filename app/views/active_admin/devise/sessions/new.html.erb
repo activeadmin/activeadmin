@@ -1,8 +1,10 @@
-<div id="login">
-  <h2><%= active_admin_application.site_title(self) %> <%= title t('active_admin.devise.login.title') %></h2>
+<div class="p-6 sm:p-8 space-y-4 md:space-y-6 w-full sm:max-w-md bg-white sm:rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700">
+  <h2 class="text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
+    <%= site_title %> <%= set_page_title t('active_admin.devise.login.title') %>
+  </h2>
 
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
-  <%= active_admin_form_for(resource, as: resource_name, url: send(:"#{scope}_session_path"), html: { id: "session_new" }) do |f|
+  <%= active_admin_form_for(resource, as: resource_name, url: main_app.send(:"#{scope}_session_path")) do |f|
     f.inputs do
       resource.class.authentication_keys.each_with_index { |key, index|
         f.input key, label: t("active_admin.devise.#{key}.title"), input_html: { autofocus: index.zero? }
@@ -11,7 +13,7 @@
       f.input :remember_me, label: t('active_admin.devise.login.remember_me'), as: :boolean if devise_mapping.rememberable?
     end
     f.actions do
-      f.action :submit, label: t('active_admin.devise.login.submit'), button_html: { value: t('active_admin.devise.login.submit') }
+      f.action :submit, label: t('active_admin.devise.login.submit'), wrapper_html: { class: "grow" }, button_html: { class: "w-full", value: t('active_admin.devise.login.submit') }
     end
   end
   %>

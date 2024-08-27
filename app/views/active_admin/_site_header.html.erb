@@ -1,0 +1,30 @@
+<div class="border-b border-gray-200 dark:border-white/10 dark:bg-gray-950/75 px-4 py-2 flex items-center sticky top-0 z-20 h-16 w-full backdrop-blur-md">
+  <button class="xl:hidden pe-3 inline-flex items-center w-8 h-8 justify-center text-sm text-gray-500 dark:text-gray-400 focus-visible:outline-none focus-visible:ring-ring focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0" data-drawer-target="main-menu" data-drawer-show="main-menu" aria-controls="main-menu" aria-label="<%= t('active_admin.toggle_main_navigation_menu') %>">
+    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
+  </button>
+
+  <div class="grow">
+    <h1 data-test-site-title class="text-lg font-semibold">
+      <%= title %>
+    </h1>
+  </div>
+
+  <button type="button" class="dark-mode-toggle flex items-center w-9 h-9 justify-center me-1 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-none text-sm" aria-label="<%= t('active_admin.toggle_dark_mode') %>">
+    <svg class="hidden dark:block w-5 h-5 rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.509 5.75c0-1.493.394-2.96 1.144-4.25h-.081a8.5 8.5 0 1 0 7.356 12.746A8.5 8.5 0 0 1 8.509 5.75Z"/></svg>
+    <svg class="dark:hidden w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 3V1m0 18v-2M5.05 5.05 3.636 3.636m12.728 12.728L14.95 14.95M3 10H1m18 0h-2M5.05 14.95l-1.414 1.414M16.364 3.636 14.95 5.05M14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/></svg>
+  </button>
+
+  <button id="user-menu-button" class="flex items-center w-9 h-9 justify-center text-sm text-gray-500 focus:outline-none dark:text-gray-200" data-dropdown-toggle="user-menu" data-dropdown-offset-distance="3" data-dropdown-placement="bottom-end" aria-label="<%= t('active_admin.toggle_user_menu') %>">
+    <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"><path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/></svg>
+  </button>
+
+  <div id="user-menu" class="z-50 hidden min-w-max bg-white rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="user-menu-button">
+    <ul>
+      <% if current_active_admin_user? %>
+        <li><%= auto_link current_active_admin_user, class: "block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white" %></li>
+        <li><%= link_to I18n.t("active_admin.logout"), auto_logout_link_path, class: "block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white", data: { method: :delete } %></li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

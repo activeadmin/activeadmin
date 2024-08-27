@@ -1,0 +1,23 @@
+changelog:
+  categories:
+    - title: Breaking Changes 🚨
+      labels:
+        - type breaking change
+    - title: Template Updates 📝
+      labels:
+        - type template update
+    - title: Enhancements ✨
+      labels:
+        - type enhancement
+    - title: Bug Fixes 🐛
+      labels:
+        - type bug fix
+    - title: Security Fixes 🔒
+      labels:
+        - type security fix
+    - title: Other Changes 🛠
+      labels:
+        - "*"
+  exclude:
+    authors:
+      - dependabot

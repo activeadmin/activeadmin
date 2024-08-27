@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class Comment < ActiveRecord::Base
 
@@ -25,6 +26,14 @@ module ActiveAdmin
 
     def set_resource_type
       self.resource_type = self.class.resource_type(resource)
+    end
+
+    def self.ransackable_attributes(auth_object = nil)
+      authorizable_ransackable_attributes
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+      authorizable_ransackable_associations
     end
 
   end

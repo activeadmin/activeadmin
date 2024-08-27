@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Filters::ActiveFilter do
@@ -14,7 +15,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
   let(:post) { Post.create! title: "Hello World", category: category, author: user }
 
   let(:search) do
-    Post.ransack(title_equals: post.title)
+    Post.ransack(title_eq: post.title)
   end
 
   let(:condition) do
@@ -38,7 +39,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
 
     context "with formtastic translations" do
       it "should pick up formtastic label" do
-        with_translation formtastic: { labels: { title: "Supertitle" } } do
+        with_translation %i[formtastic labels title], "Supertitle" do
           expect(subject.label).to eq("Supertitle equals")
         end
       end
@@ -46,7 +47,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
   end
 
   it "should pick predicate name translation" do
-    expect(subject.predicate_name).to eq(I18n.t("active_admin.filters.predicates.equals"))
+    expect(subject.predicate_name).to eq(I18n.t("ransack.predicates.eq"))
   end
 
   context "search by belongs_to association" do
@@ -213,11 +214,11 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     let(:post) { resource_klass.create! title: "Category", author: user }
 
     let(:search) do
-      resource_klass.ransack(title_equals: post.title)
+      resource_klass.ransack(title_eq: post.title)
     end
 
     it "should use the association's primary key to find the associated record" do
-      allow(ActiveSupport::Dependencies).to receive(:constantize).with("::SuperPost").and_return(resource_klass)
+      stub_const("::SuperPost", resource_klass)
 
       resource.add_filter(:kategory)
 
@@ -242,14 +243,13 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
 
     let(:user) { User.create! first_name: "John", last_name: "Doe" }
-    let(:store) { resource_klass.create! name: "Store 1", user_id: user.id }
 
     let(:search) do
       resource_klass.ransack(user_id_eq: user.id)
     end
 
     it "should use the association's primary key to find the associated record" do
-      allow(ActiveSupport::Dependencies).to receive(:constantize).with("::#{resource_klass.name}").and_return(resource_klass)
+      stub_const("::#{resource_klass.name}", resource_klass)
 
       expect(subject.values.first).to eq user
     end

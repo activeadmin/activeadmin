@@ -14,8 +14,7 @@ Feature: Internationalization
     And I should see "Hello words"
 
     When I follow "View"
-    Then I should see "Bookstore Details"
-    And I should see "Hello words"
+    Then I should see "Hello words"
     And I should see a link to "Delete Bookstore"
 
     When I follow "Edit Bookstore"
@@ -34,22 +33,11 @@ Feature: Internationalization
     When I set my locale to "en"
     And I go to the dashboard
     Then I should see "Bookstore"
-    And I should see "Logout"
+    And I should see "Sign out"
 
   Scenario: Overriding translations
     Given I am logged in
     And a store named "Hello words" exists
     When I go to the dashboard
     And I follow "Bookstores"
-    Then I should see "Download this:"
-
-  Scenario: Overriding resource details table title
-    Given a configuration of:
-    """
-      ActiveAdmin.register Post
-    """
-    And String "Post detailed information" corresponds to "resources.post.details"
-    And I am logged in
-    And a post exists
-    When I go to the last post's show page
-    Then I should see "Post detailed information"
+    Then I should see "Export:"

@@ -1,9 +1,6 @@
 bs:
   active_admin:
     dashboard: "Upravljačka ploča"
-    dashboard_welcome:
-      welcome: "Dobrodošli u Active Admin. Ovo je početna upravljačka ploča."
-      call_to_action: "Da biste dodali nove odjeljke na upravljačku ploču, pogledajte 'app/admin/dashboard.rb'"
     view: "Pregledaj"
     edit: "Uredi"
     delete: "Obriši"
@@ -24,18 +21,10 @@ bs:
       buttons:
         filter: "Filtriraj"
         clear: "Ukloni filtere"
-      predicates:
-        contains: "Sadrži"
-        equals: "Jednako"
-        starts_with: "počinje s"
-        ends_with: "Završava sa"
-        greater_than: "Veće od"
-        less_than: "Manje od"
     status_tag:
       "yes": "Da"
       "no": "Nema"
       "unset": "Nema"
-    main_content: "Molim Vas, implementirajte %{model}#main_content da biste prikazali sadržaj."
     logout: "Odjavi se"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -116,6 +105,3 @@ bs:
       message: "Nemaš dopuštenja."
     index_list:
       table: "Tabela"
-      block: "Lista"
-      grid: "Rešetka"
-      blog: "Blog"

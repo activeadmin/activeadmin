@@ -1,9 +1,6 @@
 az:
   active_admin:
     dashboard: "İdarəetmə paneli"
-    dashboard_welcome:
-      welcome: "Active Admin-ə xoş gəlmişsiniz. Bu saytla idarəetmənin standart səhifəsidir."
-      call_to_action: "Buraya nə isə əlavə etmək üçün 'app/admin/dashboard.rb' sənədini dəyişin"
     view: "Aç"
     edit: "Dəyiş"
     delete: "Sil"
@@ -24,22 +21,11 @@ az:
       buttons:
         filter: "Filtrlə"
         clear: "Təmizlə"
-      predicates:
-        contains: "Yerləşir"
-        equals: "Bərabərdir"
-        starts_with: "Başlayır"
-        ends_with: "Bitir"
-        greater_than: "böyük"
-        less_than: "kiçik"
     search_status:
-      headline: "Axtarışın statusu:"
-      current_scope: "Sahə:"
-      current_filters: "Cari filter:"
       no_current_filters: "Heç biri"
     status_tag:
       "yes": "Bəli"
       "no": "Xeyr"
-    main_content: "Создайте %{model}#main_content для отображения содержимого."
     logout: "Çıxış"
     powered_by: "Работает на %{active_admin} %{version}"
     sidebars:
@@ -60,8 +46,6 @@ az:
     blank_slate:
       content: "%{resource_name} hələ yoxdur."
       link: "Yarat"
-    dropdown_actions:
-      button_label: "Əməliyyatlar"
     batch_actions:
       button_label: "Qrup əməliyyatları"
       default_confirmation: "Siz bunu etməyinizə əminsiniz?"
@@ -125,14 +109,7 @@ az:
         sign_in_with_omniauth_provider: "%{provider} vasitəsilə daxil ol"
         resend_unlock_instructions: "Blokdan çıxarma üzrə təlimatı yenidən göndərilməsi"
         resend_confirmation_instructions: "Aktivləşdirmə ismarışını yenidən göndərilməsi"
-    unsupported_browser:
-      headline: "Zəhmət olmasa, bilin ki, Active Admin artıq Internet Explorer-in köhnə versiyalarını daha dəstəkləmir və yalnız IE 8 versiyasından başlayaraq dəstəkləyir"
-      recommendation: "Biz sizin brauzerinizin versiyasını yeniləməyi məsləhət görürük (<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, və ya <a href=\"https://mozilla.org/firefox/\">Firefox</a>)."
-      turn_off_compatibility_view: "Əgər siz IE 9  və ya daha yeni versiya istifadə edirsinizsə, əmin olun ki, <a href=\"https://support.microsoft.com/ru-ru/help/17471\">\"Uyğunluğun rejimində baxış\"</a> seçimini söndürmüsünüz."
     access_denied:
       message: "Bunu etmək üçün daxil olmalısınız."
     index_list:
       table: "Cədvəl"
-      block: "Siyahı"
-      grid: "Tor"
-      blog: "Bloq"

@@ -21,9 +21,6 @@ sk:
         updated_at: "Upravený"
   active_admin:
     dashboard: Úvod
-    dashboard_welcome:
-      welcome: "Vitajte v Active Admin. Toto je nástenka."
-      call_to_action: "Pre pridanie sekcie na nástenku se pozrite do súboru 'app/admin/dashboard.rb'"
     view: "Zobraziť"
     edit: "Upraviť"
     delete: "Zmazať"
@@ -47,28 +44,16 @@ sk:
         filter: "Filtrovať"
         clear: "Vyčistiť filtre"
       predicates:
-        contains: "Obsahuje"
-        equals: "Je presne"
-        starts_with: "Začína na"
-        ends_with: "Končí na"
-        greater_than: "Väčší ako"
-        less_than: "Menší ako"
-        gteq_datetime: "Od"
-        lteq_datetime: "Do"
         from: "Od"
         to: "Do"
     scopes:
       all: "Všetko"
     search_status:
-      headline: "Stav vyhľadávania:"
-      current_scope: "Scope:"
-      current_filters: "Filtre:"
       no_current_filters: "Žiadne"
     status_tag:
       "yes": "Áno"
       "no": "Nie"
       "unset": "Nie"
-    main_content: "Implementujte prosím %{model}#main_content pre zobrazenie obsahu."
     logout: "Odhlásiť"
     powered_by: "%{active_admin} %{version}"
     sidebars:
@@ -88,8 +73,6 @@ sk:
     blank_slate:
       content: "Zatiaľ tu nie je žiadny obsah."
       link: "Vytvoriť"
-    dropdown_actions:
-      button_label: "Akcie"
     batch_actions:
       button_label: "Hromadné akcie"
       default_confirmation: "Ste si istí, že to chcete spraviť?"
@@ -155,14 +138,7 @@ sk:
         sign_in_with_omniauth_provider: "Prihlásiť sa cez %{provider}"
         resend_unlock_instructions: "Poslať znovu inštrukcie na odomknutie účtu"
         resend_confirmation_instructions: "Preposlať potvrdzovacie inštrukcie"
-    unsupported_browser:
-      headline: "ActiveAdmin nepodporuje Internet Explorer vo verzii <= 8."
-      recommendation: "Odporúčame <a href=\"http://browsehappy.com/\">aktualizovať Váš prehliadač</a>."
-      turn_off_compatibility_view: "Ak používate Internet Explorer vo verzii >= 9, uistite sa, že <a href=\"https://support.microsoft.com/en-us/help/17471\">\"režim kompatibility\" je vypnutý</a>"
     access_denied:
       message: "Nemáte oprávnenie k vykonaniu tejto akcie."
     index_list:
       table: "Tabuľka"
-      block: "Zoznam"
-      grid: "Tabuľka"
-      blog: "Blog"

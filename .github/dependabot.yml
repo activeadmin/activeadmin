@@ -1,0 +1,55 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    groups:
+      github_actions:
+        patterns:
+          - "*"
+  - package-ecosystem: bundler
+    directory: /
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+    groups:
+      rails_default:
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: sqlite3
+        versions: ">= 2" # FIXME: Remove when rails/rails#51636 will be released
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+    groups:
+      npm:
+        patterns:
+          - "*"
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_61
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+    groups:
+      rails_61:
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: sqlite3
+        versions: ">= 2"
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_70
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+    groups:
+      rails_70:
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: sqlite3
+        versions: ">= 2"

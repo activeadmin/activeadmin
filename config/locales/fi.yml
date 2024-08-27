@@ -1,9 +1,6 @@
 fi:
   active_admin:
     dashboard: Etusivu
-    dashboard_welcome:
-      welcome: "Tervetuloa! Tämä on Active Adminin oletusetusivu."
-      call_to_action: "Lisätäksesi etusivun osioita katso: 'app/admin/dashboard.rb'"
     view: "Katso"
     edit: "Muokkaa"
     delete: "Poista"
@@ -24,18 +21,10 @@ fi:
       buttons:
         filter: "Hae"
         clear: "Tyhjennä valinnat"
-      predicates:
-        contains: "Sisältää"
-        equals: "On yhtä kuin"
-        starts_with: "Alkaa"
-        ends_with: "Päättyy"
-        greater_than: "Suurempi kuin"
-        less_than: "Pienempi kuin"
     status_tag:
       "yes": "Kyllä"
       "no": "Ei"
       "unset": "Ei"
-    main_content: "Ole hyvä, käytä %{model}#main_content:ia nähdäksesi jotain."
     logout: "Kirjaudu ulos"
     powered_by: "Käyttää %{active_admin} %{version}:ia"
     sidebars:
@@ -53,8 +42,6 @@ fi:
     blank_slate:
       content: "Järjestelmässä ei ole yhtään %{resource_name}:ia vielä."
       link: "Luo ensimmäinen"
-    dropdown_actions:
-      button_label: "Acciones"
     batch_actions:
       button_label: "Toimet"
       default_confirmation: "Oletko varma, että haluat tehdä tämän?"
@@ -107,6 +94,3 @@ fi:
       message: "Sinulla ei ole oikeuksia suorittaa yrittämääsi toimintoa."
     index_list:
       table: "Taulukko"
-      block: "Lista"
-      grid: "Ruudukko"
-      blog: "Blogi"
