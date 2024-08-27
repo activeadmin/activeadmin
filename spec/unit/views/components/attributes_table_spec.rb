@@ -47,6 +47,15 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
           end
         end
       },
+      "when you create each row with a string and symbol" => proc {
+        render_arbre_component(assigns) do
+          attributes_table_for post do
+            row "Id", :id
+            row "Title", :title
+            row "Body", :body
+          end
+        end
+      },
       "when you create each row with a custom block that returns nil" => proc {
         render_arbre_component(assigns) do
           attributes_table_for post do
