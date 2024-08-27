@@ -104,7 +104,7 @@ module ActiveAdmin
           # query fast.
           offset_scope = @collection.offset(@collection.current_page * @collection.limit_value)
           # Support array collections. Kaminari::PaginatableArray does not respond to except
-          offset_scope = offset_scope.except(:order) if offset_scope.respond_to?(:except)
+          offset_scope = offset_scope.except(:select, :order) if offset_scope.respond_to?(:except)
           offset = offset_scope.limit(1).count
           options[:total_pages] = @collection.current_page + offset
           options[:right] = 0
