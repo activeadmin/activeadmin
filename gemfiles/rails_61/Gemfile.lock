@@ -256,7 +256,7 @@ GEM
       ast (~> 2.4.1)
       racc
     public_suffix (6.0.1)
-    pundit (2.3.2)
+    pundit (2.4.0)
       activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (2.2.9)
