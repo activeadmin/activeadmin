@@ -7,7 +7,9 @@ RSpec::Matchers.define :perform_database_query do |query|
     @match = nil
 
     callback = lambda do |_name, _started, _finished, _unique_id, payload|
-      @match = query_regexp.match?(payload[:sql])
+      if query_regexp.match?(payload[:sql])
+        @match = true
+      end
     end
 
     ActiveSupport::Notifications.subscribed(callback, "sql.active_record", &block)
