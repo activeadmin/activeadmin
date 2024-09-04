@@ -216,6 +216,22 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(value.to_s).to eq "<span class=\"status_tag yes\">Yes</span>\n"
     end
 
+    context "with non-database boolean attribute" do
+      let(:model_class) do
+        Class.new(Post) do
+          attribute :a_virtual_attribute, :boolean
+        end
+      end
+
+      it "calls status_tag even when attribute is nil" do
+        post = model_class.new a_virtual_attribute: nil
+
+        value = view.format_attribute post, :a_virtual_attribute
+
+        expect(value.to_s).to eq "<span class=\"status_tag unset no\">No</span>\n"
+      end
+    end
+
     it "calls status_tag for boolean non-database values" do
       post = Post.new
       post.define_singleton_method(:true_method) do
