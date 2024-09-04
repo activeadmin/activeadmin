@@ -108,8 +108,8 @@ module ActiveAdmin
         when TrueClass, FalseClass
           true
         else
-          if resource.class.respond_to? :columns_hash
-            column = resource.class.columns_hash[attr.to_s] and column.type == :boolean
+          if resource.class.respond_to? :attribute_types
+            resource.class.attribute_types[attr.to_s].is_a?(ActiveModel::Type::Boolean)
           end
         end
       end
