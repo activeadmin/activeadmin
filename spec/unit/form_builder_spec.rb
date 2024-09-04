@@ -84,12 +84,16 @@ RSpec.describe ActiveAdmin::FormBuilder do
       it "should use the rails helper for rendering attributes" do
         expect(body).to have_css("fieldset[data-test='custom']")
       end
+
+      it "should generate a legend with an inner span containing the name" do
+        expect(body).to have_selector("fieldset legend span", text: "custom_name")
+      end
     end
 
     context "with XSS payload as name" do
       let :body do
         build_form do |f|
-          f.inputs name: '<script>alert(document.domain)</script>' do
+          f.inputs name: "<script>alert(document.domain)</script>" do
             f.input :title
             f.input :body
           end

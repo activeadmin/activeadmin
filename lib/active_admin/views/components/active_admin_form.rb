@@ -127,7 +127,7 @@ module ActiveAdmin
         html_options[:class] ||= "inputs"
         legend = args.shift if args.first.is_a?(::String)
         legend = html_options.delete(:name) if html_options.key?(:name)
-        legend_tag = legend ? helpers.tag.legend(legend, class: "fieldset-title") : ""
+        legend_tag = legend ? helpers.tag.legend(helpers.tag.span(legend), class: "fieldset-title") : ""
         fieldset_attrs = tag_attributes html_options
         @opening_tag = "<fieldset #{fieldset_attrs}>#{legend_tag}<ol>"
         @closing_tag = "</ol></fieldset>"
