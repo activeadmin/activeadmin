@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+## 3.2.5 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.4..v3.2.5)
+
+### Enhancements
+
+* Backport Add favicon to template app to fix Rails 7.2 test suite run [#8468] by [@mgrunberg]
+* Backport Use attribute_types instead of columns_hash to determine type [#8469] by [@mgrunberg]
+* Backport Optimize count query for pagination_total: false option [#8470] by [@mgrunberg]
+
+### Bug Fixes
+
+* Restore inner span tag to form inputs legend [#8467] by [@denisahearn]
+
 ## 3.2.4 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.3..v3.2.4)
 
 ### Enhancements
@@ -944,6 +956,10 @@ Please check [0-6-stable] for previous changes.
 [#8412]: https://github.com/activeadmin/activeadmin/pull/8412
 [#8434]: https://github.com/activeadmin/activeadmin/pull/8434
 [#8446]: https://github.com/activeadmin/activeadmin/pull/8446
+[#8467]: https://github.com/activeadmin/activeadmin/pull/8467
+[#8468]: https://github.com/activeadmin/activeadmin/pull/8468
+[#8469]: https://github.com/activeadmin/activeadmin/pull/8469
+[#8470]: https://github.com/activeadmin/activeadmin/pull/8470
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -972,6 +988,7 @@ Please check [0-6-stable] for previous changes.
 [@craigmcnamara]: https://github.com/craigmcnamara
 [@DanielHeath]: https://github.com/DanielHeath
 [@deivid-rodriguez]: https://github.com/deivid-rodriguez
+[@denisahearn]: https://github.com/denisahearn
 [@dennisvdvliet]: https://github.com/dennisvdvliet
 [@dhyegofernando]: https://github.com/dhyegofernando
 [@dkniffin]: https://github.com/dkniffin
