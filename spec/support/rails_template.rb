@@ -90,6 +90,8 @@ gsub_file "tailwind-active_admin.config.js", Regexp.new("@activeadmin/activeadmi
 # Force strong parameters to raise exceptions
 environment "config.action_controller.action_on_unpermitted_parameters = :raise"
 
+environment "config.active_record.permanent_connection_checkout = :disallowed"
+
 inject_into_file "package.json", after: '"private": "true",' do
   "\n  \"type\": \"module\",\n"
 end
