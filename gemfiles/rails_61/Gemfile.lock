@@ -172,7 +172,7 @@ GEM
     has_scope (0.8.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
-    highline (3.1.0)
+    highline (3.1.1)
       reline
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
@@ -215,7 +215,7 @@ GEM
     launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
-    logger (1.6.0)
+    logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -231,7 +231,7 @@ GEM
     mini_portile2 (2.8.7)
     minitest (5.25.1)
     multi_test (1.1.0)
-    net-imap (0.4.14)
+    net-imap (0.4.16)
       date
       net-protocol
     net-pop (0.1.2)
@@ -252,7 +252,7 @@ GEM
     parallel (1.26.3)
     parallel_tests (4.7.1)
       parallel
-    parser (3.3.4.2)
+    parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
     public_suffix (6.0.1)
@@ -300,24 +300,23 @@ GEM
       activesupport (>= 6.1.5)
       i18n
     regexp_parser (2.9.2)
-    reline (0.5.9)
+    reline (0.5.10)
       io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.6)
-      strscan
-    rspec-core (3.13.0)
+    rexml (3.3.7)
+    rspec-core (3.13.1)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.2)
+    rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-mocks (3.13.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-rails (6.1.4)
+    rspec-rails (6.1.5)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       railties (>= 6.1)
@@ -347,12 +346,11 @@ GEM
       mini_portile2 (~> 2.8.0)
     sqlite3 (1.7.3-arm64-darwin)
     sqlite3 (1.7.3-x86_64-linux)
-    strscan (3.1.0)
     sys-uname (1.3.0)
       ffi (~> 1.1)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
-    thor (1.3.1)
+    thor (1.3.2)
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -365,7 +363,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.17)
+    zeitwerk (2.6.18)
 
 PLATFORMS
   arm64-darwin-23
@@ -402,4 +400,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-   2.5.17
+   2.5.18
