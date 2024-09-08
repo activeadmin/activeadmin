@@ -26,6 +26,10 @@ RSpec.describe ActiveAdmin::OrderClause do
     specify "#to_sql prepends table name" do
       expect(subject.to_sql).to eq '"posts"."id" asc'
     end
+
+    # Prevents automatically wrapping each specified test in a transaction,
+    # to allow application logic transactions to be tested in a top-level.
+    uses_transaction "#to_sql prepends table name"
   end
 
   describe "posts.id_asc" do
