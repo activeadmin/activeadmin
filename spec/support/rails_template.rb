@@ -111,6 +111,14 @@ inject_into_file "package.json", after: '"private": "true",' do
   "\n  \"type\": \"module\",\n"
 end
 
+if Rails.gem_version >= Gem::Version.new("7.2")
+  # Disable permanent connection checkout.
+  # ActiveRecord::Base.connection was soft-deprecated in Rails 7.2. Let's make sure we are not using it.
+  inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
+    "\n    config.active_record.permanent_connection_checkout = :disallowed\n"
+  end
+end
+
 # Add some translations
 append_file "config/locales/en.yml", File.read(File.expand_path("templates/en.yml", __dir__))
 
