@@ -100,6 +100,7 @@ end
 if Rails.gem_version >= Gem::Version.new("7.2")
   # Disable permanent connection checkout.
   # ActiveRecord::Base.connection was soft-deprecated in Rails 7.2. Let's make sure we are not using it.
+  # NOTE: Specs will ignore this setting, unless they opt out of transactional fixtures via `uses_transaction`.
   inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
     "\n    config.active_record.permanent_connection_checkout = :disallowed\n"
   end
