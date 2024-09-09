@@ -27,8 +27,8 @@ RSpec.describe ActiveAdmin::OrderClause do
       expect(subject.to_sql).to eq '"posts"."id" asc'
     end
 
-    # Prevents automatically wrapping each specified test in a transaction,
-    # to allow application logic transactions to be tested in a top-level.
+    # Prevents automatically wrapping this test in a transaction. Check that we use the proper method to get a connection from the pool to quote the clause.
+    # We don't want to run the test using a leased connection https://github.com/rails/rails/blob/v7.2.1/activerecord/lib/active_record/test_fixtures.rb#L161
     uses_transaction "#to_sql prepends table name"
   end
 
