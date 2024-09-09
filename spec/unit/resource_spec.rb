@@ -42,11 +42,8 @@ module ActiveAdmin
         expect(config.resource_quoted_column_name('first_name')).to eq '"first_name"'
       end
 
-      # Prevents automatically wrapping each specified test in a transaction,
-      # to allow application logic transactions to be tested in a top-level.
-      #
-      # Let's make sure we don't wrap the example in a fixture transaction. We don't want to run the
-      # test using a leased connection https://github.com/rails/rails/blob/v7.2.1/activerecord/lib/active_record/test_fixtures.rb#L161
+      # Prevents automatically wrapping this test in a transaction. Check that we use the proper method to get a connection from the pool.
+      # We don't want to run the test using a leased connection https://github.com/rails/rails/blob/v7.2.1/activerecord/lib/active_record/test_fixtures.rb#L161
       uses_transaction "should return quote argument"
     end
 
