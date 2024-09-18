@@ -54,6 +54,10 @@ pl:
       "yes": "Tak"
       "no": "Nie"
       "unset": "Nie"
+    toggle_dark_mode: Przełącz tryb ciemny
+    toggle_main_navigation_menu: Przełącz główną nawigację
+    toggle_section: Przełącz sekcję
+    toggle_user_menu: Przełącz menu użytkownika
     logout: "Wyloguj"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
