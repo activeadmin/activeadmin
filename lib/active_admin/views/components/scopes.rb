@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-require "active_admin/async_count"
-require "active_admin/view_helpers/method_or_proc_helper"
+require_relative "../../async_count"
+require_relative "../../view_helpers/method_or_proc_helper"
 
 module ActiveAdmin
   module Views

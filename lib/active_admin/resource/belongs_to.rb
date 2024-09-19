@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "active_admin/resource"
+require_relative "../resource"
 
 module ActiveAdmin
   class Resource

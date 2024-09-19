@@ -1,7 +1,7 @@
 # frozen_string_literal: true
-require "active_admin/router"
-require "active_admin/application_settings"
-require "active_admin/namespace_settings"
+require_relative "router"
+require_relative "application_settings"
+require_relative "namespace_settings"
 
 module ActiveAdmin
   class Application

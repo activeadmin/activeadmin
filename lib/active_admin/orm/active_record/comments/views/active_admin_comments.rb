@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "active_admin/views"
+require_relative "../../../../views"
 
 module ActiveAdmin
   module Comments

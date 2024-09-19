@@ -35,7 +35,7 @@ module ActiveAdmin
     end
 
     initializer "active_admin.routes" do
-      require "active_admin/helpers/routes/url_helpers"
+      require_relative "helpers/routes/url_helpers"
     end
 
     initializer "active_admin.deprecator" do |app|
