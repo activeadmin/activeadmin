@@ -35,6 +35,10 @@ es:
     has_many_delete: "Eliminar"
     has_many_remove: "Quitar"
     move: "Mover"
+    toggle_dark_mode: "Alternar modo oscuro"
+    toggle_main_navigation_menu: "Alternar el menú de navegación principal"
+    toggle_user_menu: "Alternar menú de usuario"
+    toggle_section: "Alternar sección"
     filters:
       buttons:
         filter: "Filtrar"
@@ -62,6 +66,8 @@ es:
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
       multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       per_page: "Por página: "
+      previous: "Anterior"
+      next: "Siguiente"
       entry:
         one: "registro"
         other: "registros"
