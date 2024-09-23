@@ -1,2 +1,2 @@
 # frozen_string_literal: true
-require "active_admin"
+require_relative "active_admin"

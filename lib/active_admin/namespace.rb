@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "active_admin/resource_collection"
+require_relative "resource_collection"
 
 module ActiveAdmin
 

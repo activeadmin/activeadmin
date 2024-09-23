@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "active_admin/component"
+require_relative "../../component"
 
 module ActiveAdmin
   module BatchActions

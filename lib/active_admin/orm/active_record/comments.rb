@@ -1,7 +1,7 @@
 # frozen_string_literal: true
-require "active_admin/orm/active_record/comments/views"
-require "active_admin/orm/active_record/comments/namespace_helper"
-require "active_admin/orm/active_record/comments/resource_helper"
+require_relative "comments/views"
+require_relative "comments/namespace_helper"
+require_relative "comments/resource_helper"
 
 # Add the comments configuration
 ActiveAdmin::Application.inheritable_setting :comments, true

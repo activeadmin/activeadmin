@@ -125,12 +125,12 @@ module ActiveAdmin
 end
 
 # Require things that don't support autoload
-require "active_admin/engine"
-require "active_admin/error"
+require_relative "active_admin/engine"
+require_relative "active_admin/error"
 
 # Require internal plugins
-require "active_admin/batch_actions"
-require "active_admin/filters"
+require_relative "active_admin/batch_actions"
+require_relative "active_admin/filters"
 
 # Require ORM-specific plugins
-require "active_admin/orm/active_record" if defined? ActiveRecord
+require_relative "active_admin/orm/active_record" if defined? ActiveRecord

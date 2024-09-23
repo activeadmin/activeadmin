@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "active_admin/filters/active_filter"
+require_relative "active_filter"
 
 module ActiveAdmin
   module Filters
