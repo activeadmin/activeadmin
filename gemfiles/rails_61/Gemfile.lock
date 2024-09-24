@@ -356,7 +356,7 @@ GEM
     unicode-display_width (2.6.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webrick (1.8.1)
+    webrick (1.8.2)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
