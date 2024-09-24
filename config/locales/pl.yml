@@ -49,6 +49,8 @@ pl:
     scopes:
       all: "Wszystko"
     search_status:
+      title: "Wyszukiwanie"
+      title_with_scope: "Wyszukiwanie %{name}"
       no_current_filters: "Brak"
     status_tag:
       "yes": "Tak"
