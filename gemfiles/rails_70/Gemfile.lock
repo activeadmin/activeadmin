@@ -197,7 +197,7 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
-    inherited_resources (2.0.0)
+    inherited_resources (2.0.1)
       actionpack (>= 6.0)
       has_scope (>= 0.6)
       railties (>= 6.0)
