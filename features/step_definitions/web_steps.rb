@@ -106,6 +106,12 @@ Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field
   end
 end
 
+Then /^the "([^"]*)" select(?: within (.*))? should have "([^"]+)" selected$/ do |label, parent, option|
+  with_scope(parent) do
+    expect(page).to have_select(label, selected: option)
+  end
+end
+
 Then /^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/ do |label, parent, negate|
   with_scope(parent) do
     checkbox = find_field(label)

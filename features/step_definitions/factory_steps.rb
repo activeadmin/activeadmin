@@ -32,6 +32,12 @@ Given /^a tag named "([^"]*)" exists$/ do |name|
   Tag.create! name: name
 end
 
+Given /^a company named "([^"]*)"(?: with a store named "([^"]*)")? exists$/ do |name, store_name|
+  store = Store.create! name: store_name if store_name
+
+  Company.create! name: name, stores: [store].compact
+end
+
 Given /^I create a new post with the title "([^"]*)"$/ do |title|
   first(:link, "Posts").click
   click_on "New Post"
