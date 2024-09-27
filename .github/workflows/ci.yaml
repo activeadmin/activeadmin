@@ -32,7 +32,7 @@ jobs:
         include:
           - ruby: '3.0'
             os: ubuntu-latest
-            rails: rails_71
+            rails: rails_70
     steps:
       - uses: actions/checkout@v4
       - name: Configure bundler (default)
