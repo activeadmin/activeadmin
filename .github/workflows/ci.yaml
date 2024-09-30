@@ -28,10 +28,6 @@ jobs:
           - rails_72
           - rails_71
           - rails_70
-        include:
-          - ruby: '3.0'
-            os: ubuntu-latest
-            rails: rails_71
     steps:
       - uses: actions/checkout@v4
       - name: Configure bundler (default)

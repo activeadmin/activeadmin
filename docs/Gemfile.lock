@@ -244,7 +244,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rexml (3.3.7)
+    rexml (3.3.8)
     rouge (3.30.0)
     rubyzip (2.3.2)
     safe_yaml (1.0.5)
@@ -275,4 +275,4 @@ DEPENDENCIES
   github-pages
 
 BUNDLED WITH
-   2.5.19
+   2.5.20

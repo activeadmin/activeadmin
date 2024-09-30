@@ -32,23 +32,22 @@ module ActiveAdmin
       FileUtils.mkdir_p base_dir
       args = %W(
         -m spec/support/#{template}.rb
+        --skip-action-cable
         --skip-action-mailbox
         --skip-action-text
         --skip-active-storage
-        --skip-action-cable
         --skip-bootsnap
+        --skip-brakeman
+        --skip-ci
         --skip-decrypted-diffs
         --skip-dev-gems
         --skip-docker
         --skip-git
         --skip-hotwire
         --skip-jbuilder
-        --skip-listen
-        --skip-spring
-        --skip-turbolinks
-        --skip-test
+        --skip-rubocop
         --skip-system-test
-        --skip-webpack-install
+        --skip-test
         --javascript=importmap
       )
 
