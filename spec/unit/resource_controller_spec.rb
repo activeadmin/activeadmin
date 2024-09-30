@@ -134,7 +134,7 @@ RSpec.describe ActiveAdmin::ResourceController, type: :controller do
       end
     end
 
-    it "should not update habtm associations when validation fails" do
+    it "should not update habtm associations when the resource validation fails" do
       resource = Company.create! name: "my company", stores: [Store.create!(name: "store 1")]
 
       controller.send(:update_resource, resource, [{ name: "", store_ids: [] }])
