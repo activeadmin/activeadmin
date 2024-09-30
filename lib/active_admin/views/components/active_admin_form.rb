@@ -132,22 +132,10 @@ module ActiveAdmin
         legend = args.shift if args.first.is_a?(::String)
         legend = html_options.delete(:name) if html_options.key?(:name)
         legend_tag = legend ? helpers.tag.legend(legend, class: "fieldset-title") : ""
-        fieldset_attrs = tag_attributes html_options
+        fieldset_attrs = helpers.tag.attributes html_options
         @opening_tag = "<fieldset #{fieldset_attrs}>#{legend_tag}<ol>"
         @closing_tag = "</ol></fieldset>"
         super(*(args << html_options), &block)
-      end
-
-      private
-
-      def tag_attributes(html_options)
-        if Rails::VERSION::MAJOR <= 6
-          # Reimplement tag.attributes to backport support for Rails 6.1.
-          # TODO: this can be removed when support for Rails 6.x is dropped
-          helpers.tag.tag_options(html_options.to_h).to_s.strip.html_safe
-        else
-          helpers.tag.attributes html_options
-        end
       end
     end
 
