@@ -136,3 +136,18 @@ Feature: Edit Page
     And I follow "Edit"
     Then I should see a fieldset titled "Details"
     And the "Name" field should contain "Bugs"
+
+  Scenario: Save resource within a transaction
+    Given a company named "My company" with a store named "First store" exists
+    And a store named "Second store" exists
+    When I am on the index page for companies
+    And I follow "Edit"
+    Then the "Stores" select should have "First store" selected
+    When I fill in "Name" with ""
+    And I select "Second store" from "Stores"
+    And I press "Update Company"
+    Then I should see "can't be blank"
+    When I press "Cancel"
+    And I follow "View"
+    Then I should see the attribute "Stores" with "First store"
+    And I should not see the attribute "Stores" with "Second store"
