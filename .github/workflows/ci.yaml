@@ -28,7 +28,6 @@ jobs:
           - rails_72
           - rails_71
           - rails_70
-          - rails_61
         include:
           - ruby: '3.0'
             os: ubuntu-latest

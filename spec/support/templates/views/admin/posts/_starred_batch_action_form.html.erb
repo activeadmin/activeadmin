@@ -18,8 +18,7 @@
       </button>
       <div class="px-6 py-6 lg:px-8">
         <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Toggle Starred</h3>
-        <% form_action = (Rails::VERSION::MAJOR >= 7) ? false : {} %>
-        <%= form_tag form_action, "data-batch-action-form": "" do %>
+        <%= form_tag false, "data-batch-action-form": "" do %>
           <div class="py-6 flex items-center gap-2">
             <input name="starred" id="starred-checkbox" type="checkbox" value="true" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
             <label for="starred-checkbox" class="text-gray-900 dark:text-gray-300">Starred</label>
