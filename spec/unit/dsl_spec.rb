@@ -77,6 +77,24 @@ RSpec.describe ActiveAdmin::DSL do
   end
 
   describe "#batch_action" do
+    describe "title of batch_action" do
+      it "default title" do
+        dsl.run_registration_block do
+          config.batch_actions = true
+          batch_action :foo
+        end
+        expect(resource_config.batch_actions.first.title).to eq "Foo"
+      end
+
+      it "default title" do
+        dsl.run_registration_block do
+          config.batch_actions = true
+          batch_action :foo, title: "Custom Foo"
+        end
+        expect(resource_config.batch_actions.first.title).to eq "Custom Foo"
+      end
+    end
+
     it "should add a batch action by symbol" do
       dsl.run_registration_block do
         config.batch_actions = true
