@@ -79,6 +79,8 @@ jobs:
   upload_coverage:
     name: Upload Coverage
     runs-on: ubuntu-latest
+    # Do not run on forks
+    if: ${{ github.repository_owner == 'activeadmin' }}
     needs: [test]
     steps:
       - uses: actions/checkout@v4
