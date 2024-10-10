@@ -27,11 +27,13 @@ const terserOptions = {
   }
 }
 
+const pathPrefix = process.env.PATH_PREFIX || ""
+
 export default [
   {
     input: "app/javascript/active_admin/base.js",
     output: {
-      file: "app/assets/javascripts/active_admin/base.js",
+      file: `${pathPrefix}app/assets/javascripts/active_admin/base.js`,
       format: "umd",
       name: "ActiveAdmin",
       globals: {
@@ -58,7 +60,7 @@ export default [
   {
     input: "app/javascript/active_admin/base-esm.js",
     output: {
-      file: "app/assets/javascripts/active_admin/base-esm.js",
+      file: `${pathPrefix}app/assets/javascripts/active_admin/base-esm.js`,
       format: "es"
     },
     plugins: [
