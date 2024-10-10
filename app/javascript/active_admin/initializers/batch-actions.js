@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import ModalDialog from "../lib/modal-dialog";
 
 const onDOMReady = function() {

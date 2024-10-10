@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 class CheckboxToggler {
   constructor(options, container){
     this.options = options;

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { queryStringToParams, hasTurbolinks, turbolinksVisit, toQueryString } from './utils';
 
 class PerPage {

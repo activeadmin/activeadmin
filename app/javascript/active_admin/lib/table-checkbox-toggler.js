@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import CheckboxToggler from "./checkbox-toggler";
 
 class TableCheckboxToggler extends CheckboxToggler {
