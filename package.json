@@ -43,6 +43,7 @@
     "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src && cp -R app/assets/stylesheets/active_admin src/scss"
   },
   "dependencies": {
+    "@rails/ujs": "7.1.400",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.13.3",
     "jquery-ujs": "^1.2.2"
