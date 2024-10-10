@@ -12,8 +12,8 @@
 
 (function(global, factory) {
   typeof exports === "object" && typeof module !== "undefined" ? factory(exports, require("jquery"), require("jquery-ui/ui/widgets/datepicker"), require("jquery-ui/ui/widgets/dialog"), require("jquery-ui/ui/widgets/sortable"), require("jquery-ui/ui/widgets/tabs"), require("jquery-ui/ui/widget"), require("jquery-ujs")) : typeof define === "function" && define.amd ? define([ "exports", "jquery", "jquery-ui/ui/widgets/datepicker", "jquery-ui/ui/widgets/dialog", "jquery-ui/ui/widgets/sortable", "jquery-ui/ui/widgets/tabs", "jquery-ui/ui/widget", "jquery-ujs" ], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, 
-  factory(global.ActiveAdmin = {}));
-})(this, function(exports) {
+  factory(global.ActiveAdmin = {}, global.$));
+})(this, function(exports, $) {
   "use strict";
   $.fn.serializeObject = function() {
     return this.serializeArray().reduce(function(obj, item) {
@@ -188,7 +188,7 @@
       var options = input.data("datepicker-options");
       input.datepicker($.extend(defaults, options));
     });
-  })(jQuery);
+  })($);
   var DropdownMenu = function() {
     function DropdownMenu(options, element) {
       this.options = options;
@@ -361,7 +361,7 @@
   }();
   (function($) {
     $(document).on("click", ".clear_filters_btn", Filters._clearForm).on("submit", ".filter_form", Filters._disableEmptyInputFields).on("change", ".filter_form_field.select_and_search select", Filters._setSearchType);
-  })(jQuery);
+  })($);
   $(function() {
     $(document).on("click", "a.button.has_many_remove", function(event) {
       event.preventDefault();
@@ -414,7 +414,7 @@
     elems.each(recompute_positions);
   };
   var recompute_positions = function recompute_positions(parent) {
-    parent = parent instanceof jQuery ? parent : $(this);
+    parent = parent instanceof $ ? parent : $(this);
     var input_name = parent.data("sortable");
     var position = parseInt(parent.data("sortable-start") || 0, 10);
     parent.children("fieldset").each(function() {
@@ -467,7 +467,7 @@
     });
     $.fn["perPage"] = PerPage._jQueryInterface;
     $.fn["perPage"].Constructor = PerPage;
-  })(jQuery);
+  })($);
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
     subClass.prototype.constructor = subClass;

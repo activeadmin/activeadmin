@@ -2,6 +2,7 @@
   "name": "@activeadmin/activeadmin",
   "version": "3.2.5",
   "description": "The administration framework for Ruby on Rails.",
+  "module": "app/assets/javascripts/active_admin/base-esm.js",
   "main": "app/assets/javascripts/active_admin/base.js",
   "type": "module",
   "files": [
