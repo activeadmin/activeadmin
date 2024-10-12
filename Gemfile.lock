@@ -230,8 +230,6 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    kramdown (2.4.0)
-      rexml
     language_server-protocol (3.17.0.3)
     launchy (3.0.1)
       addressable (~> 2.8)
@@ -423,7 +421,6 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yard (0.9.37)
     zeitwerk (2.6.18)
 
 PLATFORMS
@@ -447,7 +444,6 @@ DEPENDENCIES
   i18n-spec
   i18n-tasks
   importmap-rails
-  kramdown
   launchy
   parallel_tests
   pundit
@@ -467,7 +463,6 @@ DEPENDENCIES
   sprockets-rails
   sqlite3
   webrick
-  yard
 
 BUNDLED WITH
    2.5.20
