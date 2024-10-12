@@ -11,7 +11,26 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  pre_test:
+    name: Pre-test confirmation
+    runs-on: ubuntu-latest
+    outputs:
+      skip_tests: ${{ steps.changed-files.outputs.only_changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: tj-actions/changed-files@v45
+        id: changed-files
+        with:
+          files: |
+            .github/**
+            !.github/workflows/ci.yaml
+            docs/**
+            **.md
+            .*.yml
+
   test:
+    needs: pre_test
+    if: ${{ needs.pre_test.outputs.skip_tests != 'true' }}
     name: test (${{ matrix.ruby }}, ${{ matrix.rails }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
