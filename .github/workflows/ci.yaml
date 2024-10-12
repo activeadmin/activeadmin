@@ -1,4 +1,4 @@
-name: ci
+name: CI
 
 on:
   pull_request:
@@ -45,29 +45,15 @@ jobs:
           rubygems: latest
       - name: Create test app
         run: bin/rake setup
-      - name: Restore cached RSpec runtimes
-        uses: actions/cache@v4
-        with:
-          path: tmp/parallel_runtime_rspec.log
-          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.rails }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
-      - name: Run RSpec tests
-        env:
-          COVERAGE: true
-        run: |
-          bin/parallel_rspec
-          RSPEC_FILESYSTEM_CHANGES=true bin/rspec
       - name: Restore cached cucumber runtimes
         uses: actions/cache@v4
         with:
           path: tmp/parallel_runtime_cucumber.log
           key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.rails }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
-      - name: Run Cucumber features
+      - name: Run tests
         env:
           COVERAGE: true
-        run: |
-          bin/parallel_cucumber --fail-fast
-          bin/cucumber --profile filesystem-changes
-          bin/cucumber --profile class-reloading
+        run: bin/rake
       - name: Rename coverage file by matrix run
         run: mv coverage/coverage.xml coverage/coverage-ruby-${{ matrix.ruby }}-${{ matrix.rails }}.xml
       - uses: actions/upload-artifact@v4
@@ -81,7 +67,8 @@ jobs:
     runs-on: ubuntu-latest
     # Do not run on forks
     if: ${{ github.repository_owner == 'activeadmin' }}
-    needs: [test]
+    needs:
+      - test
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4

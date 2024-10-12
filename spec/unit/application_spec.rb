@@ -81,7 +81,7 @@ RSpec.describe ActiveAdmin::Application do
       expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", application.app_path))
     end
 
-    it "should load files from subdirectories", :changes_filesystem do
+    it "should load files from subdirectories" do
       test_dir = File.expand_path("app/admin/public", application.app_path)
       test_file = File.expand_path("app/admin/public/posts.rb", application.app_path)
 
@@ -94,7 +94,7 @@ RSpec.describe ActiveAdmin::Application do
       end
     end
 
-    it "should honor load paths order", :changes_filesystem do
+    it "should honor load paths order" do
       test_dir = File.expand_path("app/other-admin", application.app_path)
       test_file = File.expand_path("app/other-admin/posts.rb", application.app_path)
 

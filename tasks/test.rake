@@ -1,15 +1,15 @@
 # frozen_string_literal: true
-desc "Run the full suite using parallel_tests to run on multiple cores"
+desc "Run the full test suite while using parallel_tests for cucumber"
 task test: [:setup, :spec, :cucumber]
 
-desc "Create a test rails app for the parallel specs to run against if it doesn't exist already"
+desc "Create a test rails app for the specs to run against if it doesn't exist already"
 task setup: :"setup:create"
 
 namespace :setup do
-  desc "Forcefully create a test rails app for the parallel specs to run against"
+  desc "Forcefully create a test rails app for the specs to run against"
   task :force, [:rails_env, :template] => [:require, :rm, :run]
 
-  desc "Create a test rails app for the parallel specs to run against if it doesn't exist already"
+  desc "Create a test rails app for the specs to run against if it doesn't exist already"
   task :create, [:rails_env, :template] => [:require, :run]
 
   desc "Makes test app creation code available"
@@ -23,7 +23,7 @@ namespace :setup do
     require_relative "test_application"
   end
 
-  desc "Create a test rails app for the parallel specs to run against"
+  desc "Create a test rails app for the specs to run against"
   task :run, [:rails_env, :template] do |_t, opts|
     ActiveAdmin::TestApplication.new(opts).soft_generate
   end
@@ -32,23 +32,6 @@ namespace :setup do
     test_app = ActiveAdmin::TestApplication.new(opts)
 
     FileUtils.rm_rf test_app.app_dir
-  end
-end
-
-task spec: :"spec:all"
-
-namespace :spec do
-  desc "Run all specs"
-  task all: [:regular, :filesystem_changes]
-
-  desc "Run the standard specs in parallel"
-  task :regular do
-    sh("bin/parallel_rspec")
-  end
-
-  desc "Run the specs that change the filesystem sequentially"
-  task :filesystem_changes do
-    sh({ "RSPEC_FILESYSTEM_CHANGES" => "true" }, "bin/rspec")
   end
 end
 
