@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 let onDOMReady = () =>
   $('#active_admin_content .tabs').tabs()
 

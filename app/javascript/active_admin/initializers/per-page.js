@@ -1,3 +1,4 @@
+import jQuery from 'jquery';
 import PerPage from "../lib/per-page";
 
 (($) => {
