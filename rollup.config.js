@@ -76,6 +76,27 @@ export default [
     // Use client's yarn dependencies instead of bundling everything
     external: [
       'jquery',
+      'jquery-ui/ui/widget',
+      'jquery-ui/ui/position',
+      'jquery-ui/ui/data',
+      'jquery-ui/ui/disable-selection',
+      'jquery-ui/ui/focusable',
+      'jquery-ui/ui/form-reset-mixin',
+      'jquery-ui/ui/keycode',
+      'jquery-ui/ui/labels',
+      'jquery-ui/ui/scroll-parent',
+      'jquery-ui/ui/tabbable',
+      'jquery-ui/ui/unique-id',
+      'jquery-ui/ui/widgets/draggable',
+      'jquery-ui/ui/widgets/resizable',
+      'jquery-ui/ui/widgets/sortable',
+      'jquery-ui/ui/widgets/button',
+      'jquery-ui/ui/widgets/checkboxradio',
+      'jquery-ui/ui/widgets/controlgroup',
+      'jquery-ui/ui/widgets/datepicker',
+      'jquery-ui/ui/widgets/dialog',
+      'jquery-ui/ui/widgets/mouse',
+      'jquery-ui/ui/widgets/tabs',
       '@rails/ujs',
     ]
   }
