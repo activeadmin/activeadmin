@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 22
           cache: yarn
-      - uses: actions/configure-pages@v4
+      - uses: actions/configure-pages@v5
       - run: yarn install
       - run: yarn docs:build
       - uses: actions/upload-pages-artifact@v3
