@@ -45,9 +45,12 @@ module ActiveAdmin
         --skip-git
         --skip-hotwire
         --skip-jbuilder
+        --skip-kamal
         --skip-rubocop
+        --skip-solid
         --skip-system-test
         --skip-test
+        --skip-thruster
         --javascript=importmap
       )
 
@@ -81,7 +84,7 @@ module ActiveAdmin
     end
 
     def app_name
-      return "rails_72" if main_app?
+      return "rails_80" if main_app?
 
       File.basename(File.dirname(gemfile))
     end
