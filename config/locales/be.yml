@@ -1,0 +1,116 @@
+be:
+  active_admin:
+    dashboard: "Панель кіраваньня"
+    view: "Прагледзець"
+    edit: "Зьмяніць"
+    delete: "Выдаліць"
+    delete_confirmation: "Вы ўпэўнены, што хочаце выдаліць?"
+    new_model: "Стварыць %{model}"
+    edit_model: "Зьмяніць %{model}"
+    delete_model: "Выдаліць %{model}"
+    details: "%{model} падрабязьней"
+    cancel: "Скасаваць"
+    empty: "Пуста"
+    previous: "Наперад"
+    next: "Наст."
+    download: "Запампоўкі:"
+    has_many_new: "Дадаць %{model}"
+    has_many_delete: "Прыбраць"
+    has_many_remove: "Выдаліць"
+    filters:
+      buttons:
+        filter: "Фільтраваць"
+        clear: "Вычысьціць"
+      predicates:
+        from: "ад"
+        to: "да"
+    search_status:
+      no_current_filters: "Ніводны"
+    status_tag:
+      "yes": "Так"
+      "no": "Не"
+      "unset": "Не"
+    logout: "Выйсьці"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Фільтры"
+      search_status: "Статус пошуку"
+    pagination:
+      empty: "%{model} ня знойдзена"
+      one: "Вынік: <b>1</b> %{model}"
+      one_page: "Вынік: <b>%{n}</b> %{model}"
+      multiple: "Вынік: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{total}</b>"
+      multiple_without_total: "Вынік: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "запіс"
+        few: "запісы"
+        many: "запісаў"
+        other: "запісаў"
+    any: "Любы"
+    blank_slate:
+      content: "Яшчэ няма %{resource_name}."
+      link: "Стварыць"
+    batch_actions:
+      button_label: "Групавыя аперацыі"
+      default_confirmation: "Вы сапраўды жадаеце гэта зрабіць?"
+      delete_confirmation: "Вы ўпэўнены, што хочаце выдаліць %{plural_model}?"
+      succesfully_destroyed:
+        one: "Пасьпяхова выдалена: 1 %{model}"
+        few: "Пасьпяхова выдалена: %{count} %{plural_model}"
+        many: "Пасьпяхова выдалена: %{count} %{plural_model}"
+        other: "Пасьпяхова выдалена: %{count} %{plural_model}"
+      selection_toggle_explanation: "(Скасаваць усе / Зьняць выдзяленьні)"
+      action_label: "%{title} абранае"
+      labels:
+        destroy: "Выдаліць"
+    comments:
+      resource_type: "Тып рэсурса"
+      author_type: "Тып аўтара"
+      body: "Тэкст"
+      author: "Аўтар"
+      add: "Дадаць Каментар"
+      resource: "Рэсурс"
+      no_comments_yet: "Яшчэ няма каментароў."
+      author_missing: "Ананім"
+      title_content: "Каментары (%{count})"
+      errors:
+        empty_text: "Каментар не захаваны, тэкст не павінен быць пустым."
+    devise:
+      username:
+        title: "Імя карыстальніка"
+      email:
+        title: "Электронная пошта"
+      subdomain:
+        title: "Паддамен"
+      password:
+        title: "Пароль"
+      sign_up:
+        title: "Зарэгавацца"
+        submit: "Зарэгавацца"
+      login:
+        title: "Уваход"
+        remember_me: "Запомніць мяне"
+        submit: "Увайсьці"
+      reset_password:
+        title: "Забылі пароль?"
+        submit: "Скінуць пароль"
+      change_password:
+        title: "Зьмена пароля"
+        submit: "Зьмяніць пароль"
+      unlock:
+        title: "Адаслаць паўторна інструкцыі з разблакаваньнем"
+        submit: "Адаслаць паўторна інструкцыі з разблакаваньнем"
+      resend_confirmation_instructions:
+        title: "Адаслаць паўторна лісты з актывацыяй"
+        submit: "Адаслаць паўторна лісты з актывацыяй"
+      links:
+        sign_up: "Зарэгастравацца"
+        sign_in: "Увайсьці"
+        forgot_your_password: "Забылі пароль?"
+        sign_in_with_omniauth_provider: "Увайсьці з дапамогай %{provider}"
+        resend_unlock_instructions: "Паўторна выслаць інструкцыю з разблакаваньнем"
+        resend_confirmation_instructions: "Паўторна выслаць інструкцыю з пацьверджаньнем"
+    access_denied:
+      message: "Вы аўтарызаваны дзеля выкананьня дадзенага дзеяньня"
+    index_list:
+      table: "Табліца"
