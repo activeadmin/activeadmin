@@ -10,14 +10,17 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 8.0.0.rc1"
+  gem "rails", "~> 7.2.0"
 
   gem "sprockets-rails"
-  gem "ransack", ">= 4.2.0"
+  gem "ransack", ">= 4.1.0"
   gem "formtastic", ">= 5.0.0"
 
   gem "cssbundling-rails"
   gem "importmap-rails"
+
+  # FIXME: relax this dependency when Ruby 3.1 support will be dropped
+  gem "zeitwerk", "~> 2.6.18"
 end
 
 group :test do
@@ -41,13 +44,4 @@ group :test do
   gem "rails-i18n" # Provides default i18n for many languages
 end
 
-group :rubocop do
-  gem "rubocop"
-  gem "rubocop-capybara"
-  gem "rubocop-packaging"
-  gem "rubocop-performance"
-  gem "rubocop-rspec"
-  gem "rubocop-rails"
-end
-
-gemspec path: "."
+gemspec path: "../.."

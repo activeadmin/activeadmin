@@ -236,7 +236,7 @@ GEM
     mini_portile2 (2.8.7)
     minitest (5.25.1)
     multi_test (1.1.0)
-    net-imap (0.4.17)
+    net-imap (0.5.0)
       date
       net-protocol
     net-pop (0.1.2)
@@ -313,7 +313,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.3.8)
-    rspec-core (3.13.1)
+    rspec-core (3.13.2)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -404,4 +404,4 @@ DEPENDENCIES
   zeitwerk (~> 2.6.18)
 
 BUNDLED WITH
-   2.5.21
+   2.5.22
