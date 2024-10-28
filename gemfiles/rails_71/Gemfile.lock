@@ -147,7 +147,7 @@ GEM
       capybara (>= 3.11, < 4)
       cucumber (>= 5, < 10)
       railties (>= 5.2, < 8)
-    cucumber-tag-expressions (6.1.0)
+    cucumber-tag-expressions (6.1.1)
     cuprite (0.15.1)
       capybara (~> 3.0)
       ferrum (~> 0.15.0)
