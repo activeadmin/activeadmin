@@ -1,9 +1,6 @@
 "sv-SE":
   activerecord:
     models:
-      comment:
-        one: "Kommentar"
-        other: "Kommentarer"
       active_admin/comment:
         one: "Kommentar"
         other: "Kommentarer"

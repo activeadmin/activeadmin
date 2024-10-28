@@ -17,7 +17,6 @@ ActiveAdmin::Resource.send :include, ActiveAdmin::Comments::ResourceHelper
 ActiveAdmin.autoload :Comment, "active_admin/orm/active_record/comments/comment"
 
 # Hint i18n-tasks about model and attribute translations used by default install
-# i18n-tasks-use t('activerecord.models.comment')
 # i18n-tasks-use t('activerecord.models.active_admin/comment')
 # i18n-tasks-use t('activerecord.attributes.active_admin/comment.author_type')
 # i18n-tasks-use t('activerecord.attributes.active_admin/comment.body')

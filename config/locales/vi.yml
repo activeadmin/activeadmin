@@ -1,9 +1,6 @@
 vi:
   activerecord:
     models:
-      comment:
-        one: "Bình luận"
-        other: "Các bình luận"
       active_admin/comment:
         one: "Bình luận"
         other: "Các bình luận"

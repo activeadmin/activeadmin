@@ -1,9 +1,6 @@
 "zh-TW":
   activerecord:
     models:
-      comment:
-        one: "評論"
-        other: "評論"
       active_admin/comment:
         one: "評論"
         other: "評論"

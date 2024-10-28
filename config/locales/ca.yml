@@ -1,9 +1,6 @@
 ca:
   activerecord:
     models:
-      comment:
-        one: "Comentari"
-        other: "Comentaris"
       active_admin/comment:
         one: "Comentari"
         other: "Comentaris"

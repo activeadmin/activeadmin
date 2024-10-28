@@ -1,11 +1,6 @@
 pl:
   activerecord:
     models:
-      comment:
-        one: "Komentarz"
-        few: "Komentarze"
-        many: "Komentarzy"
-        other: "Komentarze"
       active_admin/comment:
         one: "Komentarz"
         few: "Komentarze"

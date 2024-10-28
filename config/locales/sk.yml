@@ -1,11 +1,6 @@
 sk:
   activerecord:
     models:
-      comment:
-        one: "Komentár"
-        few: "Komentáre"
-        many: "Komentárov"
-        other: "Komentáre"
       active_admin/comment:
         one: "Komentár"
         few: "Komentáre"

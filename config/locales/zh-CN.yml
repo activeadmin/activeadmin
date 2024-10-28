@@ -1,9 +1,6 @@
 "zh-CN":
   activerecord:
     models:
-      comment:
-        one: "评论"
-        other: "评论"
       active_admin/comment:
         one: "评论"
         other: "评论"
