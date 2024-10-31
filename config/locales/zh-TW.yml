@@ -52,6 +52,10 @@
       "yes": "是"
       "no": "否"
       "unset": "未知"
+    toggle_dark_mode: "切換暗黑模式"
+    toggle_main_navigation_menu: "切換主要導覽"
+    toggle_section: "切換區塊"
+    toggle_user_menu: "切換使用者選單"
     logout: "登出"
     powered_by: "由 %{active_admin} %{version} 提供"
     sidebars:
