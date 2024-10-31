@@ -31,6 +31,10 @@ ja:
       "yes": "はい"
       "no": "いいえ"
       "unset": "いいえ"
+    toggle_dark_mode: "ダークモードを切り替える"
+    toggle_main_navigation_menu: "メインナビゲーションメニューを切り替える"
+    toggle_section: "セクションを切り替える"
+    toggle_user_menu: "ユーザーメニューを切り替える"
     logout: "ログアウト"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
