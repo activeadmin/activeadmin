@@ -37,8 +37,9 @@ group :test do
   gem "parallel_tests"
   gem "rspec-rails"
   gem "sqlite3", platform: :mri
+end
 
-  # Translations
+group :test, :translations do
   gem "i18n-tasks"
   gem "i18n-spec"
   gem "rails-i18n" # Provides default i18n for many languages
