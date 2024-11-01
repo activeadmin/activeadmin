@@ -34,6 +34,7 @@ ar:
       resource: مصدر
       resource_type: نوع المصدر
       title_content: تعليقات (%{count})
+    create_another: Create another %{model}
     dashboard: لوحة تحكم
     delete: حذف
     delete_confirmation: هل تريد تأكيد الحذف؟
@@ -58,6 +59,8 @@ ar:
         title: تسجيل الدخول
       password:
         title: كلمة المرور
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: إعادة ارسال تعليمات التأكيد
         title: إعادة ارسال تعليمات التأكيد
@@ -82,12 +85,16 @@ ar:
       buttons:
         clear: تفريغ التصفية
         filter: تصفية
+      predicates:
+        from: From
+        to: To
     has_many_delete: حذف
     has_many_new: إضافة %{model} جديد
     has_many_remove: إزالة
     index_list:
       table: جدول
     logout: تسجيل الخروج
+    move: Move
     new_model: "%{model} جديد"
     next: التالي
     pagination:
@@ -97,12 +104,19 @@ ar:
         other: مدخلات
       multiple: عرض %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> من <b>%{total}</b> بالمجمل
       multiple_without_total: عرض %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: عرض <b>1</b> %{model}
       one_page: عرض <b>all %{n}</b> %{model}
+      per_page: 'Per page '
+      previous: Previous
     powered_by: تنفيذ %{active_admin} %{version}
     previous: السابق
+    scopes:
+      all: All
     search_status:
       no_current_filters: بدون
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: المُرشحات
       search_status: حالات البحث
@@ -110,4 +124,24 @@ ar:
       'no': لا
       unset: لا
       'yes': نعم
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: عرض
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

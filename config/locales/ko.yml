@@ -1,6 +1,8 @@
 ---
 ko:
   active_admin:
+    access_denied:
+      message: You are not authorized to perform this action.
     any: 어떤
     batch_actions:
       action_label: 선택한 항목 %{title}
@@ -20,15 +22,19 @@ ko:
     comments:
       add: 댓글 추가
       author: 글쓴이
+      author_missing: Anonymous
       author_type: 글쓴이 종류
       body: 내용
       created_at: 작성시간
+      delete: Delete Comment
+      delete_confirmation: Are you sure you want to delete this comment?
       errors:
         empty_text: 댓글이 저장되지 않았습니다. 내용을 입력해주세요.
       no_comments_yet: 아직 댓글이 없습니다.
       resource: 첨부파일
       resource_type: 첨부파일 형태
       title_content: 댓글 (%{count})
+    create_another: Create another %{model}
     dashboard: 대시보드
     delete: 삭제
     delete_confirmation: 정말로 삭제 하시겠습니까?
@@ -46,12 +52,15 @@ ko:
         resend_unlock_instructions: 계정 잠금 해제하기
         sign_in: 로그인
         sign_in_with_omniauth_provider: "%{provider} 으로 로그인"
+        sign_up: Sign up
       login:
         remember_me: 내 계정 정보 기억
         submit: 로그인
         title: 로그인
       password:
         title: 비밀번호
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: 계정 승인 요청하기
         title: 계정 승인 요청하기
@@ -76,10 +85,16 @@ ko:
       buttons:
         clear: 필터 초기화
         filter: 필터
+      predicates:
+        from: From
+        to: To
     has_many_delete: 삭제
     has_many_new: "%{model} 추가"
     has_many_remove: 삭제
+    index_list:
+      table: Table
     logout: 로그아웃
+    move: Move
     new_model: "%{model} 추가"
     next: 다음
     pagination:
@@ -89,12 +104,19 @@ ko:
         other: 항목들
       multiple: "<b>%{total}</b>개 중 <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
+      next: Next
       one: "<b>1</b>개 %{model} 표시중"
       one_page: "<b>%{n}</b>개 %{model} 표시중"
+      per_page: 'Per page '
+      previous: Previous
     powered_by: Powered by %{active_admin} %{version}
     previous: 이전
+    scopes:
+      all: All
     search_status:
       no_current_filters: 현재 적용된 필터가 없습니다
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: 필터 목록
       search_status: 검색 상태
@@ -102,4 +124,24 @@ ko:
       'no': 없음
       unset: 없음
       'yes': 있음
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: 보기
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

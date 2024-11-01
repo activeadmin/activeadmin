@@ -115,6 +115,8 @@ es:
       all: Todos
     search_status:
       no_current_filters: Ninguno
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filtros
       search_status: Estado de la búsqueda

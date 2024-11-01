@@ -36,6 +36,7 @@ ru:
       resource: Ресурс
       resource_type: Тип ресурса
       title_content: Комментарии (%{count})
+    create_another: Create another %{model}
     dashboard: Панель управления
     delete: Удалить
     delete_confirmation: Вы уверены, что хотите удалить это?
@@ -60,6 +61,8 @@ ru:
         title: Войти
       password:
         title: Пароль
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: Выслать повторно письмо с активацией
         title: Выслать повторно письмо с активацией
@@ -93,6 +96,7 @@ ru:
     index_list:
       table: Таблица
     logout: Выйти
+    move: Move
     new_model: Создать %{model}
     next: След.
     pagination:
@@ -104,12 +108,19 @@ ru:
         other: записей
       multiple: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>'
       multiple_without_total: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>'
+      next: Next
       one: 'Результат: <b>1</b> %{model}'
       one_page: 'Результат: <b>%{n}</b> %{model}'
+      per_page: 'Per page '
+      previous: Previous
     powered_by: Работает на %{active_admin} %{version}
     previous: Пред.
+    scopes:
+      all: All
     search_status:
       no_current_filters: Ни один
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Фильтры
       search_status: Статус поиска
@@ -117,4 +128,24 @@ ru:
       'no': Нет
       unset: Нет
       'yes': Да
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Открыть
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

@@ -124,6 +124,10 @@ zh-CN:
       'no': 否
       unset: 否
       'yes': 是
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: 查看
   activerecord:
     attributes:

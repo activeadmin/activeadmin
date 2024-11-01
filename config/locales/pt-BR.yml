@@ -94,6 +94,7 @@ pt-BR:
     index_list:
       table: Tabela
     logout: Sair
+    move: Move
     new_model: Novo(a) %{model}
     next: Próximo
     pagination:
@@ -103,13 +104,19 @@ pt-BR:
         other: registros
       multiple: Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>
       multiple_without_total: Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: Exibindo <b>1</b> %{model}
       one_page: Exibindo <b>todos(as) os(as) %{n}</b> %{model}
       per_page: 'Por página: '
+      previous: Previous
     powered_by: Powered by %{active_admin} %{version}
     previous: Anterior
+    scopes:
+      all: All
     search_status:
       no_current_filters: Nenhum
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filtros
       search_status: Buscou
@@ -117,4 +124,24 @@ pt-BR:
       'no': Não
       unset: Não
       'yes': Sim
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Visualizar
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

@@ -124,6 +124,10 @@ ca:
       'no': 'No'
       unset: Desconegut
       'yes': Sí
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Mostra
   activerecord:
     attributes:
