@@ -24,7 +24,7 @@ module ActiveAdmin
     def display_name(resource)
       unless resource.nil?
         result = render_in_context(resource, display_name_method_for(resource))
-        if result.to_s&.strip&.present?
+        if result.to_s.strip.present?
           ERB::Util.html_escape(result)
         else
           ERB::Util.html_escape(render_in_context(resource, DISPLAY_NAME_FALLBACK))
