@@ -23,7 +23,7 @@ module ActiveAdmin
       # which means there is no way how to scope other actions
       Pundit.policy_scope!(user, namespace(collection))
     rescue Pundit::NotDefinedError => e
-      if default_policy_class && default_policy_class.const_defined?(:Scope)
+      if default_policy_class&.const_defined?(:Scope)
         default_policy_class::Scope.new(user, collection).resolve
       else
         raise e
@@ -95,7 +95,7 @@ module ActiveAdmin
     end
 
     def default_policy_class
-      ActiveAdmin.application.pundit_default_policy && ActiveAdmin.application.pundit_default_policy.constantize
+      ActiveAdmin.application.pundit_default_policy&.constantize
     end
 
     def default_policy(subject)
