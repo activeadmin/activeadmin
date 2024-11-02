@@ -21,7 +21,11 @@
   <div id="user-menu" class="z-50 hidden min-w-max bg-white rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="user-menu-button">
     <ul>
       <% if current_active_admin_user? %>
-        <li><%= auto_link current_active_admin_user, class: "block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white" %></li>
+        <% if auto_url_for(current_active_admin_user) %>
+          <li><%= auto_link current_active_admin_user, class: "block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white" %></li>
+        <% else %>
+          <li><span class="block px-2.5 py-2 text-gray-700 dark:text-white"><%= display_name(current_active_admin_user) %></span></li>
+        <% end %>
         <li><%= link_to I18n.t("active_admin.logout"), auto_logout_link_path, class: "block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white", data: { method: :delete } %></li>
       <% end %>
     </ul>
