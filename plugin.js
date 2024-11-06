@@ -1,6 +1,6 @@
-const plugin = require('tailwindcss/plugin')
-const defaultTheme = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
+import plugin from 'tailwindcss/plugin';
+import defaultTheme from 'tailwindcss/defaultTheme';
+import colors from 'tailwindcss/colors';
 const { spacing, borderWidth, borderRadius } = defaultTheme;
 
 // https://github.com/tailwindlabs/tailwindcss/discussions/9336
@@ -28,7 +28,7 @@ const svgToTinyDataUri = (() => {
   return svgToTinyDataUri;
 })();
 
-module.exports = plugin(
+export default plugin(
   function({ addBase, addComponents, theme }) {
     addBase({
       [[
