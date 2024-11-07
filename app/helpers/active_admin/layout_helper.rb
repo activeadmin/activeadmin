@@ -22,7 +22,7 @@ module ActiveAdmin
 
     def action_items_for_action
       @action_items_for_action ||= begin
-        if active_admin_config && active_admin_config.action_items?
+        if active_admin_config&.action_items?
           active_admin_config.action_items_for(params[:action], self)
         else
           []
@@ -32,7 +32,7 @@ module ActiveAdmin
 
     def sidebar_sections_for_action
       @sidebar_sections_for_action ||= begin
-        if active_admin_config && active_admin_config.sidebar_sections?
+        if active_admin_config&.sidebar_sections?
           active_admin_config.sidebar_sections_for(params[:action], self)
         else
           []
