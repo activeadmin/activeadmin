@@ -7,6 +7,7 @@ creating elegant backends for website administration.
 [![Github Actions][actions_badge]][actions]
 [![Coverage][coverage_badge]][coverage]
 [![Tidelift][tidelift_badge]][tidelift]
+[![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Active%20Admin%20Guru-006BFF)](https://gurubase.io/g/active-admin)
 
 ## Goals
 
