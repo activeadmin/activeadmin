@@ -48,13 +48,45 @@ The generator adds these core files, among others:
 * `app/assets/stylesheets/active_admin.scss`
 * `config/initializers/active_admin.rb`
 
-Now, migrate and seed your database before starting the server:
+Now, migrate and seed your database:
 
 ```sh
 rails db:migrate
 rails db:seed
-rails server
 ```
+
+These instructions suggest using the `cssbundling-rails` and `importmap-rails`
+gems for a streamlined asset management setup. However, this is not mandatory,
+and you can handle asset bundling in any way that suits your needs, as long as
+it works effectively.
+
+If you haven't installed and configured `cssbundling-rails` and
+`importmap-rails`, please run:
+
+  ```sh
+  bundle add importmap-rails
+  rails importmap:install
+
+  bundle add cssbundling-rails
+  rails css:install:tailwind
+  ```
+
+Install the npm package:
+
+  ```sh
+  yarn add @activeadmin/activeadmin@4.0.0-beta13
+  npm pkg set scripts.build:css="tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"
+  ```
+
+If you are already using Tailwind in your app, then update the `build:css` script
+to chain the above command to your existing one, e.g. `"tailwindcss ... && tailwindcss ..."`,
+so both stylesheets are generated.
+
+Now you can start the server and the CSS builder:
+
+  ```sh
+  bin/dev
+  ```
 
 Visit `http://localhost:3000/admin` and log in as the default user:
 
