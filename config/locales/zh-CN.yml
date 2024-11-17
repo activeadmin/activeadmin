@@ -52,6 +52,10 @@
       "yes": "是"
       "no": "否"
       "unset": "否"
+    toggle_dark_mode: "切换深色模式"
+    toggle_main_navigation_menu: "切换主导航"
+    toggle_section: "切换区块"
+    toggle_user_menu: "切换用户菜单"
     logout: "退出"
     powered_by: "构建程序为 %{active_admin} %{version}"
     sidebars:
