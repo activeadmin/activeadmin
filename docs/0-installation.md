@@ -138,6 +138,17 @@ You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating
   rails g active_admin:webpacker
   ```
 
+## vite_rails
+
+To use Active Admin with Vite, make sure the `@activeadmin/activeadmin` dependency is added to your `package.json` using e.g. Yarn:
+
+```sh
+yarn add @activeadmin/activeadmin@^3
+```
+
+Then follow the steps outlined in this discussion comment: https://github.com/activeadmin/activeadmin/discussions/7947#discussioncomment-5867902
+
+
 [CHANGELOG]: https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md
 [dashboard.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb
 [active_admin.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/active_admin.rb.erb
