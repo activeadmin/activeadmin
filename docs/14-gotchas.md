@@ -76,6 +76,14 @@ one, you can do one of these things:
 * You can remove all `require_tree` commands from your root level css files,
   where the `active_admin.scss` is in the tree.
 
+## Deprecation warnings with modern sass build tools
+
+Active Admin v3's SCSS is written for [sassc](https://rubygems.org/gems/sassc), which follows an older version of the SCSS specification. If you use a Node-based build system like esbuild, webpacker, or vite, you may encounter deprecation warnings for color functions like this when compiling assets:
+
+> DEPRECATION WARNING: lighten() is deprecated
+
+As a quick workaround, you may be able to silence these warnings by passing the `quietDeps` scss compilation option in your build system. With vite, follow these instructions: <https://github.com/vitejs/vite/discussions/4013#discussioncomment-10793687> (note this requires installing the `sass-embedded` dependency).
+
 ## Conflicts
 
 ### With gems that provides a `search` class method on a model
