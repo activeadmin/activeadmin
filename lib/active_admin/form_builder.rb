@@ -95,7 +95,7 @@ module ActiveAdmin
       contents = without_wrapper { inputs(options, &form_block) }
       contents ||= "".html_safe
 
-      js = new_record ? js_for_has_many(options[:class], &form_block) : ""
+      js = new_record ? js_for_has_many(&form_block) : ""
       contents << js
     end
 
@@ -159,14 +159,13 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(class_string, &form_block)
+    def js_for_has_many(&form_block)
       assoc_name = assoc_klass.model_name
       placeholder = "NEW_#{assoc_name.to_s.underscore.upcase.tr('/', '_')}_RECORD"
-      opts = {
+      opts = options.merge(
         for: [assoc, assoc_klass.new],
-        class: class_string,
         for_options: { child_index: placeholder }
-      }
+      )
       html = template.capture { __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
       text = new_record.is_a?(String) ? new_record : I18n.t("active_admin.has_many_new", model: assoc_name.human)
 
