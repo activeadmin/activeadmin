@@ -62,6 +62,7 @@ inject_into_file "app/models/application_record.rb", before: "end" do
 end
 
 environment 'config.hosts << ".ngrok-free.app"', env: :development
+environment 'config.yjit = true', env: :test
 
 # Make sure we can turn on class reloading in feature specs.
 # Write this rule in a way that works even when the file doesn't set `config.cache_classes` (e.g. Rails 7.1).
