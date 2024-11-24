@@ -43,6 +43,9 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
           rubygems: latest
+      - name: Check YJIT
+        run: |
+          ruby --version --yjit
       - name: Create test app
         run: bin/rake setup
       - name: Restore cached RSpec runtimes
