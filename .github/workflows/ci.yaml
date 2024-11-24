@@ -23,7 +23,7 @@ jobs:
           - "3.2"
           - "3.1"
         os:
-          - macos-latest
+          - macos-13
         rails:
           - rails_72
           - rails_71
