@@ -1,34 +1,63 @@
 ko:
+  activerecord:
+    models:
+      comment:
+        one: "댓글"
+        other: "댓글들"
+      active_admin/comment:
+        one: "댓글"
+        other: "댓글들"
+    attributes:
+      active_admin/comment:
+        author_type: "글쓴이 유형"
+        body: "본문"
+        created_at: "작성시간"
+        namespace: "네임스페이스"
+        resource_type: "첨부파일 형태"
+        updated_at: "수정시간"
   active_admin:
     dashboard: "대시보드"
     view: "보기"
     edit: "수정"
     delete: "삭제"
     delete_confirmation: "정말로 삭제 하시겠습니까?"
+    create_another: "다른 %{model} 생성"
     new_model: "%{model} 추가"
     edit_model: "%{model} 수정"
     delete_model: "%{model} 삭제"
     details: "%{model} 상세보기"
     cancel: "취소"
-    empty: "내용이 없습니다"
+    empty: "비어있음"
     previous: "이전"
     next: "다음"
     download: "다운로드:"
-    has_many_new: "%{model} 추가"
+    has_many_new: "새 %{model} 추가"
     has_many_delete: "삭제"
     has_many_remove: "삭제"
+    move: "이동"
     filters:
       buttons:
         filter: "필터"
         clear: "필터 초기화"
+      predicates:
+        from: "시작"
+        to: "끝"
+    scopes:
+      all: "전체"
     search_status:
+      title: "검색 중"
+      title_with_scope: "%{name} 검색 중"
       no_current_filters: "현재 적용된 필터가 없습니다"
     status_tag:
       "yes": "있음"
       "no": "없음"
-      "unset": "없음"
+      "unset": "알 수 없음"
+    toggle_dark_mode: "다크모드 전환"
+    toggle_main_navigation_menu: "메인 메뉴 전환"
+    toggle_section: "섹션 전환"
+    toggle_user_menu: "사용자 메뉴 전환"
     logout: "로그아웃"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: "%{active_admin} %{version} 제공"
     sidebars:
       filters: "필터 목록"
       search_status: "검색 상태"
@@ -38,6 +67,9 @@ ko:
       one_page: "<b>%{n}</b>개 %{model} 표시중"
       multiple: "<b>%{total}</b>개 중 <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
+      per_page: "페이지당 "
+      previous: "이전"
+      next: "다음"
       entry:
         one: "항목"
         other: "항목들"
@@ -59,13 +91,16 @@ ko:
     comments:
       created_at: "작성시간"
       resource_type: "첨부파일 형태"
-      author_type: "글쓴이 종류"
-      body: "내용"
+      author_type: "글쓴이 유형"
+      body: "본문"
       author: "글쓴이"
       add: "댓글 추가"
+      delete: "댓글 삭제"
+      delete_confirmation: "정말로 이 댓글을 삭제하시겠습니까?"
       resource: "첨부파일"
       no_comments_yet: "아직 댓글이 없습니다."
-      title_content: "댓글 (%{count})"
+      author_missing: "익명"
+      title_content: "댓글 (%{count}개)"
       errors:
         empty_text: "댓글이 저장되지 않았습니다. 내용을 입력해주세요."
     devise:
@@ -77,8 +112,10 @@ ko:
         title: "서브도메인"
       password:
         title: "비밀번호"
+      password_confirmation:
+        title: "비밀번호 확인"
       sign_up:
-        title: "가입하기"
+        title: "회원가입"
         submit: "가입하기"
       login:
         title: "로그인"
@@ -97,8 +134,13 @@ ko:
         title: "계정 승인 요청하기"
         submit: "계정 승인 요청하기"
       links:
+        sign_up: "회원가입"
         sign_in: "로그인"
         forgot_your_password: "비밀번호를 잊으셨나요?"
         sign_in_with_omniauth_provider: "%{provider} 으로 로그인"
         resend_unlock_instructions: "계정 잠금 해제하기"
         resend_confirmation_instructions: "계정 승인 요청하기"
+    access_denied:
+      message: "이 작업을 수행할 권한이 없습니다."
+    index_list:
+      table: "테이블"
