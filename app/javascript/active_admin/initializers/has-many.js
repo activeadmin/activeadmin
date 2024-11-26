@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 $(function() {
   // Provides a before-removal hook:
   // $ ->
@@ -77,7 +79,7 @@ var init_sortable = function() {
 };
 
 var recompute_positions = function(parent){
-  parent = parent instanceof jQuery ? parent : $(this);
+  parent = parent instanceof $ ? parent : $(this);
   const input_name = parent.data('sortable');
   let position = parseInt(parent.data('sortable-start') || 0, 10);
 

@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 class DropdownMenu {
   constructor(options, element) {
     this.options = options;
