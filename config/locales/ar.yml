@@ -1,10 +1,27 @@
 ar:
+  activerecord:
+    models:
+      comment:
+        one: "تعليق"
+        other: "تعليقات"
+      active_admin/comment:
+        one: "تعليق"
+        other: "تعليقات"
+    attributes:
+      active_admin/comment:
+        author_type: "نوع الكاتب"
+        body: "المحتوى"
+        created_at: "وقت الإنشاء"
+        namespace: "النطاق"
+        resource_type: "نوع المصدر"
+        updated_at: "وقت التعديل"
   active_admin:
     dashboard: "لوحة تحكم"
     view: "عرض"
     edit: "تعديل"
     delete: "حذف"
     delete_confirmation: "هل تريد تأكيد الحذف؟"
+    create_another: "انشاء %{model} آخر"
     new_model: "%{model} جديد"
     edit_model: "تعديل %{model}"
     delete_model: "حذف %{model}"
@@ -17,71 +34,88 @@ ar:
     has_many_new: "إضافة %{model} جديد"
     has_many_delete: "حذف"
     has_many_remove: "إزالة"
+    move: "نقل"
     filters:
       buttons:
-        filter: "تصفية"
-        clear: "تفريغ التصفية"
+        filter: "فرز"
+        clear: "إلغاء الفرز"
+      predicates:
+        from: "من"
+        to: "إلى"
+    scopes:
+      all: "الكل"
     search_status:
-      no_current_filters: "بدون"
+      title: "الفرز الحالي"
+      title_with_scope: "الفرز الحالي لـ %{name}"
+      no_current_filters: "بدون فرز"
     status_tag:
       "yes": "نعم"
       "no": "لا"
-      "unset": "لا"
+      "unset": "غير معروف"
+    toggle_dark_mode: "تبديل الوضع الليلي"
+    toggle_main_navigation_menu: "عرض القائمة الرئيسية"
+    toggle_section: "عرض القسم"
+    toggle_user_menu: "عرض قائمة المستخدم"
     logout: "تسجيل الخروج"
-    powered_by: "تنفيذ %{active_admin} %{version}"
+    powered_by: "بواسطة %{active_admin} %{version}"
     sidebars:
       filters: "المُرشحات"
-      search_status: "حالات البحث"
+      search_status: "حالة البحث"
     pagination:
-      empty: "لا يوجد %{model} "
-      one: "عرض <b>1</b> %{model}"
-      one_page: "عرض <b>all %{n}</b> %{model}"
-      multiple: "عرض %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> من <b>%{total}</b> بالمجمل"
-      multiple_without_total: "عرض %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: "لا يوجد %{model}"
+      one: "عرض <b>1</b> من <b>1</b>"
+      one_page: "عرض <b>كل %{n}</b>"
+      multiple: "عرض <b>%{from}-%{to}</b> من <b>%{total}</b>"
+      multiple_without_total: "عرض <b>%{from}-%{to}</b>"
+      per_page: "لكل صفحة "
+      previous: "السابق"
+      next: "التالي"
       entry:
         one: "مدخل"
         other: "مدخلات"
     any: "أي"
     blank_slate:
-      content: "لايوجد %{resource_name} بعد."
+      content: "لا يوجد %{plural_model}"
       link: "إنشاء"
     batch_actions:
-      button_label: "إجراءات متعددة"
+      button_label: "إجراء جماعي"
       default_confirmation: "هل أنت متأكّد؟"
       delete_confirmation: "هل أنت متأكّد من حذف هذه %{plural_model}؟"
       succesfully_destroyed:
-        one: "حُذف بنجاح 1 %{model}"
+        one: "حُذف بنجاح %{model}"
         other: "حُذف بنجاح %{count} %{plural_model}"
-      selection_toggle_explanation: "(تتبيث الخيار)"
+      selection_toggle_explanation: "(تبديل التحديد)"
       action_label: "اُختير %{title}"
       labels:
         destroy: "حذف"
     comments:
+      created_at: "أُنشئ"
       resource_type: "نوع المصدر"
       author_type: "نوع الؤلّف"
-      body: "هيكل"
+      body: "المحتوى"
       author: "مؤلّف"
       add: "إضافة تعليق"
-      resource: "مصدر"
-      no_comments_yet: "لا يوجد تعليقات بعد."
-      author_missing: "مجهول"
-      title_content: "تعليقات (%{count})"
+      delete: "حذف تعليق"
+      delete_confirmation: "هل أنت متأكّد من حذف التعليق؟"
+      resource: "مدخل"
+      no_comments_yet: "لا يوجد تعليقات."
+      author_missing: "المؤلف مجهول"
+      title_content: "التعليقات (%{count})"
       errors:
         empty_text: "لم يُحفظ التعليق، النص فارغ."
-      created_at: "أُنشئ"
-      delete: "حذف تعليق"
-      delete_confirmation: "هل أنت متأكّد من حذف هذه التعليقات؟"
     devise:
       username:
         title: "اسم المستخدم"
       email:
         title: "البريد الإلكترونيّ"
       subdomain:
-        title: "مجال فرعي"
+        title: "النطاق الفرعي"
       password:
         title: "كلمة المرور"
+      password_confirmation:
+        title: "تأكيد كلمة المرور"
       sign_up:
-        title: "تسجيل"
+        title: "التسجيل"
         submit: "تسجيل"
       login:
         title: "تسجيل الدخول"
@@ -91,22 +125,22 @@ ar:
         title: "هل نسيت كلمة المرور؟"
         submit: "استرجاع كلمة المرور"
       change_password:
-        title: "تغير كلمة المرور خاصتك"
-        submit: "تغير كلمة المرور خاصتي"
+        title: "تغير كلمة المرور"
+        submit: "تغير كلمة المرور"
       unlock:
-        title: "إعادة إرسال تعليمات فك الحظر"
-        submit: "إعادة إرسال تعليمات فك الحظر"
+        title: "إعادة إرسال تعليمات تنشيط الحساب"
+        submit: "إعادة إرسال تعليمات تنشيط الحساب"
       resend_confirmation_instructions:
-        title: "إعادة ارسال تعليمات التأكيد"
-        submit: "إعادة ارسال تعليمات التأكيد"
+        title: "إعادة ارسال تعليمات تأكيد البريد الإلكتروني"
+        submit: "إعادة ارسال تعليمات تأكيد البريد الإلكتروني"
       links:
         sign_up: "التسجيل"
         sign_in: "تسجيل الدخول"
         forgot_your_password: "هل نسيت كلمة المرور؟"
         sign_in_with_omniauth_provider: "تسجيل الدخول بـ %{provider}"
         resend_unlock_instructions: "إعادة إرسال تعليمات تنشيط الحساب"
-        resend_confirmation_instructions: "إعادة إرسال تعليمات تأكيد الحساب"
+        resend_confirmation_instructions: "إعادة إرسال تعليمات تأكيد البريد الإلكتروني"
     access_denied:
-      message: "لم يُصرّح لك بهذا الإجراء."
+      message: "غير مصرح لك تنفيذ هذا الإجراء."
     index_list:
       table: "جدول"
