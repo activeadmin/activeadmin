@@ -4,6 +4,7 @@
 create_file "app/assets/stylesheets/some-random-css.css"
 create_file "app/assets/javascripts/some-random-js.js"
 create_file "app/assets/images/a/favicon.ico"
+create_file "app/assets/config/manifest.js"
 
 initial_timestamp = Time.now.strftime("%Y%m%d%H%M%S").to_i
 
