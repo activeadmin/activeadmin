@@ -2,6 +2,9 @@
 # Rails template to build the sample app for specs
 
 gem "cssbundling-rails"
+
+create_file "app/assets/config/manifest.js"
+
 rails_command "css:install:tailwind"
 rails_command "importmap:install"
 
