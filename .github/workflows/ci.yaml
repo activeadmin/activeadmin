@@ -25,6 +25,7 @@ jobs:
         os:
           - ubuntu-latest
         deps:
+          - rails_80
           - rails_72
           - rails_71
           - rails_70
@@ -33,16 +34,20 @@ jobs:
           - ruby: '3.0'
             os: ubuntu-latest
             deps: rails_71
+        exclude:
+          - ruby: '3.1'
+            os: ubuntu-latest
+            deps: rails_80
     steps:
       - uses: actions/checkout@v4
       - name: Configure bundler (default)
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
-        if: matrix.deps == 'rails_72'
+        if: matrix.deps == 'rails_80'
       - name: Configure bundler (alternative)
         run: |
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> "$GITHUB_ENV"
-        if: matrix.deps != 'rails_72'
+        if: matrix.deps != 'rails_80'
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}

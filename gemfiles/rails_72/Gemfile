@@ -10,7 +10,7 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 8.0.0"
+  gem "rails", "~> 7.2.0"
 
   gem "sprockets-rails"
   gem "sassc-rails"
@@ -56,4 +56,4 @@ group :docs do
   gem "kramdown" # Markdown implementation (for yard)
 end
 
-gemspec path: "."
+gemspec path: "../.."
