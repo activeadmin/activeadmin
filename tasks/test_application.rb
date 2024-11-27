@@ -31,6 +31,9 @@ module ActiveAdmin
         --skip-test-unit
         --skip-coffee
         --skip-webpack-install
+        --skip-kamal
+        --skip-solid
+        --skip-thruster
       )
 
       command = ["bundle", "exec", "rails", "new", app_dir, *args].join(" ")
@@ -61,7 +64,7 @@ module ActiveAdmin
     end
 
     def app_name
-      return "rails_72" if main_app?
+      return "rails_80" if main_app?
 
       File.basename(File.dirname(gemfile))
     end
