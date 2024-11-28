@@ -16,7 +16,7 @@ ar:
         resource_type: "نوع المصدر"
         updated_at: "وقت التعديل"
   active_admin:
-    dashboard: "لوحة تحكم"
+    dashboard: "لوحة التحكم"
     view: "عرض"
     edit: "تعديل"
     delete: "حذف"
@@ -51,7 +51,7 @@ ar:
     status_tag:
       "yes": "نعم"
       "no": "لا"
-      "unset": "غير معروف"
+      "unset": "غير محدد"
     toggle_dark_mode: "تبديل الوضع الليلي"
     toggle_main_navigation_menu: "عرض القائمة الرئيسية"
     toggle_section: "عرض القسم"
@@ -75,7 +75,7 @@ ar:
         other: "مدخلات"
     any: "أي"
     blank_slate:
-      content: "لا يوجد %{plural_model}"
+      content: "لا يوجد %{resource_name}"
       link: "إنشاء"
     batch_actions:
       button_label: "إجراء جماعي"
