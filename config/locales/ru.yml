@@ -1,10 +1,31 @@
 ru:
+  activerecord:
+    models:
+      comment:
+        one: "Комментарий"
+        few: "Комментария"
+        many: "Комментариев"
+        other: "Комментариев"
+      active_admin/comment:
+        one: "Комментарий"
+        few: "Комментария"
+        many: "Комментариев"
+        other: "Комментариев"
+    attributes:
+      active_admin/comment:
+        author_type: "Тип автора"
+        body: "Текст"
+        created_at: "Дата создания"
+        namespace: "Пространство имён"
+        resource_type: "Тип ресурса"
+        updated_at: "Дата обновления"
   active_admin:
     dashboard: "Панель управления"
     view: "Открыть"
     edit: "Изменить"
     delete: "Удалить"
     delete_confirmation: "Вы уверены, что хотите удалить это?"
+    create_another: "Создать ещё %{model}"
     new_model: "Создать %{model}"
     edit_model: "Изменить %{model}"
     delete_model: "Удалить %{model}"
@@ -17,6 +38,7 @@ ru:
     has_many_new: "Добавить %{model}"
     has_many_delete: "Удалить"
     has_many_remove: "Убрать"
+    move: "Переместить"
     filters:
       buttons:
         filter: "Фильтровать"
@@ -24,12 +46,20 @@ ru:
       predicates:
         from: "От"
         to: "До"
+    scopes:
+      all: "Все"
     search_status:
+      title: "Текущий поиск"
+      title_with_scope: "Текущий поиск %{name}"
       no_current_filters: "Ни один"
     status_tag:
       "yes": "Да"
       "no": "Нет"
       "unset": "Нет"
+    toggle_dark_mode: "Переключить тёмную тему"
+    toggle_main_navigation_menu: "Переключить главное меню"
+    toggle_section: "Переключить секцию"
+    toggle_user_menu: "Переключить пользовательское меню"
     logout: "Выйти"
     powered_by: "Работает на %{active_admin} %{version}"
     sidebars:
@@ -41,6 +71,9 @@ ru:
       one_page: "Результат: <b>%{n}</b> %{model}"
       multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>"
       multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "На странице "
+      previous: "Предыдущая"
+      next: "Следующая"
       entry:
         one: "запись"
         few: "записи"
@@ -87,6 +120,8 @@ ru:
         title: "Поддомен"
       password:
         title: "Пароль"
+      password_confirmation:
+        title: "Подтверждение пароля"
       sign_up:
         title: "Зарегистрироваться"
         submit: "Зарегистрироваться"
