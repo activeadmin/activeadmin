@@ -37,7 +37,7 @@ jobs:
       - uses: reviewdog/action-rubocop@v2
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
-          fail_on_error: true
+          fail_level: any
           filter_mode: nofilter # added (default), diff_context, file, nofilter
           github_token: ${{ secrets.GITHUB_TOKEN }}
           skip_install: true

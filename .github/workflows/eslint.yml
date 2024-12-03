@@ -29,5 +29,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           filter_mode: nofilter # added (default), diff_context, file, nofilter
-          fail_on_error: true
+          fail_level: any
           reporter: github-pr-check
