@@ -316,7 +316,7 @@ export default plugin(
         '@apply bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
       },
       'a': {
-        '@apply text-blue-600 underline underline-offset-[.2rem]': {}
+        '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
     });
     addComponents({
@@ -509,7 +509,7 @@ export default plugin(
         '@apply sr-only': {}
       },
       '.formtastic :where(.inline-hints)': {
-        '@apply text-gray-500 mt-2': {}
+        '@apply text-gray-500 dark:text-gray-400 mt-2': {}
       },
       '.formtastic :where(.errors)': {
         '@apply p-4 mb-6 rounded-md space-y-2 bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
