@@ -75,6 +75,7 @@ module ActiveAdmin
       def add_filter(attribute, options = {})
         raise Disabled, "add" unless filters_enabled?
 
+        options = filter_default_collection(attribute.to_sym).merge(options)
         (@filters ||= {})[attribute.to_sym] = options
       end
 
@@ -93,7 +94,7 @@ module ActiveAdmin
 
         if filters.empty? || preserve_default_filters?
           default_filters.each do |f|
-            filters[f] ||= {}
+            filters[f] ||= filter_default_collection(f)
           end
         end
 
@@ -102,6 +103,22 @@ module ActiveAdmin
         end
 
         filters
+      end
+
+      def filter_default_collection(filter)
+        association = resource_class.reflect_on_all_associations.find { |association| association.name == filter }
+        return {} unless association
+
+        scoped_collection = proc do
+          scope = association.klass.all
+          begin
+            active_admin_authorization.scope_collection(scope)
+          rescue ActiveAdmin::ScopeAuthorizationError
+            # There is no authorization scope defined for this resource? Use all then
+            scope
+          end
+        end
+        { collection: scoped_collection }
       end
 
       # @return [Array] The array of default filters for this resource
@@ -146,7 +163,7 @@ module ActiveAdmin
             filters = poly.map(&:foreign_type) + low_arity.map(&:name) + high_arity
           end
 
-          filters.map &:to_sym
+          filters.map(&:to_sym)
         else
           []
         end
