@@ -203,7 +203,7 @@ end
 Menu items are sorted first by their numeric priority, then alphabetically. Since
 menu item has a default priority of `10`.
 
-You can easily customize this:
+You can customize this with:
 
 ```ruby
 ActiveAdmin.register Post do
