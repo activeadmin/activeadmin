@@ -201,13 +201,13 @@ end
 ### Menu Priority
 
 Menu items are sorted first by their numeric priority, then alphabetically. Since
-every menu by default has a priority of `10`, the menu is normally alphabetical.
+every menu by default has the same priority of `10`, the menu is by default sorted alphabetically.
 
 You can easily customize this:
 
 ```ruby
 ActiveAdmin.register Post do
-  menu priority: 1 # so it's on the very left
+  menu priority: 1 # so it's the first shown menu item
 end
 ```
 
