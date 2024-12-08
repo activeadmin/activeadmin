@@ -200,7 +200,7 @@ end
 
 ### Menu Priority
 
-Menu items are sorted first by their numeric priority, then alphabetically. Since
+Menu items are sorted first by their numeric priority, then alphabetically. Every
 menu item has a default priority of `10`.
 
 You can customize this with:
