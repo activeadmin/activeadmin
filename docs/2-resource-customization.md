@@ -207,7 +207,7 @@ You can easily customize this:
 
 ```ruby
 ActiveAdmin.register Post do
-  menu priority: 1 # so it's the first shown menu item
+  menu priority: 1 # so it's the first menu item visible
 end
 ```
 
