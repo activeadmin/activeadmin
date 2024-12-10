@@ -26,7 +26,7 @@ module ActiveAdmin
       if default_policy_class&.const_defined?(:Scope)
         default_policy_class::Scope.new(user, collection).resolve
       else
-        raise e
+        raise ActiveAdmin::ScopeAuthorizationError.new(e.message, collection.model, action)
       end
     end
 

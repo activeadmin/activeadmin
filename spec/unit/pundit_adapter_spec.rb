@@ -131,7 +131,7 @@ RSpec.describe ActiveAdmin::PunditAdapter do
     end
 
     context "when Pundit is unable to find policy scope" do
-      let(:collection) { double("collection", to_sym: :collection) }
+      let(:collection) { double("collection", to_sym: :collection, model: 'Collection') }
       subject(:scope) { auth.scope_collection(collection, :read) }
 
       before do
@@ -145,7 +145,7 @@ RSpec.describe ActiveAdmin::PunditAdapter do
         let(:default_policy_klass_name) { nil }
 
         it "raises the error" do
-          expect { subject }.to raise_error Pundit::NotDefinedError
+          expect { subject }.to raise_error ActiveAdmin::ScopeAuthorizationError
         end
       end
     end

@@ -16,8 +16,8 @@ Given /^(a|\d+)( published)?( unstarred|starred)? posts?(?: with the title "([^"
   end
 end
 
-Given /^a category named "([^"]*)" exists$/ do |name|
-  Category.create! name: name
+Given /^a( hidden| visible)? category named "([^"]*)" exists$/ do |visibility, name|
+  Category.create! name: name, hidden: visibility == " hidden"
 end
 
 Given /^a (user|publisher) named "([^"]*)" exists$/ do |type, name|
