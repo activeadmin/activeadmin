@@ -15,7 +15,7 @@ module ActiveAdmin
           if searchable_has_many_through?
             "#{reflection.through_reflection.name}_#{reflection.foreign_key}"
           else
-            "#{name}_#{reflection.association_primary_key}" if reflection_searchable?
+            reflection_searchable? ? "#{name}_#{reflection.association_primary_key}" : name
           end
         end
 
