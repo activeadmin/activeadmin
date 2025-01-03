@@ -146,7 +146,7 @@ module ActiveAdmin
             filters = poly.map(&:foreign_type) + low_arity.map(&:name) + high_arity
           end
 
-          filters.map &:to_sym
+          filters.map(&:to_sym)
         else
           []
         end

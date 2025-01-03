@@ -8,7 +8,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     render_arbre_component({ filter_args: [search, filters] }, helper) do
       args = assigns[:filter_args]
       kwargs = args.pop if args.last.is_a?(Hash)
-      text_node active_admin_filters_form_for *args, **kwargs
+      text_node active_admin_filters_form_for(*args, **kwargs)
     end.to_s
   end
 
