@@ -28,7 +28,7 @@ group :test do
   gem "simplecov", require: false # Test coverage generator. Go to /coverage/ after running tests
   gem "simplecov-cobertura", require: false
   gem "cucumber-rails", require: false
-  gem "cucumber"
+  gem "cucumber", github: 'cucumber/cucumber-ruby' # TODO: remove when a version compatible with Ruby 3.4 will be released
   gem "database_cleaner-active_record"
   gem "launchy"
   gem "parallel_tests"
