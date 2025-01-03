@@ -2,9 +2,9 @@
   <ul role="list" class="flex flex-1 flex-col space-y-1.5">
     <% current_menu.items(self).each do |item| %>
       <% children = item.items(self).presence %>
-      <li <%= current_menu_item?(item) && "data-open" %> class="group" data-item-id="<%= item.id %>">
+      <li <%= current_menu_item?(item) && "data-open" %> class="group <%= current_menu_item?(item) && "bg-gray-300 dark:bg-white/5 text-gray-900 dark:text-white rounded-md" %>" data-item-id="<%= item.id %>">
         <% if children %>
-          <button data-menu-button class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white flex items-center w-full rounded-md p-2 gap-x-2 text-sm" aria-label="<%= t('active_admin.toggle_section') %>">
+          <button data-menu-button data-item-id="<%= item.id %>" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white flex items-center w-full rounded-md p-2 gap-x-2 text-sm font-semibold" aria-label="<%= t('active_admin.toggle_section') %>">
             <%= item.label(self) %>
             <svg class="group-data-[open]:rotate-90 group-data-[open]:rtl:-rotate-90 ms-auto h-5 w-5 shrink-0 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
@@ -26,3 +26,18 @@
     <% end %>
   </ul>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('[data-menu-button]').forEach(button => {
+            button.addEventListener('click', () => {
+                const itemId = button.getAttribute('data-item-id');
+                const listItem = document.querySelector(`li[data-item-id="${itemId}"]`);
+
+                ['bg-gray-300', 'dark:bg-white/5', 'text-gray-900', 'dark:text-white', 'rounded-md'].forEach(className => {
+                    listItem.classList.toggle(className);
+                });
+            });
+        });
+    });
+</script>
