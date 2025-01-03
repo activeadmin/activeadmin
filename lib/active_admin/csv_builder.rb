@@ -64,7 +64,7 @@ module ActiveAdmin
     def exec_columns(view_context = nil)
       @view_context = view_context
       @columns = [] # we want to re-render these every instance
-      instance_exec &@block if @block.present?
+      instance_exec(&@block) if @block.present?
       columns
     end
 

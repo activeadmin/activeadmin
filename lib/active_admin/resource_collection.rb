@@ -22,7 +22,7 @@ module ActiveAdmin
 
     # Changes `each` to pass in the value, instead of both the key and value.
     def each(&block)
-      values.each &block
+      values.each(&block)
     end
 
     def [](obj)

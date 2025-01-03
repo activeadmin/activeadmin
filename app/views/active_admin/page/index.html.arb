@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 div class: "main-content-container" do
   if page_presenter.block
-    instance_exec &page_presenter.block
+    instance_exec(&page_presenter.block)
   end
 end

@@ -13,7 +13,7 @@ module ActiveAdmin
 
     # Runs the registration block inside this object
     def run_registration_block(&block)
-      instance_exec &block if block
+      instance_exec(&block) if block
     end
 
     # The instance of ActiveAdmin::Resource that's being registered

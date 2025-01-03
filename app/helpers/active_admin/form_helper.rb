@@ -29,7 +29,7 @@ module ActiveAdmin
     #
     def fields_for_params(params, options = {})
       namespace = options[:namespace]
-      except = Array.wrap(options[:except]).map &:to_s
+      except = Array.wrap(options[:except]).map(&:to_s)
 
       params.flat_map do |k, v|
         next if namespace.nil? && RESERVED_PARAMS.include?(k.to_s)

@@ -177,7 +177,7 @@ module ActiveAdmin
     end
 
     def find_resource(id)
-      resource = resource_class.public_send *method_for_find(id)
+      resource = resource_class.public_send(*method_for_find(id))
       (decorator_class && resource) ? decorator_class.new(resource) : resource
     end
 

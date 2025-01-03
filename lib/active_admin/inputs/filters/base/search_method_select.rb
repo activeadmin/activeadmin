@@ -26,7 +26,7 @@ module ActiveAdmin
             attr_reader :filters
 
             def filter(*filters)
-              (@filters ||= []).push *filters
+              (@filters ||= []).push(*filters)
             end
           end
 

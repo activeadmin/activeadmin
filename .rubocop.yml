@@ -81,6 +81,9 @@ Lint/ParenthesesAsGroupedExpression:
 Layout/AccessModifierIndentation:
   Enabled: true
 
+Lint/AmbiguousOperator:
+  Enabled: true
+
 Layout/ArgumentAlignment:
   Enabled: true
 
