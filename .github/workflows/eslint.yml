@@ -4,7 +4,7 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: ${{ vars.ESLINT_NODE_VERSION || '20.x' }}
+  NODE_VERSION: ${{ vars.ESLINT_NODE_VERSION || '22.x' }}
 
 jobs:
   eslint:

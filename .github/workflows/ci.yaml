@@ -19,6 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
+          - "3.4"
           - "3.3"
           - "3.2"
           - "3.1"
@@ -33,6 +34,9 @@ jobs:
           - ruby: '3.1'
             os: ubuntu-latest
             rails: rails_80
+          - ruby: '3.4'
+            os: ubuntu-latest
+            rails: rails_70
     steps:
       - uses: actions/checkout@v4
       - name: Configure bundler (default)
