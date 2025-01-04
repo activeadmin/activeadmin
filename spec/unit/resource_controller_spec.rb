@@ -273,7 +273,7 @@ RSpec.describe "A specific resource controller", type: :controller do
   end
 
   describe "performing batch_action" do
-    let(:batch_action) { ActiveAdmin::BatchAction.new *batch_action_args, &batch_action_block }
+    let(:batch_action) { ActiveAdmin::BatchAction.new(*batch_action_args, &batch_action_block) }
     let(:batch_action_block) { proc { self.instance_variable_set :@block_context, self.class } }
     let(:params) { ActionController::Parameters.new(http_params) }
 

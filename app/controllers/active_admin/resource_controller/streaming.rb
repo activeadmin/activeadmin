@@ -26,7 +26,7 @@ module ActiveAdmin
         if ActiveAdmin.application.disable_streaming_in.include? Rails.env
           self.response_body = block[String.new] # rubocop:disable Performance/UnfreezeString to preserve encoding
         else
-          self.response_body = Enumerator.new &block
+          self.response_body = Enumerator.new(&block)
         end
       end
 
@@ -37,7 +37,7 @@ module ActiveAdmin
       def stream_csv
         headers["Content-Type"] = "text/csv; charset=utf-8" # In Rails 5 it's set to HTML??
         headers["Content-Disposition"] = %{attachment; filename="#{csv_filename}"}
-        stream_resource &active_admin_config.csv_builder.method(:build).to_proc.curry[self]
+        stream_resource(&active_admin_config.csv_builder.method(:build).to_proc.curry[self])
       end
 
     end

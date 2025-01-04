@@ -236,7 +236,7 @@ module ActiveAdmin
 
       def apply_includes(chain)
         if active_admin_config.includes.any?
-          chain.includes *active_admin_config.includes
+          chain.includes(*active_admin_config.includes)
         else
           chain
         end
