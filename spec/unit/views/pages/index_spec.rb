@@ -14,7 +14,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Index do
     end
 
     let(:arbre_context) do
-      OpenStruct.new(params: params, helpers: helpers, assigns: {})
+      Struct.new(:params, :helpers, :assigns).new(params, helpers, {})
     end
 
     context "when config[:title] is assigned" do

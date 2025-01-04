@@ -10,7 +10,7 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 7.2.0"
+  gem "rails", "~> 8.0.0"
 
   gem "sprockets-rails"
   gem "sassc-rails"

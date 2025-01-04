@@ -10,11 +10,11 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 7.1.0"
+  gem "rails", "~> 7.2.0"
 
   gem "sprockets-rails"
   gem "sassc-rails"
-  gem "ransack", ">= 4.1.0"
+  gem "ransack", ">= 4.2.0"
   gem "formtastic", ">= 5.0.0"
 
   # FIXME: relax this dependency when Ruby 3.1 support will be dropped

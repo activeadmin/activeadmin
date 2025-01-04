@@ -16,7 +16,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Form do
     end
 
     let(:arbre_context) do
-      OpenStruct.new(params: params, helpers: helpers, assigns: {})
+      Struct.new(:params, :helpers, :assigns).new(params, helpers, {})
     end
 
     context "when :title is set" do
