@@ -343,6 +343,8 @@ Style/ExpandPathArguments:
 Style/FrozenStringLiteralComment:
   Enabled: true
   EnforcedStyle: always
+  Exclude:
+    - '**/*.arb'
 
 Style/HashSyntax:
   Enabled: true
