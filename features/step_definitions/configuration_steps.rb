@@ -11,7 +11,7 @@ end
 
 World(ActiveAdminReloading)
 
-Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
+Given(/^a(?:n? (index|show))? configuration of:$/) do |action, config_content|
   load_aa_config(config_content)
 
   case action

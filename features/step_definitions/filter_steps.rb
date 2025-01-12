@@ -9,23 +9,23 @@ Around "@filters" do |scenario, block|
   end
 end
 
-Then /^I should see a select filter for "([^"]*)"$/ do |label|
+Then(/^I should see a select filter for "([^"]*)"$/) do |label|
   expect(page).to have_css ".filters-form-field.select label", text: label
 end
 
-Then /^I should see a string filter for "([^"]*)"$/ do |label|
+Then(/^I should see a string filter for "([^"]*)"$/) do |label|
   expect(page).to have_css ".filters-form-field.string label", text: label
 end
 
-Then /^I should see a date range filter for "([^"]*)"$/ do |label|
+Then(/^I should see a date range filter for "([^"]*)"$/) do |label|
   expect(page).to have_css ".filters-form-field.date_range label", text: label
 end
 
-Then /^I should see a number filter for "([^"]*)"$/ do |label|
+Then(/^I should see a number filter for "([^"]*)"$/) do |label|
   expect(page).to have_css ".filters-form-field.numeric label", text: label
 end
 
-Then /^I should see the following filters:$/ do |table|
+Then(/^I should see the following filters:$/) do |table|
   table.rows_hash.each do |label, type|
     step %{I should see a #{type} filter for "#{label}"}
   end
@@ -43,15 +43,15 @@ Then(/^I should have parameter "([^"]*)" with value "([^"]*)"$/) do |key, value|
   expect(params[key]).to eq value
 end
 
-Then /^I should see current filter "([^"]*)" equal to "([^"]*)" with label "([^"]*)"$/ do |name, value, label|
+Then(/^I should see current filter "([^"]*)" equal to "([^"]*)" with label "([^"]*)"$/) do |name, value, label|
   expect(page).to have_css ".active-filters [data-filter='#{name}'] span", text: label
   expect(page).to have_css ".active-filters [data-filter='#{name}'] strong", text: value
 end
 
-Then /^I should see current filter "([^"]*)" equal to "([^"]*)"$/ do |name, value|
+Then(/^I should see current filter "([^"]*)" equal to "([^"]*)"$/) do |name, value|
   expect(page).to have_css ".active-filters [data-filter='#{name}'] strong", text: value
 end
 
-Then /^I should see link "([^"]*)" in current filters/ do |label|
+Then(/^I should see link "([^"]*)" in current filters/) do |label|
   expect(page).to have_css ".active-filters [data-filter] strong a", text: label
 end

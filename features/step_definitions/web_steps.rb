@@ -43,61 +43,61 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-When /^(.*) within (.*)$/ do |step_name, parent|
+When(/^(.*) within (.*)$/) do |step_name, parent|
   with_scope(parent) { step step_name }
 end
 
-Given /^I am on (.+)$/ do |page_name|
+Given(/^I am on (.+)$/) do |page_name|
   visit path_to(page_name)
 end
 
-When /^I go to (.+)$/ do |page_name|
+When(/^I go to (.+)$/) do |page_name|
   visit path_to(page_name)
 end
 
-When /^I visit (.+) twice$/ do |page_name|
+When(/^I visit (.+) twice$/) do |page_name|
   2.times { visit path_to(page_name) }
 end
 
-When /^I press "([^"]*)"$/ do |button|
+When(/^I press "([^"]*)"$/) do |button|
   click_on(button)
 end
 
-When /^I follow "([^"]*)"$/ do |link|
+When(/^I follow "([^"]*)"$/) do |link|
   first(:link, link).click
 end
 
-When /^I click "(.*?)"$/ do |link|
+When(/^I click "(.*?)"$/) do |link|
   click_on(link)
 end
 
-When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
+When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
   fill_in(field, with: value)
 end
 
-When /^I select "([^"]*)" from "([^"]*)"$/ do |value, field|
+When(/^I select "([^"]*)" from "([^"]*)"$/) do |value, field|
   select(value, from: field)
 end
 
-When /^I (check|uncheck) "([^"]*)"$/ do |action, field|
+When(/^I (check|uncheck) "([^"]*)"$/) do |action, field|
   send action, field
 end
 
-Then /^I should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
+Then(/^I should( not)? see( the element)? "([^"]*)"$/) do |negate, is_css, text|
   should = negate ? :not_to : :to
   have = is_css ? have_css(text) : have_content(text)
   expect(page).send should, have
 end
 
-Then /^I should see the select "([^"]*)" with options "([^"]+)"?$/ do |label, with_options|
+Then(/^I should see the select "([^"]*)" with options "([^"]+)"?$/) do |label, with_options|
   expect(page).to have_select(label, with_options: with_options.split(", "))
 end
 
-Then /^I should see the field "([^"]*)" of type "([^"]+)"?$/ do |label, of_type|
+Then(/^I should see the field "([^"]*)" of type "([^"]+)"?$/) do |label, of_type|
   expect(page).to have_field(label, type: of_type)
 end
 
-Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field, parent, value|
+Then(/^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/) do |field, parent, value|
   with_scope(parent) do
     field = find_field(field)
     value = field.tag_name == "textarea" ? field.text : field.value
@@ -106,13 +106,13 @@ Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field
   end
 end
 
-Then /^the "([^"]*)" select(?: within (.*))? should have "([^"]+)" selected$/ do |label, parent, option|
+Then(/^the "([^"]*)" select(?: within (.*))? should have "([^"]+)" selected$/) do |label, parent, option|
   with_scope(parent) do
     expect(page).to have_select(label, selected: option)
   end
 end
 
-Then /^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/ do |label, parent, negate|
+Then(/^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/) do |label, parent, negate|
   with_scope(parent) do
     checkbox = find_field(label)
     if negate
@@ -123,7 +123,7 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/ do |la
   end
 end
 
-Then /^I should be on (.+)$/ do |page_name|
+Then(/^I should be on (.+)$/) do |page_name|
   expect(URI.parse(current_url).path).to eq path_to page_name
 end
 
@@ -131,6 +131,6 @@ Then(/^I should see content "(.*?)" above other content "(.*?)"$/) do |top_title
   expect(page).to have_css %Q(div:contains('#{top_title}') + div:contains('#{bottom_title}'))
 end
 
-Then /^I should see a flash with "([^"]*)"$/ do |text|
+Then(/^I should see a flash with "([^"]*)"$/) do |text|
   expect(page).to have_content text
 end

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-Then /^I should( not)? see the attribute "([^"]*)" with "([^"]*)"$/ do |negate, title, value|
+Then(/^I should( not)? see the attribute "([^"]*)" with "([^"]*)"$/) do |negate, title, value|
   elems = all ".attributes-table th:contains('#{title}') ~ td:contains('#{value}')"
 
   if negate
@@ -9,11 +9,11 @@ Then /^I should( not)? see the attribute "([^"]*)" with "([^"]*)"$/ do |negate, 
   end
 end
 
-Then /^I should see the attribute "([^"]*)" with a nicely formatted datetime$/ do |title|
+Then(/^I should see the attribute "([^"]*)" with a nicely formatted datetime$/) do |title|
   text = all(".attributes-table th:contains('#{title}') ~ td").first.text
-  expect(text).to match /\w+ \d{1,2}, \d{4} \d{2}:\d{2}/
+  expect(text).to match(/\w+ \d{1,2}, \d{4} \d{2}:\d{2}/)
 end
 
-Then /^I should not see the attribute "([^"]*)"$/ do |title|
+Then(/^I should not see the attribute "([^"]*)"$/) do |title|
   expect(page).to have_no_css ".attributes-table th", text: title
 end

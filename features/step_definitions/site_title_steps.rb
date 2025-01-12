@@ -9,6 +9,6 @@ Around "@site_title" do |scenario, block|
   end
 end
 
-Then /^I should see the site title "([^"]*)"$/ do |title|
+Then(/^I should see the site title "([^"]*)"$/) do |title|
   expect(page).to have_css "[data-test-site-title]", text: title
 end

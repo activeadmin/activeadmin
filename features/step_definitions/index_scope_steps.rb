@@ -1,25 +1,25 @@
 # frozen_string_literal: true
-Then /^I should( not)? see the scope "([^"]*)"( selected)?$/ do |negate, name, selected|
+Then(/^I should( not)? see the scope "([^"]*)"( selected)?$/) do |negate, name, selected|
   should = "I should#{' not' if negate}"
   scope = ".scopes#{' .index-button-selected' if selected}"
   step %{#{should} see "#{name}" within "#{scope}"}
 end
 
-Then /^I should see the scope "([^"]*)" not selected$/ do |name|
+Then(/^I should see the scope "([^"]*)" not selected$/) do |name|
   step %{I should see the scope "#{name}"}
   expect(page).to have_no_css ".scopes .index-button-selected", text: name
 end
 
-Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|
+Then(/^I should see the scope "([^"]*)" with the count (\d+)$/) do |name, count|
   expect(page).to have_css ".scopes a", text: name
   expect(page).to have_css ".scopes-count", text: count
 end
 
-Then /^I should see the scope with label "([^"]*)"$/ do |label|
+Then(/^I should see the scope with label "([^"]*)"$/) do |label|
   expect(page).to have_link(label)
 end
 
-Then /^I should see the scope "([^"]*)" with no count$/ do |name|
+Then(/^I should see the scope "([^"]*)" with no count$/) do |name|
   expect(page).to have_css ".scopes a", text: name
   expect(page).to have_no_css ".scopes-count"
 end

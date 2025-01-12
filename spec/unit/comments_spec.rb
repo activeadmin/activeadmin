@@ -166,7 +166,7 @@ RSpec.describe "Comments" do
       let(:namespace_name) { "admin" }
 
       it "should assign child class as commented resource" do
-        comment = ActiveAdmin::Comment.create!(
+        ActiveAdmin::Comment.create!(
           author: user,
           resource: publisher,
           body: "Lorem Ipsum",
