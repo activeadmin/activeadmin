@@ -4,7 +4,7 @@ on:
   pull_request:
 
 env:
-  RUBY_VERSION: ${{ vars.RUBOCOP_RUBY_VERSION || '3.3' }}
+  RUBY_VERSION: ${{ vars.RUBOCOP_RUBY_VERSION || '3.4' }}
 
 jobs:
   rubocop:
