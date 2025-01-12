@@ -33,7 +33,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
   def form_html(options = {}, form_object = Post.new, &block)
     options = { url: helpers.posts_path }.merge(options)
 
-    form = render_arbre_component({ form_object: form_object, form_options: options, form_block: block }, helpers) do
+    render_arbre_component({ form_object: form_object, form_options: options, form_block: block }, helpers) do
       active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
     end.to_s
   end

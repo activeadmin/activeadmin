@@ -78,7 +78,7 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
     end
 
     it "should return the resource if it and it's parent were registered" do
-      user = namespace.register User
+      namespace.register User
       publisher = namespace.register Publisher
       expect(namespace.resource_for(Publisher)).to eq publisher
     end

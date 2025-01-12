@@ -204,7 +204,7 @@ RSpec.describe ActiveAdmin::DisplayHelper, type: :helper do
 
       value = helper.format_attribute post, :author
 
-      expect(value).to match /<a href="\/admin\/users\/\d+">User \#\d+<\/a>/
+      expect(value).to match(/<a href="\/admin\/users\/\d+">User \#\d+<\/a>/)
     end
 
     it "auto-links ActiveRecord records & uses a display_name method" do
@@ -212,7 +212,7 @@ RSpec.describe ActiveAdmin::DisplayHelper, type: :helper do
 
       value = helper.format_attribute post, :author
 
-      expect(value).to match /<a href="\/admin\/users\/\d+">A B<\/a>/
+      expect(value).to match(/<a href="\/admin\/users\/\d+">A B<\/a>/)
     end
 
     it "calls status_tag for boolean values" do

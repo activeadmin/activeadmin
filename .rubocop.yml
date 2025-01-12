@@ -75,13 +75,7 @@ Layout/EndAlignment:
 Layout/HashAlignment:
   Enabled: true
 
-Lint/ParenthesesAsGroupedExpression:
-  Enabled: true
-
 Layout/AccessModifierIndentation:
-  Enabled: true
-
-Lint/AmbiguousOperator:
   Enabled: true
 
 Layout/ArgumentAlignment:
@@ -132,6 +126,21 @@ Layout/ParameterAlignment:
 Layout/IndentationStyle:
   Enabled: true
   EnforcedStyle: spaces
+
+Lint/AmbiguousOperator:
+  Enabled: true
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: true
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: true
+
+Lint/UselessAccessModifier:
+  Enabled: true
+
+Lint/UselessAssignment:
+  Enabled: true
 
 Packaging/BundlerSetupInTests:
   Enabled: true
@@ -291,6 +300,9 @@ Performance/StringInclude:
 Performance/StringReplacement:
   Enabled: true
 
+Performance/StringBytesize:
+  Enabled: true
+
 Performance/Sum:
   Enabled: false
 
@@ -393,7 +405,4 @@ Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
 
 Layout/SpaceInsideParens:
-  Enabled: true
-
-Lint/UselessAccessModifier:
   Enabled: true

@@ -5,7 +5,7 @@ module ActiveAdmin
     module Naming
       def resource_name
         @resource_name ||= begin
-          as = @options[:as].gsub /\s/, "" if @options[:as]
+          as = @options[:as].gsub(/\s/, "") if @options[:as]
 
           if as || !resource_class.respond_to?(:model_name)
             Name.new resource_class, as
