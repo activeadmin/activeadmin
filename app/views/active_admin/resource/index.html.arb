@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 def wrap_with_batch_action_form(&block)
   if active_admin_config.batch_actions.any?
     insert_tag(ActiveAdmin::BatchActions::BatchActionForm, &block)

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, table_options) do |t|
   selectable_column
   id_column if resource_class.primary_key
