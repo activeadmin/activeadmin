@@ -26,11 +26,11 @@
   "homepage": "https://activeadmin.info",
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",
-    "eslint": "^9.8.0",
+    "eslint": "^9.19.0",
     "gherkin-lint": "^4.2.2",
-    "rollup": "^4.19.2",
-    "tailwindcss": "^3.3.5",
-    "vitepress": "^1.4.0"
+    "rollup": "^4.32.0",
+    "tailwindcss": "^3.4.17",
+    "vitepress": "^1.6.3"
   },
   "scripts": {
     "gherkin-lint": "gherkin-lint",
@@ -43,7 +43,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@rails/ujs": "7.1.400",
+    "@rails/ujs": "7.1.501",
     "flowbite": "2.3.0"
   }
 }
