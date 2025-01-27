@@ -17,10 +17,6 @@ module ActiveAdmin
 
     self.input_namespaces = [::Object, ::ActiveAdmin::Inputs, ::Formtastic::Inputs]
 
-    # TODO: remove both class finders after formtastic 4 (where it will be default)
-    self.input_class_finder = ::Formtastic::InputClassFinder
-    self.action_class_finder = ::Formtastic::ActionClassFinder
-
     def cancel_link(url = { action: "index" }, html_options = {}, li_attrs = {})
       li_attrs[:class] ||= "action cancel"
       html_options[:class] ||= "cancel-link"
