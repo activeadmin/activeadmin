@@ -27,27 +27,77 @@ const terserOptions = {
   }
 }
 
-export default {
-  input: "app/javascript/active_admin/base.js",
-  output: {
-    file: "app/assets/javascripts/active_admin/base.js",
-    format: "umd",
-    name: "ActiveAdmin"
+const pathPrefix = process.env.PATH_PREFIX || ""
+
+export default [
+  {
+    input: "app/javascript/active_admin/base.js",
+    output: {
+      file: `${pathPrefix}app/assets/javascripts/active_admin/base.js`,
+      format: "umd",
+      name: "ActiveAdmin",
+      globals: {
+        jquery: "$"
+      }
+    },
+    plugins: [
+      resolve(),
+      commonjs(),
+      babel(),
+      terser(terserOptions)
+    ],
+    // Use client's yarn dependencies instead of bundling everything
+    external: [
+      'jquery',
+      'jquery-ui/ui/widgets/datepicker',
+      'jquery-ui/ui/widgets/dialog',
+      'jquery-ui/ui/widgets/sortable',
+      'jquery-ui/ui/widgets/tabs',
+      'jquery-ui/ui/widget',
+      'jquery-ujs'
+    ]
   },
-  plugins: [
-    resolve(),
-    commonjs(),
-    babel(),
-    terser(terserOptions)
-  ],
-  // Use client's yarn dependencies instead of bundling everything
-  external: [
-    'jquery',
-    'jquery-ui/ui/widgets/datepicker',
-    'jquery-ui/ui/widgets/dialog',
-    'jquery-ui/ui/widgets/sortable',
-    'jquery-ui/ui/widgets/tabs',
-    'jquery-ui/ui/widget',
-    'jquery-ujs'
-  ]
-}
+  {
+    input: "app/javascript/active_admin/base-esm.js",
+    output: {
+      file: `${pathPrefix}app/assets/javascripts/active_admin/base-esm.js`,
+      format: "es"
+    },
+    plugins: [
+      terser({
+        mangle: false,
+        compress: false,
+        format: {
+          beautify: true,
+          indent_level: 2
+        }
+      }),
+    ],
+    // Use client's yarn dependencies instead of bundling everything
+    external: [
+      'jquery',
+      'jquery-ui/ui/widget',
+      'jquery-ui/ui/position',
+      'jquery-ui/ui/data',
+      'jquery-ui/ui/disable-selection',
+      'jquery-ui/ui/focusable',
+      'jquery-ui/ui/form-reset-mixin',
+      'jquery-ui/ui/keycode',
+      'jquery-ui/ui/labels',
+      'jquery-ui/ui/scroll-parent',
+      'jquery-ui/ui/tabbable',
+      'jquery-ui/ui/unique-id',
+      'jquery-ui/ui/widgets/draggable',
+      'jquery-ui/ui/widgets/resizable',
+      'jquery-ui/ui/widgets/sortable',
+      'jquery-ui/ui/widgets/button',
+      'jquery-ui/ui/widgets/checkboxradio',
+      'jquery-ui/ui/widgets/controlgroup',
+      'jquery-ui/ui/widgets/datepicker',
+      'jquery-ui/ui/widgets/dialog',
+      'jquery-ui/ui/widgets/mouse',
+      'jquery-ui/ui/widgets/tabs',
+      '@rails/ujs',
+    ]
+  }
+]
