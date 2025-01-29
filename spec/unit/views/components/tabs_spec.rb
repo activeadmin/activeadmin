@@ -11,6 +11,8 @@ RSpec.describe ActiveAdmin::Views::Tabs do
           tabs do
             tab :overview
             tab "Sample", id: :something_unique, html_options: { class: :some_css_class }
+            tab "عبدالله"
+            tab "اليحيى"
           end
         end
       end
@@ -37,6 +39,10 @@ RSpec.describe ActiveAdmin::Views::Tabs do
 
       it "should have button with specific css class" do
         expect(subject).to have_link(class: "some_css_class")
+      end
+
+      it "should handle fragmentizing non-English title" do
+        expect(subject).not_to have_css("[data-tabs-target='#tabs--#{tabs.object_id}']")
       end
     end
 

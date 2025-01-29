@@ -15,6 +15,7 @@ module ActiveAdmin
         add_class "tabs"
         @menu = nav(class: "tabs-nav", role: "tablist", "data-tabs-toggle": "#tabs-container-#{object_id}")
         @tabs_content = div(class: "tabs-content", id: "tabs-container-#{object_id}")
+        @fragments = {}
       end
 
       def build_menu_item(title, options, &block)
@@ -33,7 +34,7 @@ module ActiveAdmin
       private
 
       def fragmentize(string)
-        "tabs-#{string.parameterize}-#{object_id}"
+        @fragments[string] ||= "tabs-#{string.parameterize.presence || SecureRandom.hex.first(8)}-#{object_id}"
       end
     end
   end
