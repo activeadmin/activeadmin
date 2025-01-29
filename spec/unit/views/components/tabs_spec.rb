@@ -42,7 +42,7 @@ RSpec.describe ActiveAdmin::Views::Tabs do
       end
 
       it "should handle fragmentizing non-English title" do
-        expect(subject).not_to have_css("[data-tabs-target='#tabs--#{tabs.object_id}']")
+        expect(subject).to have_no_css("[data-tabs-target='#tabs--#{tabs.object_id}']")
       end
     end
 
