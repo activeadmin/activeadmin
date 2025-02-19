@@ -73,8 +73,8 @@ pl:
       multiple_without_total: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       per_page: "Na stronę: "
       entry:
-        one:
-        other:
+        one: "wpis"
+        other: "wpisów"
     any: "Jakikolwiek"
     blank_slate:
       content: "Nie ma jeszcze zasobu %{resource_name}."
