@@ -7,7 +7,7 @@ RSpec.describe "ActiveAdmin Installation" do
   end
 
   it "creates tailwind config file" do
-    expect(File.exist?(Rails.root.join("tailwind-active_admin.config.js"))).to eq true
+    expect(File.exist?(Rails.root.join("tailwind-active_admin.config.mjs"))).to eq true
   end
 
   it "creates the dashboard resource" do

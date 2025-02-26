@@ -1,4 +1,4 @@
 @import "tailwindcss";
 
 /* FIXME: convert this into CSS */
-@config "../../../tailwind-active_admin.config.js";
+@config "../../../tailwind-active_admin.config.mjs";
