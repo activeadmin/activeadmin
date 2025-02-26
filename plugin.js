@@ -181,7 +181,7 @@ export default plugin(
         '@apply bg-white/5 border-white/5 text-white hover:bg-white/10': {}
       },
       '[type=checkbox]': {
-        '@apply w-4 h-4 bg-gray-100 border border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-white/5 dark:border-white/10': {}
+        '@apply w-4 h-4 bg-gray-100 border border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-white/5 dark:border-white/10': {}
       },
       '[type=radio]': {
         '@apply w-4 h-4 bg-gray-100 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white/5 dark:border-white/10': {}
@@ -195,7 +195,7 @@ export default plugin(
     });
     addComponents({
       '.action-item-button': {
-        '@apply py-2 px-3 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700 dark:hover:text-white dark:hover:bg-gray-700': {}
+        '@apply py-2 px-3 text-sm font-medium no-underline text-gray-900 focus:outline-hidden bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700 dark:hover:text-white dark:hover:bg-gray-700': {}
       },
       '.index-data-table-toolbar': {
         '@apply flex flex-col lg:flex-row gap-4 mb-4': {}
@@ -220,7 +220,7 @@ export default plugin(
         '@apply inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-800/60 dark:text-indigo-400 px-1.5 py-1 text-xs font-normal ms-2 leading-none': {}
       },
       '.paginated-collection': {
-        '@apply border border-gray-200 dark:border-gray-800 rounded-md shadow-sm overflow-hidden': {}
+        '@apply border border-gray-200 dark:border-gray-800 rounded-md shadow-xs overflow-hidden': {}
       },
       '.paginated-collection-contents': {
         '@apply overflow-x-auto': {}
@@ -286,7 +286,7 @@ export default plugin(
         '@apply flex gap-2 items-center': {}
       },
       '.filters-form-submit': {
-        '@apply min-w-[6rem] font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-md px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
+        '@apply min-w-[6rem] font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-hidden focus:ring-blue-300 rounded-md px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
       },
       '.filters-form-clear': {
         '@apply rounded-md px-3 py-2 font-semibold text-gray-700 hover:bg-gray-100 no-underline dark:text-gray-400 dark:hover:bg-inherit dark:hover:text-gray-100 dark:focus:ring-blue-800': {}
@@ -307,13 +307,13 @@ export default plugin(
         '@apply w-2.5 h-2.5': {}
       },
       '.batch-actions-dropdown-menu': {
-        '@apply z-10 hidden min-w-[7rem] bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800 py-1 text-sm text-gray-700 dark:text-gray-200': {}
+        '@apply z-10 hidden min-w-[7rem] bg-white rounded-md shadow-lg ring-1 ring-black/5 focus:outline-hidden dark:bg-gray-800 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
       '.batch-actions-dropdown-menu :where(li > a)': {
         '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white': {}
       },
       '.panel': {
-        '@apply mb-6 border border-gray-200 rounded-md shadow-sm dark:border-gray-800': {}
+        '@apply mb-6 border border-gray-200 rounded-md shadow-xs dark:border-gray-800': {}
       },
       '.panel-title': {
         '@apply font-bold bg-gray-100 dark:bg-gray-950/50 rounded-t-md p-3': {}
@@ -322,7 +322,7 @@ export default plugin(
         '@apply py-5 px-3': {}
       },
       '.attributes-table': {
-        '@apply overflow-hidden mb-6 border border-gray-200 rounded-md shadow-sm dark:border-gray-800': {}
+        '@apply overflow-hidden mb-6 border border-gray-200 rounded-md shadow-xs dark:border-gray-800': {}
       },
       '.attributes-table > :where(table)': {
         '@apply w-full text-sm text-gray-800 dark:text-gray-300': {}
@@ -395,7 +395,7 @@ export default plugin(
         '@apply flex items-center gap-6': {}
       },
       '.formtastic :where([type=submit], [type=button], button)': {
-        '@apply font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
+        '@apply font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-hidden focus:ring-blue-300 rounded-lg px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
       },
       '.formtastic :where(.actions .cancel-link)': {
         '@apply font-semibold leading-6 text-gray-900 dark:text-white no-underline': {}
