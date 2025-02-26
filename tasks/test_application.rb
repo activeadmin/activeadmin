@@ -21,7 +21,7 @@ module ActiveAdmin
         Kernel.system("rake dependencies:vendor") # ensure flowbite is updated for test app
         Dir.chdir(app_dir) do
           Kernel.system("yarn add @activeadmin/activeadmin")
-          Kernel.system('npm pkg set scripts.build:css="npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"')
+          Kernel.system('npm pkg set scripts.build:css="npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"')
           Kernel.system("yarn install")
           Kernel.system("yarn build:css")
         end
