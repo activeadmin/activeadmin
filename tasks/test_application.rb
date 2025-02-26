@@ -23,16 +23,6 @@ module ActiveAdmin
           Kernel.system("yarn add @activeadmin/activeadmin")
           Kernel.system('npm pkg set scripts.build:css="tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"')
           Kernel.system("yarn install")
-
-          # Temporary workaround: Downgrade Tailwind CSS to v3.
-          # The `css:install:tailwind` task installs Tailwind CSS v4 by default,
-          # which is suitable for new applications.
-          # Related issues:
-          #  - activeadmin/activeadmin#8611
-          #  - rails/cssbundling-rails#163
-          # TODO: Remove this workaround once Tailwind CSS v4 is supported.
-          Kernel.system('yarn upgrade "tailwindcss@^3.4.17"')
-
           Kernel.system("yarn build:css")
         end
       end
