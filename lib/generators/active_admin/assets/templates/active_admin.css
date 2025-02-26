@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* FIXME: convert this into CSS */
+@config "../../../tailwind-active_admin.config.js";
