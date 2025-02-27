@@ -98,10 +98,10 @@ gsub_file "config/database.yml", /storage\/(.+)\.sqlite3$/, 'db/\1.sqlite3'
 # Setup Active Admin
 generate "active_admin:install"
 
-gsub_file "tailwind-active_admin.config.mjs", /^.*const activeAdminPath.*$/, <<~JS
+gsub_file "tailwind-active_admin.config.js", /^.*const activeAdminPath.*$/, <<~JS
   const activeAdminPath = '../../../';
 JS
-gsub_file "tailwind-active_admin.config.mjs", Regexp.new("@activeadmin/activeadmin/plugin"), "../../../plugin"
+gsub_file "tailwind-active_admin.config.js", Regexp.new("@activeadmin/activeadmin/plugin"), "../../../plugin"
 
 # Force strong parameters to raise exceptions
 inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
