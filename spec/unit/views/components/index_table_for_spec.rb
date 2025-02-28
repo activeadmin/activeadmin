@@ -15,7 +15,8 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
     let(:assigns) do
       {
         collection: collection,
-        active_admin_config: active_admin_config
+        active_admin_config: active_admin_config,
+        resource_class: User,
       }
     end
     let(:helpers) { mock_action_view }
@@ -41,6 +42,30 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
         it "not sortable" do
           expect(header.attributes).not_to include("data-sortable": "")
         end
+      end
+    end
+
+    context "when creating an id column" do
+      before { allow(helpers).to receive(:url_target) { 'routing_stub' } }
+
+      def build_index_table(&block)
+        render_arbre_component assigns, helpers do
+          insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, { sortable: true }) do
+            instance_exec(&block)
+          end
+        end
+      end
+
+      it "use primary key as title by default" do
+        table = build_index_table { id_column }
+        header = table.find_by_tag("th").first
+        expect(header.content).to include("id")
+      end
+
+      it "supports title customization" do
+        table = build_index_table { id_column title: 'Res. Id' }
+        header = table.find_by_tag("th").first
+        expect(header.content).to include("Res. Id")
       end
     end
   end
