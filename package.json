@@ -26,9 +26,9 @@
   "homepage": "https://activeadmin.info",
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",
-    "eslint": "^9.19.0",
+    "eslint": "^9.21.0",
     "gherkin-lint": "^4.2.2",
-    "rollup": "^4.32.0",
+    "rollup": "^4.34.9",
     "tailwindcss": "^3.4.17",
     "vitepress": "^1.6.3"
   },
