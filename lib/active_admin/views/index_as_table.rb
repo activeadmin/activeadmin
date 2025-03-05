@@ -256,9 +256,9 @@ module ActiveAdmin
         end
 
         # Display a column for the id
-        def id_column(title: resource_class.human_attribute_name(resource_class.primary_key))
+        def id_column(title: resource_class.human_attribute_name(resource_class.primary_key), sortable: resource_class.primary_key)
           raise "#{resource_class.name} has no primary_key!" unless resource_class.primary_key
-          column(title, sortable: resource_class.primary_key) do |resource|
+          column(title, sortable:) do |resource|
             if controller.action_methods.include?("show")
               link_to resource.id, resource_path(resource)
             elsif controller.action_methods.include?("edit")

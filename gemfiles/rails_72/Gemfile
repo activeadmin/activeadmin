@@ -34,7 +34,7 @@ group :test do
   gem "cucumber"
   gem "database_cleaner-active_record"
   gem "launchy"
-  gem "parallel_tests"
+  gem "parallel_tests", "~> 4.9" # FIXME: relax this dependency when Ruby 3.1 support will be dropped
   gem "rspec-rails"
   gem "sqlite3", platform: :mri
 

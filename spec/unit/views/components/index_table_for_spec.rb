@@ -67,6 +67,24 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
         header = table.find_by_tag("th").first
         expect(header.content).to include("Res. Id")
       end
+
+      it "is sortable by default" do
+        table = build_index_table { id_column }
+        header = table.find_by_tag("th").first
+        expect(header.attributes).to include("data-sortable": "")
+      end
+
+      it "supports sortable: false" do
+        table = build_index_table { id_column sortable: false }
+        header = table.find_by_tag("th").first
+        expect(header.attributes).not_to include("data-sortable": "")
+      end
+
+      it "supports sortable column names" do
+        table = build_index_table { id_column sortable: :created_at }
+        header = table.find_by_tag("th").first
+        expect(header.attributes).to include("data-sortable": "")
+      end
     end
   end
 end
