@@ -63,7 +63,7 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
       end
 
       it "supports title customization" do
-        table = build_index_table { id_column title: 'Res. Id' }
+        table = build_index_table { id_column 'Res. Id' }
         header = table.find_by_tag("th").first
         expect(header.content).to include("Res. Id")
       end
@@ -83,6 +83,13 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
       it "supports sortable column names" do
         table = build_index_table { id_column sortable: :created_at }
         header = table.find_by_tag("th").first
+        expect(header.attributes).to include("data-sortable": "")
+      end
+
+      it 'supports title customization and options' do
+        table = build_index_table { id_column 'Res. Id', sortable: :created_at }
+        header = table.find_by_tag("th").first
+        expect(header.content).to include("Res. Id")
         expect(header.attributes).to include("data-sortable": "")
       end
     end
