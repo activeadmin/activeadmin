@@ -15,7 +15,8 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
     let(:assigns) do
       {
         collection: collection,
-        active_admin_config: active_admin_config
+        active_admin_config: active_admin_config,
+        resource_class: User,
       }
     end
     let(:helpers) { mock_action_view }
@@ -41,6 +42,36 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
         it "not sortable" do
           expect(header.attributes[:class]).not_to include "sortable"
         end
+      end
+    end
+
+    context "when creating an id column" do
+      before { allow(helpers).to receive(:url_for).and_return("routing_stub") }
+
+      def build_index_table(&block)
+        render_arbre_component assigns, helpers do
+          insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, { sortable: true }) do
+            instance_exec(&block)
+          end
+        end
+      end
+
+      it "is sortable by default" do
+        table = build_index_table { id_column }
+        header = table.find_by_tag("th").first
+        expect(header.attributes[:class]).to include("sortable")
+      end
+
+      it "supports sortable: false" do
+        table = build_index_table { id_column sortable: false }
+        header = table.find_by_tag("th").first
+        expect(header.attributes[:class]).not_to include("sortable")
+      end
+
+      it "supports sortable column names" do
+        table = build_index_table { id_column sortable: :created_at }
+        header = table.find_by_tag("th").first
+        expect(header.attributes[:class]).to include("sortable")
       end
     end
 
