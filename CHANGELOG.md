@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+## 3.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.5..v3.3.0)
+
+### Enhancements
+
+* Improve v3 docs regarding compatibility with vite_rails [#8548] by [@mattbrictson]
+* Backport test against Rails 8.0 [#8556] by [@mgrunberg] and [@tagliala]
+* Test against Ruby 3.4 [#8614] by [@tagliala]
+* Backport Support sortable argument in id_column [#8650] by [@jaynetics]
+* Backport Support title for id_column [#8652] by [@mgrunberg]
+
+### Bug Fixes
+
+* Backport Fix attributes passed to form has_many not being set on new record form items [#8551] by [@Fs00]
+* Backport Fix deprecation warning in Ruby 3.4 [#8596] by [@tagliala]
+* Backport Fix circular require warning in belongs_to.rb [#8601] by [@tagliala]
+
 ## 3.2.5 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.4..v3.2.5)
 
 ### Enhancements
@@ -960,6 +976,14 @@ Please check [0-6-stable] for previous changes.
 [#8468]: https://github.com/activeadmin/activeadmin/pull/8468
 [#8469]: https://github.com/activeadmin/activeadmin/pull/8469
 [#8470]: https://github.com/activeadmin/activeadmin/pull/8470
+[#8548]: https://github.com/activeadmin/activeadmin/pull/8548
+[#8551]: https://github.com/activeadmin/activeadmin/pull/8551
+[#8556]: https://github.com/activeadmin/activeadmin/pull/8556
+[#8596]: https://github.com/activeadmin/activeadmin/pull/8596
+[#8601]: https://github.com/activeadmin/activeadmin/pull/8601
+[#8614]: https://github.com/activeadmin/activeadmin/pull/8614
+[#8650]: https://github.com/activeadmin/activeadmin/pull/8650
+[#8652]: https://github.com/activeadmin/activeadmin/pull/8652
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -1040,6 +1064,7 @@ Please check [0-6-stable] for previous changes.
 [@Looooong]: https://github.com/Looooong
 [@lubosch]: https://github.com/lubosch
 [@markstory]: https://github.com/markstory
+[@mattbrictson]: https://github.com/mattbrictson
 [@mauriciopasquier]: https://github.com/mauriciopasquier
 [@mconiglio]: https://github.com/mconiglio
 [@mgrunberg]: https://github.com/mgrunberg
