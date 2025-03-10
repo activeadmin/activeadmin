@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 // Short-circuits `_focusTabbable` to focus on the modal itself instead of
 // elements inside the modal. Without this, if a datepicker is the first input,
 // it'll immediately pop up when the modal opens.
