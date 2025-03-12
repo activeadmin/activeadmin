@@ -1,7 +1,7 @@
 //= require jquery-ui/widget
 
 /*!
- * jQuery UI Controlgroup 1.13.3
+ * jQuery UI Controlgroup 1.14.1
  * https://jqueryui.com
  *
  * Copyright OpenJS Foundation and other contributors
@@ -39,7 +39,7 @@
 var controlgroupCornerRegex = /ui-corner-([a-z]){2,6}/g;
 
 return $.widget( "ui.controlgroup", {
-	version: "1.13.3",
+	version: "1.14.1",
 	defaultElement: "<div>",
 	options: {
 		direction: "horizontal",

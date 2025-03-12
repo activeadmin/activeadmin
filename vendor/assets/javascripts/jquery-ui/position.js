@@ -1,7 +1,7 @@
 //= require jquery-ui/version
 
 /*!
- * jQuery UI Position 1.13.3
+ * jQuery UI Position 1.14.1
  * https://jqueryui.com
  *
  * Copyright OpenJS Foundation and other contributors

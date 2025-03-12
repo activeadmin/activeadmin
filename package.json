@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "jquery": "^3.4.1",
-    "jquery-ui": "^1.13.3",
+    "jquery-ui": "^1.14.1",
     "jquery-ujs": "^1.2.2"
   }
 }
