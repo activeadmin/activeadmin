@@ -1,7 +1,7 @@
 //= require jquery-ui/version
 
 /*!
- * jQuery UI Focusable 1.13.3
+ * jQuery UI Focusable 1.14.1
  * https://jqueryui.com
  *
  * Copyright OpenJS Foundation and other contributors
@@ -64,19 +64,9 @@ $.ui.focusable = function( element, hasTabindex ) {
 		focusableIfVisible = hasTabindex;
 	}
 
-	return focusableIfVisible && $( element ).is( ":visible" ) && visible( $( element ) );
+	return focusableIfVisible && $( element ).is( ":visible" ) &&
+		$( element ).css( "visibility" ) === "visible";
 };
-
-// Support: IE 8 only
-// IE 8 doesn't resolve inherit to visible/hidden for computed values
-function visible( element ) {
-	var visibility = element.css( "visibility" );
-	while ( visibility === "inherit" ) {
-		element = element.parent();
-		visibility = element.css( "visibility" );
-	}
-	return visibility === "visible";
-}
 
 $.extend( $.expr.pseudos, {
 	focusable: function( element ) {
