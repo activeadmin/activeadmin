@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: yarn
-      - uses: tj-actions/changed-files@v45
+      - uses: tj-actions/changed-files@v46
         id: changed-files
         with:
           files: |
