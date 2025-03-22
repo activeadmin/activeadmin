@@ -1,8 +1,7 @@
-//= require jquery-ui/form
 //= require jquery-ui/version
 
 /*!
- * jQuery UI Form Reset Mixin 1.13.3
+ * jQuery UI Form Reset Mixin 1.14.1
  * https://jqueryui.com
  *
  * Copyright OpenJS Foundation and other contributors
@@ -23,7 +22,6 @@
 		// AMD. Register as an anonymous module.
 		define( [
 			"jquery",
-			"./form",
 			"./version"
 		], factory );
 	} else {
@@ -48,7 +46,7 @@ return $.ui.formResetMixin = {
 	},
 
 	_bindFormResetHandler: function() {
-		this.form = this.element._form();
+		this.form = $( this.element.prop( "form" ) );
 		if ( !this.form.length ) {
 			return;
 		}

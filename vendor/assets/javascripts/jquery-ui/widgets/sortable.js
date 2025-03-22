@@ -1,12 +1,11 @@
 //= require jquery-ui/widgets/mouse
 //= require jquery-ui/data
-//= require jquery-ui/ie
 //= require jquery-ui/scroll-parent
 //= require jquery-ui/version
 //= require jquery-ui/widget
 
 /*!
- * jQuery UI Sortable 1.13.3
+ * jQuery UI Sortable 1.14.1
  * https://jqueryui.com
  *
  * Copyright OpenJS Foundation and other contributors
@@ -31,7 +30,6 @@
 			"jquery",
 			"./mouse",
 			"../data",
-			"../ie",
 			"../scroll-parent",
 			"../version",
 			"../widget"
@@ -45,7 +43,7 @@
 "use strict";
 
 return $.widget( "ui.sortable", $.ui.mouse, {
-	version: "1.13.3",
+	version: "1.14.1",
 	widgetEventPrefix: "sort",
 	ready: false,
 	options: {
@@ -283,11 +281,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		if ( o.cursor && o.cursor !== "auto" ) { // cursor option
 			body = this.document.find( "body" );
 
-			// Support: IE
-			this.storedCursor = body.css( "cursor" );
-			body.css( "cursor", o.cursor );
-
-			this.storedStylesheet =
+			this._storedStylesheet =
 				$( "<style>*{ cursor: " + o.cursor + " !important; }</style>" ).appendTo( body );
 		}
 
@@ -1204,11 +1198,9 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			po.top += this.scrollParent.scrollTop();
 		}
 
-		// This needs to be actually done for all browsers, since pageX/pageY includes this
-		// information with an ugly IE fix
-		if ( this.offsetParent[ 0 ] === this.document[ 0 ].body ||
-				( this.offsetParent[ 0 ].tagName &&
-				this.offsetParent[ 0 ].tagName.toLowerCase() === "html" && $.ui.ie ) ) {
+		// This needs to be actually done for all browsers, since pageX/pageY includes
+		// this information.
+		if ( this.offsetParent[ 0 ] === this.document[ 0 ].body ) {
 			po = { top: 0, left: 0 };
 		}
 
@@ -1556,9 +1548,9 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		}
 
 		//Do what was originally in plugins
-		if ( this.storedCursor ) {
-			this.document.find( "body" ).css( "cursor", this.storedCursor );
-			this.storedStylesheet.remove();
+		if ( this._storedStylesheet ) {
+			this._storedStylesheet.remove();
+			this._storedStylesheet = null;
 		}
 		if ( this._storedOpacity ) {
 			this.helper.css( "opacity", this._storedOpacity );

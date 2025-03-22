@@ -3,7 +3,7 @@
 
 /* eslint-disable max-len, camelcase */
 /*!
- * jQuery UI Datepicker 1.13.3
+ * jQuery UI Datepicker 1.14.1
  * https://jqueryui.com
  *
  * Copyright OpenJS Foundation and other contributors
@@ -39,7 +39,7 @@
 } )( function( $ ) {
 "use strict";
 
-$.extend( $.ui, { datepicker: { version: "1.13.3" } } );
+$.extend( $.ui, { datepicker: { version: "1.14.1" } } );
 
 var datepicker_instActive;
 
@@ -438,6 +438,7 @@ $.extend( Datepicker.prototype, {
 			$target.removeClass( this.markerClassName ).empty();
 		}
 
+		$.datepicker._hideDatepicker();
 		if ( datepicker_instActive === inst ) {
 			datepicker_instActive = null;
 			this._curInst = null;
@@ -913,11 +914,8 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	// #6694 - don't focus the input if it's already focused
-	// this breaks the change event in IE
-	// Support: IE and jQuery <1.9
 	_shouldFocusInput: function( inst ) {
-		return inst.input && inst.input.is( ":visible" ) && !inst.input.is( ":disabled" ) && !inst.input.is( ":focus" );
+		return inst.input && inst.input.is( ":visible" ) && !inst.input.is( ":disabled" );
 	},
 
 	/* Check positioning to remain on screen. */
@@ -974,8 +972,7 @@ $.extend( Datepicker.prototype, {
 				$.datepicker._tidyDialog( inst );
 			};
 
-			// DEPRECATED: after BC for 1.8.x $.effects[ showAnim ] is not needed
-			if ( $.effects && ( $.effects.effect[ showAnim ] || $.effects[ showAnim ] ) ) {
+			if ( $.effects && ( $.effects.effect[ showAnim ] ) ) {
 				inst.dpDiv.hide( showAnim, $.datepicker._get( inst, "showOptions" ), duration, postProcess );
 			} else {
 				inst.dpDiv[ ( showAnim === "slideDown" ? "slideUp" :
@@ -2236,7 +2233,7 @@ $.fn.datepicker = function( options ) {
 $.datepicker = new Datepicker(); // singleton instance
 $.datepicker.initialized = false;
 $.datepicker.uuid = new Date().getTime();
-$.datepicker.version = "1.13.3";
+$.datepicker.version = "1.14.1";
 
 return $.datepicker;
 

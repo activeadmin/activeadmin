@@ -1,11 +1,10 @@
 //= require jquery-ui/keycode
-//= require jquery-ui/safe-active-element
 //= require jquery-ui/unique-id
 //= require jquery-ui/version
 //= require jquery-ui/widget
 
 /*!
- * jQuery UI Tabs 1.13.3
+ * jQuery UI Tabs 1.14.1
  * https://jqueryui.com
  *
  * Copyright OpenJS Foundation and other contributors
@@ -31,7 +30,6 @@
 		define( [
 			"jquery",
 			"../keycode",
-			"../safe-active-element",
 			"../unique-id",
 			"../version",
 			"../widget"
@@ -45,7 +43,7 @@
 "use strict";
 
 $.widget( "ui.tabs", {
-	version: "1.13.3",
+	version: "1.14.1",
 	delay: 300,
 	options: {
 		active: null,
@@ -128,14 +126,14 @@ $.widget( "ui.tabs", {
 	_initialActive: function() {
 		var active = this.options.active,
 			collapsible = this.options.collapsible,
-			locationHash = location.hash.substring( 1 );
+			locationHashDecoded = decodeURIComponent( location.hash.substring( 1 ) );
 
 		if ( active === null ) {
 
 			// check the fragment identifier in the URL
-			if ( locationHash ) {
+			if ( locationHashDecoded ) {
 				this.tabs.each( function( i, tab ) {
-					if ( $( tab ).attr( "aria-controls" ) === locationHash ) {
+					if ( $( tab ).attr( "aria-controls" ) === locationHashDecoded ) {
 						active = i;
 						return false;
 					}
@@ -177,7 +175,7 @@ $.widget( "ui.tabs", {
 	},
 
 	_tabKeydown: function( event ) {
-		var focusedTab = $( $.ui.safeActiveElement( this.document[ 0 ] ) ).closest( "li" ),
+		var focusedTab = $( this.document[ 0 ].activeElement ).closest( "li" ),
 			selectedIndex = this.tabs.index( focusedTab ),
 			goingForward = true;
 
@@ -319,10 +317,6 @@ $.widget( "ui.tabs", {
 		}
 	},
 
-	_sanitizeSelector: function( hash ) {
-		return hash ? hash.replace( /[!"$%&'()*+,.\/:;<=>?@\[\]\^`{|}~]/g, "\\$&" ) : "";
-	},
-
 	refresh: function() {
 		var options = this.options,
 			lis = this.tablist.children( ":has(a[href])" );
@@ -414,18 +408,6 @@ $.widget( "ui.tabs", {
 				if ( $( this ).is( ".ui-state-disabled" ) ) {
 					event.preventDefault();
 				}
-			} )
-
-			// Support: IE <9
-			// Preventing the default action in mousedown doesn't prevent IE
-			// from focusing the element, so if the anchor gets focused, blur.
-			// We don't have to worry about focusing the previously focused
-			// element since clicking on a non-focusable element should focus
-			// the body anyway.
-			.on( "focus" + this.eventNamespace, ".ui-tabs-anchor", function() {
-				if ( $( this ).closest( "li" ).is( ".ui-state-disabled" ) ) {
-					this.blur();
-				}
 			} );
 
 		this.tabs = this.tablist.find( "> li:has(a[href])" )
@@ -453,9 +435,9 @@ $.widget( "ui.tabs", {
 
 			// Inline tab
 			if ( that._isLocal( anchor ) ) {
-				selector = anchor.hash;
+				selector = decodeURIComponent( anchor.hash );
 				panelId = selector.substring( 1 );
-				panel = that.element.find( that._sanitizeSelector( selector ) );
+				panel = that.element.find( "#" + CSS.escape( panelId ) );
 
 			// remote tab
 			} else {
@@ -741,7 +723,7 @@ $.widget( "ui.tabs", {
 		// meta-function to give users option to provide a href string instead of a numerical index.
 		if ( typeof index === "string" ) {
 			index = this.anchors.index( this.anchors.filter( "[href$='" +
-				$.escapeSelector( index ) + "']" ) );
+				CSS.escape( index ) + "']" ) );
 		}
 
 		return index;
@@ -863,32 +845,19 @@ $.widget( "ui.tabs", {
 
 		this.xhr = $.ajax( this._ajaxSettings( anchor, event, eventData ) );
 
-		// Support: jQuery <1.8
-		// jQuery <1.8 returns false if the request is canceled in beforeSend,
-		// but as of 1.8, $.ajax() always returns a jqXHR object.
-		if ( this.xhr && this.xhr.statusText !== "canceled" ) {
+		if ( this.xhr.statusText !== "canceled" ) {
 			this._addClass( tab, "ui-tabs-loading" );
 			panel.attr( "aria-busy", "true" );
 
 			this.xhr
 				.done( function( response, status, jqXHR ) {
+					panel.html( response );
+					that._trigger( "load", event, eventData );
 
-					// support: jQuery <1.8
-					// https://bugs.jquery.com/ticket/11778
-					setTimeout( function() {
-						panel.html( response );
-						that._trigger( "load", event, eventData );
-
-						complete( jqXHR, status );
-					}, 1 );
+					complete( jqXHR, status );
 				} )
 				.fail( function( jqXHR, status ) {
-
-					// support: jQuery <1.8
-					// https://bugs.jquery.com/ticket/11778
-					setTimeout( function() {
-						complete( jqXHR, status );
-					}, 1 );
+					complete( jqXHR, status );
 				} );
 		}
 	},
@@ -896,10 +865,7 @@ $.widget( "ui.tabs", {
 	_ajaxSettings: function( anchor, event, eventData ) {
 		var that = this;
 		return {
-
-			// Support: IE <11 only
-			// Strip any hash that exists to prevent errors with the Ajax request
-			url: anchor.attr( "href" ).replace( /#.*$/, "" ),
+			url: anchor.attr( "href" ),
 			beforeSend: function( jqXHR, settings ) {
 				return that._trigger( "beforeLoad", event,
 					$.extend( { jqXHR: jqXHR, ajaxSettings: settings }, eventData ) );
@@ -909,13 +875,13 @@ $.widget( "ui.tabs", {
 
 	_getPanelForTab: function( tab ) {
 		var id = $( tab ).attr( "aria-controls" );
-		return this.element.find( this._sanitizeSelector( "#" + id ) );
+		return this.element.find( "#" + CSS.escape( id ) );
 	}
 } );
 
 // DEPRECATED
 // TODO: Switch return back to widget declaration at top of file when this is removed
-if ( $.uiBackCompat !== false ) {
+if ( $.uiBackCompat === true ) {
 
 	// Backcompat for ui-tab class (now ui-tabs-tab)
 	$.widget( "ui.tabs", $.ui.tabs, {
