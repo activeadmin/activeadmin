@@ -1,3 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/**
+ * Use #ACTIVE_ADMIN_GEM# special wildcard to reference ActiveAdmin gem path.
+ * You can run compilation in the terminal with the following command:
+ * "echo ./app/assets/stylesheets/active_admin.css | npx @tailwindcss/cli -i - -o ./app/assets/builds/active_admin.css --minify"
+ */
+
+/** Scan files distributed with activeadmin gem */
+@source "#ACTIVE_ADMIN_GEM#/vendor/javascript/flowbite.js";
+@source "#ACTIVE_ADMIN_GEM#/plugin.js";
+@source "#ACTIVE_ADMIN_GEM#/app/views";
+
+/** Register active admin plugin */
+@plugin "#ACTIVE_ADMIN_GEM#/plugin.js";
+
+/** Ability to toggle dark mode manually (https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+/* @config "../../../tailwind-active_admin.config.js"; */
