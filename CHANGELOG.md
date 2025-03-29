@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Update vendored jQuery UI to 1.14.1 [#8670] by [@tagliala] (thanks to [@tobischo])
+
 ## 3.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.2.5..v3.3.0)
 
 ### Enhancements
@@ -984,6 +986,7 @@ Please check [0-6-stable] for previous changes.
 [#8614]: https://github.com/activeadmin/activeadmin/pull/8614
 [#8650]: https://github.com/activeadmin/activeadmin/pull/8650
 [#8652]: https://github.com/activeadmin/activeadmin/pull/8652
+[#8670]: https://github.com/activeadmin/activeadmin/pull/8670
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -1108,6 +1111,7 @@ Please check [0-6-stable] for previous changes.
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@timwis]: https://github.com/timwis
+[@tobischo]: https://github.com/tobischo
 [@tomgilligan]: https://github.com/tomgilligan
 [@TonyArra]: https://github.com/TonyArra
 [@tordans]: https://github.com/tordans
