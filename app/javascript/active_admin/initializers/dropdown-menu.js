@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import DropdownMenu from "../lib/dropdown-menu";
 
 $.widget.bridge('aaDropdownMenu', DropdownMenu);
