@@ -73,6 +73,7 @@
       entry:
         one: "条目"
         other: "条目"
+      truncate: "&hellip;"
     any: "任何"
     blank_slate:
       content: "暂时还没有%{resource_name}。"

@@ -73,6 +73,7 @@ ko:
       entry:
         one: "항목"
         other: "항목들"
+      truncate: "&hellip;"
     any: "어떤"
     blank_slate:
       content: "아직 %{resource_name} 이/가 없습니다."

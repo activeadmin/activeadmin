@@ -39,4 +39,3 @@ ignore_inconsistent_interpolations:
 
 ignore_missing:
   - errors.messages.not_saved # Devise
-  - views.pagination.* # Kaminari

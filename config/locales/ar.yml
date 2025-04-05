@@ -73,6 +73,7 @@ ar:
       entry:
         one: "مدخل"
         other: "مدخلات"
+      truncate: "&hellip;"
     any: "أي"
     blank_slate:
       content: "لا يوجد %{resource_name}"

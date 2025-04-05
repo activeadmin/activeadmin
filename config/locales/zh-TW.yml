@@ -73,6 +73,7 @@
       entry:
         one: "筆"
         other: "筆"
+      truncate: "&hellip;"
     any: "任何"
     blank_slate:
       content: "尚無 %{resource_name}。"
