@@ -73,6 +73,7 @@ it:
       entry:
         one: "voce"
         other: "voci"
+      truncate: "&hellip;"
     any: "Qualsiasi"
     blank_slate:
       content: "Non sono presenti %{resource_name}"

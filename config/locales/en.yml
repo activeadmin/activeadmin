@@ -73,6 +73,7 @@ en:
       entry:
         one: "entry"
         other: "entries"
+      truncate: "&hellip;"
     any: "Any"
     blank_slate:
       content: "There are no %{resource_name} yet."
