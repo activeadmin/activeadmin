@@ -1,4 +1,20 @@
 pt-BR:
+  activerecord:
+    models:
+      comment:
+        one: "Comentário"
+        other: "Comentários"
+      active_admin/comment:
+        one: "Comentário"
+        other: "Comentários"
+    attributes:
+      active_admin/comment:
+        author_type: "Tipo do autor"
+        body: "Corpo"
+        created_at: "Criado em"
+        namespace: "Namespace"
+        resource_type: "Tipo do recurso"
+        updated_at: "Atualizado em"
   active_admin:
     dashboard: "Painel Administrativo"
     view: "Visualizar"
@@ -18,6 +34,7 @@ pt-BR:
     has_many_new: "Adicionar Novo(a) %{model}"
     has_many_delete: "Remover"
     has_many_remove: "Remover"
+    move: "Mover"
     filters:
       buttons:
         filter: "Filtrar"
@@ -25,12 +42,20 @@ pt-BR:
       predicates:
         from: "A partir de"
         to: "Até"
+    scopes:
+      all: "Todos"
     search_status:
-      no_current_filters: "Nenhum"
+      title: "Active Search"
+      title_with_scope: "Active Search de %{name}"
+      no_current_filters: "Nenhum filtro aplicado"
     status_tag:
       "yes": "Sim"
       "no": "Não"
       "unset": "Não"
+    toggle_dark_mode: Ativar modo escuro
+    toggle_main_navigation_menu: Ativar menu de navegação principal
+    toggle_section: Ativar seção
+    toggle_user_menu: Ativar menu de usuário
     logout: "Sair"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -43,9 +68,12 @@ pt-BR:
       multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
       multiple_without_total: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       per_page: "Por página: "
+      previous: "Anterior"
+      next: "Próximo"
       entry:
         one: "registro"
         other: "registros"
+      truncate: "&hellip;"
     any: "Qualquer"
     blank_slate:
       content: "Não existem %{resource_name} ainda."
