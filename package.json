@@ -44,6 +44,6 @@
   },
   "dependencies": {
     "@rails/ujs": "7.1.501",
-    "flowbite": "2.3.0"
+    "flowbite": "3.1.2"
   }
 }
