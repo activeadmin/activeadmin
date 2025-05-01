@@ -17,9 +17,6 @@ updates:
       rails_default:
         patterns:
           - "*"
-    ignore:
-      - dependency-name: sqlite3
-        versions: ">= 2" # FIXME: Remove when rails/rails#51636 will be released
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -29,18 +26,6 @@ updates:
       npm:
         patterns:
           - "*"
-  - package-ecosystem: bundler
-    directory: /gemfiles/rails_61
-    schedule:
-      interval: monthly
-    versioning-strategy: lockfile-only
-    groups:
-      rails_61:
-        patterns:
-          - "*"
-    ignore:
-      - dependency-name: sqlite3
-        versions: ">= 2"
   - package-ecosystem: bundler
     directory: /gemfiles/rails_70
     schedule:
@@ -53,3 +38,29 @@ updates:
     ignore:
       - dependency-name: sqlite3
         versions: ">= 2"
+      - dependency-name: rails
+        versions: ">= 7.1.0"
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_71
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+    groups:
+      rails_71:
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: rails
+        versions: ">= 7.2.0"
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_72
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+    groups:
+      rails_72:
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: rails
+        versions: ">= 8.0.0"
