@@ -40,6 +40,12 @@ updates:
         versions: ">= 2"
       - dependency-name: rails
         versions: ">= 7.1.0"
+      - dependency-name: rails-i18n
+        versions: ">= 8.0.0"
+      - dependency-name: railties
+        versions: ">= 7.1.0"
+      - dependency-name: rspec-rails
+        versions: ">= 8.0.0"
   - package-ecosystem: bundler
     directory: /gemfiles/rails_71
     schedule:
@@ -52,6 +58,12 @@ updates:
     ignore:
       - dependency-name: rails
         versions: ">= 7.2.0"
+      - dependency-name: rails-i18n
+        versions: ">= 8.0.0"
+      - dependency-name: railties
+        versions: ">= 7.2.0"
+      - dependency-name: rspec-rails
+        versions: ">= 8.0.0"
   - package-ecosystem: bundler
     directory: /gemfiles/rails_72
     schedule:
@@ -63,4 +75,6 @@ updates:
           - "*"
     ignore:
       - dependency-name: rails
+        versions: ">= 8.0.0"
+      - dependency-name: railties
         versions: ">= 8.0.0"
