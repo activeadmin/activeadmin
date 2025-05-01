@@ -76,5 +76,7 @@ updates:
     ignore:
       - dependency-name: rails
         versions: ">= 8.0.0"
+      - dependency-name: rails-i18n
+        versions: ">= 8.0.0"
       - dependency-name: railties
         versions: ">= 8.0.0"
