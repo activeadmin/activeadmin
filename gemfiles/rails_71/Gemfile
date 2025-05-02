@@ -6,6 +6,7 @@ group :development, :test do
 
   gem "cancancan"
   gem "pundit"
+  gem "action_policy"
 
   gem "draper"
   gem "devise"

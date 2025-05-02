@@ -14,6 +14,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    action_policy (0.7.4)
+      ruby-next-core (>= 1.0)
     actioncable (8.0.2)
       actionpack (= 8.0.2)
       activesupport (= 8.0.2)
@@ -397,6 +399,7 @@ GEM
     rubocop-rspec (3.6.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
+    ruby-next-core (1.1.1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.1)
@@ -453,6 +456,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  action_policy
   activeadmin!
   cancancan
   capybara
