@@ -7,3 +7,6 @@ en:
         other: Bookstores
   active_admin:
     download: "Export:"
+    ransack:
+      predicates:
+        not_eq: "not equal to (custom)"

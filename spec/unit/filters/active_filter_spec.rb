@@ -50,6 +50,16 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     expect(subject.predicate_name).to eq(I18n.t("ransack.predicates.eq"))
   end
 
+  context "with custom predicate name translation" do
+    let(:search) do
+      Post.ransack(custom_category_id_not_eq: category.id)
+    end
+
+    it "should pick key in active admin scope" do
+      expect(subject.predicate_name).to eq("not equal to (custom)")
+    end
+  end
+
   context "search by belongs_to association" do
     let(:search) do
       Post.ransack(custom_category_id_eq: category.id)

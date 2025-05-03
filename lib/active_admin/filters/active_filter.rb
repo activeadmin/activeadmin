@@ -5,6 +5,10 @@ module ActiveAdmin
     class ActiveFilter
       attr_reader :resource, :condition, :related_class
 
+      def self.predicate_name(name)
+        I18n.t("active_admin.ransack.predicates.#{name}", default: Ransack::Translate.predicate(name))
+      end
+
       # Instantiate a `ActiveFilter`
       #
       # @param resource [ActiveAdmin::Resource] current resource
@@ -38,9 +42,7 @@ module ActiveAdmin
       end
 
       def predicate_name
-        I18n.t(
-          "ransack.predicates.#{condition.predicate.name}",
-          default: ransack_predicate_name)
+        self.class.predicate_name(condition.predicate.name)
       end
 
       def html_options
@@ -76,10 +78,6 @@ module ActiveAdmin
 
       def name
         condition_attribute.attr_name
-      end
-
-      def ransack_predicate_name
-        Ransack::Translate.predicate(condition.predicate.name)
       end
 
       def find_class?
