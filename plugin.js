@@ -367,7 +367,7 @@ export default plugin(
         '@apply w-full text-sm text-gray-800 dark:text-gray-300': {}
       },
       '.data-table :where(thead > tr > th)': {
-        '@apply px-3 py-3.5 whitespace-nowrap font-semibold text-start text-xs uppercase border-b text-gray-700 bg-gray-50 dark:bg-gray-950/50 dark:border-gray-800 dark:text-white': {}
+        '@apply px-3 py-3.5 whitespace-nowrap font-semibold text-start text-xs uppercase border-b border-gray-200 text-gray-700 bg-gray-50 dark:bg-gray-950/50 dark:border-gray-800 dark:text-white': {}
       },
       '.data-table :where(thead > tr > th > a)': {
         '@apply text-inherit no-underline inline-flex items-center gap-2': {}
@@ -382,7 +382,7 @@ export default plugin(
         '@apply rotate-180': {}
       },
       '.data-table :where(tbody > tr)': {
-        '@apply border-b dark:border-gray-800': {}
+        '@apply border-b border-gray-200 dark:border-gray-800': {}
       },
       '.data-table :where(td)': {
         '@apply px-3 py-4': {}
@@ -454,7 +454,7 @@ export default plugin(
         '@apply w-full text-sm text-gray-800 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr)': {
-        '@apply border-b dark:border-gray-800': {}
+        '@apply border-b border-gray-200 dark:border-gray-800': {}
       },
       '.attributes-table :where(tbody > tr > th)': {
         '@apply w-32 sm:w-40 text-start text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800/60 dark:text-gray-300': {}
