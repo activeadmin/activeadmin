@@ -47,6 +47,7 @@ export default plugin(
         'textarea',
         'select',
       ]]: {
+        '@apply dark:scheme-dark': {},
         'appearance': 'none',
         'padding': `${spacing[2]} ${spacing[3]}`,
         '--tw-shadow': '0 0 #0000',
