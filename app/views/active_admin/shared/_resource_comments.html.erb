@@ -1,5 +1,5 @@
 <div class="max-w-[700px]">
-  <div class="font-bold py-3 border-b dark:border-gray-600">
+  <div class="font-bold py-3 border-b border-gray-200 dark:border-gray-600">
     <%= ActiveAdmin::Comment.model_name.human(count: 2.1) %>
   </div>
   <% if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment) %>
@@ -15,12 +15,12 @@
     end
     %>
   <% end %>
-  <div class="font-bold py-3 border-b dark:border-gray-600">
+  <div class="font-bold py-3 border-b border-gray-200 dark:border-gray-600">
     <%= I18n.t "active_admin.comments.title_content", count: comments.total_count %>
   </div>
   <% if comments.any? %>
     <% comments.each do |comment| %>
-      <div class="border-b dark:border-gray-600 py-6 max-w-[700px]" id="<%= dom_id(comment, :active_admin) %>" data-test-comment-container>
+      <div class="border-b border-gray-200 dark:border-gray-600 py-6 max-w-[700px]" id="<%= dom_id(comment, :active_admin) %>" data-test-comment-container>
         <div class="flex gap-4 items-end mb-2">
           <span class="font-semibold">
             <%= comment.author ? auto_link(comment.author) : I18n.t("active_admin.comments.author_missing") %>
