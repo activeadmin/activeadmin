@@ -47,6 +47,7 @@ export default plugin(
         'textarea',
         'select',
       ]]: {
+        '@apply dark:scheme-dark': {},
         appearance: 'none',
         'background-color': '#fff',
         'border-color': theme('colors.gray.500', colors.gray[500]),
