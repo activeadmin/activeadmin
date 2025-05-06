@@ -77,7 +77,7 @@ de:
       button_label: "Stapelverarbeitung"
       default_confirmation: "Sind Sie sicher?"
       delete_confirmation: "Sind Sie sicher dass Sie diese %{plural_model} löschen wollen?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Erfolgreich 1 %{model} gelöscht"
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
       selection_toggle_explanation: "(Auswahl umschalten)"

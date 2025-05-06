@@ -50,7 +50,7 @@ az:
       button_label: "Qrup əməliyyatları"
       default_confirmation: "Siz bunu etməyinizə əminsiniz?"
       delete_confirmation: "Siz %{plural_model} silməyə əminsiniz?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Uğurla silindi: 1 %{model}"
         few: "Uğurla silindi: %{count} %{plural_model}"
         many: "Uğurla silindi: %{count} %{plural_model}"

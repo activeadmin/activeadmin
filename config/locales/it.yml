@@ -82,7 +82,7 @@ it:
       button_label: "Azioni multiple"
       default_confirmation: "Sei sicuro di che voler proseguire?"
       delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Eliminato con successo 1 %{model}"
         other: "Eliminati con successo %{count} %{plural_model}"
       selection_toggle_explanation: "(cambia selezione)"

@@ -49,7 +49,7 @@ hu:
       button_label: "Tömeges műveletek"
       default_confirmation: "Biztos vagy benne, hogy a ön akar-hoz csinál ez?"
       delete_confirmation: "Biztosan törli ezeket a %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} sikeresen törölve"
         other: "%{count} %{plural_model} sikeresen törölve"
       selection_toggle_explanation: "(Kijelölés megfordítása)"

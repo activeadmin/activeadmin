@@ -50,7 +50,7 @@ nb:
     batch_actions:
       button_label: "Gruppehandlinger"
       delete_confirmation: "Er du sikker på at du vil slette disse %{plural_model}? Dette kan ikke reverseres."
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Slettet én %{model}"
         other: "Slettet %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"

@@ -54,7 +54,7 @@ uk:
       button_label: "Групові операції"
       default_confirmation: "Ви справді бажаєте це зробити?"
       delete_confirmation: "Ви впевнені, що хочете видалити %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Успішно видалено: 1 %{model}"
         few: "Успішно видалено: %{count} %{plural_model}"
         many: "Успішно видалено: %{count} %{plural_model}"

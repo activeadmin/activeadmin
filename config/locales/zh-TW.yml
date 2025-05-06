@@ -82,7 +82,7 @@
       button_label: "批次操作"
       default_confirmation: "你確定要這樣做嗎？"
       delete_confirmation: "你確定要刪除這些 %{plural_model} 嗎？"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "成功刪除 1 %{model}"
         other: "成功刪除 %{count} %{plural_model}"
       selection_toggle_explanation: "（切換選取）"

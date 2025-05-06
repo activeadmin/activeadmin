@@ -63,7 +63,7 @@ mk:
       button_label: "Групни активности"
       default_confirmation: "Дали сте сигурни?"
       delete_confirmation: "Дали сте сигурни дека сакате да ги избришете %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Успешно е избришан 1 %{model}"
         other: "Успешно се избришани %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"

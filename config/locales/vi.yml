@@ -73,7 +73,7 @@ vi:
       button_label: "Hành động hàng loạt"
       default_confirmation: "Bạn có chắc bạn muốn làm điều này?"
       delete_confirmation: "Bạn có chắc chắn muốn xóa những %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Đã xóa thành công 1 %{model}"
         other: "Đã xóa thành công %{count} %{plural_model}"
       selection_toggle_explanation: "(Thay đổi lựa chọn)"

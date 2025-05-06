@@ -1,13 +1,15 @@
 # https://github.com/crate-ci/typos#false-positives
 [default]
-extend-ignore-identifiers-re = [
-  "succesfully_destroyed"
-]
 
 [default.extend-identifiers]
 
 [default.extend-words]
 rememberable = "rememberable"
+
+[type.md]
+extend-ignore-identifiers-re = [
+  "succesfully_destroyed"
+]
 
 [files]
 extend-exclude = [

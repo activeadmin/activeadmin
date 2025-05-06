@@ -77,7 +77,7 @@ sk:
       button_label: "Hromadné akcie"
       default_confirmation: "Ste si istí, že to chcete spraviť?"
       delete_confirmation: "Ste si istí, že chcete zmazať tieto %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         zero: "Nebol zmazaný žiaden %{model}"
         one: "Úspešne zmazaný %{model}"
         few: "Úspešne zmazané %{count} %{plural_model}"

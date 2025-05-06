@@ -87,7 +87,7 @@ ru:
       button_label: "Групповые операции"
       default_confirmation: "Вы уверены, что вы хотите это сделать?"
       delete_confirmation: "Вы уверены, что хотите удалить %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Успешно удалено: 1 %{model}"
         few: "Успешно удалено: %{count} %{plural_model}"
         many: "Успешно удалено: %{count} %{plural_model}"

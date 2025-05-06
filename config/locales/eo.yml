@@ -55,7 +55,7 @@ eo:
       button_label: "Amasagoj"
       default_confirmation: "Ĉu vi certas, ke vi volas fari tion?"
       delete_confirmation: "Ĉu vi certas, ke vi volas forigi tiujn %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} sukcese forigita"
         other: "%{count} %{plural_model} sukcese forigitaj"
       selection_toggle_explanation: "(Baskuligi elekton)"

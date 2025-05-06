@@ -61,7 +61,7 @@ nl:
       button_label: "Batch acties"
       default_confirmation: "Weet u zeker dat u dit wilt doen?"
       delete_confirmation: "Weet u zeker dat u deze %{plural_model} wilt verwijderen?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} verwijderd."
         other: "%{count} %{plural_model} verwijderd."
       selection_toggle_explanation: "(Toggle selectie)"

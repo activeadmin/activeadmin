@@ -46,7 +46,7 @@ el:
       button_label: "Μαζικές Ενέργειες"
       default_confirmation: "Είστε σίγουρος πως θέλετε να το κάνετε αυτό;"
       delete_confirmation: "Είστε σίγουρος πως θέλετε να διαγράψετε αυτά τα %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Διαγράφηκε επιτυχώς 1 %{model}"
         other: "Διαγράφηκαν επιτυχώς %{count} %{plural_model}"
       selection_toggle_explanation: "(Αντιστροφή επιλογών)"

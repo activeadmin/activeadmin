@@ -82,7 +82,7 @@ en:
       button_label: "Batch Actions"
       default_confirmation: "Are you sure you want to do this?"
       delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Successfully deleted 1 %{model}"
         other: "Successfully deleted %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"

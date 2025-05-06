@@ -83,7 +83,7 @@ pl:
       button_label: "Akcje na partiach"
       default_confirmation: "Czy na pewno chcesz to zrobić?"
       delete_confirmation: "Czy na pewno chcesz usunąć te %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Poprawnie usunięto 1 %{model}"
         other: "Poprawnie usunięto %{count} %{plural_model}"
         many: "Poprawnie usunięto %{count} %{plural_model}"

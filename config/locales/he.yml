@@ -51,7 +51,7 @@ he:
       button_label: "פעולות מרובות"
       default_confirmation: "אתה בטוח שאתה רוצה לעשות את זה?"
       delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} נמחק בהצלחה"
         other: "%{count} %{plural_model} נמחק בהצלחה"
       selection_toggle_explanation: "(שינוי בחירה)"

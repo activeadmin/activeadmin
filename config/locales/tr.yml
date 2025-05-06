@@ -52,7 +52,7 @@ tr:
       button_label: "Toplu İşlemler"
       default_confirmation: "Bunu yapmak istediğinizden emin misiniz?"
       delete_confirmation: "Bu %{plural_model} kayıtlarını silmek istediğinizden emin misiniz?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} başarıyla silindi"
         other: "Toplam %{count} %{plural_model} başarıyla silindi"
       selection_toggle_explanation: "(Seçimi Değiştir)"

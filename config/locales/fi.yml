@@ -46,7 +46,7 @@ fi:
       button_label: "Toimet"
       default_confirmation: "Oletko varma, että haluat tehdä tämän?"
       delete_confirmation: "Oletko varma, että haluat poistaa nämä %{plural_model}:t?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} poistettu"
         other: "%{count} %{plural_model}:a poistettu"
       selection_toggle_explanation: "(Vaihda valintaa)"

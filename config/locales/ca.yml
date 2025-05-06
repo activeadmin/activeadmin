@@ -77,7 +77,7 @@ ca:
       button_label: "Accions per lots"
       default_confirmation: "Segur que voleu fer-ho?"
       delete_confirmation: "Segurs que voleu eliminar aquests %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} eliminat"
         other: "%{count} %{plural_model} eliminats"
       selection_toggle_explanation: "(Invertir la selecció)"

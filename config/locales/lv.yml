@@ -46,7 +46,7 @@ lv:
       button_label: "Batch Actions"
       default_confirmation: "Vai tiešām vēlaties to darīt?"
       delete_confirmation: "Vai tiešām vēlaties dzēst šos %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Successfully deleted 1 %{model}"
         other: "Successfully deleted %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"

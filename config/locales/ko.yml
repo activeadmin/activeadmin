@@ -82,7 +82,7 @@ ko:
       button_label: "배치 작업"
       default_confirmation: "확실하십니까?"
       delete_confirmation: "%{plural_model}을/를 삭제하시겠습니까?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "성공적으로 1개 %{model}을/를 삭제하였습니다"
         other: "성공적으로 %{count}개의 %{plural_model}을/를 삭제하였습니다"
       selection_toggle_explanation: "(선택 항목 바꾸기)"
