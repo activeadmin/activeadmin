@@ -63,7 +63,7 @@ module ActiveAdmin
 
           def filter_options
             filters.collect do |filter|
-              [I18n.t("ransack.predicates.#{filter}").capitalize, "#{method}_#{filter}"]
+              [Ransack::Translate.predicate(filter).capitalize, "#{method}_#{filter}"]
             end
           end
 
