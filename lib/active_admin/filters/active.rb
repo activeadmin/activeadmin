@@ -11,7 +11,7 @@ module ActiveAdmin
       # @param resource [ActiveAdmin::Resource] current resource
       # @param search [Ransack::Search] search object
       #
-      # @see ActiveAdmin::ResourceController::DataAcces#apply_filtering
+      # @see ActiveAdmin::ResourceController::DataAccess#apply_filtering
       def initialize(resource, search)
         @resource = resource
         @filters = build_filters(search.conditions)

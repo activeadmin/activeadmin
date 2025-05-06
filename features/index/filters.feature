@@ -31,9 +31,9 @@ Feature: Index Filtering
         filter :title
       end
     """
-    When I fill in "Title" with "<script>alert('hax')</script>"
+    When I fill in "Title" with "<script>alert('hack')</script>"
     And I press "Filter"
-    Then I should see current filter "title_cont" equal to "<script>alert('hax')</script>" with label "Title contains"
+    Then I should see current filter "title_cont" equal to "<script>alert('hack')</script>" with label "Title contains"
 
   Scenario: Filtering posts with no results
     Given 3 posts exist
