@@ -65,9 +65,9 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
           end
         end
       },
-    }.each do |context_title, table_decleration|
+    }.each do |context_title, table_declaration|
       context context_title do
-        let(:table) { instance_eval(&table_decleration) }
+        let(:table) { instance_eval(&table_declaration) }
 
         it "should render a div wrapper with the class '.attributes-table'" do
           expect(table.tag_name).to eq "div"
