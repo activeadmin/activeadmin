@@ -143,8 +143,10 @@ ro:
         updated_at: Updated
     models:
       active_admin/comment:
+        few: Comments
         one: Comment
         other: Comments
       comment:
+        few: Comments
         one: Comment
         other: Comments

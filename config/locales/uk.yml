@@ -145,8 +145,12 @@ uk:
         updated_at: Updated
     models:
       active_admin/comment:
+        few: Comments
+        many: Comments
         one: Comment
         other: Comments
       comment:
+        few: Comments
+        many: Comments
         one: Comment
         other: Comments

@@ -13,8 +13,12 @@ ar:
         destroy: حذف
       selection_toggle_explanation: "(تبديل التحديد)"
       successfully_destroyed:
+        few: حُذف بنجاح %{count} %{plural_model}
+        many: حُذف بنجاح %{count} %{plural_model}
         one: حُذف بنجاح %{model}
         other: حُذف بنجاح %{count} %{plural_model}
+        two: حُذف بنجاح %{count} %{plural_model}
+        zero: حُذف بنجاح %{count} %{plural_model}
     blank_slate:
       content: لا يوجد %{resource_name}
       link: إنشاء
@@ -100,8 +104,12 @@ ar:
     pagination:
       empty: لا يوجد %{model}
       entry:
+        few: مدخلات
+        many: مدخلات
         one: مدخل
         other: مدخلات
+        two: مدخلات
+        zero: مدخلات
       multiple: عرض <b>%{from}-%{to}</b> من <b>%{total}</b>
       multiple_without_total: عرض <b>%{from}-%{to}</b>
       next: التالي
@@ -141,8 +149,16 @@ ar:
         updated_at: وقت التعديل
     models:
       active_admin/comment:
+        few: Comments
+        many: Comments
         one: تعليق
         other: تعليقات
+        two: Comments
+        zero: Comments
       comment:
+        few: Comments
+        many: Comments
         one: تعليق
         other: تعليقات
+        two: Comments
+        zero: Comments

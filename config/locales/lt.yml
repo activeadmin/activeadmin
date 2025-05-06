@@ -13,6 +13,7 @@ lt:
         destroy: Šalinti
       selection_toggle_explanation: "(Žymėti)"
       successfully_destroyed:
+        few: Sėkmingai pašalinti %{count} %{plural_model}
         one: Sėkmingai pašalintas 1 %{model}
         other: Sėkmingai pašalinti %{count} %{plural_model}
     blank_slate:
@@ -100,6 +101,7 @@ lt:
     pagination:
       empty: "%{model} nerastas"
       entry:
+        few: įrašai
         one: įrašas
         other: įrašai
       multiple: Rodomi %{model} <b>%{from}&nbsp;-&nbsp;%{to} </ b> iš<b>%{total} </ b> iš viso
@@ -141,8 +143,10 @@ lt:
         updated_at: Updated
     models:
       active_admin/comment:
+        few: Comments
         one: Comment
         other: Comments
       comment:
+        few: Comments
         one: Comment
         other: Comments

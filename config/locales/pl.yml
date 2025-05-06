@@ -102,6 +102,8 @@ pl:
     pagination:
       empty: Nie znaleziono %{model}
       entry:
+        few:
+        many:
         one: wpis
         other: wpisów
       multiple: Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>
