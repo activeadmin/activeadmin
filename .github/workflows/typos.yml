@@ -1,0 +1,17 @@
+name: Typos
+
+on:
+  pull_request:
+
+jobs:
+  typos:
+    name: Run typos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-typos@v1
+        with:
+          fail_level: any
+          filter_mode: nofilter # added (default), diff_context, file, nofilter
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-check
