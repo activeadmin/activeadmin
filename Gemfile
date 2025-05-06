@@ -36,8 +36,6 @@ group :test do
   gem "sqlite3", platform: :mri
 
   # Translations
-  gem "i18n-tasks"
-  gem "i18n-spec"
   gem "rails-i18n" # Provides default i18n for many languages
 end
 
@@ -48,6 +46,10 @@ group :rubocop do
   gem "rubocop-performance"
   gem "rubocop-rspec"
   gem "rubocop-rails"
+end
+
+group :translations do
+  gem "i18n-tasks"
 end
 
 gemspec path: "."

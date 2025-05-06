@@ -1,0 +1,33 @@
+name: I18n health
+
+on:
+  pull_request:
+
+env:
+  RUBY_VERSION: ${{ vars.I18N_RUBY_VERSION || '3.4' }}
+
+jobs:
+  i18n_health:
+    name: Run i18n-tasks health
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_ONLY: ${{ vars.I18N_BUNDLE_ONLY || 'translations' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: tj-actions/changed-files@v45
+        id: changed-files
+        with:
+          files: |
+            .github/workflows/i18n-health.yml
+            app
+            config/i18n-tasks.yml
+            config/locales/*.yml
+            lib
+      - uses: ruby/setup-ruby@v1
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+      - name: Run i18n-tasks health
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: bin/i18n-tasks health

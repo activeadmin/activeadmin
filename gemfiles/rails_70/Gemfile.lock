@@ -87,7 +87,6 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     arbre (2.2.0)
       activesupport (>= 7.0)
-    ast (2.4.3)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.9)
@@ -178,23 +177,8 @@ GEM
     has_scope (0.8.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
-    highline (3.1.2)
-      reline
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    i18n-spec (0.6.0)
-      iso
-    i18n-tasks (1.0.15)
-      activesupport (>= 4.0.2)
-      ast (>= 2.1.0)
-      erubi
-      highline (>= 2.0.0)
-      i18n
-      parser (>= 3.2.2.1)
-      rails-i18n
-      rainbow (>= 2.2.2, < 4.0)
-      ruby-progressbar (~> 1.8, >= 1.8.1)
-      terminal-table (>= 1.5.1)
     importmap-rails (2.1.0)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -204,9 +188,6 @@ GEM
       has_scope (>= 0.6)
       railties (>= 7.0)
       responders (>= 2)
-    io-console (0.8.0)
-    iso (0.4.0)
-      i18n
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -260,9 +241,6 @@ GEM
     parallel (1.27.0)
     parallel_tests (4.10.1)
       parallel
-    parser (3.3.8.0)
-      ast (~> 2.4.1)
-      racc
     public_suffix (6.0.2)
     pundit (2.5.0)
       activesupport (>= 3.0.0)
@@ -301,15 +279,12 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
-    rainbow (3.1.1)
     rake (13.2.1)
     ransack (4.3.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
     regexp_parser (2.10.0)
-    reline (0.6.1)
-      io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
     responders (3.1.1)
@@ -333,7 +308,6 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.3)
-    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     simplecov (0.22.0)
       docile (~> 1.1)
@@ -358,15 +332,10 @@ GEM
     sqlite3 (1.7.3-x86_64-linux)
     sys-uname (1.3.1)
       ffi (~> 1.1)
-    terminal-table (4.0.0)
-      unicode-display_width (>= 1.1.1, < 4)
     thor (1.3.2)
     timeout (0.4.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (3.1.4)
-      unicode-emoji (~> 4.0, >= 4.0.4)
-    unicode-emoji (4.0.4)
     warden (1.2.9)
       rack (>= 2.0.9)
     webrick (1.9.1)
@@ -395,8 +364,6 @@ DEPENDENCIES
   database_cleaner-active_record
   devise
   draper
-  i18n-spec
-  i18n-tasks
   importmap-rails
   launchy
   parallel_tests (~> 4.9)
