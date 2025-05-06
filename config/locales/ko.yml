@@ -1,147 +1,148 @@
+---
 ko:
-  activerecord:
-    models:
-      comment:
-        one: "댓글"
-        other: "댓글들"
-      active_admin/comment:
-        one: "댓글"
-        other: "댓글들"
-    attributes:
-      active_admin/comment:
-        author_type: "글쓴이 유형"
-        body: "본문"
-        created_at: "작성시간"
-        namespace: "네임스페이스"
-        resource_type: "첨부파일 형태"
-        updated_at: "수정시간"
   active_admin:
-    dashboard: "대시보드"
-    view: "보기"
-    edit: "수정"
-    delete: "삭제"
-    delete_confirmation: "정말로 삭제 하시겠습니까?"
-    create_another: "다른 %{model} 생성"
-    new_model: "%{model} 추가"
-    edit_model: "%{model} 수정"
+    access_denied:
+      message: 이 작업을 수행할 권한이 없습니다.
+    any: 어떤
+    batch_actions:
+      action_label: 선택한 항목 %{title}
+      button_label: 배치 작업
+      default_confirmation: 확실하십니까?
+      delete_confirmation: "%{plural_model}을/를 삭제하시겠습니까?"
+      labels:
+        destroy: 삭제
+      selection_toggle_explanation: "(선택 항목 바꾸기)"
+      successfully_destroyed:
+        one: 성공적으로 1개 %{model}을/를 삭제하였습니다
+        other: 성공적으로 %{count}개의 %{plural_model}을/를 삭제하였습니다
+    blank_slate:
+      content: 아직 %{resource_name} 이/가 없습니다.
+      link: 추가하기
+    cancel: 취소
+    comments:
+      add: 댓글 추가
+      author: 글쓴이
+      author_missing: 익명
+      author_type: 글쓴이 유형
+      body: 본문
+      created_at: 작성시간
+      delete: 댓글 삭제
+      delete_confirmation: 정말로 이 댓글을 삭제하시겠습니까?
+      errors:
+        empty_text: 댓글이 저장되지 않았습니다. 내용을 입력해주세요.
+      no_comments_yet: 아직 댓글이 없습니다.
+      resource: 첨부파일
+      resource_type: 첨부파일 형태
+      title_content: 댓글 (%{count}개)
+    create_another: 다른 %{model} 생성
+    dashboard: 대시보드
+    delete: 삭제
+    delete_confirmation: 정말로 삭제 하시겠습니까?
     delete_model: "%{model} 삭제"
     details: "%{model} 상세보기"
-    cancel: "취소"
-    empty: "비어있음"
-    previous: "이전"
-    next: "다음"
-    download: "다운로드:"
-    has_many_new: "새 %{model} 추가"
-    has_many_delete: "삭제"
-    has_many_remove: "삭제"
-    move: "이동"
+    devise:
+      change_password:
+        submit: 내 비밀번호 변경
+        title: 비밀번호 변경
+      email:
+        title: 이메일
+      links:
+        forgot_your_password: 비밀번호를 잊으셨나요?
+        resend_confirmation_instructions: 계정 승인 요청하기
+        resend_unlock_instructions: 계정 잠금 해제하기
+        sign_in: 로그인
+        sign_in_with_omniauth_provider: "%{provider} 으로 로그인"
+        sign_up: 회원가입
+      login:
+        remember_me: 내 계정 정보 기억
+        submit: 로그인
+        title: 로그인
+      password:
+        title: 비밀번호
+      password_confirmation:
+        title: 비밀번호 확인
+      resend_confirmation_instructions:
+        submit: 계정 승인 요청하기
+        title: 계정 승인 요청하기
+      reset_password:
+        submit: 비밀번호 재설정
+        title: 비밀번호를 잊으셨나요?
+      sign_up:
+        submit: 가입하기
+        title: 회원가입
+      subdomain:
+        title: 서브도메인
+      unlock:
+        submit: 계정 잠금 해제하기
+        title: 계정 잠금 해제하기
+      username:
+        title: 아이디
+    download: '다운로드:'
+    edit: 수정
+    edit_model: "%{model} 수정"
+    empty: 비어있음
     filters:
       buttons:
-        filter: "필터"
-        clear: "필터 초기화"
+        clear: 필터 초기화
+        filter: 필터
       predicates:
-        from: "시작"
-        to: "끝"
-    scopes:
-      all: "전체"
-    search_status:
-      title: "검색 중"
-      title_with_scope: "%{name} 검색 중"
-      no_current_filters: "현재 적용된 필터가 없습니다"
-    status_tag:
-      "yes": "있음"
-      "no": "없음"
-      "unset": "알 수 없음"
-    toggle_dark_mode: "다크모드 전환"
-    toggle_main_navigation_menu: "메인 메뉴 전환"
-    toggle_section: "섹션 전환"
-    toggle_user_menu: "사용자 메뉴 전환"
-    logout: "로그아웃"
-    powered_by: "%{active_admin} %{version} 제공"
-    sidebars:
-      filters: "필터 목록"
-      search_status: "검색 상태"
+        from: 시작
+        to: 끝
+    has_many_delete: 삭제
+    has_many_new: 새 %{model} 추가
+    has_many_remove: 삭제
+    index_list:
+      table: 테이블
+    logout: 로그아웃
+    move: 이동
+    new_model: "%{model} 추가"
+    next: 다음
     pagination:
       empty: "%{model} 이/가 없습니다."
-      one: "<b>1</b>개 %{model} 표시중"
-      one_page: "<b>%{n}</b>개 %{model} 표시중"
+      entry:
+        one: 항목
+        other: 항목들
       multiple: "<b>%{total}</b>개 중 <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
-      per_page: "페이지당 "
-      previous: "이전"
-      next: "다음"
-      entry:
-        one: "항목"
-        other: "항목들"
+      next: 다음
+      one: "<b>1</b>개 %{model} 표시중"
+      one_page: "<b>%{n}</b>개 %{model} 표시중"
+      per_page: '페이지당 '
+      previous: 이전
       truncate: "&hellip;"
-    any: "어떤"
-    blank_slate:
-      content: "아직 %{resource_name} 이/가 없습니다."
-      link: "추가하기"
-    batch_actions:
-      button_label: "배치 작업"
-      default_confirmation: "확실하십니까?"
-      delete_confirmation: "%{plural_model}을/를 삭제하시겠습니까?"
-      successfully_destroyed:
-        one: "성공적으로 1개 %{model}을/를 삭제하였습니다"
-        other: "성공적으로 %{count}개의 %{plural_model}을/를 삭제하였습니다"
-      selection_toggle_explanation: "(선택 항목 바꾸기)"
-      action_label: "선택한 항목 %{title}"
-      labels:
-        destroy: "삭제"
-    comments:
-      created_at: "작성시간"
-      resource_type: "첨부파일 형태"
-      author_type: "글쓴이 유형"
-      body: "본문"
-      author: "글쓴이"
-      add: "댓글 추가"
-      delete: "댓글 삭제"
-      delete_confirmation: "정말로 이 댓글을 삭제하시겠습니까?"
-      resource: "첨부파일"
-      no_comments_yet: "아직 댓글이 없습니다."
-      author_missing: "익명"
-      title_content: "댓글 (%{count}개)"
-      errors:
-        empty_text: "댓글이 저장되지 않았습니다. 내용을 입력해주세요."
-    devise:
-      username:
-        title: "아이디"
-      email:
-        title: "이메일"
-      subdomain:
-        title: "서브도메인"
-      password:
-        title: "비밀번호"
-      password_confirmation:
-        title: "비밀번호 확인"
-      sign_up:
-        title: "회원가입"
-        submit: "가입하기"
-      login:
-        title: "로그인"
-        remember_me: "내 계정 정보 기억"
-        submit: "로그인"
-      reset_password:
-        title: "비밀번호를 잊으셨나요?"
-        submit: "비밀번호 재설정"
-      change_password:
-        title: "비밀번호 변경"
-        submit: "내 비밀번호 변경"
-      unlock:
-        title: "계정 잠금 해제하기"
-        submit: "계정 잠금 해제하기"
-      resend_confirmation_instructions:
-        title: "계정 승인 요청하기"
-        submit: "계정 승인 요청하기"
-      links:
-        sign_up: "회원가입"
-        sign_in: "로그인"
-        forgot_your_password: "비밀번호를 잊으셨나요?"
-        sign_in_with_omniauth_provider: "%{provider} 으로 로그인"
-        resend_unlock_instructions: "계정 잠금 해제하기"
-        resend_confirmation_instructions: "계정 승인 요청하기"
-    access_denied:
-      message: "이 작업을 수행할 권한이 없습니다."
-    index_list:
-      table: "테이블"
+    powered_by: "%{active_admin} %{version} 제공"
+    previous: 이전
+    scopes:
+      all: 전체
+    search_status:
+      no_current_filters: 현재 적용된 필터가 없습니다
+      title: 검색 중
+      title_with_scope: "%{name} 검색 중"
+    sidebars:
+      filters: 필터 목록
+      search_status: 검색 상태
+    status_tag:
+      'no': 없음
+      unset: 알 수 없음
+      'yes': 있음
+    toggle_dark_mode: 다크모드 전환
+    toggle_main_navigation_menu: 메인 메뉴 전환
+    toggle_section: 섹션 전환
+    toggle_user_menu: 사용자 메뉴 전환
+    view: 보기
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: 글쓴이 유형
+        body: 본문
+        created_at: 작성시간
+        namespace: 네임스페이스
+        resource_type: 첨부파일 형태
+        updated_at: 수정시간
+    models:
+      active_admin/comment:
+        one: 댓글
+        other: 댓글들
+      comment:
+        one: 댓글
+        other: 댓글들

@@ -28,11 +28,21 @@ RSpec.describe "I18n" do
     "#{inconsistent_interpolation_key_count} inconsistent interpolations, run `bin/i18n-tasks check-consistent-interpolations` to show them"
   end
 
+  let(:non_normalized_paths) { i18n.non_normalized_paths }
+  let(:non_normalized_paths_count) { non_normalized_paths.size }
+  let(:non_normalized_paths_failure_msg) do
+    "#{non_normalized_paths_count} non-normalized paths, run `bin/i18n-tasks check-normalized` to show them"
+  end
+
   it "does not have unused keys" do
     expect(unused_keys).to be_empty, unused_key_failure_msg
   end
 
   it "does not have inconsistent interpolations" do
     expect(inconsistent_interpolations).to be_empty, inconsistent_interpolation_failure_msg
+  end
+
+  it "does not have non-normalized paths" do
+    expect(non_normalized_paths).to be_empty, non_normalized_paths_failure_msg
   end
 end
