@@ -27,12 +27,16 @@ uk:
       author_missing: Анонім
       author_type: Тип автора
       body: Текст
+      created_at: Created
+      delete: Delete Comment
+      delete_confirmation: Are you sure you want to delete this comment?
       errors:
         empty_text: Коментар не збережено, текст не повинен бути пустим.
       no_comments_yet: Поки-що немає коментарів.
       resource: Ресурс
       resource_type: Тип ресурса
       title_content: Коментарі (%{count})
+    create_another: Create another %{model}
     dashboard: Панель керування
     delete: Видалити
     delete_confirmation: Ви впевнені, що хочете це видалити?
@@ -57,6 +61,8 @@ uk:
         title: Вхід
       password:
         title: Пароль
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: Відправити повторно листа з активацією
         title: Відправити повторно листа з активацією
@@ -90,6 +96,7 @@ uk:
     index_list:
       table: Таблиця
     logout: Вийти
+    move: Move
     new_model: Створити %{model}
     next: Наст.
     pagination:
@@ -101,12 +108,20 @@ uk:
         other: записів
       multiple: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{total}</b>'
       multiple_without_total: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>'
+      next: Next
       one: 'Результат: <b>1</b> %{model}'
       one_page: 'Результат: <b>%{n}</b> %{model}'
+      per_page: 'Per page '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Powered by %{active_admin} %{version}
     previous: Поперед.
+    scopes:
+      all: All
     search_status:
       no_current_filters: Жоден
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Фільтри
       search_status: Статус пошуку
@@ -114,4 +129,24 @@ uk:
       'no': Ні
       unset: Ні
       'yes': Так
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Переглянути
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

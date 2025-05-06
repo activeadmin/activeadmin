@@ -85,6 +85,9 @@ tr:
       buttons:
         clear: Filtreleri Temizle
         filter: Filtrele
+      predicates:
+        from: From
+        to: To
     has_many_delete: Sil
     has_many_new: Yeni %{model} Ekle
     has_many_remove: Çıkar
@@ -101,13 +104,20 @@ tr:
         other: kayıtlar
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor (toplam %{total} kayıt)"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor"
+      next: Next
       one: "<b>1</b> %{model} görüntüleniyor"
       one_page: "<b>%{n}</b> %{model} kaydının tamamı görüntüleniyor"
       per_page: 'Sayfa Başına: '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: "%{active_admin} %{version} tarafından desteklenmektedir."
     previous: Önceki
+    scopes:
+      all: All
     search_status:
       no_current_filters: Yok
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filtreler
       search_status: Arama Durumu
@@ -115,4 +125,24 @@ tr:
       'no': Hayır
       unset: Hayır
       'yes': Evet
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Görüntüle
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

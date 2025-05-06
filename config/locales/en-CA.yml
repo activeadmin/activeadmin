@@ -85,12 +85,16 @@ en-CA:
       buttons:
         clear: Clear Filters
         filter: Filter
+      predicates:
+        from: From
+        to: To
     has_many_delete: Delete
     has_many_new: Add New %{model}
     has_many_remove: Remove
     index_list:
       table: Table
     logout: Logout
+    move: Move
     new_model: New %{model}
     next: Next
     pagination:
@@ -100,13 +104,20 @@ en-CA:
         other: entries
       multiple: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total
       multiple_without_total: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: Displaying <b>1</b> %{model}
       one_page: Displaying <b>all %{n}</b> %{model}
       per_page: 'Per page: '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Powered by %{active_admin} %{version}
     previous: Previous
+    scopes:
+      all: All
     search_status:
       no_current_filters: None
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filters
       search_status: Search Status
@@ -114,4 +125,24 @@ en-CA:
       'no': 'No'
       unset: 'No'
       'yes': 'Yes'
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: View
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

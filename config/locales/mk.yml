@@ -19,6 +19,21 @@ mk:
       content: Не се креирани записи од типот на %{resource_name}.
       link: Креирај нов
     cancel: Откажи
+    comments:
+      add: Add Comment
+      author: Author
+      author_missing: Anonymous
+      author_type: Author Type
+      body: Body
+      created_at: Created
+      delete: Delete Comment
+      delete_confirmation: Are you sure you want to delete this comment?
+      errors:
+        empty_text: Comment wasn't saved, text was empty.
+      no_comments_yet: No comments yet.
+      resource: Resource
+      resource_type: Resource Type
+      title_content: All Comments (%{count})
     create_another: Креирај нов %{model}
     dashboard: Почетна
     delete: Избриши
@@ -55,6 +70,8 @@ mk:
       sign_up:
         submit: Креирај
         title: Креирај профил
+      subdomain:
+        title: Subdomain
       unlock:
         submit: Испрати инструкции
         title: Повторно испраќање на инструкции за отклучување на профил
@@ -87,13 +104,20 @@ mk:
         other: записи
       multiple: Прикажани %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> од вкупно <b>%{total}</b>
       multiple_without_total: Прикажани %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: Прикажан <b>1</b> %{model}
       one_page: Прикажани <b>сите %{n}</b> %{model}
       per_page: 'Прикази на записи по страна:'
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Овозможено од %{active_admin} %{version}
     previous: Претходно
+    scopes:
+      all: All
     search_status:
       no_current_filters: Моментално нема филтри
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Филтри за пребарување
       search_status: Резултати од пребарување
@@ -101,8 +125,20 @@ mk:
       'no': Не
       unset: Не
       'yes': Да
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Прегледај
   activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
     models:
       active_admin/comment:
         one: Коментар

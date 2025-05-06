@@ -85,12 +85,16 @@ he:
       buttons:
         clear: איפוס שדות
         filter: סינון
+      predicates:
+        from: From
+        to: To
     has_many_delete: מחיקה
     has_many_new: הוספת %{model} חדש
     has_many_remove: להסיר
     index_list:
       table: טבלה
     logout: התנתקות
+    move: Move
     new_model: "%{model} חדש"
     next: הבא
     pagination:
@@ -100,13 +104,20 @@ he:
         other: רשומות
       multiple: מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> מתוך <b>%{total}</b> בסך הכל
       multiple_without_total: מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: מציג <b>1</b> %{model}
       one_page: הצגת <b>כל %{n}</b> %{model}
       per_page: 'בדף: '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: ממונע בעזרת %{active_admin} %{version}
     previous: הקודם
+    scopes:
+      all: All
     search_status:
       no_current_filters: ללא
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: סינון
       search_status: מצב החיפוש
@@ -114,4 +125,24 @@ he:
       'no': לא
       unset: לא
       'yes': כן
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: צפייה
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

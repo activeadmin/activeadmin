@@ -34,6 +34,7 @@ lt:
       resource: Išteklių
       resource_type: Resurso Tipas
       title_content: Komentarai (%{count})
+    create_another: Create another %{model}
     dashboard: Valdymo skydelis
     delete: Šalinti
     delete_confirmation: Ar jūs tikrai norite tai pašalinti?
@@ -93,6 +94,7 @@ lt:
     index_list:
       table: Lentelė
     logout: Išeiti
+    move: Move
     new_model: Naujas %{model}
     next: Toliau
     pagination:
@@ -102,13 +104,20 @@ lt:
         other: įrašai
       multiple: Rodomi %{model} <b>%{from}&nbsp;-&nbsp;%{to} </ b> iš<b>%{total} </ b> iš viso
       multiple_without_total: 'Rodomi %{model} <b>%{from}&nbsp;-&nbsp;%{to} </ b> '
+      next: Next
       one: Rodoma <B> 1 </ b> %{model}
       one_page: Rodoma <b>visi %{n} </ b> %{model}
       per_page: 'Puslapyje: '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Powered by %{active_admin} %{version}
     previous: Atgal
+    scopes:
+      all: All
     search_status:
       no_current_filters: nėra
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filtrai
       search_status: Paieškos būsena
@@ -116,4 +125,24 @@ lt:
       'no': Nėra
       unset: Nėra
       'yes': Taip
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Žiūrėti
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

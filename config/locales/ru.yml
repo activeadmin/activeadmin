@@ -113,6 +113,7 @@ ru:
       one_page: 'Результат: <b>%{n}</b> %{model}'
       per_page: 'На странице '
       previous: Предыдущая
+      truncate: "&hellip;"
     powered_by: Работает на %{active_admin} %{version}
     previous: Пред.
     scopes:

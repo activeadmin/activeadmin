@@ -7,6 +7,7 @@ nb:
     batch_actions:
       action_label: "%{title} valgt"
       button_label: Gruppehandlinger
+      default_confirmation: Are you sure you want to do this?
       delete_confirmation: Er du sikker på at du vil slette disse %{plural_model}? Dette kan ikke reverseres.
       labels:
         destroy: Slett
@@ -33,6 +34,7 @@ nb:
       resource: Ressurs
       resource_type: Ressurstype
       title_content: Kommentarer (%{count})
+    create_another: Create another %{model}
     dashboard: Oversikt
     delete: Slett
     delete_confirmation: Er du sikker på at du vil slette denne?
@@ -46,14 +48,19 @@ nb:
         title: E-post
       links:
         forgot_your_password: Glemt passord?
+        resend_confirmation_instructions: Resend confirmation instructions
+        resend_unlock_instructions: Resend unlock instructions
         sign_in: Logg inn
         sign_in_with_omniauth_provider: Logg på med %{provider}
+        sign_up: Sign up
       login:
         remember_me: Husk meg
         submit: Logg inn
         title: Innlogging
       password:
         title: Passord
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: Send bekreftelsesinformasjon på nytt
         title: Send bekreftelsesinformasjon på nytt
@@ -87,6 +94,7 @@ nb:
     index_list:
       table: Tabell
     logout: Logg ut
+    move: Move
     new_model: Ny %{model}
     next: Neste
     pagination:
@@ -96,16 +104,45 @@ nb:
         other: innslag
       multiple: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt
       multiple_without_total: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: Viser <b>1</b> %{model}
       one_page: Viser <b>alle %{n}</b> %{model}
+      per_page: 'Per page '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Powered by %{active_admin} %{version}
     previous: Forrige
+    scopes:
+      all: All
     search_status:
       no_current_filters: Ingen
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filtere
+      search_status: Search Status
     status_tag:
       'no': Nei
       unset: Nei
       'yes': Ja
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Vis
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

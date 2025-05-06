@@ -1,6 +1,8 @@
 ---
 hu:
   active_admin:
+    access_denied:
+      message: You are not authorized to perform this action.
     any: Összes
     batch_actions:
       action_label: "%{title} kiválasztva"
@@ -20,12 +22,19 @@ hu:
     comments:
       add: Új hozzászólás
       author: Szerző
+      author_missing: Anonymous
+      author_type: Author Type
       body: Törzs
+      created_at: Created
+      delete: Delete Comment
+      delete_confirmation: Are you sure you want to delete this comment?
       errors:
         empty_text: A hozzászólás nem lett mentve, a törzs nem lehet üres.
       no_comments_yet: Nincsenek hozzászólások.
       resource: Erőforrás
+      resource_type: Resource Type
       title_content: "%{count} hozzászólás"
+    create_another: Create another %{model}
     dashboard: Vezérlőpult
     delete: Törlés
     delete_confirmation: Biztosan törli ezt az elemet?
@@ -35,23 +44,39 @@ hu:
       change_password:
         submit: Jelszó módosítása
         title: A jelszó módosítása
+      email:
+        title: Email
       links:
         forgot_your_password: Elfelejtette a jelszavát?
+        resend_confirmation_instructions: Resend confirmation instructions
+        resend_unlock_instructions: Resend unlock instructions
         sign_in: Bejelentkezés
         sign_in_with_omniauth_provider: Jelentkezzen be a %{provider}
+        sign_up: Sign up
       login:
         remember_me: Emlékezz rám
         submit: Belépés
         title: Bejelentkezés
+      password:
+        title: Password
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: Megerősítő levél újraküldése
         title: Megerősítő levél újraküldése
       reset_password:
         submit: Jelszó visszaállítása
         title: Elfelejtette a jelszavát?
+      sign_up:
+        submit: Sign up
+        title: Sign up
+      subdomain:
+        title: Subdomain
       unlock:
         submit: Újraküldés unlock utasítások
         title: Újraküldés unlock utasítások
+      username:
+        title: Username
     download: 'Letöltés:'
     edit: Szerkesztés
     edit_model: "%{model} módosítása"
@@ -66,7 +91,10 @@ hu:
     has_many_delete: Törlés
     has_many_new: Új %{model} hozzáadása
     has_many_remove: Eltávolít
+    index_list:
+      table: Table
     logout: Kilépés
+    move: Move
     new_model: Új %{model}
     next: Következő
     pagination:
@@ -76,14 +104,45 @@ hu:
         other: elem
       multiple: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b>/<b>%{total}</b> "
       multiple_without_total: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b> "
+      next: Next
       one: "<b>Egy</b> %{model} megjelenítése"
       one_page: "<b>Az összes (%{n} db)</b> %{model} megjelenítése"
+      per_page: 'Per page '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Powered by %{active_admin} %{version}
     previous: Előző
+    scopes:
+      all: All
+    search_status:
+      no_current_filters: No filters applied
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Szűrők
+      search_status: Search Status
     status_tag:
       'no': Nem
       unset: Nem
       'yes': Igen
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Megtekintés
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

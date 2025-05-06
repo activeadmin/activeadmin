@@ -109,6 +109,7 @@ nl:
       one_page: Toont <b>alle %{n}</b>
       per_page: 'Per pagina: '
       previous: Vorige
+      truncate: "&hellip;"
     powered_by: Mogelijk gemaakt door %{active_admin} %{version}
     previous: Vorige
     scopes:
@@ -124,4 +125,24 @@ nl:
       'no': Geen
       unset: Onbekend
       'yes': Ja
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Bekijk
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

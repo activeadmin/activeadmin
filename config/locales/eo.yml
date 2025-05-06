@@ -104,13 +104,20 @@ eo:
         other: eroj
       multiple: Montras %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> entute
       multiple_without_total: Montras %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: Montras <b>1</b> %{model}
       one_page: Montras <b>ĉiujn %{n}</b> %{model}
       per_page: 'Paĝe: '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Povigita de %{active_admin} %{version}
     previous: Antaŭa
+    scopes:
+      all: All
     search_status:
       no_current_filters: Neniu
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filtriloj
       search_status: Serĉstato
@@ -118,4 +125,24 @@ eo:
       'no': Ne
       unset: Ne
       'yes': Jes
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Vidi
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

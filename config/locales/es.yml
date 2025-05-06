@@ -109,12 +109,15 @@ es:
       one_page: Mostrando <b>un total de %{n}</b> %{model}
       per_page: 'Por página: '
       previous: Anterior
+      truncate: "&hellip;"
     powered_by: Funciona con %{active_admin} %{version}
     previous: Anterior
     scopes:
       all: Todos
     search_status:
       no_current_filters: Ninguno
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filtros
       search_status: Estado de la búsqueda

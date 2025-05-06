@@ -36,6 +36,7 @@ az:
       resource: Resurs
       resource_type: Resursun tipi
       title_content: Şərhlər (%{count})
+    create_another: Create another %{model}
     dashboard: İdarəetmə paneli
     delete: Sil
     delete_confirmation: Siz bunu silmək istədiyinizdən əminsiniz?
@@ -60,6 +61,8 @@ az:
         title: Giriş
       password:
         title: Şifrə
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: Aktivləşdirmə ismarışını yenidən göndərmək
         title: Aktivləşdirmə ismarışını yenidən göndərmək
@@ -84,12 +87,16 @@ az:
       buttons:
         clear: Təmizlə
         filter: Filtrlə
+      predicates:
+        from: From
+        to: To
     has_many_delete: Sil
     has_many_new: "%{model} əlavə et"
     has_many_remove: Yığışdır
     index_list:
       table: Cədvəl
     logout: Çıxış
+    move: Move
     new_model: "%{model} yarat"
     next: İrəli
     pagination:
@@ -101,16 +108,45 @@ az:
         other: yazı
       multiple: 'Nəticə: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> <b>%{total}</b>'
       multiple_without_total: 'Nəticə: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>'
+      next: Next
       one: 'Nəticə: <b>1</b> %{model}'
       one_page: 'Nəticə: <b>%{n}</b> %{model}'
+      per_page: 'Per page '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Работает на %{active_admin} %{version}
     previous: Geri
+    scopes:
+      all: All
     search_status:
       no_current_filters: Heç biri
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filterlə
       search_status: Axtarışın statusu
     status_tag:
       'no': Xeyr
+      unset: Unknown
       'yes': Bəli
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Aç
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

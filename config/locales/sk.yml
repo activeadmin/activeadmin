@@ -107,14 +107,20 @@ sk:
         other: položky
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      next: Next
       one: Zobrazená  <b>1</b> položka
       one_page: Počet zobrazených položiek %{n}
+      per_page: 'Per page '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: "%{active_admin} %{version}"
     previous: Predchádzajúce
     scopes:
       all: Všetko
     search_status:
       no_current_filters: Žiadne
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filtre
       search_status: Stav vyhľadávania
@@ -122,6 +128,10 @@ sk:
       'no': Nie
       unset: Nie
       'yes': Áno
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Zobraziť
   activerecord:
     attributes:

@@ -59,6 +59,8 @@ ja:
         title: ログイン
       password:
         title: パスワード
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: 確認方法を再送信する
         title: 確認方法を再送信する
@@ -92,6 +94,7 @@ ja:
     index_list:
       table: テーブル
     logout: ログアウト
+    move: Move
     new_model: "%{model} を作成する"
     next: 次
     pagination:
@@ -101,13 +104,20 @@ ja:
         other: レコード
       multiple: 全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
+      next: Next
       one: "<b>1</b> 件の %{model} を表示しています"
       one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
       per_page: '表示件数: '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Powered by %{active_admin} %{version}
     previous: 前
+    scopes:
+      all: All
     search_status:
       no_current_filters: なし
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: 検索条件
       search_status: 検索状態
@@ -120,3 +130,19 @@ ja:
     toggle_section: セクションを切り替える
     toggle_user_menu: ユーザーメニューを切り替える
     view: 閲覧
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

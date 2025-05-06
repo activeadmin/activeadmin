@@ -106,9 +106,12 @@ pl:
         other: wpisów
       multiple: Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>
       multiple_without_total: Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: Wyświetlanie <b>1</b> %{model}
       one_page: Wyświetlanie <b>wszystkich %{n}</b> %{model}
       per_page: 'Na stronę: '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Powered by %{active_admin} %{version}
     previous: Poprzednia
     scopes:

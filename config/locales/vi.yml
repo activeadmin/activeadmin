@@ -104,15 +104,20 @@ vi:
         other: entries
       multiple: Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> trong tất cả.
       multiple_without_total: Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>.
+      next: Next
       one: Đang hiển thị <b>1</b> %{model}
       one_page: Đang hiển thị <b>tất cả %{n}</b> %{model}
       per_page: 'Mỗi trang: '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Bản quyền bởi %{active_admin} %{version}
     previous: Trước
     scopes:
       all: Tất cả
     search_status:
       no_current_filters: Không có
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Bộ Lọc
       search_status: Trạng thái tìm kiếm
@@ -120,6 +125,10 @@ vi:
       'no': Không Có
       unset: Không Có
       'yes': Có
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Xem
   activerecord:
     attributes:

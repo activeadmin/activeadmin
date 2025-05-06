@@ -22,14 +22,19 @@ fi:
     comments:
       add: Lisää kommentti
       author: Luoja
+      author_missing: Anonymous
       author_type: Luoja-tyyppi
       body: Runko
+      created_at: Created
+      delete: Delete Comment
+      delete_confirmation: Are you sure you want to delete this comment?
       errors:
         empty_text: Kommenttia ei pystytty tallentamaan, et kirjoittanut kommenttitekstiä.
       no_comments_yet: Ei kommentteja.
       resource: Resurssi
       resource_type: Resurssityyppi
       title_content: Kommentteja (%{count})
+    create_another: Create another %{model}
     dashboard: Etusivu
     delete: Poista
     delete_confirmation: Oletko varma, että haluat poistaa tämän?
@@ -43,17 +48,28 @@ fi:
         title: Sähköposti
       links:
         forgot_your_password: Unohtunut salasana?
+        resend_confirmation_instructions: Resend confirmation instructions
+        resend_unlock_instructions: Resend unlock instructions
         sign_in: Kirjaudu sisään
         sign_in_with_omniauth_provider: Kirjaudu sisään %{provider}:ia käyttäen
+        sign_up: Sign up
       login:
         remember_me: Muista minut
         submit: Kirjaudu sisään
         title: Sisäänkirjautuminen
       password:
         title: Salasana
+      password_confirmation:
+        title: Confirm Password
+      resend_confirmation_instructions:
+        submit: Resend confirmation instructions
+        title: Resend confirmation instructions
       reset_password:
         submit: Resetoi salasana
         title: Unohtunut salasana?
+      sign_up:
+        submit: Sign up
+        title: Sign up
       subdomain:
         title: Subdomain
       unlock:
@@ -69,12 +85,16 @@ fi:
       buttons:
         clear: Tyhjennä valinnat
         filter: Hae
+      predicates:
+        from: From
+        to: To
     has_many_delete: Poista
     has_many_new: Lisää uusi %{model}
     has_many_remove: Poista
     index_list:
       table: Taulukko
     logout: Kirjaudu ulos
+    move: Move
     new_model: Uusi %{model}
     next: Seuraava
     pagination:
@@ -84,14 +104,45 @@ fi:
         other: syötteet
       multiple: Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> (yhteensä <b>%{total}</b>)
       multiple_without_total: Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: Näytetään <b>1</b> %{model}
       one_page: Näytetään <b>kaikki %{n}</b> %{model}:it
+      per_page: 'Per page '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Käyttää %{active_admin} %{version}:ia
     previous: Edellinen
+    scopes:
+      all: All
+    search_status:
+      no_current_filters: No filters applied
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Haku
+      search_status: Search Status
     status_tag:
       'no': Ei
       unset: Ei
       'yes': Kyllä
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Katso
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

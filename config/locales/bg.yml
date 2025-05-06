@@ -25,12 +25,16 @@ bg:
       author_missing: Анонимен
       author_type: Тип автор
       body: Текст
+      created_at: Created
+      delete: Delete Comment
+      delete_confirmation: Are you sure you want to delete this comment?
       errors:
         empty_text: Коментарът с празен текст не беше запазен.
       no_comments_yet: Все още няма коментари.
       resource: Ресурс
       resource_type: Тип ресурс
       title_content: Коментари (%{count})
+    create_another: Create another %{model}
     dashboard: Табло
     delete: Изтриване
     delete_confirmation: Сигурни ли сте, че искате да изтриете това?
@@ -44,14 +48,19 @@ bg:
         title: Поща
       links:
         forgot_your_password: Забравена парола?
+        resend_confirmation_instructions: Resend confirmation instructions
+        resend_unlock_instructions: Resend unlock instructions
         sign_in: Вход
         sign_in_with_omniauth_provider: Влез с %{provider}
+        sign_up: Sign up
       login:
         remember_me: Запомни ме
         submit: Вход
         title: Вход
       password:
         title: Парола
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: Изпрати отново инструкциите за потвърждаване
         title: Изпрати отново инструкциите за потвърждаване
@@ -76,12 +85,16 @@ bg:
       buttons:
         clear: Изчистване
         filter: Филтриране
+      predicates:
+        from: From
+        to: To
     has_many_delete: Изтриване
     has_many_new: Добавяне на %{model}
     has_many_remove: Премахване
     index_list:
       table: Таблица
     logout: Изход
+    move: Move
     new_model: Създаване на %{model}
     next: Следващо
     pagination:
@@ -91,14 +104,45 @@ bg:
         other: записи
       multiple: Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> от общо <b>%{total}</b>
       multiple_without_total: Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: Показване на <b>1</b> %{model}
       one_page: Показване на <b>всички %{n}</b> %{model}
+      per_page: 'Per page '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Задвижва се от %{active_admin} %{version}
     previous: Предишно
+    scopes:
+      all: All
+    search_status:
+      no_current_filters: No filters applied
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Филтри
+      search_status: Search Status
     status_tag:
       'no': не
       unset: не
       'yes': Да
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Преглед
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

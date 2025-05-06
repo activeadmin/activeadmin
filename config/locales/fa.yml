@@ -25,12 +25,16 @@ fa:
       author_missing: بی‌نام
       author_type: نوع ایجاد کننده
       body: بدنه
+      created_at: Created
+      delete: Delete Comment
+      delete_confirmation: Are you sure you want to delete this comment?
       errors:
         empty_text: کامنت درج نشد، متن کامنت خالی بود.
       no_comments_yet: هنوز هیچ کامنتی نوشته نشده.
       resource: رکورد
       resource_type: نوع رکورد
       title_content: کامنت‌ها (%{count})
+    create_another: Create another %{model}
     dashboard: داشبرد
     delete: حذف
     delete_confirmation: آیا برای حذف این آیتم اطمینان دارید؟
@@ -44,14 +48,19 @@ fa:
         title: ایمیل
       links:
         forgot_your_password: کلمه عبور را فراموش کرده‌اید؟
+        resend_confirmation_instructions: Resend confirmation instructions
+        resend_unlock_instructions: Resend unlock instructions
         sign_in: ورود
         sign_in_with_omniauth_provider: ورود با حساب %{provider}
+        sign_up: Sign up
       login:
         remember_me: مرا به خاطر بسپار
         submit: ورود
         title: ورود
       password:
         title: کلمه‌عبور
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: ارسال مجدد تاییدیه ایمیل
         title: ارسال مجدد تاییدیه ایمیل
@@ -76,12 +85,16 @@ fa:
       buttons:
         clear: پاک کردن فیلتر
         filter: فیلتر
+      predicates:
+        from: From
+        to: To
     has_many_delete: حذف
     has_many_new: اضافه کردن %{model} جدید
     has_many_remove: حذف
     index_list:
       table: جدول
     logout: خروج
+    move: Move
     new_model: "%{model} جدید"
     next: بعدی
     pagination:
@@ -91,14 +104,45 @@ fa:
         other: آیتم‌ها
       multiple: نمایش %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> از کل <b>%{total}</b> رکورد
       multiple_without_total: نمایش %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: نمایش <b>1</b> %{model}
       one_page: نمایش <b>همه %{n}</b> %{model}
+      per_page: 'Per page '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: قدرت گرفته از %{active_admin} %{version}
     previous: قبلی
+    scopes:
+      all: All
+    search_status:
+      no_current_filters: No filters applied
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: فیلتر‌ها
+      search_status: Search Status
     status_tag:
       'no': بدون
       unset: بدون
       'yes': بله
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: نمایش
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

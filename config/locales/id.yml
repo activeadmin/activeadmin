@@ -34,6 +34,7 @@ id:
       resource: Resource
       resource_type: Jenis Resource
       title_content: Komentar (%{count})
+    create_another: Create another %{model}
     dashboard: Dashboard
     delete: Hapus
     delete_confirmation: Apakah anda yakin ingin menghapus data ini?
@@ -58,6 +59,8 @@ id:
         title: " - Masuk"
       password:
         title: Password
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: Kirimkan lagi instruksi konfirmasi akun
         title: " - Kirim Lagi Instruksi Konfirmasi Akun"
@@ -82,12 +85,16 @@ id:
       buttons:
         clear: Hapus Filters
         filter: Filter
+      predicates:
+        from: From
+        to: To
     has_many_delete: Hapus
     has_many_new: Tambah %{model} baru
     has_many_remove: Hapus
     index_list:
       table: Tabel
     logout: Keluar
+    move: Move
     new_model: Tambah %{model} baru
     next: Berikutnya
     pagination:
@@ -97,12 +104,20 @@ id:
         other: data
       multiple: Menampilkan <b>%{from}&nbsp;-&nbsp;%{to}</b> dari <b>%{total}</b> keseluruhan %{model}
       multiple_without_total: Menampilkan <b>%{from}&nbsp;-&nbsp;%{to} %{model}</b>
+      next: Next
       one: Menampilkan <b>1</b> %{model}
       one_page: Menampilkan <b>semua %{n}</b> %{model}
+      per_page: 'Per page '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Dibuat dengan %{active_admin} %{version}
     previous: Sebelumnya
+    scopes:
+      all: All
     search_status:
       no_current_filters: Tidak ada
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filter
       search_status: Status Pencarian
@@ -110,4 +125,24 @@ id:
       'no': Tidak
       unset: Tidak
       'yes': Ya
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Lihat
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments

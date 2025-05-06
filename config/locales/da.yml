@@ -59,6 +59,8 @@ da:
         title: Login
       password:
         title: Kodeord
+      password_confirmation:
+        title: Confirm Password
       resend_confirmation_instructions:
         submit: Send bekræftigelsesinstruktioner igen
         title: Send bekræftigelsesinstruktioner igen
@@ -83,12 +85,16 @@ da:
       buttons:
         clear: Ryd filtre
         filter: Filtrer
+      predicates:
+        from: From
+        to: To
     has_many_delete: Slet
     has_many_new: Tilføj ny(t) %{model}
     has_many_remove: Fjern
     index_list:
       table: Tabel
     logout: Log ud
+    move: Move
     new_model: Ny(t) %{model}
     next: Næste
     pagination:
@@ -98,13 +104,20 @@ da:
         other: poster
       multiple: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> af <b>%{total}</b> i alt
       multiple_without_total: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Next
       one: Viser <b>1</b> %{model}
       one_page: Viser <b>alle %{n}</b> %{model}
       per_page: 'Per side: '
+      previous: Previous
+      truncate: "&hellip;"
     powered_by: Powered by %{active_admin} %{version}
     previous: Forrige
+    scopes:
+      all: All
     search_status:
       no_current_filters: Ingen
+      title: Active Search
+      title_with_scope: Active Search for %{name}
     sidebars:
       filters: Filtre
       search_status: Søgestatus
@@ -112,4 +125,24 @@ da:
       'no': Nej
       unset: Nej
       'yes': Ja
+    toggle_dark_mode: Toggle dark mode
+    toggle_main_navigation_menu: Toggle main navigation menu
+    toggle_section: Toggle section
+    toggle_user_menu: Toggle user menu
     view: Vis
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Author type
+        body: Body
+        created_at: Created
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Updated
+    models:
+      active_admin/comment:
+        one: Comment
+        other: Comments
+      comment:
+        one: Comment
+        other: Comments
