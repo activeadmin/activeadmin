@@ -46,7 +46,7 @@ bg:
       button_label: "Масови действия"
       default_confirmation: "Наистина ли искате да направите това?"
       delete_confirmation: "Сигурни ли сте, че искате да изтриете тези %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Успешно изтриване на 1 %{model}"
         other: "Успешно изтриване на %{count} %{plural_model}"
       selection_toggle_explanation: "(Инвертиране на маркирането)"

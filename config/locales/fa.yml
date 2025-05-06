@@ -46,7 +46,7 @@ fa:
       button_label: "عملیات‌های دسته‌ای"
       default_confirmation: "آیا برای اجرای این عملیات اطمینان دارید؟"
       delete_confirmation: "آیا برای حذف همه رکوردهای %{plural_model} اطمینان دارید؟"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} با موفقیت حذف شد"
         other: "%{count} %{plural_model} با موفقت حذف شدند."
       selection_toggle_explanation: "(انتخاب‌ها برعکس شوند)"

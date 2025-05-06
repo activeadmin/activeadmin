@@ -73,7 +73,7 @@
       button_label: "Batch-åtgärder"
       default_confirmation: "Är du säker på att du vill göra detta?"
       delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Lyckades radera 1 %{model}"
         other: "Lyckades radera %{count} %{plural_model}"
       selection_toggle_explanation: "(Byt markering)"

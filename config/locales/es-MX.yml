@@ -45,7 +45,7 @@ es-MX:
       button_label: "Acciones en masa"
       default_confirmation: "¿Seguro que quieres hacer esto?"
       delete_confirmation: "Eliminar %{plural_model}: ¿Está seguro?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Se ha destruido 1 %{model} con éxito"
         other: "Se han destruido %{count} %{plural_model} con éxito"
       selection_toggle_explanation: "(Cambiar selección)"

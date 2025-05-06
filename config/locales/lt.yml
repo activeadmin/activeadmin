@@ -53,7 +53,7 @@ lt:
       button_label: 'Veiksmai su pažymėtais'
       default_confirmation: 'Ar jūs tikrai norite tai padaryti?'
       delete_confirmation: 'Ar jūs tikrai norite pašalinti šiuos %{plural_model}?'
-      succesfully_destroyed:
+      successfully_destroyed:
         one: 'Sėkmingai pašalintas 1 %{model}'
         other: 'Sėkmingai pašalinti %{count} %{plural_model}'
       selection_toggle_explanation: '(Žymėti)'

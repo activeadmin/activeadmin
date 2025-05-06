@@ -49,7 +49,7 @@ id:
       button_label: "Tindakan Serentak"
       default_confirmation: "Apakah anda yakin akan melakukan ini?"
       delete_confirmation: "Apakah anda yakin akan menghapus %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Berhasil menghapus %{model}"
         other: "Berhasil menghapus %{count} %{plural_model}"
       selection_toggle_explanation: "(Tampilkan Pilihan)"

@@ -82,7 +82,7 @@
       button_label: "批处理"
       default_confirmation: "你确定要这样做？"
       delete_confirmation: "你确定要删除这些%{plural_model}？"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "成功删除 1 %{model}"
         other: "成功删除 %{count} %{plural_model}"
       selection_toggle_explanation: "(切换选择)"

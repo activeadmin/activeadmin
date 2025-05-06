@@ -47,7 +47,7 @@ ro:
       button_label: "Grupare Actiuni"
       default_confirmation: "Sunteţi sigur că doriţi să faceţi acest lucru?"
       delete_confirmation: "Sunteţi sigur că doriţi să stergeţi aceste %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} sters"
         few: "%{count} %{plural_model} sterse"
         other: "%{count} %{plural_model} sterse"

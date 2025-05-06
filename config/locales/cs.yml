@@ -47,7 +47,7 @@ cs:
       button_label: "Hromadné akce"
       default_confirmation: "Jste si jisti, že chcete provést?"
       delete_confirmation: "Jste si jisti, že chcete smazat tyto %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         zero: "Nebyl smazán žádný %{model}"
         one: "Úspěšně smazán %{model}"
         few: "Úspěšně smazány %{count} %{plural_model}"

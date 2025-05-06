@@ -51,7 +51,7 @@ da:
       button_label: "Batch Handlinger"
       default_confirmation: "Er du sikker på du vil gøre dette?"
       delete_confirmation: "Er du sikker på du vil slette disse %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Vellykket ødelagt 1 %{model}"
         other: "Vellykket ødelagt %{count} %{plural_model}"
       selection_toggle_explanation: "(Skift valg)"

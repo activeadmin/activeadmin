@@ -74,7 +74,7 @@ fr:
       button_label: "Actions groupées"
       default_confirmation: "Voulez-vous vraiment faire cela ?"
       delete_confirmation: "Voulez-vous vraiment supprimer ces %{plural_model} ?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "1 %{model} supprimé(e)"
         other: "%{count} %{plural_model} supprimé(e)s"
       selection_toggle_explanation: "(Inverser la sélection)"

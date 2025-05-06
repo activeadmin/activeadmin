@@ -48,7 +48,7 @@ hr:
       button_label: "Grupne akcije"
       default_confirmation: "Jeste li sigurni da želite to učiniti?"
       delete_confirmation: "Jeste li sigurni da želite obrisati %{plural_model}?"
-      succesfully_destroyed:
+      successfully_destroyed:
         one: "Uspješno je obrisan 1 %{model}"
         few: "Uspješno su obrisana %{count} %{plural_model}"
         many: "Uspješno je obrisano %{count} %{plural_model}"
