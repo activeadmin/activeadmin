@@ -87,4 +87,14 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       expect { helper.fields_for_params(a: 1) }.to raise_error(TypeError, "Cannot convert Integer value: 1")
     end
   end
+
+  describe ".active_admin_filters_form_for" do
+    it "should support per_page" do
+      allow(helper).to receive(:collection_path).and_return("/posts")
+      params = ActionController::Parameters.new(per_page: 50)
+      allow(helper).to receive(:params).and_return(params)
+
+      Capybara.string helper.active_admin_filters_form_for({}, {})
+    end
+  end
 end

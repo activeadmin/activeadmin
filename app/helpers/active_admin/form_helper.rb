@@ -89,7 +89,7 @@ module ActiveAdmin
     private
 
     def except_hidden_fields
-      [:q, :page]
+      [:q, :page, :per_page]
     end
   end
 end
