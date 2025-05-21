@@ -19,6 +19,9 @@ group :development, :test do
   gem "cssbundling-rails"
   gem "importmap-rails"
 
+  # FIXME: remove this dependency when Ruby 3.1 support will be dropped
+  gem "erb", "~> 4.0"
+
   # FIXME: relax this dependency when Ruby 3.1 support will be dropped
   gem "zeitwerk", "~> 2.6.18"
 end

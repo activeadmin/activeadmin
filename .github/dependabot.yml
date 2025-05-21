@@ -36,8 +36,6 @@ updates:
         patterns:
           - "*"
     ignore:
-      - dependency-name: sqlite3
-        versions: ">= 2"
       - dependency-name: rails
         versions: ">= 7.1.0"
       - dependency-name: rails-i18n
@@ -46,6 +44,8 @@ updates:
         versions: ">= 7.1.0"
       - dependency-name: rspec-rails
         versions: ">= 8.0.0"
+      - dependency-name: sqlite3
+        versions: ">= 2"
   - package-ecosystem: bundler
     directory: /gemfiles/rails_71
     schedule:
@@ -56,6 +56,8 @@ updates:
         patterns:
           - "*"
     ignore:
+      - dependency-name: erb
+        versions: ">= 5"
       - dependency-name: rails
         versions: ">= 7.2.0"
       - dependency-name: rails-i18n
@@ -74,6 +76,8 @@ updates:
         patterns:
           - "*"
     ignore:
+      - dependency-name: erb
+        versions: ">= 5"
       - dependency-name: rails
         versions: ">= 8.0.0"
       - dependency-name: rails-i18n
