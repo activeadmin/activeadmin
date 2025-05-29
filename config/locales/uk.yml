@@ -114,4 +114,28 @@ uk:
       'no': Ні
       unset: Ні
       'yes': Так
+    toggle_dark_mode: Перемкнути темну тему
+    toggle_main_navigation_menu: Перемкнути головне меню
+    toggle_section: Перемкнути секцію
+    toggle_user_menu: Перемкнути меню користувача
     view: Переглянути
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Тип автора
+        body: Текст
+        created_at: Дата створення
+        namespace: Простір імен
+        resource_type: Тип ресурса
+        updated_at: Дата оновления
+    models:
+      active_admin/comment:
+        few: Коментаря
+        many: Коментарів
+        one: Коментар
+        other: Коментарів
+      comment:
+        few: Коментаря
+        many: Коментарів
+        one: Коментар
+        other: Коментарів
