@@ -127,7 +127,7 @@ uk:
         created_at: Дата створення
         namespace: Простір імен
         resource_type: Тип ресурса
-        updated_at: Дата оновления
+        updated_at: Дата оновлення
     models:
       active_admin/comment:
         few: Коментаря
