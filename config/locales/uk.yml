@@ -27,12 +27,16 @@ uk:
       author_missing: Анонім
       author_type: Тип автора
       body: Текст
+      created_at: Дата створення
+      delete: Видалити Коментар
+      delete_confirmation: Ви впевнені, що хочете видалити цей коментар?
       errors:
         empty_text: Коментар не збережено, текст не повинен бути пустим.
       no_comments_yet: Поки-що немає коментарів.
       resource: Ресурс
-      resource_type: Тип ресурса
+      resource_type: Тип ресурсу
       title_content: Коментарі (%{count})
+    create_another: Створити ще %{model}
     dashboard: Панель керування
     delete: Видалити
     delete_confirmation: Ви впевнені, що хочете це видалити?
@@ -90,6 +94,7 @@ uk:
     index_list:
       table: Таблиця
     logout: Вийти
+    move: Перемістити
     new_model: Створити %{model}
     next: Наст.
     pagination:
@@ -101,12 +106,19 @@ uk:
         other: записів
       multiple: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{total}</b>'
       multiple_without_total: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>'
+      next: Наступна
       one: 'Результат: <b>1</b> %{model}'
       one_page: 'Результат: <b>%{n}</b> %{model}'
+      per_page: 'На сторінці '
+      previous: Попередня
     powered_by: Powered by %{active_admin} %{version}
     previous: Поперед.
+    scopes:
+      all: Всі
     search_status:
       no_current_filters: Жоден
+      title: Поточний пошук
+      title_with_scope: Поточний пошук %{name}
     sidebars:
       filters: Фільтри
       search_status: Статус пошуку
@@ -126,7 +138,7 @@ uk:
         body: Текст
         created_at: Дата створення
         namespace: Простір імен
-        resource_type: Тип ресурса
+        resource_type: Тип ресурсу
         updated_at: Дата оновлення
     models:
       active_admin/comment:
