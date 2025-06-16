@@ -30,7 +30,9 @@ ActiveAdmin.autoload :Comment, "active_admin/orm/active_record/comments/comment"
 # Walk through all the loaded namespaces after they're loaded
 ActiveAdmin.after_load do |app|
   app.namespaces.each do |namespace|
-    next unless namespace.comments
+    # `namespace.resources` includes not only `ActiveAdmin::Resource`, but `ActiveAdmin::Page`.
+    # They don't have `comments?`.
+    next unless namespace.comments || namespace.resources.any? { |r| r.try(:comments?) }
 
     namespace.register ActiveAdmin::Comment, as: namespace.comments_registration_name do
       actions :index, :show, :create, :destroy
