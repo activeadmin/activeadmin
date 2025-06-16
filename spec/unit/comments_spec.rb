@@ -214,12 +214,14 @@ RSpec.describe "Comments" do
   describe "ActiveAdmin::Comment registration" do
     # ActiveAdmin::Namespace#comments is from ActiveAdmin::Comments::ResourceHelper, so `instance_double` cannot be used
     let(:namespace) { double(ActiveAdmin::Namespace) }
+    let(:resources) { [double(comments?: nil)] }
 
     before do
       allow(application).to receive(:namespaces).and_return([namespace])
       allow(namespace).to receive(:comments).and_return(enable_comments)
       allow(namespace).to receive(:comments_registration_name).and_return("Comment")
       allow(namespace).to receive(:register)
+      allow(namespace).to receive(:resources).and_return(resources)
 
       # Manually trigger the after_load event
       ActiveSupport::Notifications.instrument ActiveAdmin::Application::AfterLoadEvent, { active_admin_application: application }
@@ -238,6 +240,14 @@ RSpec.describe "Comments" do
 
       it "does not register ActiveAdmin::Comment" do
         expect(namespace).not_to have_received(:register).with(ActiveAdmin::Comment, as: "Comment")
+      end
+
+      context "when namespace.resources has a resource with comments enabled" do
+        let(:resources) { [double(comments?: true)] }
+
+        it "registers ActiveAdmin::Comment" do
+          expect(namespace).to have_received(:register).with(ActiveAdmin::Comment, as: "Comment")
+        end
       end
     end
   end
