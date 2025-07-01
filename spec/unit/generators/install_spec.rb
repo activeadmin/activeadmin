@@ -2,8 +2,8 @@
 require "rails_helper"
 
 RSpec.describe "ActiveAdmin Installation" do
-  it "creates active_admin.css" do
-    expect(File.exist?(Rails.root.join("app/assets/stylesheets/active_admin.css"))).to eq true
+  it "creates active_admin.tailwind.css" do
+    expect(File.exist?(Rails.root.join("app/assets/stylesheets/active_admin.tailwind.css"))).to eq true
   end
 
   it "creates tailwind config file" do
