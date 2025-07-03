@@ -59,6 +59,8 @@ fr:
         title: Connexion
       password:
         title: Mot de passe
+      password_confirmation:
+        title: Confirmer le mot de passe
       resend_confirmation_instructions:
         submit: Renvoyer les instructions de confirmation
         title: Renvoyer les instructions de confirmation
@@ -92,6 +94,7 @@ fr:
     index_list:
       table: Tableau
     logout: Déconnexion
+    move: Déplacer
     new_model: Créer %{model}
     next: Suivant
     pagination:
@@ -106,8 +109,11 @@ fr:
       one_page: Affichage de <b>tous les %{n}</b>
       per_page: 'Par page '
       previous: Précédent
+      truncate: "&hellip;"
     powered_by: Propulsé par %{active_admin} %{version}
     previous: Précédent
+    scopes:
+      all: Tout
     search_status:
       no_current_filters: Aucun filtre appliqué
       title: Recherche active
@@ -119,6 +125,10 @@ fr:
       'no': Non
       unset: Inconnu
       'yes': Oui
+    toggle_main_navigation_menu: Bascule de menu principal
+    toggle_section: Bascule de Section
+    toggle_dark_mode: Bascule de Mode Sombre
+    toggle_user_menu: Bascule de Menu Utilisateur
     view: Voir
   activerecord:
     attributes:
