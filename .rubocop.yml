@@ -328,6 +328,9 @@ Rails/FilePath:
   Enabled: true
   EnforcedStyle: slashes
 
+Rails/RootPathnameMethods:
+  Enabled: true
+
 RSpec/EmptyLineAfterExample:
   Enabled: true
 
