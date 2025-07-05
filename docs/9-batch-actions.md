@@ -117,57 +117,43 @@ ActiveAdmin.register Post do
 end
 ```
 
-### Batch Action forms
+### Batch Action Forms
 
 If you want to capture input from the user as they perform a batch action,
 Active Admin has just the thing for you:
 
-```ruby
-batch_action :flag, form: {
-  type: %w[Offensive Spam Other],
-  reason: :text,
-  notes:  :textarea,
-  hide:   :checkbox,
-  date:   :datepicker
-} do |ids, inputs|
-  # inputs is a hash of all the form fields you requested
-  redirect_to collection_path, notice: [ids, inputs].to_s
-end
-```
+Assuming a Post resource (in the default namespace) with a `mark_published` batch action, we set the partial name and a set of HTML data attributes to trigger a modal using Flowbite which is included by default.
 
-If you pass a nested array, it will behave just like Formtastic would, with the first
-element being the text displayed and the second element being the value.
+Note that you can use any modal JS library you want as long as it can be triggered to open using data attributes. Flowbite usage is not a requirement.
 
-```ruby
-batch_action :doit, form: {user: [['Jake',2], ['Mary',3]]} do |ids, inputs|
-  User.find(inputs[:user])
-  # ...
-end
-```
+  ```ruby
+  batch_action(
+    :mark_published,
+    partial: "mark_published_batch_action",
+    link_html_options: {
+      "data-modal-target": "mark-published-modal",
+      "data-modal-show": "mark-published-modal"
+    }
+  ) do |ids, inputs|
+    # ...
+  end
+  ```
 
-When you have dynamic form inputs you can pass a proc instead:
+In the `app/views/admin/posts` directory, create a `_mark_published_batch_action.html.erb` partial file which will be rendered and included automatically in the posts index admin page.
 
-```ruby
-batch_action :doit, form: -> { {user: User.pluck(:name, :id)} } do |ids, inputs|
-  User.find(inputs[:user])
-  # ...
-end
-```
+Now add the modal HTML where the `id` attribute must match the data attributes supplied in the `batch_action` example. The form must have an empty `data-batch-action-form` attribute.
 
-Under the covers this is powered by the JS `ActiveAdmin.ModalDialog` which you
-can use yourself:
+  ```
+  <div id="mark-published-modal" class="hidden fixed top-0 ..." aria-hidden="true" ...>
+    <!-- ... other modal content --->
+    <%= form_tag false, "data-batch-action-form": "" do %>
+      <!-- Declare your form inputs. You can use a different form builder too. -->
+    <% end %>
+  </div>
+  ```
 
-```coffee
-if $('body.admin_users').length
-  $('a[data-prompt]').click ->
-    ActiveAdmin.ModalDialog $(@).data('prompt'), comment: 'textarea',
-      (inputs)=>
-        $.post "/admin/users/#{$(@).data 'id'}/change_state",
-          comment: inputs.comment, state: $(@).data('state'),
-          success: ->
-            window.location.reload()
-```
-
+The `data-batch-action-form` attribute is a hook for a delegated JS event so when you submit the form, it will post and run your batch action block with the supplied form data, functioning as it did before.
+  
 ### Translation
 
 By default, the name of the batch action will be used to lookup a label for the
