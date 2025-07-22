@@ -75,6 +75,7 @@ With the setup complete, please review the Breaking Changes section and resolve 
   Using Tailwind modifiers you can further customize the number of columns for responsive/mobile support.
   </details>
 
+- The `tabs` component has been removed. Use a CSS based or third party alternative.
 - Replace `default_main_content` with `render "show_default"`.
 
   <details>

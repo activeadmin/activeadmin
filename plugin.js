@@ -471,15 +471,6 @@ export default plugin(
       '.status-tag:where([data-status=yes])': {
         '@apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300': {}
       },
-      '.tabs-nav': {
-        '@apply flex flex-wrap mb-2 text-sm font-medium text-center border-b border-gray-200 dark:border-gray-700': {}
-      },
-      '.tabs-nav > :where(a)': {
-        '@apply block p-4 border-b-2 border-transparent rounded-t-md hover:text-gray-600 dark:hover:text-gray-300 no-underline': {}
-      },
-      '.tabs-content': {
-        '@apply p-4 mb-6': {}
-      },
       // Forms
       '.formtastic': {
         '@apply text-sm': {}
