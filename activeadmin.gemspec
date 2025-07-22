@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
     "wiki_uri" => "https://github.com/activeadmin/activeadmin/wiki"
   }
 
-  s.required_ruby_version = ">= 3.1"
+  s.required_ruby_version = ">= 3.2"
 
   s.add_dependency "arbre", "~> 2.0"
   s.add_dependency "csv"

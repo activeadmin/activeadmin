@@ -22,7 +22,6 @@ jobs:
           - "3.4"
           - "3.3"
           - "3.2"
-          - "3.1"
         os:
           - ubuntu-latest
         rails:
@@ -31,9 +30,6 @@ jobs:
           - rails_71
           - rails_70
         exclude:
-          - ruby: '3.1'
-            os: ubuntu-latest
-            rails: rails_80
           - ruby: '3.4'
             os: ubuntu-latest
             rails: rails_70
