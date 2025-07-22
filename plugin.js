@@ -352,7 +352,7 @@ export default plugin(
         '@apply overflow-x-auto': {}
       },
       '.paginated-collection-pagination': {
-        '@apply p-2 lg:p-3 flex flex-col-reverse lg:flex-row gap-4 items-center justify-between': {}
+        '@apply p-2 lg:p-3 flex flex-col-reverse lg:flex-row gap-4 items-center justify-between border-t border-gray-200 dark:border-gray-800': {}
       },
       '.paginated-collection-footer': {
         '@apply p-3 flex gap-2 items-center justify-between text-sm border-t border-gray-200 dark:border-gray-800': {}
@@ -382,7 +382,7 @@ export default plugin(
         '@apply rotate-180': {}
       },
       '.data-table :where(tbody > tr)': {
-        '@apply border-b dark:border-gray-800': {}
+        '@apply border-b dark:border-gray-800 last:border-b-0': {}
       },
       '.data-table :where(td)': {
         '@apply px-3 py-4': {}
@@ -454,7 +454,7 @@ export default plugin(
         '@apply w-full text-sm text-gray-800 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr)': {
-        '@apply border-b dark:border-gray-800': {}
+        '@apply border-b dark:border-gray-800 last:border-b-0': {}
       },
       '.attributes-table :where(tbody > tr > th)': {
         '@apply w-32 sm:w-40 text-start text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800/60 dark:text-gray-300': {}
