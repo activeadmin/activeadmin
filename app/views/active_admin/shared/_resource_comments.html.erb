@@ -25,7 +25,7 @@
           <span class="font-semibold">
             <%= comment.author ? auto_link(comment.author) : I18n.t("active_admin.comments.author_missing") %>
           </span>
-          <span class="text-xs text-gray-400">
+          <span class="text-xs text-gray-500 dark:text-gray-400">
             <%= pretty_format comment.created_at %>
           </span>
         </div>
