@@ -127,7 +127,7 @@ fr:
       'yes': Oui
     toggle_dark_mode: Bascule de mode sombre
     toggle_main_navigation_menu: Bascule de menu principal
-    toggle_section: Bascule de Section
+    toggle_section: Bascule de section
     toggle_user_menu: Bascule de Menu Utilisateur
     view: Voir
   activerecord:
