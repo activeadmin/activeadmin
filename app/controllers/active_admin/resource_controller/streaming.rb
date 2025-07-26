@@ -31,7 +31,7 @@ module ActiveAdmin
       end
 
       def csv_filename
-        "#{resource_collection_name.to_s.tr('_', '-')}-#{Time.zone.now.to_date.to_s}.csv"
+        "#{resource_collection_name.to_s.tr('_', '-')}-#{Time.zone.now.to_date}.csv"
       end
 
       def stream_csv
