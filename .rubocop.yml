@@ -142,6 +142,9 @@ Lint/AmbiguousRegexpLiteral:
 Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 
+Lint/RedundantStringCoercion:
+  Enabled: true
+
 Lint/UselessAccessModifier:
   Enabled: true
 
