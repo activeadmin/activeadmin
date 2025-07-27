@@ -54,6 +54,9 @@ module ActiveAdmin
     # The authorization adapter to use
     register :authorization_adapter, ActiveAdmin::AuthorizationAdapter
 
+    # The pagination adapter to use
+    register :pagination_adapter, ActiveAdmin::KaminariAdapter
+
     # A proc to be used when a user is not authorized to view the current resource
     register :on_unauthorized_access, :rescue_active_admin_access_denied
 
