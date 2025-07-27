@@ -4,6 +4,9 @@
 
 ActiveAdmin v4 uses Tailwind CSS. It has **mobile web, dark mode and RTL support** with a default theme that can be customized through partials and CSS. This release assumes `cssbundling-rails` and `importmap-rails` is installed and configured in the host app. Partials can be modified to include a different asset library, e.g. shakapacker.
 
+> [!WARNING]  
+> ActiveAdmin v4 is currently incompatible with Tailwind 4. Ensure you pin your version of Tailwind to version 3 for now.
+
 **IMPORTANT**: there is **no sortable functionality for has-many forms** in this release so if needed, **do not upgrade**. We are [open to community proposals](https://github.com/activeadmin/activeadmin/discussions/new?category=ideas). The add/remove functionality for has-many forms remains supported.
 
 These instructions assume the `cssbundling-rails` and `importmap-rails` gems are already installed and you have run their install commands in your app. If you haven't done so, please do before continuing.
