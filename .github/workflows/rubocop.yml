@@ -13,7 +13,7 @@ jobs:
     env:
       BUNDLE_ONLY: ${{ vars.RUBOCOP_BUNDLE_ONLY || 'rubocop' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: tj-actions/changed-files@v46
         id: changed-files
         with:
