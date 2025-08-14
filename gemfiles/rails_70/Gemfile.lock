@@ -130,7 +130,7 @@ GEM
       bigdecimal
     cucumber-gherkin (27.0.0)
       cucumber-messages (>= 19.1.4, < 23)
-    cucumber-html-formatter (21.13.0)
+    cucumber-html-formatter (21.14.0)
       cucumber-messages (> 19, < 28)
     cucumber-messages (22.0.0)
     cucumber-rails (3.1.1)
@@ -259,7 +259,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.27.0)
-    parallel_tests (5.3.1)
+    parallel_tests (5.4.0)
       parallel
     parser (3.3.9.0)
       ast (~> 2.4.1)
@@ -308,7 +308,7 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
-    regexp_parser (2.10.0)
+    regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
     request_store (1.7.0)
