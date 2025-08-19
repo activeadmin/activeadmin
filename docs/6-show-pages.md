@@ -30,18 +30,18 @@ ActiveAdmin.register Post do
 end
 ```
 
-If you'd like to keep the default AA look, you can use `attributes_table`:
+If you'd like to keep the default AA look, you can use `attributes_table_for`:
 
 ```ruby
 ActiveAdmin.register Ad do
   show do
-    attributes_table do
+    attributes_table_for(resource) do
       row :title
       row :image do |ad|
         image_tag ad.image.url
       end
     end
-    active_admin_comments
+    active_admin_comments_for(resource)
   end
 end
 ```
@@ -66,10 +66,10 @@ ActiveAdmin.register Book do
         column :page
       end
     end
-    active_admin_comments
+    active_admin_comments_for(resource)
   end
 
-  sidebar "Details", only: :show do
+  sidebar :details, only: :show do
     attributes_table_for book do
       row :title
       row :author
@@ -80,14 +80,12 @@ ActiveAdmin.register Book do
 end
 ```
 
-If you want to keep the default show data, but add something extra to it:
+If you want to keep the default show contents, but add something else around it:
 
 ```ruby
 show do
-  div do
-    h3 'Some custom charts about this object'
-    render partial: 'charts'
-  end
   default_main_content
+  h3 "Other Details"
+  # ...
 end
 ```

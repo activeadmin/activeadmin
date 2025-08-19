@@ -8,19 +8,21 @@ module ActiveAdmin
         def to_html
           input_wrapping do
             [ label_html,
-              builder.text_field(gt_input_name, input_html_options_for(gt_input_name, gt_input_placeholder)),
-              builder.text_field(lt_input_name, input_html_options_for(lt_input_name, lt_input_placeholder)),
+              '<div class="filters-form-input-group">',
+              builder.date_field(gt_input_name, input_html_options_for(gt_input_name, gt_input_placeholder)),
+              builder.date_field(lt_input_name, input_html_options_for(lt_input_name, lt_input_placeholder)),
+              '</div>'
             ].join("\n").html_safe
           end
         end
 
         def gt_input_name
-          column && column.type == :date ? "#{method}_gteq" : "#{method}_gteq_datetime"
+          "#{method}_gteq"
         end
         alias :input_name :gt_input_name
 
         def lt_input_name
-          column && column.type == :date ? "#{method}_lteq" : "#{method}_lteq_datetime"
+          "#{method}_lteq"
         end
 
         def input_html_options

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "active_admin/settings_node"
+require_relative "settings_node"
 
 module ActiveAdmin
   class ApplicationSettings < SettingsNode

@@ -1,137 +1,115 @@
+---
 da:
   active_admin:
-    dashboard: "Kontrolpanel"
-    dashboard_welcome:
-      welcome: "Velkommen til Active Admin. Dette er standardoversigtssiden."
-      call_to_action: "Rediger 'app/admin/dashboard.rb' for at tilføje nye elementer til oversigtssiden."
-    view: "Vis"
-    edit: "Rediger"
-    delete: "Slet"
-    delete_confirmation: "Er du sikker på, at du ønsker at slette?"
-    create_another: "Opret endnu en %{model}"
-    new_model: "Ny(t) %{model}"
-    edit_model: "Rediger %{model}"
-    delete_model: "Slet %{model}"
+    access_denied:
+      message: Du har ikke rettigheder til at udføre denne handling.
+    any: Alle
+    batch_actions:
+      action_label: "%{title} Valgte"
+      button_label: Batch Handlinger
+      default_confirmation: Er du sikker på du vil gøre dette?
+      delete_confirmation: Er du sikker på du vil slette disse %{plural_model}?
+      labels:
+        destroy: Slet
+      selection_toggle_explanation: "(Skift valg)"
+      successfully_destroyed:
+        one: Vellykket ødelagt 1 %{model}
+        other: Vellykket ødelagt %{count} %{plural_model}
+    blank_slate:
+      content: Der er ingen %{resource_name} endnu.
+      link: Opret
+    cancel: Fortryd
+    comments:
+      add: Tilføj Kommentar
+      author: Forfatter
+      author_missing: Anonym
+      author_type: Forfatter type
+      body: Krop
+      created_at: Oprettet
+      delete: Slet kommentar
+      delete_confirmation: Er du sikker på du vil slette disse kommentarer?
+      errors:
+        empty_text: Kommentar blev ikke gemt, tekst var tom.
+      no_comments_yet: Ingen kommentarer endnu.
+      resource: Resource
+      resource_type: Resource type
+      title_content: Kommentarer (%{count})
+    create_another: Opret endnu en %{model}
+    dashboard: Kontrolpanel
+    delete: Slet
+    delete_confirmation: Er du sikker på, at du ønsker at slette?
+    delete_model: Slet %{model}
     details: "%{model} detaljer"
-    cancel: "Fortryd"
-    empty: "Tom"
-    previous: "Forrige"
-    next: "Næste"
-    download: "Download:"
-    has_many_new: "Tilføj ny(t) %{model}"
-    has_many_delete: "Slet"
-    has_many_remove: "Fjern"
+    devise:
+      change_password:
+        submit: Skift min adgangskode
+        title: Skift din adgangskode
+      email:
+        title: Email
+      links:
+        forgot_your_password: Glemt din adgangskode?
+        resend_confirmation_instructions: Send oplåsningsinstruktioner igen
+        resend_unlock_instructions: Send oplåsningsinstruktioner igen
+        sign_in: Log ind
+        sign_in_with_omniauth_provider: Log ind med %{provider}
+        sign_up: Opret bruger
+      login:
+        remember_me: Husk mig
+        submit: Login
+        title: Login
+      password:
+        title: Kodeord
+      resend_confirmation_instructions:
+        submit: Send bekræftigelsesinstruktioner igen
+        title: Send bekræftigelsesinstruktioner igen
+      reset_password:
+        submit: Nulstille min adgangskode
+        title: Glemt din adgangskode?
+      sign_up:
+        submit: Opret bruger
+        title: Opret bruger
+      subdomain:
+        title: Underdomæne
+      unlock:
+        submit: Send oplåsningsinstruktioner igen
+        title: Send oplåsningsinstruktioner igen
+      username:
+        title: Brugernavn
+    download: 'Download:'
+    edit: Rediger
+    edit_model: Rediger %{model}
+    empty: Tom
     filters:
       buttons:
-        filter: "Filtrer"
-        clear: "Ryd filtre"
-      predicates:
-        contains: "Indeholder"
-        equals: "Lig"
-        starts_with: "Begynder med"
-        ends_with: "Slutter med"
-        greater_than: "Større end"
-        less_than: "Mindre end"
-    search_status:
-      headline: "Søgestatus:"
-      current_scope: "Perspektiv:"
-      current_filters: "Valgte filtre:"
-      no_current_filters: "Ingen"
-    status_tag:
-      "yes": "Ja"
-      "no": "Nej"
-      "unset": "Nej"
-    main_content: "Implementer venligst %{model}#main_content for at vise noget indhold."
-    logout: "Log ud"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtre"
-      search_status: "Søgestatus"
-    pagination:
-      empty: "Ingen %{model} fundet"
-      one: "Viser <b>1</b> %{model}"
-      one_page: "Viser <b>alle %{n}</b> %{model}"
-      multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> af <b>%{total}</b> i alt"
-      multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Per side: "
-      entry:
-        one: "post"
-        other: "poster"
-    any: "Alle"
-    blank_slate:
-      content: "Der er ingen %{resource_name} endnu."
-      link: "Opret"
-    dropdown_actions:
-      button_label: "Handlinger"
-    batch_actions:
-      button_label: "Batch Handlinger"
-      default_confirmation: "Er du sikker på du vil gøre dette?"
-      delete_confirmation: "Er du sikker på du vil slette disse %{plural_model}?"
-      succesfully_destroyed:
-        one: "Vellykket ødelagt 1 %{model}"
-        other: "Vellykket ødelagt %{count} %{plural_model}"
-      selection_toggle_explanation: "(Skift valg)"
-      action_label: "%{title} Valgte"
-      labels:
-        destroy: "Slet"
-    comments:
-      created_at: "Oprettet"
-      resource_type: "Resource type"
-      author_type: "Forfatter type"
-      body: "Krop"
-      author: "Forfatter"
-      add: "Tilføj Kommentar"
-      delete: "Slet kommentar"
-      delete_confirmation: "Er du sikker på du vil slette disse kommentarer?"
-      resource: "Resource"
-      no_comments_yet: "Ingen kommentarer endnu."
-      author_missing: "Anonym"
-      title_content: "Kommentarer (%{count})"
-      errors:
-        empty_text: "Kommentar blev ikke gemt, tekst var tom."
-    devise:
-      username:
-        title: "Brugernavn"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Underdomæne"
-      password:
-        title: "Kodeord"
-      sign_up:
-        title: "Opret bruger"
-        submit: "Opret bruger"
-      login:
-        title: "Login"
-        remember_me: "Husk mig"
-        submit: "Login"
-      reset_password:
-        title: "Glemt din adgangskode?"
-        submit: "Nulstille min adgangskode"
-      change_password:
-        title: "Skift din adgangskode"
-        submit: "Skift min adgangskode"
-      unlock:
-        title: "Send oplåsningsinstruktioner igen"
-        submit: "Send oplåsningsinstruktioner igen"
-      resend_confirmation_instructions:
-        title: "Send bekræftigelsesinstruktioner igen"
-        submit: "Send bekræftigelsesinstruktioner igen"
-      links:
-        sign_up: "Opret bruger"
-        sign_in: "Log ind"
-        forgot_your_password: "Glemt din adgangskode?"
-        sign_in_with_omniauth_provider: "Log ind med %{provider}"
-        resend_unlock_instructions: "Send oplåsningsinstruktioner igen"
-        resend_confirmation_instructions: "Send oplåsningsinstruktioner igen"
-    unsupported_browser:
-      headline: "Vær venligst opmærksom på, at ActiveAdmin ikke længere understøtter Internet Explorer version 8 eller tidligere."
-      recommendation: "Vi anbefaler at du opgraderer til den nyeste <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, eller <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Hvis du bruger IE 9 eller senere, så vær sikker på, at du <a href=\"https://support.microsoft.com/da-dk/help/17471\">slår \"Compatibility View\" fra</a>."
-    access_denied:
-      message: "Du har ikke rettigheder til at udføre denne handling."
+        clear: Ryd filtre
+        filter: Filtrer
+    has_many_delete: Slet
+    has_many_new: Tilføj ny(t) %{model}
+    has_many_remove: Fjern
     index_list:
-      table: "Tabel"
-      block: "Liste"
-      grid: "Gitter"
-      blog: "Blog"
+      table: Tabel
+    logout: Log ud
+    new_model: Ny(t) %{model}
+    next: Næste
+    pagination:
+      empty: Ingen %{model} fundet
+      entry:
+        one: post
+        other: poster
+      multiple: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> af <b>%{total}</b> i alt
+      multiple_without_total: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Viser <b>1</b> %{model}
+      one_page: Viser <b>alle %{n}</b> %{model}
+      per_page: 'Per side: '
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Forrige
+    search_status:
+      no_current_filters: Ingen
+    sidebars:
+      filters: Filtre
+      search_status: Søgestatus
+    status_tag:
+      'no': Nej
+      unset: Nej
+      'yes': Ja
+    view: Vis

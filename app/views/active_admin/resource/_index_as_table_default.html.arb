@@ -1,0 +1,8 @@
+insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, table_options) do |t|
+  selectable_column
+  id_column if resource_class.primary_key
+  active_admin_config.resource_columns.each do |attribute|
+    column attribute
+  end
+  actions
+end

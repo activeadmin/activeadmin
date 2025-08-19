@@ -17,12 +17,9 @@ module ActiveAdmin
 
     self.input_namespaces = [::Object, ::ActiveAdmin::Inputs, ::Formtastic::Inputs]
 
-    # TODO: remove both class finders after formtastic 4 (where it will be default)
-    self.input_class_finder = ::Formtastic::InputClassFinder
-    self.action_class_finder = ::Formtastic::ActionClassFinder
-
     def cancel_link(url = { action: "index" }, html_options = {}, li_attrs = {})
-      li_attrs[:class] ||= "cancel"
+      li_attrs[:class] ||= "action cancel"
+      html_options[:class] ||= "cancel-link"
       li_content = template.link_to I18n.t("active_admin.cancel"), url, html_options
       template.content_tag(:li, li_content, li_attrs)
     end
@@ -48,7 +45,7 @@ module ActiveAdmin
       @assoc = assoc
       @options = extract_custom_settings!(options.dup)
       @options.reverse_merge!(for: assoc)
-      @options[:class] = [options[:class], "inputs has_many_fields"].compact.join(" ")
+      @options[:class] = [options[:class], "inputs has-many-fields"].compact.join(" ")
 
       if sortable_column
         @options[:for] = [assoc, sorted_children(sortable_column)]
@@ -57,7 +54,7 @@ module ActiveAdmin
 
     def render(&block)
       html = "".html_safe
-      html << template.content_tag(:h3) { heading } if heading.present?
+      html << template.content_tag(:h3, class: "has-many-fields-title") { heading } if heading.present?
       html << template.capture { content_has_many(&block) }
       html = wrap_div_or_li(html)
       template.concat(html) if template.output_buffer
@@ -78,8 +75,7 @@ module ActiveAdmin
     end
 
     def default_heading
-      assoc_klass.model_name.
-        human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
+      assoc_klass.model_name.human(count: 2.1)
     end
 
     def assoc_klass
@@ -95,7 +91,7 @@ module ActiveAdmin
       contents = without_wrapper { inputs(options, &form_block) }
       contents ||= "".html_safe
 
-      js = new_record ? js_for_has_many(options[:class], &form_block) : ""
+      js = new_record ? js_for_has_many(&form_block) : ""
       contents << js
     end
 
@@ -108,23 +104,23 @@ module ActiveAdmin
 
     def has_many_actions(form_builder, contents)
       if form_builder.object.new_record?
-        contents << template.content_tag(:li) do
+        contents << template.content_tag(:li, class: "input") do
           remove_text = remove_record.is_a?(String) ? remove_record : I18n.t("active_admin.has_many_remove")
-          template.link_to remove_text, "#", class: "button has_many_remove"
+          template.link_to remove_text, "#", class: "has-many-remove"
         end
       elsif allow_destroy?(form_builder.object)
         form_builder.input(
           :_destroy, as: :boolean,
-                     wrapper_html: { class: "has_many_delete" },
+                     wrapper_html: { class: "has-many-delete" },
                      label: I18n.t("active_admin.has_many_delete"))
       end
 
       if sortable_column
         form_builder.input sortable_column, as: :hidden
 
-        contents << template.content_tag(:li, class: "handle") do
-          I18n.t("active_admin.move")
-        end
+        # contents << template.content_tag(:li, class: "handle") do
+        #   I18n.t("active_admin.move")
+        # end
       end
 
       contents
@@ -159,18 +155,17 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(class_string, &form_block)
+    def js_for_has_many(&form_block)
       assoc_name = assoc_klass.model_name
-      placeholder = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
-      opts = {
+      placeholder = "NEW_#{assoc_name.to_s.underscore.upcase.tr('/', '_')}_RECORD"
+      opts = options.merge(
         for: [assoc, assoc_klass.new],
-        class: class_string,
         for_options: { child_index: placeholder }
-      }
+      )
       html = template.capture { __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
       text = new_record.is_a?(String) ? new_record : I18n.t("active_admin.has_many_new", model: assoc_name.human)
 
-      template.link_to text, "#", class: "button has_many_add", data: {
+      template.link_to text, "#", class: "has-many-add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
       }
     end
@@ -179,7 +174,8 @@ module ActiveAdmin
       template.content_tag(
         already_in_an_inputs_block ? :li : :div,
         html,
-        class: "has_many_container #{assoc}",
+        class: "has-many-container",
+        "data-has-many-association" => assoc,
         "data-sortable" => sortable_column,
         "data-sortable-start" => sortable_start)
     end

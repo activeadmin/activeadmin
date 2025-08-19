@@ -10,13 +10,24 @@ resource you must first create a Rails model for it.
 ## Create a Resource
 
 The basic command for creating a resource is `rails g active_admin:resource Post`.
-The generator will produce an empty `app/admin/posts.rb` file like so:
+The generator will produce a `app/admin/posts.rb` file like the following:
 
 ```ruby
 ActiveAdmin.register Post do
-  # everything happens here :D
+  permit_params :title
+
+  filter :title
+  filter :created_at
+  filter :updated_at
+
+  actions :all, except: []
+
+  # index, show, form ...
 end
 ```
+
+The generator will try to determine possible fields for each section as best
+as possible but you may need to tweak further to get started.
 
 ## Setting up Strong Parameters
 
@@ -122,8 +133,7 @@ en:
         delete_model: 'Cancel Offer' # delete action item
 ```
 
-See the [default en.yml](/config/locales/en.yml) locale file for
-existing translations and examples.
+See the [default en.yml locale file](https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml) for existing translations and examples.
 
 ## Rename the Resource
 
@@ -190,14 +200,14 @@ end
 
 ### Menu Priority
 
-Menu items are sorted first by their numeric priority, then alphabetically. Since
-every menu by default has a priority of `10`, the menu is normally alphabetical.
+Menu items are sorted first by their numeric priority, then alphabetically. Every
+menu item has a default priority of `10`.
 
-You can easily customize this:
+You can customize this with:
 
 ```ruby
 ActiveAdmin.register Post do
-  menu priority: 1 # so it's on the very left
+  menu priority: 1 # so it's the first menu item visible
 end
 ```
 
@@ -288,14 +298,14 @@ config.namespace :admin do |admin|
 
     menu.add label: "Sites" do |sites|
       sites.add label: "Google",
-                url: "http://google.com",
-                html_options: { target: :blank }
+                url: "https://google.com",
+                html_options: { target: "_blank" }
 
       sites.add label: "Facebook",
-                url: "http://facebook.com"
+                url: "https://facebook.com"
 
       sites.add label: "Github",
-                url: "http://github.com"
+                url: "https://github.com"
     end
   end
 end

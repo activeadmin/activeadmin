@@ -194,38 +194,23 @@ en:
         publish: "Publish"
 ```
 
-### Support for other index types
+### Support for custom index views
 
-You can easily use `batch_action` in the other index views, *Grid*, *Block*,
-and *Blog*; however, these will require custom styling to fit your needs.
+You can use `batch_action` in a custom index view, however, these will require custom styling to fit your needs.
 
 ```ruby
 ActiveAdmin.register Post do
-
   # By default, the "Delete" batch action is provided
-
-  # Index as Grid
-  index as: :grid do |post|
+  index as: :custom do |post|
     resource_selection_cell post
     h2 auto_link post
   end
-
-  # Index as Blog requires nothing special
-
-  # Index as Block
-  index as: :block do |post|
-    div for: post do
-      resource_selection_cell post
-    end
-  end
-
-end
 ```
 
-### BTW
+### Note on implementation
 
-In order to perform the batch action, the entire *Table*, *Grid*, etc. is
-wrapped in a form that submits the IDs of the selected rows to your batch_action.
+In order to perform the batch action, the entire index view is
+wrapped in a form that submits the IDs of the selected rows to your `batch_action`.
 
 Since nested `<form>` tags in HTML often results in unexpected behavior, you
 may need to modify the custom behavior you've built using to prevent conflicts.
@@ -233,5 +218,5 @@ may need to modify the custom behavior you've built using to prevent conflicts.
 Specifically, if you are using HTTP methods like `PUT` or `PATCH` with a custom
 form on your index page this may result in your batch action being `PUT`ed
 instead of `POST`ed which will create a routing error. You can get around this
-by either moving the nested form to another page or using a POST so it doesn't
+by either moving the nested form to another page or using a `POST` so it doesn't
 override the batch action. As well, behavior may vary by browser.

@@ -1,5 +1,5 @@
 {
-  "no-files-without-scenarios" : "on",
+  "no-files-without-scenarios" : "off",
   "no-unnamed-features": "on",
   "no-unnamed-scenarios": "on",
   "no-dupe-feature-names": "on",

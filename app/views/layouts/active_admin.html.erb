@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="<%= I18n.locale %>">
+<head>
+  <title><%= html_head_site_title %></title>
+  <%= render "active_admin/html_head" %>
+</head>
+<body class="bg-white dark:bg-gray-950/95 text-gray-950 dark:text-gray-100 antialiased">
+  <%= render "active_admin/site_header", title: site_title %>
+  <div class="xl:ms-60 pt-16">
+    <%= render "active_admin/main_navigation" %>
+    <%= render "active_admin/page_header", title: @page_title || page_title %>
+    <%= render "active_admin/flash_messages" %>
+    <div data-test-page-content class="px-2.5 lg:px-5 grid grid-cols-1 gap-4 lg:gap-6 lg:grid-flow-col lg:auto-cols-[minmax(0,250px)]">
+      <%= yield %>
+      <%= render "active_admin/sidebar" %>
+    </div>
+    <%= render "active_admin/site_footer" %>
+  </div>
+</body>
+</html>

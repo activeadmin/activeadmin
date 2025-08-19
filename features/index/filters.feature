@@ -8,7 +8,7 @@ Feature: Index Filtering
       ActiveAdmin.register Post
     """
     When I am on the index page for posts
-    Then I should see "Displaying all 3 Posts"
+    Then I should see "Showing all 3"
     And I should see the following filters:
      | Author         | select     |
      | Category       | select     |
@@ -21,8 +21,8 @@ Feature: Index Filtering
     When I fill in "Title" with "Hello World 2"
     And I press "Filter"
     And I should see 1 posts in the table
-    And I should see "Hello World 2" within ".index_table"
-    And I should see current filter "title_contains" equal to "Hello World 2" with label "Title contains"
+    And I should see "Hello World 2" in the table
+    And I should see current filter "title_cont" equal to "Hello World 2" with label "Title contains"
 
   Scenario: No XSS in Resources Filters
     Given an index configuration of:
@@ -31,9 +31,9 @@ Feature: Index Filtering
         filter :title
       end
     """
-    When I fill in "Title" with "<script>alert('hax')</script>"
+    When I fill in "Title" with "<script>alert('hack')</script>"
     And I press "Filter"
-    Then I should see current filter "title_contains" equal to "<script>alert('hax')</script>" with label "Title contains"
+    Then I should see current filter "title_cont" equal to "<script>alert('hack')</script>" with label "Title contains"
 
   Scenario: Filtering posts with no results
     Given 3 posts exist
@@ -42,11 +42,11 @@ Feature: Index Filtering
       ActiveAdmin.register Post
     """
     When I am on the index page for posts
-    Then I should see "Displaying all 3 Posts"
+    Then I should see "Showing all 3"
 
     When I fill in "Title" with "THIS IS NOT AN EXISTING TITLE!!"
     And I press "Filter"
-    Then I should not see ".index_table"
+    Then I should not see ".data-table"
     And I should not see a sortable table header
     And I should not see pagination
     And I should see "No Posts found"
@@ -64,10 +64,10 @@ Feature: Index Filtering
     And I press "Filter"
 
     Then I follow "2"
-    And I should see "Displaying Posts 3 - 4 of 7 in total"
+    And I should see "Showing 3-4 of 7"
 
     And I follow "3"
-    And I should see "Displaying Posts 5 - 6 of 7 in total"
+    And I should see "Showing 5-6 of 7"
 
   Scenario: Filtering posts while not on the first page
     Given 9 posts exist
@@ -78,12 +78,12 @@ Feature: Index Filtering
       end
     """
     When I follow "2"
-    Then I should see "Displaying Posts 6 - 9 of 9 in total"
+    Then I should see "Showing 6-9 of 9"
 
     When I fill in "Title" with "Hello World 2"
     And I press "Filter"
     Then I should see 1 posts in the table
-    And I should see "Hello World 2" within ".index_table"
+    And I should see "Hello World 2" in the table
 
   Scenario: Checkboxes - Filtering posts written by anyone
     Given 1 post exists
@@ -96,7 +96,7 @@ Feature: Index Filtering
     """
     When I press "Filter"
     Then I should see 2 posts in the table
-    And I should see "Hello World" within ".index_table"
+    And I should see "Hello World" in the table
     And the "Jane Doe" checkbox should not be checked
 
   Scenario: Checkboxes - Filtering posts written by Jane Doe
@@ -111,7 +111,7 @@ Feature: Index Filtering
     When I check "Jane Doe"
     And I press "Filter"
     Then I should see 1 posts in the table
-    And I should see "Hello World" within ".index_table"
+    And I should see "Hello World" in the table
     And the "Jane Doe" checkbox should be checked
     And I should see current filter "author_id_in" equal to "Jane Doe"
 
@@ -122,7 +122,7 @@ Feature: Index Filtering
         config.filters = false
       end
     """
-    Then I should not see a sidebar titled "Filters"
+    Then I should not see "Filters"
 
   Scenario: Select - Filtering categories with posts written by Jane Doe
     Given a category named "Mystery" exists
@@ -134,21 +134,20 @@ Feature: Index Filtering
     When I select "Jane Doe" from "Authors"
     And I press "Filter"
     Then I should see 1 categories in the table
-    And I should see "Non-Fiction" within ".index_table"
-    And I should not see "Mystery" within ".index_table"
+    And I should see "Non-Fiction" in the table
+    And I should not see "Mystery" in the table
     And I should see current filter "posts_author_id_eq" equal to "Jane Doe"
 
   @javascript
-  Scenario: Clearing filter preserves custom parameters
+  Scenario: Clearing filters preserves custom parameters
     Given a category named "Mystery" exists
     And 1 post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
     And 1 post with the title "Lorem Ipsum" written by "Joe Smith" in category "Mystery" exists
     And an index configuration of:
     """
     ActiveAdmin.register Category
-    ActiveAdmin.application.favicon = false
     """
-    Then I should see "Displaying all 2 Categories"
+    Then I should see "Showing all 2"
     When I add parameter "scope" with value "all" to the URL
     And I add parameter "foo" with value "bar" to the URL
     And I select "Hello World" from "Posts"
@@ -172,10 +171,10 @@ Feature: Index Filtering
     """
     When I press "Filter"
     Then I should see 2 posts in the table
-    And I should see "Mystery" within ".index_table"
-    And I should see "Non-Fiction" within ".index_table"
+    And I should see "Mystery" in the table
+    And I should see "Non-Fiction" in the table
     And the "Jane Doe" checkbox should not be checked
-    And I should not see a sidebar titled "Search status:"
+    And I should not see "Active Search"
 
   Scenario: Checkboxes - Filtering categories via posts written by Jane Doe
     Given a category named "Mystery" exists
@@ -190,7 +189,7 @@ Feature: Index Filtering
     When I check "Jane Doe"
     And I press "Filter"
     Then I should see 1 categories in the table
-    And I should see "Non-Fiction" within ".index_table"
+    And I should see "Non-Fiction" in the table
     And the "Jane Doe" checkbox should be checked
 
   Scenario: Filtering posts without default scope
@@ -208,7 +207,7 @@ Feature: Index Filtering
     """
     When I fill in "Title" with "Hello"
     And I press "Filter"
-    Then I should see current filter "title_contains" equal to "Hello" with label "Title contains"
+    Then I should see current filter "title_cont" equal to "Hello" with label "Title contains"
 
   Scenario: Filtering posts by category
     Given a category named "Mystery" exists
@@ -224,7 +223,7 @@ Feature: Index Filtering
 
     When I select "Non-Fiction" from "Category"
     And I press "Filter"
-    Then I should see a sidebar titled "Search status:"
+    Then I should see "Active Search"
     And I should see link "Non-Fiction" in current filters
 
   Scenario: Enabling filters status sidebar
@@ -236,7 +235,7 @@ Feature: Index Filtering
       end
     """
     And I press "Filter"
-    Then I should see a sidebar titled "Search status:"
+    Then I should see "Active Search"
 
   Scenario: Disabling filters status sidebar
     Given an index configuration of:
@@ -247,7 +246,7 @@ Feature: Index Filtering
       end
     """
     And I press "Filter"
-    Then I should not see a sidebar titled "Search status:"
+    Then I should not see "Active Search"
 
   Scenario: Filters and nested resources
     Given a post with the title "The arrogant president" written by "Jane Doe" exists
@@ -292,8 +291,8 @@ Feature: Index Filtering
       end
     """
     And I am on the index page for posts
-    Then I should see "Category name starts with" within "#filters_sidebar_section"
-    When I fill in "Category name starts with" with "Astro"
+    Then I should see "Category name start" within "#filters_sidebar_section"
+    When I fill in "Category name start" with "Astro"
     And I press "Filter"
     Then I should see "Star Signs"
     And I should see "Constellations"
@@ -304,12 +303,12 @@ Feature: Index Filtering
       ActiveAdmin.register Category
       ActiveAdmin.register Post do
         config.namespace.maximum_association_filter_arity = 2
-        config.namespace.filter_method_for_large_association = '_contains'
+        config.namespace.filter_method_for_large_association = '_cont'
       end
     """
     And I am on the index page for posts
-    Then I should see "Category name contains" within "#filters_sidebar_section"
-    When I fill in "Category name contains" with "Astro"
+    Then I should see "Category name cont" within "#filters_sidebar_section"
+    When I fill in "Category name cont" with "Astro"
     And I press "Filter"
     Then I should see "Star Signs"
     And I should see "Constellations"
@@ -320,7 +319,7 @@ Feature: Index Filtering
       ActiveAdmin.register Category
       ActiveAdmin.register Post do
         config.namespace.maximum_association_filter_arity = :unlimited
-        config.namespace.filter_method_for_large_association = '_contains'
+        config.namespace.filter_method_for_large_association = '_cont'
       end
     """
     And I am on the index page for posts
@@ -358,3 +357,21 @@ Feature: Index Filtering
     And I press "Filter"
     Then I should see current filter "fancy_filter" equal to "Not Starred" with label "Ransackable Custom Filter"
     And I should see "Hello World"
+
+  Scenario: "counter cache"-like filters
+    Given a user named "Jane Doe" exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register User
+    """
+    When I am on the index page for users
+    Then I should see "Showing 1 of 1"
+    And I should see the following filters:
+     | Sign in count  | number     |
+
+    When I fill in "Sign in count" with "0"
+    And I press "Filter"
+    Then I should see 1 users in the table
+    When I fill in "Sign in count" with "1"
+    And I press "Filter"
+    Then I should see "No Users found"

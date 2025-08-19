@@ -79,24 +79,4 @@ RSpec.describe ActiveAdmin::Devise::Controller do
       expect(controller.root_path).to eq "#{SCOPE}/admin"
     end
   end
-
-  describe "#config" do
-    let(:config) { ActiveAdmin::Devise.config }
-
-    describe ":sign_out_via option" do
-      it "should contain the application.logout_link_method" do
-        expect(::Devise).to receive(:sign_out_via).and_return(:delete)
-        expect(ActiveAdmin.application).to receive(:logout_link_method).and_return(:get)
-
-        expect(config[:sign_out_via]).to include(:get)
-      end
-
-      it "should contain Devise's logout_via_method(s)" do
-        expect(::Devise).to receive(:sign_out_via).and_return([:delete, :post])
-        expect(ActiveAdmin.application).to receive(:logout_link_method).and_return(:get)
-
-        expect(config[:sign_out_via]).to eq [:delete, :post, :get]
-      end
-    end # describe ":sign_out_via option"
-  end # describe "#config"
 end

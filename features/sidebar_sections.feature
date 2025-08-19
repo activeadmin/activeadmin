@@ -16,18 +16,17 @@ Feature: Sidebar Sections
     end
     """
     When I am on the index page for posts
-    Then I should see a sidebar titled "Help"
-    And I should see "Need help" within the "Help" sidebar
+    Then I should see "Need help? Email us at help@example.com"
 
     When I follow "View"
-    Then I should see a sidebar titled "Help"
+    Then I should see "Need help? Email us at help@example.com"
 
     When I follow "Edit Post"
-    Then I should see a sidebar titled "Help"
+    Then I should see "Need help? Email us at help@example.com"
 
     When I am on the index page for posts
     And I follow "New Post"
-    Then I should see a sidebar titled "Help"
+    Then I should see "Need help? Email us at help@example.com"
 
   Scenario: Create a sidebar for only one action
     Given a configuration of:
@@ -39,18 +38,17 @@ Feature: Sidebar Sections
     end
     """
     When I am on the index page for posts
-    Then I should see a sidebar titled "Help"
-    And I should see "Need help" within the "Help" sidebar
+    Then I should see "Need help? Email us at help@example.com"
 
     When I follow "View"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I follow "Edit Post"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I am on the index page for posts
     And I follow "New Post"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
   Scenario: Create a sidebar for all except one action
     Given a configuration of:
@@ -62,17 +60,17 @@ Feature: Sidebar Sections
     end
     """
     When I am on the index page for posts
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I follow "View"
-    Then I should see a sidebar titled "Help"
+    Then I should see "Need help? Email us at help@example.com"
 
     When I follow "Edit Post"
-    Then I should see a sidebar titled "Help"
+    Then I should see "Need help? Email us at help@example.com"
 
     When I am on the index page for posts
     And I follow "New Post"
-    Then I should see a sidebar titled "Help"
+    Then I should see "Need help? Email us at help@example.com"
 
   Scenario: Create a sidebar for only one action with if clause that returns false
     Given a configuration of:
@@ -84,17 +82,17 @@ Feature: Sidebar Sections
     end
     """
     When I am on the index page for posts
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I follow "View"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I follow "Edit Post"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I am on the index page for posts
     And I follow "New Post"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
   Scenario: Create a sidebar for only one action with if clause with method symbol
     Given a configuration of:
@@ -110,17 +108,17 @@ Feature: Sidebar Sections
     end
     """
     When I am on the index page for posts
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I follow "View"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I follow "Edit Post"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I am on the index page for posts
     And I follow "New Post"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
   Scenario: Create a sidebar for only one action with if clause that returns true
     Given a configuration of:
@@ -132,18 +130,17 @@ Feature: Sidebar Sections
     end
     """
     When I am on the index page for posts
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I follow "View"
-    Then I should see a sidebar titled "Help"
-    And I should see "Need help" within the "Help" sidebar
+    Then I should see "Need help" within the "Help" sidebar
 
     When I follow "Edit Post"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
     When I am on the index page for posts
     And I follow "New Post"
-    Then I should not see a sidebar titled "Help"
+    Then I should not see "Need help? Email us at help@example.com"
 
   Scenario: Create a sidebar with deep content
     Given a configuration of:
@@ -162,7 +159,6 @@ Feature: Sidebar Sections
     end
     """
     When I am on the index page for posts
-    Then I should see a sidebar titled "Help"
     And I should see "First List First Item" within the "Help" sidebar
     And I should see "Second List Second Item" within the "Help" sidebar
 
@@ -206,4 +202,4 @@ Feature: Sidebar Sections
     end
     """
     When I am on the index page for posts
-    Then I should see a sidebar titled "Help" above sidebar titled "Filters"
+    Then I should see content "Need help? Email us at help@example.com" above other content "Filters"

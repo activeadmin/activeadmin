@@ -1,0 +1,33 @@
+name: ESLint
+
+on:
+  pull_request:
+
+env:
+  NODE_VERSION: ${{ vars.ESLINT_NODE_VERSION || '22.x' }}
+
+jobs:
+  eslint:
+    name: Run eslint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+      - uses: tj-actions/changed-files@v46
+        id: changed-files
+        with:
+          files: |
+            **.js
+            package*.json
+            yarn.lock
+            .github/workflows/eslint.yml
+      - uses: reviewdog/action-eslint@v1
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          filter_mode: nofilter # added (default), diff_context, file, nofilter
+          fail_level: any
+          reporter: github-pr-check

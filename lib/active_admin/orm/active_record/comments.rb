@@ -1,8 +1,7 @@
 # frozen_string_literal: true
-require "active_admin/orm/active_record/comments/views"
-require "active_admin/orm/active_record/comments/show_page_helper"
-require "active_admin/orm/active_record/comments/namespace_helper"
-require "active_admin/orm/active_record/comments/resource_helper"
+require_relative "comments/views"
+require_relative "comments/namespace_helper"
+require_relative "comments/resource_helper"
 
 # Add the comments configuration
 ActiveAdmin::Application.inheritable_setting :comments, true
@@ -13,7 +12,6 @@ ActiveAdmin::Application.inheritable_setting :comments_menu, {}
 # Insert helper modules
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
 ActiveAdmin::Resource.send :include, ActiveAdmin::Comments::ResourceHelper
-ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
 
 # Load the model as soon as it's referenced. By that point, Rails & Kaminari will be ready
 ActiveAdmin.autoload :Comment, "active_admin/orm/active_record/comments/comment"
@@ -77,6 +75,11 @@ ActiveAdmin.after_load do |app|
         def destroy
           destroy! do |success, failure|
             success.html do
+              # If deleting from the Comments resource page then this will fail, as redirecting back
+              # will be to the comment show page, but comment was deleted. The following can be used
+              # to alleviate that, but then deleting comments on commentable resource pages will
+              # redirect to the comments index which may be undesirable.
+              # redirect_to({ action: :index }, fallback_location: active_admin_root)
               redirect_back fallback_location: active_admin_root
             end
             failure.html do
@@ -90,11 +93,13 @@ ActiveAdmin.after_load do |app|
 
       index do
         column I18n.t("active_admin.comments.resource_type"), :resource_type
+        column I18n.t("active_admin.comments.resource"), :resource, class: "min-w-[7rem]"
         column I18n.t("active_admin.comments.author_type"), :author_type
-        column I18n.t("active_admin.comments.resource"), :resource
         column I18n.t("active_admin.comments.author"), :author
-        column I18n.t("active_admin.comments.body"), :body
-        column I18n.t("active_admin.comments.created_at"), :created_at
+        column I18n.t("active_admin.comments.body"), :body, class: "min-w-[16rem]" do |comment|
+          truncate(comment.body, length: 60, separator: " ")
+        end
+        column I18n.t("active_admin.comments.created_at"), :created_at, class: "min-w-[13rem]"
         actions
       end
     end

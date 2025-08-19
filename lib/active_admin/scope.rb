@@ -14,6 +14,12 @@ module ActiveAdmin
     #   Scope.new('Published', :public)
     #   # => Scope with name 'Published' and scope method :public
     #
+    #   Scope.new(:published, show_count: :async)
+    #   # => Scope with name 'Published' that queries its count asynchronously
+    #
+    #   Scope.new(:published, show_count: false)
+    #   # => Scope with name 'Published' that does not display a count
+    #
     #   Scope.new 'Published', :public, if: proc { current_admin_user.can? :manage, resource_class } do |articles|
     #     articles.where published: true
     #   end
@@ -41,7 +47,7 @@ module ActiveAdmin
       end
 
       @scope_method = nil if @scope_method == :all
-      if block_given?
+      if block
         @scope_method = nil
         @scope_block = block
       end
@@ -59,6 +65,10 @@ module ActiveAdmin
       when Symbol then @localizer ? @localizer.t(@name, scope: "scopes") : @name.to_s.titleize
       else @name
       end
+    end
+
+    def async_count?
+      @show_count == :async
     end
 
   end

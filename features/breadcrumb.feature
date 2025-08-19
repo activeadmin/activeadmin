@@ -36,7 +36,7 @@ Feature: Breadcrumb
     """
     When I am on the new post page
     Then I should see "Post"
-    And I should not see the element ".breadcrumb"
+    And I should not see the element "nav[aria-label=breadcrumb]"
 
   Scenario: Application config of false and a resource config of true
     Given a configuration of:
@@ -73,4 +73,4 @@ Feature: Breadcrumb
       end
     """
     When I am on the new post page
-    Then I should not see the element ".breadcrumb"
+    Then I should not see the element "nav[aria-label=breadcrumb]"

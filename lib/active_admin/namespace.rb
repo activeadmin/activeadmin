@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "active_admin/resource_collection"
+require_relative "resource_collection"
 
 module ActiveAdmin
 
@@ -28,7 +28,7 @@ module ActiveAdmin
   class Namespace
     class << self
       def setting(name, default)
-        Deprecation.warn "This method does not do anything and will be removed."
+        ActiveAdmin.deprecator.warn "This method does not do anything and will be removed."
       end
     end
 
@@ -68,7 +68,7 @@ module ActiveAdmin
 
       # Register the resource
       register_resource_controller(config)
-      parse_registration_block(config, &block) if block_given?
+      parse_registration_block(config, &block) if block
       reset_menu!
 
       # Dispatch a registration event
@@ -83,7 +83,7 @@ module ActiveAdmin
 
       # Register the resource
       register_page_controller(config)
-      parse_page_registration_block(config, &block) if block_given?
+      parse_page_registration_block(config, &block) if block
       reset_menu!
 
       config
@@ -141,57 +141,15 @@ module ActiveAdmin
       end
     end
 
-    # The default logout menu item
-    #
-    # @param [ActiveAdmin::MenuItem] menu The menu to add the logout link to
-    # @param [Fixnum] priority The numeric priority for the order in which it appears
-    # @param [Hash] html_options An options hash to pass along to link_to
-    #
-    def add_logout_button_to_menu(menu, priority = 20, html_options = {})
-      if logout_link_path
-        html_options = html_options.reverse_merge(method: logout_link_method || :get)
-        menu.add id: "logout", priority: priority, html_options: html_options,
-                 label: -> { I18n.t "active_admin.logout" },
-                 url: -> { render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
-                 if: :current_active_admin_user?
-      end
-    end
-
-    # The default user session menu item
-    #
-    # @param [ActiveAdmin::MenuItem] menu The menu to add the logout link to
-    # @param [Fixnum] priority The numeric priority for the order in which it appears
-    # @param [Hash] html_options An options hash to pass along to link_to
-    #
-    def add_current_user_to_menu(menu, priority = 10, html_options = {})
-      if current_user_method
-        menu.add id: "current_user", priority: priority, html_options: html_options,
-                 label: -> { display_name current_active_admin_user },
-                 url: -> { auto_url_for(current_active_admin_user) },
-                 if: :current_active_admin_user?
-      end
-    end
-
     protected
 
     def build_menu_collection
       @menus = MenuCollection.new
 
       @menus.on_build do
-        build_default_utility_nav
-
         resources.each do |resource|
           resource.add_to_menu(@menus)
         end
-      end
-    end
-
-    # Builds the default utility navigation in top right header with current user & logout button
-    def build_default_utility_nav
-      return if @menus.exists? :utility_navigation
-      @menus.menu :utility_navigation do |menu|
-        add_current_user_to_menu menu
-        add_logout_button_to_menu menu
       end
     end
 

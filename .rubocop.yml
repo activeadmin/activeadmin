@@ -4,22 +4,26 @@ inherit_mode:
   merge:
     - Include
 
-require:
+plugins:
+  - rubocop-capybara
   - rubocop-packaging
+  - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
 
 AllCops:
   DisabledByDefault: true
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.2
+  TargetRailsVersion: 7.0
 
   Exclude:
-    - tmp/development_apps/**/*
-    - tmp/test_apps/**/*
-    - gemfiles/rails_61/vendor/bundle/**/*
-    - gemfiles/rails_61_turbolinks/vendor/bundle/**/*
-    - gemfiles/rails_61_webpacker/vendor/bundle/**/*
-    - vendor/bundle/**/*
+    - .git/**/*
+    - .github/**/*
+    - bin/**/*
+    - gemfiles/**/vendor/**/*
+    - node_modules/**/*
+    - tmp/**/*
+    - vendor/**/*
 
   Include:
     - gemfiles/*/Gemfile
@@ -29,13 +33,52 @@ AllCops:
 
   StyleGuideCopsOnly: false
 
+Capybara:
+  Enabled: true
+
+Capybara/ClickLinkOrButtonStyle:
+  Enabled: true
+
+Capybara/CurrentPathExpectation:
+  Enabled: true
+
+Capybara/FindAllFirst:
+  Enabled: true
+
+Capybara/MatchStyle:
+  Enabled: true
+
+Capybara/NegationMatcher:
+  Enabled: true
+
+Capybara/NegationMatcherAfterVisit:
+  Enabled: true
+
+Capybara/RedundantWithinFind:
+  Enabled: true
+
+Capybara/RSpec/HaveSelector:
+  Enabled: true
+
+Capybara/RSpec/PredicateMatcher:
+  Enabled: true
+
+Capybara/SpecificActions:
+  Enabled: true
+
+Capybara/SpecificFinders:
+  Enabled: true
+
+Capybara/SpecificMatcher:
+  Enabled: true
+
+Capybara/VisibilityMatcher:
+  Enabled: true
+
 Layout/EndAlignment:
   Enabled: true
 
 Layout/HashAlignment:
-  Enabled: true
-
-Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 
 Layout/AccessModifierIndentation:
@@ -90,6 +133,24 @@ Layout/IndentationStyle:
   Enabled: true
   EnforcedStyle: spaces
 
+Lint/AmbiguousOperator:
+  Enabled: true
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: true
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: true
+
+Lint/RedundantStringCoercion:
+  Enabled: true
+
+Lint/UselessAccessModifier:
+  Enabled: true
+
+Lint/UselessAssignment:
+  Enabled: true
+
 Packaging/BundlerSetupInTests:
   Enabled: true
 
@@ -102,9 +163,176 @@ Packaging/RequireHardcodingLib:
 Packaging/RequireRelativeHardcodingLib:
   Enabled: true
 
+Performance:
+  Enabled: true
+
+Performance/AncestorsInclude:
+  Enabled: false
+
+Performance/ArraySemiInfiniteRangeSlice:
+  Enabled: false
+
+Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+
+Performance/BindCall:
+  Enabled: true
+
+Performance/BlockGivenWithExplicitBlock:
+  Enabled: true
+
+Performance/Caller:
+  Enabled: true
+
+Performance/CaseWhenSplat:
+  Enabled: true
+
+Performance/Casecmp:
+  Enabled: false
+
+Performance/ChainArrayAllocation:
+  Enabled: false
+
+Performance/CollectionLiteralInLoop:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+
+Performance/CompareWithBlock:
+  Enabled: true
+
+Performance/ConcurrentMonotonicTime:
+  Enabled: true
+
+Performance/ConstantRegexp:
+  Enabled: true
+
+Performance/Count:
+  Enabled: true
+
+Performance/DeletePrefix:
+  Enabled: true
+
+Performance/DeleteSuffix:
+  Enabled: true
+
+Performance/Detect:
+  Enabled: true
+
+Performance/DoubleStartEndWith:
+  Enabled: true
+  IncludeActiveSupportAliases: true
+
+Performance/EndWith:
+  Enabled: true
+
+Performance/FixedSize:
+  Enabled: true
+
+Performance/FlatMap:
+  Enabled: true
+  EnabledForFlattenWithoutParams: false
+
+Performance/InefficientHashSearch:
+  Enabled: true
+
+Performance/IoReadlines:
+  Enabled: true
+
+Performance/MapCompact:
+  Enabled: false
+
+Performance/MapMethodChain:
+  Enabled: false
+
+Performance/MethodObjectAsBlock:
+  Enabled: true
+
+Performance/OpenStruct:
+  Enabled: true
+
+Performance/RangeInclude:
+  Enabled: true
+
+Performance/RedundantBlockCall:
+  Enabled: false
+
+Performance/RedundantEqualityComparisonBlock:
+  Enabled: false
+
+Performance/RedundantMatch:
+  Enabled: true
+
+Performance/RedundantMerge:
+  Enabled: true
+  MaxKeyValuePairs: 2
+
+Performance/RedundantSortBlock:
+  Enabled: true
+
+Performance/RedundantSplitRegexpArgument:
+  Enabled: true
+
+Performance/RedundantStringChars:
+  Enabled: true
+
+Performance/RegexpMatch:
+  Enabled: true
+
+Performance/ReverseEach:
+  Enabled: true
+
+Performance/ReverseFirst:
+  Enabled: true
+
+Performance/SelectMap:
+  Enabled: false
+
+Performance/Size:
+  Enabled: true
+
+Performance/SortReverse:
+  Enabled: true
+
+Performance/Squeeze:
+  Enabled: true
+
+Performance/StartWith:
+  Enabled: true
+
+Performance/StringIdentifierArgument:
+  Enabled: true
+
+Performance/StringInclude:
+  Enabled: true
+
+Performance/StringReplacement:
+  Enabled: true
+
+Performance/StringBytesize:
+  Enabled: true
+
+Performance/Sum:
+  Enabled: false
+
+Performance/TimesMap:
+  Enabled: true
+
+Performance/UnfreezeString:
+  Enabled: true
+
+Performance/UriDefaultParser:
+  Enabled: true
+
+Performance/ZipWithoutBlock:
+  Enabled: true
+
 Rails/FilePath:
   Enabled: true
   EnforcedStyle: slashes
+
+Rails/RootPathnameMethods:
+  Enabled: true
 
 RSpec/EmptyLineAfterExample:
   Enabled: true
@@ -133,6 +361,7 @@ Style/FrozenStringLiteralComment:
 
 Style/HashSyntax:
   Enabled: true
+  EnforcedShorthandSyntax: never
 
 Style/ParallelAssignment:
   Enabled: true
@@ -143,7 +372,7 @@ Layout/IndentationConsistency:
 Layout/IndentationWidth:
   Enabled: true
 
-Naming/PredicateName:
+Naming/PredicatePrefix:
   Enabled: true
 
   ForbiddenPrefixes:
@@ -155,8 +384,7 @@ Naming/PredicateName:
     - has_many_actions
 
 Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
+  Enabled: false
 
 Style/TrailingCommaInArguments:
   Enabled: true
@@ -192,7 +420,4 @@ Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
 
 Layout/SpaceInsideParens:
-  Enabled: true
-
-Lint/UselessAccessModifier:
   Enabled: true

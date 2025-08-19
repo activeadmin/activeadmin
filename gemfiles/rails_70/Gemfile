@@ -1,0 +1,44 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+group :development, :test do
+  gem "rake"
+
+  gem "cancancan"
+  gem "pundit"
+
+  gem "draper"
+  gem "devise"
+
+  gem "rails", "~> 7.0.0"
+
+  gem "sprockets-rails"
+
+  gem "cssbundling-rails"
+  gem "importmap-rails"
+
+  gem "concurrent-ruby", "1.3.4" # Ref: rails/rails#54260
+end
+
+group :test do
+  gem "cuprite"
+  gem "capybara"
+  gem "webrick"
+
+  gem "simplecov", require: false # Test coverage generator. Go to /coverage/ after running tests
+  gem "simplecov-cobertura", require: false
+  gem "cucumber-rails", require: false
+  gem "cucumber"
+  gem "database_cleaner-active_record"
+  gem "launchy"
+  gem "parallel_tests"
+  gem "rspec-rails"
+  gem "sqlite3", "~> 1.7", platform: :mri
+
+  # Translations
+  gem "i18n-tasks"
+  gem "i18n-spec"
+  gem "rails-i18n" # Provides default i18n for many languages
+end
+
+gemspec path: "../.."

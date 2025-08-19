@@ -1,2 +1,5 @@
-# frozen_string_literal: true
-insert_tag active_admin_application.view_factory["page"]
+div class: "main-content-container" do
+  if page_presenter.block
+    instance_exec(&page_presenter.block)
+  end
+end

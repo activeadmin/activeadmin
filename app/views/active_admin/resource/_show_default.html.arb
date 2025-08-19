@@ -1,0 +1,2 @@
+attributes_table_for(resource, *active_admin_config.resource_columns)
+active_admin_comments_for(resource) if active_admin_config.comments?

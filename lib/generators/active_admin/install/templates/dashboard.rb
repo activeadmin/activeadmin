@@ -3,31 +3,14 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
   content title: proc { I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+    div class: "px-4 py-16 md:py-32 text-center m-auto max-w-3xl" do
+      h2 "Welcome to ActiveAdmin", class: "text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-500"
+      para "This is the default page", class: "mt-2 text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-200"
+      para class: "mt-6 text-xl leading-8 text-gray-700 dark:text-gray-400" do
+        text_node "To update the content, edit the"
+        strong "app/admin/dashboard.rb"
+        text_node "file to get started."
       end
     end
-
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
-
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
-  end # content
+  end
 end

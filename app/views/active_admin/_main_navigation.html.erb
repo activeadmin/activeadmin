@@ -1,0 +1,28 @@
+<div id="main-menu" class="fixed top-0 xl:top-16 bottom-0 start-0 z-40 w-72 xl:w-60 p-4 overflow-y-auto transition-transform duration-200 -translate-x-full xl:translate-x-0 bg-white dark:bg-gray-950 xl:border-e xl:border-gray-200 xl:dark:border-white/10" tabindex="-1">
+  <ul role="list" class="flex flex-1 flex-col space-y-1.5">
+    <% current_menu.items(self).each do |item| %>
+      <% children = item.items(self).presence %>
+      <li <%= current_menu_item?(item) && "data-open" %> class="group" data-item-id="<%= item.id %>">
+        <% if children %>
+          <button data-menu-button class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white flex items-center w-full rounded-md p-2 gap-x-2 text-sm" aria-label="<%= t('active_admin.toggle_section') %>">
+            <%= item.label(self) %>
+            <svg class="group-data-[open]:rotate-90 group-data-[open]:rtl:-rotate-90 ms-auto h-5 w-5 shrink-0 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <ul role="list" class="mt-1 space-y-1 hidden group-data-[open]:block">
+            <% children.each do |j| %>
+              <li data-item-id="<%= j.id %>">
+                <%= link_to j.label(self), j.url(self), j.html_options.merge(class: "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white block rounded-md py-1.5 px-2 text-sm no-underline #{(current_menu_item?(j) ? "bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white selected" : "")}") %>
+              </li>
+            <% end %>
+          </ul>
+        <% elsif url = item.url(self) %>
+          <%= link_to item.label(self), url, item.html_options.merge(class: "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white flex items-center w-full rounded-md p-2 gap-x-2 text-sm no-underline #{(current_menu_item?(item) ? "bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white selected" : "")}") %>
+        <% else %>
+          <%= item.label(self) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

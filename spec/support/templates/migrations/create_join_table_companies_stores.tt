@@ -1,0 +1,5 @@
+class CreateJoinTableCompaniesStores < ActiveRecord::Migration[<%= Rails::VERSION::MAJOR %>.<%= Rails::VERSION::MINOR %>]
+  def change
+    create_join_table :companies, :stores
+  end
+end

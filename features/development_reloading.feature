@@ -20,9 +20,9 @@ Feature: Development Reloading
     Then I should see a menu item for "Posts"
 
     When I create a new post with the title "A"
-    Then I should see a successful create flash
+    Then I should see a flash with "Post was successfully created"
 
     When I add "validates_presence_of :title" to the "post" model
     And I create a new post with the title ""
-    Then I should not see a successful create flash
+    Then I should not see "Post was successfully created"
     And I should see a validation error "can't be blank"

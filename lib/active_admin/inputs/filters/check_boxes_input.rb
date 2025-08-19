@@ -10,7 +10,7 @@ module ActiveAdmin
         end
 
         def selected_values
-          @object.public_send("#{searchable_method_name}_in") || []
+          @object.public_send(:"#{searchable_method_name}_in") || []
         end
 
         def searchable_method_name
@@ -19,11 +19,6 @@ module ActiveAdmin
           else
             association_primary_key || method
           end
-        end
-
-        # Add whitespace before label
-        def choice_label(choice)
-          " " + super
         end
 
         # Don't wrap in UL tag

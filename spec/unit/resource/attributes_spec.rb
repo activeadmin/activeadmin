@@ -32,6 +32,22 @@ module ActiveAdmin
         expect(subject).to_not include :published_date
         ActiveAdmin.application.filter_attributes = keep
       end
+
+      context "when resource has a counter cache" do
+        subject { ActiveAdmin::Resource.new(namespace, Category).resource_attributes }
+
+        it "should not include counter cache column" do
+          expect(subject.keys).not_to include(:posts_count)
+        end
+      end
+
+      context "when resource has a 'counter cache'-like column" do
+        subject { ActiveAdmin::Resource.new(namespace, User).resource_attributes }
+
+        it "should include that attribute" do
+          expect(subject).to include(sign_in_count: :sign_in_count)
+        end
+      end
     end
 
     describe "#association_columns" do

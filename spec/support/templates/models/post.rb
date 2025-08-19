@@ -1,11 +1,13 @@
 # frozen_string_literal: true
-class Post < ActiveRecord::Base
-  belongs_to :category, foreign_key: :custom_category_id, optional: true
+class Post < ApplicationRecord
+  belongs_to :category, foreign_key: :custom_category_id, optional: true, counter_cache: true
   belongs_to :author, class_name: "User", optional: true
   has_many :taggings
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :author
   accepts_nested_attributes_for :taggings, allow_destroy: true
+
+  # validates :title, :body, :author, :category, presence: true
 
   ransacker :custom_title_searcher do |parent|
     parent.table[:title]
@@ -21,7 +23,7 @@ class Post < ActiveRecord::Base
 
   class << self
     def ransackable_scopes(_auth_object = nil)
-      [:fancy_filter]
+      super + [:fancy_filter]
     end
 
     def fancy_filter(value)

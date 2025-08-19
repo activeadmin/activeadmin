@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "active_admin/localizers/resource_localizer"
+require_relative "localizers/resource_localizer"
 
 module ActiveAdmin
   module Localizers

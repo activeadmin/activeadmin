@@ -9,3 +9,7 @@
 /node_modules
 /src
 /vendor/bundle
+/rails_70
+/dist
+docs/.vitepress/cache
+docs/.vitepress/dist

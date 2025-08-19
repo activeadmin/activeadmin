@@ -25,6 +25,27 @@ Feature: Index as Table
     And I should see a link to "Edit"
     And I should see a link to "Delete"
 
+  Scenario: Viewing the default table with no show action
+    Given a post with the title "Hello World" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          actions :index, :edit, :update
+        end
+      """
+    Then I should see "Hello World"
+    And I should see an id_column link to edit page
+    And I should see a link to "Edit"
+
+  Scenario: Viewing the default table with "counter-cache"-like columns
+    Given a user named "Jane Doe" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register User
+      """
+    When I am on the index page for users
+    Then I should see a sortable table header with "Sign In Count"
+
   Scenario: Customizing the columns with symbols
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
@@ -116,7 +137,7 @@ Feature: Index as Table
         index do
           column :category
           actions do |resource|
-            link_to 'Custom Action', edit_admin_post_path(resource), class: 'member_link'
+            item 'Custom Action', edit_admin_post_path(resource)
           end
         end
       end
@@ -136,7 +157,7 @@ Feature: Index as Table
         index do
           column :category
           actions defaults: false do |resource|
-            link_to 'Custom Action', edit_admin_post_path(resource), class: 'member_link'
+            item 'Custom Action', edit_admin_post_path(resource)
           end
         end
       end
@@ -145,46 +166,6 @@ Feature: Index as Table
     And I should not see a member link to "Edit"
     And I should not see a member link to "Delete"
     And I should see a member link to "Custom Action"
-
-  Scenario: Actions with defaults and custom actions within a dropdown
-    Given a post with the title "Hello World" and body "From the body" exists
-    And an index configuration of:
-      """
-      ActiveAdmin.register Post do
-        actions :index, :show, :edit, :update
-
-        index do
-          column :category
-          actions dropdown: true do |resource|
-            item 'Custom Action', edit_admin_post_path(resource)
-          end
-        end
-      end
-      """
-    Then I should see a dropdown menu item to "View"
-    And I should see a dropdown menu item to "Edit"
-    And I should not see a dropdown menu item to "Delete"
-    And I should see a dropdown menu item to "Custom Action"
-
-  Scenario: Actions without default actions within a dropdown
-    Given a post with the title "Hello World" and body "From the body" exists
-    And an index configuration of:
-      """
-      ActiveAdmin.register Post do
-        actions :index, :show, :edit, :update
-
-        index do
-          column :category
-          actions defaults: false, dropdown: true do |resource|
-            item 'Custom Action', edit_admin_post_path(resource)
-          end
-        end
-      end
-      """
-    Then I should not see a dropdown menu item to "View"
-    And I should not see a dropdown menu item to "Edit"
-    And I should not see a dropdown menu item to "Delete"
-    And I should see a dropdown menu item to "Custom Action"
 
   Scenario: Index page without show action
     Given a post with the title "Hello World" and body "From the body" exists
@@ -251,13 +232,13 @@ Feature: Index as Table
     When I am on the index page for posts
     Then I should see the "index_table_posts" table:
       | [ ] | Id | Title        | Body | Published Date | Author | Position | Category | Starred | Foo | Created At | Updated At | |
-      | [ ] | 2 | Bye bye world | Move your...  |  |  |  |  | No |  | /.*/ | /.*/ | ViewEditDelete |
-      | [ ] | 1 | Hello World   | From the body |  |  |  |  | No |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  |  |  | Unknown |  | /.*/ | /.*/ | View   Edit   Delete |
+      | [ ] | 1 | Hello World   | From the body |  |  |  |  | Unknown |  | /.*/ | /.*/ | View   Edit   Delete |
     When I follow "Id"
     Then I should see the "index_table_posts" table:
       | [ ] | Id | Title        | Body | Published Date | Author | Position | Category | Starred | Foo | Created At | Updated At | |
-      | [ ] | 1 | Hello World   | From the body |  |  |  |  | No |  | /.*/ | /.*/ | ViewEditDelete |
-      | [ ] | 2 | Bye bye world | Move your...  |  |  |  |  | No |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 1 | Hello World   | From the body |  |  |  |  | Unknown |  | /.*/ | /.*/ | View   Edit   Delete |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  |  |  | Unknown |  | /.*/ | /.*/ | View   Edit   Delete |
 
   Scenario: Sorting by a virtual column
     Given a post with the title "Hello World" exists

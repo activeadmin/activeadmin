@@ -1,10 +1,6 @@
 # frozen_string_literal: true
-require "active_admin/helpers/collection"
-require "active_admin/view_helpers/download_format_links_helper"
-
 module ActiveAdmin
   module Views
-
     # Wraps the content with pagination and available formats.
     #
     # *Example:*
@@ -19,8 +15,8 @@ module ActiveAdmin
     # posts in one of the following formats:
     #
     # * "No Posts found"
-    # * "Displaying all 10 Posts"
-    # * "Displaying Posts 1 - 30 of 31 in total"
+    # * "Showing all 10 Posts"
+    # * "Showing Posts 1 - 30 of 31 in total"
     #
     # It will also generate pagination links.
     #
@@ -46,11 +42,11 @@ module ActiveAdmin
         @display_total = options.delete(:pagination_total) { true }
         @per_page = options.delete(:per_page)
 
-        unless collection.respond_to?(:total_pages)
+        unless @collection.respond_to?(:total_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
         end
-
-        @contents = div(class: "paginated_collection_contents")
+        add_class "paginated-collection"
+        @contents = div(class: "paginated-collection-contents")
         build_pagination_with_formats(options)
         @built = true
       end
@@ -67,25 +63,28 @@ module ActiveAdmin
       protected
 
       def build_pagination_with_formats(options)
-        div id: "index_footer" do
-          build_per_page_select if @per_page.is_a?(Array)
+        div class: "paginated-collection-pagination" do
+          div page_entries_info(options).html_safe, class: "pagination-information"
           build_pagination
-          div(page_entries_info(options).html_safe, class: "pagination_information")
-
-          formats = build_download_formats @download_links
-          build_download_format_links formats if formats.any?
+        end
+        formats = build_download_formats @download_links
+        if @per_page.is_a?(Array) || formats.any?
+          div class: "paginated-collection-footer" do
+            build_per_page_select if @per_page.is_a?(Array)
+            render("active_admin/shared/download_format_links", formats: formats) if formats.any?
+          end
         end
       end
 
       def build_per_page_select
-        div class: "pagination_per_page" do
+        div do
           text_node I18n.t("active_admin.pagination.per_page")
-          select do
+          select class: "pagination-per-page" do
             @per_page.each do |per_page|
               option(
                 per_page,
                 value: per_page,
-                selected: collection.limit_value == per_page ? "selected" : nil
+                selected: @collection.limit_value == per_page ? "selected" : nil
               )
             end
           end
@@ -93,7 +92,7 @@ module ActiveAdmin
       end
 
       def build_pagination
-        options = { theme: @display_total ? "active_admin" : "active_admin_countless" }
+        options = { views_prefix: :active_admin, outer_window: 1, window: 2 }
         options[:params] = @params if @params
         options[:param_name] = @param_name if @param_name
 
@@ -103,59 +102,58 @@ module ActiveAdmin
           # you pass in the :total_pages option. We issue a query to determine
           # if there is another page or not, but the limit/offset make this
           # query fast.
-          offset = collection.offset(collection.current_page * collection.limit_value).limit(1).count
-          options[:total_pages] = collection.current_page + offset
+          offset_scope = @collection.offset(@collection.current_page * @collection.limit_value)
+          # Support array collections. Kaminari::PaginatableArray does not respond to except
+          offset_scope = offset_scope.except(:select, :order) if offset_scope.respond_to?(:except)
+          offset = offset_scope.limit(1).count
+          options[:total_pages] = @collection.current_page + offset
           options[:right] = 0
         end
 
-        text_node paginate collection, **options
+        text_node paginate @collection, **options
       end
-
-      include ::ActiveAdmin::Helpers::Collection
-      include ::ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper
 
       # modified from will_paginate
       def page_entries_info(options = {})
         if options[:entry_name]
           entry_name = options[:entry_name]
           entries_name = options[:entries_name] || entry_name.pluralize
-        elsif collection_is_empty?
+        elsif collection_empty?(@collection)
           entry_name = I18n.t "active_admin.pagination.entry", count: 1, default: "entry"
           entries_name = I18n.t "active_admin.pagination.entry", count: 2, default: "entries"
         else
-          key = "activerecord.models." + collection.first.class.model_name.i18n_key.to_s
+          key = "activerecord.models." + @collection.first.class.model_name.i18n_key.to_s
 
-          entry_name = I18n.translate key, count: 1, default: collection.first.class.name.underscore.sub("_", " ")
-          entries_name = I18n.translate key, count: collection.size, default: entry_name.pluralize
+          entry_name = I18n.translate key, count: 1, default: @collection.first.class.name.underscore.sub("_", " ")
+          entries_name = I18n.translate key, count: @collection.size, default: entry_name.pluralize
         end
 
         if @display_total
-          if collection.total_pages < 2
-            case collection_size
+          if @collection.total_pages < 2
+            case collection_size(@collection)
             when 0; I18n.t("active_admin.pagination.empty", model: entries_name)
             when 1; I18n.t("active_admin.pagination.one", model: entry_name)
-            else; I18n.t("active_admin.pagination.one_page", model: entries_name, n: collection.total_count)
+            else; I18n.t("active_admin.pagination.one_page", model: entries_name, n: @collection.total_count)
             end
           else
-            offset = (collection.current_page - 1) * collection.limit_value
-            total = collection.total_count
+            offset = (@collection.current_page - 1) * @collection.limit_value
+            total = @collection.total_count
             I18n.t "active_admin.pagination.multiple",
                    model: entries_name,
                    total: total,
                    from: offset + 1,
-                   to: offset + collection_size
+                   to: offset + collection_size(@collection)
           end
         else
           # Do not display total count, in order to prevent a `SELECT count(*)`.
-          # To do so we must not call `collection.total_pages`
-          offset = (collection.current_page - 1) * collection.limit_value
+          # To do so we must not call `@collection.total_pages`
+          offset = (@collection.current_page - 1) * @collection.limit_value
           I18n.t "active_admin.pagination.multiple_without_total",
                  model: entries_name,
                  from: offset + 1,
-                 to: offset + collection_size
+                 to: offset + collection_size(@collection)
         end
       end
-
     end
   end
 end

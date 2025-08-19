@@ -132,7 +132,7 @@ post:
 
 ```ruby
 action_item :view, only: :show do
-  link_to 'View on site', post_path(post) if post.published?
+  link_to 'View on site', post_path(resource) if resource.published?
 end
 ```
 

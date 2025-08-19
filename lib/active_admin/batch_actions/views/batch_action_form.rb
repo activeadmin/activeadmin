@@ -1,15 +1,10 @@
 # frozen_string_literal: true
-require "active_admin/component"
+require_relative "../../component"
 
 module ActiveAdmin
   module BatchActions
-
     # Build a BatchActionForm
     class BatchActionForm < ActiveAdmin::Component
-      builder_method :batch_action_form
-
-      attr_reader :prefix_html
-
       def build(options = {}, &block)
         options[:id] ||= "collection_selection"
 
@@ -33,7 +28,6 @@ module ActiveAdmin
       def closing_form_tag
         "</form>".html_safe
       end
-
     end
   end
 end

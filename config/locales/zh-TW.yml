@@ -1,135 +1,148 @@
-"zh-TW":
+---
+zh-TW:
   active_admin:
+    access_denied:
+      message: 你沒有權限執行此項操作
+    any: 任何
+    batch_actions:
+      action_label: "%{title} 已選取"
+      button_label: 批次操作
+      default_confirmation: 你確定要這樣做嗎？
+      delete_confirmation: 你確定要刪除這些 %{plural_model} 嗎？
+      labels:
+        destroy: 刪除
+      selection_toggle_explanation: "（切換選取）"
+      successfully_destroyed:
+        one: 成功刪除 1 %{model}
+        other: 成功刪除 %{count} %{plural_model}
+    blank_slate:
+      content: 尚無 %{resource_name}。
+      link: 建立一筆
+    cancel: 取消
+    comments:
+      add: 新增評論
+      author: 作者
+      author_missing: 匿名
+      author_type: 作者身份
+      body: 內文
+      created_at: 建立時間
+      delete: 刪除評論
+      delete_confirmation: 你確定要刪除這個評論嗎？
+      errors:
+        empty_text: 評論儲存失敗，不允許空白的內容。
+      no_comments_yet: 尚無評論
+      resource: 資源
+      resource_type: 資源類型
+      title_content: "%{count} 則評論"
+    create_another: 新增另一個 %{model}
     dashboard: 儀表板
-    dashboard_welcome:
-      welcome: "歡迎來到 Active Admin，這是預設的儀表板頁面。"
-      call_to_action: "要新增儀表板內容，請查看 'app/admin/dashboard.rb'"
-    view: "檢視"
-    edit: "編輯"
-    delete: "刪除"
-    delete_confirmation: "你確定要刪除嗎？"
-    new_model: "新增 %{model}"
-    edit_model: "編輯 %{model}"
-    delete_model: "刪除 %{model}"
+    delete: 刪除
+    delete_confirmation: 你確定要刪除嗎？
+    delete_model: 刪除 %{model}
     details: "%{model} 明細"
-    cancel: "取消"
-    empty: "空的"
-    previous: "前一個"
-    next: "下一個"
-    download: "下載:"
-    has_many_new: "增加新的 %{model}"
-    has_many_delete: "刪除"
-    has_many_remove: "清除"
+    devise:
+      change_password:
+        submit: 更改我的密碼
+        title: 更改你的密碼
+      email:
+        title: 電子郵件信箱
+      links:
+        forgot_your_password: 忘記密碼？
+        resend_confirmation_instructions: 重新發送確認信
+        resend_unlock_instructions: 重新發送解鎖指示
+        sign_in: 登入
+        sign_in_with_omniauth_provider: 使用 %{provider} 登入
+        sign_up: 註冊
+      login:
+        remember_me: 記住我
+        submit: 登入
+        title: 登入
+      password:
+        title: 密碼
+      password_confirmation:
+        title: 確認密碼
+      resend_confirmation_instructions:
+        submit: 重新發送確認信
+        title: 重新發送確認信
+      reset_password:
+        submit: 重設密碼
+        title: 忘記密碼？
+      sign_up:
+        submit: 註冊
+        title: 註冊
+      subdomain:
+        title: 子網域
+      unlock:
+        submit: 重新發送解鎖指示
+        title: 重新發送解鎖指示
+      username:
+        title: 帳號
+    download: 下載：
+    edit: 編輯
+    edit_model: 編輯 %{model}
+    empty: 空的
     filters:
       buttons:
-        filter: "篩選"
-        clear: "清除篩選條件"
+        clear: 清除篩選條件
+        filter: 篩選
       predicates:
-        contains: "包含"
-        equals: "等於"
-        starts_with: "開頭為"
-        ends_with: "結尾為"
-        greater_than: "大於"
-        less_than: "小於"
-    search_status:
-      headline: "搜尋條件:"
-      current_scope: "子集："
-      current_filters: "目前篩選條件："
-      no_current_filters: "無"
-    status_tag:
-      "yes": "是"
-      "no": "否"
-      "unset": "否"
-    main_content: "請實作 %{model}#main_content 以顯示內容。"
-    logout: "登出"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "篩選條件"
-      search_status: "搜尋條件"
-    pagination:
-      empty: "找不到 %{model} "
-      one: "顯示 <b>1</b> %{model}"
-      one_page: "顯示 <b>全部 %{n}</b> %{model}"
-      multiple: "總計 <b>%{total}</b> 顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
-      multiple_without_total: "顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
-      entry:
-        one: "筆"
-        other: "筆"
-    any: "任何"
-    blank_slate:
-      content: "尚無 %{resource_name}"
-      link: "建立一筆"
-    dropdown_actions:
-      button_label: "操作"
-    batch_actions:
-      button_label: "批次作業"
-      default_confirmation: "你確定你要這樣做？"
-      delete_confirmation: "你確定要刪除這些 %{plural_model} 嗎？"
-      succesfully_destroyed:
-        one: "成功刪除 1 %{model}"
-        other: "成功刪除 %{count} %{plural_model}"
-      selection_toggle_explanation: "（切換選取）"
-      action_label: "%{title} 已選取"
-      labels:
-        destroy: "刪除"
-    comments:
-      created_at: "建立"
-      resource_type: "資源種類"
-      author_type: "作者身份"
-      body: "內文"
-      author: "作者"
-      add: "新增評論"
-      delete: "刪除評論"
-      delete_confirmation: "你確定要刪除這些評論嗎？"
-      resource: "資源"
-      no_comments_yet: "尚無評論"
-      author_missing: "匿名"
-      title_content: "(%{count}) 則評論"
-      errors:
-        empty_text: "評論儲存失敗，不允許空白的內容。"
-    devise:
-      username:
-        title: "帳號"
-      email:
-        title: "電子郵件信箱"
-      subdomain:
-        title: "子網域"
-      password:
-        title: "密碼"
-      sign_up:
-        title: "註冊"
-        submit: "註冊"
-      login:
-        title: "登入"
-        remember_me: "記住我"
-        submit: "登入"
-      reset_password:
-        title: "忘記密碼？"
-        submit: "重置密碼"
-      change_password:
-        title: "更改你的密碼"
-        submit: "更改我的密碼"
-      unlock:
-        title: "重新發送解鎖指示"
-        submit: "重新發送解鎖指示"
-      resend_confirmation_instructions:
-        title: '重新發送確認信'
-        submit: '重新發送確認信'
-      links:
-        sign_up: "註冊"
-        sign_in: "登入"
-        forgot_your_password: "忘記密碼？"
-        sign_in_with_omniauth_provider: "使用 %{provider} 登入"
-        resend_unlock_instructions: "重新發送解鎖指示"
-        resend_confirmation_instructions: "重新發送確認信"
-    unsupported_browser:
-      headline: "很抱歉，ActiveAdmin 已不再支援 Internet Explorer 8 以下版本的瀏覽器。"
-      recommendation: "建議您升級到最新版本的<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>，<a href=\"https://chrome.google.com/\">Google Chrome</a>，或是 <a href=\"https://mozilla.org/firefox/\">Firefox</a>。"
-      turn_off_compatibility_view: "若您是使用 IE 9 或更新的版本，請確認<a href=\"https://support.microsoft.com/zh-tw/help/17471\">「相容性檢視」是關閉的</a>。"
-    access_denied:
-      message: "您沒有權限執行此項操作"
+        from: 從
+        to: 到
+    has_many_delete: 刪除
+    has_many_new: 增加新的 %{model}
+    has_many_remove: 移除
     index_list:
-      table: "表格"
-      block: "清單"
-      grid: "格狀"
-      blog: "部落格"
+      table: 表格
+    logout: 登出
+    move: 移動
+    new_model: 新增 %{model}
+    next: 下一個
+    pagination:
+      empty: 找不到 %{model}
+      entry:
+        one: 筆
+        other: 筆
+      multiple: 總計 <b>%{total}</b> 顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆
+      multiple_without_total: 顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆
+      next: 下一個
+      one: 顯示 <b>1</b> %{model}
+      one_page: 顯示 <b>全部 %{n}</b> %{model}
+      per_page: '每頁 '
+      previous: 前一個
+      truncate: "&hellip;"
+    powered_by: 由 %{active_admin} %{version} 提供
+    previous: 前一個
+    scopes:
+      all: 全部
+    search_status:
+      no_current_filters: 未套用篩選條件
+      title: 進行中的搜尋
+      title_with_scope: 正在搜尋 %{name}
+    sidebars:
+      filters: 篩選條件
+      search_status: 搜尋狀態
+    status_tag:
+      'no': 否
+      unset: 未知
+      'yes': 是
+    toggle_dark_mode: 切換暗黑模式
+    toggle_main_navigation_menu: 切換主要導覽
+    toggle_section: 切換區塊
+    toggle_user_menu: 切換使用者選單
+    view: 檢視
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: 作者類型
+        body: 內容
+        created_at: 建立時間
+        namespace: 命名空間
+        resource_type: 資源類型
+        updated_at: 更新時間
+    models:
+      active_admin/comment:
+        one: 評論
+        other: 評論
+      comment:
+        one: 評論
+        other: 評論

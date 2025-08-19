@@ -66,4 +66,4 @@ Feature: Strong Params
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
-    And I should see the attribute "Starred" with "No"
+    And I should see the attribute "Starred" with "Unknown"

@@ -12,57 +12,49 @@ concurrency:
 
 jobs:
   test:
-    name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
+    name: test (${{ matrix.ruby }}, ${{ matrix.rails }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
         ruby:
-          - 3.2
-          - 3.1
-          - '3.0'
+          - "3.4"
+          - "3.3"
+          - "3.2"
         os:
           - ubuntu-latest
-        deps:
-          - rails_61
+        rails:
+          - rails_80
+          - rails_72
+          - rails_71
           - rails_70
-        include:
-          - ruby: 3.1
+        exclude:
+          - ruby: '3.4'
             os: ubuntu-latest
-            deps: rails_61_webpacker
-          - ruby: 3.1
-            os: ubuntu-latest
-            deps: rails_61_turbolinks
+            rails: rails_70
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Configure bundler (default)
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
-        if: matrix.deps == 'rails_70'
+        if: matrix.rails == 'rails_80'
       - name: Configure bundler (alternative)
         run: |
-          echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> "$GITHUB_ENV"
-        if: matrix.deps != 'rails_70'
+          echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.rails }}/Gemfile" >> "$GITHUB_ENV"
+        if: matrix.rails != 'rails_80'
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-        if: matrix.deps == 'rails_61_webpacker'
-      - name: Setup git for test app setup
-        run: |
-          git config --global user.email activeadmin@ci.dummy
-          git config --global user.name ActiveAdmin
+          rubygems: latest
       - name: Create test app
         run: bin/rake setup
       - name: Restore cached RSpec runtimes
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: tmp/parallel_runtime_rspec.log
-          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
+          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.rails }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
       - name: Run RSpec tests
         env:
           COVERAGE: true
@@ -70,10 +62,10 @@ jobs:
           bin/parallel_rspec
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
       - name: Restore cached cucumber runtimes
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: tmp/parallel_runtime_cucumber.log
-          key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
+          key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.rails }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
       - name: Run Cucumber features
         env:
           COVERAGE: true
@@ -81,23 +73,51 @@ jobs:
           bin/parallel_cucumber --fail-fast
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
-      - uses: actions/upload-artifact@v3
+      - name: Rename coverage file by matrix run
+        run: mv coverage/coverage.xml coverage/coverage-ruby-${{ matrix.ruby }}-${{ matrix.rails }}.xml
+      - uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: coverage-ruby-${{ matrix.ruby }}-${{ matrix.rails }}
           path: coverage
           if-no-files-found: error
 
   upload_coverage:
     name: Upload Coverage
     runs-on: ubuntu-latest
+    # Do not run on forks
+    if: ${{ github.repository_owner == 'activeadmin' }}
     needs: [test]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
         with:
-          name: coverage
           path: coverage
-      - uses: codecov/codecov-action@v3
+          pattern: coverage-ruby-*
+          merge-multiple: true
+      - uses: codecov/codecov-action@v5
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           directory: coverage
           fail_ci_if_error: true
+
+  test_docs_build:
+    name: Build docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: tj-actions/changed-files@v46
+        id: changed-files
+        with:
+          files: |
+            docs/**
+            package*.json
+            yarn.lock
+      - uses: actions/setup-node@v4
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          node-version: 22
+          cache: yarn
+      - run: yarn install
+        if: steps.changed-files.outputs.any_changed == 'true'
+      - run: yarn docs:build
+        if: steps.changed-files.outputs.any_changed == 'true'

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "active_admin/helpers/optional_display"
+require_relative "../helpers/optional_display"
 
 module ActiveAdmin
 
@@ -59,37 +59,36 @@ module ActiveAdmin
       def add_default_action_items
         add_default_new_action_item
         add_default_edit_action_item
-        add_default_show_action_item
+        add_default_destroy_action_item
       end
 
       # Adds the default New link on index
       def add_default_new_action_item
-        add_action_item :new, only: :index do
-          if controller.action_methods.include?("new") && authorized?(ActiveAdmin::Auth::NEW, active_admin_config.resource_class)
-            localizer = ActiveAdmin::Localizers.resource(active_admin_config)
-            link_to localizer.t(:new_model), new_resource_path
-          end
+        add_action_item :new, only: :index, if: -> { new_action_authorized?(active_admin_config.resource_class) } do
+          localizer = ActiveAdmin::Localizers.resource(active_admin_config)
+          link_to localizer.t(:new_model), new_resource_path, class: "action-item-button"
         end
       end
 
       # Adds the default Edit link on show
       def add_default_edit_action_item
-        add_action_item :edit, only: :show do
-          if controller.action_methods.include?("edit") && authorized?(ActiveAdmin::Auth::EDIT, resource)
-            localizer = ActiveAdmin::Localizers.resource(active_admin_config)
-            link_to localizer.t(:edit_model), edit_resource_path(resource)
-          end
+        add_action_item :edit, only: :show, if: -> { edit_action_authorized?(resource) } do
+          localizer = ActiveAdmin::Localizers.resource(active_admin_config)
+          link_to localizer.t(:edit_model), edit_resource_path(resource), class: "action-item-button"
         end
       end
 
       # Adds the default Destroy link on show
-      def add_default_show_action_item
-        add_action_item :destroy, only: :show do
-          if controller.action_methods.include?("destroy") && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-            localizer = ActiveAdmin::Localizers.resource(active_admin_config)
-            link_to localizer.t(:delete_model), resource_path(resource), method: :delete,
-                                                                         data: { confirm: localizer.t(:delete_confirmation) }
-          end
+      def add_default_destroy_action_item
+        add_action_item :destroy, only: :show, if: -> { destroy_action_authorized?(resource) } do
+          localizer = ActiveAdmin::Localizers.resource(active_admin_config)
+          link_to(
+            localizer.t(:delete_model),
+            resource_path(resource),
+            class: "action-item-button",
+            method: :delete,
+            data: { confirm: localizer.t(:delete_confirmation) }
+          )
         end
       end
 
@@ -107,10 +106,6 @@ module ActiveAdmin
       @options = options
       @block = block
       normalize_display_options!
-    end
-
-    def html_class
-      "action_item #{@options[:class]}".rstrip
     end
 
     def priority

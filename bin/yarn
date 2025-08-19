@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
-begin
-  exec "yarnpkg", *ARGV
-rescue Errno::ENOENT
-  $stderr.puts "Yarn executable was not detected in the system."
-  $stderr.puts "Download Yarn at https://yarnpkg.com/en/docs/install"
-  exit 1
-end

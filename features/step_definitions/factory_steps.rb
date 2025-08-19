@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 def create_user(name, type = "User")
   first_name, last_name = name.split(" ")
-  user = type.camelize.constantize.where(first_name: first_name, last_name: last_name).first_or_create(username: name.tr(" ", "").underscore)
+  type.camelize.constantize.where(first_name: first_name, last_name: last_name).first_or_create(username: name.tr(" ", "").underscore)
 end
 
-Given /^(a|\d+)( published)?( unstarred|starred)? posts?(?: with the title "([^"]*)")?(?: and body "([^"]*)")?(?: written by "([^"]*)")?(?: in category "([^"]*)")? exists?$/ do |count, published, starred, title, body, user, category_name|
+Given(/^(a|\d+)( published)?( unstarred|starred)? posts?(?: with the title "([^"]*)")?(?: and body "([^"]*)")?(?: written by "([^"]*)")?(?: in category "([^"]*)")? exists?$/) do |count, published, starred, title, body, user, category_name|
   count = count == "a" ? 1 : count.to_i
   published = Time.now if published
   starred = starred == " starred" if starred
@@ -16,21 +16,31 @@ Given /^(a|\d+)( published)?( unstarred|starred)? posts?(?: with the title "([^"
   end
 end
 
-Given /^a category named "([^"]*)" exists$/ do |name|
+Given(/^a category named "([^"]*)" exists$/) do |name|
   Category.create! name: name
 end
 
-Given /^a (user|publisher) named "([^"]*)" exists$/ do |type, name|
+Given(/^a (user|publisher) named "([^"]*)" exists$/) do |type, name|
   create_user name, type
 end
 
-Given /^a store named "([^"]*)" exists$/ do |name|
+Given(/^a store named "([^"]*)" exists$/) do |name|
   Store.create! name: name
 end
 
-Given /^I create a new post with the title "([^"]*)"$/ do |title|
+Given(/^a tag named "([^"]*)" exists$/) do |name|
+  Tag.create! name: name
+end
+
+Given(/^a company named "([^"]*)"(?: with a store named "([^"]*)")? exists$/) do |name, store_name|
+  store = Store.create! name: store_name if store_name
+
+  Company.create! name: name, stores: [store].compact
+end
+
+Given(/^I create a new post with the title "([^"]*)"$/) do |title|
   first(:link, "Posts").click
-  click_link "New Post"
+  click_on "New Post"
   fill_in "post_title", with: title
-  click_button "Create Post"
+  click_on "Create Post"
 end

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+require_relative "active"
+
 module ActiveAdmin
   module Filters
-
     class Disabled < RuntimeError
       def initialize(action)
         super "Cannot #{action} a filter when filters are disabled. Enable filters with 'config.filters = true'"
@@ -9,11 +10,10 @@ module ActiveAdmin
     end
 
     module ResourceExtension
-
       def initialize(*)
         super
         add_filters_sidebar_section
-        add_search_status_sidebar_section
+        add_active_search_sidebar_section
       end
 
       # Returns the filters for this resource. If filters are not enabled,
@@ -98,7 +98,7 @@ module ActiveAdmin
         end
 
         if @filters_to_remove
-          @filters_to_remove.each &filters.method(:delete)
+          @filters_to_remove.each { |filter| filters.delete(filter) }
         end
 
         filters
@@ -139,14 +139,14 @@ module ActiveAdmin
             end
 
             # Remove high-arity associations with no searchable column
-            high_arity = high_arity.select(&method(:searchable_column_for))
+            high_arity = high_arity.select { |r| searchable_column_for(r) }
 
             high_arity = high_arity.map { |r| r.name.to_s + "_" + searchable_column_for(r) + namespace.filter_method_for_large_association }
 
             filters = poly.map(&:foreign_type) + low_arity.map(&:name) + high_arity
           end
 
-          filters.map &:to_sym
+          filters.map(&:to_sym)
         else
           []
         end
@@ -165,16 +165,24 @@ module ActiveAdmin
       end
 
       def filters_sidebar_section
-        ActiveAdmin::SidebarSection.new :filters, only: :index, if: -> { active_admin_config.filters.any? } do
+        name = :filters
+        ActiveAdmin::SidebarSection.new name, only: :index, if: -> { active_admin_config.filters.any? } do
+          h3 I18n.t("active_admin.sidebars.#{name}", default: name.to_s.titlecase), class: "filters-form-title"
           active_admin_filters_form_for assigns[:search], **active_admin_config.filters
         end
       end
 
-      def add_search_status_sidebar_section
-        self.sidebar_sections << ActiveAdmin::Filters::ActiveSidebar.new
+      def add_active_search_sidebar_section
+        self.sidebar_sections << active_search_sidebar_section
       end
 
+      def active_search_sidebar_section
+        name = :active_search
+        ActiveAdmin::SidebarSection.new name, only: :index, if: -> { active_admin_config.current_filters_enabled? && (params[:q] || params[:scope]) } do
+          filters = ActiveAdmin::Filters::Active.new(active_admin_config, assigns[:search])
+          render "active_filters", active_filters: filters
+        end
+      end
     end
-
   end
 end

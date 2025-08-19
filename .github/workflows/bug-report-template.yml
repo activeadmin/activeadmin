@@ -5,17 +5,13 @@ on:
     # Run every day at noon UTC
     - cron: '0 12 * * *'
   pull_request:
-    # If updating `paths` then update bug-report-template-none.yml to match
-    paths:
-      - '.github/workflows/bug-report-template.yml'
-      - 'tasks/bug_report_template.rb'
 
 concurrency:
   group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  RUBY_VERSION: ruby-3.2
+  RUBY_VERSION: ruby-3.4
 
 jobs:
   bug_report_template_test:
@@ -24,10 +20,23 @@ jobs:
     if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'activeadmin' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
+      - uses: tj-actions/changed-files@v46
+        id: changed-files
+        with:
+          files: |
+            app/**
+            config/**
+            lib/*.rb
+            lib/active_admin/**
+            tasks/bug_report_template.rb
+            Gemfile*
+            *.gemspec
       - uses: ruby/setup-ruby@v1
+        if: steps.changed-files.outputs.any_changed == 'true'
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
       - name: Run bug report template
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb

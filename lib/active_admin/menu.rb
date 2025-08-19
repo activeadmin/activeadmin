@@ -48,10 +48,8 @@ module ActiveAdmin
       #   menu.add parent: 'Dashboard', label: 'My Child Dashboard'
       #
       def add(options)
-        parent_chain = Array.wrap(options.delete(:parent))
-
-        item = if parent = parent_chain.shift
-                 options[:parent] = parent_chain if parent_chain.any?
+        options = options.dup # Make sure parameter is not modified
+        item = if parent = options.delete(:parent)
                  (self[parent] || add(label: parent)).add options
                else
                  _add options.merge parent: self
@@ -64,7 +62,7 @@ module ActiveAdmin
 
       # Whether any children match the given item.
       def include?(item)
-        @children.values.include?(item) || @children.values.any? { |child| child.include?(item) }
+        @children.value?(item)
       end
 
       # Used in the UI to visually distinguish which menu item is selected.
@@ -72,8 +70,14 @@ module ActiveAdmin
         self == item || include?(item)
       end
 
-      def items
-        @children.values
+      # Returns sorted array of menu items that should be displayed in this context.
+      # Sorts by priority first, then alphabetically by label if needed.
+      def items(context = nil)
+        @children.values.select { |i| i.display?(context) }.sort do |a, b|
+          result = a.priority <=> b.priority
+          result = a.label(context) <=> b.label(context) if result == 0
+          result
+        end
       end
 
       attr_reader :children

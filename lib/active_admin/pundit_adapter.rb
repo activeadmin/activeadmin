@@ -19,11 +19,11 @@ module ActiveAdmin
     end
 
     def scope_collection(collection, action = Auth::READ)
-      # scoping is appliable only to read/index action
+      # scoping is applicable only to read/index action
       # which means there is no way how to scope other actions
       Pundit.policy_scope!(user, namespace(collection))
     rescue Pundit::NotDefinedError => e
-      if default_policy_class && default_policy_class.const_defined?(:Scope)
+      if default_policy_class&.const_defined?(:Scope)
         default_policy_class::Scope.new(user, collection).resolve
       else
         raise e
@@ -42,7 +42,7 @@ module ActiveAdmin
     end
 
     def format_action(action, subject)
-      # https://github.com/varvet/pundit/blob/master/lib/generators/pundit/install/templates/application_policy.rb
+      # https://github.com/varvet/pundit/blob/main/lib/generators/pundit/install/templates/application_policy.rb
       case action
       when Auth::READ then subject.is_a?(Class) ? :index? : :show?
       when Auth::DESTROY then subject.is_a?(Class) ? :destroy_all? : :destroy?
@@ -77,7 +77,7 @@ module ActiveAdmin
 
       policy_name = policy.class.to_s
 
-      Deprecation.warn "You have `pundit_policy_namespace` configured as `#{default_policy_namespace}`, " \
+      ActiveAdmin.deprecator.warn "You have `pundit_policy_namespace` configured as `#{default_policy_namespace}`, " \
         "but ActiveAdmin was unable to find policy #{default_policy_module}::#{policy_name}. " \
         "#{policy_name} will be used instead. " \
         "This behavior will be removed in future versions of ActiveAdmin. " \
@@ -95,7 +95,7 @@ module ActiveAdmin
     end
 
     def default_policy_class
-      ActiveAdmin.application.pundit_default_policy && ActiveAdmin.application.pundit_default_policy.constantize
+      ActiveAdmin.application.pundit_default_policy&.constantize
     end
 
     def default_policy(subject)

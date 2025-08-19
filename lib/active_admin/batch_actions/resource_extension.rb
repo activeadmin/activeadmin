@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 module ActiveAdmin
-
   module BatchActions
     module ResourceExtension
       def initialize(*)
@@ -59,7 +58,7 @@ module ActiveAdmin
         destroy_options = {
           priority: 100,
           confirm: proc { I18n.t("active_admin.batch_actions.delete_confirmation", plural_model: active_admin_config.plural_resource_label.downcase) },
-          if: proc { controller.action_methods.include?("destroy") && authorized?(ActiveAdmin::Auth::DESTROY, active_admin_config.resource_class) }
+          if: proc { destroy_action_authorized?(active_admin_config.resource_class) }
         }
 
         add_batch_action :destroy, proc { I18n.t("active_admin.delete") }, destroy_options do |selected_ids|
@@ -70,7 +69,7 @@ module ActiveAdmin
 
           redirect_to active_admin_config.route_collection_path(params),
                       notice: I18n.t(
-                        "active_admin.batch_actions.succesfully_destroyed",
+                        "active_admin.batch_actions.successfully_destroyed",
                         count: selected_ids.count,
                         model: active_admin_config.resource_label.downcase,
                         plural_model: active_admin_config.plural_resource_label(count: selected_ids.count).downcase)
@@ -84,7 +83,7 @@ module ActiveAdmin
 
     include Comparable
 
-    attr_reader :block, :title, :sym
+    attr_reader :block, :title, :sym, :partial, :link_html_options
 
     DEFAULT_CONFIRM_MESSAGE = proc { I18n.t "active_admin.batch_actions.default_confirmation" }
 
@@ -96,7 +95,7 @@ module ActiveAdmin
     # => Will create an action that appears in the action list popover
     #
     #   BatchAction.new(:flag) { |selection| redirect_to collection_path, notice: "#{selection.length} users flagged" }
-    # => Will create an action that uses a block to process the request (which receives one paramater of the selected objects)
+    # => Will create an action that uses a block to process the request (which receives one parameter of the selected objects)
     #
     #   BatchAction.new("Perform Long Operation on") { |selection| }
     # => You can create batch actions with a title instead of a Symbol
@@ -110,8 +109,8 @@ module ActiveAdmin
     #   BatchAction.new(:flag, confirm: "Are you sure?") { |selection| }
     # => You can pass a custom confirmation message through `:confirm`
     #
-    #   BatchAction.new(:flag, form: {foo: :text, bar: :checkbox}) { |selection, inputs| }
-    # => You can pass a hash of options to `:form` that will be rendered as form input fields for the user to fill out.
+    #   BatchAction.new(:flag, partial: "flag_form", link_html_options: { "data-modal-target": "modal-id", "data-modal-show": "modal-id" }) { |selection, inputs| }
+    # => Pass a partial that contains a modal and with a data attribute that opens the modal with the form for the user to fill out.
     #
     def initialize(sym, title, options = {}, &block)
       @sym = sym
@@ -119,21 +118,17 @@ module ActiveAdmin
       @options = options
       @block = block
       @confirm = options[:confirm]
+      @partial = options[:partial]
+      @link_html_options = options[:link_html_options] || {}
       @block ||= proc {}
     end
 
     def confirm
       if @confirm == true
         DEFAULT_CONFIRM_MESSAGE
-      elsif !@confirm && @options[:form]
-        DEFAULT_CONFIRM_MESSAGE
       else
         @confirm
       end
-    end
-
-    def inputs
-      @options[:form]
     end
 
     # Returns the display if block. If the block was not explicitly defined
@@ -151,7 +146,5 @@ module ActiveAdmin
     def <=>(other)
       self.priority <=> other.priority
     end
-
   end
-
 end

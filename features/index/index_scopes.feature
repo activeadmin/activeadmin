@@ -34,7 +34,7 @@ Feature: Index Scoping
     And I should see 3 posts in the table
     When I follow "Neat scope"
     And I should see 3 posts in the table
-    And I should see the current scope with label "Neat scope"
+    And I should see the content "Active Search for Neat scope"
 
   Scenario: Viewing resources with one scope as the default
     Given 3 posts exist
@@ -115,7 +115,7 @@ Feature: Index Scoping
     And I should see the scope "Published" with the count 3
     When I follow "Published"
     Then I should see the scope "Published" selected
-    And I should see the current scope with label "Published"
+    And I should see the content "Active Search for Published"
     And I should see 3 posts in the table
 
   Scenario: Viewing resources when scoping and filtering
@@ -140,7 +140,7 @@ Feature: Index Scoping
 
     When I follow "Published"
     Then I should see the scope "Published" selected
-    And I should see the current scope with label "Published"
+    And I should see the content "Active Search for Published"
     And I should see the scope "All" with the count 6
     And I should see the scope "Published" with the count 3
     And I should see 3 posts in the table
@@ -202,7 +202,7 @@ Feature: Index Scoping
       scope(:hidden_as_well, if: proc { false }) { |posts| posts }
     end
     """
-    Then I should see empty scopes
+    Then I should not see any scopes
 
   Scenario: Viewing resources with multiple scopes as blocks
     Given 3 posts exist
@@ -228,7 +228,7 @@ Feature: Index Scoping
     Then I should see the scope "Tomorrow" selected
     And I should see the scope "Today" not selected
     And I should see a link to "Today"
-    And I should see the current scope with label "Tomorrow"
+    And I should see the content "Active Search for Tomorrow"
 
   Scenario: Viewing resources with scopes when scoping to user
     Given 2 posts written by "Daft Punk" exist
@@ -308,7 +308,7 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 1
     And I should see the scope "Published" with the count 1
     And I should see 1 posts in the table
-    And I should see the current scope with label "Published"
+    And I should see the content "Active Search for Published"
 
   Scenario: Viewing resources with grouped scopes
     Given 3 posts exist
@@ -330,6 +330,6 @@ Feature: Index Scoping
         end
       end
       """
-    Then I should see an empty group with the scope "All"
+    Then I should see a default group with a single scope "All"
     And I should see a group "status" with the scopes "Published" and "Unpublished"
     And I should see a group "date" with the scopes "Today" and "Tomorrow"

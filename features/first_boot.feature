@@ -12,5 +12,5 @@ Feature: First Boot
     When I go to the dashboard
     And I fill in "Email" with "admin@example.com"
     And I fill in "Password" with "password"
-    And I press "Login"
+    And I press "Sign In"
     Then I should be on the the dashboard

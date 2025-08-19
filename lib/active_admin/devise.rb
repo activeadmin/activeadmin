@@ -10,8 +10,7 @@ module ActiveAdmin
       {
         path: ActiveAdmin.application.default_namespace || "/",
         controllers: ActiveAdmin::Devise.controllers,
-        path_names: { sign_in: "login", sign_out: "logout" },
-        sign_out_via: [*::Devise.sign_out_via, ActiveAdmin.application.logout_link_method].uniq
+        path_names: { sign_in: "login", sign_out: "logout" }
       }
     end
 
@@ -29,7 +28,8 @@ module ActiveAdmin
       extend ::ActiveSupport::Concern
       included do
         layout "active_admin_logged_out"
-        helper ::ActiveAdmin::ViewHelpers
+        helper ::ActiveAdmin::LayoutHelper
+        helper ::ActiveAdmin::FormHelper
       end
 
       # Redirect to the default namespace on logout

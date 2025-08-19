@@ -31,7 +31,7 @@ RSpec.describe "Controller Authorization", type: :controller do
   it "should redirect when the user isn't authorized" do
     expect(authorization).to receive(:authorized?).with(auth::READ, Post).and_return false
     get :index
-    expect(response.body).to eq '<html><body>You are being <a href="http://test.host/admin">redirected</a>.</body></html>'
+
     expect(response).to redirect_to "/admin"
   end
 

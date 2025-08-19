@@ -10,23 +10,23 @@ Feature: User Logging In
   Scenario: Logging in Successfully
     When I fill in "Email" with "admin@example.com"
     And I fill in "Password" with "password"
-    And I press "Login"
+    And I press "Sign In"
     Then I should be on the the dashboard
-    And I should see the element "a[href='/admin/logout'       ]:contains('Logout')"
+    And I should see the element "a[href='/admin/logout'       ]:contains('Sign out')"
     And I should see the element "a[href='/admin/admin_users/1']:contains('admin@example.com')"
 
   Scenario: Attempting to log in with an incorrect email address
     Given override locale "devise.failure.not_found_in_database" with "Invalid email or password."
     When I fill in "Email" with "not-an-admin@example.com"
     And I fill in "Password" with "not-my-password"
-    And I press "Login"
-    Then I should see "Login"
+    And I press "Sign In"
+    Then I should see "Sign In"
     And I should see "Invalid email or password."
 
   Scenario: Attempting to log in with an incorrect password
     Given override locale "devise.failure.invalid" with "Invalid email or password."
     When I fill in "Email" with "admin@example.com"
     And I fill in "Password" with "not-my-password"
-    And I press "Login"
-    Then I should see "Login"
+    And I press "Sign In"
+    Then I should see "Sign In"
     And I should see "Invalid email or password."

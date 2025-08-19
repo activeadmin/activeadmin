@@ -1,0 +1,24 @@
+name: YAML Lint
+
+on:
+  pull_request:
+
+jobs:
+  yaml_lint:
+    name: Run yamllint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: tj-actions/changed-files@v46
+        id: changed-files
+        with:
+          files: |
+            **.yaml
+            **.yml
+      - uses: reviewdog/action-yamllint@v1
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          fail_level: any
+          filter_mode: nofilter # added (default), diff_context, file, nofilter
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-check

@@ -1,0 +1,20 @@
+# https://github.com/crate-ci/typos#false-positives
+[default]
+
+[default.extend-identifiers]
+
+[default.extend-words]
+rememberable = "rememberable"
+
+[type.md]
+extend-ignore-identifiers-re = [
+  "succesfully_destroyed"
+]
+
+[files]
+extend-exclude = [
+  "config/locales/*",
+  "!config/locales/en*.yml",
+  "features/step_definitions/batch_action_steps.rb",
+  "vendor/*"
+]

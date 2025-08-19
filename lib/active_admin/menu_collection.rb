@@ -25,7 +25,7 @@ module ActiveAdmin
     end
 
     def exists?(menu_name)
-      @menus.keys.include? menu_name
+      @menus.key?(menu_name)
     end
 
     def fetch(menu_name)

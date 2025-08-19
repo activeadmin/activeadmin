@@ -1,12 +1,13 @@
 {
   "name": "@activeadmin/activeadmin",
-  "version": "2.13.1",
+  "version": "4.0.0-beta16",
   "description": "The administration framework for Ruby on Rails.",
-  "main": "app/assets/javascripts/active_admin/base.js",
+  "main": "dist/active_admin.js",
   "type": "module",
   "files": [
-    "app/assets/javascripts/active_admin/*.js",
-    "src/**/*"
+    "dist/**/*.js",
+    "plugin.js",
+    "vendor/javascript/*.js"
   ],
   "repository": {
     "type": "git",
@@ -22,29 +23,27 @@
   "bugs": {
     "url": "https://github.com/activeadmin/activeadmin/issues"
   },
-  "homepage": "htts://activeadmin.info",
+  "homepage": "https://activeadmin.info",
   "devDependencies": {
-    "@babel/core": "*",
-    "@babel/preset-env": "*",
-    "common-tags": "",
-    "eslint": "*",
-    "eslint-plugin-import": "",
-    "gherkin-lint": "",
-    "rollup": "*",
-    "rollup-plugin-babel": "",
-    "rollup-plugin-commonjs": "",
-    "rollup-plugin-node-resolve": "",
-    "rollup-plugin-terser": ""
+    "@rollup/plugin-alias": "^5.1.0",
+    "eslint": "^9.33.0",
+    "gherkin-lint": "^4.2.2",
+    "rollup": "^4.46.2",
+    "tailwindcss": "^3.4.17",
+    "vitepress": "^1.6.4"
   },
   "scripts": {
     "gherkin-lint": "gherkin-lint",
+    "lint": "eslint .",
+    "prebuild": "npm run lint && rm -rf dist",
     "build": "rollup --config rollup.config.js",
-    "eslint": "eslint .",
-    "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src && cp -R app/assets/stylesheets/active_admin src/scss"
+    "prepublishOnly": "npm run build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "jquery": "^3.4.1",
-    "jquery-ui": "^1.12.1",
-    "jquery-ujs": "^1.2.2"
+    "@rails/ujs": "7.1.501",
+    "flowbite": "3.1.2"
   }
 }

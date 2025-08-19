@@ -17,7 +17,6 @@ Feature: Registering Pages
     When I go to the dashboard
     And I follow "Status"
     Then I should see the page title "Status"
-    And I should see the Active Admin layout
     And I should see the content "I love chocolate."
 
   Scenario: Registering a page with a complex name
@@ -32,7 +31,6 @@ Feature: Registering Pages
     When I go to the dashboard
     And I follow "Chocolate I lØve You!"
     Then I should see the page title "Chocolate I lØve You!"
-    And I should see the Active Admin layout
     And I should see the content "I love chocolate."
 
   Scenario: Registering an empty page
@@ -43,7 +41,6 @@ Feature: Registering Pages
     When I go to the dashboard
     And I follow "Status"
     Then I should see the page title "Status"
-    And I should see the Active Admin layout
 
   Scenario: Registering a page with a custom title as a string
     Given a configuration of:
@@ -86,7 +83,7 @@ Feature: Registering Pages
     """
     When I go to the dashboard
     And I follow "Status"
-    Then I should see a sidebar titled "Help"
+    Then I should see "Need help? Email us at help@example.com"
 
   Scenario: Adding an action item to a page
     Given a configuration of:
@@ -130,10 +127,8 @@ Feature: Registering Pages
     And I follow "Status"
     And I follow "Post Check"
     Then I should see "Checked via POST"
-    And I should see the Active Admin layout
     When I follow "Get Check"
     Then I should see "Checked via GET"
-    And I should see the Active Admin layout
 
   Scenario: Adding a page action to a page
     Given a configuration of:
@@ -152,7 +147,6 @@ Feature: Registering Pages
     And I follow "Status"
     And I follow "Check"
     Then I should see the content "Chocolate I lØve You!"
-    And I should see the Active Admin layout
 
   @changes-filesystem
   Scenario: Adding a page action to a page with erb view
@@ -175,7 +169,6 @@ Feature: Registering Pages
     And I follow "Status"
     And I follow "Check"
     Then I should see the content "Chocolate lØves You Too!"
-    And I should see the Active Admin layout
 
   Scenario: Registering a page with paginated index table for a collection Array
     Given a user named "John Doe" exists
@@ -185,7 +178,7 @@ Feature: Registering Pages
       content do
         collection = Kaminari.paginate_array(User.all).page(params.fetch(:page, 1))
 
-        table_for(collection, class: "index_table") do
+        table_for(collection) do
           column :first_name
           column :last_name
         end
@@ -197,7 +190,6 @@ Feature: Registering Pages
     When I go to the dashboard
     And I follow "Special users"
     Then I should see the page title "Special users"
-    And I should see the Active Admin layout
     And I should see 1 user in the table
 
   Scenario: Displaying parent information from a belongs_to page
@@ -223,7 +215,7 @@ Feature: Registering Pages
      ActiveAdmin.register Post
      ActiveAdmin.register_page "Last Posts" do
        content do
-         table_for Post.last(2), sortable: true, class: "index_table" do
+         table_for Post.last(2), sortable: true do
            column :id
            column :title
            column :author

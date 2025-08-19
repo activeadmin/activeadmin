@@ -1,0 +1,6 @@
+if section.block
+  result = instance_exec(&section.block)
+  text_node result unless result.is_a?(Arbre::Element)
+else
+  render(section.partial_name)
+end

@@ -16,31 +16,61 @@ module ActiveAdmin
       else
         generate
       end
+      Bundler.with_original_env do
+        Kernel.system("yarn install") # so tailwindcss/plugin is available for test app
+        Kernel.system("rake dependencies:vendor") # ensure flowbite is updated for test app
+        Dir.chdir(app_dir) do
+          Kernel.system("yarn add @activeadmin/activeadmin")
+          Kernel.system('npm pkg set scripts.build:css="tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"')
+          Kernel.system("yarn install")
+
+          # Temporary workaround: Downgrade Tailwind CSS to v3.
+          # The `css:install:tailwind` task installs Tailwind CSS v4 by default,
+          # which is suitable for new applications.
+          # Related issues:
+          #  - activeadmin/activeadmin#8611
+          #  - rails/cssbundling-rails#163
+          # TODO: Remove this workaround once Tailwind CSS v4 is supported.
+          Kernel.system('yarn upgrade "tailwindcss@^3.4.17"')
+
+          Kernel.system("yarn build:css")
+        end
+      end
     end
 
     def generate
       FileUtils.mkdir_p base_dir
       args = %W(
         -m spec/support/#{template}.rb
+        --skip-action-cable
+        --skip-action-mailbox
+        --skip-action-text
+        --skip-active-storage
         --skip-bootsnap
-        --skip-bundle
-        --skip-gemfile
-        --skip-listen
-        --skip-spring
-        --skip-turbolinks
-        --skip-test-unit
-        --skip-coffee
-        --skip-webpack-install
+        --skip-brakeman
+        --skip-ci
+        --skip-decrypted-diffs
+        --skip-dev-gems
+        --skip-docker
+        --skip-git
+        --skip-hotwire
+        --skip-jbuilder
+        --skip-kamal
+        --skip-rubocop
+        --skip-solid
+        --skip-system-test
+        --skip-test
+        --skip-thruster
+        --javascript=importmap
       )
-
-      args << "--skip-turbolinks" unless turbolinks_app?
-      args << "--skip-sprockets" if webpacker_app?
 
       command = ["bundle", "exec", "rails", "new", app_dir, *args].join(" ")
 
       env = { "BUNDLE_GEMFILE" => expanded_gemfile, "RAILS_ENV" => rails_env }
 
-      Bundler.with_original_env { abort unless Kernel.system(env, command) }
+      Bundler.with_original_env do
+        Kernel.system(env, command)
+      end
     end
 
     def full_app_dir
@@ -64,21 +94,13 @@ module ActiveAdmin
     end
 
     def app_name
-      return "rails_70" if main_app?
+      return "rails_80" if main_app?
 
       File.basename(File.dirname(gemfile))
     end
 
     def main_app?
       expanded_gemfile == File.expand_path("Gemfile")
-    end
-
-    def turbolinks_app?
-      expanded_gemfile == File.expand_path("gemfiles/rails_61_turbolinks/Gemfile")
-    end
-
-    def webpacker_app?
-      expanded_gemfile == File.expand_path("gemfiles/rails_61_webpacker/Gemfile")
     end
 
     def gemfile

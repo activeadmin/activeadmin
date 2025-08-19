@@ -13,7 +13,7 @@ module ActiveAdmin
 
       def register(name, value)
         class_attribute name
-        send "#{name}=", value
+        send :"#{name}=", value
       end
     end
   end

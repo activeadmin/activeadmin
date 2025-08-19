@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-require "active_admin/error"
-require "active_admin/dependency"
+require_relative "../../../active_admin/error"
+require_relative "../../../active_admin/dependency"
 
 module ActiveAdmin
   module Generators

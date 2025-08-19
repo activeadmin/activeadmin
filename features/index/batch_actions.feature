@@ -14,13 +14,14 @@ Feature: Batch Actions
 
     When I check the 1st record
     And I check the 2nd record
-    And I follow "Batch Actions"
+    And I press "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
     When I click "Delete Selected" and accept confirmation
     Then I should see a flash with "Successfully deleted 2 posts"
     And I should see 8 posts in the table
 
+  @javascript
   Scenario: Use default (destroy) batch action when default_url_options present
     Given 3 posts exist
     And an index configuration of:
@@ -36,13 +37,14 @@ Feature: Batch Actions
       end
     """
     When I check the 1st record
-    And I follow "Batch Actions"
+    And I press "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
-    Given I submit the batch action form with "destroy"
+    When I click "Delete Selected" and accept confirmation
     Then I should see a flash with "Successfully deleted 1 post"
     And I should see 2 posts in the table
 
+  @javascript
   Scenario: Use default (destroy) batch action on a decorated resource
     Given 5 posts exist
     And an index configuration of:
@@ -53,13 +55,14 @@ Feature: Batch Actions
     """
     When I check the 2nd record
     And I check the 4th record
-    And I follow "Batch Actions"
+    And I press "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
-    Given I submit the batch action form with "destroy"
+    When I click "Delete Selected" and accept confirmation
     Then I should see a flash with "Successfully deleted 2 posts"
     And I should see 3 posts in the table
 
+  @javascript
   Scenario: Use default (destroy) batch action on a PORO decorated resource
     Given 5 posts exist
     And an index configuration of:
@@ -70,10 +73,10 @@ Feature: Batch Actions
     """
     When I check the 2nd record
     And I check the 4th record
-    And I follow "Batch Actions"
+    And I press "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
-    Given I submit the batch action form with "destroy"
+    When I click "Delete Selected" and accept confirmation
     Then I should see a flash with "Successfully deleted 2 posts"
     And I should see 3 posts in the table
 
@@ -96,7 +99,7 @@ Feature: Batch Actions
 
     When I check the 2nd record
     And I check the 4th record
-    And I follow "Batch Actions"
+    And I press "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
     When I click "Delete Selected" and accept confirmation
@@ -122,34 +125,6 @@ Feature: Batch Actions
       """
       ActiveAdmin.register Post do
         batch_action(:flag) do
-          redirect_to collection_path, notice: "Successfully flagged 10 posts"
-        end
-      end
-      """
-    When I check the 1st record
-    Given I submit the batch action form with "flag"
-    Then I should see a flash with "Successfully flagged 10 posts"
-
-  Scenario: Using a custom batch action with form as Hash
-    Given 10 posts exist
-    And an index configuration of:
-      """
-      ActiveAdmin.register Post do
-        batch_action(:flag, form: {type: ["a", "b"]}) do
-          redirect_to collection_path, notice: "Successfully flagged 10 posts"
-        end
-      end
-      """
-    When I check the 1st record
-    Given I submit the batch action form with "flag"
-    Then I should see a flash with "Successfully flagged 10 posts"
-
-  Scenario: Using a custom batch action with form as proc
-    Given 10 posts exist
-    And an index configuration of:
-      """
-      ActiveAdmin.register Post do
-        batch_action(:flag, form: -> { {type: params[:type]} }) do
           redirect_to collection_path, notice: "Successfully flagged 10 posts"
         end
       end
@@ -221,49 +196,46 @@ Feature: Batch Actions
     And I should see the batch action :passing_a_symbol "Passing A Symbol Selected"
 
   @javascript
-  Scenario: Use a Form with text
+  Scenario: Using a custom batch action with form as Hash
     Given 10 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        batch_action :destroy, false
-        batch_action(:action_with_form, form: { name: :textarea }) {}
+        batch_action :set_starred, partial: "starred_batch_action_form", link_html_options: { "data-modal-target": "starred-batch-action-modal", "data-modal-show": "starred-batch-action-modal" } do |ids, inputs|
+          if inputs["starred"].present?
+            redirect_to collection_path, notice: "Successfully flagged 10 posts"
+          else
+            redirect_to collection_path, notice: "Didn't flag any posts"
+          end
+        end
       end
       """
+    When I check the 2nd record
+    And I press "Batch Actions"
+    And I click "Set Starred"
+    Then I should see "Toggle Starred"
+    And I should see the field "Starred" of type "checkbox"
+    And I check "Starred"
 
-    When I check the 1st record
-    And I follow "Batch Actions"
-    And I click "Action With Form"
-    And I should see the field "name" of type "textarea"
+    When I press "Submit"
+    Then I should see a flash with "Successfully flagged 10 posts"
 
   @javascript
-  Scenario: Use a Form with select
+  Scenario: Use batch action without confirmation
     Given 10 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        batch_action :destroy, false
-        batch_action(:action_with_form, form: { type: ["a", "b"] }) {}
+        batch_action :mark_not_starred do |ids|
+          Post.where(id: ids).update_all(starred: false)
+          redirect_to collection_path, notice: "#{ids.count} posts marked as not starred"
+        end
       end
       """
-
     When I check the 1st record
-    And I follow "Batch Actions"
-    And I click "Action With Form"
-    And I should see the select "type" with options "a, b"
-
-  @javascript
-  Scenario: Use a Form with select values from proc
-    Given 10 posts exist
-    And an index configuration of:
-      """
-      ActiveAdmin.register Post do
-        batch_action :destroy, false
-        batch_action(:action_with_form, form: ->{ {type: ["a", "b"]} }) {}
-      end
-      """
-
-    When I check the 1st record
-    And I follow "Batch Actions"
-    And I click "Action With Form"
-    And I should see the select "type" with options "a, b"
+    And I check the 3rd record
+    And I press "Batch Actions"
+    Then I should see the batch action :mark_not_starred "Mark Not Starred"
+    When I click "Mark Not Starred"
+    Then I should see a flash with "2 posts marked as not starred"
+    And I should see 10 posts in the table

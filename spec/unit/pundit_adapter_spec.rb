@@ -108,11 +108,11 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       before do
         allow(ActiveAdmin.application).to receive(:pundit_policy_namespace).and_return :pub
         namespace.register(Publisher)
-        ActiveSupport::Deprecation.behavior = :stderr
+        ActiveAdmin.deprecator.behavior = :stderr
       end
 
       after do
-        ActiveSupport::Deprecation.behavior = :raise
+        ActiveAdmin.deprecator.behavior = :raise
       end
 
       it "looks for a namespaced policy" do

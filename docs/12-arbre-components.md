@@ -22,7 +22,7 @@ ActiveAdmin.register Post do
         row :id
         row 'Tags' do
           post.tags.each do |tag|
-            a tag, href: admin_post_path(q: {tagged_with_contains: tag})
+            a tag, href: admin_post_path(q: { tagged_with_cont: tag })
             text_node "&nbsp;".html_safe
           end
         end
@@ -38,16 +38,16 @@ A panel is a component that takes up all available horizontal space and takes a
 title and a hash of attributes as arguments. If a sidebar is present, a panel
 will take up the remaining space.
 
-This will create two stacked panels:
+This will create two vertically stacked panels:
 
 ```ruby
 show do
   panel "Post Details" do
-    render partial: "details", locals: {post: post}
+    render partial: "details", locals: { post: post }
   end
 
   panel "Post Tags" do
-    render partial: "tags",    locals: {post: post}
+    render partial: "tags", locals: { post: post }
   end
 end
 ```
@@ -139,9 +139,9 @@ uses `column` to build the fields to show with the table.
 ```ruby
 table_for order.payments do
   column(:payment_type) { |payment| payment.payment_type.titleize }
-  column "Received On",     :created_at
+  column "Received On", :created_at
   column "Details & Notes", :payment_details
-  column "Amount",          :amount_in_dollars
+  column "Amount", :amount_in_dollars
 end
 ```
 
@@ -201,14 +201,16 @@ of tabs.
 tabs do
   tab :active do
     table_for orders.active do
-      ...
+      # ...
     end
   end
 
-  tab :inactive do
+  tab :inactive, html_options: { class: "specific_css_class" } do
     table_for orders.inactive do
-      ...
+      # ...
     end
   end
 end
 ```
+
+The `html_options` will set additional HTML attributes on the tab button.

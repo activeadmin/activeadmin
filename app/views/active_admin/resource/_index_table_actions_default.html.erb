@@ -1,0 +1,9 @@
+<% if show_action_authorized?(resource) %>
+  <%= link_to view_label, resource_path(resource) %>
+<% end %>
+<% if edit_action_authorized?(resource) %>
+  <%= link_to edit_label, edit_resource_path(resource) %>
+<% end %>
+<% if destroy_action_authorized?(resource) %>
+  <%= link_to delete_label, resource_path(resource), method: :delete, data: { confirm: delete_confirmation_text } %>
+<% end %>

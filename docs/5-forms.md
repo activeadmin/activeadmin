@@ -97,20 +97,19 @@ ActiveAdmin.register Post do
       f.input :published_at, label: 'Publish Post At'
     end
     f.inputs 'Content', :body
-    f.inputs do
-      f.has_many :categories, heading: 'Themes',
-                              allow_destroy: true,
-                              new_record: false do |a|
+    f.inputs 'Themes' do
+      f.has_many :categories, heading: false, allow_destroy: true, new_record: false do |a|
         a.input :title
       end
     end
-    f.inputs do
-      f.has_many :taggings, sortable: :position, sortable_start: 1 do |t|
+    f.inputs 'Tags' do
+      f.has_many :taggings, heading: false, sortable: :position, sortable_start: 1 do |t|
         t.input :tag
       end
     end
-    f.inputs do
+    f.inputs 'Comments' do
       f.has_many :comments,
+                 heading: false,
                  new_record: 'Leave Comment',
                  remove_record: 'Remove Comment',
                  allow_destroy: -> (c) { c.author?(current_admin_user) } do |b|
@@ -154,7 +153,7 @@ in the list.
 ## Datepicker
 
 ActiveAdmin offers the `datepicker` input, which uses the [jQuery UI
-datepicker](http://jqueryui.com/datepicker/).  The datepicker input accepts any
+datepicker](https://jqueryui.com/datepicker/).  The datepicker input accepts any
 of the options available to the standard jQueryUI Datepicker. For example:
 
 ```ruby
@@ -189,33 +188,6 @@ end
 ```
 
 This is particularly useful to display errors on virtual or hidden attributes.
-
-# Tabs
-
-You can arrange content in tabs as shown below:
-
-```ruby
-  form do |f|
-    tabs do
-      tab 'Basic' do
-        f.inputs 'Basic Details' do
-          f.input :email
-          f.input :password
-          f.input :password_confirmation
-        end
-      end
-
-      tab 'Advanced', html_options: { class: 'specific_css_class' } do
-        f.inputs 'Advanced Details' do
-          f.input :role
-        end
-      end
-    end
-    f.actions
-  end
-```
-
-`html_options` allows you set additional html params for tab's menu item.
 
 # Customize the Create Another checkbox
 
