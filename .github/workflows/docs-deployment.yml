@@ -31,7 +31,7 @@ jobs:
       - uses: actions/configure-pages@v5
       - run: yarn install
       - run: yarn docs:build
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: docs/.vitepress/dist
 
