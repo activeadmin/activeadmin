@@ -55,7 +55,7 @@ We try not to reinvent the wheel, so Active Admin is built with other open sourc
 * [Inherited Resources]
 * [Kaminari]
 * [Ransack]
-* [TailwindCSS](https://tailwindcss.com)
+* [Tailwind CSS](https://tailwindcss.com)
 
 ## Security contact information
 
