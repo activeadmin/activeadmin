@@ -244,68 +244,6 @@ export default plugin(
           background: theme('colors.gray.500', colors.gray[500]),
         },
       },
-      [['.tooltip-arrow', '.tooltip-arrow:before']]: {
-        position: 'absolute',
-        width: '8px',
-        height: '8px',
-        background: 'inherit',
-      },
-      ['.tooltip-arrow']: {
-        visibility: 'hidden',
-      },
-      ['.tooltip-arrow:before']: {
-        content: '""',
-        visibility: 'visible',
-        transform: 'rotate(45deg)',
-      },
-      [`.tooltip[data-popper-placement^='top'] > .tooltip-arrow`]: {
-        bottom: '-4px',
-      },
-      [`.tooltip[data-popper-placement^='bottom'] > .tooltip-arrow`]: {
-        top: '-4px',
-      },
-      [`.tooltip[data-popper-placement^='left'] > .tooltip-arrow`]: {
-        right: '-4px',
-      },
-      [`.tooltip[data-popper-placement^='right'] > .tooltip-arrow`]: {
-        left: '-4px',
-      },
-      ['.tooltip.invisible > .tooltip-arrow:before']: {
-        visibility: 'hidden',
-      },
-      [['[data-popper-arrow]', '[data-popper-arrow]:before']]: {
-        position: 'absolute',
-        width: '8px',
-        height: '8px',
-        background: 'inherit',
-      },
-      ['[data-popper-arrow]']: {
-        visibility: 'hidden',
-      },
-      ['[data-popper-arrow]:before']: {
-        content: '""',
-        visibility: 'visible',
-        transform: 'rotate(45deg)',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='top'] > [data-popper-arrow]`]:
-      {
-        bottom: '-5px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='bottom'] > [data-popper-arrow]`]:
-      {
-        top: '-5px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='left'] > [data-popper-arrow]`]:
-      {
-        right: '-5px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='right'] > [data-popper-arrow]`]:
-      {
-        left: '-5px',
-      },
-      ['[role="tooltip"].invisible > [data-popper-arrow]:before']: {
-        visibility: 'hidden',
-      },
       '[type=checkbox]': {
         '@apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600': {}
       },
