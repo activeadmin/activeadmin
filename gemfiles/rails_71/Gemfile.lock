@@ -144,7 +144,7 @@ GEM
       bigdecimal
     cucumber-gherkin (32.2.0)
       cucumber-messages (> 25, < 28)
-    cucumber-html-formatter (21.14.0)
+    cucumber-html-formatter (21.15.1)
       cucumber-messages (> 19, < 28)
     cucumber-messages (27.2.0)
     cucumber-rails (4.0.0)
@@ -253,7 +253,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.0.4)
+    marcel (1.1.0)
     matrix (0.4.3)
     memoist3 (1.0.0)
     mini_mime (1.1.5)
@@ -271,12 +271,12 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.9)
+    nokogiri (1.18.10)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.18.9-arm64-darwin)
+    nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-linux-gnu)
+    nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.27.0)
@@ -292,7 +292,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    pundit (2.5.0)
+    pundit (2.5.1)
       activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (3.2.1)
@@ -344,7 +344,7 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
-    regexp_parser (2.11.2)
+    regexp_parser (2.11.3)
     reline (0.6.2)
       io-console (~> 0.5)
     request_store (1.7.0)
@@ -369,7 +369,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.5)
+    rspec-support (3.13.6)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.1)
