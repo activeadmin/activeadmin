@@ -46,6 +46,33 @@ Note that the templates can and will change across releases. There are additiona
 
 With the setup complete, please review the Breaking Changes section and resolve any that may or may not impact your integration.
 
+### Upgrading from earlier 4.x beta to 4.0.0.beta16
+
+**Important changes in 4.0.0.beta16:**
+
+- The `tabs` component has been removed. See [PR #8762](https://github.com/activeadmin/activeadmin/pull/8762) for more details.
+- The `_site_header.html.erb` partial has changed its main container class from `sticky` to `fixed`.
+- The main layout for `active_admin.html.erb` now includes the `pt-16` utility class.
+
+**What this means for you:**
+
+If you use the `tabs` component, you should migrate to a CSS based or third party alternative.
+
+If you have customized `_site_header.html.erb` or `active_admin.html.erb`, you may need to update your customizations to:
+
+1. Replace the `sticky` class with `fixed` for the header's main `<div>`, e.g.:
+   ```erb
+   <div class="... fixed top-0 ...">
+   ```
+2. Add the `pt-16` class to the main `active_admin` layout container, e.g.:
+   ```erb
+   <div class="... pt-16 ...">
+   ```
+
+Please review and update your overrides of these templates to ensure they reflect these changes and maintain the intended layout and spacing.
+
+See [PR #8727](https://github.com/activeadmin/activeadmin/pull/8727) for more details.
+
 ### Breaking Changes
 - jQuery and jQuery UI have been removed.
 - The `columns` component has been removed. Use `div`'s with Tailwind classes for modern, responsive layout.
