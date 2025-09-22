@@ -209,40 +209,20 @@ export default plugin(
         'background-color': 'currentColor',
       },
       [`[type='file']`]: {
-        background: 'unset',
-        'border-color': 'inherit',
-        'border-width': '0',
-        'border-radius': '0',
-        padding: '0',
-        'font-size': 'unset',
-        'line-height': 'inherit',
-      },
-      [`[type='file']:focus`]: {
-        outline: `1px auto inherit`,
-      },
-      [[`input[type=file]::file-selector-button`]]: {
-        color: 'white',
-        background: theme('colors.gray.800', colors.gray[800]),
-        border: 0,
-        'font-weight': theme('fontWeight.medium'),
-        'font-size': theme('fontSize.sm'),
         cursor: 'pointer',
-        'padding-top': spacing[2.5],
-        'padding-bottom': spacing[2.5],
-        'padding-inline-start': spacing[8],
-        'padding-inline-end': spacing[4],
-        'margin-inline-start': '-1rem',
-        'margin-inline-end': '1rem',
+      },
+      [`[type=file]::file-selector-button`]: {
+        'background-color': theme('colors.gray.100', colors.gray[100]),
+        'border': `${borderWidth['DEFAULT']} solid ${theme('colors.gray.200', colors.gray[200])}`,
+        'border-radius': borderRadius['DEFAULT'],
+        cursor: 'pointer',
+        'padding': `${spacing[2]} ${spacing[3]}`,
         '&:hover': {
-          background: theme('colors.gray.700', colors.gray[700]),
+          'background-color': theme('colors.gray.200', colors.gray[200]),
         },
       },
-      [[`.dark input[type=file]::file-selector-button`]]: {
-        color: 'white',
-        background: theme('colors.gray.600', colors.gray[600]),
-        '&:hover': {
-          background: theme('colors.gray.500', colors.gray[500]),
-        },
+      [`.dark [type=file]::file-selector-button`]: {
+        '@apply bg-white/5 border-white/5 text-white hover:bg-white/10': {}
       },
       '[type=checkbox]': {
         '@apply w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-white/5 dark:border-white/10': {}
