@@ -331,13 +331,13 @@ export default plugin(
         '@apply border-b dark:border-gray-800 last:border-b-0 align-baseline': {}
       },
       '.attributes-table :where(tbody > tr > th)': {
-        '@apply w-32 sm:w-40 text-start text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800/60 dark:text-gray-300': {}
+        '@apply w-32 sm:w-40 text-start text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-950/50 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr > th, tbody > tr > td)': {
         '@apply p-3': {}
       },
       '.attributes-table-empty-value': {
-        '@apply text-gray-400/50 dark:text-gray-700/60 text-xs uppercase font-semibold': {}
+        '@apply text-gray-400/50 dark:text-gray-600/50 text-xs uppercase font-semibold': {}
       },
       '.status-tag': {
         '@apply bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400 inline-flex items-center rounded-full text-sm font-medium px-2.5 py-0.5 whitespace-nowrap': {}
