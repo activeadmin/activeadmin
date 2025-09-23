@@ -112,26 +112,14 @@ export default plugin(
       },
       [[`[type='checkbox']`, `[type='radio']`]]: {
         appearance: 'none',
-        padding: '0',
-        'print-color-adjust': 'exact',
-        display: 'inline-block',
-        'vertical-align': 'middle',
         'background-origin': 'border-box',
-        'user-select': 'none',
-        'flex-shrink': '0',
-        height: spacing[4],
-        width: spacing[4],
         color: theme('colors.blue.600', colors.blue[600]),
-        'background-color': '#fff',
-        'border-color': theme('colors.gray.500', colors.gray[500]),
-        'border-width': borderWidth['DEFAULT'],
+        display: 'inline-block',
+        'flex-shrink': '0',
+        'print-color-adjust': 'exact',
+        'user-select': 'none',
+        'vertical-align': 'middle',
         '--tw-shadow': '0 0 #0000',
-      },
-      [`[type='checkbox']`]: {
-        'border-radius': borderRadius['none'],
-      },
-      [`[type='radio']`]: {
-        'border-radius': '100%',
       },
       [[`[type='checkbox']:focus`, `[type='radio']:focus`]]: {
         outline: '2px solid transparent',
@@ -146,56 +134,35 @@ export default plugin(
       },
       [[
         `[type='checkbox']:checked`,
+        `[type='checkbox']:indeterminate`,
         `[type='radio']:checked`,
-        `.dark [type='checkbox']:checked`,
-        `.dark [type='checkbox']:indeterminate`,
-        `.dark [type='radio']:checked`,
       ]]: {
-        'border-color': `transparent`,
         'background-color': `currentColor`,
-        'background-size': `0.65rem 0.65rem`,
         'background-position': `center`,
         'background-repeat': `no-repeat`,
+        'background-size': `100% 100%`,
+        'border-color': `transparent`,
       },
       [`[type='checkbox']:checked`]: {
         'background-image': `url("${svgToTinyDataUri(
-          `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-            <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M1 5.917 5.724 10.5 15 1.5"/>
+          `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 8 L7 11 L12 5" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
           </svg>`
         )}")`,
-        'background-repeat': `no-repeat`,
-        'background-size': `0.65rem 0.65rem`,
         'print-color-adjust': `exact`,
       },
       [`[type='radio']:checked`]: {
         'background-image': `url("${svgToTinyDataUri(
           `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`
         )}")`,
-        'background-size': `1rem 1rem`,
-      },
-      [`.dark [type='radio']:checked`]: {
-        'background-image': `url("${svgToTinyDataUri(
-          `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`
-        )}")`,
-        'background-size': `1rem 1rem`,
       },
       [`[type='checkbox']:indeterminate`]: {
         'background-image': `url("${svgToTinyDataUri(
-          `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M2 8h12"/></svg>`
+          `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 8 L12 8" stroke="white" stroke-linecap="round" stroke-width="2.5" />
+          </svg>`
         )}")`,
-        'background-color': `currentColor`,
-        'border-color': `transparent`,
-        'background-position': `center`,
-        'background-repeat': `no-repeat`,
-        'background-size': `.65rem .65rem`,
         'print-color-adjust': `exact`,
-      },
-      [[
-        `[type='checkbox']:indeterminate:hover`,
-        `[type='checkbox']:indeterminate:focus`,
-      ]]: {
-        'border-color': 'transparent',
-        'background-color': 'currentColor',
       },
       [`[type='file']`]: {
         cursor: 'pointer',
@@ -214,10 +181,10 @@ export default plugin(
         '@apply bg-white/5 border-white/5 text-white hover:bg-white/10': {}
       },
       '[type=checkbox]': {
-        '@apply w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-white/5 dark:border-white/10': {}
+        '@apply w-4 h-4 bg-gray-100 border border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-white/5 dark:border-white/10': {}
       },
       '[type=radio]': {
-        '@apply w-4 h-4 bg-gray-100 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white/5 dark:border-white/10': {}
+        '@apply w-4 h-4 bg-gray-100 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white/5 dark:border-white/10': {}
       },
       [['[type=datetime-local]', '[type=month]', '[type=week]', '[type=search]', '[type=date]', '[type=email]', '[type=number]', '[type=password]', '[type=tel]', '[type=text]', '[type=time]', '[type=url]', 'select', 'textarea']]: {
         '@apply bg-gray-50 border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
