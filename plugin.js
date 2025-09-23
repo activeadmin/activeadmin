@@ -328,7 +328,7 @@ export default plugin(
         '@apply w-full text-sm text-gray-800 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr)': {
-        '@apply border-b dark:border-gray-800 last:border-b-0': {}
+        '@apply border-b dark:border-gray-800 last:border-b-0 align-baseline': {}
       },
       '.attributes-table :where(tbody > tr > th)': {
         '@apply w-32 sm:w-40 text-start text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800/60 dark:text-gray-300': {}
