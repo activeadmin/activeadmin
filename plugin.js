@@ -73,10 +73,6 @@ export default plugin(
           'border-color': theme('colors.blue.600', colors.blue[600]),
         },
       },
-      [['input::placeholder', 'textarea::placeholder']]: {
-        color: theme('colors.gray.500', colors.gray[500]),
-        opacity: '1',
-      },
       ['::-webkit-datetime-edit']: {
         display: 'inline-flex',
       },
@@ -231,7 +227,7 @@ export default plugin(
         '@apply w-4 h-4 bg-gray-100 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white/5 dark:border-white/10': {}
       },
       [['[type=datetime-local]', '[type=month]', '[type=week]', '[type=search]', '[type=date]', '[type=email]', '[type=number]', '[type=password]', '[type=tel]', '[type=text]', '[type=time]', '[type=url]', 'select', 'textarea']]: {
-        '@apply bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-white/5 dark:border-white/10 dark:placeholder-gray-500 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
+        '@apply bg-gray-50 border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
       },
       'a': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
