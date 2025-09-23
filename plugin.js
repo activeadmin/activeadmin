@@ -377,16 +377,16 @@ export default plugin(
         '@apply text-gray-500 dark:text-gray-400 mt-2': {}
       },
       '.formtastic :where(.errors)': {
-        '@apply p-4 mb-6 rounded-md space-y-2 bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
+        '@apply p-4 mb-6 rounded-md space-y-2 bg-red-50 text-red-800 dark:bg-red-500/15 dark:text-red-200': {}
       },
       '.formtastic :where(.errors > li)': {
         '@apply list-disc ms-4': {}
       },
       '.formtastic :where(.inline-errors)': {
-        '@apply font-bold mt-2 text-red-600 dark:text-red-300': {}
+        '@apply font-bold mt-2 text-red-600 dark:text-red-400': {}
       },
-      '.formtastic :where(.error [type=email], .error [type=number], .error [type=password], .error [type=tel], .error [type=text], .error [type=url], .error textarea)': {
-        '@apply border-red-500': {}
+      '.formtastic :where(.error [type=email], .error [type=number], .error [type=password], .error [type=tel], .error [type=text], .error [type=url], .error select, .error textarea)': {
+        '@apply border-red-500/50': {}
       },
       '.formtastic :where(.buttons, .actions)': {
         '@apply mt-3': {}
