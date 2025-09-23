@@ -47,15 +47,8 @@ export default plugin(
         'textarea',
         'select',
       ]]: {
-        appearance: 'none',
-        'background-color': '#fff',
-        'border-color': theme('colors.gray.500', colors.gray[500]),
-        'border-width': borderWidth['DEFAULT'],
-        'border-radius': borderRadius.none,
-        'padding-top': spacing[2],
-        'padding-right': spacing[3],
-        'padding-bottom': spacing[2],
-        'padding-left': spacing[3],
+        'appearance': 'none',
+        'padding': `${spacing[2]} ${spacing[3]}`,
         '--tw-shadow': '0 0 #0000',
         '&:focus': {
           outline: '2px solid transparent',
