@@ -316,7 +316,7 @@ export default plugin(
         '@apply mb-6 border border-gray-200 rounded-md shadow-sm dark:border-gray-800': {}
       },
       '.panel-title': {
-        '@apply font-bold bg-gray-100 dark:bg-gray-900 rounded-t-md p-3': {}
+        '@apply font-bold bg-gray-100 dark:bg-gray-950/50 rounded-t-md p-3': {}
       },
       '.panel-body': {
         '@apply py-5 px-3': {}
