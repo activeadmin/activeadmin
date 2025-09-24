@@ -340,10 +340,10 @@ export default plugin(
         '@apply text-gray-400/50 dark:text-gray-600/50 text-xs uppercase font-semibold': {}
       },
       '.status-tag': {
-        '@apply bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400 inline-flex items-center rounded-full text-sm font-medium px-2.5 py-0.5 whitespace-nowrap': {}
+        '@apply bg-gray-200 text-gray-600 dark:bg-gray-400/20 dark:text-gray-400 inline-flex items-center rounded-full text-sm font-medium px-2.5 py-0.5 whitespace-nowrap': {}
       },
       '.status-tag:where([data-status=yes])': {
-        '@apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300': {}
+        '@apply bg-green-100 text-green-700 dark:bg-green-400/20 dark:text-green-400': {}
       },
       // Forms
       '.formtastic': {
