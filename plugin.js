@@ -217,7 +217,7 @@ export default plugin(
         '@apply bg-gray-100 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-800': {}
       },
       '.scopes-count': {
-        '@apply inline-flex items-center justify-center rounded-full bg-indigo-200/80 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-200 px-1.5 py-1 text-xs font-normal ms-2 leading-none': {}
+        '@apply inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-800/60 dark:text-indigo-400 px-1.5 py-1 text-xs font-normal ms-2 leading-none': {}
       },
       '.paginated-collection': {
         '@apply border border-gray-200 dark:border-gray-800 rounded-md shadow-sm overflow-hidden': {}
