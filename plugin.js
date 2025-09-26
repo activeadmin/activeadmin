@@ -47,15 +47,8 @@ export default plugin(
         'textarea',
         'select',
       ]]: {
-        appearance: 'none',
-        'background-color': '#fff',
-        'border-color': theme('colors.gray.500', colors.gray[500]),
-        'border-width': borderWidth['DEFAULT'],
-        'border-radius': borderRadius.none,
-        'padding-top': spacing[2],
-        'padding-right': spacing[3],
-        'padding-bottom': spacing[2],
-        'padding-left': spacing[3],
+        'appearance': 'none',
+        'padding': `${spacing[2]} ${spacing[3]}`,
         '--tw-shadow': '0 0 #0000',
         '&:focus': {
           outline: '2px solid transparent',
@@ -72,10 +65,6 @@ export default plugin(
           'box-shadow': `var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)`,
           'border-color': theme('colors.blue.600', colors.blue[600]),
         },
-      },
-      [['input::placeholder', 'textarea::placeholder']]: {
-        color: theme('colors.gray.500', colors.gray[500]),
-        opacity: '1',
       },
       ['::-webkit-datetime-edit']: {
         display: 'inline-flex',
@@ -123,26 +112,14 @@ export default plugin(
       },
       [[`[type='checkbox']`, `[type='radio']`]]: {
         appearance: 'none',
-        padding: '0',
-        'print-color-adjust': 'exact',
-        display: 'inline-block',
-        'vertical-align': 'middle',
         'background-origin': 'border-box',
-        'user-select': 'none',
-        'flex-shrink': '0',
-        height: spacing[4],
-        width: spacing[4],
         color: theme('colors.blue.600', colors.blue[600]),
-        'background-color': '#fff',
-        'border-color': theme('colors.gray.500', colors.gray[500]),
-        'border-width': borderWidth['DEFAULT'],
+        display: 'inline-block',
+        'flex-shrink': '0',
+        'print-color-adjust': 'exact',
+        'user-select': 'none',
+        'vertical-align': 'middle',
         '--tw-shadow': '0 0 #0000',
-      },
-      [`[type='checkbox']`]: {
-        'border-radius': borderRadius['none'],
-      },
-      [`[type='radio']`]: {
-        'border-radius': '100%',
       },
       [[`[type='checkbox']:focus`, `[type='radio']:focus`]]: {
         outline: '2px solid transparent',
@@ -157,101 +134,60 @@ export default plugin(
       },
       [[
         `[type='checkbox']:checked`,
+        `[type='checkbox']:indeterminate`,
         `[type='radio']:checked`,
-        `.dark [type='checkbox']:checked`,
-        `.dark [type='checkbox']:indeterminate`,
-        `.dark [type='radio']:checked`,
       ]]: {
-        'border-color': `transparent`,
         'background-color': `currentColor`,
-        'background-size': `0.65rem 0.65rem`,
         'background-position': `center`,
         'background-repeat': `no-repeat`,
+        'background-size': `100% 100%`,
+        'border-color': `transparent`,
       },
       [`[type='checkbox']:checked`]: {
         'background-image': `url("${svgToTinyDataUri(
-          `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-            <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M1 5.917 5.724 10.5 15 1.5"/>
+          `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 8 L7 11 L12 5" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
           </svg>`
         )}")`,
-        'background-repeat': `no-repeat`,
-        'background-size': `0.65rem 0.65rem`,
         'print-color-adjust': `exact`,
       },
       [`[type='radio']:checked`]: {
         'background-image': `url("${svgToTinyDataUri(
           `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`
         )}")`,
-        'background-size': `1rem 1rem`,
-      },
-      [`.dark [type='radio']:checked`]: {
-        'background-image': `url("${svgToTinyDataUri(
-          `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`
-        )}")`,
-        'background-size': `1rem 1rem`,
       },
       [`[type='checkbox']:indeterminate`]: {
         'background-image': `url("${svgToTinyDataUri(
-          `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M2 8h12"/></svg>`
+          `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 8 L12 8" stroke="white" stroke-linecap="round" stroke-width="2.5" />
+          </svg>`
         )}")`,
-        'background-color': `currentColor`,
-        'border-color': `transparent`,
-        'background-position': `center`,
-        'background-repeat': `no-repeat`,
-        'background-size': `.65rem .65rem`,
         'print-color-adjust': `exact`,
       },
-      [[
-        `[type='checkbox']:indeterminate:hover`,
-        `[type='checkbox']:indeterminate:focus`,
-      ]]: {
-        'border-color': 'transparent',
-        'background-color': 'currentColor',
-      },
       [`[type='file']`]: {
-        background: 'unset',
-        'border-color': 'inherit',
-        'border-width': '0',
-        'border-radius': '0',
-        padding: '0',
-        'font-size': 'unset',
-        'line-height': 'inherit',
-      },
-      [`[type='file']:focus`]: {
-        outline: `1px auto inherit`,
-      },
-      [[`input[type=file]::file-selector-button`]]: {
-        color: 'white',
-        background: theme('colors.gray.800', colors.gray[800]),
-        border: 0,
-        'font-weight': theme('fontWeight.medium'),
-        'font-size': theme('fontSize.sm'),
         cursor: 'pointer',
-        'padding-top': spacing[2.5],
-        'padding-bottom': spacing[2.5],
-        'padding-inline-start': spacing[8],
-        'padding-inline-end': spacing[4],
-        'margin-inline-start': '-1rem',
-        'margin-inline-end': '1rem',
+      },
+      [`[type=file]::file-selector-button`]: {
+        'background-color': theme('colors.gray.100', colors.gray[100]),
+        'border': `${borderWidth['DEFAULT']} solid ${theme('colors.gray.200', colors.gray[200])}`,
+        'border-radius': borderRadius['DEFAULT'],
+        cursor: 'pointer',
+        'padding': `${spacing[2]} ${spacing[3]}`,
         '&:hover': {
-          background: theme('colors.gray.700', colors.gray[700]),
+          'background-color': theme('colors.gray.200', colors.gray[200]),
         },
       },
-      [[`.dark input[type=file]::file-selector-button`]]: {
-        color: 'white',
-        background: theme('colors.gray.600', colors.gray[600]),
-        '&:hover': {
-          background: theme('colors.gray.500', colors.gray[500]),
-        },
+      [`.dark [type=file]::file-selector-button`]: {
+        '@apply bg-white/5 border-white/5 text-white hover:bg-white/10': {}
       },
       '[type=checkbox]': {
-        '@apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600': {}
+        '@apply w-4 h-4 bg-gray-100 border border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-white/5 dark:border-white/10': {}
       },
       '[type=radio]': {
-        '@apply w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600': {}
+        '@apply w-4 h-4 bg-gray-100 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white/5 dark:border-white/10': {}
       },
       [['[type=datetime-local]', '[type=month]', '[type=week]', '[type=search]', '[type=date]', '[type=email]', '[type=number]', '[type=password]', '[type=tel]', '[type=text]', '[type=time]', '[type=url]', 'select', 'textarea']]: {
-        '@apply bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
+        '@apply bg-gray-50 border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
       },
       'a': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
@@ -259,7 +195,7 @@ export default plugin(
     });
     addComponents({
       '.action-item-button': {
-        '@apply py-2 px-3 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700': {}
+        '@apply py-2 px-3 text-sm font-medium no-underline text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700 dark:hover:text-white dark:hover:bg-gray-700': {}
       },
       '.index-data-table-toolbar': {
         '@apply flex flex-col lg:flex-row gap-4 mb-4': {}
@@ -281,7 +217,7 @@ export default plugin(
         '@apply bg-gray-100 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-800': {}
       },
       '.scopes-count': {
-        '@apply inline-flex items-center justify-center rounded-full bg-indigo-200/80 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-200 px-1.5 py-1 text-xs font-normal ms-2 leading-none': {}
+        '@apply inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-800/60 dark:text-indigo-400 px-1.5 py-1 text-xs font-normal ms-2 leading-none': {}
       },
       '.paginated-collection': {
         '@apply border border-gray-200 dark:border-gray-800 rounded-md shadow-sm overflow-hidden': {}
@@ -365,22 +301,22 @@ export default plugin(
         '@apply relative': {}
       },
       '.batch-actions-dropdown-toggle': {
-        '@apply transition-opacity rounded-md inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white disabled:text-gray-400 disabled:border-gray-200/70 dark:disabled:bg-gray-900 dark:disabled:text-gray-700 dark:disabled:border-gray-800 disabled:pointer-events-none': {}
+        '@apply transition-opacity rounded-md inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white disabled:text-gray-400 disabled:border-gray-200/70 dark:disabled:bg-gray-900 dark:disabled:text-gray-700 dark:disabled:border-gray-800 disabled:pointer-events-none': {}
       },
       '.batch-actions-dropdown-arrow': {
         '@apply w-2.5 h-2.5': {}
       },
       '.batch-actions-dropdown-menu': {
-        '@apply z-10 hidden min-w-[7rem] bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
+        '@apply z-10 hidden min-w-[7rem] bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
       '.batch-actions-dropdown-menu :where(li > a)': {
-        '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white': {}
+        '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white': {}
       },
       '.panel': {
         '@apply mb-6 border border-gray-200 rounded-md shadow-sm dark:border-gray-800': {}
       },
       '.panel-title': {
-        '@apply font-bold bg-gray-100 dark:bg-gray-900 rounded-t-md p-3': {}
+        '@apply font-bold bg-gray-100 dark:bg-gray-950/50 rounded-t-md p-3': {}
       },
       '.panel-body': {
         '@apply py-5 px-3': {}
@@ -392,22 +328,22 @@ export default plugin(
         '@apply w-full text-sm text-gray-800 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr)': {
-        '@apply border-b dark:border-gray-800 last:border-b-0': {}
+        '@apply border-b dark:border-gray-800 last:border-b-0 align-baseline': {}
       },
       '.attributes-table :where(tbody > tr > th)': {
-        '@apply w-32 sm:w-40 text-start text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800/60 dark:text-gray-300': {}
+        '@apply w-32 sm:w-40 text-start text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-950/50 dark:text-gray-300': {}
       },
       '.attributes-table :where(tbody > tr > th, tbody > tr > td)': {
         '@apply p-3': {}
       },
       '.attributes-table-empty-value': {
-        '@apply text-gray-400/50 dark:text-gray-700/60 text-xs uppercase font-semibold': {}
+        '@apply text-gray-400/50 dark:text-gray-600/50 text-xs uppercase font-semibold': {}
       },
       '.status-tag': {
-        '@apply bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400 inline-flex items-center rounded-full text-sm font-medium px-2.5 py-0.5 whitespace-nowrap': {}
+        '@apply bg-gray-200 text-gray-600 dark:bg-gray-400/20 dark:text-gray-400 inline-flex items-center rounded-full text-sm font-medium px-2.5 py-0.5 whitespace-nowrap': {}
       },
       '.status-tag:where([data-status=yes])': {
-        '@apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300': {}
+        '@apply bg-green-100 text-green-700 dark:bg-green-400/20 dark:text-green-400': {}
       },
       // Forms
       '.formtastic': {
@@ -441,16 +377,16 @@ export default plugin(
         '@apply text-gray-500 dark:text-gray-400 mt-2': {}
       },
       '.formtastic :where(.errors)': {
-        '@apply p-4 mb-6 rounded-md space-y-2 bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
+        '@apply p-4 mb-6 rounded-md space-y-2 bg-red-50 text-red-800 dark:bg-red-500/15 dark:text-red-200': {}
       },
       '.formtastic :where(.errors > li)': {
         '@apply list-disc ms-4': {}
       },
       '.formtastic :where(.inline-errors)': {
-        '@apply font-bold mt-2 text-red-600 dark:text-red-300': {}
+        '@apply font-bold mt-2 text-red-600 dark:text-red-400': {}
       },
-      '.formtastic :where(.error [type=email], .error [type=number], .error [type=password], .error [type=tel], .error [type=text], .error [type=url], .error textarea)': {
-        '@apply border-red-500': {}
+      '.formtastic :where(.error [type=email], .error [type=number], .error [type=password], .error [type=tel], .error [type=text], .error [type=url], .error select, .error textarea)': {
+        '@apply border-red-500/50': {}
       },
       '.formtastic :where(.buttons, .actions)': {
         '@apply mt-3': {}
