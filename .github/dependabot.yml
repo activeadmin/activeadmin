@@ -62,6 +62,8 @@ updates:
         versions: ">= 8.0.0"
       - dependency-name: railties
         versions: ">= 7.2.0"
+      - dependency-name: ransack
+        versions: ">= 4.4.1"
       - dependency-name: rspec-rails
         versions: ">= 8.0.0"
   - package-ecosystem: bundler
