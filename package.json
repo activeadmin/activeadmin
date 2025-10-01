@@ -28,7 +28,7 @@
     "@rollup/plugin-alias": "^5.1.0",
     "eslint": "^9.36.0",
     "gherkin-lint": "^4.2.2",
-    "rollup": "^4.52.2",
+    "rollup": "^4.52.3",
     "tailwindcss": "^3.4.17",
     "vitepress": "^1.6.4"
   },
