@@ -46,6 +46,13 @@ Note that the templates can and will change across releases. There are additiona
 
 With the setup complete, please review the Breaking Changes section and resolve any that may or may not impact your integration.
 
+**Important template change in 4.0.0.beta16:**
+
+- The `_site_header.html.erb` partial has changed its main container class from `sticky` to `fixed`.
+- The main layout for `active_admin.html.erb` now includes the `pt-16` utility class.
+
+See [PR #8727](https://github.com/activeadmin/activeadmin/pull/8727) for more details.
+
 ### Breaking Changes
 - jQuery and jQuery UI have been removed.
 - The `columns` component has been removed. Use `div`'s with Tailwind classes for modern, responsive layout.
