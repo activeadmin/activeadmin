@@ -7,7 +7,6 @@ PATH
       formtastic (>= 5.0)
       formtastic_i18n (>= 0.7)
       inherited_resources (~> 2.0)
-      kaminari (>= 1.2.1)
       railties (>= 7.0)
       ransack (>= 4.0)
 
@@ -180,7 +179,6 @@ GEM
       websocket-driver (~> 0.7)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-arm64-darwin)
-    ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     formtastic (5.0.0)
       actionpack (>= 6.0.0)
@@ -224,18 +222,6 @@ GEM
     iso (0.4.0)
       i18n
     json (2.15.1)
-    kaminari (1.2.2)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.2)
-      kaminari-activerecord (= 1.2.2)
-      kaminari-core (= 1.2.2)
-    kaminari-actionview (1.2.2)
-      actionview
-      kaminari-core (= 1.2.2)
-    kaminari-activerecord (1.2.2)
-      activerecord
-      kaminari-core (= 1.2.2)
-    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.5)
     launchy (3.1.1)
       addressable (~> 2.8)
@@ -270,8 +256,6 @@ GEM
     nokogiri (1.18.10-aarch64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.18.10-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.18.10-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
@@ -425,7 +409,6 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (2.7.4-aarch64-linux-gnu)
     sqlite3 (2.7.4-arm64-darwin)
-    sqlite3 (2.7.4-x86_64-darwin)
     sqlite3 (2.7.4-x86_64-linux-gnu)
     stringio (3.1.7)
     sys-uname (1.4.1)
@@ -457,7 +440,6 @@ GEM
 PLATFORMS
   aarch64-linux
   arm64-darwin
-  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
