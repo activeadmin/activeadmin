@@ -38,6 +38,13 @@ features:
   - icon: 📑
     title: Custom Index Views
     details: The default index screen is a table view, but custom index views are supported.
+    link: /3-index-pages
+    linkText: Learn about index views
+  - icon: 🔢
+    title: Pagination
+    details: Plug in your own pagination strategy via adapters.
+    link: /15-pagination-adapter
+    linkText: Learn about pagination adapters
   - icon: 📋
     title: Sidebar Sections
     details: Add your own sections to the sidebar using a simple DSL.

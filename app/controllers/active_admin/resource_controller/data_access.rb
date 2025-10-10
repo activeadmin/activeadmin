@@ -257,11 +257,11 @@ module ActiveAdmin
       def apply_pagination(chain)
         # skip pagination if CSV format was requested
         return chain if params["format"] == "csv"
-        # skip pagination if already was paginated by scope
-        return chain if chain.respond_to?(:total_pages)
-        page = params[Kaminari.config.param_name]
+        # skip pagination if adapter detects already paginated
+        adapter = build_pagination_adapter
+        return chain if adapter.paginated?(chain)
 
-        paginate(chain, page, per_page)
+        adapter.paginate(chain, page: params[adapter.send(:page_param_name)], per_page: per_page)
       end
 
       def collection_applies(options = {})
@@ -273,10 +273,14 @@ module ActiveAdmin
 
       def in_paginated_batches(&block)
         ActiveRecord::Base.uncached do
-          (1..paginated_collection.total_pages).each do |page|
-            paginated_collection(page).each do |resource|
-              yield apply_decorator(resource)
-            end
+          adapter = build_pagination_adapter
+          coll = find_collection
+          page = 1
+          loop do
+            batch = adapter.paginate(coll, page: page, per_page: batch_size)
+            break if batch.empty?
+            batch.each { |resource| yield apply_decorator(resource) }
+            page += 1
           end
         end
       end
@@ -336,17 +340,15 @@ module ActiveAdmin
       end
 
       def paginated_collection(page_no = 1)
-        paginate(collection, page_no, batch_size)
-      end
-
-      def paginate(chain, page, per_page)
-        page_method_name = Kaminari.config.page_method_name
-
-        chain.public_send(page_method_name, page).per(per_page)
+        build_pagination_adapter.paginate(collection, page: page_no, per_page: batch_size)
       end
 
       def batch_size
         1000
+      end
+
+      def build_pagination_adapter
+        active_admin_pagination_adapter.new(active_admin_config, params)
       end
     end
   end
