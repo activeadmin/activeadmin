@@ -34,6 +34,20 @@ module ActiveAdmin
       base.override_resource_class_methods!
     end
 
+    protected
+
+    # Returns the class to be used as the pagination adapter
+    #
+    # @return [Class]
+    def active_admin_pagination_adapter
+      adapter = active_admin_namespace.pagination_adapter
+      if adapter.is_a? String
+        adapter.constantize
+      else
+        adapter
+      end
+    end
+
     private
 
     def page_presenter
