@@ -263,5 +263,26 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
         expect(table.find_by_tag("td")[1].content).to eq "2"
       end
     end
+
+    context "when using custom string labels with acronyms" do
+      let(:table) do
+        render_arbre_component(assigns) do
+          attributes_table_for post do
+            row("Registration ID") { post.id }
+            row("LMnO") { post.title }
+          end
+        end
+      end
+
+      it "should preserve acronym capitalization in custom string labels" do
+        rows = table.find_by_tag("tr")
+
+        expect(rows[0].find_by_tag("th").first.content).to eq "Registration ID"
+        expect(rows[1].find_by_tag("th").first.content).to eq "LMnO"
+
+        expect(rows[0].find_by_tag("th").first.content).not_to eq "Registration Id"
+        expect(rows[1].find_by_tag("th").first.content).not_to eq "L Mn O"
+      end
+    end
   end
 end

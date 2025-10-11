@@ -158,6 +158,7 @@ See [PR #8727](https://github.com/activeadmin/activeadmin/pull/8727) for more de
   end
   ```
   </details>
+- Using `row 'name'` in an `attributes_table` block, now prints the header text as is. For a localized lookup of the header with titlized fallback, use `row :name` instead. This matches the `column 'name'` behavior of index tables (`TableFor`).
 
 #### Resource named methods
 
