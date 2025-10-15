@@ -112,7 +112,7 @@ jobs:
             docs/**
             package*.json
             yarn.lock
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           node-version: 22

@@ -21,7 +21,7 @@ jobs:
             package*.json
             yarn.lock
             .github/workflows/gherkin-lint.yml
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           node-version: ${{ env.NODE_VERSION }}
