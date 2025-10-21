@@ -18,7 +18,7 @@ ActiveAdmin.register_page "KitchenSink" do
     end
     div class: "grid grid-cols-1 md:grid-cols-2 gap-5" do
       div do
-        h3 "TableFor Example", class: "mb-4 text-base/7 font-semibold text-gray-900"
+        h3 "TableFor Example", class: "mb-4 text-base/7 font-semibold text-gray-900 dark:text-white"
         div class: "border border-gray-200 dark:border-gray-800 rounded-md shadow-sm overflow-hidden" do
           div class: "overflow-x-auto" do
             table_for User.first(5) do
@@ -35,7 +35,7 @@ ActiveAdmin.register_page "KitchenSink" do
         end
       end
       div do
-        h3 "Attributes Table Example", class: "mb-4 text-base/7 font-semibold text-gray-900"
+        h3 "Attributes Table Example", class: "mb-4 text-base/7 font-semibold text-gray-900 dark:text-white"
         attributes_table_for(Post.first) do
           row :title
           row :published_date
