@@ -198,7 +198,8 @@ Note that `@post` can also be used here but make sure to call `authorize!` on it
 
 This release includes several locale changes. Please [review the en.yml locale](https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml) for the latest translations.
 
-- The `dashboard_welcome`, `dropdown_actions`, `main_content` and `unsupported_browser` keys have been removed.
+- Removed keys: `dashboard_welcome`, `dropdown_actions`, `main_content` and `unsupported_browser`.
+- New keys: `toggle_dark_mode`, `toggle_main_navigation_menu`, `toggle_section`, and `toggle_user_menu` have been added.
 - The `active_admin.pagination` keys have been rewritten to be less verbose and include new entries: next and previous.
 
   ```diff
@@ -231,6 +232,10 @@ This release includes several locale changes. Please [review the en.yml locale](
 - The value for the `status_tag.unset` key has changed from "No" to "Unknown".
 - The `comments.title_content` text has been updated with an "All " prefix.
 - The `comments.delete_confirmation` text has been fixed to use singular form.
+- The `batch_actions.succesfully_destroyed` key has been renamed to fix a typo.
+
+  ```diff
+  - succesfully_destroyed:
+  + successfully_destroyed:
+  ```
 - Inconsistent use of login/sign-in related terms so text now uses "Sign in", Sign out", and "Sign up" throughout.
-- The `toggle_dark_mode`, `toggle_main_navigation_menu`, `toggle_section`, and `toggle_user_menu` keys have been added.
-- The `batch_actions.succesfully_destroyed` key has been renamed to `batch_actions.successfully_destroyed` to fix a typo.
