@@ -82,3 +82,17 @@ updates:
         versions: ">= 8.0.0"
       - dependency-name: railties
         versions: ">= 8.0.0"
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_80
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+    groups:
+      rails_80:
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: rails
+        versions: ">= 8.1.0"
+      - dependency-name: rails-i18n
+        versions: ">= 8.1.0"
