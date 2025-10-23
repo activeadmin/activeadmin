@@ -10,7 +10,7 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 8.1.0"
+  gem "rails", "~> 8.0.0"
 
   gem "sprockets-rails"
   gem "ransack", ">= 4.2.0"
@@ -41,13 +41,4 @@ group :test do
   gem "rails-i18n" # Provides default i18n for many languages
 end
 
-group :rubocop do
-  gem "rubocop"
-  gem "rubocop-capybara"
-  gem "rubocop-packaging"
-  gem "rubocop-performance"
-  gem "rubocop-rspec"
-  gem "rubocop-rails"
-end
-
-gemspec path: "."
+gemspec path: "../.."

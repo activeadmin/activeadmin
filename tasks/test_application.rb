@@ -48,6 +48,7 @@ module ActiveAdmin
         --skip-active-storage
         --skip-bootsnap
         --skip-brakeman
+        --skip-bundler-audit
         --skip-ci
         --skip-decrypted-diffs
         --skip-dev-gems
@@ -94,7 +95,7 @@ module ActiveAdmin
     end
 
     def app_name
-      return "rails_80" if main_app?
+      return "rails_81" if main_app?
 
       File.basename(File.dirname(gemfile))
     end
