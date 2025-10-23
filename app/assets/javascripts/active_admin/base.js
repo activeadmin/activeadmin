@@ -468,23 +468,19 @@
     $.fn["perPage"] = PerPage._jQueryInterface;
     $.fn["perPage"].Constructor = PerPage;
   })(jQuery);
-  function _inheritsLoose(subClass, superClass) {
-    subClass.prototype = Object.create(superClass.prototype);
-    subClass.prototype.constructor = subClass;
-    _setPrototypeOf(subClass, superClass);
+  function _inheritsLoose(t, o) {
+    t.prototype = Object.create(o.prototype), t.prototype.constructor = t, _setPrototypeOf(t, o);
   }
-  function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
-      o.__proto__ = p;
-      return o;
-    };
-    return _setPrototypeOf(o, p);
+  function _setPrototypeOf(t, e) {
+    return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function(t, e) {
+      return t.__proto__ = e, t;
+    }, _setPrototypeOf(t, e);
   }
   var TableCheckboxToggler = function(_CheckboxToggler) {
-    _inheritsLoose(TableCheckboxToggler, _CheckboxToggler);
     function TableCheckboxToggler() {
       return _CheckboxToggler.apply(this, arguments) || this;
     }
+    _inheritsLoose(TableCheckboxToggler, _CheckboxToggler);
     var _proto = TableCheckboxToggler.prototype;
     _proto._bind = function _bind() {
       var _this = this;

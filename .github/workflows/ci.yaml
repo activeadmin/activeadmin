@@ -59,7 +59,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-          rubygems: latest
+          rubygems: 3.5.7 # Allows the CI to pass against all Ruby / Rails combinations
       - name: Setup git for test app setup
         run: |
           git config --global user.email activeadmin@ci.dummy
