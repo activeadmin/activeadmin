@@ -29,7 +29,7 @@
     "common-tags": "",
     "eslint": "*",
     "eslint-plugin-import": "*",
-    "gherkin-lint": "",
+    "gherkin-lint": "*",
     "rollup": "*",
     "rollup-plugin-babel": "",
     "rollup-plugin-commonjs": "",
