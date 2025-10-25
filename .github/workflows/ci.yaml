@@ -46,7 +46,7 @@ jobs:
             os: ubuntu-latest
             deps: rails_70
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Configure bundler (default)
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
@@ -91,7 +91,7 @@ jobs:
           bin/cucumber --profile class-reloading
       - name: Rename coverage file by matrix run
         run: mv coverage/coverage.xml coverage/coverage-ruby-${{ matrix.ruby }}-${{ matrix.deps }}.xml
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: coverage-ruby-${{ matrix.ruby }}-${{ matrix.deps }}
           path: coverage
@@ -102,8 +102,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
         with:
           path: coverage
           pattern: coverage-ruby-*
