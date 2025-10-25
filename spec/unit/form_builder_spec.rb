@@ -652,7 +652,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       let :body do
         build_form({ url: "/categories" }, Category.new) do |f|
           f.object.posts.build
-          f.has_many :posts, class: 'myclass' do |p|
+          f.has_many :posts, class: "myclass" do |p|
             p.input :title
           end
         end

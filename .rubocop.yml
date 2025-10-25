@@ -4,7 +4,7 @@ inherit_mode:
   merge:
     - Include
 
-require:
+plugins:
   - rubocop-packaging
   - rubocop-rails
   - rubocop-rspec
@@ -141,7 +141,7 @@ Layout/IndentationConsistency:
 Layout/IndentationWidth:
   Enabled: true
 
-Naming/PredicateName:
+Naming/PredicatePrefix:
   Enabled: true
 
   ForbiddenPrefixes:
