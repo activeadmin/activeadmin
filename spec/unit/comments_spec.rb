@@ -210,4 +210,44 @@ RSpec.describe "Comments" do
       expect(resource.comments?).to eq false
     end
   end
+
+  describe "ActiveAdmin::Comment registration" do
+    let(:namespace) { application.namespace(:admin_for_comments) }
+    let(:enable_resource_comment) { false }
+
+    before do
+      namespace.comments = enable_comments
+      resource = ActiveAdmin::Resource.new(namespace, Post)
+      resource.comments = enable_resource_comment
+      namespace.resources.add(resource)
+
+      # Manually trigger the before_load, after_load event
+      ActiveSupport::Notifications.instrument ActiveAdmin::Application::BeforeLoadEvent, { active_admin_application: application }
+      ActiveSupport::Notifications.instrument ActiveAdmin::Application::AfterLoadEvent, { active_admin_application: application }
+    end
+
+    context "when namespace.comments is true" do
+      let(:enable_comments) { true }
+
+      it "registers ActiveAdmin::Comment" do
+        expect(defined?(AdminForComments::CommentsController)).to be_truthy
+      end
+    end
+
+    context "when namespace.comments is false" do
+      let(:enable_comments) { false }
+
+      it "does not register ActiveAdmin::Comment" do
+        expect(defined?(AdminForComments::CommentsController)).to be_falsey
+      end
+
+      context "when namespace.resources has a resource with comments enabled" do
+        let(:enable_resource_comment) { true }
+
+        it "registers ActiveAdmin::Comment" do
+          expect(defined?(AdminForComments::CommentsController)).to be_truthy
+        end
+      end
+    end
+  end
 end
