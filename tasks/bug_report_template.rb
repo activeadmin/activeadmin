@@ -13,7 +13,7 @@ gemfile(true) do
   end
 
   # Change Rails version if necessary.
-  gem "rails", "~> 8.0.0"
+  gem "rails", "~> 8.1.0"
 
   gem "sprockets", "~> 3.7"
   gem "sassc-rails"

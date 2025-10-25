@@ -10,7 +10,7 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 8.1.0"
+  gem "rails", "~> 8.0.0"
 
   gem "sprockets-rails"
   gem "sassc-rails"
@@ -39,21 +39,4 @@ group :test do
   gem "rails-i18n" # Provides default i18n for many languages
 end
 
-group :release do
-  gem "chandler" # Github releases from changelog
-  gem "octokit"
-end
-
-group :rubocop do
-  gem "rubocop"
-  gem "rubocop-packaging"
-  gem "rubocop-rspec"
-  gem "rubocop-rails"
-end
-
-group :docs do
-  gem "yard" # Documentation generator
-  gem "kramdown" # Markdown implementation (for yard)
-end
-
-gemspec path: "."
+gemspec path: "../.."

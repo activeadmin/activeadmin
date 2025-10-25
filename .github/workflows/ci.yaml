@@ -26,6 +26,7 @@ jobs:
         os:
           - ubuntu-latest
         deps:
+          - rails_81
           - rails_80
           - rails_72
           - rails_71
@@ -39,6 +40,9 @@ jobs:
           - ruby: '3.1'
             os: ubuntu-latest
             deps: rails_80
+          - ruby: '3.1'
+            os: ubuntu-latest
+            deps: rails_81
           - ruby: '3.4'
             os: ubuntu-latest
             deps: rails_61
@@ -50,11 +54,11 @@ jobs:
       - name: Configure bundler (default)
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
-        if: matrix.deps == 'rails_80'
+        if: matrix.deps == 'rails_81'
       - name: Configure bundler (alternative)
         run: |
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> "$GITHUB_ENV"
-        if: matrix.deps != 'rails_80'
+        if: matrix.deps != 'rails_81'
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
