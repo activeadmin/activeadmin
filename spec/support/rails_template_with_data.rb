@@ -79,6 +79,3 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
 RUBY
 
 rails_command "db:seed"
-
-git add: "."
-git commit: "-m 'Bare application with data'"

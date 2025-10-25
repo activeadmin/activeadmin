@@ -131,6 +131,3 @@ if ENV["RAILS_ENV"] == "test"
     end
   end
 end
-
-git add: "."
-git commit: "-m 'Bare application'"

@@ -1,7 +1,7 @@
 PATH
   remote: ../..
   specs:
-    activeadmin (3.3.0)
+    activeadmin (3.4.0)
       arbre (~> 1.2, >= 1.2.1)
       csv
       formtastic (>= 3.1)
