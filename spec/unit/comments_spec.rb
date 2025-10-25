@@ -212,18 +212,17 @@ RSpec.describe "Comments" do
   end
 
   describe "ActiveAdmin::Comment registration" do
-    # ActiveAdmin::Namespace#comments is from ActiveAdmin::Comments::ResourceHelper, so `instance_double` cannot be used
-    let(:namespace) { double(ActiveAdmin::Namespace) }
-    let(:resources) { [double(comments?: nil)] }
+    let(:namespace) { application.namespace(:admin_for_comments) }
+    let(:enable_resource_comment) { false }
 
     before do
-      allow(application).to receive(:namespaces).and_return([namespace])
-      allow(namespace).to receive(:comments).and_return(enable_comments)
-      allow(namespace).to receive(:comments_registration_name).and_return("Comment")
-      allow(namespace).to receive(:register)
-      allow(namespace).to receive(:resources).and_return(resources)
+      namespace.comments = enable_comments
+      resource = ActiveAdmin::Resource.new(namespace, Post)
+      resource.comments = enable_resource_comment
+      namespace.resources.add(resource)
 
-      # Manually trigger the after_load event
+      # Manually trigger the before_load, after_load event
+      ActiveSupport::Notifications.instrument ActiveAdmin::Application::BeforeLoadEvent, { active_admin_application: application }
       ActiveSupport::Notifications.instrument ActiveAdmin::Application::AfterLoadEvent, { active_admin_application: application }
     end
 
@@ -231,7 +230,7 @@ RSpec.describe "Comments" do
       let(:enable_comments) { true }
 
       it "registers ActiveAdmin::Comment" do
-        expect(namespace).to have_received(:register).with(ActiveAdmin::Comment, as: "Comment")
+        expect(defined?(AdminForComments::CommentsController)).to be_truthy
       end
     end
 
@@ -239,14 +238,14 @@ RSpec.describe "Comments" do
       let(:enable_comments) { false }
 
       it "does not register ActiveAdmin::Comment" do
-        expect(namespace).not_to have_received(:register).with(ActiveAdmin::Comment, as: "Comment")
+        expect(defined?(AdminForComments::CommentsController)).to be_falsey
       end
 
       context "when namespace.resources has a resource with comments enabled" do
-        let(:resources) { [double(comments?: true)] }
+        let(:enable_resource_comment) { true }
 
         it "registers ActiveAdmin::Comment" do
-          expect(namespace).to have_received(:register).with(ActiveAdmin::Comment, as: "Comment")
+          expect(defined?(AdminForComments::CommentsController)).to be_truthy
         end
       end
     end
