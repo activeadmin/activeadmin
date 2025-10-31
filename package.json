@@ -25,7 +25,7 @@
   },
   "homepage": "https://activeadmin.info",
   "devDependencies": {
-    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-alias": "^6.0.0",
     "eslint": "^9.39.0",
     "gherkin-lint": "^4.2.2",
     "rollup": "^4.52.5",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@activeadmin/activeadmin": "^3.3.0",
-    "@rails/ujs": "7.1.501",
+    "@rails/ujs": "7.1.600",
     "flowbite": "3.1.2"
   }
 }
