@@ -16,8 +16,6 @@ group :development, :test do
 
   gem "cssbundling-rails"
   gem "importmap-rails"
-
-  gem "concurrent-ruby", "1.3.4" # Ref: rails/rails#54260
 end
 
 group :test do
