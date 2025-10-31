@@ -15,8 +15,6 @@ group :development, :test do
   gem "sprockets-rails"
   gem "sassc-rails"
 
-  gem "concurrent-ruby", "1.3.4" # Ref: rails/rails#54260
-
   # FIXME: relax these dependencies when Ruby 3.0 support will be dropped
   gem "nokogiri", "~> 1.17.2"
   gem "securerandom", "~> 0.3.2"
