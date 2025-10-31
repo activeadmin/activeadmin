@@ -26,10 +26,10 @@
   "homepage": "https://activeadmin.info",
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.0",
     "gherkin-lint": "^4.2.2",
     "rollup": "^4.52.5",
-    "tailwindcss": "^3.4.18",
+    "tailwindcss": "^3.4.17",
     "vitepress": "^1.6.4"
   },
   "scripts": {
@@ -40,9 +40,11 @@
     "prepublishOnly": "npm run build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"
   },
   "dependencies": {
+    "@activeadmin/activeadmin": "^3.3.0",
     "@rails/ujs": "7.1.501",
     "flowbite": "3.1.2"
   }
