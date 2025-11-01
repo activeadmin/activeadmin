@@ -212,7 +212,7 @@ RSpec.describe "Comments" do
   end
 
   describe "ActiveAdmin::Comment registration" do
-    let(:namespace) { application.namespace(:admin_for_comments) }
+    let(:namespace) { application.namespace(namespace_name) }
     let(:enable_resource_comment) { false }
 
     before do
@@ -227,25 +227,28 @@ RSpec.describe "Comments" do
     end
 
     context "when namespace.comments is true" do
+      let(:namespace_name) { :admin_with_comments }
       let(:enable_comments) { true }
 
       it "registers ActiveAdmin::Comment" do
-        expect(defined?(AdminForComments::CommentsController)).to be_truthy
+        expect(defined?(AdminWithComments::CommentsController)).to be_truthy
       end
     end
 
     context "when namespace.comments is false" do
+      let(:namespace_name) { :admin_without_comments }
       let(:enable_comments) { false }
 
       it "does not register ActiveAdmin::Comment" do
-        expect(defined?(AdminForComments::CommentsController)).to be_falsey
+        expect(defined?(AdminWithoutComments::CommentsController)).to be_falsey
       end
 
       context "when namespace.resources has a resource with comments enabled" do
+        let(:namespace_name) { :resource_with_comments }
         let(:enable_resource_comment) { true }
 
         it "registers ActiveAdmin::Comment" do
-          expect(defined?(AdminForComments::CommentsController)).to be_truthy
+          expect(defined?(ResourceWithComments::CommentsController)).to be_truthy
         end
       end
     end
