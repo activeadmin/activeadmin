@@ -2,7 +2,7 @@
 
 ## From v3 to v4 (beta)
 
-ActiveAdmin v4 uses Tailwind CSS v3 (with an upgrade to v4 coming soon). It has **mobile web, dark mode and RTL support** with a default theme that can be customized through partials and CSS. This release assumes `cssbundling-rails` and `importmap-rails` is installed and configured in the host app. Partials can be modified to include a different asset library, e.g. shakapacker.
+ActiveAdmin v4 uses Tailwind CSS v4. It has **mobile web, dark mode and RTL support** with a default theme that can be customized through partials and CSS. This release assumes `cssbundling-rails` and `importmap-rails` is installed and configured in the host app. Partials can be modified to include a different asset library, e.g. shakapacker.
 **IMPORTANT**: there is **no sortable functionality for has-many forms** in this release so if needed, **do not upgrade**. We are [open to community proposals](https://github.com/activeadmin/activeadmin/discussions/new?category=ideas). The add/remove functionality for has-many forms remains supported.
 
 These instructions assume the `cssbundling-rails` and `importmap-rails` gems are already installed and you have run their install commands in your app. If you haven't done so, please do before continuing.
@@ -14,11 +14,11 @@ Now, run `rails generate active_admin:assets` to replace the old assets with the
 Then add the npm package and update the `build:css` script.
 
 ```
-yarn add @activeadmin/activeadmin@4.0.0-beta17
-npm pkg set scripts.build:css="tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"
+yarn add @activeadmin/activeadmin@4.0.0-beta18
+npm pkg set scripts.build:css="npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
 ```
 
-If you are already using Tailwind in your app, then update the `build:css` script to chain the above command to your existing one, e.g. `"tailwindcss ... && tailwindcss ..."`, so both stylesheets are generated.
+If you are already using Tailwind in your app, then update the `build:css` script to chain the above command to your existing one, e.g. `"npx @tailwindcss/cli ... && npx @tailwindcss/cli ..."`, so both stylesheets are generated.
 
 Many configs have been removed (meta tags, asset registration, utility nav, etc.) that can now be modified more naturally through partials.
 
@@ -46,12 +46,45 @@ Note that the templates can and will change across releases. There are additiona
 
 With the setup complete, please review the Breaking Changes section and resolve any that may or may not impact your integration.
 
-**Important template change in 4.0.0.beta16:**
+### Upgrading from earlier 4.x beta to 4.0.0.beta19
 
+When upgrading from any earlier 4.0.0 beta release, please apply the changes outlined below.
+
+There were important template changes in 4.0.0.beta16. See [PR #8727](https://github.com/activeadmin/activeadmin/pull/8727) for details.
 - The `_site_header.html.erb` partial has changed its main container class from `sticky` to `fixed`.
 - The main layout for `active_admin.html.erb` now includes the `pt-16` utility class.
 
-See [PR #8727](https://github.com/activeadmin/activeadmin/pull/8727) for more details.
+Starting with 4.0.0.beta19, we've migrated to Tailwind CSS v4 which requires several updates.
+
+Update your `active_admin.css` file:
+
+```diff
+-@tailwind base;
+-@tailwind components;
+-@tailwind utilities;
++@import "tailwindcss";
++
++@config "../../../tailwind-active_admin.config.js";
+```
+
+Update the `build:css` script in your `package.json`:
+
+```diff
+-"build:css": "tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"
++"build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
+```
+
+You may see the following warning when upgrading:
+
+```
+[MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of tailwind-active_admin.config.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to ./package.json.
+```
+
+The Tailwind config file now uses ES module syntax. To fix it, either:
+- Rename `tailwind-active_admin.config.js` to `tailwind-active_admin.config.mjs`; or
+- Add `"type": "module"` to your `package.json` (your application may already be compatible with ESM).
 
 ### Breaking Changes
 - jQuery and jQuery UI have been removed.
