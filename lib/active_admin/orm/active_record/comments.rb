@@ -96,8 +96,8 @@ ActiveAdmin.after_load do |app|
         column I18n.t("active_admin.comments.resource"), :resource, class: "min-w-28"
         column I18n.t("active_admin.comments.author_type"), :author_type
         column I18n.t("active_admin.comments.author"), :author
-        column I18n.t("active_admin.comments.body"), :body, class: "min-w-[16rem]" do |comment|
-          truncate(comment.body, length: 60, separator: " ")
+        column I18n.t("active_admin.comments.body"), :body, class: "min-w-52" do |comment|
+          truncate(comment.body, length: 50, separator: " ")
         end
         column I18n.t("active_admin.comments.created_at"), :created_at, class: "min-w-52"
         actions
