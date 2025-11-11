@@ -287,7 +287,7 @@ export default plugin(
         '@apply flex gap-2 items-center': {}
       },
       '.filters-form-submit': {
-        '@apply min-w-[6rem] font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-hidden focus:ring-blue-300 rounded-md px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
+        '@apply min-w-24 font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-hidden focus:ring-blue-300 rounded-md px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer': {}
       },
       '.filters-form-clear': {
         '@apply rounded-md px-3 py-2 font-semibold text-gray-700 hover:bg-gray-100 no-underline dark:text-gray-400 dark:hover:bg-inherit dark:hover:text-gray-100 dark:focus:ring-blue-800': {}
@@ -308,7 +308,7 @@ export default plugin(
         '@apply w-2.5 h-2.5': {}
       },
       '.batch-actions-dropdown-menu': {
-        '@apply z-10 hidden min-w-[7rem] bg-white rounded-md shadow-lg ring-1 ring-black/5 focus:outline-hidden dark:bg-gray-800 py-1 text-sm text-gray-700 dark:text-gray-200': {}
+        '@apply z-10 hidden min-w-28 bg-white rounded-md shadow-lg ring-1 ring-black/5 focus:outline-hidden dark:bg-gray-800 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
       '.batch-actions-dropdown-menu :where(li > a)': {
         '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white': {}
