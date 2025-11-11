@@ -14,8 +14,8 @@ ActiveAdmin.register User do
     column :last_name
     column :username
     column :age
-    column :created_at, class: "min-w-[13rem]"
-    column :updated_at, class: "min-w-[13rem]"
+    column :created_at, class: "min-w-52"
+    column :updated_at, class: "min-w-52"
     actions
   end
 
