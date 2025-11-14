@@ -71,4 +71,14 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
       expect(resource.action_items.size).to eq 2
     end
   end
+
+  it "allows registering with string" do
+    namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
+    resource = namespace.register("Post")
+    resource.clear_action_items!
+    resource.add_action_item :empty do
+      # Empty ...
+    end
+    expect(resource.action_items.size).to eq 1
+  end
 end
