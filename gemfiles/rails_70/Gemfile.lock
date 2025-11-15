@@ -163,7 +163,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.6.2)
     docile (1.4.1)
-    draper (4.0.4)
+    draper (4.0.5)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
       activemodel-serializers-xml (>= 1.0)
@@ -195,13 +195,14 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
       iso
-    i18n-tasks (1.0.15)
+    i18n-tasks (1.1.0)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
-      highline (>= 2.0.0)
+      highline (>= 3.0.0)
       i18n
       parser (>= 3.2.2.1)
+      prism
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.8, >= 1.8.1)
@@ -250,7 +251,7 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (5.26.0)
+    minitest (5.26.1)
     multi_test (1.1.0)
     mutex_m (0.3.0)
     net-imap (0.5.12)
@@ -277,6 +278,7 @@ GEM
     parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
+    prism (1.6.0)
     public_suffix (6.0.2)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
@@ -322,7 +324,7 @@ GEM
       activesupport (>= 6.1.5)
       i18n
     regexp_parser (2.11.3)
-    reline (0.6.2)
+    reline (0.6.3)
       io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
