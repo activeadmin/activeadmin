@@ -17,6 +17,9 @@ updates:
       rails_default:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: i18n-tasks
+        versions: ">= 1.1.0"
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -36,6 +39,8 @@ updates:
         patterns:
           - "*"
     ignore:
+      - dependency-name: i18n-tasks
+        versions: ">= 1.1.0"
       - dependency-name: rails
         versions: ">= 7.1.0"
       - dependency-name: rails-i18n
@@ -56,6 +61,8 @@ updates:
         patterns:
           - "*"
     ignore:
+      - dependency-name: i18n-tasks
+        versions: ">= 1.1.0"
       - dependency-name: rails
         versions: ">= 7.2.0"
       - dependency-name: rails-i18n
@@ -76,6 +83,8 @@ updates:
         patterns:
           - "*"
     ignore:
+      - dependency-name: i18n-tasks
+        versions: ">= 1.1.0"
       - dependency-name: rails
         versions: ">= 8.0.0"
       - dependency-name: rails-i18n
@@ -92,6 +101,8 @@ updates:
         patterns:
           - "*"
     ignore:
+      - dependency-name: i18n-tasks
+        versions: ">= 1.1.0"
       - dependency-name: rails
         versions: ">= 8.1.0"
       - dependency-name: rails-i18n
