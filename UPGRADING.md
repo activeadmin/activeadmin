@@ -15,7 +15,7 @@ Then add the npm package and update the `build:css` script.
 
 ```
 yarn add @activeadmin/activeadmin@4.0.0-beta18
-npm pkg set scripts.build:css="npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
+npm pkg set scripts.build:css="npx @tailwindcss/cli -i ./app/assets/tailwind/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
 ```
 
 If you are already using Tailwind in your app, then update the `build:css` script to chain the above command to your existing one, e.g. `"npx @tailwindcss/cli ... && npx @tailwindcss/cli ..."`, so both stylesheets are generated.
@@ -56,6 +56,8 @@ There were important template changes in 4.0.0.beta16. See [PR #8727](https://gi
 
 Starting with 4.0.0.beta19, we've migrated to Tailwind CSS v4 which requires several updates.
 
+Move your `active_admin.css` from `app/assets/stylesheets` to `app/assets/tailwind`
+
 Update your `active_admin.css` file:
 
 ```diff
@@ -70,8 +72,8 @@ Update your `active_admin.css` file:
 Update the `build:css` script in your `package.json`:
 
 ```diff
--"build:css": "tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"
-+"build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
+-"build:css": "tailwindcss -i ./app/assets/tailwind/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"
++"build:css": "npx @tailwindcss/cli -i ./app/assets/tailwind/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
 ```
 
 You may see the following warning when upgrading:

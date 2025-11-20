@@ -45,7 +45,7 @@ The generator adds these core files, among others:
 
 * `app/admin/dashboard.rb`
 * `app/assets/javascripts/active_admin.js`
-* `app/assets/stylesheets/active_admin.scss`
+* `app/assets/tailwind/active_admin.css`
 * `config/initializers/active_admin.rb`
 
 Now, migrate and seed your database before starting the server:
