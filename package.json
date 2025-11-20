@@ -1,6 +1,6 @@
 {
   "name": "@activeadmin/activeadmin",
-  "version": "4.0.0-beta18",
+  "version": "4.0.0-beta19",
   "description": "The administration framework for Ruby on Rails.",
   "main": "dist/active_admin.js",
   "type": "module",
@@ -28,7 +28,7 @@
     "@rollup/plugin-alias": "^6.0.0",
     "eslint": "^9.39.1",
     "gherkin-lint": "^4.2.4",
-    "rollup": "^4.52.5",
+    "rollup": "^4.53.3",
     "tailwindcss": "^4.1.17",
     "vitepress": "^1.6.4"
   },
