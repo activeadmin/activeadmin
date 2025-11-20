@@ -6,6 +6,7 @@ export default [
     ignores: [
       "app/assets/**",
       "coverage/**",
+      "docs/.vitepress/dist/**",
       "lib/generators/**",
       "src/**",
       "tmp/**",
