@@ -19,7 +19,7 @@ ActiveAdmin.register_page "KitchenSink" do
     div class: "grid grid-cols-1 md:grid-cols-2 gap-5" do
       div do
         h3 "TableFor Example", class: "mb-4 text-base/7 font-semibold text-gray-900 dark:text-white"
-        div class: "border border-gray-200 dark:border-gray-800 rounded-md shadow-sm overflow-hidden" do
+        div class: "border border-gray-200 dark:border-gray-800 rounded-md shadow-xs overflow-hidden" do
           div class: "overflow-x-auto" do
             table_for User.first(5) do
               column :id
