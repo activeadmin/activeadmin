@@ -34,7 +34,7 @@ group :test do
   gem "sqlite3", "~> 1.7", platform: :mri
 
   # Translations
-  gem "i18n-tasks", "~> 1.0.15" # See activeadmin/activeadmin#8851, glebm/i18n-tasks#682
+  gem "i18n-tasks"
   gem "i18n-spec"
   gem "rails-i18n" # Provides default i18n for many languages
 end
