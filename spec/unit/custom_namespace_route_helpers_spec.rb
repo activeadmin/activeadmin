@@ -33,8 +33,8 @@ RSpec.describe "Custom Namespace Route Helpers" do
 
   it "should generate correct paths for instance routes" do
     post = Post.new { |p| p.id = 123 }
-    expect(ActiveAdmin::Helpers::Routes.active_admin_post_path(123)).to eq "/active_admin/posts/123"
-    expect(ActiveAdmin::Helpers::Routes.edit_active_admin_post_path(123)).to eq "/active_admin/posts/123/edit"
+    expect(ActiveAdmin::Helpers::Routes.active_admin_post_path(post)).to eq "/active_admin/posts/123"
+    expect(ActiveAdmin::Helpers::Routes.edit_active_admin_post_path(post)).to eq "/active_admin/posts/123/edit"
   end
 
   it "should work from resource route_instance_path" do
