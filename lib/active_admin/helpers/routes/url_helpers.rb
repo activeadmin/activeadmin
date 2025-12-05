@@ -14,14 +14,20 @@ module ActiveAdmin
       # The fix: Override `url_for` to always use the main app's router for
       # hash-based options, ensuring custom namespaces work correctly.
       module UrlHelpers
+        def self.included(base)
+          super
+          # When included in a controller, make helper methods private
+          # to prevent them from being callable as actions
+          # Note: _routes, url_options, and default_url_options are used by
+          # Rails routing helpers internally and must remain accessible
+          base.class_eval do
+            private :app_routes, :optimize_routes_generation?
+          end
+        end
+
         # First, include the Rails route helpers - this gives us all the
         # named route methods like admin_posts_path, etc.
         include Rails.application.routes.url_helpers
-
-        delegate :app_routes, to: Routes
-        alias_method :_routes, :app_routes
-
-        delegate :default_url_options, :optimize_routes_generation?, to: :app_routes
 
         # Then override url_for - this will be found FIRST in method lookup
         # because it's defined directly on this module, after the include.
@@ -58,6 +64,11 @@ module ActiveAdmin
             polymorphic_url(options, only_path: true)
           end
         end
+
+        delegate :app_routes, to: Routes
+        alias_method :_routes, :app_routes
+
+        delegate :default_url_options, :optimize_routes_generation?, to: :app_routes
 
         def url_options
           default_url_options || {}

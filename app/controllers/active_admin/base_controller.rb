@@ -13,7 +13,6 @@ module ActiveAdmin
     helper AutoLinkHelper
     helper DisplayHelper
     helper IndexHelper
-    helper Helpers::Routes::UrlHelpers
 
     layout "active_admin"
 
@@ -59,6 +58,7 @@ module ActiveAdmin
       end
     end
     helper_method :url_for
+    private :url_for
 
     private
 
