@@ -31,6 +31,8 @@ module ActiveAdmin
     include BaseController::Authorization
     include BaseController::Menu
 
+    protected
+
     # Override url_for to use main app's router for hash options.
     # This fixes route generation for custom namespaces in isolated engines.
     # We merge with request.path_parameters to provide the current context
@@ -40,15 +42,18 @@ module ActiveAdmin
       when nil
         super
       when Hash
-        # Merge current request context for relative url_for calls
-        route_options = request.path_parameters.merge(options)
+        # Start with path_parameters for context, then override with options
+        # This provides the current namespace context while avoiding unwanted params
+        route_options = request.path_parameters.slice(:controller, :action).merge(options)
         route_options[:only_path] = true unless route_options.key?(:only_path) || route_options.key?(:host)
         Rails.application.routes.url_for(route_options)
       when ActionController::Parameters
         unless options.permitted?
           raise ArgumentError, "Generating a URL from unpermitted parameters is not allowed"
         end
-        route_options = request.path_parameters.merge(options.to_h.symbolize_keys)
+        opts = options.to_h.symbolize_keys
+        # Start with path_parameters for context, then override with options
+        route_options = request.path_parameters.slice(:controller, :action).merge(opts)
         route_options[:only_path] = true unless route_options.key?(:only_path) || route_options.key?(:host)
         Rails.application.routes.url_for(route_options)
       when String
@@ -58,7 +63,6 @@ module ActiveAdmin
       end
     end
     helper_method :url_for
-    private :url_for
 
     private
 

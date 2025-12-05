@@ -16,12 +16,12 @@ module ActiveAdmin
       module UrlHelpers
         def self.included(base)
           super
-          # When included in a controller, make helper methods private
+          # When included in a controller, make helper methods protected
           # to prevent them from being callable as actions
           # Note: _routes, url_options, and default_url_options are used by
           # Rails routing helpers internally and must remain accessible
           base.class_eval do
-            private :app_routes, :optimize_routes_generation?
+            protected :app_routes, :optimize_routes_generation?
           end
         end
 
