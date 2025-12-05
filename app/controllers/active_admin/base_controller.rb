@@ -3,6 +3,9 @@ module ActiveAdmin
   # BaseController for ActiveAdmin.
   # It implements ActiveAdmin controllers core features.
   class BaseController < ::InheritedResources::Base
+    # Include route helpers with patched url_for for custom namespace support
+    include Helpers::Routes::UrlHelpers
+
     helper MethodOrProcHelper
     helper LayoutHelper
     helper FormHelper
@@ -10,6 +13,7 @@ module ActiveAdmin
     helper AutoLinkHelper
     helper DisplayHelper
     helper IndexHelper
+    helper Helpers::Routes::UrlHelpers
 
     layout "active_admin"
 
@@ -27,6 +31,34 @@ module ActiveAdmin
 
     include BaseController::Authorization
     include BaseController::Menu
+
+    # Override url_for to use main app's router for hash options.
+    # This fixes route generation for custom namespaces in isolated engines.
+    # We merge with request.path_parameters to provide the current context
+    # (controller, action) when not explicitly specified.
+    def url_for(options = nil)
+      case options
+      when nil
+        super
+      when Hash
+        # Merge current request context for relative url_for calls
+        route_options = request.path_parameters.merge(options)
+        route_options[:only_path] = true unless route_options.key?(:only_path) || route_options.key?(:host)
+        Rails.application.routes.url_for(route_options)
+      when ActionController::Parameters
+        unless options.permitted?
+          raise ArgumentError, "Generating a URL from unpermitted parameters is not allowed"
+        end
+        route_options = request.path_parameters.merge(options.to_h.symbolize_keys)
+        route_options[:only_path] = true unless route_options.key?(:only_path) || route_options.key?(:host)
+        Rails.application.routes.url_for(route_options)
+      when String
+        options
+      else
+        super
+      end
+    end
+    helper_method :url_for
 
     private
 

@@ -6,10 +6,14 @@ module ActiveAdmin
   class ResourceController < BaseController
     module PolymorphicRoutes
       def polymorphic_url(record_or_hash_or_array, options = {})
+        options = options.dup
+        options[:only_path] = true unless options.key?(:only_path) || options.key?(:host)
         super(map_named_resources_for(record_or_hash_or_array), options)
       end
 
       def polymorphic_path(record_or_hash_or_array, options = {})
+        options = options.dup
+        options[:only_path] = true unless options.key?(:only_path) || options.key?(:host)
         super(map_named_resources_for(record_or_hash_or_array), options)
       end
 
