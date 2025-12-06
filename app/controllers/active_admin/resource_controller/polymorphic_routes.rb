@@ -8,13 +8,19 @@ module ActiveAdmin
       def polymorphic_url(record_or_hash_or_array, options = {})
         options = options.dup
         options[:only_path] = true unless options.key?(:only_path) || options.key?(:host)
-        super(map_named_resources_for(record_or_hash_or_array), options)
+        resources = map_named_resources_for(record_or_hash_or_array)
+        # Prepend namespace symbol for polymorphic routing with custom namespaces
+        resources = [active_admin_namespace.name] + Array(resources) if active_admin_config
+        super(resources, options)
       end
 
       def polymorphic_path(record_or_hash_or_array, options = {})
         options = options.dup
         options[:only_path] = true unless options.key?(:only_path) || options.key?(:host)
-        super(map_named_resources_for(record_or_hash_or_array), options)
+        resources = map_named_resources_for(record_or_hash_or_array)
+        # Prepend namespace symbol for polymorphic routing with custom namespaces
+        resources = [active_admin_namespace.name] + Array(resources) if active_admin_config
+        super(resources, options)
       end
 
       private

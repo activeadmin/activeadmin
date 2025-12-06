@@ -34,7 +34,7 @@ module ActiveAdmin
         # When route helpers call url_for internally, they'll use this version.
         def url_for(options = nil)
           case options
-          when nil, String
+          when nil
             super
           when Hash
             # For hash options, always route through the main app's router
@@ -49,10 +49,19 @@ module ActiveAdmin
             route_options = options.to_h.symbolize_keys
             route_options[:only_path] = true unless route_options.key?(:only_path) || route_options.key?(:host)
             app_routes.url_for(route_options)
+          when String
+            options
+          when Symbol
+            send(options)
+          when Array
+            opts = options.extract_options!
+            opts[:only_path] = true unless opts.key?(:only_path) || opts.key?(:host)
+            polymorphic_url(options, opts)
+          when Class
+            polymorphic_url(options, only_path: true)
           else
-            # For everything else (models, arrays, symbols, classes), use default Rails behavior
-            # This ensures polymorphic_url works correctly
-            super
+            # For ActiveRecord models or other objects
+            polymorphic_url(options, only_path: true)
           end
         end
 
