@@ -48,7 +48,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-          rubygems: latest
+          rubygems: '3.7.2' # FIXME: Change back to `latest`. See activeadmin/activeadmin#8879 for more details.
       - name: Create test app
         run: bin/rake setup
       - name: Restore cached RSpec runtimes
