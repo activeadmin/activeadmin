@@ -165,7 +165,11 @@ export default plugin(
         )}")`,
         'print-color-adjust': `exact`,
       },
-      [`[type='file']`]: {
+      [[
+        `button:not(:disabled)`,
+        `[role='button']:not(:disabled)`,
+        `[type='file']`,
+      ]]: {
         cursor: 'pointer',
       },
       [`[type=file]::file-selector-button`]: {
