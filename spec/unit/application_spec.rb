@@ -74,7 +74,7 @@ RSpec.describe ActiveAdmin::Application do
 
   describe "files in load path" do
     it "it should load sorted files" do
-      expect(application.files.map { |f| File.basename(f) }).to eq(%w(admin_users.rb companies.rb dashboard.rb stores.rb))
+      expect(application.files.map { |f| File.basename(f) }).to eq %w(admin_users.rb companies.rb dashboard.rb profiles.rb stores.rb)
     end
 
     it "should load files in the first level directory" do
@@ -103,7 +103,9 @@ RSpec.describe ActiveAdmin::Application do
       begin
         FileUtils.mkdir_p(test_dir)
         FileUtils.touch(test_file)
-        expect(application.files.map { |f| File.basename(f) }).to eq(%w(posts.rb admin_users.rb companies.rb dashboard.rb stores.rb))
+        expect(application.files.map { |f| File.basename(f) }).to(
+          eq(%w(posts.rb admin_users.rb companies.rb dashboard.rb profiles.rb stores.rb))
+        )
       ensure
         FileUtils.remove_entry_secure(test_dir, force: true)
       end
