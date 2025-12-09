@@ -29,6 +29,6 @@ end
 bump_version_file(version)
 system "bin/bundle"
 bump_npm_package(version)
-system "yarn install --frozen-lockfile"
+system "bun install --frozen-lockfile"
 system "bin/rake", "dependencies:vendor"
-system "yarn build"
+system "bun build"

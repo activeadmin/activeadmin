@@ -35,7 +35,7 @@
   "scripts": {
     "gherkin-lint": "gherkin-lint",
     "lint": "eslint .",
-    "prebuild": "npm run lint && rm -rf dist",
+    "prebuild": "bun run lint && rm -rf dist",
     "build": "rollup --config rollup.config.js",
     "prepublishOnly": "npm run build",
     "docs:dev": "vitepress dev docs",

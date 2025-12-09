@@ -19,6 +19,6 @@ namespace :dependencies do
       File.write(file, content.gsub(/\/\/# sourceMappingURL=\S+/, ''))
     end
   rescue Errno::ENOENT
-    puts "Error: Missing node_modules. Run `yarn install`."
+    puts "Error: Missing node_modules. Run `bun install`."
   end
 end

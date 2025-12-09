@@ -28,7 +28,7 @@ Now install the development dependencies:
 ```sh
 gem install foreman
 bundle install
-yarn install
+bun install
 ```
 
 Now you should be able to run the entire suite using:

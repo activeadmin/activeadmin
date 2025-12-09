@@ -5,6 +5,7 @@ gem "cssbundling-rails"
 
 create_file "app/assets/config/manifest.js"
 
+create_file "bun.lock" # Temporary workaround for https://github.com/rails/cssbundling-rails/issues/183
 rails_command "css:install:tailwind"
 # Remove default configuration generated: https://github.com/rails/cssbundling-rails/blob/v1.4.2/lib/install/tailwind/install.rb#L7
 remove_file "app/assets/stylesheets/application.tailwind.css"

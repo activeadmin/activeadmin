@@ -17,13 +17,13 @@ module ActiveAdmin
         generate
       end
       Bundler.with_original_env do
-        Kernel.system("yarn install") # so tailwindcss/plugin is available for test app
+        Kernel.system("bun install") # so tailwindcss/plugin is available for test app
         Kernel.system("rake dependencies:vendor") # ensure flowbite is updated for test app
         Dir.chdir(app_dir) do
-          Kernel.system("yarn add @activeadmin/activeadmin")
-          Kernel.system('npm pkg set scripts.build:css="npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"')
-          Kernel.system("yarn install")
-          Kernel.system("yarn build:css")
+          Kernel.system("bun add @activeadmin/activeadmin")
+          Kernel.system('bun pm pkg set scripts.build:css="bunx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"')
+          Kernel.system("bun install")
+          Kernel.system("bun build:css")
         end
       end
     end
