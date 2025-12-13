@@ -107,6 +107,7 @@ inject_into_file "config/application.rb", after: "class Application < Rails::App
   "\n    config.action_controller.action_on_unpermitted_parameters = :raise\n"
 end
 
+# TODO: Remove this version check and keep the contents when dropping support for Rails < 7.2.
 if Rails.gem_version >= Gem::Version.new("7.2")
   # Disable permanent connection checkout.
   # ActiveRecord::Base.connection was soft-deprecated in Rails 7.2. Let's make sure we are not using it.
