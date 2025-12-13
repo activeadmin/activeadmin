@@ -31,6 +31,16 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
     end
   end
 
+  context "when resource class is a string" do
+    before do
+      namespace.register 'Category'
+    end
+
+    it "should store the namespaced registered configuration" do
+      expect(namespace.resources.keys).to include("Category")
+    end
+  end
+
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
       expect do |block|
