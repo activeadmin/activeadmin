@@ -111,6 +111,7 @@ inject_into_file "package.json", after: '"private": "true",' do
   "\n  \"type\": \"module\",\n"
 end
 
+# TODO: Remove this version check and keep the contents when dropping support for Rails < 7.2.
 if Rails.gem_version >= Gem::Version.new("7.2")
   # Disable permanent connection checkout.
   # ActiveRecord::Base.connection was soft-deprecated in Rails 7.2. Let's make sure we are not using it.
