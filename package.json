@@ -29,7 +29,7 @@
     "eslint": "^9.39.1",
     "gherkin-lint": "^4.2.4",
     "rollup": "^4.53.3",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.1.18",
     "vitepress": "^1.6.4"
   },
   "scripts": {
