@@ -68,10 +68,11 @@ ActiveAdmin.setup do |config|
   # Active Admin will automatically call an authorization
   # method in a before filter of all controller actions to
   # ensure that there is a user with proper rights. You can use
-  # CanCanAdapter, PunditAdapter, or make your own. Please
+  # CanCanAdapter, PunditAdapter, ActionPolicyAdapter, or make your own. Please
   # refer to the documentation.
   # config.authorization_adapter = ActiveAdmin::CanCanAdapter
   # config.authorization_adapter = ActiveAdmin::PunditAdapter
+  # config.authorization_adapter = ActiveAdmin::ActionPolicyAdapter
 
   # In case you prefer Pundit over other solutions you can here pass
   # the name of default policy class. This policy will be used in every
@@ -82,6 +83,19 @@ ActiveAdmin.setup do |config|
   # resources, you may set a namespace here that Pundit will search
   # within when looking for a resource's policy.
   # config.pundit_policy_namespace = :admin
+
+  # In case you prefer ActionPolicy over other solutions you can here pass
+  # the name of default policy class. This policy will be used in every
+  # case when ActionPolicy is unable to find suitable policy.
+  # config.action_policy_default_policy = "ActiveAdminDefaultPolicy"
+
+  # If you wish to maintain a separate set of ActionPolicy policies for admin
+  # resources, you may set a namespace here that ActionPolicy will search
+  # within when looking for a resource's policy.
+  # config.action_policy_namespace = "ActiveAdmin"
+
+  # If you wish to use a different scope type for ActionPolicy, you can set it here.
+  # config.action_policy_scope_type = :active_admin
 
   # You can customize your CanCan Ability class name here.
   # config.cancan_ability_class = "Ability"

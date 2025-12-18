@@ -17,7 +17,7 @@ gemfile(true) do
 
   gem "sprockets", "~> 4.0"
   gem "importmap-rails", "~> 2.0"
-  gem "sqlite3", force_ruby_platform: true, platform: :mri
+  gem "sqlite3", force_ruby_platform: true
 
   # Fixes an issue on CI with default gems when using inline bundle with default
   # gems that are already activated
