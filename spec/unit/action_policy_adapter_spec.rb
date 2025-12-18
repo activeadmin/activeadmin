@@ -20,9 +20,14 @@ RSpec.describe ActiveAdmin::ActionPolicyAdapter do
       expect(auth.authorized?(:update, Post)).to eq false
     end
 
-    it "should treat :new ability the same as :create" do
+    it "should allow differentiating between new and create" do
       expect(auth.authorized?(:new, Post)).to eq true
-      expect(auth.authorized?(:create, Post)).to eq true
+      expect(auth.authorized?(ActiveAdmin::Auth::NEW, Post)).to eq true
+
+      announcement_category = Category.new(name: "Announcements")
+      announcement_post = Post.new(title: "Big announcement", category: announcement_category)
+      expect(auth.authorized?(:create, announcement_post)).to eq false
+      expect(auth.authorized?(ActiveAdmin::Auth::CREATE, announcement_post)).to eq false
     end
 
     it "should scope the collection" do
@@ -54,6 +59,16 @@ RSpec.describe ActiveAdmin::ActionPolicyAdapter do
       end
 
       it("should return default policy instance") { is_expected.to be_instance_of(ActionPolicy::ApplicationPolicy) }
+
+      context "and default policy doesn't exist" do
+        before do
+          allow(ActiveAdmin.application).to receive(:action_policy_default_policy).and_return nil
+        end
+
+        it "raises the error" do
+          expect { subject }.to raise_error ActionPolicy::NotFound
+        end
+      end
     end
   end
 end
