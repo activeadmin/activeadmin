@@ -34,7 +34,7 @@ group :test do
   gem "launchy"
   gem "parallel_tests"
   gem "rspec-rails"
-  gem "sqlite3", platform: :mri
+  gem "sqlite3"
 
   # Translations
   gem "i18n-tasks"
