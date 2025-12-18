@@ -1,154 +1,155 @@
+---
 ru:
-  activerecord:
-    models:
-      comment:
-        one: "Комментарий"
-        few: "Комментария"
-        many: "Комментариев"
-        other: "Комментариев"
-      active_admin/comment:
-        one: "Комментарий"
-        few: "Комментария"
-        many: "Комментариев"
-        other: "Комментариев"
-    attributes:
-      active_admin/comment:
-        author_type: "Тип автора"
-        body: "Текст"
-        created_at: "Дата создания"
-        namespace: "Пространство имён"
-        resource_type: "Тип ресурса"
-        updated_at: "Дата обновления"
   active_admin:
-    dashboard: "Панель управления"
-    view: "Открыть"
-    edit: "Изменить"
-    delete: "Удалить"
-    delete_confirmation: "Вы уверены, что хотите удалить это?"
-    create_another: "Создать ещё %{model}"
-    new_model: "Создать %{model}"
-    edit_model: "Изменить %{model}"
-    delete_model: "Удалить %{model}"
+    access_denied:
+      message: Вы не авторизованы для выполнения данного действия.
+    any: Любой
+    batch_actions:
+      action_label: "%{title} выбранное"
+      button_label: Групповые операции
+      default_confirmation: Вы уверены, что вы хотите это сделать?
+      delete_confirmation: Вы уверены, что хотите удалить %{plural_model}?
+      labels:
+        destroy: Удалить
+      selection_toggle_explanation: "(Отметить всё / Снять выделение)"
+      successfully_destroyed:
+        few: 'Успешно удалено: %{count} %{plural_model}'
+        many: 'Успешно удалено: %{count} %{plural_model}'
+        one: 'Успешно удалено: 1 %{model}'
+        other: 'Успешно удалено: %{count} %{plural_model}'
+    blank_slate:
+      content: Пока нет %{resource_name}.
+      link: Создать
+    cancel: Отмена
+    comments:
+      add: Добавить Комментарий
+      author: Автор
+      author_missing: Аноним
+      author_type: Тип автора
+      body: Текст
+      created_at: Дата создания
+      delete: Удалить Комментарий
+      delete_confirmation: Вы уверены, что хотите удалить этот комментарий?
+      errors:
+        empty_text: Комментарий не сохранен, текст не должен быть пустым.
+      no_comments_yet: Пока нет комментариев.
+      resource: Ресурс
+      resource_type: Тип ресурса
+      title_content: Комментарии (%{count})
+    create_another: Создать ещё %{model}
+    dashboard: Панель управления
+    delete: Удалить
+    delete_confirmation: Вы уверены, что хотите удалить это?
+    delete_model: Удалить %{model}
     details: "%{model} подробнее"
-    cancel: "Отмена"
-    empty: "Пусто"
-    previous: "Пред."
-    next: "След."
-    download: "Загрузка:"
-    has_many_new: "Добавить %{model}"
-    has_many_delete: "Удалить"
-    has_many_remove: "Убрать"
-    move: "Переместить"
+    devise:
+      change_password:
+        submit: Изменение пароля
+        title: Изменение пароля
+      email:
+        title: Эл. почта
+      links:
+        forgot_your_password: Забыли пароль?
+        resend_confirmation_instructions: Повторная отправка инструкций подтверждения
+        resend_unlock_instructions: Повторная отправка инструкций разблокировки
+        sign_in: Войти
+        sign_in_with_omniauth_provider: Войти с помощью %{provider}
+        sign_up: Зарегистрироваться
+      login:
+        remember_me: Запомнить меня
+        submit: Войти
+        title: Войти
+      password:
+        title: Пароль
+      password_confirmation:
+        title: Подтверждение пароля
+      resend_confirmation_instructions:
+        submit: Выслать повторно письмо с активацией
+        title: Выслать повторно письмо с активацией
+      reset_password:
+        submit: Сбросить пароль
+        title: Забыли пароль?
+      sign_up:
+        submit: Зарегистрироваться
+        title: Зарегистрироваться
+      subdomain:
+        title: Поддомен
+      unlock:
+        submit: Повторно отправить инструкции по разблокировке
+        title: Повторно отправить инструкции по разблокировке
+      username:
+        title: Имя пользователя
+    download: 'Загрузка:'
+    edit: Изменить
+    edit_model: Изменить %{model}
+    empty: Пусто
     filters:
       buttons:
-        filter: "Фильтровать"
-        clear: "Очистить"
+        clear: Очистить
+        filter: Фильтровать
       predicates:
-        from: "От"
-        to: "До"
-    scopes:
-      all: "Все"
-    search_status:
-      title: "Текущий поиск"
-      title_with_scope: "Текущий поиск %{name}"
-      no_current_filters: "Ни один"
-    status_tag:
-      "yes": "Да"
-      "no": "Нет"
-      "unset": "Нет"
-    toggle_dark_mode: "Переключить тёмную тему"
-    toggle_main_navigation_menu: "Переключить главное меню"
-    toggle_section: "Переключить секцию"
-    toggle_user_menu: "Переключить пользовательское меню"
-    logout: "Выйти"
-    powered_by: "Работает на %{active_admin} %{version}"
-    sidebars:
-      filters: "Фильтры"
-      search_status: "Статус поиска"
+        from: От
+        to: До
+    has_many_delete: Удалить
+    has_many_new: Добавить %{model}
+    has_many_remove: Убрать
+    index_list:
+      table: Таблица
+    logout: Выйти
+    move: Переместить
+    new_model: Создать %{model}
+    next: След.
     pagination:
       empty: "%{model} не найдено"
-      one: "Результат: <b>1</b> %{model}"
-      one_page: "Результат: <b>%{n}</b> %{model}"
-      multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>"
-      multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "На странице "
-      previous: "Предыдущая"
-      next: "Следующая"
       entry:
-        one: "запись"
-        few: "записи"
-        many: "записей"
-        other: "записей"
-    any: "Любой"
-    blank_slate:
-      content: "Пока нет %{resource_name}."
-      link: "Создать"
-    batch_actions:
-      button_label: "Групповые операции"
-      default_confirmation: "Вы уверены, что вы хотите это сделать?"
-      delete_confirmation: "Вы уверены, что хотите удалить %{plural_model}?"
-      succesfully_destroyed:
-        one: "Успешно удалено: 1 %{model}"
-        few: "Успешно удалено: %{count} %{plural_model}"
-        many: "Успешно удалено: %{count} %{plural_model}"
-        other: "Успешно удалено: %{count} %{plural_model}"
-      selection_toggle_explanation: "(Отметить всё / Снять выделение)"
-      action_label: "%{title} выбранное"
-      labels:
-        destroy: "Удалить"
-    comments:
-      created_at: "Дата создания"
-      resource_type: "Тип ресурса"
-      author_type: "Тип автора"
-      body: "Текст"
-      author: "Автор"
-      add: "Добавить Комментарий"
-      delete: "Удалить Комментарий"
-      delete_confirmation: "Вы уверены, что хотите удалить этот комментарий?"
-      resource: "Ресурс"
-      no_comments_yet: "Пока нет комментариев."
-      author_missing: "Аноним"
-      title_content: "Комментарии (%{count})"
-      errors:
-        empty_text: "Комментарий не сохранен, текст не должен быть пустым."
-    devise:
-      username:
-        title: "Имя пользователя"
-      email:
-        title: "Эл. почта"
-      subdomain:
-        title: "Поддомен"
-      password:
-        title: "Пароль"
-      password_confirmation:
-        title: "Подтверждение пароля"
-      sign_up:
-        title: "Зарегистрироваться"
-        submit: "Зарегистрироваться"
-      login:
-        title: "Войти"
-        remember_me: "Запомнить меня"
-        submit: "Войти"
-      reset_password:
-        title: "Забыли пароль?"
-        submit: "Сбросить пароль"
-      change_password:
-        title: "Изменение пароля"
-        submit: "Изменение пароля"
-      unlock:
-        title: "Повторно отправить инструкции по разблокировке"
-        submit: "Повторно отправить инструкции по разблокировке"
-      resend_confirmation_instructions:
-        title: "Выслать повторно письмо с активацией"
-        submit: "Выслать повторно письмо с активацией"
-      links:
-        sign_up: "Зарегистрироваться"
-        sign_in: "Войти"
-        forgot_your_password: "Забыли пароль?"
-        sign_in_with_omniauth_provider: "Войти с помощью %{provider}"
-        resend_unlock_instructions: "Повторная отправка инструкций разблокировки"
-        resend_confirmation_instructions: "Повторная отправка инструкций подтверждения"
-    access_denied:
-      message: "Вы не авторизованы для выполнения данного действия."
-    index_list:
-      table: "Таблица"
+        few: записи
+        many: записей
+        one: запись
+        other: записей
+      multiple: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>'
+      multiple_without_total: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>'
+      next: Следующая
+      one: 'Результат: <b>1</b> %{model}'
+      one_page: 'Результат: <b>%{n}</b> %{model}'
+      per_page: 'На странице '
+      previous: Предыдущая
+    powered_by: Работает на %{active_admin} %{version}
+    previous: Пред.
+    scopes:
+      all: Все
+    search_status:
+      no_current_filters: Ни один
+      title: Текущий поиск
+      title_with_scope: Текущий поиск %{name}
+    sidebars:
+      filters: Фильтры
+      search_status: Статус поиска
+    status_tag:
+      'no': Нет
+      unset: Нет
+      'yes': Да
+    toggle_dark_mode: Переключить тёмную тему
+    toggle_main_navigation_menu: Переключить главное меню
+    toggle_section: Переключить секцию
+    toggle_user_menu: Переключить пользовательское меню
+    view: Открыть
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Тип автора
+        body: Текст
+        created_at: Дата создания
+        namespace: Пространство имён
+        resource_type: Тип ресурса
+        updated_at: Дата обновления
+    models:
+      active_admin/comment:
+        few: Комментария
+        many: Комментариев
+        one: Комментарий
+        other: Комментариев
+      comment:
+        few: Комментария
+        many: Комментариев
+        one: Комментарий
+        other: Комментариев

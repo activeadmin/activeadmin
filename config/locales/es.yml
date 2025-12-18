@@ -1,144 +1,145 @@
+---
 es:
-  activerecord:
-    models:
-      comment:
-        one: "Comentario"
-        other: "Comentarios"
-      active_admin/comment:
-        one: "Comentario"
-        other: "Comentarios"
-    attributes:
-      active_admin/comment:
-        namespace: "Espacio de nombres"
-        body: "Cuerpo"
-        resource_type: "Tipo de recurso"
-        author_type: "Tipo de autor"
-        created_at: "Fecha de creación"
-        updated_at: "Fecha de actualización"
   active_admin:
-    dashboard: "Inicio"
-    view: "Ver"
-    edit: "Editar"
-    delete: "Eliminar"
+    access_denied:
+      message: No está autorizado/a a realizar esta acción.
+    any: Cualquiera
+    batch_actions:
+      action_label: "%{title} seleccionados"
+      button_label: Acciones en masa
+      default_confirmation: "¿Seguro que quieres hacer esto?"
+      delete_confirmation: Se eliminarán %{plural_model}. ¿Desea continuar?
+      labels:
+        destroy: Borrar
+      selection_toggle_explanation: "(Cambiar selección)"
+      successfully_destroyed:
+        one: Se ha destruido 1 %{model} con éxito
+        other: Se han destruido %{count} %{plural_model} con éxito
+    blank_slate:
+      content: No hay %{resource_name} aún.
+      link: Añadir
+    cancel: Cancelar
+    comments:
+      add: Comentar
+      author: Autor
+      author_missing: Anónimo
+      author_type: Tipo de autor
+      body: Cuerpo
+      created_at: Fecha de creación
+      delete: Borrar Comentario
+      delete_confirmation: "¿Confirma que desea borrar este comentario?"
+      errors:
+        empty_text: El comentario no fue guardado, el texto estaba vacío.
+      no_comments_yet: No hay comentarios aún.
+      resource: Recurso
+      resource_type: Tipo de recurso
+      title_content: Comentarios (%{count})
+    create_another: Crear otro %{model}
+    dashboard: Inicio
+    delete: Eliminar
     delete_confirmation: "¿Confirma que desea borrar este elemento?"
-    create_another: "Crear otro %{model}"
-    new_model: "Añadir %{model}"
-    edit_model: "Editar %{model}"
-    delete_model: "Eliminar %{model}"
-    details: "Detalles de %{model}"
-    cancel: "Cancelar"
-    empty: "Vacío"
-    previous: "Anterior"
-    next: "Siguiente"
-    download: "Descargar:"
-    has_many_new: "Añadir %{model}"
-    has_many_delete: "Eliminar"
-    has_many_remove: "Quitar"
-    move: "Mover"
-    toggle_dark_mode: "Alternar modo oscuro"
-    toggle_main_navigation_menu: "Alternar el menú de navegación principal"
-    toggle_user_menu: "Alternar menú de usuario"
-    toggle_section: "Alternar sección"
+    delete_model: Eliminar %{model}
+    details: Detalles de %{model}
+    devise:
+      change_password:
+        submit: Cambiar mi contraseña
+        title: Cambie su contraseña
+      email:
+        title: Email
+      links:
+        forgot_your_password: "¿Olvidó su contraseña?"
+        resend_confirmation_instructions: Reenviar instrucciones de confirmación
+        resend_unlock_instructions: Reenviar instrucciones de desbloqueo
+        sign_in: Iniciar Sesión
+        sign_in_with_omniauth_provider: Conéctate con %{provider}
+        sign_up: Registrarse
+      login:
+        remember_me: Recordarme
+        submit: Iniciar Sesión
+        title: Iniciar Sesión
+      password:
+        title: Contraseña
+      password_confirmation:
+        title: Confirmar Contraseña
+      resend_confirmation_instructions:
+        submit: Reenviar instrucciones de confirmación
+        title: Reenviar instrucciones de confirmación
+      reset_password:
+        submit: Restablecer mi contraseña
+        title: "¿Olvidó su contraseña?"
+      sign_up:
+        submit: Registrarse
+        title: Registrarse
+      subdomain:
+        title: Subdominio
+      unlock:
+        submit: Reenviar instrucciones de desbloqueo
+        title: Reenviar instrucciones de desbloqueo
+      username:
+        title: Nombre de usuario
+    download: 'Descargar:'
+    edit: Editar
+    edit_model: Editar %{model}
+    empty: Vacío
     filters:
       buttons:
-        filter: "Filtrar"
-        clear: "Quitar Filtros"
+        clear: Quitar Filtros
+        filter: Filtrar
       predicates:
-        from: "Desde"
-        to: "Hasta"
-    scopes:
-      all: "Todos"
-    search_status:
-      no_current_filters: "Ninguno"
-    status_tag:
-      "yes": "Sí"
-      "no": "No"
-      "unset": "No"
-    logout: "Salir"
-    powered_by: "Funciona con %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtros"
-      search_status: "Estado de la búsqueda"
-    pagination:
-      empty: "No se han encontrado %{model}"
-      one: "Mostrando <b>1</b> %{model}"
-      one_page: "Mostrando <b>un total de %{n}</b> %{model}"
-      multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
-      multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Por página: "
-      previous: "Anterior"
-      next: "Siguiente"
-      entry:
-        one: "registro"
-        other: "registros"
-    any: "Cualquiera"
-    blank_slate:
-      content: "No hay %{resource_name} aún."
-      link: "Añadir"
-    batch_actions:
-      button_label: "Acciones en masa"
-      default_confirmation: "¿Seguro que quieres hacer esto?"
-      delete_confirmation: "Se eliminarán %{plural_model}. ¿Desea continuar?"
-      succesfully_destroyed:
-        one: "Se ha destruido 1 %{model} con éxito"
-        other: "Se han destruido %{count} %{plural_model} con éxito"
-      selection_toggle_explanation: "(Cambiar selección)"
-      action_label: "%{title} seleccionados"
-      labels:
-        destroy: "Borrar"
-    comments:
-      created_at: "Fecha de creación"
-      resource_type: "Tipo de recurso"
-      author_type: "Tipo de autor"
-      body: "Cuerpo"
-      author: "Autor"
-      add: "Comentar"
-      delete: "Borrar Comentario"
-      delete_confirmation: "¿Confirma que desea borrar este comentario?"
-      resource: "Recurso"
-      no_comments_yet: "No hay comentarios aún."
-      author_missing: "Anónimo"
-      title_content: "Comentarios (%{count})"
-      errors:
-        empty_text: "El comentario no fue guardado, el texto estaba vacío."
-    devise:
-      username:
-        title: "Nombre de usuario"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Subdominio"
-      password:
-        title: "Contraseña"
-      password_confirmation:
-        title: "Confirmar Contraseña"
-      sign_up:
-        title: "Registrarse"
-        submit: "Registrarse"
-      login:
-        title: "Iniciar Sesión"
-        remember_me: "Recordarme"
-        submit: "Iniciar Sesión"
-      reset_password:
-        title: "¿Olvidó su contraseña?"
-        submit: "Restablecer mi contraseña"
-      change_password:
-        title: "Cambie su contraseña"
-        submit: "Cambiar mi contraseña"
-      unlock:
-        title: "Reenviar instrucciones de desbloqueo"
-        submit: "Reenviar instrucciones de desbloqueo"
-      resend_confirmation_instructions:
-        title: "Reenviar instrucciones de confirmación"
-        submit: "Reenviar instrucciones de confirmación"
-      links:
-        sign_up: "Registrarse"
-        sign_in: "Iniciar Sesión"
-        forgot_your_password: "¿Olvidó su contraseña?"
-        sign_in_with_omniauth_provider: "Conéctate con %{provider}"
-        resend_unlock_instructions: "Reenviar instrucciones de desbloqueo"
-        resend_confirmation_instructions: "Reenviar instrucciones de confirmación"
-    access_denied:
-      message: "No está autorizado/a a realizar esta acción."
+        from: Desde
+        to: Hasta
+    has_many_delete: Eliminar
+    has_many_new: Añadir %{model}
+    has_many_remove: Quitar
     index_list:
-      table: "Tabla"
+      table: Tabla
+    logout: Salir
+    move: Mover
+    new_model: Añadir %{model}
+    next: Siguiente
+    pagination:
+      empty: No se han encontrado %{model}
+      entry:
+        one: registro
+        other: registros
+      multiple: Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>
+      multiple_without_total: Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Siguiente
+      one: Mostrando <b>1</b> %{model}
+      one_page: Mostrando <b>un total de %{n}</b> %{model}
+      per_page: 'Por página: '
+      previous: Anterior
+    powered_by: Funciona con %{active_admin} %{version}
+    previous: Anterior
+    scopes:
+      all: Todos
+    search_status:
+      no_current_filters: Ninguno
+    sidebars:
+      filters: Filtros
+      search_status: Estado de la búsqueda
+    status_tag:
+      'no': 'No'
+      unset: 'No'
+      'yes': Sí
+    toggle_dark_mode: Alternar modo oscuro
+    toggle_main_navigation_menu: Alternar el menú de navegación principal
+    toggle_section: Alternar sección
+    toggle_user_menu: Alternar menú de usuario
+    view: Ver
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Tipo de autor
+        body: Cuerpo
+        created_at: Fecha de creación
+        namespace: Espacio de nombres
+        resource_type: Tipo de recurso
+        updated_at: Fecha de actualización
+    models:
+      active_admin/comment:
+        one: Comentario
+        other: Comentarios
+      comment:
+        one: Comentario
+        other: Comentarios

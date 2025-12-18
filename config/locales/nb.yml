@@ -1,110 +1,111 @@
+---
 nb:
   active_admin:
+    access_denied:
+      message: Du er ikke autorisert til å utføre denne handlingen.
+    any: Alle
+    batch_actions:
+      action_label: "%{title} valgt"
+      button_label: Gruppehandlinger
+      delete_confirmation: Er du sikker på at du vil slette disse %{plural_model}? Dette kan ikke reverseres.
+      labels:
+        destroy: Slett
+      selection_toggle_explanation: "(Toggle Selection)"
+      successfully_destroyed:
+        one: Slettet én %{model}
+        other: Slettet %{count} %{plural_model}
+    blank_slate:
+      content: Her er det ingen %{resource_name} enda.
+      link: Opprett en
+    cancel: Avbryt
+    comments:
+      add: Legg til kommentar
+      author: Forfatter
+      author_missing: Anonym
+      author_type: Forfattertype
+      body: Brødtekst
+      created_at: Opprettet
+      delete: Slett kommentar
+      delete_confirmation: Er du sikker på at du ønsker å slette kommentaren?
+      errors:
+        empty_text: Kommentar ble ikke lagret, teksten var tom.
+      no_comments_yet: Ingen kommentarer ennå.
+      resource: Ressurs
+      resource_type: Ressurstype
+      title_content: Kommentarer (%{count})
     dashboard: Oversikt
-    view: "Vis"
-    edit: "Rediger"
-    delete: "Slett"
-    delete_confirmation: "Er du sikker på at du vil slette denne?"
-    new_model: "Ny %{model}"
-    edit_model: "Rediger %{model}"
-    delete_model: "Slett %{model}"
+    delete: Slett
+    delete_confirmation: Er du sikker på at du vil slette denne?
+    delete_model: Slett %{model}
     details: "%{model} Detaljer"
-    cancel: "Avbryt"
-    empty: "Tom"
-    previous: "Forrige"
-    next: "Neste"
-    download: "Last ned:"
-    has_many_new: "Legg til ny %{model}"
-    has_many_delete: "Slett"
-    has_many_remove: "Fjern"
+    devise:
+      change_password:
+        submit: Endre mitt passord
+        title: Endre passordet
+      email:
+        title: E-post
+      links:
+        forgot_your_password: Glemt passord?
+        sign_in: Logg inn
+        sign_in_with_omniauth_provider: Logg på med %{provider}
+      login:
+        remember_me: Husk meg
+        submit: Logg inn
+        title: Innlogging
+      password:
+        title: Passord
+      resend_confirmation_instructions:
+        submit: Send bekreftelsesinformasjon på nytt
+        title: Send bekreftelsesinformasjon på nytt
+      reset_password:
+        submit: Tilbakestille passordet mitt
+        title: Glemt passord?
+      sign_up:
+        submit: Opprett
+        title: Opprett brukerkonto
+      subdomain:
+        title: Subdomene
+      unlock:
+        submit: Send info om gjenoppretting på nytt
+        title: Send info om gjenoppretting på nytt
+      username:
+        title: Brukernavn
+    download: 'Last ned:'
+    edit: Rediger
+    edit_model: Rediger %{model}
+    empty: Tom
     filters:
       buttons:
-        filter: "Filter"
-        clear: "Fjern filter"
+        clear: Fjern filter
+        filter: Filter
       predicates:
-        from: "Fra"
-        to: "Til"
-    search_status:
-      no_current_filters: "Ingen"
-    status_tag:
-      "yes": "Ja"
-      "no": "Nei"
-      "unset": "Nei"
-    logout: "Logg ut"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtere"
-    pagination:
-      empty: "Fant ingen %{model}"
-      one: "Viser <b>1</b> %{model}"
-      one_page: "Viser <b>alle %{n}</b> %{model}"
-      multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
-      multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      entry:
-        one: "innslag"
-        other: "innslag"
-    any: "Alle"
-    blank_slate:
-      content: "Her er det ingen %{resource_name} enda."
-      link: "Opprett en"
-    batch_actions:
-      button_label: "Gruppehandlinger"
-      delete_confirmation: "Er du sikker på at du vil slette disse %{plural_model}? Dette kan ikke reverseres."
-      succesfully_destroyed:
-        one: "Slettet én %{model}"
-        other: "Slettet %{count} %{plural_model}"
-      selection_toggle_explanation: "(Toggle Selection)"
-      action_label: "%{title} valgt"
-      labels:
-        destroy: "Slett"
-    comments:
-      created_at: "Opprettet"
-      resource_type: "Ressurstype"
-      author_type: "Forfattertype"
-      body: "Brødtekst"
-      author: "Forfatter"
-      add: "Legg til kommentar"
-      delete: "Slett kommentar"
-      delete_confirmation: "Er du sikker på at du ønsker å slette kommentaren?"
-      resource: "Ressurs"
-      no_comments_yet: "Ingen kommentarer ennå."
-      author_missing: "Anonym"
-      title_content: "Kommentarer (%{count})"
-      errors:
-        empty_text: "Kommentar ble ikke lagret, teksten var tom."
-    devise:
-      username:
-        title: "Brukernavn"
-      email:
-        title: "E-post"
-      subdomain:
-        title: "Subdomene"
-      password:
-        title: "Passord"
-      sign_up:
-        title: "Opprett brukerkonto"
-        submit: "Opprett"
-      login:
-        title: "Innlogging"
-        remember_me: "Husk meg"
-        submit: "Logg inn"
-      reset_password:
-        title: "Glemt passord?"
-        submit: "Tilbakestille passordet mitt"
-      change_password:
-        title: "Endre passordet"
-        submit: "Endre mitt passord"
-      unlock:
-        title: "Send info om gjenoppretting på nytt"
-        submit: "Send info om gjenoppretting på nytt"
-      resend_confirmation_instructions:
-        title: "Send bekreftelsesinformasjon på nytt"
-        submit: "Send bekreftelsesinformasjon på nytt"
-      links:
-        sign_in: "Logg inn"
-        forgot_your_password: "Glemt passord?"
-        sign_in_with_omniauth_provider: "Logg på med %{provider}"
-    access_denied:
-      message: "Du er ikke autorisert til å utføre denne handlingen."
+        from: Fra
+        to: Til
+    has_many_delete: Slett
+    has_many_new: Legg til ny %{model}
+    has_many_remove: Fjern
     index_list:
-      table: "Tabell"
+      table: Tabell
+    logout: Logg ut
+    new_model: Ny %{model}
+    next: Neste
+    pagination:
+      empty: Fant ingen %{model}
+      entry:
+        one: innslag
+        other: innslag
+      multiple: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt
+      multiple_without_total: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Viser <b>1</b> %{model}
+      one_page: Viser <b>alle %{n}</b> %{model}
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Forrige
+    search_status:
+      no_current_filters: Ingen
+    sidebars:
+      filters: Filtere
+    status_tag:
+      'no': Nei
+      unset: Nei
+      'yes': Ja
+    view: Vis

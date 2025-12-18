@@ -13,7 +13,7 @@ plugins:
 
 AllCops:
   DisabledByDefault: true
-  TargetRubyVersion: 3.1
+  TargetRubyVersion: 3.2
   TargetRailsVersion: 7.0
 
   Exclude:
@@ -140,6 +140,9 @@ Lint/AmbiguousRegexpLiteral:
   Enabled: true
 
 Lint/ParenthesesAsGroupedExpression:
+  Enabled: true
+
+Lint/RedundantStringCoercion:
   Enabled: true
 
 Lint/UselessAccessModifier:
@@ -328,6 +331,9 @@ Rails/FilePath:
   Enabled: true
   EnforcedStyle: slashes
 
+Rails/RootPathnameMethods:
+  Enabled: true
+
 RSpec/EmptyLineAfterExample:
   Enabled: true
 
@@ -366,7 +372,7 @@ Layout/IndentationConsistency:
 Layout/IndentationWidth:
   Enabled: true
 
-Naming/PredicateName:
+Naming/PredicatePrefix:
   Enabled: true
 
   ForbiddenPrefixes:

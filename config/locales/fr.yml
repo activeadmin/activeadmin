@@ -1,137 +1,148 @@
+---
 fr:
-  activerecord:
-    models:
-      comment:
-        one: "Commentaire"
-        other: "Commentaires"
-      active_admin/comment:
-        one: "Commentaire"
-        other: "Commentaires"
-    attributes:
-      active_admin/comment:
-        author_type: "Type d'auteur"
-        body: "Corps"
-        created_at: "Créé le"
-        namespace: "Espace de nom"
-        resource_type: "Type de ressource"
-        updated_at: "Mis à jour le"
   active_admin:
-    dashboard: "Tableau de bord"
-    view: "Voir"
-    edit: "Modifier"
-    delete: "Supprimer"
-    delete_confirmation: "Voulez-vous vraiment supprimer ceci ?"
-    create_another: "Créer autre %{model}"
-    new_model: "Créer %{model}"
-    edit_model: "Modifier %{model}"
-    delete_model: "Supprimer %{model}"
-    details: "Détails de %{model}"
-    cancel: "Annuler"
-    empty: "Vide"
-    previous: "Précédent"
-    next: "Suivant"
-    download: "Télécharger :"
-    has_many_new: "Ajouter un(e) %{model}"
-    has_many_delete: "Supprimer"
-    has_many_remove: "Enlever"
+    access_denied:
+      message: Vous n'êtes pas autorisé à exécuter cette action
+    any: N'importe lequel
+    batch_actions:
+      action_label: "%{title} les éléments sélectionnés"
+      button_label: Actions groupées
+      default_confirmation: Voulez-vous vraiment faire cela ?
+      delete_confirmation: Voulez-vous vraiment supprimer ces %{plural_model} ?
+      labels:
+        destroy: Supprimer
+      selection_toggle_explanation: "(Inverser la sélection)"
+      successfully_destroyed:
+        one: 1 %{model} supprimé(e)
+        other: "%{count} %{plural_model} supprimé(e)s"
+    blank_slate:
+      content: Il n'y a pas encore de %{resource_name}.
+      link: Créez en un
+    cancel: Annuler
+    comments:
+      add: Ajouter un commentaire
+      author: Auteur
+      author_missing: Anonyme
+      author_type: Profil de l'auteur
+      body: Corps
+      created_at: Créé le
+      delete: Supprimer ce commentaire
+      delete_confirmation: Voulez-vous vraiment supprimer ce commentaire ?
+      errors:
+        empty_text: Le commentaire n'a pas été enregistré puisque le texte était vide.
+      no_comments_yet: Aucun commentaire actuellement
+      resource: Ressource
+      resource_type: Type de ressource
+      title_content: Tous les commentaires (%{count})
+    create_another: Créer autre %{model}
+    dashboard: Tableau de bord
+    delete: Supprimer
+    delete_confirmation: Voulez-vous vraiment supprimer ceci ?
+    delete_model: Supprimer %{model}
+    details: Détails de %{model}
+    devise:
+      change_password:
+        submit: Changer mon mot de passe
+        title: Changez votre mot de passe
+      email:
+        title: Email
+      links:
+        forgot_your_password: Vous avez oublié votre mot de passe ?
+        resend_confirmation_instructions: Renvoyer les instructions de confirmation
+        resend_unlock_instructions: Renvoyer les informations de déverrouillage
+        sign_in: Connectez-vous
+        sign_in_with_omniauth_provider: Connectez-vous avec %{provider}
+        sign_up: Inscrivez-vous
+      login:
+        remember_me: Garder ma session ouverte
+        submit: Se connecter
+        title: Connexion
+      password:
+        title: Mot de passe
+      password_confirmation:
+        title: Confirmer le mot de passe
+      resend_confirmation_instructions:
+        submit: Renvoyer les instructions de confirmation
+        title: Renvoyer les instructions de confirmation
+      reset_password:
+        submit: Réinitialiser mon mot de passe
+        title: Vous avez oublié votre mot de passe ?
+      sign_up:
+        submit: S'inscrire
+        title: S'inscrire
+      subdomain:
+        title: Sous-domaine
+      unlock:
+        submit: Renvoyer les informations de déverrouillage
+        title: Renvoyer les informations de déverrouillage
+      username:
+        title: Nom d'utilisateur
+    download: 'Télécharger :'
+    edit: Modifier
+    edit_model: Modifier %{model}
+    empty: Vide
     filters:
       buttons:
-        filter: "Filtrer"
-        clear: "Supprimer les filtres"
+        clear: Supprimer les filtres
+        filter: Filtrer
       predicates:
-        from: "De"
-        to: "À"
-    search_status:
-      title: "Recherche active"
-      title_with_scope: "Recherche active pour %{name}"
-      no_current_filters: "Aucun filtre appliqué"
-    status_tag:
-      "yes": "Oui"
-      "no": "Non"
-      "unset": "Inconnu"
-    logout: "Déconnexion"
-    powered_by: "Propulsé par %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtres"
-      search_status: "Statut de la recherche"
-    pagination:
-      empty: "Aucun(e) %{model} trouvé(e)"
-      one: "Affichage de <b>1</b> sur <b>1</b>"
-      one_page: "Affichage de <b>tous les %{n}</b>"
-      multiple: "Affichage de <b>%{from}-%{to}</b> sur <b>%{total}</b>"
-      multiple_without_total: "Affichage de <b>%{from}-%{to}</b>"
-      per_page: "Par page "
-      previous: "Précédent"
-      next: "Suivant"
-      entry:
-        one: "entrée"
-        other: "entrées"
-    any: "N'importe lequel"
-    blank_slate:
-      content: "Il n'y a pas encore de %{resource_name}."
-      link: "Créez en un"
-    batch_actions:
-      button_label: "Actions groupées"
-      default_confirmation: "Voulez-vous vraiment faire cela ?"
-      delete_confirmation: "Voulez-vous vraiment supprimer ces %{plural_model} ?"
-      succesfully_destroyed:
-        one: "1 %{model} supprimé(e)"
-        other: "%{count} %{plural_model} supprimé(e)s"
-      selection_toggle_explanation: "(Inverser la sélection)"
-      action_label: "%{title} les éléments sélectionnés"
-      labels:
-        destroy: "Supprimer"
-    comments:
-      created_at: "Créé le"
-      resource_type: "Type de ressource"
-      author_type: "Profil de l'auteur"
-      body: "Corps"
-      author: "Auteur"
-      add: "Ajouter un commentaire"
-      delete: "Supprimer ce commentaire"
-      delete_confirmation: "Voulez-vous vraiment supprimer ce commentaire ?"
-      resource: "Ressource"
-      no_comments_yet: "Aucun commentaire actuellement"
-      author_missing: "Anonyme"
-      title_content: "Tous les commentaires (%{count})"
-      errors:
-        empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
-    devise:
-      username:
-        title: "Nom d'utilisateur"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Sous-domaine"
-      password:
-        title: "Mot de passe"
-      sign_up:
-        title: "S'inscrire"
-        submit: "S'inscrire"
-      login:
-        title: "Connexion"
-        remember_me: "Garder ma session ouverte"
-        submit: "Se connecter"
-      reset_password:
-        title: "Vous avez oublié votre mot de passe ?"
-        submit: "Réinitialiser mon mot de passe"
-      change_password:
-        title: "Changez votre mot de passe"
-        submit: "Changer mon mot de passe"
-      unlock:
-        title: "Renvoyer les informations de déverrouillage"
-        submit: "Renvoyer les informations de déverrouillage"
-      resend_confirmation_instructions:
-        title: "Renvoyer les instructions de confirmation"
-        submit: "Renvoyer les instructions de confirmation"
-      links:
-        sign_up: "Inscrivez-vous"
-        sign_in: "Connectez-vous"
-        forgot_your_password: "Vous avez oublié votre mot de passe ?"
-        sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
-        resend_unlock_instructions: "Renvoyer les informations de déverrouillage"
-        resend_confirmation_instructions: "Renvoyer les instructions de confirmation"
-    access_denied:
-      message: "Vous n'êtes pas autorisé à exécuter cette action"
+        from: De
+        to: À
+    has_many_delete: Supprimer
+    has_many_new: Ajouter un(e) %{model}
+    has_many_remove: Enlever
     index_list:
-      table: "Tableau"
+      table: Tableau
+    logout: Déconnexion
+    move: Déplacer
+    new_model: Créer %{model}
+    next: Suivant
+    pagination:
+      empty: Aucun(e) %{model} trouvé(e)
+      entry:
+        one: entrée
+        other: entrées
+      multiple: Affichage de <b>%{from}-%{to}</b> sur <b>%{total}</b>
+      multiple_without_total: Affichage de <b>%{from}-%{to}</b>
+      next: Suivant
+      one: Affichage de <b>1</b> sur <b>1</b>
+      one_page: Affichage de <b>tous les %{n}</b>
+      per_page: 'Par page '
+      previous: Précédent
+      truncate: "&hellip;"
+    powered_by: Propulsé par %{active_admin} %{version}
+    previous: Précédent
+    scopes:
+      all: Tout
+    search_status:
+      no_current_filters: Aucun filtre appliqué
+      title: Recherche active
+      title_with_scope: Recherche active pour %{name}
+    sidebars:
+      filters: Filtres
+      search_status: Statut de la recherche
+    status_tag:
+      'no': Non
+      unset: Inconnu
+      'yes': Oui
+    toggle_dark_mode: Bascule de mode sombre
+    toggle_main_navigation_menu: Bascule de menu principal
+    toggle_section: Bascule de section
+    toggle_user_menu: Bascule de menu utilisateur
+    view: Voir
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Type d'auteur
+        body: Corps
+        created_at: Créé le
+        namespace: Espace de nom
+        resource_type: Type de ressource
+        updated_at: Mis à jour le
+    models:
+      active_admin/comment:
+        one: Commentaire
+        other: Commentaires
+      comment:
+        one: Commentaire
+        other: Commentaires

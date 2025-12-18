@@ -22,31 +22,28 @@ jobs:
           - "3.4"
           - "3.3"
           - "3.2"
-          - "3.1"
         os:
           - ubuntu-latest
         rails:
+          - rails_81
           - rails_80
           - rails_72
           - rails_71
           - rails_70
         exclude:
-          - ruby: '3.1'
-            os: ubuntu-latest
-            rails: rails_80
           - ruby: '3.4'
             os: ubuntu-latest
             rails: rails_70
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Configure bundler (default)
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
-        if: matrix.rails == 'rails_80'
+        if: matrix.rails == 'rails_81'
       - name: Configure bundler (alternative)
         run: |
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.rails }}/Gemfile" >> "$GITHUB_ENV"
-        if: matrix.rails != 'rails_80'
+        if: matrix.rails != 'rails_81'
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
@@ -55,7 +52,7 @@ jobs:
       - name: Create test app
         run: bin/rake setup
       - name: Restore cached RSpec runtimes
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: tmp/parallel_runtime_rspec.log
           key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.rails }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
@@ -66,7 +63,7 @@ jobs:
           bin/parallel_rspec
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
       - name: Restore cached cucumber runtimes
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: tmp/parallel_runtime_cucumber.log
           key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.rails }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
@@ -79,7 +76,7 @@ jobs:
           bin/cucumber --profile class-reloading
       - name: Rename coverage file by matrix run
         run: mv coverage/coverage.xml coverage/coverage-ruby-${{ matrix.ruby }}-${{ matrix.rails }}.xml
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: coverage-ruby-${{ matrix.ruby }}-${{ matrix.rails }}
           path: coverage
@@ -92,8 +89,8 @@ jobs:
     if: ${{ github.repository_owner == 'activeadmin' }}
     needs: [test]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v7
         with:
           path: coverage
           pattern: coverage-ruby-*
@@ -108,15 +105,15 @@ jobs:
     name: Build docs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: tj-actions/changed-files@v46
+      - uses: actions/checkout@v6
+      - uses: tj-actions/changed-files@v47
         id: changed-files
         with:
           files: |
             docs/**
             package*.json
             yarn.lock
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           node-version: 22

@@ -1,121 +1,122 @@
+---
 ja:
   active_admin:
-    dashboard: "ダッシュボード"
-    view: "閲覧"
-    edit: "編集"
-    delete: "削除"
-    delete_confirmation: "本当に削除しますか？"
-    create_another: "%{model} を続けて作成する"
-    new_model: "%{model} を作成する"
-    edit_model: "%{model} を編集する"
-    delete_model: "%{model} を削除する"
-    details: "%{model} の詳細"
-    cancel: "取り消す"
-    empty: "空"
-    previous: "前"
-    next: "次"
-    download: "ダウンロード:"
-    has_many_new: "%{model} を追加する"
-    has_many_delete: "削除する"
-    has_many_remove: "削除する"
-    filters:
-      buttons:
-        filter: "絞り込む"
-        clear: "条件を削除する"
-      predicates:
-        from: "開始"
-        to: "終了"
-    search_status:
-      no_current_filters: "なし"
-    status_tag:
-      "yes": "はい"
-      "no": "いいえ"
-      "unset": "いいえ"
-    toggle_dark_mode: "ダークモードを切り替える"
-    toggle_main_navigation_menu: "メインナビゲーションメニューを切り替える"
-    toggle_section: "セクションを切り替える"
-    toggle_user_menu: "ユーザーメニューを切り替える"
-    logout: "ログアウト"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "検索条件"
-      search_status: "検索状態"
-    pagination:
-      empty: "%{model} は見つかりませんでした"
-      one: "<b>1</b> 件の %{model} を表示しています"
-      one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
-      multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
-      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
-      per_page: "表示件数: "
-      entry:
-        one: "レコード"
-        other: "レコード"
-    any: "任意"
+    access_denied:
+      message: アクションを実行する権限がありません
+    any: 任意
+    batch_actions:
+      action_label: 選択した行を%{title}
+      button_label: 一括操作
+      default_confirmation: 本当によろしいですか？
+      delete_confirmation: "%{plural_model} を削除してもよろしいですか？"
+      labels:
+        destroy: 削除する
+      selection_toggle_explanation: "(選択)"
+      successfully_destroyed:
+        one: 1件の %{model} を削除しました
+        other: "%{count}件の %{plural_model} を削除しました"
     blank_slate:
       content: "%{resource_name} はまだありません。"
-      link: "作成する"
-    batch_actions:
-      button_label: "一括操作"
-      default_confirmation: "本当によろしいですか？"
-      delete_confirmation: "%{plural_model} を削除してもよろしいですか？"
-      succesfully_destroyed:
-        one: "1件の %{model} を削除しました"
-        other: "%{count}件の %{plural_model} を削除しました"
-      selection_toggle_explanation: "(選択)"
-      action_label: "選択した行を%{title}"
-      labels:
-        destroy: "削除する"
+      link: 作成する
+    cancel: 取り消す
     comments:
-      created_at: "作成日"
-      resource_type: "リソース種別"
-      author_type: "作成者種別"
-      body: "本文"
-      author: "作成者"
-      add: "コメントを追加"
-      delete: "コメントを削除"
-      delete_confirmation: "本当にコメントを削除しますか？"
-      resource: "リソース"
-      no_comments_yet: "コメントはまだありません。"
-      author_missing: "匿名ユーザ"
-      title_content: "コメント (%{count})"
+      add: コメントを追加
+      author: 作成者
+      author_missing: 匿名ユーザ
+      author_type: 作成者種別
+      body: 本文
+      created_at: 作成日
+      delete: コメントを削除
+      delete_confirmation: 本当にコメントを削除しますか？
       errors:
-        empty_text: "テキストが空のため、コメントは保存されませんでした。"
+        empty_text: テキストが空のため、コメントは保存されませんでした。
+      no_comments_yet: コメントはまだありません。
+      resource: リソース
+      resource_type: リソース種別
+      title_content: コメント (%{count})
+    create_another: "%{model} を続けて作成する"
+    dashboard: ダッシュボード
+    delete: 削除
+    delete_confirmation: 本当に削除しますか？
+    delete_model: "%{model} を削除する"
+    details: "%{model} の詳細"
     devise:
-      username:
-        title: "ユーザ名"
-      email:
-        title: "メールアドレス"
-      subdomain:
-        title: "サブドメイン"
-      password:
-        title: "パスワード"
-      sign_up:
-        title: "登録"
-        submit: "登録"
-      login:
-        title: "ログイン"
-        remember_me: "次回から自動的にログイン"
-        submit: "ログイン"
-      reset_password:
-        title: "パスワードをお忘れですか？"
-        submit: "パスワードをリセットする"
       change_password:
-        title: "パスワードを変更する"
-        submit: "パスワードを変更する"
-      unlock:
-        title: "ロックの解除方法を送る"
-        submit: "ロックの解除方法を送る"
-      resend_confirmation_instructions:
-        title: "確認方法を再送信する"
-        submit: "確認方法を再送信する"
+        submit: パスワードを変更する
+        title: パスワードを変更する
+      email:
+        title: メールアドレス
       links:
-        sign_in: "サインイン"
-        sign_up: "ユーザ登録"
-        forgot_your_password: "パスワードをお忘れですか？"
+        forgot_your_password: パスワードをお忘れですか？
+        resend_confirmation_instructions: ユーザ確認手順を再送する
+        resend_unlock_instructions: ロックの解除方法を再送する
+        sign_in: サインイン
         sign_in_with_omniauth_provider: "%{provider}のアカウントを使ってログイン"
-        resend_confirmation_instructions: "ユーザ確認手順を再送する"
-        resend_unlock_instructions: "ロックの解除方法を再送する"
-    access_denied:
-      message: "アクションを実行する権限がありません"
+        sign_up: ユーザ登録
+      login:
+        remember_me: 次回から自動的にログイン
+        submit: ログイン
+        title: ログイン
+      password:
+        title: パスワード
+      resend_confirmation_instructions:
+        submit: 確認方法を再送信する
+        title: 確認方法を再送信する
+      reset_password:
+        submit: パスワードをリセットする
+        title: パスワードをお忘れですか？
+      sign_up:
+        submit: 登録
+        title: 登録
+      subdomain:
+        title: サブドメイン
+      unlock:
+        submit: ロックの解除方法を送る
+        title: ロックの解除方法を送る
+      username:
+        title: ユーザ名
+    download: 'ダウンロード:'
+    edit: 編集
+    edit_model: "%{model} を編集する"
+    empty: 空
+    filters:
+      buttons:
+        clear: 条件を削除する
+        filter: 絞り込む
+      predicates:
+        from: 開始
+        to: 終了
+    has_many_delete: 削除する
+    has_many_new: "%{model} を追加する"
+    has_many_remove: 削除する
     index_list:
-      table: "テーブル"
+      table: テーブル
+    logout: ログアウト
+    new_model: "%{model} を作成する"
+    next: 次
+    pagination:
+      empty: "%{model} は見つかりませんでした"
+      entry:
+        one: レコード
+        other: レコード
+      multiple: 全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています
+      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
+      one: "<b>1</b> 件の %{model} を表示しています"
+      one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
+      per_page: '表示件数: '
+    powered_by: Powered by %{active_admin} %{version}
+    previous: 前
+    search_status:
+      no_current_filters: なし
+    sidebars:
+      filters: 検索条件
+      search_status: 検索状態
+    status_tag:
+      'no': いいえ
+      unset: いいえ
+      'yes': はい
+    toggle_dark_mode: ダークモードを切り替える
+    toggle_main_navigation_menu: メインナビゲーションメニューを切り替える
+    toggle_section: セクションを切り替える
+    toggle_user_menu: ユーザーメニューを切り替える
+    view: 閲覧

@@ -1,112 +1,113 @@
+---
 id:
   active_admin:
-    dashboard: Dashboard
-    view: "Lihat"
-    edit: "Ubah"
-    delete: "Hapus"
-    delete_confirmation: "Apakah anda yakin ingin menghapus data ini?"
-    new_model: "Tambah %{model} baru"
-    edit_model: "Ubah %{model}"
-    delete_model: "Hapus %{model}"
-    details: "Detail %{model}"
-    cancel: "Batal"
-    empty: "Kosong"
-    previous: "Sebelumnya"
-    next: "Berikutnya"
-    download: "Unduh:"
-    has_many_new: "Tambah %{model} baru"
-    has_many_delete: "Hapus"
-    has_many_remove: "Hapus"
-    filters:
-      buttons:
-        filter: "Filter"
-        clear: "Hapus Filters"
-    search_status:
-      no_current_filters: "Tidak ada"
-    status_tag:
-      "yes": "Ya"
-      "no": "Tidak"
-      "unset": "Tidak"
-    logout: "Keluar"
-    powered_by: "Dibuat dengan %{active_admin} %{version}"
-    sidebars:
-      filters: "Filter"
-      search_status: "Status Pencarian"
-    pagination:
-      empty: "Tidak ada %{model} yang bisa ditemukan"
-      one: "Menampilkan <b>1</b> %{model}"
-      one_page: "Menampilkan <b>semua %{n}</b> %{model}"
-      multiple: "Menampilkan <b>%{from}&nbsp;-&nbsp;%{to}</b> dari <b>%{total}</b> keseluruhan %{model}"
-      multiple_without_total: "Menampilkan <b>%{from}&nbsp;-&nbsp;%{to} %{model}</b>"
-      entry:
-        one: "data"
-        other: "data"
-    any: "Apapun"
+    access_denied:
+      message: Anda tidak diperkenankan melakukan aksi tersebut.
+    any: Apapun
+    batch_actions:
+      action_label: "%{title} terpilih"
+      button_label: Tindakan Serentak
+      default_confirmation: Apakah anda yakin akan melakukan ini?
+      delete_confirmation: Apakah anda yakin akan menghapus %{plural_model}?
+      labels:
+        destroy: Hapus
+      selection_toggle_explanation: "(Tampilkan Pilihan)"
+      successfully_destroyed:
+        one: Berhasil menghapus %{model}
+        other: Berhasil menghapus %{count} %{plural_model}
     blank_slate:
       content: "%{resource_name} masih belum ada sama sekali."
-      link: "Tambah data"
-    batch_actions:
-      button_label: "Tindakan Serentak"
-      default_confirmation: "Apakah anda yakin akan melakukan ini?"
-      delete_confirmation: "Apakah anda yakin akan menghapus %{plural_model}?"
-      succesfully_destroyed:
-        one: "Berhasil menghapus %{model}"
-        other: "Berhasil menghapus %{count} %{plural_model}"
-      selection_toggle_explanation: "(Tampilkan Pilihan)"
-      action_label: "%{title} terpilih"
-      labels:
-        destroy: "Hapus"
+      link: Tambah data
+    cancel: Batal
     comments:
-      created_at: "Dibuat"
-      resource_type: "Jenis Resource"
-      author_type: "Tipe Penulis"
-      body: "Isi"
-      author: "Penulis"
-      add: "Tambah Komentar"
-      delete: "Hapus Komentar"
-      delete_confirmation: "Apakah anda yakin akan menghapus komentar tersebut?"
-      resource: "Resource"
-      no_comments_yet: "Belum ada komentar sama sekali."
-      author_missing: "Anonim"
-      title_content: "Komentar (%{count})"
+      add: Tambah Komentar
+      author: Penulis
+      author_missing: Anonim
+      author_type: Tipe Penulis
+      body: Isi
+      created_at: Dibuat
+      delete: Hapus Komentar
+      delete_confirmation: Apakah anda yakin akan menghapus komentar tersebut?
       errors:
-        empty_text: "Komentar tak bisa disimpan, text tidak boleh dikosongi."
+        empty_text: Komentar tak bisa disimpan, text tidak boleh dikosongi.
+      no_comments_yet: Belum ada komentar sama sekali.
+      resource: Resource
+      resource_type: Jenis Resource
+      title_content: Komentar (%{count})
+    dashboard: Dashboard
+    delete: Hapus
+    delete_confirmation: Apakah anda yakin ingin menghapus data ini?
+    delete_model: Hapus %{model}
+    details: Detail %{model}
     devise:
-      username:
-        title: "Username"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Subdomain"
-      password:
-        title: "Password"
-      sign_up:
-        title: " - Daftar"
-        submit: "Daftar"
-      login:
-        title: " - Masuk"
-        remember_me: "Ingat saya"
-        submit: "Masuk"
-      reset_password:
-        title: " - Form Atur Ulang Password"
-        submit: "Atur ulang password"
       change_password:
+        submit: Kirimkan instruksi pengaturan ulang password
         title: " - Atur Ulang Password"
-        submit: "Kirimkan instruksi pengaturan ulang password"
-      unlock:
-        title: " - Kirim Instruksi Pengaktifan Kembali Akun"
-        submit: "Kirimkan instruksi pengaktifan kembali akun"
-      resend_confirmation_instructions:
-        title: " - Kirim Lagi Instruksi Konfirmasi Akun"
-        submit: "Kirimkan lagi instruksi konfirmasi akun"
+      email:
+        title: Email
       links:
-        sign_up: "Daftar"
-        sign_in: "Masuk"
-        forgot_your_password: "Lupa password?"
-        sign_in_with_omniauth_provider: "Daftar melalui %{provider}"
-        resend_unlock_instructions: "Kirim instruksi pengaktifan kembali akun"
-        resend_confirmation_instructions: "Kirim lagi instruksi konfirmasi akun"
-    access_denied:
-      message: "Anda tidak diperkenankan melakukan aksi tersebut."
+        forgot_your_password: Lupa password?
+        resend_confirmation_instructions: Kirim lagi instruksi konfirmasi akun
+        resend_unlock_instructions: Kirim instruksi pengaktifan kembali akun
+        sign_in: Masuk
+        sign_in_with_omniauth_provider: Daftar melalui %{provider}
+        sign_up: Daftar
+      login:
+        remember_me: Ingat saya
+        submit: Masuk
+        title: " - Masuk"
+      password:
+        title: Password
+      resend_confirmation_instructions:
+        submit: Kirimkan lagi instruksi konfirmasi akun
+        title: " - Kirim Lagi Instruksi Konfirmasi Akun"
+      reset_password:
+        submit: Atur ulang password
+        title: " - Form Atur Ulang Password"
+      sign_up:
+        submit: Daftar
+        title: " - Daftar"
+      subdomain:
+        title: Subdomain
+      unlock:
+        submit: Kirimkan instruksi pengaktifan kembali akun
+        title: " - Kirim Instruksi Pengaktifan Kembali Akun"
+      username:
+        title: Username
+    download: 'Unduh:'
+    edit: Ubah
+    edit_model: Ubah %{model}
+    empty: Kosong
+    filters:
+      buttons:
+        clear: Hapus Filters
+        filter: Filter
+    has_many_delete: Hapus
+    has_many_new: Tambah %{model} baru
+    has_many_remove: Hapus
     index_list:
-      table: "Tabel"
+      table: Tabel
+    logout: Keluar
+    new_model: Tambah %{model} baru
+    next: Berikutnya
+    pagination:
+      empty: Tidak ada %{model} yang bisa ditemukan
+      entry:
+        one: data
+        other: data
+      multiple: Menampilkan <b>%{from}&nbsp;-&nbsp;%{to}</b> dari <b>%{total}</b> keseluruhan %{model}
+      multiple_without_total: Menampilkan <b>%{from}&nbsp;-&nbsp;%{to} %{model}</b>
+      one: Menampilkan <b>1</b> %{model}
+      one_page: Menampilkan <b>semua %{n}</b> %{model}
+    powered_by: Dibuat dengan %{active_admin} %{version}
+    previous: Sebelumnya
+    search_status:
+      no_current_filters: Tidak ada
+    sidebars:
+      filters: Filter
+      search_status: Status Pencarian
+    status_tag:
+      'no': Tidak
+      unset: Tidak
+      'yes': Ya
+    view: Lihat

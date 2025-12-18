@@ -1,142 +1,143 @@
+---
 ca:
-  activerecord:
-    models:
-      comment:
-        one: "Comentari"
-        other: "Comentaris"
-      active_admin/comment:
-        one: "Comentari"
-        other: "Comentaris"
-    attributes:
-      active_admin/comment:
-        author_type: "Tipus d'autor"
-        body: "Missatge"
-        created_at: "Creat el"
-        namespace: "Espai de noms"
-        resource_type: "Tipus de recurs"
-        updated_at: "Actualitzat el"
   active_admin:
-    dashboard: "Tauler d'activitat"
-    view: "Mostra"
-    edit: "Edita"
-    delete: "Elimina"
-    delete_confirmation: "Segur que voleu eliminar-ho?"
-    create_another: "Crear un altre %{model}"
-    new_model: "Crear %{model}"
-    edit_model: "Editar %{model}"
-    delete_model: "Eliminar %{model}"
-    details: "Detalls de %{model}"
-    cancel: "Cancel·lar"
-    empty: "Buit"
-    previous: "Anterior"
-    next: "Següent"
-    download: "Descarregar:"
-    has_many_new: "Afegir un altre %{model}"
-    has_many_delete: "Eliminar"
-    has_many_remove: "Treure"
-    move: "Moure"
+    access_denied:
+      message: No esteu autoritzats a realitzar aquesta acció
+    any: Qualsevol
+    batch_actions:
+      action_label: "%{title} seleccionat"
+      button_label: Accions per lots
+      default_confirmation: Segur que voleu fer-ho?
+      delete_confirmation: Segurs que voleu eliminar aquests %{plural_model}?
+      labels:
+        destroy: Esborrar
+      selection_toggle_explanation: "(Invertir la selecció)"
+      successfully_destroyed:
+        one: 1 %{model} eliminat
+        other: "%{count} %{plural_model} eliminats"
+    blank_slate:
+      content: Encara no hi ha cap %{resource_name}.
+      link: Crea'n un/a
+    cancel: Cancel·lar
+    comments:
+      add: Afegeix comentari
+      author: Autor
+      author_missing: Anònim
+      author_type: Tipus d'author
+      body: Missatge
+      created_at: Creat el
+      delete: Elimina comentari
+      delete_confirmation: Esteu segurs que voleu eliminar aquest comentari?
+      errors:
+        empty_text: El comentari no s'ha desat, no hi havia text.
+      no_comments_yet: Sense comentaris
+      resource: Recurs
+      resource_type: Tipus de recurs
+      title_content: Tots els comentaris (%{count})
+    create_another: Crear un altre %{model}
+    dashboard: Tauler d'activitat
+    delete: Elimina
+    delete_confirmation: Segur que voleu eliminar-ho?
+    delete_model: Eliminar %{model}
+    details: Detalls de %{model}
+    devise:
+      change_password:
+        submit: Canvia'm la contrasenya
+        title: Canvieu la contrasenya
+      email:
+        title: Email
+      links:
+        forgot_your_password: Heu perdut la contrasenya?
+        resend_confirmation_instructions: Reenviar les instruccions de confirmació
+        resend_unlock_instructions: Reenviar les instruccions de desbloqueig
+        sign_in: Sign in
+        sign_in_with_omniauth_provider: Identificació via %{provider}
+        sign_up: Sign up
+      login:
+        remember_me: Recorda'm
+        submit: Identifiqueu-vos
+        title: Identifiqueu-vos
+      password:
+        title: Contrasenya
+      password_confirmation:
+        title: Confirmeu la contrasenya
+      resend_confirmation_instructions:
+        submit: Reenviar instruccions de confirmació
+        title: Reenviar instruccions de confirmació
+      reset_password:
+        submit: Restablir la contrasenya
+        title: Heu oblidat la contrasenya?
+      sign_up:
+        submit: Doneu-vos d'alta
+        title: Doneu-vos d'alta
+      subdomain:
+        title: Subdomini
+      unlock:
+        submit: Reenvia instruccions per a desbloquejar
+        title: Reenvia instruccions per a desbloquejar
+      username:
+        title: Usuari
+    download: 'Descarregar:'
+    edit: Edita
+    edit_model: Editar %{model}
+    empty: Buit
     filters:
       buttons:
-        filter: "Filtra"
-        clear: "Elimina els filtres"
+        clear: Elimina els filtres
+        filter: Filtra
       predicates:
-        from: "Des de"
-        to: "Fins"
-    scopes:
-      all: "Tots"
-    search_status:
-      title: "Cerca activa"
-      title_with_scope: "Cerca activa per %{name}"
-      no_current_filters: "Sense filtres actius"
-    status_tag:
-      "yes": "Sí"
-      "no": "No"
-      "unset": "Desconegut"
-    logout: "Tanca la sessió"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtres"
-      search_status: "Estat de la cerca"
-    pagination:
-      empty: "No s'ha trobat cap %{model}"
-      one: "S'està mostrant <b>1</b> de <b>1</b>"
-      one_page: "S'estan mostrant <b>tots %{n}</b>"
-      multiple: "Se n'estan mostrant <b>%{from}-%{to}</b> d'un total de <b>%{total}</b>"
-      multiple_without_total: "Se n'estan mostrant <b>%{from}-%{to}</b>"
-      per_page: "Per pàgina"
-      previous: "Anterior"
-      next: "Següent"
-      entry:
-        one: "entrada"
-        other: "entrades"
-    any: "Qualsevol"
-    blank_slate:
-      content: "Encara no hi ha cap %{resource_name}."
-      link: "Crea'n un/a"
-    batch_actions:
-      button_label: "Accions per lots"
-      default_confirmation: "Segur que voleu fer-ho?"
-      delete_confirmation: "Segurs que voleu eliminar aquests %{plural_model}?"
-      succesfully_destroyed:
-        one: "1 %{model} eliminat"
-        other: "%{count} %{plural_model} eliminats"
-      selection_toggle_explanation: "(Invertir la selecció)"
-      action_label: "%{title} seleccionat"
-      labels:
-        destroy: "Esborrar"
-    comments:
-      created_at: "Creat el"
-      resource_type: "Tipus de recurs"
-      author_type: "Tipus d'author"
-      body: "Missatge"
-      author: "Autor"
-      add: "Afegeix comentari"
-      delete: "Elimina comentari"
-      delete_confirmation: "Esteu segurs que voleu eliminar aquest comentari?"
-      resource: "Recurs"
-      no_comments_yet: "Sense comentaris"
-      author_missing: "Anònim"
-      title_content: "Tots els comentaris (%{count})"
-      errors:
-        empty_text: "El comentari no s'ha desat, no hi havia text."
-    devise:
-      username:
-        title: "Usuari"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Subdomini"
-      password:
-        title: "Contrasenya"
-      password_confirmation:
-        title: "Confirmeu la contrasenya"
-      sign_up:
-        title: "Doneu-vos d'alta"
-        submit: "Doneu-vos d'alta"
-      login:
-        title: "Identifiqueu-vos"
-        remember_me: "Recorda'm"
-        submit: "Identifiqueu-vos"
-      reset_password:
-        title: "Heu oblidat la contrasenya?"
-        submit: "Restablir la contrasenya"
-      change_password:
-        title: "Canvieu la contrasenya"
-        submit: "Canvia'm la contrasenya"
-      unlock:
-        title: "Reenvia instruccions per a desbloquejar"
-        submit: "Reenvia instruccions per a desbloquejar"
-      resend_confirmation_instructions:
-        title: "Reenviar instruccions de confirmació"
-        submit: "Reenviar instruccions de confirmació"
-      links:
-        sign_up: "Sign up"
-        sign_in: "Sign in"
-        forgot_your_password: "Heu perdut la contrasenya?"
-        sign_in_with_omniauth_provider: "Identificació via %{provider}"
-        resend_unlock_instructions: "Reenviar les instruccions de desbloqueig"
-        resend_confirmation_instructions: "Reenviar les instruccions de confirmació"
-    access_denied:
-      message: "No esteu autoritzats a realitzar aquesta acció"
+        from: Des de
+        to: Fins
+    has_many_delete: Eliminar
+    has_many_new: Afegir un altre %{model}
+    has_many_remove: Treure
     index_list:
-      table: "Taula"
+      table: Taula
+    logout: Tanca la sessió
+    move: Moure
+    new_model: Crear %{model}
+    next: Següent
+    pagination:
+      empty: No s'ha trobat cap %{model}
+      entry:
+        one: entrada
+        other: entrades
+      multiple: Se n'estan mostrant <b>%{from}-%{to}</b> d'un total de <b>%{total}</b>
+      multiple_without_total: Se n'estan mostrant <b>%{from}-%{to}</b>
+      next: Següent
+      one: S'està mostrant <b>1</b> de <b>1</b>
+      one_page: S'estan mostrant <b>tots %{n}</b>
+      per_page: Per pàgina
+      previous: Anterior
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Anterior
+    scopes:
+      all: Tots
+    search_status:
+      no_current_filters: Sense filtres actius
+      title: Cerca activa
+      title_with_scope: Cerca activa per %{name}
+    sidebars:
+      filters: Filtres
+      search_status: Estat de la cerca
+    status_tag:
+      'no': 'No'
+      unset: Desconegut
+      'yes': Sí
+    view: Mostra
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Tipus d'autor
+        body: Missatge
+        created_at: Creat el
+        namespace: Espai de noms
+        resource_type: Tipus de recurs
+        updated_at: Actualitzat el
+    models:
+      active_admin/comment:
+        one: Comentari
+        other: Comentaris
+      comment:
+        one: Comentari
+        other: Comentaris

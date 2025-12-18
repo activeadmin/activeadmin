@@ -1,147 +1,148 @@
+---
 ar:
-  activerecord:
-    models:
-      comment:
-        one: "تعليق"
-        other: "تعليقات"
-      active_admin/comment:
-        one: "تعليق"
-        other: "تعليقات"
-    attributes:
-      active_admin/comment:
-        author_type: "نوع الكاتب"
-        body: "المحتوى"
-        created_at: "وقت الإنشاء"
-        namespace: "النطاق"
-        resource_type: "نوع المصدر"
-        updated_at: "وقت التعديل"
   active_admin:
-    dashboard: "لوحة التحكم"
-    view: "عرض"
-    edit: "تعديل"
-    delete: "حذف"
-    delete_confirmation: "هل تريد تأكيد الحذف؟"
-    create_another: "انشاء %{model} آخر"
-    new_model: "%{model} جديد"
-    edit_model: "تعديل %{model}"
-    delete_model: "حذف %{model}"
-    details: "تفاصيل %{model}"
-    cancel: "إلغاء"
-    empty: "فارغ"
-    previous: "السابق"
-    next: "التالي"
-    download: "تحميل"
-    has_many_new: "إضافة %{model} جديد"
-    has_many_delete: "حذف"
-    has_many_remove: "إزالة"
-    move: "نقل"
+    access_denied:
+      message: غير مصرح لك تنفيذ هذا الإجراء.
+    any: أي
+    batch_actions:
+      action_label: اُختير %{title}
+      button_label: إجراء جماعي
+      default_confirmation: هل أنت متأكّد؟
+      delete_confirmation: هل أنت متأكّد من حذف هذه %{plural_model}؟
+      labels:
+        destroy: حذف
+      selection_toggle_explanation: "(تبديل التحديد)"
+      successfully_destroyed:
+        one: حُذف بنجاح %{model}
+        other: حُذف بنجاح %{count} %{plural_model}
+    blank_slate:
+      content: لا يوجد %{resource_name}
+      link: إنشاء
+    cancel: إلغاء
+    comments:
+      add: إضافة تعليق
+      author: مؤلّف
+      author_missing: المؤلف مجهول
+      author_type: نوع الؤلّف
+      body: المحتوى
+      created_at: أُنشئ
+      delete: حذف تعليق
+      delete_confirmation: هل أنت متأكّد من حذف التعليق؟
+      errors:
+        empty_text: لم يُحفظ التعليق، النص فارغ.
+      no_comments_yet: لا يوجد تعليقات.
+      resource: مدخل
+      resource_type: نوع المصدر
+      title_content: التعليقات (%{count})
+    create_another: انشاء %{model} آخر
+    dashboard: لوحة التحكم
+    delete: حذف
+    delete_confirmation: هل تريد تأكيد الحذف؟
+    delete_model: حذف %{model}
+    details: تفاصيل %{model}
+    devise:
+      change_password:
+        submit: تغير كلمة المرور
+        title: تغير كلمة المرور
+      email:
+        title: البريد الإلكترونيّ
+      links:
+        forgot_your_password: هل نسيت كلمة المرور؟
+        resend_confirmation_instructions: إعادة إرسال تعليمات تأكيد البريد الإلكتروني
+        resend_unlock_instructions: إعادة إرسال تعليمات تنشيط الحساب
+        sign_in: تسجيل الدخول
+        sign_in_with_omniauth_provider: تسجيل الدخول بـ %{provider}
+        sign_up: التسجيل
+      login:
+        remember_me: تذكرني
+        submit: تسجيل الدخول
+        title: تسجيل الدخول
+      password:
+        title: كلمة المرور
+      password_confirmation:
+        title: تأكيد كلمة المرور
+      resend_confirmation_instructions:
+        submit: إعادة ارسال تعليمات تأكيد البريد الإلكتروني
+        title: إعادة ارسال تعليمات تأكيد البريد الإلكتروني
+      reset_password:
+        submit: استرجاع كلمة المرور
+        title: هل نسيت كلمة المرور؟
+      sign_up:
+        submit: تسجيل
+        title: التسجيل
+      subdomain:
+        title: النطاق الفرعي
+      unlock:
+        submit: إعادة إرسال تعليمات تنشيط الحساب
+        title: إعادة إرسال تعليمات تنشيط الحساب
+      username:
+        title: اسم المستخدم
+    download: تحميل
+    edit: تعديل
+    edit_model: تعديل %{model}
+    empty: فارغ
     filters:
       buttons:
-        filter: "فرز"
-        clear: "إلغاء الفرز"
+        clear: إلغاء الفرز
+        filter: فرز
       predicates:
-        from: "من"
-        to: "إلى"
-    scopes:
-      all: "الكل"
-    search_status:
-      title: "الفرز الحالي"
-      title_with_scope: "الفرز الحالي لـ %{name}"
-      no_current_filters: "بدون فرز"
-    status_tag:
-      "yes": "نعم"
-      "no": "لا"
-      "unset": "غير محدد"
-    toggle_dark_mode: "تبديل الوضع الليلي"
-    toggle_main_navigation_menu: "عرض القائمة الرئيسية"
-    toggle_section: "عرض القسم"
-    toggle_user_menu: "عرض قائمة المستخدم"
-    logout: "تسجيل الخروج"
-    powered_by: "بواسطة %{active_admin} %{version}"
-    sidebars:
-      filters: "المُرشحات"
-      search_status: "حالة البحث"
-    pagination:
-      empty: "لا يوجد %{model}"
-      one: "عرض <b>1</b> من <b>1</b>"
-      one_page: "عرض <b>كل %{n}</b>"
-      multiple: "عرض <b>%{from}-%{to}</b> من <b>%{total}</b>"
-      multiple_without_total: "عرض <b>%{from}-%{to}</b>"
-      per_page: "لكل صفحة "
-      previous: "السابق"
-      next: "التالي"
-      entry:
-        one: "مدخل"
-        other: "مدخلات"
-      truncate: "&hellip;"
-    any: "أي"
-    blank_slate:
-      content: "لا يوجد %{resource_name}"
-      link: "إنشاء"
-    batch_actions:
-      button_label: "إجراء جماعي"
-      default_confirmation: "هل أنت متأكّد؟"
-      delete_confirmation: "هل أنت متأكّد من حذف هذه %{plural_model}؟"
-      succesfully_destroyed:
-        one: "حُذف بنجاح %{model}"
-        other: "حُذف بنجاح %{count} %{plural_model}"
-      selection_toggle_explanation: "(تبديل التحديد)"
-      action_label: "اُختير %{title}"
-      labels:
-        destroy: "حذف"
-    comments:
-      created_at: "أُنشئ"
-      resource_type: "نوع المصدر"
-      author_type: "نوع الؤلّف"
-      body: "المحتوى"
-      author: "مؤلّف"
-      add: "إضافة تعليق"
-      delete: "حذف تعليق"
-      delete_confirmation: "هل أنت متأكّد من حذف التعليق؟"
-      resource: "مدخل"
-      no_comments_yet: "لا يوجد تعليقات."
-      author_missing: "المؤلف مجهول"
-      title_content: "التعليقات (%{count})"
-      errors:
-        empty_text: "لم يُحفظ التعليق، النص فارغ."
-    devise:
-      username:
-        title: "اسم المستخدم"
-      email:
-        title: "البريد الإلكترونيّ"
-      subdomain:
-        title: "النطاق الفرعي"
-      password:
-        title: "كلمة المرور"
-      password_confirmation:
-        title: "تأكيد كلمة المرور"
-      sign_up:
-        title: "التسجيل"
-        submit: "تسجيل"
-      login:
-        title: "تسجيل الدخول"
-        remember_me: "تذكرني"
-        submit: "تسجيل الدخول"
-      reset_password:
-        title: "هل نسيت كلمة المرور؟"
-        submit: "استرجاع كلمة المرور"
-      change_password:
-        title: "تغير كلمة المرور"
-        submit: "تغير كلمة المرور"
-      unlock:
-        title: "إعادة إرسال تعليمات تنشيط الحساب"
-        submit: "إعادة إرسال تعليمات تنشيط الحساب"
-      resend_confirmation_instructions:
-        title: "إعادة ارسال تعليمات تأكيد البريد الإلكتروني"
-        submit: "إعادة ارسال تعليمات تأكيد البريد الإلكتروني"
-      links:
-        sign_up: "التسجيل"
-        sign_in: "تسجيل الدخول"
-        forgot_your_password: "هل نسيت كلمة المرور؟"
-        sign_in_with_omniauth_provider: "تسجيل الدخول بـ %{provider}"
-        resend_unlock_instructions: "إعادة إرسال تعليمات تنشيط الحساب"
-        resend_confirmation_instructions: "إعادة إرسال تعليمات تأكيد البريد الإلكتروني"
-    access_denied:
-      message: "غير مصرح لك تنفيذ هذا الإجراء."
+        from: من
+        to: إلى
+    has_many_delete: حذف
+    has_many_new: إضافة %{model} جديد
+    has_many_remove: إزالة
     index_list:
-      table: "جدول"
+      table: جدول
+    logout: تسجيل الخروج
+    move: نقل
+    new_model: "%{model} جديد"
+    next: التالي
+    pagination:
+      empty: لا يوجد %{model}
+      entry:
+        one: مدخل
+        other: مدخلات
+      multiple: عرض <b>%{from}-%{to}</b> من <b>%{total}</b>
+      multiple_without_total: عرض <b>%{from}-%{to}</b>
+      next: التالي
+      one: عرض <b>1</b> من <b>1</b>
+      one_page: عرض <b>كل %{n}</b>
+      per_page: 'لكل صفحة '
+      previous: السابق
+      truncate: "&hellip;"
+    powered_by: بواسطة %{active_admin} %{version}
+    previous: السابق
+    scopes:
+      all: الكل
+    search_status:
+      no_current_filters: بدون فرز
+      title: الفرز الحالي
+      title_with_scope: الفرز الحالي لـ %{name}
+    sidebars:
+      filters: المُرشحات
+      search_status: حالة البحث
+    status_tag:
+      'no': لا
+      unset: غير محدد
+      'yes': نعم
+    toggle_dark_mode: تبديل الوضع الليلي
+    toggle_main_navigation_menu: عرض القائمة الرئيسية
+    toggle_section: عرض القسم
+    toggle_user_menu: عرض قائمة المستخدم
+    view: عرض
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: نوع الكاتب
+        body: المحتوى
+        created_at: وقت الإنشاء
+        namespace: النطاق
+        resource_type: نوع المصدر
+        updated_at: وقت التعديل
+    models:
+      active_admin/comment:
+        one: تعليق
+        other: تعليقات
+      comment:
+        one: تعليق
+        other: تعليقات

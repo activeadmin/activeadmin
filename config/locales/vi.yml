@@ -1,138 +1,139 @@
+---
 vi:
-  activerecord:
-    models:
-      comment:
-        one: "Bình luận"
-        other: "Các bình luận"
-      active_admin/comment:
-        one: "Bình luận"
-        other: "Các bình luận"
-    attributes:
-      active_admin/comment:
-        author_type: "Loại tác giả"
-        body: "Nội dung"
-        created_at: "Đã tạo"
-        namespace: "Namespace"
-        resource_type: "Resource type"
-        updated_at: "Đã cập nhật"
   active_admin:
+    access_denied:
+      message: Bạn không có quyền thực hiện tính năng này
+    any: Bất kỳ
+    batch_actions:
+      action_label: "%{title} đã được chọn"
+      button_label: Hành động hàng loạt
+      default_confirmation: Bạn có chắc bạn muốn làm điều này?
+      delete_confirmation: Bạn có chắc chắn muốn xóa những %{plural_model}?
+      labels:
+        destroy: Xóa
+      selection_toggle_explanation: "(Thay đổi lựa chọn)"
+      successfully_destroyed:
+        one: Đã xóa thành công 1 %{model}
+        other: Đã xóa thành công %{count} %{plural_model}
+    blank_slate:
+      content: Chưa có %{resource_name}.
+      link: Tạo mới
+    cancel: Hủy
+    comments:
+      add: Thêm bình luận
+      author: Tác giả
+      author_missing: Vô danh
+      author_type: Loại tác giả
+      body: Nội dung
+      created_at: Đã tạo
+      delete: Xoá bình luận
+      delete_confirmation: Bạn có chắc chắn muốn xóa những bình luận này?
+      errors:
+        empty_text: Lời bình luận chưa được lưu, vì nội dung còn trống.
+      no_comments_yet: Chưa có bình luận.
+      resource: Resource
+      resource_type: Resource Type
+      title_content: Bình luận (%{count})
+    create_another: Tạo thêm %{model}
     dashboard: Bảng điều khiển
-    view: "Xem"
-    edit: "Chỉnh sửa"
-    delete: "Xóa"
-    delete_confirmation: "Bạn có chắc chắn rằng mình muốn xóa không?"
-    new_model: "Tạo mới %{model}"
-    edit_model: "Chỉnh sửa %{model}"
-    delete_model: "Xóa %{model}"
-    create_another: "Tạo thêm %{model}"
+    delete: Xóa
+    delete_confirmation: Bạn có chắc chắn rằng mình muốn xóa không?
+    delete_model: Xóa %{model}
     details: "%{model} Chi tiết"
-    cancel: "Hủy"
-    empty: "Trống"
-    previous: "Trước"
-    next: "Sau"
-    download: "Tải về:"
-    has_many_new: "Thêm mới %{model}"
-    has_many_delete: "Xóa"
-    has_many_remove: "Hủy bỏ"
-    move: "Di chuyển"
+    devise:
+      change_password:
+        submit: Thay đổi mật khẩu của tôi
+        title: Thay đổi mật khẩu của bạn
+      email:
+        title: Email
+      links:
+        forgot_your_password: Quên mật khẩu của bạn?
+        resend_confirmation_instructions: Gửi lại hướng dẫn xác nhận
+        resend_unlock_instructions: Gửi lại hướng dẫn mở khoá
+        sign_in: Đăng nhập
+        sign_in_with_omniauth_provider: Đăng nhập với %{provider}
+        sign_up: Đăng ký
+      login:
+        remember_me: Ghi nhớ tôi
+        submit: Đăng nhập
+        title: Đăng nhập
+      password:
+        title: Mật khẩu
+      password_confirmation:
+        title: Mật khẩu xác nhận
+      resend_confirmation_instructions:
+        submit: Gửi lại hướng dẫn xác nhận
+        title: Gửi lại hướng dẫn xác nhận
+      reset_password:
+        submit: Thiết lập lại mật khẩu của tôi
+        title: Quên mật khẩu của bạn?
+      sign_up:
+        submit: Đăng ký
+        title: Đăng ký
+      subdomain:
+        title: Tên miền phụ
+      unlock:
+        submit: Gửi lại hướng dẫn mở khoá
+        title: Gửi lại hướng dẫn mở khoá
+      username:
+        title: Tên người dùng
+    download: 'Tải về:'
+    edit: Chỉnh sửa
+    edit_model: Chỉnh sửa %{model}
+    empty: Trống
     filters:
       buttons:
-        filter: "Lọc"
-        clear: "Xóa dữ liệu lọc"
+        clear: Xóa dữ liệu lọc
+        filter: Lọc
       predicates:
-        from: "Từ"
-        to: "Đến"
-    scopes:
-      all: "Tất cả"
-    search_status:
-      no_current_filters: "Không có"
-    status_tag:
-      "yes": "Có"
-      "no": "Không Có"
-      "unset": "Không Có"
-    logout: "Đăng xuất"
-    powered_by: "Bản quyền bởi %{active_admin} %{version}"
-    sidebars:
-      filters: "Bộ Lọc"
-      search_status: "Trạng thái tìm kiếm"
-    pagination:
-      empty: "Không có %{model} nào được tìm thấy"
-      one: "Đang hiển thị <b>1</b> %{model}"
-      one_page: "Đang hiển thị <b>tất cả %{n}</b> %{model}"
-      multiple: "Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> trong tất cả."
-      multiple_without_total: "Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>."
-      per_page: "Mỗi trang: "
-      entry:
-        one: "entry"
-        other: "entries"
-    any: "Bất kỳ"
-    blank_slate:
-      content: "Chưa có %{resource_name}."
-      link: "Tạo mới"
-    batch_actions:
-      button_label: "Hành động hàng loạt"
-      default_confirmation: "Bạn có chắc bạn muốn làm điều này?"
-      delete_confirmation: "Bạn có chắc chắn muốn xóa những %{plural_model}?"
-      succesfully_destroyed:
-        one: "Đã xóa thành công 1 %{model}"
-        other: "Đã xóa thành công %{count} %{plural_model}"
-      selection_toggle_explanation: "(Thay đổi lựa chọn)"
-      action_label: "%{title} đã được chọn"
-      labels:
-        destroy: "Xóa"
-    comments:
-      created_at: "Đã tạo"
-      resource_type: "Resource Type"
-      author_type: "Loại tác giả"
-      body: "Nội dung"
-      author: "Tác giả"
-      add: "Thêm bình luận"
-      delete: "Xoá bình luận"
-      delete_confirmation: "Bạn có chắc chắn muốn xóa những bình luận này?"
-      resource: "Resource"
-      no_comments_yet: "Chưa có bình luận."
-      author_missing: "Vô danh"
-      title_content: "Bình luận (%{count})"
-      errors:
-        empty_text: "Lời bình luận chưa được lưu, vì nội dung còn trống."
-    devise:
-      username:
-        title: "Tên người dùng"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Tên miền phụ"
-      password:
-        title: "Mật khẩu"
-      password_confirmation:
-        title: "Mật khẩu xác nhận"
-      sign_up:
-        title: "Đăng ký"
-        submit: "Đăng ký"
-      login:
-        title: "Đăng nhập"
-        remember_me: "Ghi nhớ tôi"
-        submit: "Đăng nhập"
-      reset_password:
-        title: "Quên mật khẩu của bạn?"
-        submit: "Thiết lập lại mật khẩu của tôi"
-      change_password:
-        title: "Thay đổi mật khẩu của bạn"
-        submit: "Thay đổi mật khẩu của tôi"
-      unlock:
-        title: "Gửi lại hướng dẫn mở khoá"
-        submit: "Gửi lại hướng dẫn mở khoá"
-      resend_confirmation_instructions:
-        title: "Gửi lại hướng dẫn xác nhận"
-        submit: "Gửi lại hướng dẫn xác nhận"
-      links:
-        sign_up: "Đăng ký"
-        sign_in: "Đăng nhập"
-        forgot_your_password: "Quên mật khẩu của bạn?"
-        sign_in_with_omniauth_provider: "Đăng nhập với %{provider}"
-        resend_unlock_instructions: "Gửi lại hướng dẫn mở khoá"
-        resend_confirmation_instructions: "Gửi lại hướng dẫn xác nhận"
-    access_denied:
-      message: "Bạn không có quyền thực hiện tính năng này"
+        from: Từ
+        to: Đến
+    has_many_delete: Xóa
+    has_many_new: Thêm mới %{model}
+    has_many_remove: Hủy bỏ
     index_list:
-      table: "Bảng"
+      table: Bảng
+    logout: Đăng xuất
+    move: Di chuyển
+    new_model: Tạo mới %{model}
+    next: Sau
+    pagination:
+      empty: Không có %{model} nào được tìm thấy
+      entry:
+        one: entry
+        other: entries
+      multiple: Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> trong tất cả.
+      multiple_without_total: Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>.
+      one: Đang hiển thị <b>1</b> %{model}
+      one_page: Đang hiển thị <b>tất cả %{n}</b> %{model}
+      per_page: 'Mỗi trang: '
+    powered_by: Bản quyền bởi %{active_admin} %{version}
+    previous: Trước
+    scopes:
+      all: Tất cả
+    search_status:
+      no_current_filters: Không có
+    sidebars:
+      filters: Bộ Lọc
+      search_status: Trạng thái tìm kiếm
+    status_tag:
+      'no': Không Có
+      unset: Không Có
+      'yes': Có
+    view: Xem
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Loại tác giả
+        body: Nội dung
+        created_at: Đã tạo
+        namespace: Namespace
+        resource_type: Resource type
+        updated_at: Đã cập nhật
+    models:
+      active_admin/comment:
+        one: Bình luận
+        other: Các bình luận
+      comment:
+        one: Bình luận
+        other: Các bình luận

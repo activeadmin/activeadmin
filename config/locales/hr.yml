@@ -1,107 +1,108 @@
+---
 hr:
   active_admin:
-    dashboard: "Upravljačka ploča"
-    view: "Pregledaj"
-    edit: "Uredi"
-    delete: "Obriši"
-    delete_confirmation: "Jeste li sigurni da želite ovo obrisati?"
-    new_model: "Novi %{model}"
-    edit_model: "Uredi %{model}"
-    delete_model: "Obriši %{model}"
+    access_denied:
+      message: Nemaš dopuštenja.
+    any: Bilo koji
+    batch_actions:
+      action_label: "%{title} označene"
+      button_label: Grupne akcije
+      default_confirmation: Jeste li sigurni da želite to učiniti?
+      delete_confirmation: Jeste li sigurni da želite obrisati %{plural_model}?
+      labels:
+        destroy: Obriši
+      selection_toggle_explanation: "(Izmijeni odabir)"
+      successfully_destroyed:
+        few: Uspješno su obrisana %{count} %{plural_model}
+        many: Uspješno je obrisano %{count} %{plural_model}
+        one: Uspješno je obrisan 1 %{model}
+        other: Uspješno je obrisano %{count} %{plural_model}
+    blank_slate:
+      content: Još uvijek ne postoji niti jedan zapis tipa %{resource_name}.
+      link: Izradi jedan
+    cancel: Odustani
+    comments:
+      add: Dodaj komentar
+      author: Autor
+      author_missing: Anoniman
+      author_type: Tip autora
+      body: Sadržaj
+      errors:
+        empty_text: Komentar nije spremljen, sadržaj je prazan.
+      no_comments_yet: Još nema komentara.
+      resource: Objekt
+      resource_type: Tip objekta
+      title_content: Komentari (%{count})
+    dashboard: Upravljačka ploča
+    delete: Obriši
+    delete_confirmation: Jeste li sigurni da želite ovo obrisati?
+    delete_model: Obriši %{model}
     details: "%{model} detalji"
-    cancel: "Odustani"
-    empty: "Prazno"
-    previous: "Prijašnji"
-    next: "Sljedeći"
-    download: "Spremi na računalo:"
-    has_many_new: "Dodaj novi %{model}"
-    has_many_delete: "Obriši"
-    has_many_remove: "Ukloniti"
+    devise:
+      change_password:
+        submit: Izmijeni lozinku
+        title: Izmjena lozinke
+      email:
+        title: Email
+      links:
+        forgot_your_password: Zaboravljena lozinka?
+        sign_in: Prijavi se
+        sign_in_with_omniauth_provider: Prijavite se za %{provider}
+      login:
+        remember_me: Zapamti me
+        submit: Prijavi se
+        title: Prijava
+      password:
+        title: Lozinka
+      resend_confirmation_instructions:
+        submit: Pošalji
+        title: Ponovno slanje uputstva za potvrdu
+      reset_password:
+        submit: Resetiraj lozinku
+        title: Zaboravljena lozinka?
+      sign_up:
+        submit: Registruj
+        title: Registracija
+      subdomain:
+        title: Poddomena
+      unlock:
+        submit: Pošalji
+        title: Ponovno slanje uputstva za otključavanje
+      username:
+        title: Korisničko ime
+    download: 'Spremi na računalo:'
+    edit: Uredi
+    edit_model: Uredi %{model}
+    empty: Prazno
     filters:
       buttons:
-        filter: "Filtriraj"
-        clear: "Očisti filtere"
-    status_tag:
-      "yes": "Da"
-      "no": "Nema"
-      "unset": "Nema"
-    logout: "Odjavi se"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtriranje"
-    pagination:
-      empty: "Nije pronađen niti jedan %{model}."
-      one: "Prikazan <b>1</b> %{model}"
-      one_page: "Prikazano <b>svih %{n}</b> %{model}"
-      multiple: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> od ukupno <b>%{total}</b>"
-      multiple_without_total: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      entry:
-        one: "zapis"
-        few: "zapisa"
-        many: "zapisa"
-        other: "zapisa"
-    any: "Bilo koji"
-    blank_slate:
-      content: "Još uvijek ne postoji niti jedan zapis tipa %{resource_name}."
-      link: "Izradi jedan"
-    batch_actions:
-      button_label: "Grupne akcije"
-      default_confirmation: "Jeste li sigurni da želite to učiniti?"
-      delete_confirmation: "Jeste li sigurni da želite obrisati %{plural_model}?"
-      succesfully_destroyed:
-        one: "Uspješno je obrisan 1 %{model}"
-        few: "Uspješno su obrisana %{count} %{plural_model}"
-        many: "Uspješno je obrisano %{count} %{plural_model}"
-        other: "Uspješno je obrisano %{count} %{plural_model}"
-      selection_toggle_explanation: "(Izmijeni odabir)"
-      action_label: "%{title} označene"
-      labels:
-        destroy: "Obriši"
-    comments:
-      resource_type: "Tip objekta"
-      author_type: "Tip autora"
-      body: "Sadržaj"
-      author: "Autor"
-      add: "Dodaj komentar"
-      resource: "Objekt"
-      no_comments_yet: "Još nema komentara."
-      author_missing: "Anoniman"
-      title_content: "Komentari (%{count})"
-      errors:
-        empty_text: "Komentar nije spremljen, sadržaj je prazan."
-    devise:
-      username:
-        title: "Korisničko ime"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Poddomena"
-      password:
-        title: "Lozinka"
-      sign_up:
-        title: "Registracija"
-        submit: "Registruj"
-      login:
-        title: "Prijava"
-        remember_me: "Zapamti me"
-        submit: "Prijavi se"
-      reset_password:
-        title: "Zaboravljena lozinka?"
-        submit: "Resetiraj lozinku"
-      change_password:
-        title: "Izmjena lozinke"
-        submit: "Izmijeni lozinku"
-      unlock:
-        title: "Ponovno slanje uputstva za otključavanje"
-        submit: "Pošalji"
-      resend_confirmation_instructions:
-        title: "Ponovno slanje uputstva za potvrdu"
-        submit: "Pošalji"
-      links:
-        sign_in: "Prijavi se"
-        forgot_your_password: "Zaboravljena lozinka?"
-        sign_in_with_omniauth_provider: "Prijavite se za %{provider}"
-    access_denied:
-      message: "Nemaš dopuštenja."
+        clear: Očisti filtere
+        filter: Filtriraj
+    has_many_delete: Obriši
+    has_many_new: Dodaj novi %{model}
+    has_many_remove: Ukloniti
     index_list:
-      table: "Tabela"
+      table: Tabela
+    logout: Odjavi se
+    new_model: Novi %{model}
+    next: Sljedeći
+    pagination:
+      empty: Nije pronađen niti jedan %{model}.
+      entry:
+        few: zapisa
+        many: zapisa
+        one: zapis
+        other: zapisa
+      multiple: Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> od ukupno <b>%{total}</b>
+      multiple_without_total: Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Prikazan <b>1</b> %{model}
+      one_page: Prikazano <b>svih %{n}</b> %{model}
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Prijašnji
+    sidebars:
+      filters: Filtriranje
+    status_tag:
+      'no': Nema
+      unset: Nema
+      'yes': Da
+    view: Pregledaj

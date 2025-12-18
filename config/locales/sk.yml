@@ -1,144 +1,145 @@
+---
 sk:
-  activerecord:
-    models:
-      comment:
-        one: "Komentár"
-        few: "Komentáre"
-        many: "Komentárov"
-        other: "Komentáre"
-      active_admin/comment:
-        one: "Komentár"
-        few: "Komentáre"
-        many: "Komentárov"
-        other: "Komentáre"
-    attributes:
-      active_admin/comment:
-        author_type: "Typ autora"
-        body: "Telo"
-        created_at: "Vytvorený"
-        namespace: "Namespace"
-        resource_type: "Typ komentovanej položky"
-        updated_at: "Upravený"
   active_admin:
+    access_denied:
+      message: Nemáte oprávnenie k vykonaniu tejto akcie.
+    any: Akákoľvek
+    batch_actions:
+      action_label: "%{title}"
+      button_label: Hromadné akcie
+      default_confirmation: Ste si istí, že to chcete spraviť?
+      delete_confirmation: Ste si istí, že chcete zmazať tieto %{plural_model}?
+      labels:
+        destroy: Vymazať
+      selection_toggle_explanation: "(Zmeniť výber)"
+      successfully_destroyed:
+        few: Úspešne zmazané %{count} %{plural_model}
+        one: Úspešne zmazaný %{model}
+        other: Úspešne zmazaných %{count} %{plural_model}
+        zero: Nebol zmazaný žiaden %{model}
+    blank_slate:
+      content: Zatiaľ tu nie je žiadny obsah.
+      link: Vytvoriť
+    cancel: Zrušiť
+    comments:
+      add: Pridať komentár
+      author: Autor
+      author_missing: Anonymný
+      author_type: Typ autora
+      body: Telo
+      created_at: Vytvorený
+      delete: Zmazať komentár
+      delete_confirmation: Naozaj chcete zmazať tento komentár?
+      errors:
+        empty_text: Komentár nebol uložený, je prázdny.
+      no_comments_yet: Žiadny komentár
+      resource: Zdroj
+      resource_type: Typ zdroja
+      title_content: Komentáre administrátorov (%{count})
+    create_another: Vytvoriť ďalší %{model}
     dashboard: Úvod
-    view: "Zobraziť"
-    edit: "Upraviť"
-    delete: "Zmazať"
-    delete_confirmation: "Ste si istí, že chcete túto položku zmazať?"
-    create_another: "Vytvoriť ďalší %{model}"
-    new_model: "Vytvoriť"
-    edit_model: "Upraviť"
-    delete_model: "Zmazať"
-    details: "Detaily"
-    cancel: "Zrušiť"
-    empty: "Prázdne"
-    previous: "Predchádzajúce"
-    next: "Nasledujúce"
-    download: "Stiahnúť:"
-    has_many_new: "Pridať nový"
-    has_many_delete: "Zmazať"
-    has_many_remove: "Odstrániť"
-    move: "Presunúť"
+    delete: Zmazať
+    delete_confirmation: Ste si istí, že chcete túto položku zmazať?
+    delete_model: Zmazať
+    details: Detaily
+    devise:
+      change_password:
+        submit: Zmeniť svoje heslo
+        title: Zmeniť heslo
+      email:
+        title: Email
+      links:
+        forgot_your_password: Zabudli ste heslo?
+        resend_confirmation_instructions: Preposlať potvrdzovacie inštrukcie
+        resend_unlock_instructions: Poslať znovu inštrukcie na odomknutie účtu
+        sign_in: Prihlásiť sa
+        sign_in_with_omniauth_provider: Prihlásiť sa cez %{provider}
+        sign_up: Registrovať sa
+      login:
+        remember_me: Zapamätať si ma
+        submit: Prihlásiť
+        title: Prihlásenie
+      password:
+        title: Heslo
+      password_confirmation:
+        title: Potvrdenie hesla
+      resend_confirmation_instructions:
+        submit: Preposlať potvrdzovacie inštrukcie
+        title: Preposlanie potvrdzovacie inštrukcie
+      reset_password:
+        submit: Obnoviť heslo
+        title: Zabudli ste heslo?
+      sign_up:
+        submit: Registrovať
+        title: Registrácia
+      subdomain:
+        title: Subdoména
+      unlock:
+        submit: Zaslať inštrukcií k odomknutiu účtu
+        title: Zaslanie inštrukcií k odomknutiu účtu
+      username:
+        title: Užívateľské meno
+    download: 'Stiahnúť:'
+    edit: Upraviť
+    edit_model: Upraviť
+    empty: Prázdne
     filters:
       buttons:
-        filter: "Filtrovať"
-        clear: "Vyčistiť filtre"
+        clear: Vyčistiť filtre
+        filter: Filtrovať
       predicates:
-        from: "Od"
-        to: "Do"
-    scopes:
-      all: "Všetko"
-    search_status:
-      no_current_filters: "Žiadne"
-    status_tag:
-      "yes": "Áno"
-      "no": "Nie"
-      "unset": "Nie"
-    logout: "Odhlásiť"
-    powered_by: "%{active_admin} %{version}"
-    sidebars:
-      filters: "Filtre"
-      search_status: "Stav vyhľadávania"
+        from: Od
+        to: Do
+    has_many_delete: Zmazať
+    has_many_new: Pridať nový
+    has_many_remove: Odstrániť
+    index_list:
+      table: Tabuľka
+    logout: Odhlásiť
+    move: Presunúť
+    new_model: Vytvoriť
+    next: Nasledujúce
     pagination:
-      empty: "Nenájdený."
-      one: "Zobrazená  <b>1</b> položka"
-      one_page: "Počet zobrazených položiek %{n}"
+      empty: Nenájdený.
+      entry:
+        few: položky
+        one: položka
+        other: položky
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      entry:
-        one: "položka"
-        few: "položky"
-        other: "položky"
-    any: "Akákoľvek"
-    blank_slate:
-      content: "Zatiaľ tu nie je žiadny obsah."
-      link: "Vytvoriť"
-    batch_actions:
-      button_label: "Hromadné akcie"
-      default_confirmation: "Ste si istí, že to chcete spraviť?"
-      delete_confirmation: "Ste si istí, že chcete zmazať tieto %{plural_model}?"
-      succesfully_destroyed:
-        zero: "Nebol zmazaný žiaden %{model}"
-        one: "Úspešne zmazaný %{model}"
-        few: "Úspešne zmazané %{count} %{plural_model}"
-        other: "Úspešne zmazaných %{count} %{plural_model}"
-      selection_toggle_explanation: "(Zmeniť výber)"
-      action_label: "%{title}"
-      labels:
-        destroy: "Vymazať"
-    comments:
-      created_at: "Vytvorený"
-      resource_type: "Typ zdroja"
-      author_type: "Typ autora"
-      body: "Telo"
-      author: "Autor"
-      add: "Pridať komentár"
-      delete: "Zmazať komentár"
-      delete_confirmation: "Naozaj chcete zmazať tento komentár?"
-      resource: "Zdroj"
-      no_comments_yet: "Žiadny komentár"
-      author_missing: "Anonymný"
-      title_content: "Komentáre administrátorov (%{count})"
-      errors:
-        empty_text: "Komentár nebol uložený, je prázdny."
-    devise:
-      username:
-        title: "Užívateľské meno"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Subdoména"
-      password:
-        title: "Heslo"
-      password_confirmation:
-        title: "Potvrdenie hesla"
-      sign_up:
-        title: "Registrácia"
-        submit: "Registrovať"
-      login:
-        title: "Prihlásenie"
-        remember_me: "Zapamätať si ma"
-        submit: "Prihlásiť"
-      reset_password:
-        title: "Zabudli ste heslo?"
-        submit: "Obnoviť heslo"
-      change_password:
-        title: "Zmeniť heslo"
-        submit: "Zmeniť svoje heslo"
-      unlock:
-        title: "Zaslanie inštrukcií k odomknutiu účtu"
-        submit: "Zaslať inštrukcií k odomknutiu účtu"
-      resend_confirmation_instructions:
-        title: "Preposlanie potvrdzovacie inštrukcie"
-        submit: "Preposlať potvrdzovacie inštrukcie"
-      links:
-        sign_in: "Prihlásiť sa"
-        sign_up: "Registrovať sa"
-        forgot_your_password: "Zabudli ste heslo?"
-        sign_in_with_omniauth_provider: "Prihlásiť sa cez %{provider}"
-        resend_unlock_instructions: "Poslať znovu inštrukcie na odomknutie účtu"
-        resend_confirmation_instructions: "Preposlať potvrdzovacie inštrukcie"
-    access_denied:
-      message: "Nemáte oprávnenie k vykonaniu tejto akcie."
-    index_list:
-      table: "Tabuľka"
+      one: Zobrazená  <b>1</b> položka
+      one_page: Počet zobrazených položiek %{n}
+    powered_by: "%{active_admin} %{version}"
+    previous: Predchádzajúce
+    scopes:
+      all: Všetko
+    search_status:
+      no_current_filters: Žiadne
+    sidebars:
+      filters: Filtre
+      search_status: Stav vyhľadávania
+    status_tag:
+      'no': Nie
+      unset: Nie
+      'yes': Áno
+    view: Zobraziť
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Typ autora
+        body: Telo
+        created_at: Vytvorený
+        namespace: Namespace
+        resource_type: Typ komentovanej položky
+        updated_at: Upravený
+    models:
+      active_admin/comment:
+        few: Komentáre
+        many: Komentárov
+        one: Komentár
+        other: Komentáre
+      comment:
+        few: Komentáre
+        many: Komentárov
+        one: Komentár
+        other: Komentáre

@@ -1,96 +1,97 @@
+---
 fi:
   active_admin:
+    access_denied:
+      message: Sinulla ei ole oikeuksia suorittaa yrittämääsi toimintoa.
+    any: mikä vain
+    batch_actions:
+      action_label: "%{title} Valittu"
+      button_label: Toimet
+      default_confirmation: Oletko varma, että haluat tehdä tämän?
+      delete_confirmation: Oletko varma, että haluat poistaa nämä %{plural_model}:t?
+      labels:
+        destroy: Poista
+      selection_toggle_explanation: "(Vaihda valintaa)"
+      successfully_destroyed:
+        one: 1 %{model} poistettu
+        other: "%{count} %{plural_model}:a poistettu"
+    blank_slate:
+      content: Järjestelmässä ei ole yhtään %{resource_name}:ia vielä.
+      link: Luo ensimmäinen
+    cancel: Peruuta
+    comments:
+      add: Lisää kommentti
+      author: Luoja
+      author_type: Luoja-tyyppi
+      body: Runko
+      errors:
+        empty_text: Kommenttia ei pystytty tallentamaan, et kirjoittanut kommenttitekstiä.
+      no_comments_yet: Ei kommentteja.
+      resource: Resurssi
+      resource_type: Resurssityyppi
+      title_content: Kommentteja (%{count})
     dashboard: Etusivu
-    view: "Katso"
-    edit: "Muokkaa"
-    delete: "Poista"
-    delete_confirmation: "Oletko varma, että haluat poistaa tämän?"
-    new_model: "Uusi %{model}"
-    edit_model: "Muokkaa %{model}"
-    delete_model: "Poista %{model}"
+    delete: Poista
+    delete_confirmation: Oletko varma, että haluat poistaa tämän?
+    delete_model: Poista %{model}
     details: "%{model} Tiedot"
-    cancel: "Peruuta"
-    empty: "Tyhjä"
-    previous: "Edellinen"
-    next: "Seuraava"
-    download: "Lataa:"
-    has_many_new: "Lisää uusi %{model}"
-    has_many_delete: "Poista"
-    has_many_remove: "Poista"
+    devise:
+      change_password:
+        submit: Vaihda salasana
+        title: Vaihda salasana
+      email:
+        title: Sähköposti
+      links:
+        forgot_your_password: Unohtunut salasana?
+        sign_in: Kirjaudu sisään
+        sign_in_with_omniauth_provider: Kirjaudu sisään %{provider}:ia käyttäen
+      login:
+        remember_me: Muista minut
+        submit: Kirjaudu sisään
+        title: Sisäänkirjautuminen
+      password:
+        title: Salasana
+      reset_password:
+        submit: Resetoi salasana
+        title: Unohtunut salasana?
+      subdomain:
+        title: Subdomain
+      unlock:
+        submit: Lähetä ohjeet lukituksen poistoon
+        title: Lähetä ohjeet lukituksen poistoon
+      username:
+        title: Käyttäjänimi
+    download: 'Lataa:'
+    edit: Muokkaa
+    edit_model: Muokkaa %{model}
+    empty: Tyhjä
     filters:
       buttons:
-        filter: "Hae"
-        clear: "Tyhjennä valinnat"
-    status_tag:
-      "yes": "Kyllä"
-      "no": "Ei"
-      "unset": "Ei"
-    logout: "Kirjaudu ulos"
-    powered_by: "Käyttää %{active_admin} %{version}:ia"
-    sidebars:
-      filters: "Haku"
+        clear: Tyhjennä valinnat
+        filter: Hae
+    has_many_delete: Poista
+    has_many_new: Lisää uusi %{model}
+    has_many_remove: Poista
+    index_list:
+      table: Taulukko
+    logout: Kirjaudu ulos
+    new_model: Uusi %{model}
+    next: Seuraava
     pagination:
       empty: "%{model}:ia ei löytynyt"
-      one: "Näytetään <b>1</b> %{model}"
-      one_page: "Näytetään <b>kaikki %{n}</b> %{model}:it"
-      multiple: "Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> (yhteensä <b>%{total}</b>)"
-      multiple_without_total: "Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
-        one: "syöte"
-        other: "syötteet"
-    any: "mikä vain"
-    blank_slate:
-      content: "Järjestelmässä ei ole yhtään %{resource_name}:ia vielä."
-      link: "Luo ensimmäinen"
-    batch_actions:
-      button_label: "Toimet"
-      default_confirmation: "Oletko varma, että haluat tehdä tämän?"
-      delete_confirmation: "Oletko varma, että haluat poistaa nämä %{plural_model}:t?"
-      succesfully_destroyed:
-        one: "1 %{model} poistettu"
-        other: "%{count} %{plural_model}:a poistettu"
-      selection_toggle_explanation: "(Vaihda valintaa)"
-      action_label: "%{title} Valittu"
-      labels:
-        destroy: "Poista"
-    comments:
-      resource_type: "Resurssityyppi"
-      author_type: "Luoja-tyyppi"
-      body: "Runko"
-      author: "Luoja"
-      add: "Lisää kommentti"
-      resource: "Resurssi"
-      no_comments_yet: "Ei kommentteja."
-      title_content: "Kommentteja (%{count})"
-      errors:
-        empty_text: "Kommenttia ei pystytty tallentamaan, et kirjoittanut kommenttitekstiä."
-    devise:
-      username:
-        title: "Käyttäjänimi"
-      email:
-        title: "Sähköposti"
-      subdomain:
-        title: "Subdomain"
-      password:
-        title: "Salasana"
-      login:
-        title: "Sisäänkirjautuminen"
-        remember_me: "Muista minut"
-        submit: "Kirjaudu sisään"
-      reset_password:
-        title: "Unohtunut salasana?"
-        submit: "Resetoi salasana"
-      change_password:
-        title: "Vaihda salasana"
-        submit: "Vaihda salasana"
-      unlock:
-        title: "Lähetä ohjeet lukituksen poistoon"
-        submit: "Lähetä ohjeet lukituksen poistoon"
-      links:
-        sign_in: "Kirjaudu sisään"
-        forgot_your_password: "Unohtunut salasana?"
-        sign_in_with_omniauth_provider: "Kirjaudu sisään %{provider}:ia käyttäen"
-    access_denied:
-      message: "Sinulla ei ole oikeuksia suorittaa yrittämääsi toimintoa."
-    index_list:
-      table: "Taulukko"
+        one: syöte
+        other: syötteet
+      multiple: Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> (yhteensä <b>%{total}</b>)
+      multiple_without_total: Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Näytetään <b>1</b> %{model}
+      one_page: Näytetään <b>kaikki %{n}</b> %{model}:it
+    powered_by: Käyttää %{active_admin} %{version}:ia
+    previous: Edellinen
+    sidebars:
+      filters: Haku
+    status_tag:
+      'no': Ei
+      unset: Ei
+      'yes': Kyllä
+    view: Katso

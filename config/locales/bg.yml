@@ -1,103 +1,104 @@
+---
 bg:
   active_admin:
+    access_denied:
+      message: Нямате права да извършите това действие.
+    any: Без значение
+    batch_actions:
+      action_label: "%{title} избран"
+      button_label: Масови действия
+      default_confirmation: Наистина ли искате да направите това?
+      delete_confirmation: Сигурни ли сте, че искате да изтриете тези %{plural_model}?
+      labels:
+        destroy: Изтриване
+      selection_toggle_explanation: "(Инвертиране на маркирането)"
+      successfully_destroyed:
+        one: Успешно изтриване на 1 %{model}
+        other: Успешно изтриване на %{count} %{plural_model}
+    blank_slate:
+      content: Все още няма добавени %{resource_name}.
+      link: Създаване
+    cancel: Отказ
+    comments:
+      add: Добавяне на коментар
+      author: Автор
+      author_missing: Анонимен
+      author_type: Тип автор
+      body: Текст
+      errors:
+        empty_text: Коментарът с празен текст не беше запазен.
+      no_comments_yet: Все още няма коментари.
+      resource: Ресурс
+      resource_type: Тип ресурс
+      title_content: Коментари (%{count})
     dashboard: Табло
-    view: "Преглед"
-    edit: "Редакция"
-    delete: "Изтриване"
-    delete_confirmation: "Сигурни ли сте, че искате да изтриете това?"
-    new_model: "Създаване на %{model}"
-    edit_model: "Редакция на %{model}"
-    delete_model: "Изтриване на %{model}"
+    delete: Изтриване
+    delete_confirmation: Сигурни ли сте, че искате да изтриете това?
+    delete_model: Изтриване на %{model}
     details: "%{model} детайли"
-    cancel: "Отказ"
-    empty: "Празно"
-    previous: "Предишно"
-    next: "Следващо"
-    download: "Изтегляне:"
-    has_many_new: "Добавяне на %{model}"
-    has_many_delete: "Изтриване"
-    has_many_remove: "Премахване"
+    devise:
+      change_password:
+        submit: Промяна на паролата
+        title: Промяна на паролата
+      email:
+        title: Поща
+      links:
+        forgot_your_password: Забравена парола?
+        sign_in: Вход
+        sign_in_with_omniauth_provider: Влез с %{provider}
+      login:
+        remember_me: Запомни ме
+        submit: Вход
+        title: Вход
+      password:
+        title: Парола
+      resend_confirmation_instructions:
+        submit: Изпрати отново инструкциите за потвърждаване
+        title: Изпрати отново инструкциите за потвърждаване
+      reset_password:
+        submit: Изпращане на нова парола
+        title: Забравена парола?
+      sign_up:
+        submit: Регистрация
+        title: Регистрация
+      subdomain:
+        title: Поддомейн
+      unlock:
+        submit: Изпрати отново инструкциите за отключване
+        title: Изпрати отново инструкциите за отключване
+      username:
+        title: Потребителско име
+    download: 'Изтегляне:'
+    edit: Редакция
+    edit_model: Редакция на %{model}
+    empty: Празно
     filters:
       buttons:
-        filter: "Филтриране"
-        clear: "Изчистване"
-    status_tag:
-      "yes": "Да"
-      "no": "не"
-      "unset": "не"
-    logout: "Изход"
-    powered_by: "Задвижва се от %{active_admin} %{version}"
-    sidebars:
-      filters: "Филтри"
-    pagination:
-      empty: "Не са намерени %{model}"
-      one: "Показване на <b>1</b> %{model}"
-      one_page: "Показване на <b>всички %{n}</b> %{model}"
-      multiple: "Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> от общо <b>%{total}</b>"
-      multiple_without_total: "Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      entry:
-        one: "запис"
-        other: "записи"
-    any: "Без значение"
-    blank_slate:
-      content: "Все още няма добавени %{resource_name}."
-      link: "Създаване"
-    batch_actions:
-      button_label: "Масови действия"
-      default_confirmation: "Наистина ли искате да направите това?"
-      delete_confirmation: "Сигурни ли сте, че искате да изтриете тези %{plural_model}?"
-      succesfully_destroyed:
-        one: "Успешно изтриване на 1 %{model}"
-        other: "Успешно изтриване на %{count} %{plural_model}"
-      selection_toggle_explanation: "(Инвертиране на маркирането)"
-      action_label: "%{title} избран"
-      labels:
-        destroy: "Изтриване"
-    comments:
-      resource_type: "Тип ресурс"
-      author_type: "Тип автор"
-      body: "Текст"
-      author: "Автор"
-      add: "Добавяне на коментар"
-      resource: "Ресурс"
-      no_comments_yet: "Все още няма коментари."
-      author_missing: "Анонимен"
-      title_content: "Коментари (%{count})"
-      errors:
-        empty_text: "Коментарът с празен текст не беше запазен."
-    devise:
-      username:
-        title: "Потребителско име"
-      email:
-        title: "Поща"
-      subdomain:
-        title: "Поддомейн"
-      password:
-        title: "Парола"
-      sign_up:
-        title: "Регистрация"
-        submit: "Регистрация"
-      login:
-        title: "Вход"
-        remember_me: "Запомни ме"
-        submit: "Вход"
-      reset_password:
-        title: "Забравена парола?"
-        submit: "Изпращане на нова парола"
-      change_password:
-        title: "Промяна на паролата"
-        submit: "Промяна на паролата"
-      unlock:
-        title: "Изпрати отново инструкциите за отключване"
-        submit: "Изпрати отново инструкциите за отключване"
-      resend_confirmation_instructions:
-        title: "Изпрати отново инструкциите за потвърждаване"
-        submit: "Изпрати отново инструкциите за потвърждаване"
-      links:
-        sign_in: "Вход"
-        forgot_your_password: "Забравена парола?"
-        sign_in_with_omniauth_provider: "Влез с %{provider}"
-    access_denied:
-      message: "Нямате права да извършите това действие."
+        clear: Изчистване
+        filter: Филтриране
+    has_many_delete: Изтриване
+    has_many_new: Добавяне на %{model}
+    has_many_remove: Премахване
     index_list:
-      table: "Таблица"
+      table: Таблица
+    logout: Изход
+    new_model: Създаване на %{model}
+    next: Следващо
+    pagination:
+      empty: Не са намерени %{model}
+      entry:
+        one: запис
+        other: записи
+      multiple: Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> от общо <b>%{total}</b>
+      multiple_without_total: Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Показване на <b>1</b> %{model}
+      one_page: Показване на <b>всички %{n}</b> %{model}
+    powered_by: Задвижва се от %{active_admin} %{version}
+    previous: Предишно
+    sidebars:
+      filters: Филтри
+    status_tag:
+      'no': не
+      unset: не
+      'yes': Да
+    view: Преглед

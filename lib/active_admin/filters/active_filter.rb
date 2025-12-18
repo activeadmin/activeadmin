@@ -38,9 +38,7 @@ module ActiveAdmin
       end
 
       def predicate_name
-        I18n.t(
-          "ransack.predicates.#{condition.predicate.name}",
-          default: ransack_predicate_name)
+        Ransack::Translate.predicate(condition.predicate.name)
       end
 
       def html_options
@@ -76,10 +74,6 @@ module ActiveAdmin
 
       def name
         condition_attribute.attr_name
-      end
-
-      def ransack_predicate_name
-        Ransack::Translate.predicate(condition.predicate.name)
       end
 
       def find_class?

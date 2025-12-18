@@ -1,138 +1,139 @@
-"sv-SE":
-  activerecord:
-    models:
-      comment:
-        one: "Kommentar"
-        other: "Kommentarer"
-      active_admin/comment:
-        one: "Kommentar"
-        other: "Kommentarer"
-    attributes:
-      active_admin/comment:
-        author_type: "Författartyp"
-        body: "Innehåll"
-        created_at: "Skapad"
-        namespace: "Namnrymd"
-        resource_type: "Resurstyp"
-        updated_at: "Aktualiserad"
+---
+sv-SE:
   active_admin:
+    access_denied:
+      message: Du har inte behörighet att utföra denna åtgärd.
+    any: Alla
+    batch_actions:
+      action_label: "%{title} markerad"
+      button_label: Batch-åtgärder
+      default_confirmation: Är du säker på att du vill göra detta?
+      delete_confirmation: Är du säker på att du vill radera dessa %{plural_model}?
+      labels:
+        destroy: Radera
+      selection_toggle_explanation: "(Byt markering)"
+      successfully_destroyed:
+        one: Lyckades radera 1 %{model}
+        other: Lyckades radera %{count} %{plural_model}
+    blank_slate:
+      content: Det finns inga %{resource_name} än.
+      link: Skapa en
+    cancel: Avbryt
+    comments:
+      add: Lägg till kommentar
+      author: Författare
+      author_missing: Anonym
+      author_type: Författartyp
+      body: Innehåll
+      created_at: Skapad
+      delete: Radera kommentar
+      delete_confirmation: Är du säker på att du vill radera dessa kommentarer?
+      errors:
+        empty_text: Kommentaren sparades inte. Textfältet får inte vara tomt.
+      no_comments_yet: Inga kommentarer än.
+      resource: Resurs
+      resource_type: Resurstyp
+      title_content: Kommentarer (%{count})
+    create_another: Skapa en till %{model}
     dashboard: Skrivbord
-    view: "Visa"
-    edit: "Redigera"
-    delete: "Ta bort"
-    delete_confirmation: "Är du säker på att du vill ta bort detta?"
-    create_another: "Skapa en till %{model}"
-    new_model: "Ny %{model}"
-    edit_model: "Redigera %{model}"
-    delete_model: "Ta bort %{model}"
+    delete: Ta bort
+    delete_confirmation: Är du säker på att du vill ta bort detta?
+    delete_model: Ta bort %{model}
     details: "%{model}-detaljer"
-    cancel: "Avbryt"
-    empty: "Tom"
-    previous: "Föregående"
-    next: "Nästa"
-    download: "Ladda ner:"
-    has_many_new: "Skapa en ny %{model}"
-    has_many_delete: "Ta bort"
-    has_many_remove: "Ta bort"
-    move: "Flytta"
+    devise:
+      change_password:
+        submit: Ändra mitt lösenord
+        title: Ändra ditt lösenord
+      email:
+        title: E-post
+      links:
+        forgot_your_password: Glömt ditt lösenord?
+        resend_confirmation_instructions: Skicka bekräftningsinstruktioner igen
+        resend_unlock_instructions: Skicka upplåsningsinstruktioner igen
+        sign_in: Logga in
+        sign_in_with_omniauth_provider: Logga in med %{provider}
+        sign_up: Registera
+      login:
+        remember_me: Kom ihåg mig
+        submit: Inloggning
+        title: Inloggning
+      password:
+        title: Lösenord
+      password_confirmation:
+        title: Bekräfta lösenord
+      resend_confirmation_instructions:
+        submit: Skicka bekräftelseinstruktioner
+        title: Skicka bekräftelseinstruktioner
+      reset_password:
+        submit: Återställ mitt lösenord
+        title: Glömt ditt lösenord?
+      sign_up:
+        submit: Registera
+        title: Registera
+      subdomain:
+        title: Subdomän
+      unlock:
+        submit: Skicka upplåsningsinstruktioner
+        title: Skicka upplåsningsinstruktioner
+      username:
+        title: Användarnamn
+    download: 'Ladda ner:'
+    edit: Redigera
+    edit_model: Redigera %{model}
+    empty: Tom
     filters:
       buttons:
-        filter: "Filtrera"
-        clear: "Rensa filter"
+        clear: Rensa filter
+        filter: Filtrera
       predicates:
-        from: "Från"
-        to: "Till"
-    scopes:
-      all: "Alla"
-    search_status:
-      no_current_filters: "Inga"
-    status_tag:
-      "yes": "Ja"
-      "no": "Nej"
-      "unset": "Nej"
-    logout: "Logga ut"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filter"
-      search_status: "Sökstatus"
-    pagination:
-      empty: "Ingen %{model} hittades"
-      one: "Visar <b>1</b> %{model}"
-      one_page: "Visar <b>alla %{n}</b> %{model}"
-      multiple: "Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
-      multiple_without_total: "Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Per sida: "
-      entry:
-        one: "inlägg"
-        other: "inlägg"
-    any: "Alla"
-    blank_slate:
-      content: "Det finns inga %{resource_name} än."
-      link: "Skapa en"
-    batch_actions:
-      button_label: "Batch-åtgärder"
-      default_confirmation: "Är du säker på att du vill göra detta?"
-      delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}?"
-      succesfully_destroyed:
-        one: "Lyckades radera 1 %{model}"
-        other: "Lyckades radera %{count} %{plural_model}"
-      selection_toggle_explanation: "(Byt markering)"
-      action_label: "%{title} markerad"
-      labels:
-        destroy: "Radera"
-    comments:
-      created_at: "Skapad"
-      resource_type: "Resurstyp"
-      author_type: "Författartyp"
-      body: "Innehåll"
-      author: "Författare"
-      add: "Lägg till kommentar"
-      delete: "Radera kommentar"
-      delete_confirmation: "Är du säker på att du vill radera dessa kommentarer?"
-      resource: "Resurs"
-      no_comments_yet: "Inga kommentarer än."
-      author_missing: "Anonym"
-      title_content: "Kommentarer (%{count})"
-      errors:
-        empty_text: "Kommentaren sparades inte. Textfältet får inte vara tomt."
-    devise:
-      username:
-        title: "Användarnamn"
-      email:
-        title: "E-post"
-      subdomain:
-        title: "Subdomän"
-      password:
-        title: "Lösenord"
-      password_confirmation:
-        title: "Bekräfta lösenord"
-      sign_up:
-        title: "Registera"
-        submit: "Registera"
-      login:
-        title: "Inloggning"
-        remember_me: "Kom ihåg mig"
-        submit: "Inloggning"
-      reset_password:
-        title: "Glömt ditt lösenord?"
-        submit: "Återställ mitt lösenord"
-      change_password:
-        title: "Ändra ditt lösenord"
-        submit: "Ändra mitt lösenord"
-      unlock:
-        title: "Skicka upplåsningsinstruktioner"
-        submit: "Skicka upplåsningsinstruktioner"
-      resend_confirmation_instructions:
-        title: "Skicka bekräftelseinstruktioner"
-        submit: "Skicka bekräftelseinstruktioner"
-      links:
-        sign_up: "Registera"
-        sign_in: "Logga in"
-        forgot_your_password: "Glömt ditt lösenord?"
-        sign_in_with_omniauth_provider: "Logga in med %{provider}"
-        resend_unlock_instructions: "Skicka upplåsningsinstruktioner igen"
-        resend_confirmation_instructions: "Skicka bekräftningsinstruktioner igen"
-    access_denied:
-      message: "Du har inte behörighet att utföra denna åtgärd."
+        from: Från
+        to: Till
+    has_many_delete: Ta bort
+    has_many_new: Skapa en ny %{model}
+    has_many_remove: Ta bort
     index_list:
-      table: "Tabell"
+      table: Tabell
+    logout: Logga ut
+    move: Flytta
+    new_model: Ny %{model}
+    next: Nästa
+    pagination:
+      empty: Ingen %{model} hittades
+      entry:
+        one: inlägg
+        other: inlägg
+      multiple: Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt
+      multiple_without_total: Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Visar <b>1</b> %{model}
+      one_page: Visar <b>alla %{n}</b> %{model}
+      per_page: 'Per sida: '
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Föregående
+    scopes:
+      all: Alla
+    search_status:
+      no_current_filters: Inga
+    sidebars:
+      filters: Filter
+      search_status: Sökstatus
+    status_tag:
+      'no': Nej
+      unset: Nej
+      'yes': Ja
+    view: Visa
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Författartyp
+        body: Innehåll
+        created_at: Skapad
+        namespace: Namnrymd
+        resource_type: Resurstyp
+        updated_at: Aktualiserad
+    models:
+      active_admin/comment:
+        one: Kommentar
+        other: Kommentarer
+      comment:
+        one: Kommentar
+        other: Kommentarer

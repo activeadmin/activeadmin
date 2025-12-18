@@ -65,9 +65,9 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
           end
         end
       },
-    }.each do |context_title, table_decleration|
+    }.each do |context_title, table_declaration|
       context context_title do
-        let(:table) { instance_eval(&table_decleration) }
+        let(:table) { instance_eval(&table_declaration) }
 
         it "should render a div wrapper with the class '.attributes-table'" do
           expect(table.tag_name).to eq "div"
@@ -261,6 +261,27 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
         expect(table.find_by_tag("th")[0].content).to eq "Foo"
         expect(table.find_by_tag("td")[0].content).to eq "1"
         expect(table.find_by_tag("td")[1].content).to eq "2"
+      end
+    end
+
+    context "when using custom string labels with acronyms" do
+      let(:table) do
+        render_arbre_component(assigns) do
+          attributes_table_for post do
+            row("Registration ID") { post.id }
+            row("LMnO") { post.title }
+          end
+        end
+      end
+
+      it "should preserve acronym capitalization in custom string labels" do
+        rows = table.find_by_tag("tr")
+
+        expect(rows[0].find_by_tag("th").first.content).to eq "Registration ID"
+        expect(rows[1].find_by_tag("th").first.content).to eq "LMnO"
+
+        expect(rows[0].find_by_tag("th").first.content).not_to eq "Registration Id"
+        expect(rows[1].find_by_tag("th").first.content).not_to eq "L Mn O"
       end
     end
   end

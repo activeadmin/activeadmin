@@ -19,9 +19,6 @@ group :development, :test do
 
   gem "cssbundling-rails"
   gem "importmap-rails"
-
-  # FIXME: relax this dependency when Ruby 3.1 support will be dropped
-  gem "zeitwerk", "~> 2.6.18"
 end
 
 group :test do
@@ -35,7 +32,7 @@ group :test do
   gem "cucumber"
   gem "database_cleaner-active_record"
   gem "launchy"
-  gem "parallel_tests", "~> 4.9" # FIXME: relax this dependency when Ruby 3.1 support will be dropped
+  gem "parallel_tests"
   gem "rspec-rails"
   gem "sqlite3", platform: :mri
 

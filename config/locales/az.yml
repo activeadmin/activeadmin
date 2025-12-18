@@ -1,115 +1,116 @@
+---
 az:
   active_admin:
-    dashboard: "İdarəetmə paneli"
-    view: "Aç"
-    edit: "Dəyiş"
-    delete: "Sil"
-    delete_confirmation: "Siz bunu silmək istədiyinizdən əminsiniz?"
-    new_model: "%{model} yarat"
-    edit_model: "%{model} dəyiş"
-    delete_model: "%{model} sil"
-    details: "%{model} haqqında"
-    cancel: "İmtina"
-    empty: "Boş"
-    previous: "Geri"
-    next: "İrəli"
-    download: "Yüklənmə:"
-    has_many_new: "%{model} əlavə et"
-    has_many_delete: "Sil"
-    has_many_remove: "Yığışdır"
-    filters:
-      buttons:
-        filter: "Filtrlə"
-        clear: "Təmizlə"
-    search_status:
-      no_current_filters: "Heç biri"
-    status_tag:
-      "yes": "Bəli"
-      "no": "Xeyr"
-    logout: "Çıxış"
-    powered_by: "Работает на %{active_admin} %{version}"
-    sidebars:
-      filters: "Filterlə"
-      search_status: "Axtarışın statusu"
-    pagination:
-      empty: "%{model} tapılmadı"
-      one: "Nəticə: <b>1</b> %{model}"
-      one_page: "Nəticə: <b>%{n}</b> %{model}"
-      multiple: "Nəticə: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> <b>%{total}</b>"
-      multiple_without_total: "Nəticə: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      entry:
-        one: "yazı"
-        few: "yazı"
-        many: "yazı"
-        other: "yazı"
-    any: "İstənilən"
+    access_denied:
+      message: Bunu etmək üçün daxil olmalısınız.
+    any: İstənilən
+    batch_actions:
+      action_label: "%{title} seçilmiş"
+      button_label: Qrup əməliyyatları
+      default_confirmation: Siz bunu etməyinizə əminsiniz?
+      delete_confirmation: Siz %{plural_model} silməyə əminsiniz?
+      labels:
+        destroy: Sil
+      selection_toggle_explanation: "(Hamısını seç / Seçilmişləri sıfırla)"
+      successfully_destroyed:
+        few: 'Uğurla silindi: %{count} %{plural_model}'
+        many: 'Uğurla silindi: %{count} %{plural_model}'
+        one: 'Uğurla silindi: 1 %{model}'
+        other: 'Uğurla silindi: %{count} %{plural_model}'
     blank_slate:
       content: "%{resource_name} hələ yoxdur."
-      link: "Yarat"
-    batch_actions:
-      button_label: "Qrup əməliyyatları"
-      default_confirmation: "Siz bunu etməyinizə əminsiniz?"
-      delete_confirmation: "Siz %{plural_model} silməyə əminsiniz?"
-      succesfully_destroyed:
-        one: "Uğurla silindi: 1 %{model}"
-        few: "Uğurla silindi: %{count} %{plural_model}"
-        many: "Uğurla silindi: %{count} %{plural_model}"
-        other: "Uğurla silindi: %{count} %{plural_model}"
-      selection_toggle_explanation: "(Hamısını seç / Seçilmişləri sıfırla)"
-      action_label: "%{title} seçilmiş"
-      labels:
-        destroy: "Sil"
+      link: Yarat
+    cancel: İmtina
     comments:
-      created_at: "Yaranma tarixi"
-      resource_type: "Resursun tipi"
-      author_type: "Müəllifin tipi"
-      body: "Mətn"
-      author: "Müəllif"
-      add: "Şərh əlavə et"
-      delete: "Şərhi sil"
-      delete_confirmation: "Siz bu şərhi silmək istədiyinizdən əminsiniz?"
-      resource: "Resurs"
-      no_comments_yet: "Hələ şərhlər yoxdur."
-      author_missing: "Naməlum"
-      title_content: "Şərhlər (%{count})"
+      add: Şərh əlavə et
+      author: Müəllif
+      author_missing: Naməlum
+      author_type: Müəllifin tipi
+      body: Mətn
+      created_at: Yaranma tarixi
+      delete: Şərhi sil
+      delete_confirmation: Siz bu şərhi silmək istədiyinizdən əminsiniz?
       errors:
-        empty_text: "Şərh yadda saxlanılmadı, mətn boş ola bilməz."
+        empty_text: Şərh yadda saxlanılmadı, mətn boş ola bilməz.
+      no_comments_yet: Hələ şərhlər yoxdur.
+      resource: Resurs
+      resource_type: Resursun tipi
+      title_content: Şərhlər (%{count})
+    dashboard: İdarəetmə paneli
+    delete: Sil
+    delete_confirmation: Siz bunu silmək istədiyinizdən əminsiniz?
+    delete_model: "%{model} sil"
+    details: "%{model} haqqında"
     devise:
-      username:
-        title: "İstifadəçi adı"
-      email:
-        title: "E-poçt"
-      subdomain:
-        title: "Subdomen"
-      password:
-        title: "Şifrə"
-      sign_up:
-        title: "Qeydiyyat"
-        submit: "Qeydiyyatdan keç"
-      login:
-        title: "Giriş"
-        remember_me: "Məni yadda saxla"
-        submit: "Daxil ol"
-      reset_password:
-        title: "Şifrəni unutmusunuz?"
-        submit: "Şifrəni sıfırla"
       change_password:
-        title: "Şifrənin dəyişdirilməsi"
-        submit: "Şifrəni dəyiş"
-      unlock:
-        title: "Blokdan çıxarma üzrə təlimatı yenidən göndərmək"
-        submit: "Blokdan çıxarma üzrə təlimatı yenidən göndərmək"
-      resend_confirmation_instructions:
-        title: "Aktivləşdirmə ismarışını yenidən göndərmək"
-        submit: "Aktivləşdirmə ismarışını yenidən göndərmək"
+        submit: Şifrəni dəyiş
+        title: Şifrənin dəyişdirilməsi
+      email:
+        title: E-poçt
       links:
-        sign_up: "Qeydiyyat"
-        sign_in: "Giriş"
-        forgot_your_password: "Şifrəni unutmusunuz?"
+        forgot_your_password: Şifrəni unutmusunuz?
+        resend_confirmation_instructions: Aktivləşdirmə ismarışını yenidən göndərilməsi
+        resend_unlock_instructions: Blokdan çıxarma üzrə təlimatı yenidən göndərilməsi
+        sign_in: Giriş
         sign_in_with_omniauth_provider: "%{provider} vasitəsilə daxil ol"
-        resend_unlock_instructions: "Blokdan çıxarma üzrə təlimatı yenidən göndərilməsi"
-        resend_confirmation_instructions: "Aktivləşdirmə ismarışını yenidən göndərilməsi"
-    access_denied:
-      message: "Bunu etmək üçün daxil olmalısınız."
+        sign_up: Qeydiyyat
+      login:
+        remember_me: Məni yadda saxla
+        submit: Daxil ol
+        title: Giriş
+      password:
+        title: Şifrə
+      resend_confirmation_instructions:
+        submit: Aktivləşdirmə ismarışını yenidən göndərmək
+        title: Aktivləşdirmə ismarışını yenidən göndərmək
+      reset_password:
+        submit: Şifrəni sıfırla
+        title: Şifrəni unutmusunuz?
+      sign_up:
+        submit: Qeydiyyatdan keç
+        title: Qeydiyyat
+      subdomain:
+        title: Subdomen
+      unlock:
+        submit: Blokdan çıxarma üzrə təlimatı yenidən göndərmək
+        title: Blokdan çıxarma üzrə təlimatı yenidən göndərmək
+      username:
+        title: İstifadəçi adı
+    download: 'Yüklənmə:'
+    edit: Dəyiş
+    edit_model: "%{model} dəyiş"
+    empty: Boş
+    filters:
+      buttons:
+        clear: Təmizlə
+        filter: Filtrlə
+    has_many_delete: Sil
+    has_many_new: "%{model} əlavə et"
+    has_many_remove: Yığışdır
     index_list:
-      table: "Cədvəl"
+      table: Cədvəl
+    logout: Çıxış
+    new_model: "%{model} yarat"
+    next: İrəli
+    pagination:
+      empty: "%{model} tapılmadı"
+      entry:
+        few: yazı
+        many: yazı
+        one: yazı
+        other: yazı
+      multiple: 'Nəticə: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> <b>%{total}</b>'
+      multiple_without_total: 'Nəticə: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>'
+      one: 'Nəticə: <b>1</b> %{model}'
+      one_page: 'Nəticə: <b>%{n}</b> %{model}'
+    powered_by: Работает на %{active_admin} %{version}
+    previous: Geri
+    search_status:
+      no_current_filters: Heç biri
+    sidebars:
+      filters: Filterlə
+      search_status: Axtarışın statusu
+    status_tag:
+      'no': Xeyr
+      'yes': Bəli
+    view: Aç

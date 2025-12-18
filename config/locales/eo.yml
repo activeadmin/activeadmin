@@ -1,120 +1,121 @@
+---
 eo:
   active_admin:
+    access_denied:
+      message: Vi ne rajtas fari tiun agon.
+    any: Ĉiuj
+    batch_actions:
+      action_label: "%{title} elektita"
+      button_label: Amasagoj
+      default_confirmation: Ĉu vi certas, ke vi volas fari tion?
+      delete_confirmation: Ĉu vi certas, ke vi volas forigi tiujn %{plural_model}?
+      labels:
+        destroy: Forigi
+      selection_toggle_explanation: "(Baskuligi elekton)"
+      successfully_destroyed:
+        one: 1 %{model} sukcese forigita
+        other: "%{count} %{plural_model} sukcese forigitaj"
+    blank_slate:
+      content: Ankoraŭ ne estas %{resource_name}.
+      link: Krei novan
+    cancel: Nuligi
+    comments:
+      add: Aldoni komenton
+      author: Aŭtoro
+      author_missing: Anonimulo
+      author_type: Aŭtorotipo
+      body: Enhavo
+      created_at: Kreita
+      delete: Forigi komenton
+      delete_confirmation: Ĉu vi certas, ke vi volas forigi tiun komenton?
+      errors:
+        empty_text: La komento ne estis konservita, la teksto estis malplena.
+      no_comments_yet: Ankoraŭ neniu komento.
+      resource: Resurso
+      resource_type: Resursotipo
+      title_content: Komentoj (%{count})
+    create_another: Krei alian %{model}
     dashboard: Panelo
-    view: "Vidi"
-    edit: "Redakti"
-    delete: "Forigi"
-    delete_confirmation: "Ĉu vi certas, ke vi volas forigi tion?"
-    create_another: "Krei alian %{model}"
-    new_model: "Nova %{model}"
-    edit_model: "Redakti %{model}"
-    delete_model: "Forigi %{model}"
-    details: "Detaloj de %{model}"
-    cancel: "Nuligi"
-    empty: "Malplena"
-    previous: "Antaŭa"
-    next: "Sekva"
-    download: "Elŝuti:"
-    has_many_new: "Aldoni novan %{model}"
-    has_many_delete: "Forigi"
-    has_many_remove: "Forigi"
-    move: "Movi"
+    delete: Forigi
+    delete_confirmation: Ĉu vi certas, ke vi volas forigi tion?
+    delete_model: Forigi %{model}
+    details: Detaloj de %{model}
+    devise:
+      change_password:
+        submit: Ŝanĝi mian pasvorton
+        title: Ŝanĝi vian pasvorton
+      email:
+        title: Retpoŝtadreso
+      links:
+        forgot_your_password: Ĉu vi forgesis vian pasvorton?
+        resend_confirmation_instructions: Resendi klarigojn por konfirmi
+        resend_unlock_instructions: Resendi klarigojn por malŝlosi
+        sign_in: Ensaluti
+        sign_in_with_omniauth_provider: Ensaluti per %{provider}
+        sign_up: Registriĝi
+      login:
+        remember_me: Memori min
+        submit: Ensaluti
+        title: Ensaluti
+      password:
+        title: Pasvorto
+      password_confirmation:
+        title: Konfirmi pasvorton
+      resend_confirmation_instructions:
+        submit: Resendi klarigojn por konfirmi
+        title: Resendi klarigojn por konfirmi
+      reset_password:
+        submit: Restarigi mian pasvorton
+        title: Ĉu vi forgesis vian pasvorton?
+      sign_up:
+        submit: Registriĝi
+        title: Registriĝi
+      subdomain:
+        title: Subdomajno
+      unlock:
+        submit: Resendi klarigojn por malŝlosi
+        title: Resendi klarigojn por malŝlosi
+      username:
+        title: Uzantnomo
+    download: 'Elŝuti:'
+    edit: Redakti
+    edit_model: Redakti %{model}
+    empty: Malplena
     filters:
       buttons:
-        filter: "Filtri"
-        clear: "Viŝi filtrilojn"
+        clear: Viŝi filtrilojn
+        filter: Filtri
       predicates:
-        from: "De"
-        to: "Al"
-    search_status:
-      no_current_filters: "Neniu"
-    status_tag:
-      "yes": "Jes"
-      "no": "Ne"
-      "unset": "Ne"
-    logout: "Elsaluti"
-    powered_by: "Povigita de %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtriloj"
-      search_status: "Serĉstato"
-    pagination:
-      empty: "Neniu %{model} trovita"
-      one: "Montras <b>1</b> %{model}"
-      one_page: "Montras <b>ĉiujn %{n}</b> %{model}"
-      multiple: "Montras %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> entute"
-      multiple_without_total: "Montras %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Paĝe: "
-      entry:
-        one: "ero"
-        other: "eroj"
-    any: "Ĉiuj"
-    blank_slate:
-      content: "Ankoraŭ ne estas %{resource_name}."
-      link: "Krei novan"
-    batch_actions:
-      button_label: "Amasagoj"
-      default_confirmation: "Ĉu vi certas, ke vi volas fari tion?"
-      delete_confirmation: "Ĉu vi certas, ke vi volas forigi tiujn %{plural_model}?"
-      succesfully_destroyed:
-        one: "1 %{model} sukcese forigita"
-        other: "%{count} %{plural_model} sukcese forigitaj"
-      selection_toggle_explanation: "(Baskuligi elekton)"
-      action_label: "%{title} elektita"
-      labels:
-        destroy: "Forigi"
-    comments:
-      created_at: "Kreita"
-      resource_type: "Resursotipo"
-      author_type: "Aŭtorotipo"
-      body: "Enhavo"
-      author: "Aŭtoro"
-      add: "Aldoni komenton"
-      delete: "Forigi komenton"
-      delete_confirmation: "Ĉu vi certas, ke vi volas forigi tiun komenton?"
-      resource: "Resurso"
-      no_comments_yet: "Ankoraŭ neniu komento."
-      author_missing: "Anonimulo"
-      title_content: "Komentoj (%{count})"
-      errors:
-        empty_text: "La komento ne estis konservita, la teksto estis malplena."
-    devise:
-      username:
-        title: "Uzantnomo"
-      email:
-        title: "Retpoŝtadreso"
-      subdomain:
-        title: "Subdomajno"
-      password:
-        title: "Pasvorto"
-      password_confirmation:
-        title: "Konfirmi pasvorton"
-      sign_up:
-        title: "Registriĝi"
-        submit: "Registriĝi"
-      login:
-        title: "Ensaluti"
-        remember_me: "Memori min"
-        submit: "Ensaluti"
-      reset_password:
-        title: "Ĉu vi forgesis vian pasvorton?"
-        submit: "Restarigi mian pasvorton"
-      change_password:
-        title: "Ŝanĝi vian pasvorton"
-        submit: "Ŝanĝi mian pasvorton"
-      unlock:
-        title: "Resendi klarigojn por malŝlosi"
-        submit: "Resendi klarigojn por malŝlosi"
-      resend_confirmation_instructions:
-        title: "Resendi klarigojn por konfirmi"
-        submit: "Resendi klarigojn por konfirmi"
-      links:
-        sign_up: "Registriĝi"
-        sign_in: "Ensaluti"
-        forgot_your_password: "Ĉu vi forgesis vian pasvorton?"
-        sign_in_with_omniauth_provider: "Ensaluti per %{provider}"
-        resend_unlock_instructions: "Resendi klarigojn por malŝlosi"
-        resend_confirmation_instructions: "Resendi klarigojn por konfirmi"
-    access_denied:
-      message: "Vi ne rajtas fari tiun agon."
+        from: De
+        to: Al
+    has_many_delete: Forigi
+    has_many_new: Aldoni novan %{model}
+    has_many_remove: Forigi
     index_list:
-      table: "Tabelo"
+      table: Tabelo
+    logout: Elsaluti
+    move: Movi
+    new_model: Nova %{model}
+    next: Sekva
+    pagination:
+      empty: Neniu %{model} trovita
+      entry:
+        one: ero
+        other: eroj
+      multiple: Montras %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> entute
+      multiple_without_total: Montras %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Montras <b>1</b> %{model}
+      one_page: Montras <b>ĉiujn %{n}</b> %{model}
+      per_page: 'Paĝe: '
+    powered_by: Povigita de %{active_admin} %{version}
+    previous: Antaŭa
+    search_status:
+      no_current_filters: Neniu
+    sidebars:
+      filters: Filtriloj
+      search_status: Serĉstato
+    status_tag:
+      'no': Ne
+      unset: Ne
+      'yes': Jes
+    view: Vidi

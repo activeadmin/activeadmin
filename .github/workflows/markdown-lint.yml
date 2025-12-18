@@ -11,8 +11,8 @@ jobs:
     name: Run markdownlint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: tj-actions/changed-files@v46
+      - uses: actions/checkout@v6
+      - uses: tj-actions/changed-files@v47
         id: changed-files
         with:
           files: |

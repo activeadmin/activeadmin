@@ -1,147 +1,148 @@
+---
 pt-BR:
-  activerecord:
-    models:
-      comment:
-        one: "Comentário"
-        other: "Comentários"
-      active_admin/comment:
-        one: "Comentário"
-        other: "Comentários"
-    attributes:
-      active_admin/comment:
-        author_type: "Tipo do autor"
-        body: "Corpo"
-        created_at: "Criado em"
-        namespace: "Namespace"
-        resource_type: "Tipo do recurso"
-        updated_at: "Atualizado em"
   active_admin:
-    dashboard: "Painel Administrativo"
-    view: "Visualizar"
-    edit: "Editar"
-    delete: "Remover"
-    delete_confirmation: "Você tem certeza que deseja remover este item?"
-    create_another: "Criar outro %{model}"
-    new_model: "Novo(a) %{model}"
-    edit_model: "Editar %{model}"
-    delete_model: "Remover %{model}"
-    details: "Detalhes do(a) %{model}"
-    cancel: "Cancelar"
-    empty: "Vazio"
-    previous: "Anterior"
-    next: "Próximo"
-    download: "Baixar:"
-    has_many_new: "Adicionar Novo(a) %{model}"
-    has_many_delete: "Remover"
-    has_many_remove: "Remover"
-    move: "Mover"
+    access_denied:
+      message: Você não tem permissão para realizar o solicitado
+    any: Qualquer
+    batch_actions:
+      action_label: "%{title} Selecionado"
+      button_label: Ações em lote
+      default_confirmation: Tem certeza que quer fazer isso?
+      delete_confirmation: Tem certeza que deseja excluir estes %{plural_model}?
+      labels:
+        destroy: Excluir
+      selection_toggle_explanation: "(Alternar Seleção)"
+      successfully_destroyed:
+        one: Excluiu com sucesso 1 %{model}
+        other: Excluiu com sucesso %{count} %{plural_model}
+    blank_slate:
+      content: Não existem %{resource_name} ainda.
+      link: Novo
+    cancel: Cancelar
+    comments:
+      add: Adicionar Comentário
+      author: Autor
+      author_missing: Anônimo
+      author_type: Tipo de Autor
+      body: Conteúdo
+      created_at: Criado em
+      delete: Deletar comentário
+      delete_confirmation: Tem certeza que deseja excluir este comentário?
+      errors:
+        empty_text: O comentário não foi salvo porque o texto estava vazio.
+      no_comments_yet: Nenhum comentário.
+      resource: Objeto
+      resource_type: Tipo de Objeto
+      title_content: 'Comentários: %{count}'
+    create_another: Criar outro %{model}
+    dashboard: Painel Administrativo
+    delete: Remover
+    delete_confirmation: Você tem certeza que deseja remover este item?
+    delete_model: Remover %{model}
+    details: Detalhes do(a) %{model}
+    devise:
+      change_password:
+        submit: Troque minha senha
+        title: Troque sua senha
+      email:
+        title: E-mail
+      links:
+        forgot_your_password: Esqueceu sua senha?
+        resend_confirmation_instructions: Reenviar instruções de confirmação
+        resend_unlock_instructions: Reenviar instruções de desbloqueio
+        sign_in: Entrar
+        sign_in_with_omniauth_provider: Entre com o %{provider}
+        sign_up: Criar conta
+      login:
+        remember_me: Lembrar da senha
+        submit: Entrar
+        title: Conta
+      password:
+        title: Senha
+      password_confirmation:
+        title: Confirmação de senha
+      resend_confirmation_instructions:
+        submit: Reenviar instruções de confirmação
+        title: Reenviar instruções de confirmação
+      reset_password:
+        submit: Reinicie minha senha
+        title: Esqueceu sua senha?
+      sign_up:
+        submit: Continuar
+        title: Cadastre-se
+      subdomain:
+        title: Subdomínio
+      unlock:
+        submit: Reenviar instruções de desbloqueio
+        title: Reenviar instruções de desbloqueio
+      username:
+        title: Nome de Usuário
+    download: 'Baixar:'
+    edit: Editar
+    edit_model: Editar %{model}
+    empty: Vazio
     filters:
       buttons:
-        filter: "Filtrar"
-        clear: "Limpar Filtros"
+        clear: Limpar Filtros
+        filter: Filtrar
       predicates:
-        from: "A partir de"
-        to: "Até"
+        from: A partir de
+        to: Até
+    has_many_delete: Remover
+    has_many_new: Adicionar Novo(a) %{model}
+    has_many_remove: Remover
+    index_list:
+      table: Tabela
+    logout: Sair
+    move: Mover
+    new_model: Novo(a) %{model}
+    next: Próximo
+    pagination:
+      empty: Nenhum(a) %{model} encontrado(a)
+      entry:
+        one: registro
+        other: registros
+      multiple: Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>
+      multiple_without_total: Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      next: Próximo
+      one: Exibindo <b>1</b> %{model}
+      one_page: Exibindo <b>todos(as) os(as) %{n}</b> %{model}
+      per_page: 'Por página: '
+      previous: Anterior
+      truncate: "&hellip;"
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Anterior
     scopes:
-      all: "Todos"
+      all: Todos
     search_status:
-      title: "Active Search"
-      title_with_scope: "Active Search de %{name}"
-      no_current_filters: "Nenhum filtro aplicado"
+      no_current_filters: Nenhum filtro aplicado
+      title: Active Search
+      title_with_scope: Active Search de %{name}
+    sidebars:
+      filters: Filtros
+      search_status: Buscou
     status_tag:
-      "yes": "Sim"
-      "no": "Não"
-      "unset": "Não"
+      'no': Não
+      unset: Não
+      'yes': Sim
     toggle_dark_mode: Ativar modo escuro
     toggle_main_navigation_menu: Ativar menu de navegação principal
     toggle_section: Ativar seção
     toggle_user_menu: Ativar menu de usuário
-    logout: "Sair"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtros"
-      search_status: "Buscou"
-    pagination:
-      empty: "Nenhum(a) %{model} encontrado(a)"
-      one: "Exibindo <b>1</b> %{model}"
-      one_page: "Exibindo <b>todos(as) os(as) %{n}</b> %{model}"
-      multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
-      multiple_without_total: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Por página: "
-      previous: "Anterior"
-      next: "Próximo"
-      entry:
-        one: "registro"
-        other: "registros"
-      truncate: "&hellip;"
-    any: "Qualquer"
-    blank_slate:
-      content: "Não existem %{resource_name} ainda."
-      link: "Novo"
-    batch_actions:
-      button_label: "Ações em lote"
-      default_confirmation: "Tem certeza que quer fazer isso?"
-      delete_confirmation: "Tem certeza que deseja excluir estes %{plural_model}?"
-      succesfully_destroyed:
-        one: "Excluiu com sucesso 1 %{model}"
-        other: "Excluiu com sucesso %{count} %{plural_model}"
-      selection_toggle_explanation: "(Alternar Seleção)"
-      action_label: "%{title} Selecionado"
-      labels:
-        destroy: "Excluir"
-    comments:
-      created_at: "Criado em"
-      resource_type: "Tipo de Objeto"
-      author_type: "Tipo de Autor"
-      body: "Conteúdo"
-      author: "Autor"
-      add: "Adicionar Comentário"
-      delete: "Deletar comentário"
-      delete_confirmation: "Tem certeza que deseja excluir este comentário?"
-      resource: "Objeto"
-      no_comments_yet: "Nenhum comentário."
-      author_missing: "Anônimo"
-      title_content: "Comentários: %{count}"
-      errors:
-        empty_text: "O comentário não foi salvo porque o texto estava vazio."
-    devise:
-      username:
-        title: "Nome de Usuário"
-      email:
-        title: "E-mail"
-      subdomain:
-        title: "Subdomínio"
-      password:
-        title: "Senha"
-      password_confirmation:
-        title: "Confirmação de senha"
-      sign_up:
-        title: "Cadastre-se"
-        submit: "Continuar"
-      login:
-        title: "Conta"
-        remember_me: "Lembrar da senha"
-        submit: "Entrar"
-      reset_password:
-        title: "Esqueceu sua senha?"
-        submit: "Reinicie minha senha"
-      change_password:
-        title: "Troque sua senha"
-        submit: "Troque minha senha"
-      unlock:
-        title: "Reenviar instruções de desbloqueio"
-        submit: "Reenviar instruções de desbloqueio"
-      resend_confirmation_instructions:
-        title: "Reenviar instruções de confirmação"
-        submit: "Reenviar instruções de confirmação"
-      links:
-        sign_up: "Criar conta"
-        sign_in: "Entrar"
-        forgot_your_password: "Esqueceu sua senha?"
-        sign_in_with_omniauth_provider: "Entre com o %{provider}"
-        resend_unlock_instructions: "Reenviar instruções de desbloqueio"
-        resend_confirmation_instructions: "Reenviar instruções de confirmação"
-    access_denied:
-      message: "Você não tem permissão para realizar o solicitado"
-    index_list:
-      table: "Tabela"
+    view: Visualizar
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Tipo do autor
+        body: Corpo
+        created_at: Criado em
+        namespace: Namespace
+        resource_type: Tipo do recurso
+        updated_at: Atualizado em
+    models:
+      active_admin/comment:
+        one: Comentário
+        other: Comentários
+      comment:
+        one: Comentário
+        other: Comentários

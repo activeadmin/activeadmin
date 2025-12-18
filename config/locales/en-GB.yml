@@ -1,116 +1,117 @@
-"en-GB":
+---
+en-GB:
   active_admin:
+    access_denied:
+      message: You are not authorised to perform this action.
+    any: Any
+    batch_actions:
+      action_label: "%{title} Selected"
+      button_label: Batch Actions
+      default_confirmation: Are you sure you want to do this?
+      delete_confirmation: Are you sure you want to delete these %{plural_model}?
+      labels:
+        destroy: Delete
+      selection_toggle_explanation: "(Toggle Selection)"
+      successfully_destroyed:
+        one: Successfully deleted 1 %{model}
+        other: Successfully deleted %{count} %{plural_model}
+    blank_slate:
+      content: There are no %{resource_name} yet.
+      link: Create one
+    cancel: Cancel
+    comments:
+      add: Add Comment
+      author: Author
+      author_missing: Anonymous
+      author_type: Author Type
+      body: Body
+      created_at: Created
+      delete: Delete Comment
+      delete_confirmation: Are you sure you want to delete these comments?
+      errors:
+        empty_text: Comment wasn't saved, text was empty.
+      no_comments_yet: No comments yet.
+      resource: Resource
+      resource_type: Resource Type
+      title_content: Comments (%{count})
+    create_another: Create another %{model}
     dashboard: Dashboard
-    view: "View"
-    edit: "Edit"
-    delete: "Delete"
-    delete_confirmation: "Are you sure you want to delete this?"
-    create_another: "Create another %{model}"
-    new_model: "New %{model}"
-    edit_model: "Edit %{model}"
-    delete_model: "Delete %{model}"
+    delete: Delete
+    delete_confirmation: Are you sure you want to delete this?
+    delete_model: Delete %{model}
     details: "%{model} Details"
-    cancel: "Cancel"
-    empty: "Empty"
-    previous: "Previous"
-    next: "Next"
-    download: "Download:"
-    has_many_new: "Add New %{model}"
-    has_many_delete: "Delete"
-    has_many_remove: "Remove"
+    devise:
+      change_password:
+        submit: Change my password
+        title: Change your password
+      email:
+        title: Email
+      links:
+        forgot_your_password: Forgot your password?
+        resend_confirmation_instructions: Resend confirmation instructions
+        resend_unlock_instructions: Resend unlock instructions
+        sign_in: Sign in
+        sign_in_with_omniauth_provider: Sign in with %{provider}
+        sign_up: Sign up
+      login:
+        remember_me: Remember me
+        submit: Login
+        title: Login
+      password:
+        title: Password
+      password_confirmation:
+        title: Confirm Password
+      resend_confirmation_instructions:
+        submit: Resend confirmation instructions
+        title: Resend confirmation instructions
+      reset_password:
+        submit: Reset My Password
+        title: Forgot your password?
+      sign_up:
+        submit: Sign up
+        title: Sign up
+      subdomain:
+        title: Subdomain
+      unlock:
+        submit: Resend unlock instructions
+        title: Resend unlock instructions
+      username:
+        title: Username
+    download: 'Download:'
+    edit: Edit
+    edit_model: Edit %{model}
+    empty: Empty
     filters:
       buttons:
-        filter: "Filter"
-        clear: "Clear Filters"
-    search_status:
-      no_current_filters: "None"
-    status_tag:
-      "yes": "Yes"
-      "no": "No"
-      "unset": "No"
-    logout: "Logout"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filters"
-      search_status: "Search Status"
-    pagination:
-      empty: "No %{model} found"
-      one: "Displaying <b>1</b> %{model}"
-      one_page: "Displaying <b>all %{n}</b> %{model}"
-      multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
-      multiple_without_total: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Per page: "
-      entry:
-        one: "entry"
-        other: "entries"
-    any: "Any"
-    blank_slate:
-      content: "There are no %{resource_name} yet."
-      link: "Create one"
-    batch_actions:
-      button_label: "Batch Actions"
-      default_confirmation: "Are you sure you want to do this?"
-      delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
-      succesfully_destroyed:
-        one: "Successfully deleted 1 %{model}"
-        other: "Successfully deleted %{count} %{plural_model}"
-      selection_toggle_explanation: "(Toggle Selection)"
-      action_label: "%{title} Selected"
-      labels:
-        destroy: "Delete"
-    comments:
-      created_at: "Created"
-      resource_type: "Resource Type"
-      author_type: "Author Type"
-      body: "Body"
-      author: "Author"
-      add: "Add Comment"
-      delete: "Delete Comment"
-      delete_confirmation: "Are you sure you want to delete these comments?"
-      resource: "Resource"
-      no_comments_yet: "No comments yet."
-      author_missing: "Anonymous"
-      title_content: "Comments (%{count})"
-      errors:
-        empty_text: "Comment wasn't saved, text was empty."
-    devise:
-      username:
-        title: "Username"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Subdomain"
-      password:
-        title: "Password"
-      password_confirmation:
-        title: "Confirm Password"
-      sign_up:
-        title: "Sign up"
-        submit: "Sign up"
-      login:
-        title: "Login"
-        remember_me: "Remember me"
-        submit: "Login"
-      reset_password:
-        title: "Forgot your password?"
-        submit: "Reset My Password"
-      change_password:
-        title: "Change your password"
-        submit: "Change my password"
-      unlock:
-        title: "Resend unlock instructions"
-        submit: "Resend unlock instructions"
-      resend_confirmation_instructions:
-        title: "Resend confirmation instructions"
-        submit: "Resend confirmation instructions"
-      links:
-        sign_up: "Sign up"
-        sign_in: "Sign in"
-        forgot_your_password: "Forgot your password?"
-        sign_in_with_omniauth_provider: "Sign in with %{provider}"
-        resend_unlock_instructions: "Resend unlock instructions"
-        resend_confirmation_instructions: "Resend confirmation instructions"
-    access_denied:
-      message: "You are not authorised to perform this action."
+        clear: Clear Filters
+        filter: Filter
+    has_many_delete: Delete
+    has_many_new: Add New %{model}
+    has_many_remove: Remove
     index_list:
-      table: "Table"
+      table: Table
+    logout: Logout
+    new_model: New %{model}
+    next: Next
+    pagination:
+      empty: No %{model} found
+      entry:
+        one: entry
+        other: entries
+      multiple: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total
+      multiple_without_total: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Displaying <b>1</b> %{model}
+      one_page: Displaying <b>all %{n}</b> %{model}
+      per_page: 'Per page: '
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Previous
+    search_status:
+      no_current_filters: None
+    sidebars:
+      filters: Filters
+      search_status: Search Status
+    status_tag:
+      'no': 'No'
+      unset: 'No'
+      'yes': 'Yes'
+    view: View

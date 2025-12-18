@@ -1,142 +1,143 @@
+---
 de:
-  activerecord:
-    models:
-      comment:
-        one: "Kommentar"
-        other: "Kommentare"
-      active_admin/comment:
-        one: "Kommentar"
-        other: "Kommentare"
-    attributes:
-      active_admin/comment:
-        author_type: "Autortyp"
-        body: "Inhalt"
-        created_at: "Erstellt"
-        namespace: "Namensraum"
-        resource_type: "Ressourcentyp"
-        updated_at: "Aktualisiert"
   active_admin:
-    dashboard: "Übersicht"
-    view: "Anzeigen"
-    edit: "Bearbeiten"
-    delete: "Löschen"
-    delete_confirmation: "Wollen Sie dieses Element wirklich löschen?"
-    create_another: "Mehr %{model} erstellen"
-    new_model: "%{model} erstellen"
-    edit_model: "%{model} bearbeiten"
+    access_denied:
+      message: Sie haben nicht die Berechtigung um diese Aktion auszuführen.
+    any: Alle
+    batch_actions:
+      action_label: Ausgewählte %{title}
+      button_label: Stapelverarbeitung
+      default_confirmation: Sind Sie sicher?
+      delete_confirmation: Sind Sie sicher dass Sie diese %{plural_model} löschen wollen?
+      labels:
+        destroy: löschen
+      selection_toggle_explanation: "(Auswahl umschalten)"
+      successfully_destroyed:
+        one: Erfolgreich 1 %{model} gelöscht
+        other: Erfolgreich %{count} %{plural_model} gelöscht
+    blank_slate:
+      content: Es gibt noch keine %{resource_name}.
+      link: Erstellen
+    cancel: Abbrechen
+    comments:
+      add: Kommentar hinzufügen
+      author: Autor
+      author_missing: Unbekannt
+      author_type: Autor-Typ
+      body: Inhalt
+      created_at: Erstellt
+      delete: Löschen
+      delete_confirmation: Sind Sie sicher dass Sie diesen Kommentar löschen wollen?
+      errors:
+        empty_text: Der Kommentar wurde nicht gespeichert, da der Text fehlt.
+      no_comments_yet: Es gibt noch keine Kommentare.
+      resource: Res­sour­ce
+      resource_type: Res­sour­cen-Typ
+      title_content: Kommentare (%{count})
+    create_another: Mehr %{model} erstellen
+    dashboard: Übersicht
+    delete: Löschen
+    delete_confirmation: Wollen Sie dieses Element wirklich löschen?
     delete_model: "%{model} löschen"
     details: "%{model} Details"
-    cancel: "Abbrechen"
-    empty: "Leer"
-    previous: "Zurück"
-    next: "Weiter"
-    download: "Herunterladen:"
-    has_many_new: "%{model} hinzufügen"
-    has_many_delete: "Löschen"
-    has_many_remove: "Entfernen"
-    move: "Verschieben"
+    devise:
+      change_password:
+        submit: Mein Passwort ändern
+        title: Ändern Sie Ihr Passwort
+      email:
+        title: E-Mail-Adresse
+      links:
+        forgot_your_password: Passwort vergessen?
+        resend_confirmation_instructions: Bestätigungsanweisung erneut senden
+        resend_unlock_instructions: Entsperrungsanweisung erneut senden
+        sign_in: Anmeldung
+        sign_in_with_omniauth_provider: Anmeldung mit %{provider}
+        sign_up: Registrieren
+      login:
+        remember_me: Angemeldet bleiben
+        submit: Login
+        title: Login
+      password:
+        title: Passwort
+      password_confirmation:
+        title: Passwort Bestätigung
+      resend_confirmation_instructions:
+        submit: Anleitung zur Bestätigung noch mal schicken
+        title: Anleitung zur Bestätigung noch mal schicken
+      reset_password:
+        submit: Mein Passwort zurücksetzen
+        title: Passwort vergessen?
+      sign_up:
+        submit: Registrieren
+        title: Registrieren
+      subdomain:
+        title: Subdomain
+      unlock:
+        submit: Entsperrungsanweisung erneut senden
+        title: Entsperrungsanweisung erneut senden
+      username:
+        title: Benutzername
+    download: 'Herunterladen:'
+    edit: Bearbeiten
+    edit_model: "%{model} bearbeiten"
+    empty: Leer
     filters:
       buttons:
-        filter: "Filtern"
-        clear: "Filter entfernen"
+        clear: Filter entfernen
+        filter: Filtern
       predicates:
-        from: "Von"
-        to: "Bis"
-    scopes:
-      all: "Alle"
-    search_status:
-      title: "Aktive Filter"
-      title_with_scope: "Aktive Filter in %{name}"
-      no_current_filters: "Keine"
-    status_tag:
-      "yes": "Ja"
-      "no": "Nein"
-      "unset": "Nein"
-    logout: "Abmelden"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filter"
-      search_status: "Aktive Filter"
+        from: Von
+        to: Bis
+    has_many_delete: Löschen
+    has_many_new: "%{model} hinzufügen"
+    has_many_remove: Entfernen
+    index_list:
+      table: Tabelle
+    logout: Abmelden
+    move: Verschieben
+    new_model: "%{model} erstellen"
+    next: Weiter
     pagination:
-      empty: "Keine %{model} gefunden"
-      one: "<b>1</b> %{model}"
-      one_page: "<b>Alle %{n}</b> %{model}"
+      empty: Keine %{model} gefunden
+      entry:
+        one: Eintrag
+        other: Einträge
       multiple: "%{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
       multiple_without_total: "%{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
-      per_page: "Pro Seite: "
-      previous: "Vorherige"
-      next: "Nächste"
-      entry:
-        one: "Eintrag"
-        other: "Einträge"
-    any: "Alle"
-    blank_slate:
-      content: "Es gibt noch keine %{resource_name}."
-      link: "Erstellen"
-    batch_actions:
-      button_label: "Stapelverarbeitung"
-      default_confirmation: "Sind Sie sicher?"
-      delete_confirmation: "Sind Sie sicher dass Sie diese %{plural_model} löschen wollen?"
-      succesfully_destroyed:
-        one: "Erfolgreich 1 %{model} gelöscht"
-        other: "Erfolgreich %{count} %{plural_model} gelöscht"
-      selection_toggle_explanation: "(Auswahl umschalten)"
-      action_label: "Ausgewählte %{title}"
-      labels:
-        destroy: "löschen"
-    comments:
-      created_at: "Erstellt"
-      resource_type: "Res­sour­cen-Typ"
-      author_type: "Autor-Typ"
-      body: "Inhalt"
-      author: "Autor"
-      add: "Kommentar hinzufügen"
-      delete: "Löschen"
-      delete_confirmation: "Sind Sie sicher dass Sie diesen Kommentar löschen wollen?"
-      resource: "Res­sour­ce"
-      no_comments_yet: "Es gibt noch keine Kommentare."
-      author_missing: "Unbekannt"
-      title_content: "Kommentare (%{count})"
-      errors:
-        empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."
-    devise:
-      username:
-        title: "Benutzername"
-      email:
-        title: "E-Mail-Adresse"
-      subdomain:
-        title: "Subdomain"
-      password:
-        title: "Passwort"
-      password_confirmation:
-        title: "Passwort Bestätigung"
-      sign_up:
-        title: "Registrieren"
-        submit: "Registrieren"
-      login:
-        title: "Login"
-        remember_me: "Angemeldet bleiben"
-        submit: "Login"
-      reset_password:
-        title: "Passwort vergessen?"
-        submit: "Mein Passwort zurücksetzen"
-      change_password:
-        title: "Ändern Sie Ihr Passwort"
-        submit: "Mein Passwort ändern"
-      unlock:
-        title: "Entsperrungsanweisung erneut senden"
-        submit: "Entsperrungsanweisung erneut senden"
-      resend_confirmation_instructions:
-        title: "Anleitung zur Bestätigung noch mal schicken"
-        submit: "Anleitung zur Bestätigung noch mal schicken"
-      links:
-        sign_up: "Registrieren"
-        sign_in: "Anmeldung"
-        forgot_your_password: "Passwort vergessen?"
-        sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
-        resend_unlock_instructions: "Entsperrungsanweisung erneut senden"
-        resend_confirmation_instructions: "Bestätigungsanweisung erneut senden"
-    access_denied:
-      message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
-    index_list:
-      table: "Tabelle"
+      next: Nächste
+      one: "<b>1</b> %{model}"
+      one_page: "<b>Alle %{n}</b> %{model}"
+      per_page: 'Pro Seite: '
+      previous: Vorherige
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Zurück
+    scopes:
+      all: Alle
+    search_status:
+      no_current_filters: Keine
+      title: Aktive Filter
+      title_with_scope: Aktive Filter in %{name}
+    sidebars:
+      filters: Filter
+      search_status: Aktive Filter
+    status_tag:
+      'no': Nein
+      unset: Nein
+      'yes': Ja
+    view: Anzeigen
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Autortyp
+        body: Inhalt
+        created_at: Erstellt
+        namespace: Namensraum
+        resource_type: Ressourcentyp
+        updated_at: Aktualisiert
+    models:
+      active_admin/comment:
+        one: Kommentar
+        other: Kommentare
+      comment:
+        one: Kommentar
+        other: Kommentare

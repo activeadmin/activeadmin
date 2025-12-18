@@ -1,111 +1,112 @@
+---
 mk:
-  activerecord:
-    models:
-      comment:
-        one: "Коментар"
-        other: "Коментари"
-      active_admin/comment:
-        one: "Коментар"
-        other: "Коментари"
   active_admin:
-    dashboard: "Почетна"
-    view: "Прегледај"
-    edit: "Измени"
-    delete: "Избриши"
-    delete_confirmation: "Дали сте сигурни дека сакате да го избришете записот?"
-    create_another: "Креирај нов %{model}"
-    new_model: "Додај нов %{model}"
-    edit_model: "Измени %{model}"
-    delete_model: "Избриши %{model}"
-    details: "Детали за %{model}"
-    cancel: "Откажи"
-    empty: "Празно"
-    previous: "Претходно"
-    next: "Следно"
-    download: "Преземи во понудените формати:"
-    has_many_new: "Додај нов %{model}"
-    has_many_delete: "Избриши"
-    has_many_remove: "Отстрани"
-    move: "Премести"
+    access_denied:
+      message: Немате овластување да ја извршите оваа активност.
+    any: Било кој
+    batch_actions:
+      action_label: "%{title} го селектираното"
+      button_label: Групни активности
+      default_confirmation: Дали сте сигурни?
+      delete_confirmation: Дали сте сигурни дека сакате да ги избришете %{plural_model}?
+      labels:
+        destroy: Избриши
+      selection_toggle_explanation: "(Toggle Selection)"
+      successfully_destroyed:
+        one: Успешно е избришан 1 %{model}
+        other: Успешно се избришани %{count} %{plural_model}
+    blank_slate:
+      content: Не се креирани записи од типот на %{resource_name}.
+      link: Креирај нов
+    cancel: Откажи
+    create_another: Креирај нов %{model}
+    dashboard: Почетна
+    delete: Избриши
+    delete_confirmation: Дали сте сигурни дека сакате да го избришете записот?
+    delete_model: Избриши %{model}
+    details: Детали за %{model}
+    devise:
+      change_password:
+        submit: Промени лозинка
+        title: Променете ја лозинката
+      email:
+        title: Е-маил
+      links:
+        forgot_your_password: Ја заборавивте Вашата лозинка?
+        resend_confirmation_instructions: Повторно испрати инструкции за потврдување на профил
+        resend_unlock_instructions: Повторно испрати инструкции за отклучување на профил
+        sign_in: Најави се
+        sign_in_with_omniauth_provider: Најави се со %{provider}
+        sign_up: Креирај профил
+      login:
+        remember_me: Запомни ме
+        submit: Најави се
+        title: Најави се
+      password:
+        title: Лозинка
+      password_confirmation:
+        title: Потврди Лозинка
+      resend_confirmation_instructions:
+        submit: Инспрати инструкции
+        title: Повторно испраќање на инструкции за потврдување на профил
+      reset_password:
+        submit: Промени лозинка
+        title: Ја заборавивте Вашата лозинка?
+      sign_up:
+        submit: Креирај
+        title: Креирај профил
+      unlock:
+        submit: Испрати инструкции
+        title: Повторно испраќање на инструкции за отклучување на профил
+      username:
+        title: Корисничко име
+    download: 'Преземи во понудените формати:'
+    edit: Измени
+    edit_model: Измени %{model}
+    empty: Празно
     filters:
       buttons:
-        filter: "Пребарај"
-        clear: "Исчисти филтри"
+        clear: Исчисти филтри
+        filter: Пребарај
       predicates:
-        from: "Од"
-        to: "До"
-    search_status:
-      no_current_filters: "Моментално нема филтри"
-    status_tag:
-      "yes": "Да"
-      "no": "Не"
-      "unset": "Не"
-    logout: "Одјави се"
-    powered_by: "Овозможено од %{active_admin} %{version}"
-    sidebars:
-      filters: "Филтри за пребарување"
-      search_status: "Резултати од пребарување"
-    pagination:
-      empty: "Нема пронајдени записи за %{model}"
-      one: "Прикажан <b>1</b> %{model}"
-      one_page: "Прикажани <b>сите %{n}</b> %{model}"
-      multiple: "Прикажани %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> од вкупно <b>%{total}</b>"
-      multiple_without_total: "Прикажани %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Прикази на записи по страна:"
-      entry:
-        one: "запис"
-        other: "записи"
-    any: "Било кој"
-    blank_slate:
-      content: "Не се креирани записи од типот на %{resource_name}."
-      link: "Креирај нов"
-    batch_actions:
-      button_label: "Групни активности"
-      default_confirmation: "Дали сте сигурни?"
-      delete_confirmation: "Дали сте сигурни дека сакате да ги избришете %{plural_model}?"
-      succesfully_destroyed:
-        one: "Успешно е избришан 1 %{model}"
-        other: "Успешно се избришани %{count} %{plural_model}"
-      selection_toggle_explanation: "(Toggle Selection)"
-      action_label: "%{title} го селектираното"
-      labels:
-        destroy: "Избриши"
-    devise:
-      username:
-        title: "Корисничко име"
-      email:
-        title: "Е-маил"
-      password:
-        title: "Лозинка"
-      password_confirmation:
-        title: "Потврди Лозинка"
-      sign_up:
-        title: "Креирај профил"
-        submit: "Креирај"
-      login:
-        title: "Најави се"
-        remember_me: "Запомни ме"
-        submit: "Најави се"
-      reset_password:
-        title: "Ја заборавивте Вашата лозинка?"
-        submit: "Промени лозинка"
-      change_password:
-        title: "Променете ја лозинката"
-        submit: "Промени лозинка"
-      unlock:
-        title: "Повторно испраќање на инструкции за отклучување на профил"
-        submit: "Испрати инструкции"
-      resend_confirmation_instructions:
-        title: "Повторно испраќање на инструкции за потврдување на профил"
-        submit: "Инспрати инструкции"
-      links:
-        sign_up: "Креирај профил"
-        sign_in: "Најави се"
-        forgot_your_password: "Ја заборавивте Вашата лозинка?"
-        sign_in_with_omniauth_provider: "Најави се со %{provider}"
-        resend_unlock_instructions: "Повторно испрати инструкции за отклучување на профил"
-        resend_confirmation_instructions: "Повторно испрати инструкции за потврдување на профил"
-    access_denied:
-      message: "Немате овластување да ја извршите оваа активност."
+        from: Од
+        to: До
+    has_many_delete: Избриши
+    has_many_new: Додај нов %{model}
+    has_many_remove: Отстрани
     index_list:
-      table: "Табела"
+      table: Табела
+    logout: Одјави се
+    move: Премести
+    new_model: Додај нов %{model}
+    next: Следно
+    pagination:
+      empty: Нема пронајдени записи за %{model}
+      entry:
+        one: запис
+        other: записи
+      multiple: Прикажани %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> од вкупно <b>%{total}</b>
+      multiple_without_total: Прикажани %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Прикажан <b>1</b> %{model}
+      one_page: Прикажани <b>сите %{n}</b> %{model}
+      per_page: 'Прикази на записи по страна:'
+    powered_by: Овозможено од %{active_admin} %{version}
+    previous: Претходно
+    search_status:
+      no_current_filters: Моментално нема филтри
+    sidebars:
+      filters: Филтри за пребарување
+      search_status: Резултати од пребарување
+    status_tag:
+      'no': Не
+      unset: Не
+      'yes': Да
+    view: Прегледај
+  activerecord:
+    models:
+      active_admin/comment:
+        one: Коментар
+        other: Коментари
+      comment:
+        one: Коментар
+        other: Коментари

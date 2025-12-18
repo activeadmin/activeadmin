@@ -1,117 +1,118 @@
+---
 tr:
   active_admin:
-    dashboard: "Gösterge Paneli"
-    view: "Görüntüle"
-    edit: "Düzenle"
-    delete: "Sil"
-    delete_confirmation: "Bu kaydı silmek istediğinizden emin misiniz?"
-    create_another: "Başka bir %{model} oluştur"
-    new_model: "Yeni %{model}"
-    edit_model: "%{model} Kaydını Düzenle"
+    access_denied:
+      message: Bu işlemi gerçekleştirmek için yetkiniz yok.
+    any: Herhangi biri
+    batch_actions:
+      action_label: Seçilenleri %{title}
+      button_label: Toplu İşlemler
+      default_confirmation: Bunu yapmak istediğinizden emin misiniz?
+      delete_confirmation: Bu %{plural_model} kayıtlarını silmek istediğinizden emin misiniz?
+      labels:
+        destroy: Sil
+      selection_toggle_explanation: "(Seçimi Değiştir)"
+      successfully_destroyed:
+        one: 1 %{model} başarıyla silindi
+        other: Toplam %{count} %{plural_model} başarıyla silindi
+    blank_slate:
+      content: Henüz %{resource_name} yok.
+      link: Bir tane oluşturun
+    cancel: İptal
+    comments:
+      add: Yorum Ekle
+      author: Yazar
+      author_missing: Anonim
+      author_type: Yazar Tipi
+      body: Ayrıntı
+      created_at: Oluşturma Tarihi
+      delete: Yorumu Sil
+      delete_confirmation: Bu yorumları silmek istediğinizden emin misiniz?
+      errors:
+        empty_text: Yorum boş olarak kaydedilemez.
+      no_comments_yet: Henüz yorum yok.
+      resource: Kayıt
+      resource_type: Kayıt Tipi
+      title_content: Yorumlar (%{count})
+    create_another: Başka bir %{model} oluştur
+    dashboard: Gösterge Paneli
+    delete: Sil
+    delete_confirmation: Bu kaydı silmek istediğinizden emin misiniz?
     delete_model: "%{model} Kaydını Sil"
     details: "%{model} Ayrıntıları"
-    cancel: "İptal"
-    empty: "Boş"
-    previous: "Önceki"
-    next: "Sonraki"
-    download: "İndir:"
-    has_many_new: "Yeni %{model} Ekle"
-    has_many_delete: "Sil"
-    has_many_remove: "Çıkar"
-    move: "Taşı"
+    devise:
+      change_password:
+        submit: Şifremi değiştir
+        title: Şifrenizi değiştirin
+      email:
+        title: E-posta adresi
+      links:
+        forgot_your_password: Şifrenizi mi unuttunuz?
+        resend_confirmation_instructions: Onaylama talimatlarını tekrar gönder
+        resend_unlock_instructions: Hesap geri açma talimatlarını tekrar gönder
+        sign_in: Giriş yap
+        sign_in_with_omniauth_provider: "%{provider} ile giriş yapın"
+        sign_up: Kaydol
+      login:
+        remember_me: Beni hatırla
+        submit: Giriş yap
+        title: Giriş yap
+      password:
+        title: Şifre
+      password_confirmation:
+        title: Şifreyi Tekrarla
+      resend_confirmation_instructions:
+        submit: Onaylama talimatlarını tekrar gönder
+        title: Onaylama talimatlarını tekrar gönder
+      reset_password:
+        submit: Şifremi sıfırla
+        title: Şifrenizi mi unuttunuz?
+      sign_up:
+        submit: Kaydol
+        title: Kaydol
+      subdomain:
+        title: Alt alan adı
+      unlock:
+        submit: Hesap geri açma talimatlarını tekrar gönder
+        title: Hesap geri açma talimatlarını tekrar gönder
+      username:
+        title: Kullanıcı adı
+    download: 'İndir:'
+    edit: Düzenle
+    edit_model: "%{model} Kaydını Düzenle"
+    empty: Boş
     filters:
       buttons:
-        filter: "Filtrele"
-        clear: "Filtreleri Temizle"
-    search_status:
-      no_current_filters: "Yok"
-    status_tag:
-      "yes": "Evet"
-      "no": "Hayır"
-      "unset": "Hayır"
-    logout: "Çıkış Yap"
-    powered_by: "%{active_admin} %{version} tarafından desteklenmektedir."
-    sidebars:
-      filters: "Filtreler"
-      search_status: "Arama Durumu"
+        clear: Filtreleri Temizle
+        filter: Filtrele
+    has_many_delete: Sil
+    has_many_new: Yeni %{model} Ekle
+    has_many_remove: Çıkar
+    index_list:
+      table: Tablo
+    logout: Çıkış Yap
+    move: Taşı
+    new_model: Yeni %{model}
+    next: Sonraki
     pagination:
-      empty: "Hiç %{model} yok"
-      one: "<b>1</b> %{model} görüntüleniyor"
-      one_page: "<b>%{n}</b> %{model} kaydının tamamı görüntüleniyor"
+      empty: Hiç %{model} yok
+      entry:
+        one: kayıt
+        other: kayıtlar
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor (toplam %{total} kayıt)"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor"
-      per_page: "Sayfa Başına: "
-      entry:
-        one: "kayıt"
-        other: "kayıtlar"
-    any: "Herhangi biri"
-    blank_slate:
-      content: "Henüz %{resource_name} yok."
-      link: "Bir tane oluşturun"
-    batch_actions:
-      button_label: "Toplu İşlemler"
-      default_confirmation: "Bunu yapmak istediğinizden emin misiniz?"
-      delete_confirmation: "Bu %{plural_model} kayıtlarını silmek istediğinizden emin misiniz?"
-      succesfully_destroyed:
-        one: "1 %{model} başarıyla silindi"
-        other: "Toplam %{count} %{plural_model} başarıyla silindi"
-      selection_toggle_explanation: "(Seçimi Değiştir)"
-      action_label: "Seçilenleri %{title}"
-      labels:
-        destroy: "Sil"
-    comments:
-      created_at: "Oluşturma Tarihi"
-      resource_type: "Kayıt Tipi"
-      author_type: "Yazar Tipi"
-      body: "Ayrıntı"
-      author: "Yazar"
-      add: "Yorum Ekle"
-      delete: "Yorumu Sil"
-      delete_confirmation: "Bu yorumları silmek istediğinizden emin misiniz?"
-      resource: "Kayıt"
-      no_comments_yet: "Henüz yorum yok."
-      author_missing: "Anonim"
-      title_content: "Yorumlar (%{count})"
-      errors:
-        empty_text: "Yorum boş olarak kaydedilemez."
-    devise:
-      username:
-        title: "Kullanıcı adı"
-      email:
-        title: "E-posta adresi"
-      subdomain:
-        title: "Alt alan adı"
-      password:
-        title: "Şifre"
-      password_confirmation:
-        title: "Şifreyi Tekrarla"
-      sign_up:
-        title: "Kaydol"
-        submit: "Kaydol"
-      login:
-        title: "Giriş yap"
-        remember_me: "Beni hatırla"
-        submit: "Giriş yap"
-      reset_password:
-        title: "Şifrenizi mi unuttunuz?"
-        submit: "Şifremi sıfırla"
-      change_password:
-        title: "Şifrenizi değiştirin"
-        submit: "Şifremi değiştir"
-      unlock:
-        title: "Hesap geri açma talimatlarını tekrar gönder"
-        submit: "Hesap geri açma talimatlarını tekrar gönder"
-      resend_confirmation_instructions:
-        title: "Onaylama talimatlarını tekrar gönder"
-        submit: "Onaylama talimatlarını tekrar gönder"
-      links:
-        sign_up: "Kaydol"
-        sign_in: "Giriş yap"
-        forgot_your_password: "Şifrenizi mi unuttunuz?"
-        sign_in_with_omniauth_provider: "%{provider} ile giriş yapın"
-        resend_unlock_instructions: "Hesap geri açma talimatlarını tekrar gönder"
-        resend_confirmation_instructions: "Onaylama talimatlarını tekrar gönder"
-    access_denied:
-      message: "Bu işlemi gerçekleştirmek için yetkiniz yok."
-    index_list:
-      table: "Tablo"
+      one: "<b>1</b> %{model} görüntüleniyor"
+      one_page: "<b>%{n}</b> %{model} kaydının tamamı görüntüleniyor"
+      per_page: 'Sayfa Başına: '
+    powered_by: "%{active_admin} %{version} tarafından desteklenmektedir."
+    previous: Önceki
+    search_status:
+      no_current_filters: Yok
+    sidebars:
+      filters: Filtreler
+      search_status: Arama Durumu
+    status_tag:
+      'no': Hayır
+      unset: Hayır
+      'yes': Evet
+    view: Görüntüle

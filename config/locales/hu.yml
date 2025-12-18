@@ -1,88 +1,89 @@
+---
 hu:
   active_admin:
+    any: Összes
+    batch_actions:
+      action_label: "%{title} kiválasztva"
+      button_label: Tömeges műveletek
+      default_confirmation: Biztos vagy benne, hogy a ön akar-hoz csinál ez?
+      delete_confirmation: Biztosan törli ezeket a %{plural_model}?
+      labels:
+        destroy: Törlés
+      selection_toggle_explanation: "(Kijelölés megfordítása)"
+      successfully_destroyed:
+        one: 1 %{model} sikeresen törölve
+        other: "%{count} %{plural_model} sikeresen törölve"
+    blank_slate:
+      content: Még nincs létrehozva %{resource_name}.
+      link: Létrehozás most
+    cancel: Mégsem
+    comments:
+      add: Új hozzászólás
+      author: Szerző
+      body: Törzs
+      errors:
+        empty_text: A hozzászólás nem lett mentve, a törzs nem lehet üres.
+      no_comments_yet: Nincsenek hozzászólások.
+      resource: Erőforrás
+      title_content: "%{count} hozzászólás"
     dashboard: Vezérlőpult
-    view: "Megtekintés"
-    edit: "Szerkesztés"
-    delete: "Törlés"
-    delete_confirmation: "Biztosan törli ezt az elemet?"
-    new_model: "Új %{model}"
-    edit_model: "%{model} módosítása"
+    delete: Törlés
+    delete_confirmation: Biztosan törli ezt az elemet?
     delete_model: "%{model} törlése"
     details: "%{model} részletei"
-    cancel: "Mégsem"
-    empty: "Üres"
-    previous: "Előző"
-    next: "Következő"
-    download: "Letöltés:"
-    has_many_new: "Új %{model} hozzáadása"
-    has_many_delete: "Törlés"
-    has_many_remove: "Eltávolít"
+    devise:
+      change_password:
+        submit: Jelszó módosítása
+        title: A jelszó módosítása
+      links:
+        forgot_your_password: Elfelejtette a jelszavát?
+        sign_in: Bejelentkezés
+        sign_in_with_omniauth_provider: Jelentkezzen be a %{provider}
+      login:
+        remember_me: Emlékezz rám
+        submit: Belépés
+        title: Bejelentkezés
+      resend_confirmation_instructions:
+        submit: Megerősítő levél újraküldése
+        title: Megerősítő levél újraküldése
+      reset_password:
+        submit: Jelszó visszaállítása
+        title: Elfelejtette a jelszavát?
+      unlock:
+        submit: Újraküldés unlock utasítások
+        title: Újraküldés unlock utasítások
+    download: 'Letöltés:'
+    edit: Szerkesztés
+    edit_model: "%{model} módosítása"
+    empty: Üres
     filters:
       buttons:
-        filter: "Szűrés"
-        clear: "Feltételek törlése"
+        clear: Feltételek törlése
+        filter: Szűrés
       predicates:
         from: "-tól"
         to: "-ig"
-    status_tag:
-      "yes": "Igen"
-      "no": "Nem"
-      "unset": "Nem"
-    logout: "Kilépés"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Szűrők"
+    has_many_delete: Törlés
+    has_many_new: Új %{model} hozzáadása
+    has_many_remove: Eltávolít
+    logout: Kilépés
+    new_model: Új %{model}
+    next: Következő
     pagination:
-      empty: "Nincs több %{model}"
-      one: "<b>Egy</b> %{model} megjelenítése"
-      one_page: "<b>Az összes (%{n} db)</b> %{model} megjelenítése"
+      empty: Nincs több %{model}
+      entry:
+        one: elem
+        other: elem
       multiple: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b>/<b>%{total}</b> "
       multiple_without_total: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b> "
-      entry:
-        one: "elem"
-        other: "elem"
-    any: "Összes"
-    blank_slate:
-      content: "Még nincs létrehozva %{resource_name}."
-      link: "Létrehozás most"
-    batch_actions:
-      button_label: "Tömeges műveletek"
-      default_confirmation: "Biztos vagy benne, hogy a ön akar-hoz csinál ez?"
-      delete_confirmation: "Biztosan törli ezeket a %{plural_model}?"
-      succesfully_destroyed:
-        one: "1 %{model} sikeresen törölve"
-        other: "%{count} %{plural_model} sikeresen törölve"
-      selection_toggle_explanation: "(Kijelölés megfordítása)"
-      action_label: "%{title} kiválasztva"
-      labels:
-        destroy: "Törlés"
-    comments:
-      body: "Törzs"
-      author: "Szerző"
-      add: "Új hozzászólás"
-      resource: "Erőforrás"
-      no_comments_yet: "Nincsenek hozzászólások."
-      title_content: "%{count} hozzászólás"
-      errors:
-        empty_text: "A hozzászólás nem lett mentve, a törzs nem lehet üres."
-    devise:
-      login:
-        title: "Bejelentkezés"
-        remember_me: "Emlékezz rám"
-        submit: "Belépés"
-      reset_password:
-        title: "Elfelejtette a jelszavát?"
-        submit: "Jelszó visszaállítása"
-      change_password:
-        title: "A jelszó módosítása"
-        submit: "Jelszó módosítása"
-      unlock:
-        title: "Újraküldés unlock utasítások"
-        submit: "Újraküldés unlock utasítások"
-      resend_confirmation_instructions:
-        title: "Megerősítő levél újraküldése"
-        submit: "Megerősítő levél újraküldése"
-      links:
-        sign_in: "Bejelentkezés"
-        forgot_your_password: "Elfelejtette a jelszavát?"
-        sign_in_with_omniauth_provider: "Jelentkezzen be a %{provider}"
+      one: "<b>Egy</b> %{model} megjelenítése"
+      one_page: "<b>Az összes (%{n} db)</b> %{model} megjelenítése"
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Előző
+    sidebars:
+      filters: Szűrők
+    status_tag:
+      'no': Nem
+      unset: Nem
+      'yes': Igen
+    view: Megtekintés

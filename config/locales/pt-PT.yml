@@ -1,79 +1,80 @@
-"pt-PT":
+---
+pt-PT:
   active_admin:
-    dashboard: "Painel de Administração"
-    view: "Visualizar"
-    edit: "Editar"
-    delete: "Remover"
-    delete_confirmation: "Não tem a certeza de que deseja remover este ítem?"
-    new_model: "Novo(a) %{model}"
-    edit_model: "Editar %{model}"
-    delete_model: "Remover %{model}"
-    details: "Detalhes do(a) %{model}"
-    cancel: "Cancelar"
-    empty: "Vazio"
-    previous: "Anterior"
-    next: "Próximo"
-    download: "Baixar:"
-    has_many_new: "Adicionar Novo(a) %{model}"
-    has_many_delete: "Remover"
-    has_many_remove: "Remover"
+    any: Qualquer
+    batch_actions:
+      action_label: "%{title} Selecionado"
+      button_label: Ações em quantidade
+      default_confirmation: Tem a certeza que quer fazer isso?
+      delete_confirmation: Tem a certeza de que deseja excluir estes %{plural_model}?
+      labels:
+        destroy: Excluir
+      selection_toggle_explanation: "(Alternar Seleção)"
+      successfully_destroyed:
+        one: Excluiu com sucesso 1 %{model}
+        other: Excluiu com sucesso %{count} %{plural_model}
+    blank_slate:
+      content: Ainda não existem %{resource_name}.
+      link: Novo
+    cancel: Cancelar
+    comments:
+      add: Adicionar Comentário
+      author: Autor
+      body: Conteúdo
+      errors:
+        empty_text: O comentário não foi guardado porque o texto estava vazio.
+      no_comments_yet: Nenhum comentário.
+      resource: Objeto
+      title_content: 'Comentários: %{count}'
+    dashboard: Painel de Administração
+    delete: Remover
+    delete_confirmation: Não tem a certeza de que deseja remover este ítem?
+    delete_model: Remover %{model}
+    details: Detalhes do(a) %{model}
+    devise:
+      change_password:
+        submit: Trocar a minha senha
+        title: Troque a sua senha
+      links:
+        forgot_your_password: Esqueceu-se da sua senha?
+        sign_in: Entrar
+        sign_in_with_omniauth_provider: Entre com o %{provider}
+      login:
+        remember_me: Lembrar-me
+        submit: Entrar
+        title: Conta
+      reset_password:
+        submit: Reiniciar a minha senha
+        title: Esqueceu-de da sua senha?
+    download: 'Baixar:'
+    edit: Editar
+    edit_model: Editar %{model}
+    empty: Vazio
     filters:
       buttons:
-        filter: "Filtrar"
-        clear: "Limpar Filtros"
-    status_tag:
-      "yes": "Sim"
-      "no": "Não"
-      "unset": "Não"
-    logout: "Sair"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtros"
+        clear: Limpar Filtros
+        filter: Filtrar
+    has_many_delete: Remover
+    has_many_new: Adicionar Novo(a) %{model}
+    has_many_remove: Remover
+    logout: Sair
+    new_model: Novo(a) %{model}
+    next: Próximo
     pagination:
-      empty: "Nenhum(a) %{model} encontrado(a)"
-      one: "Mostrando <b>1</b> %{model}"
-      one_page: "Mostrando <b>todos(as) os(as) %{n}</b> %{model}"
-      multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
-      multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: Nenhum(a) %{model} encontrado(a)
       entry:
-        one: "registro"
-        other: "registros"
-    any: "Qualquer"
-    blank_slate:
-      content: "Ainda não existem %{resource_name}."
-      link: "Novo"
-    batch_actions:
-      button_label: "Ações em quantidade"
-      default_confirmation: "Tem a certeza que quer fazer isso?"
-      delete_confirmation: "Tem a certeza de que deseja excluir estes %{plural_model}?"
-      succesfully_destroyed:
-        one: "Excluiu com sucesso 1 %{model}"
-        other: "Excluiu com sucesso %{count} %{plural_model}"
-      selection_toggle_explanation: "(Alternar Seleção)"
-      action_label: "%{title} Selecionado"
-      labels:
-        destroy: "Excluir"
-    comments:
-      body: "Conteúdo"
-      author: "Autor"
-      add: "Adicionar Comentário"
-      resource: "Objeto"
-      no_comments_yet: "Nenhum comentário."
-      title_content: "Comentários: %{count}"
-      errors:
-        empty_text: "O comentário não foi guardado porque o texto estava vazio."
-    devise:
-      login:
-        title: "Conta"
-        remember_me: "Lembrar-me"
-        submit: "Entrar"
-      reset_password:
-        title: "Esqueceu-de da sua senha?"
-        submit: "Reiniciar a minha senha"
-      change_password:
-        title: "Troque a sua senha"
-        submit: "Trocar a minha senha"
-      links:
-        sign_in: "Entrar"
-        forgot_your_password: "Esqueceu-se da sua senha?"
-        sign_in_with_omniauth_provider: "Entre com o %{provider}"
+        one: registro
+        other: registros
+      multiple: Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>
+      multiple_without_total: Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Mostrando <b>1</b> %{model}
+      one_page: Mostrando <b>todos(as) os(as) %{n}</b> %{model}
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Anterior
+    sidebars:
+      filters: Filtros
+    status_tag:
+      'no': Não
+      unset: Não
+      'yes': Sim
+    view: Visualizar

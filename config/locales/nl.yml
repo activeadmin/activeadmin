@@ -1,126 +1,127 @@
+---
 nl:
   active_admin:
+    access_denied:
+      message: U bent niet gemachtigd voor deze actie.
+    any: Alle
+    batch_actions:
+      action_label: "%{title} geselecteerde"
+      button_label: Batch acties
+      default_confirmation: Weet u zeker dat u dit wilt doen?
+      delete_confirmation: Weet u zeker dat u deze %{plural_model} wilt verwijderen?
+      labels:
+        destroy: Verwijder
+      selection_toggle_explanation: "(Toggle selectie)"
+      successfully_destroyed:
+        one: 1 %{model} verwijderd.
+        other: "%{count} %{plural_model} verwijderd."
+    blank_slate:
+      content: Er zijn geen %{resource_name} gevonden.
+      link: Maak aan
+    cancel: Annuleren
+    comments:
+      add: Voeg reactie toe
+      author: Auteur
+      author_missing: Anoniem
+      author_type: Auteur Type
+      body: Tekst
+      created_at: Aangemaakt op
+      delete: Verwijder reactie
+      delete_confirmation: Weet u zeker dat u deze reactie wilt verwijderen?
+      errors:
+        empty_text: De reactie is niet opgeslagen, de tekst was leeg.
+      no_comments_yet: Nog geen reacties.
+      resource: Resource
+      resource_type: Resource Type
+      title_content: Alle reacties (%{count})
+    create_another: Maak nog een %{model}
     dashboard: Dashboard
-    view: "Bekijk"
-    edit: "Wijzig"
-    delete: "Verwijder"
-    delete_confirmation: "Weet u zeker dat je dit item wilt verwijderen?"
-    create_another: "Maak nog een %{model}"
-    new_model: "Nieuwe %{model}"
-    edit_model: "Wijzig %{model}"
-    delete_model: "Verwijder %{model}"
+    delete: Verwijder
+    delete_confirmation: Weet u zeker dat je dit item wilt verwijderen?
+    delete_model: Verwijder %{model}
     details: "%{model} details"
-    cancel: "Annuleren"
-    empty: "Leeg"
-    previous: "Vorige"
-    next: "Volgende"
-    download: "Download"
-    has_many_new: "Voeg nieuwe %{model} toe"
-    has_many_delete: "Verwijderen"
-    has_many_remove: "Verwijderen"
-    move: "Verplaats"
+    devise:
+      change_password:
+        submit: Mijn wachtwoord wijzigen
+        title: Wijzig uw wachtwoord
+      email:
+        title: Email
+      links:
+        forgot_your_password: Wachtwoord vergeten?
+        resend_confirmation_instructions: Bevestigingsinstructies opnieuw versturen
+        resend_unlock_instructions: Ontgrendelinstructies opnieuw versturen
+        sign_in: Meld u aan
+        sign_in_with_omniauth_provider: Log in met %{provider}
+        sign_up: Registreren
+      login:
+        remember_me: Onthoud mij
+        submit: Inloggen
+        title: Inloggen
+      password:
+        title: Wachtwoord
+      password_confirmation:
+        title: Bevestig password
+      resend_confirmation_instructions:
+        submit: Verstuur bevestigingsinstructies opnieuw
+        title: Verstuur bevestigingsinstructies opnieuw
+      reset_password:
+        submit: Reset mijn wachtwoord
+        title: Wachtwoord vergeten?
+      sign_up:
+        submit: Registreren
+        title: Registreren
+      subdomain:
+        title: Subdomein
+      unlock:
+        submit: Verstuur ontgrendelinstructies opnieuw
+        title: Verstuur ontgrendelinstructies opnieuw
+      username:
+        title: Gebruikersnaam
+    download: Download
+    edit: Wijzig
+    edit_model: Wijzig %{model}
+    empty: Leeg
     filters:
       buttons:
-        filter: "Filter"
-        clear: "Maak Filters Ongedaan"
+        clear: Maak Filters Ongedaan
+        filter: Filter
       predicates:
         from: Van
         to: Tot
-    scopes:
-      all: "Alle"
-    search_status:
-      title: "Huidige filter"
-      title_with_scope: "Huidige filter voor %{name}"
-      no_current_filters: "Geen"
-    status_tag:
-      "yes": "Ja"
-      "no": "Geen"
-      "unset": "Onbekend"
-    logout: "Uitloggen"
-    powered_by: "Mogelijk gemaakt door %{active_admin} %{version}"
-    sidebars:
-      filters: "Filters"
-      search_status: "Zoek status"
-    pagination:
-      empty: "Geen %{model} gevonden"
-      one: "Toont <b>1</b> van <b>1</b>"
-      one_page: "Toont <b>alle %{n}</b>"
-      multiple: "Toont <b>%{from}-%{to}</b> van <b>%{total}</b>"
-      multiple_without_total: "Toont <b>%{from}-%{to}</b>"
-      per_page: "Per pagina: "
-      previous: "Vorige"
-      next: "Volgende"
-      entry:
-        one: "entry"
-        other: "entries"
-    any: "Alle"
-    blank_slate:
-      content: "Er zijn geen %{resource_name} gevonden."
-      link: "Maak aan"
-    batch_actions:
-      button_label: "Batch acties"
-      default_confirmation: "Weet u zeker dat u dit wilt doen?"
-      delete_confirmation: "Weet u zeker dat u deze %{plural_model} wilt verwijderen?"
-      succesfully_destroyed:
-        one: "1 %{model} verwijderd."
-        other: "%{count} %{plural_model} verwijderd."
-      selection_toggle_explanation: "(Toggle selectie)"
-      action_label: "%{title} geselecteerde"
-      labels:
-        destroy: "Verwijder"
-    comments:
-      created_at: "Aangemaakt op"
-      resource_type: "Resource Type"
-      author_type: "Auteur Type"
-      body: "Tekst"
-      author: "Auteur"
-      add: "Voeg reactie toe"
-      delete: "Verwijder reactie"
-      delete_confirmation: "Weet u zeker dat u deze reactie wilt verwijderen?"
-      resource: "Resource"
-      no_comments_yet: "Nog geen reacties."
-      author_missing: "Anoniem"
-      title_content: "Alle reacties (%{count})"
-      errors:
-        empty_text: "De reactie is niet opgeslagen, de tekst was leeg."
-    devise:
-      username:
-        title: "Gebruikersnaam"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Subdomein"
-      password:
-        title: "Wachtwoord"
-      password_confirmation:
-        title: "Bevestig password"
-      sign_up:
-        title: "Registreren"
-        submit: "Registreren"
-      login:
-        title: "Inloggen"
-        remember_me: "Onthoud mij"
-        submit: "Inloggen"
-      reset_password:
-        title: "Wachtwoord vergeten?"
-        submit: "Reset mijn wachtwoord"
-      change_password:
-        title: "Wijzig uw wachtwoord"
-        submit: "Mijn wachtwoord wijzigen"
-      unlock:
-        title: "Verstuur ontgrendelinstructies opnieuw"
-        submit: "Verstuur ontgrendelinstructies opnieuw"
-      resend_confirmation_instructions:
-        title: "Verstuur bevestigingsinstructies opnieuw"
-        submit: "Verstuur bevestigingsinstructies opnieuw"
-      links:
-        sign_up: "Registreren"
-        sign_in: "Meld u aan"
-        forgot_your_password: "Wachtwoord vergeten?"
-        sign_in_with_omniauth_provider: "Log in met %{provider}"
-        resend_unlock_instructions: "Ontgrendelinstructies opnieuw versturen"
-        resend_confirmation_instructions: "Bevestigingsinstructies opnieuw versturen"
-    access_denied:
-      message: "U bent niet gemachtigd voor deze actie."
+    has_many_delete: Verwijderen
+    has_many_new: Voeg nieuwe %{model} toe
+    has_many_remove: Verwijderen
     index_list:
-      table: "Tabel"
+      table: Tabel
+    logout: Uitloggen
+    move: Verplaats
+    new_model: Nieuwe %{model}
+    next: Volgende
+    pagination:
+      empty: Geen %{model} gevonden
+      entry:
+        one: entry
+        other: entries
+      multiple: Toont <b>%{from}-%{to}</b> van <b>%{total}</b>
+      multiple_without_total: Toont <b>%{from}-%{to}</b>
+      next: Volgende
+      one: Toont <b>1</b> van <b>1</b>
+      one_page: Toont <b>alle %{n}</b>
+      per_page: 'Per pagina: '
+      previous: Vorige
+    powered_by: Mogelijk gemaakt door %{active_admin} %{version}
+    previous: Vorige
+    scopes:
+      all: Alle
+    search_status:
+      no_current_filters: Geen
+      title: Huidige filter
+      title_with_scope: Huidige filter voor %{name}
+    sidebars:
+      filters: Filters
+      search_status: Zoek status
+    status_tag:
+      'no': Geen
+      unset: Onbekend
+      'yes': Ja
+    view: Bekijk

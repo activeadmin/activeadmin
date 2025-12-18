@@ -1,147 +1,148 @@
+---
 it:
-  activerecord:
-    models:
-      comment:
-        one: "Commento"
-        other: "Commenti"
-      active_admin/comment:
-        one: "Commento"
-        other: "Commenti"
-    attributes:
-      active_admin/comment:
-        author_type: "Tipo di Autore"
-        body: "Corpo"
-        created_at: "Creato il"
-        namespace: "Namespace"
-        resource_type: "Tipo di risorsa"
-        updated_at: "Aggiornato il"
   active_admin:
+    access_denied:
+      message: Non hai le autorizzazioni necessarie per eseguire questa azione.
+    any: Qualsiasi
+    batch_actions:
+      action_label: "%{title} Selezionati"
+      button_label: Azioni multiple
+      default_confirmation: Sei sicuro di che voler proseguire?
+      delete_confirmation: Sei sicuro di volere cancellare %{plural_model}?
+      labels:
+        destroy: Elimina
+      selection_toggle_explanation: "(cambia selezione)"
+      successfully_destroyed:
+        one: Eliminato con successo 1 %{model}
+        other: Eliminati con successo %{count} %{plural_model}
+    blank_slate:
+      content: Non sono presenti %{resource_name}
+      link: Crea nuovo/a
+    cancel: Annulla
+    comments:
+      add: Aggiungi Commento
+      author: Autore
+      author_missing: Anonimo
+      author_type: Tipo di Autore
+      body: Corpo
+      created_at: Creato il
+      delete: Cancella Commento
+      delete_confirmation: Sei sicuro di voler cancellare questo commento?
+      errors:
+        empty_text: Il commento non può essere salvato, il testo è vuoto.
+      no_comments_yet: Nessun commento.
+      resource: Risorsa
+      resource_type: Tipo di risorsa
+      title_content: Commenti (%{count})
+    create_another: Crea un altro %{model}
     dashboard: Dashboard
-    view: "Mostra"
-    edit: "Modifica"
-    delete: "Rimuovi"
-    delete_confirmation: "Sei sicuro di volerlo rimuovere?"
-    create_another: "Crea un altro %{model}"
-    new_model: "Aggiungi %{model}"
-    edit_model: "Modifica %{model}"
-    delete_model: "Rimuovi %{model}"
-    details: "Dettagli %{model}"
-    cancel: "Annulla"
-    empty: "Vuoto"
-    previous: "Precedente"
-    next: "Prossimo"
-    download: "Scarica:"
-    has_many_new: "Aggiungi nuovo/a %{model}"
-    has_many_delete: "Rimuovi"
-    has_many_remove: "Rimuovi"
-    move: "Sposta"
+    delete: Rimuovi
+    delete_confirmation: Sei sicuro di volerlo rimuovere?
+    delete_model: Rimuovi %{model}
+    details: Dettagli %{model}
+    devise:
+      change_password:
+        submit: Cambia la mia password
+        title: Cambia la tua password
+      email:
+        title: Email
+      links:
+        forgot_your_password: Dimenticato la password?
+        resend_confirmation_instructions: Invia di nuovo le istruzioni per la conferma
+        resend_unlock_instructions: Invia di nuovo le istruzioni per lo sblocco
+        sign_in: Entra
+        sign_in_with_omniauth_provider: Collegati a %{provider}
+        sign_up: Iscriviti
+      login:
+        remember_me: Ricordami
+        submit: Entra
+        title: Entra
+      password:
+        title: Password
+      password_confirmation:
+        title: Conferma password
+      resend_confirmation_instructions:
+        submit: Invia di nuovo le istruzioni per la conferma
+        title: Invia di nuovo le istruzioni per la conferma
+      reset_password:
+        submit: Reimposta la tua password
+        title: Dimenticato la password?
+      sign_up:
+        submit: Iscriviti
+        title: Iscriviti
+      subdomain:
+        title: Sottodominio
+      unlock:
+        submit: Invia di nuovo le istruzioni per sbloccare
+        title: Invia di nuovo le istruzioni per sbloccare
+      username:
+        title: Nome Utente
+    download: 'Scarica:'
+    edit: Modifica
+    edit_model: Modifica %{model}
+    empty: Vuoto
     filters:
       buttons:
-        filter: "Filtra"
-        clear: "Rimuovi filtri"
+        clear: Rimuovi filtri
+        filter: Filtra
       predicates:
-        from: "Da"
-        to: "A"
+        from: Da
+        to: A
+    has_many_delete: Rimuovi
+    has_many_new: Aggiungi nuovo/a %{model}
+    has_many_remove: Rimuovi
+    index_list:
+      table: Tabella
+    logout: Esci
+    move: Sposta
+    new_model: Aggiungi %{model}
+    next: Prossimo
+    pagination:
+      empty: Nessun risultato per %{model}
+      entry:
+        one: voce
+        other: voci
+      multiple: Mostrando <b>%{from}-%{to}</b> di <b>%{total}</b>
+      multiple_without_total: Mostrando <b>%{from}-%{to}</b>
+      next: Successiva
+      one: Mostrando <b>1</b> di <b>1</b>
+      one_page: Mostrando <b>%{n}</b> %{model}. Lista completa.
+      per_page: 'Oggetti per pagina: '
+      previous: Precedente
+      truncate: "&hellip;"
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Precedente
     scopes:
-      all: "Tutti"
+      all: Tutti
     search_status:
-      title: "Ricerca corrente"
-      title_with_scope: "Ricerca corrente per %{name}"
-      no_current_filters: "Nessun filtro applicato"
+      no_current_filters: Nessun filtro applicato
+      title: Ricerca corrente
+      title_with_scope: Ricerca corrente per %{name}
+    sidebars:
+      filters: Filtri
+      search_status: Informazioni sulla ricerca
     status_tag:
-      "yes": "Sì"
-      "no": "No"
-      "unset": "Vuoto"
+      'no': 'No'
+      unset: Vuoto
+      'yes': Sì
     toggle_dark_mode: Attiva/Disattiva tema scuro
     toggle_main_navigation_menu: Espandi/Riduci menu di navigazione principale
     toggle_section: Espandi/Riduci sezione
     toggle_user_menu: Espandi/Riduci menu utente
-    logout: "Esci"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtri"
-      search_status: "Informazioni sulla ricerca"
-    pagination:
-      empty: "Nessun risultato per %{model}"
-      one: "Mostrando <b>1</b> di <b>1</b>"
-      one_page: "Mostrando <b>%{n}</b> %{model}. Lista completa."
-      multiple: "Mostrando <b>%{from}-%{to}</b> di <b>%{total}</b>"
-      multiple_without_total: "Mostrando <b>%{from}-%{to}</b>"
-      per_page: "Oggetti per pagina: "
-      previous: "Precedente"
-      next: "Successiva"
-      entry:
-        one: "voce"
-        other: "voci"
-      truncate: "&hellip;"
-    any: "Qualsiasi"
-    blank_slate:
-      content: "Non sono presenti %{resource_name}"
-      link: "Crea nuovo/a"
-    batch_actions:
-      button_label: "Azioni multiple"
-      default_confirmation: "Sei sicuro di che voler proseguire?"
-      delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}?"
-      succesfully_destroyed:
-        one: "Eliminato con successo 1 %{model}"
-        other: "Eliminati con successo %{count} %{plural_model}"
-      selection_toggle_explanation: "(cambia selezione)"
-      action_label: "%{title} Selezionati"
-      labels:
-        destroy: "Elimina"
-    comments:
-      created_at: "Creato il"
-      resource_type: "Tipo di risorsa"
-      author_type: "Tipo di Autore"
-      body: "Corpo"
-      author: "Autore"
-      add: "Aggiungi Commento"
-      delete: "Cancella Commento"
-      delete_confirmation: "Sei sicuro di voler cancellare questo commento?"
-      resource: "Risorsa"
-      no_comments_yet: "Nessun commento."
-      author_missing: "Anonimo"
-      title_content: "Commenti (%{count})"
-      errors:
-        empty_text: "Il commento non può essere salvato, il testo è vuoto."
-    devise:
-      username:
-        title: "Nome Utente"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Sottodominio"
-      password:
-        title: "Password"
-      password_confirmation:
-        title: "Conferma password"
-      sign_up:
-        title: "Iscriviti"
-        submit: "Iscriviti"
-      login:
-        title: "Entra"
-        remember_me: "Ricordami"
-        submit: "Entra"
-      reset_password:
-        title: "Dimenticato la password?"
-        submit: "Reimposta la tua password"
-      change_password:
-        title: "Cambia la tua password"
-        submit: "Cambia la mia password"
-      unlock:
-        title: "Invia di nuovo le istruzioni per sbloccare"
-        submit: "Invia di nuovo le istruzioni per sbloccare"
-      resend_confirmation_instructions:
-        title: "Invia di nuovo le istruzioni per la conferma"
-        submit: "Invia di nuovo le istruzioni per la conferma"
-      links:
-        sign_up: "Iscriviti"
-        sign_in: "Entra"
-        forgot_your_password: "Dimenticato la password?"
-        sign_in_with_omniauth_provider: "Collegati a %{provider}"
-        resend_unlock_instructions: "Invia di nuovo le istruzioni per lo sblocco"
-        resend_confirmation_instructions: "Invia di nuovo le istruzioni per la conferma"
-    access_denied:
-      message: "Non hai le autorizzazioni necessarie per eseguire questa azione."
-    index_list:
-      table: "Tabella"
+    view: Mostra
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Tipo di Autore
+        body: Corpo
+        created_at: Creato il
+        namespace: Namespace
+        resource_type: Tipo di risorsa
+        updated_at: Aggiornato il
+    models:
+      active_admin/comment:
+        one: Commento
+        other: Commenti
+      comment:
+        one: Commento
+        other: Commenti

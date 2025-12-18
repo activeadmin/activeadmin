@@ -1,116 +1,153 @@
+---
 uk:
   active_admin:
-    dashboard: "Панель керування"
-    view: "Переглянути"
-    edit: "Змінити"
-    delete: "Видалити"
-    delete_confirmation: "Ви впевнені, що хочете це видалити?"
-    new_model: "Створити %{model}"
-    edit_model: "Змінити %{model}"
-    delete_model: "Видалити %{model}"
+    access_denied:
+      message: Ви не авторизовані для виконання даної дії.
+    any: Будь-який
+    batch_actions:
+      action_label: "%{title} вибране"
+      button_label: Групові операції
+      default_confirmation: Ви справді бажаєте це зробити?
+      delete_confirmation: Ви впевнені, що хочете видалити %{plural_model}?
+      labels:
+        destroy: Видалити
+      selection_toggle_explanation: "(Скасувати все / Зняти виділення)"
+      successfully_destroyed:
+        few: 'Успішно видалено: %{count} %{plural_model}'
+        many: 'Успішно видалено: %{count} %{plural_model}'
+        one: 'Успішно видалено: 1 %{model}'
+        other: 'Успішно видалено: %{count} %{plural_model}'
+    blank_slate:
+      content: Поки-що немає %{resource_name}.
+      link: Створити
+    cancel: Скасувати
+    comments:
+      add: Додати Коментар
+      author: Автор
+      author_missing: Анонім
+      author_type: Тип автора
+      body: Текст
+      created_at: Дата створення
+      delete: Видалити Коментар
+      delete_confirmation: Ви впевнені, що хочете видалити цей коментар?
+      errors:
+        empty_text: Коментар не збережено, текст не повинен бути пустим.
+      no_comments_yet: Поки-що немає коментарів.
+      resource: Ресурс
+      resource_type: Тип ресурсу
+      title_content: Коментарі (%{count})
+    create_another: Створити ще %{model}
+    dashboard: Панель керування
+    delete: Видалити
+    delete_confirmation: Ви впевнені, що хочете це видалити?
+    delete_model: Видалити %{model}
     details: "%{model} детальніше"
-    cancel: "Скасувати"
-    empty: "Пусто"
-    previous: "Поперед."
-    next: "Наст."
-    download: "Завантаження:"
-    has_many_new: "Додати %{model}"
-    has_many_delete: "Прибрати"
-    has_many_remove: "Видалити"
+    devise:
+      change_password:
+        submit: Змінити пароль
+        title: Зміна паролю
+      email:
+        title: Електронна пошта
+      links:
+        forgot_your_password: Забули пароль?
+        resend_confirmation_instructions: Повторна відправка інструкцій підтвердження
+        resend_unlock_instructions: Повторна відправка інструкцій розблокування
+        sign_in: Увійти
+        sign_in_with_omniauth_provider: Увійти з допомогою %{provider}
+        sign_up: Зареєструватись
+      login:
+        remember_me: Запам'ятати мене
+        submit: Увійти
+        title: Вхід
+      password:
+        title: Пароль
+      resend_confirmation_instructions:
+        submit: Відправити повторно листа з активацією
+        title: Відправити повторно листа з активацією
+      reset_password:
+        submit: Скинути пароль
+        title: Забули пароль?
+      sign_up:
+        submit: Зареєструватися
+        title: Зареєструватися
+      subdomain:
+        title: Піддомен
+      unlock:
+        submit: Відправити повторно інструкції з розблокування
+        title: Відправити повторно інструкції з розблокування
+      username:
+        title: Ім'я користувача
+    download: 'Завантаження:'
+    edit: Змінити
+    edit_model: Змінити %{model}
+    empty: Пусто
     filters:
       buttons:
-        filter: "Фільтрувати"
-        clear: "Очистити"
+        clear: Очистити
+        filter: Фільтрувати
       predicates:
-        from: "від"
-        to: "до"
-    search_status:
-      no_current_filters: "Жоден"
-    status_tag:
-      "yes": "Так"
-      "no": "Ні"
-      "unset": "Ні"
-    logout: "Вийти"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Фільтри"
-      search_status: "Статус пошуку"
+        from: від
+        to: до
+    has_many_delete: Прибрати
+    has_many_new: Додати %{model}
+    has_many_remove: Видалити
+    index_list:
+      table: Таблиця
+    logout: Вийти
+    move: Перемістити
+    new_model: Створити %{model}
+    next: Наст.
     pagination:
       empty: "%{model} не знайдено"
-      one: "Результат: <b>1</b> %{model}"
-      one_page: "Результат: <b>%{n}</b> %{model}"
-      multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{total}</b>"
-      multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
-        one: "запис"
-        few: "записи"
-        many: "записів"
-        other: "записів"
-    any: "Будь-який"
-    blank_slate:
-      content: "Поки-що немає %{resource_name}."
-      link: "Створити"
-    batch_actions:
-      button_label: "Групові операції"
-      default_confirmation: "Ви справді бажаєте це зробити?"
-      delete_confirmation: "Ви впевнені, що хочете видалити %{plural_model}?"
-      succesfully_destroyed:
-        one: "Успішно видалено: 1 %{model}"
-        few: "Успішно видалено: %{count} %{plural_model}"
-        many: "Успішно видалено: %{count} %{plural_model}"
-        other: "Успішно видалено: %{count} %{plural_model}"
-      selection_toggle_explanation: "(Скасувати все / Зняти виділення)"
-      action_label: "%{title} вибране"
-      labels:
-        destroy: "Видалити"
-    comments:
-      resource_type: "Тип ресурса"
-      author_type: "Тип автора"
-      body: "Текст"
-      author: "Автор"
-      add: "Додати Коментар"
-      resource: "Ресурс"
-      no_comments_yet: "Поки-що немає коментарів."
-      author_missing: "Анонім"
-      title_content: "Коментарі (%{count})"
-      errors:
-        empty_text: "Коментар не збережено, текст не повинен бути пустим."
-    devise:
-      username:
-        title: "Ім'я користувача"
-      email:
-        title: "Електронна пошта"
-      subdomain:
-        title: "Піддомен"
-      password:
-        title: "Пароль"
-      sign_up:
-        title: "Зареєструватися"
-        submit: "Зареєструватися"
-      login:
-        title: "Вхід"
-        remember_me: "Запам'ятати мене"
-        submit: "Увійти"
-      reset_password:
-        title: "Забули пароль?"
-        submit: "Скинути пароль"
-      change_password:
-        title: "Зміна паролю"
-        submit: "Змінити пароль"
-      unlock:
-        title: "Відправити повторно інструкції з розблокування"
-        submit: "Відправити повторно інструкції з розблокування"
-      resend_confirmation_instructions:
-        title: "Відправити повторно листа з активацією"
-        submit: "Відправити повторно листа з активацією"
-      links:
-        sign_up: "Зареєструватись"
-        sign_in: "Увійти"
-        forgot_your_password: "Забули пароль?"
-        sign_in_with_omniauth_provider: "Увійти з допомогою %{provider}"
-        resend_unlock_instructions: "Повторна відправка інструкцій розблокування"
-        resend_confirmation_instructions: "Повторна відправка інструкцій підтвердження"
-    access_denied:
-      message: "Ви не авторизовані для виконання даної дії."
-    index_list:
-      table: "Таблиця"
+        few: записи
+        many: записів
+        one: запис
+        other: записів
+      multiple: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{total}</b>'
+      multiple_without_total: 'Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>'
+      next: Наступна
+      one: 'Результат: <b>1</b> %{model}'
+      one_page: 'Результат: <b>%{n}</b> %{model}'
+      per_page: 'На сторінці '
+      previous: Попередня
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Поперед.
+    scopes:
+      all: Всі
+    search_status:
+      no_current_filters: Жоден
+      title: Поточний пошук
+      title_with_scope: Поточний пошук %{name}
+    sidebars:
+      filters: Фільтри
+      search_status: Статус пошуку
+    status_tag:
+      'no': Ні
+      unset: Ні
+      'yes': Так
+    toggle_dark_mode: Перемкнути темну тему
+    toggle_main_navigation_menu: Перемкнути головне меню
+    toggle_section: Перемкнути секцію
+    toggle_user_menu: Перемкнути меню користувача
+    view: Переглянути
+  activerecord:
+    attributes:
+      active_admin/comment:
+        author_type: Тип автора
+        body: Текст
+        created_at: Дата створення
+        namespace: Простір імен
+        resource_type: Тип ресурсу
+        updated_at: Дата оновлення
+    models:
+      active_admin/comment:
+        few: Коментаря
+        many: Коментарів
+        one: Коментар
+        other: Коментарів
+      comment:
+        few: Коментаря
+        many: Коментарів
+        one: Коментар
+        other: Коментарів

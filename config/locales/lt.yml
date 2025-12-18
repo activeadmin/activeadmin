@@ -1,118 +1,119 @@
+---
 lt:
   active_admin:
+    access_denied:
+      message: Jūs nesate įgaliotas atlikti šį veiksmą.
+    any: Bet kokia
+    batch_actions:
+      action_label: "%{title} Pasirinkta"
+      button_label: Veiksmai su pažymėtais
+      default_confirmation: Ar jūs tikrai norite tai padaryti?
+      delete_confirmation: Ar jūs tikrai norite pašalinti šiuos %{plural_model}?
+      labels:
+        destroy: Šalinti
+      selection_toggle_explanation: "(Žymėti)"
+      successfully_destroyed:
+        one: Sėkmingai pašalintas 1 %{model}
+        other: Sėkmingai pašalinti %{count} %{plural_model}
+    blank_slate:
+      content: Nėra %{resource_name}.
+      link: Sukurti
+    cancel: Atšaukti
+    comments:
+      add: Pridėti komentarą
+      author: Autorius
+      author_missing: Anonimas
+      author_type: Autoriaus Tipas
+      body: Įrašas
+      created_at: Sukurta
+      delete: Trinti komentarą
+      delete_confirmation: Ar tikrai norite ištrinti šį komentarą?
+      errors:
+        empty_text: Komentaras neišsaugotas, tekstas buvo tuščias.
+      no_comments_yet: Dar nėra komentarų.
+      resource: Išteklių
+      resource_type: Resurso Tipas
+      title_content: Komentarai (%{count})
     dashboard: Valdymo skydelis
-    view: 'Žiūrėti'
-    edit: 'Redaguoti'
-    delete: 'Šalinti'
-    delete_confirmation: 'Ar jūs tikrai norite tai pašalinti?'
-    new_model: 'Naujas %{model}'
-    edit_model: 'Redaguoti %{model}'
-    delete_model: 'Pašalinti %{model}'
-    details: '%{model} Informacija'
-    cancel: 'Atšaukti'
-    empty: 'Tuščia'
-    previous: 'Atgal'
-    next: 'Toliau'
-    download: 'Atsisiųsti'
-    has_many_new: 'Pridėti naują %{model}'
-    has_many_delete: 'Šalinti'
-    has_many_remove: 'Pašalinti'
+    delete: Šalinti
+    delete_confirmation: Ar jūs tikrai norite tai pašalinti?
+    delete_model: Pašalinti %{model}
+    details: "%{model} Informacija"
+    devise:
+      change_password:
+        submit: Pakeisti mano slaptažodį
+        title: Slaptažodžio Keitimas
+      email:
+        title: El. paštas
+      links:
+        forgot_your_password: Pamiršote slaptažodį?
+        resend_confirmation_instructions: Persiųsti patvirtinimo instrukcijas
+        resend_unlock_instructions: Persiųsti pakartotinio atrakinimo instrukcijas
+        sign_in: Prisijungti
+        sign_in_with_omniauth_provider: Prisijungti su %{provider}
+        sign_up: Užsiregistruoti
+      login:
+        remember_me: Prisiminti Mane
+        submit: Prisijungti
+        title: Prisijungimas
+      password:
+        title: Slaptažodis
+      password_confirmation:
+        title: Pakartokite slaptažodį
+      resend_confirmation_instructions:
+        submit: Siųsti patvirtinimo instrukcijas
+        title: Patvirtinimo Instrukcijos
+      reset_password:
+        submit: Sukurti Naują Slaptažodį
+        title: Pamiršote slaptažodį?
+      sign_up:
+        submit: Užsiregistruoti
+        title: Registracija
+      subdomain:
+        title: Subdomenas
+      unlock:
+        submit: Pakartotinai siųsti atrakinimo instrukcijas
+        title: Pakartotinio Atrakinimo Instrukcijos
+      username:
+        title: Vartotojo Vardas
+    download: Atsisiųsti
+    edit: Redaguoti
+    edit_model: Redaguoti %{model}
+    empty: Tuščia
     filters:
       buttons:
-        filter: 'Filtras'
-        clear: 'Išvalyti filtrus'
+        clear: Išvalyti filtrus
+        filter: Filtras
       predicates:
-        from: "Nuo"
-        to: "Iki"
-    search_status:
-      no_current_filters: "nėra"
-    status_tag:
-      "yes": "Taip"
-      "no": "Nėra"
-      "unset": "Nėra"
-    logout: 'Išeiti'
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: 'Filtrai'
-      search_status: "Paieškos būsena"
-    pagination:
-      empty: '%{model} nerastas'
-      one: 'Rodoma <B> 1 </ b> %{model}'
-      one_page: 'Rodoma <b>visi %{n} </ b> %{model}'
-      multiple: 'Rodomi %{model} <b>%{from}&nbsp;-&nbsp;%{to} </ b> iš<b>%{total} </ b> iš viso'
-      multiple_without_total: 'Rodomi %{model} <b>%{from}&nbsp;-&nbsp;%{to} </ b> '
-      per_page: "Puslapyje: "
-      entry:
-        one: 'įrašas'
-        other: 'įrašai'
-    any: 'Bet kokia'
-    blank_slate:
-      content: 'Nėra %{resource_name}.'
-      link: 'Sukurti'
-    batch_actions:
-      button_label: 'Veiksmai su pažymėtais'
-      default_confirmation: 'Ar jūs tikrai norite tai padaryti?'
-      delete_confirmation: 'Ar jūs tikrai norite pašalinti šiuos %{plural_model}?'
-      succesfully_destroyed:
-        one: 'Sėkmingai pašalintas 1 %{model}'
-        other: 'Sėkmingai pašalinti %{count} %{plural_model}'
-      selection_toggle_explanation: '(Žymėti)'
-      action_label: '%{title} Pasirinkta'
-      labels:
-        destroy: 'Šalinti'
-    comments:
-      created_at: "Sukurta"
-      resource_type: 'Resurso Tipas'
-      author_type: 'Autoriaus Tipas'
-      body: 'Įrašas'
-      author: 'Autorius'
-      add: 'Pridėti komentarą'
-      delete: "Trinti komentarą"
-      delete_confirmation: "Ar tikrai norite ištrinti šį komentarą?"
-      resource: 'Išteklių'
-      no_comments_yet: 'Dar nėra komentarų.'
-      author_missing: 'Anonimas'
-      title_content: 'Komentarai (%{count})'
-      errors:
-        empty_text: 'Komentaras neišsaugotas, tekstas buvo tuščias.'
-    devise:
-      username:
-        title: 'Vartotojo Vardas'
-      email:
-        title: 'El. paštas'
-      subdomain:
-        title: 'Subdomenas'
-      password:
-        title: 'Slaptažodis'
-      password_confirmation:
-        title: "Pakartokite slaptažodį"
-      sign_up:
-        title: 'Registracija'
-        submit: 'Užsiregistruoti'
-      login:
-        title: 'Prisijungimas'
-        remember_me: 'Prisiminti Mane'
-        submit: 'Prisijungti'
-      reset_password:
-        title: 'Pamiršote slaptažodį?'
-        submit: 'Sukurti Naują Slaptažodį'
-      change_password:
-        title: 'Slaptažodžio Keitimas'
-        submit: 'Pakeisti mano slaptažodį'
-      unlock:
-        title: 'Pakartotinio Atrakinimo Instrukcijos'
-        submit: 'Pakartotinai siųsti atrakinimo instrukcijas'
-      resend_confirmation_instructions:
-        title: 'Patvirtinimo Instrukcijos'
-        submit: 'Siųsti patvirtinimo instrukcijas'
-      links:
-        sign_up: "Užsiregistruoti"
-        sign_in: 'Prisijungti'
-        forgot_your_password: 'Pamiršote slaptažodį?'
-        sign_in_with_omniauth_provider: 'Prisijungti su %{provider}'
-        resend_unlock_instructions: "Persiųsti pakartotinio atrakinimo instrukcijas"
-        resend_confirmation_instructions: "Persiųsti patvirtinimo instrukcijas"
-    access_denied:
-      message: 'Jūs nesate įgaliotas atlikti šį veiksmą.'
+        from: Nuo
+        to: Iki
+    has_many_delete: Šalinti
+    has_many_new: Pridėti naują %{model}
+    has_many_remove: Pašalinti
     index_list:
-      table: "Lentelė"
+      table: Lentelė
+    logout: Išeiti
+    new_model: Naujas %{model}
+    next: Toliau
+    pagination:
+      empty: "%{model} nerastas"
+      entry:
+        one: įrašas
+        other: įrašai
+      multiple: Rodomi %{model} <b>%{from}&nbsp;-&nbsp;%{to} </ b> iš<b>%{total} </ b> iš viso
+      multiple_without_total: 'Rodomi %{model} <b>%{from}&nbsp;-&nbsp;%{to} </ b> '
+      one: Rodoma <B> 1 </ b> %{model}
+      one_page: Rodoma <b>visi %{n} </ b> %{model}
+      per_page: 'Puslapyje: '
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Atgal
+    search_status:
+      no_current_filters: nėra
+    sidebars:
+      filters: Filtrai
+      search_status: Paieškos būsena
+    status_tag:
+      'no': Nėra
+      unset: Nėra
+      'yes': Taip
+    view: Žiūrėti

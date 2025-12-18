@@ -6,14 +6,15 @@ group :development, :test do
 
   gem "cancancan"
   gem "pundit"
-  gem "action_policy"
 
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 7.0.0"
+  gem "rails", "~> 8.0.0"
 
   gem "sprockets-rails"
+  gem "ransack", ">= 4.2.0"
+  gem "formtastic", ">= 5.0.0"
 
   gem "cssbundling-rails"
   gem "importmap-rails"
@@ -32,7 +33,7 @@ group :test do
   gem "launchy"
   gem "parallel_tests"
   gem "rspec-rails"
-  gem "sqlite3", "~> 1.7", platform: :mri
+  gem "sqlite3", platform: :mri
 
   # Translations
   gem "i18n-tasks"

@@ -21,18 +21,8 @@ module ActiveAdmin
         Kernel.system("rake dependencies:vendor") # ensure flowbite is updated for test app
         Dir.chdir(app_dir) do
           Kernel.system("yarn add @activeadmin/activeadmin")
-          Kernel.system('npm pkg set scripts.build:css="tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify -c tailwind-active_admin.config.js"')
+          Kernel.system('npm pkg set scripts.build:css="npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"')
           Kernel.system("yarn install")
-
-          # Temporary workaround: Downgrade Tailwind CSS to v3.
-          # The `css:install:tailwind` task installs Tailwind CSS v4 by default,
-          # which is suitable for new applications.
-          # Related issues:
-          #  - activeadmin/activeadmin#8611
-          #  - rails/cssbundling-rails#163
-          # TODO: Remove this workaround once Tailwind CSS v4 is supported.
-          Kernel.system('yarn upgrade "tailwindcss@^3.4.17"')
-
           Kernel.system("yarn build:css")
         end
       end
@@ -48,6 +38,7 @@ module ActiveAdmin
         --skip-active-storage
         --skip-bootsnap
         --skip-brakeman
+        --skip-bundler-audit
         --skip-ci
         --skip-decrypted-diffs
         --skip-dev-gems
@@ -94,7 +85,7 @@ module ActiveAdmin
     end
 
     def app_name
-      return "rails_80" if main_app?
+      return "rails_81" if main_app?
 
       File.basename(File.dirname(gemfile))
     end

@@ -61,10 +61,15 @@ module ActiveAdmin
       end
 
       def header_content_for(attr)
-        if @resource_class.respond_to?(:human_attribute_name)
-          @resource_class.human_attribute_name(attr, default: attr.to_s.titleize)
+        if attr.is_a?(Symbol)
+          default = attr.to_s.titleize
+          if @resource_class.respond_to?(:human_attribute_name)
+            @resource_class.human_attribute_name(attr, default: default)
+          else
+            default
+          end
         else
-          attr.to_s.titleize
+          attr.to_s
         end
       end
 

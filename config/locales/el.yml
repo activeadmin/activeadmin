@@ -1,106 +1,107 @@
+---
 el:
   active_admin:
-    dashboard: "Σελίδα διαχείρισης"
-    view: "Προβολή"
-    edit: "Επεξεργασία"
-    delete: "Διαγραφή"
-    delete_confirmation: "Είστε σίγουρος πως θέλετε να το διαγράψετε;"
-    new_model: "Δημιουργία %{model}"
-    edit_model: "Επεξεργασία %{model}"
-    delete_model: "Διαγραφή %{model}"
-    details: "Λεπτομέρειες %{model}"
-    cancel: "Ακύρωση"
-    empty: "Άδειο"
-    previous: "Προηγούμενη"
-    next: "Επόμενη"
-    download: "Κατέβασμα:"
-    has_many_new: "Προσθήκη Νέου %{model}"
-    has_many_delete: "Διαγραφή"
-    has_many_remove: "Αφαίρεση"
+    access_denied:
+      message: Δεν έχετε πρόσβαση για αυτή την ενέργεια.
+    any: Όλες οι εγγραφές
+    batch_actions:
+      action_label: "%{title} επιλεγμένων"
+      button_label: Μαζικές Ενέργειες
+      default_confirmation: Είστε σίγουρος πως θέλετε να το κάνετε αυτό;
+      delete_confirmation: Είστε σίγουρος πως θέλετε να διαγράψετε αυτά τα %{plural_model}?
+      labels:
+        destroy: Διαγραφή
+      selection_toggle_explanation: "(Αντιστροφή επιλογών)"
+      successfully_destroyed:
+        one: Διαγράφηκε επιτυχώς 1 %{model}
+        other: Διαγράφηκαν επιτυχώς %{count} %{plural_model}
+    blank_slate:
+      content: Δεν υπάρχουν %{resource_name} ακόμα.
+      link: Δημιουργήστε μία εγγραφή
+    cancel: Ακύρωση
+    comments:
+      add: Προσθήκη Σχολίου
+      author: Συγγραφέας
+      author_missing: Ανώνυμος
+      author_type: Τύπος Συγγραφέα
+      body: Κείμενο
+      errors:
+        empty_text: Το σχόλιο δε σώθηκε, το κείμενο ήταν κενό.
+      no_comments_yet: Δεν υπάρχει κανένα σχόλιο.
+      resource: Εγγραφή
+      resource_type: Τύπος Εγγραφής
+      title_content: Σχόλια (%{count})
+    dashboard: Σελίδα διαχείρισης
+    delete: Διαγραφή
+    delete_confirmation: Είστε σίγουρος πως θέλετε να το διαγράψετε;
+    delete_model: Διαγραφή %{model}
+    details: Λεπτομέρειες %{model}
+    devise:
+      change_password:
+        submit: Αλλαγή του κωδικού
+        title: Αλλάξτε τον κωδικό σας
+      email:
+        title: Email
+      links:
+        forgot_your_password: Ξεχάσατε τον κωδικό σας;
+        resend_confirmation_instructions: Αποστολή οδηγιών επιβεβαίωσης
+        resend_unlock_instructions: Αποστολή οδηγιών ξεκλειδώματος
+        sign_in: Σύνδεση
+        sign_in_with_omniauth_provider: Σύνδεση με %{provider}
+        sign_up: Εγγραφή
+      login:
+        remember_me: Να με θυμάσαι
+        submit: Σύνδεση
+        title: Σύνδεση
+      password:
+        title: Κωδικός
+      resend_confirmation_instructions:
+        submit: Αποστολή οδηγιών επιβεβαίωσης
+        title: Αποστολή οδηγιών επιβεβαίωσης
+      reset_password:
+        submit: Επαναφορά κωδικού
+        title: Ξεχάσατε τον κωδικό σας;
+      sign_up:
+        submit: Εγγραφή
+        title: Εγγραφή
+      subdomain:
+        title: Subdomain
+      unlock:
+        submit: Αποστολή οδηγιών ξεκλειδώματος
+        title: Αποστολή οδηγιών ξεκλειδώματος
+      username:
+        title: Όνομα χρήστη
+    download: 'Κατέβασμα:'
+    edit: Επεξεργασία
+    edit_model: Επεξεργασία %{model}
+    empty: Άδειο
     filters:
       buttons:
-        filter: "Φίλτρα"
-        clear: "Καθαρισμός Φίλτρων"
-    status_tag:
-      "yes": "Ναι"
-      "no": "Όχι"
-      "unset": "Όχι"
-    logout: "Αποσύνδεση"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Φίλτρα"
-    pagination:
-      empty: "Δε βρέθηκαν %{model}"
-      one: "Εμφάνιζεται <b>1</b> %{model}"
-      one_page: "Εμφανίζονται <b>όλες οι %{n}</b> εγγραφές %{model}"
-      multiple: "Εμφανίζονται %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> από <b>%{total}</b> συνολικά"
-      multiple_without_total: "Εμφανίζονται %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      entry:
-        one: "εγγραφή"
-        other: "εγγραφές"
-    any: "Όλες οι εγγραφές"
-    blank_slate:
-      content: "Δεν υπάρχουν %{resource_name} ακόμα."
-      link: "Δημιουργήστε μία εγγραφή"
-    batch_actions:
-      button_label: "Μαζικές Ενέργειες"
-      default_confirmation: "Είστε σίγουρος πως θέλετε να το κάνετε αυτό;"
-      delete_confirmation: "Είστε σίγουρος πως θέλετε να διαγράψετε αυτά τα %{plural_model}?"
-      succesfully_destroyed:
-        one: "Διαγράφηκε επιτυχώς 1 %{model}"
-        other: "Διαγράφηκαν επιτυχώς %{count} %{plural_model}"
-      selection_toggle_explanation: "(Αντιστροφή επιλογών)"
-      action_label: "%{title} επιλεγμένων"
-      labels:
-        destroy: "Διαγραφή"
-    comments:
-      resource_type: "Τύπος Εγγραφής"
-      author_type: "Τύπος Συγγραφέα"
-      body: "Κείμενο"
-      author: "Συγγραφέας"
-      add: "Προσθήκη Σχολίου"
-      resource: "Εγγραφή"
-      no_comments_yet: "Δεν υπάρχει κανένα σχόλιο."
-      author_missing: "Ανώνυμος"
-      title_content: "Σχόλια (%{count})"
-      errors:
-        empty_text: "Το σχόλιο δε σώθηκε, το κείμενο ήταν κενό."
-    devise:
-      username:
-        title: "Όνομα χρήστη"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Subdomain"
-      password:
-        title: "Κωδικός"
-      sign_up:
-        title: "Εγγραφή"
-        submit: "Εγγραφή"
-      login:
-        title: "Σύνδεση"
-        remember_me: "Να με θυμάσαι"
-        submit: "Σύνδεση"
-      reset_password:
-        title: "Ξεχάσατε τον κωδικό σας;"
-        submit: "Επαναφορά κωδικού"
-      change_password:
-        title: "Αλλάξτε τον κωδικό σας"
-        submit: "Αλλαγή του κωδικού"
-      unlock:
-        title: "Αποστολή οδηγιών ξεκλειδώματος"
-        submit: "Αποστολή οδηγιών ξεκλειδώματος"
-      resend_confirmation_instructions:
-        title: "Αποστολή οδηγιών επιβεβαίωσης"
-        submit: "Αποστολή οδηγιών επιβεβαίωσης"
-      links:
-        sign_in: "Σύνδεση"
-        sign_up: "Εγγραφή"
-        forgot_your_password: "Ξεχάσατε τον κωδικό σας;"
-        sign_in_with_omniauth_provider: "Σύνδεση με %{provider}"
-        resend_unlock_instructions: "Αποστολή οδηγιών ξεκλειδώματος"
-        resend_confirmation_instructions: "Αποστολή οδηγιών επιβεβαίωσης"
-    access_denied:
-      message: "Δεν έχετε πρόσβαση για αυτή την ενέργεια."
+        clear: Καθαρισμός Φίλτρων
+        filter: Φίλτρα
+    has_many_delete: Διαγραφή
+    has_many_new: Προσθήκη Νέου %{model}
+    has_many_remove: Αφαίρεση
     index_list:
-      table: "Πίνακας"
+      table: Πίνακας
+    logout: Αποσύνδεση
+    new_model: Δημιουργία %{model}
+    next: Επόμενη
+    pagination:
+      empty: Δε βρέθηκαν %{model}
+      entry:
+        one: εγγραφή
+        other: εγγραφές
+      multiple: Εμφανίζονται %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> από <b>%{total}</b> συνολικά
+      multiple_without_total: Εμφανίζονται %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Εμφάνιζεται <b>1</b> %{model}
+      one_page: Εμφανίζονται <b>όλες οι %{n}</b> εγγραφές %{model}
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Προηγούμενη
+    sidebars:
+      filters: Φίλτρα
+    status_tag:
+      'no': Όχι
+      unset: Όχι
+      'yes': Ναι
+    view: Προβολή

@@ -11,7 +11,7 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 8.0.0"
+  gem "rails", "~> 8.1.0"
 
   gem "sprockets-rails"
   gem "ransack", ">= 4.2.0"

@@ -13,7 +13,7 @@ gemfile(true) do
   end
 
   # Change Rails version if necessary.
-  gem "rails", "~> 8.0.0"
+  gem "rails", "~> 8.1.0"
 
   gem "sprockets", "~> 4.0"
   gem "importmap-rails", "~> 2.0"
