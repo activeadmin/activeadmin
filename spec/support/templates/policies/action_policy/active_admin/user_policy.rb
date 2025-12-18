@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
 module ActionPolicy::ActiveAdmin
   class UserPolicy < ActionPolicy::ApplicationPolicy
     scope_for(:active_admin) do |relation|

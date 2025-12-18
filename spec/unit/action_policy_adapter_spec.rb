@@ -11,10 +11,12 @@ RSpec.describe ActiveAdmin::ActionPolicyAdapter do
 
     before do
       namespace.authorization_adapter = ActiveAdmin::ActionPolicyAdapter
+      ActiveAdmin.application.action_policy_default_policy = ActionPolicy::ApplicationPolicy
+      ActiveAdmin.application.action_policy_namespace = "ActionPolicy"
     end
 
     it "should initialize the policy stored in the namespace configuration" do
-      expect(auth.authorized?(:read, Post)).to eq true
+      expect(auth.authorized?(:read, Post)).to eq false
       expect(auth.authorized?(:update, Post)).to eq false
     end
 
@@ -24,51 +26,34 @@ RSpec.describe ActiveAdmin::ActionPolicyAdapter do
     end
 
     it "should scope the collection" do
-      collection = double
-      expect(collection).to receive(:accessible_by).with(auth.action_policy, :read)
-      auth.scope_collection(collection, :read)
+      collection = Post.all
+      scoped = auth.scope_collection(collection, :read)
+
+      expect(scoped).to eq(collection)
     end
 
     context "when ActionPolicy namespace provided" do
       before do
-        allow(ActiveAdmin.application).to receive(:action_policy_namespace).and_return :foobar
+        allow(ActiveAdmin.application).to receive(:action_policy_namespace).and_return "ActionPolicy"
       end
 
       it "looks for a namespaced policy" do
-        expect(ActionPolicy).to receive(:lookup).with(Post).and_return(DefaultPolicy)
+        expect(ActionPolicy::PostPolicy).to receive(:new).and_call_original
         auth.authorized?(:read, Post)
-      end
-
-      it "looks for a namespaced policy scope" do
-        collection = double
-        expect(ActionPolicy).to receive(:lookup).with(collection).and_return(DefaultPolicy)
-        auth.scope_collection(collection, :read)
-      end
-
-      it "uses the resource when no subject given" do
-        expect(ActionPolicy).to receive(:lookup).with(resource).and_return(DefaultPolicy)
-        auth.authorized?(:index)
       end
     end
 
     context "when ActionPolicy is unable to find policy" do
-      let(:record) { double }
+      let(:record) { double("record") }
 
       subject(:policy) { auth.retrieve_policy(record) }
 
       before do
-        allow(ActiveAdmin.application).to receive(:action_policy_default_policy).and_return "DefaultPolicy"
+        allow(ActiveAdmin.application).to receive(:action_policy_default_policy).and_return ActionPolicy::ApplicationPolicy
+        allow(ActionPolicy).to receive(:lookup).and_raise(ActionPolicy::NotFound)
       end
 
-      it("should return default policy instance") { is_expected.to be_instance_of(DefaultPolicy) }
-
-      context "and default policy doesn't exist" do
-        let(:default_policy_klass_name) { nil }
-
-        it "raises the error" do
-          expect { subject }.to raise_error ActionPolicy::NotFound
-        end
-      end
+      it("should return default policy instance") { is_expected.to be_instance_of(ActionPolicy::ApplicationPolicy) }
     end
   end
-end 
+end

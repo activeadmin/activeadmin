@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin::Dependency.action_policy!
 
 require "action_policy"
@@ -10,24 +12,36 @@ ActiveAdmin::Application.inheritable_setting :action_policy_scope_type, :active_
 module ActiveAdmin
   class ActionPolicyAdapter < AuthorizationAdapter
     def authorized?(action, subject = nil)
-      action = format_action(action, subject)
-      retrieve_policy(subject).apply(action)
+      policy = retrieve_policy(subject)
+      query = format_action(action, subject)
+
+      policy.respond_to?(query) && policy.public_send(query)
     end
 
     def scope_collection(collection, _action = Auth::READ)
-      retrieve_policy(collection).apply_scope(collection, type: default_scope_type)
+      target = policy_target(collection)
+      policy_class = policy_class_for(target)
+
+      if policy_class&.respond_to?(:apply_scope)
+        policy_class.apply_scope(collection, user: user, type: default_scope_type)
+      else
+        collection
+      end
+    rescue ActionPolicy::NotFound => e
+      raise e unless default_policy_class&.respond_to?(:scope_for)
+
+      default_policy_class.scope_for(default_scope_type, user: user, scope: collection)
     end
 
     def retrieve_policy(subject)
       target = policy_target(subject)
-      @policies ||= {}
-      @policies[target] ||= ActionPolicy.lookup(target, namespace: default_policy_module)
-      @policies[target].new(target, user: user)
-    rescue ActionPolicy::NotFound
-      if default_policy_class
-        default_policy(subject)
+
+      if (policy = policy_for(target))
+        policy
+      elsif default_policy_class
+        default_policy(target)
       else
-        raise ActionPolicy::NotFound, "unable to find a compatible policy for `#{target}`"
+        raise ActionPolicy::NotFound, "Couldn't find policy class for #{target.inspect}"
       end
     end
 
@@ -35,30 +49,60 @@ module ActiveAdmin
       case action
       when Auth::READ then subject.is_a?(Class) ? :index? : :show?
       when Auth::DESTROY then subject.is_a?(Class) ? :destroy_all? : :destroy?
-      else "#{action}?"
+      else
+        "#{action}?"
       end
     end
 
     private
 
-    def default_policy
-      ActiveAdmin.application.action_policy_default_policy
+    def policy_for(target)
+      policies[target] ||= begin
+        policy_class = policy_class_for(target)
+        policy_class&.new(target, user: user)
+      end
+    rescue ActionPolicy::NotFound
+      nil
+    end
+
+    def policy_class_for(target)
+      if default_policy_namespace
+        namespaced_policy_class(target)
+      else
+        ActionPolicy.lookup(target)
+      end
+    end
+
+    def namespaced_policy_class(target)
+      namespace_module = default_policy_namespace.to_s.camelize.constantize
+      policy_name = "#{target.class.name}Policy"
+      namespace_module.const_get(policy_name)
+    rescue NameError, ArgumentError
+      # Fallback to ActionPolicy.lookup if namespaced policy not found
+      begin
+        ActionPolicy.lookup(target)
+      rescue ArgumentError, ActionPolicy::NotFound
+        nil
+      end
+    end
+
+    def policies
+      @policies ||= {}
     end
 
     def default_policy_class
-      return if default_policy.nil?
+      policy = ActiveAdmin.application.action_policy_default_policy
+      return nil unless policy
 
-      default_policy.to_s.camelize.constantize
+      policy.is_a?(String) ? policy.constantize : policy
+    end
+
+    def default_policy(target)
+      default_policy_class.new(target, user: user)
     end
 
     def default_policy_namespace
       ActiveAdmin.application.action_policy_namespace
-    end
-
-    def default_policy_module
-      return if default_policy_namespace.nil?
-
-      default_policy_namespace.to_s.camelize.constantize
     end
 
     def default_scope_type
@@ -69,15 +113,9 @@ module ActiveAdmin
       case subject
       when nil then resource.resource_class
       when Class then subject.new
-      else subject
+      else
+        subject
       end
-    end
-
-    def apply_namespace(subject)
-      return subject unless default_policy_namespace
-      return subject if subject.class.to_s.start_with?("#{default_policy_module}::")
-
-      [default_policy_namespace.to_sym, subject]
     end
   end
 end
