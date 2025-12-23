@@ -138,11 +138,11 @@ GEM
       cucumber-tag-expressions (> 6, < 9)
     cucumber-cucumber-expressions (18.0.1)
       bigdecimal
-    cucumber-gherkin (36.1.0)
-      cucumber-messages (> 25, < 30)
-    cucumber-html-formatter (22.2.0)
-      cucumber-messages (> 19, < 31)
-    cucumber-messages (29.0.1)
+    cucumber-gherkin (37.0.1)
+      cucumber-messages (>= 31, < 32)
+    cucumber-html-formatter (22.3.0)
+      cucumber-messages (> 23, < 33)
+    cucumber-messages (31.1.0)
     cucumber-rails (4.0.0)
       capybara (>= 3.25, < 4)
       cucumber (>= 7, < 11)
@@ -194,7 +194,7 @@ GEM
       activesupport (>= 7.0)
     highline (3.1.2)
       reline
-    i18n (1.14.7)
+    i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
       iso
@@ -345,7 +345,7 @@ GEM
       activerecord (>= 7.2)
       activesupport (>= 7.2)
       i18n
-    rdoc (7.0.1)
+    rdoc (7.0.2)
       erb
       psych (>= 4.0.0)
       tsort
@@ -501,4 +501,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-  4.0.2
+  4.0.3
