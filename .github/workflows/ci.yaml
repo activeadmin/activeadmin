@@ -19,6 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
+          - "4.0"
           - "3.4"
           - "3.3"
           - "3.2"
@@ -31,6 +32,15 @@ jobs:
           - rails_71
           - rails_70
         exclude:
+          - ruby: '4.0'
+            os: ubuntu-latest
+            rails: rails_72
+          - ruby: '4.0'
+            os: ubuntu-latest
+            rails: rails_71
+          - ruby: '4.0'
+            os: ubuntu-latest
+            rails: rails_70
           - ruby: '3.4'
             os: ubuntu-latest
             rails: rails_70
