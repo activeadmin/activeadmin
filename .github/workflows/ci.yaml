@@ -76,7 +76,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-          rubygems: '3.5.7' # Allows the CI to pass against all Ruby / Rails combinations
+          rubygems: ${{ startsWith(matrix.deps, 'rails_8') && 'latest' || '3.5.7' }}
       - name: Setup git for test app setup
         run: |
           git config --global user.email activeadmin@ci.dummy
