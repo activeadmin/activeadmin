@@ -11,14 +11,14 @@ on:
       - '**.feature'
 
 env:
-  NODE_VERSION: 22.x
+  NODE_VERSION: '24.x'
 
 jobs:
   gherkin_lint:
     name: Run gherkin-lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
