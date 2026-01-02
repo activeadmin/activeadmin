@@ -27,7 +27,7 @@
     "@babel/core": "*",
     "@babel/preset-env": "*",
     "common-tags": "",
-    "eslint": "9.39.0",
+    "eslint": "9.39.2",
     "eslint-plugin-import": "*",
     "gherkin-lint": "*",
     "rollup": "*",
