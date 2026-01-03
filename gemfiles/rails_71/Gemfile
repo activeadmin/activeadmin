@@ -8,7 +8,8 @@ group :development, :test do
   gem "pundit"
 
   gem "draper"
-  gem "devise"
+  gem "devise", "5.0.0.rc"
+  gem "simple_form", github: "heartcombo/simple_form", branch: "ca-validator-length-proc"
 
   gem "rails", "~> 7.1.0"
 
