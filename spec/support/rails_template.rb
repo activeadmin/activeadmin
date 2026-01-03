@@ -107,6 +107,10 @@ inject_into_file "config/application.rb", after: "class Application < Rails::App
   "\n    config.action_controller.action_on_unpermitted_parameters = :raise\n"
 end
 
+inject_into_file "package.json", after: '"private": "true",' do
+  "\n  \"type\": \"module\",\n"
+end
+
 # Add some translations
 append_file "config/locales/en.yml", File.read(File.expand_path("templates/en.yml", __dir__))
 
