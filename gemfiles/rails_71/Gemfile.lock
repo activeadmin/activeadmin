@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/heartcombo/simple_form.git
+  revision: 910d4e38f27b7bfd5f8ed3197f3ff38a38b2c316
+  branch: ca-validator-length-proc
+  specs:
+    simple_form (5.4.0)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
+
 PATH
   remote: ../..
   specs:
@@ -163,10 +172,10 @@ GEM
       database_cleaner-core (~> 2.0)
     database_cleaner-core (2.0.1)
     date (3.5.1)
-    devise (4.9.4)
+    devise (5.0.0.rc)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
+      railties (>= 7.0)
       responders
       warden (~> 1.2.3)
     diff-lcs (1.6.2)
@@ -262,7 +271,6 @@ GEM
     matrix (0.4.3)
     memoist3 (1.0.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     minitest (6.0.1)
       prism (~> 1.5)
     multi_test (1.1.0)
@@ -277,9 +285,6 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
-    nokogiri (1.19.0)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.19.0-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.19.0-x86_64-linux-gnu)
@@ -400,8 +405,6 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (2.9.0)
-      mini_portile2 (~> 2.8.0)
     sqlite3 (2.9.0-arm64-darwin)
     sqlite3 (2.9.0-x86_64-linux-gnu)
     stringio (3.2.0)
@@ -431,7 +434,6 @@ GEM
 
 PLATFORMS
   arm64-darwin
-  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -443,7 +445,7 @@ DEPENDENCIES
   cucumber-rails
   cuprite
   database_cleaner-active_record
-  devise
+  devise (= 5.0.0.rc)
   draper
   formtastic (>= 5.0.0)
   i18n-spec
@@ -457,6 +459,7 @@ DEPENDENCIES
   rake
   ransack (>= 4.1.0)
   rspec-rails
+  simple_form!
   simplecov
   simplecov-cobertura
   sprockets-rails

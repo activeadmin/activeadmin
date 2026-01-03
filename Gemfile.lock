@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/heartcombo/simple_form.git
+  revision: 910d4e38f27b7bfd5f8ed3197f3ff38a38b2c316
+  branch: ca-validator-length-proc
+  specs:
+    simple_form (5.4.0)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
+
 PATH
   remote: .
   specs:
@@ -156,10 +165,10 @@ GEM
       database_cleaner-core (~> 2.0)
     database_cleaner-core (2.0.1)
     date (3.5.1)
-    devise (4.9.4)
+    devise (5.0.0.rc)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
+      railties (>= 7.0)
       responders
       warden (~> 1.2.3)
     diff-lcs (1.6.2)
@@ -474,7 +483,7 @@ DEPENDENCIES
   cucumber-rails
   cuprite
   database_cleaner-active_record
-  devise
+  devise (= 5.0.0.rc)
   draper
   formtastic (>= 5.0.0)
   i18n-spec
@@ -494,6 +503,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  simple_form!
   simplecov
   simplecov-cobertura
   sprockets-rails
