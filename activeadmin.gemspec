@@ -37,6 +37,6 @@ Gem::Specification.new do |s|
   s.add_dependency "formtastic_i18n", ">= 0.7"
   s.add_dependency "inherited_resources", "~> 2.0"
   s.add_dependency "kaminari", ">= 1.2.1"
-  s.add_dependency "railties", ">= 7.0"
+  s.add_dependency "railties", ">= 7.2"
   s.add_dependency "ransack", ">= 4.0"
 end

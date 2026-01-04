@@ -29,21 +29,10 @@ jobs:
           - rails_81
           - rails_80
           - rails_72
-          - rails_71
-          - rails_70
         exclude:
           - ruby: '4.0'
             os: ubuntu-latest
             rails: rails_72
-          - ruby: '4.0'
-            os: ubuntu-latest
-            rails: rails_71
-          - ruby: '4.0'
-            os: ubuntu-latest
-            rails: rails_70
-          - ruby: '3.4'
-            os: ubuntu-latest
-            rails: rails_70
     steps:
       - uses: actions/checkout@v6
       - name: Configure bundler (default)
@@ -126,7 +115,7 @@ jobs:
       - uses: actions/setup-node@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
-          node-version: 22
+          node-version: 24
           cache: yarn
       - run: yarn install
         if: steps.changed-files.outputs.any_changed == 'true'

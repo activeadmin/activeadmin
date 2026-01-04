@@ -14,7 +14,7 @@ plugins:
 AllCops:
   DisabledByDefault: true
   TargetRubyVersion: 3.2
-  TargetRailsVersion: 7.0
+  TargetRailsVersion: 7.2
 
   Exclude:
     - .git/**/*

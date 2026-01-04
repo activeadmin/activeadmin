@@ -90,10 +90,6 @@ gsub_file "config/boot.rb", /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
   ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
 RUBY
 
-# In https://github.com/rails/rails/pull/46699, Rails 7.1 changed sqlite directory from db/ storage/.
-# Since we test we deal with rails 6.1 and 7.0, let's go back to db/
-gsub_file "config/database.yml", /storage\/(.+)\.sqlite3$/, 'db/\1.sqlite3'
-
 # Setup Active Admin
 generate "active_admin:install"
 
@@ -132,14 +128,14 @@ if ENV["RAILS_ENV"] == "test"
 
   require "parallel_tests"
   ParallelTests.determine_number_of_processes(nil).times do |n|
-    copy_file File.expand_path("db/test.sqlite3", destination_root), "db/test.sqlite3#{n + 1}"
+    copy_file File.expand_path("storage/test.sqlite3", destination_root), "storage/test.sqlite3#{n + 1}"
 
     # Copy Write-Ahead-Log (-wal) and Wal-Index (-shm) files.
     # Files were introduced by rails 7.1 sqlite3 optimizations (https://github.com/rails/rails/pull/49349/files).
     %w(shm wal).each do |suffix|
-      file = File.expand_path("db/test.sqlite3-#{suffix}", destination_root)
+      file = File.expand_path("storage/test.sqlite3-#{suffix}", destination_root)
       if File.exist?(file)
-        copy_file File.expand_path("db/test.sqlite3-#{suffix}", destination_root), "db/test.sqlite3#{n + 1}-#{suffix}", mode: :preserve
+        copy_file File.expand_path("storage/test.sqlite3-#{suffix}", destination_root), "storage/test.sqlite3#{n + 1}-#{suffix}", mode: :preserve
       end
     end
   end
