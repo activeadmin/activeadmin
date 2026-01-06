@@ -3,7 +3,8 @@
 
 gem "cssbundling-rails"
 
-create_file "app/assets/config/manifest.js"
+# Manifest already exists in Rails 7.2
+create_file "app/assets/config/manifest.js", skip: true
 
 rails_command "css:install:tailwind"
 # Remove default configuration generated: https://github.com/rails/cssbundling-rails/blob/v1.4.2/lib/install/tailwind/install.rb#L7
@@ -70,21 +71,9 @@ end
 environment 'config.hosts << ".ngrok-free.app"', env: :development
 
 # Make sure we can turn on class reloading in feature specs.
-# Write this rule in a way that works even when the file doesn't set `config.cache_classes` (e.g. Rails 7.1).
-gsub_file "config/environments/test.rb", /  config.cache_classes = true/, ""
-inject_into_file "config/environments/test.rb", after: "Rails.application.configure do" do
-  "\n" + <<-RUBY
-  config.cache_classes = !ENV['CLASS_RELOADING']
-  RUBY
-end
 gsub_file "config/environments/test.rb", /config.enable_reloading = false/, "config.enable_reloading = !!ENV['CLASS_RELOADING']"
 
-inject_into_file "config/environments/test.rb", after: "config.cache_classes = !ENV['CLASS_RELOADING']" do
-  "\n" + <<-RUBY
-  config.action_mailer.default_url_options = {host: 'example.com'}
-  config.active_record.maintain_test_schema = false
-  RUBY
-end
+environment "config.active_record.maintain_test_schema = false", env: :test
 
 gsub_file "config/boot.rb", /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
   ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
@@ -99,9 +88,7 @@ JS
 gsub_file "tailwind-active_admin.config.js", Regexp.new("@activeadmin/activeadmin/plugin"), "../../../plugin"
 
 # Force strong parameters to raise exceptions
-inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
-  "\n    config.action_controller.action_on_unpermitted_parameters = :raise\n"
-end
+environment "config.action_controller.action_on_unpermitted_parameters = :raise"
 
 inject_into_file "package.json", after: '"private": "true",' do
   "\n  \"type\": \"module\",\n"
@@ -118,7 +105,7 @@ directory File.expand_path("templates/public", __dir__), "public", force: true
 
 route "root to: redirect('admin')" if ENV["RAILS_ENV"] != "test"
 
-# Rails 7.1 doesn't write test.sqlite3 files if we run db:drop, db:create and db:migrate in a single command.
+# Rails doesn't write test.sqlite3 files if we run `db:migrate:reset` or `db:drop db:create db:migrate` in a single command.
 # That's why we run it in two steps.
 rails_command "db:drop db:create", env: ENV["RAILS_ENV"]
 rails_command "db:migrate", env: ENV["RAILS_ENV"]
