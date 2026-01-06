@@ -3,6 +3,9 @@ module ActiveAdmin
   # BaseController for ActiveAdmin.
   # It implements ActiveAdmin controllers core features.
   class BaseController < ::InheritedResources::Base
+    # Include route helpers with patched url_for for custom namespace support
+    include Helpers::Routes::UrlHelpers
+
     helper MethodOrProcHelper
     helper LayoutHelper
     helper FormHelper
@@ -27,6 +30,56 @@ module ActiveAdmin
 
     include BaseController::Authorization
     include BaseController::Menu
+
+    protected
+
+    # Override url_for to use main app's router for hash options.
+    # This fixes route generation for custom namespaces in isolated engines.
+    # We merge with request.path_parameters to provide the current context
+    # (controller, action) when not explicitly specified.
+    def url_for(options = nil)
+      case options
+      when nil
+        super
+      when Hash
+        route_options = options.dup
+        # If no controller specified, use current controller for context
+        route_options[:controller] ||= request.path_parameters[:controller]
+        # If controller is specified without namespace prefix, add it from current controller
+        if route_options[:controller] && !route_options[:controller].to_s.include?("/")
+          current_controller = request.path_parameters[:controller]
+          if current_controller && current_controller.include?("/")
+            namespace = current_controller.split("/").first
+            route_options[:controller] = "#{namespace}/#{route_options[:controller]}"
+          end
+        end
+        route_options[:only_path] = true unless route_options.key?(:only_path) || route_options.key?(:host)
+        Rails.application.routes.url_for(route_options)
+      when ActionController::Parameters
+        unless options.permitted?
+          raise ArgumentError, "Generating a URL from unpermitted parameters is not allowed"
+        end
+        opts = options.to_h.symbolize_keys
+        # If no controller specified, use current controller for context
+        opts[:controller] ||= request.path_parameters[:controller]
+        # If controller is specified without namespace prefix, add it from current controller
+        if opts[:controller] && !opts[:controller].to_s.include?("/")
+          current_controller = request.path_parameters[:controller]
+          if current_controller && current_controller.include?("/")
+            namespace = current_controller.split("/").first
+            opts[:controller] = "#{namespace}/#{opts[:controller]}"
+          end
+        end
+        route_options = opts
+        route_options[:only_path] = true unless route_options.key?(:only_path) || route_options.key?(:host)
+        Rails.application.routes.url_for(route_options)
+      when String
+        options
+      else
+        super
+      end
+    end
+    helper_method :url_for
 
     private
 
