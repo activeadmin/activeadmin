@@ -1762,9 +1762,9 @@ postcss@^8.4.43, postcss@^8.5.1, postcss@^8.5.6:
     source-map-js "^1.2.1"
 
 preact@^10.0.0:
-  version "10.28.1"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.28.1.tgz#83325f0141bc8c97977c64d532429d667a26b411"
-  integrity sha512-u1/ixq/lVQI0CakKNvLDEcW5zfCjUQfZdK9qqWuIJtsezuyG6pk9TWj75GMuI/EzRSZB/VAE43sNWWZfiy8psw==
+  version "10.28.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.28.2.tgz#4b668383afa4b4a2546bbe4bd1747e02e2360138"
+  integrity sha512-lbteaWGzGHdlIuiJ0l2Jq454m6kcpI1zNje6d8MlGAFlYvP2GO4ibnat7P74Esfz4sPTdM6UxtTwh/d3pwM9JA==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
