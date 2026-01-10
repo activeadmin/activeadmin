@@ -36,6 +36,25 @@ module ActiveAdmin
 
     private
 
+    # Retrieve or instantiate the pagination instance for this resource
+    #
+    # @return [ActiveAdmin::PaginationAdapter]
+    def active_admin_pagination
+      @active_admin_pagination ||= active_admin_pagination_adapter.new active_admin_config
+    end
+
+    # Returns the class to be used as the pagination adapter
+    #
+    # @return [Class]
+    def active_admin_pagination_adapter
+      adapter = active_admin_namespace.pagination_adapter
+      if adapter.is_a? String
+        adapter.constantize
+      else
+        adapter
+      end
+    end
+
     def page_presenter
       case params[:action].to_sym
       when :index
