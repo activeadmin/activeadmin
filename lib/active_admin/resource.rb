@@ -70,7 +70,7 @@ module ActiveAdmin
     module Base
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace
-        @resource_class_name = "::#{resource_class.name}"
+        @resource_class_name = resource_class.respond_to?(:name) ? "::#{resource_class.name}" : resource_class.to_s
         @options = options
         @sort_order = options[:sort_order]
         @member_actions = []
