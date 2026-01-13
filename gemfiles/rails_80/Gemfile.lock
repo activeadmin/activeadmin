@@ -140,7 +140,7 @@ GEM
       cucumber-messages (>= 31, < 32)
     cucumber-html-formatter (22.3.0)
       cucumber-messages (> 23, < 33)
-    cucumber-messages (31.1.0)
+    cucumber-messages (31.2.0)
     cucumber-rails (4.0.0)
       capybara (>= 3.25, < 4)
       cucumber (>= 7, < 11)
@@ -297,11 +297,11 @@ GEM
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.7.0)
+    prism (1.8.0)
     psych (5.3.1)
       date
       stringio
-    public_suffix (7.0.0)
+    public_suffix (7.0.2)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
     racc (1.8.1)
@@ -424,8 +424,8 @@ GEM
       memoist3 (~> 1.0.0)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
-    thor (1.4.0)
-    tilt (2.6.1)
+    thor (1.5.0)
+    tilt (2.7.0)
     timeout (0.6.0)
     tsort (0.2.0)
     tzinfo (2.0.6)
