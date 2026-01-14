@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 module ActiveAdmin
+  # Pagination helper methods for ActiveAdmin
+  # Requires IndexHelper to be included for collection_size and collection_empty? methods
   module PaginationHelper
     # ActiveAdmin's wrapper for paginate method
     # Delegates to Kaminari's paginate helper
