@@ -258,8 +258,8 @@ module ActiveAdmin
         # skip pagination if CSV format was requested
         return chain if params["format"] == "csv"
         # skip pagination if already was paginated by scope
-        return chain if chain.respond_to?(:total_pages)
-        page = params[Kaminari.config.param_name]
+        return chain if active_admin_pagination.paginated?(chain)
+        page = params[active_admin_pagination.page_param_name]
 
         paginate(chain, page, per_page)
       end
@@ -340,9 +340,7 @@ module ActiveAdmin
       end
 
       def paginate(chain, page, per_page)
-        page_method_name = Kaminari.config.page_method_name
-
-        chain.public_send(page_method_name, page).per(per_page)
+        active_admin_pagination.paginate(chain, page: page, per_page: per_page)
       end
 
       def batch_size

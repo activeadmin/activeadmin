@@ -3,6 +3,7 @@ module ActiveAdmin
   module Dependency
     module Requirements
       DEVISE = ">= 4.0", "< 5"
+      PAGY = ">= 43"
     end
 
     # Provides a clean interface to check for gem dependencies at runtime.
