@@ -14,8 +14,9 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 ## Ruby Conventions
 
-- Target Ruby version: 3.2+
-- Target Rails version: 7.2+
+- Minimum Ruby version: 3.2+ (required)
+- Minimum Rails version: 7.2+ (required by gemspec)
+- Current development uses Rails ~> 8.1.0
 - Follow RuboCop style guide (configuration in `.rubocop.yml`)
 - RuboCop plugins enabled: capybara, packaging, performance, rails, rspec
 - Use frozen string literals: `# frozen_string_literal: true` at the top of Ruby files
@@ -51,14 +52,16 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 ### Setup
 ```bash
-gem install foreman
 bundle install
 yarn install
 ```
 
+Note: The `bin/rake local server` command requires foreman, which it will invoke automatically. Install with `gem install foreman` if needed.
+
 ### Testing Against Different Rails Versions
 ```bash
-export BUNDLE_GEMFILE=gemfiles/rails_61/Gemfile
+# Available versions: rails_72, rails_80
+export BUNDLE_GEMFILE=gemfiles/rails_72/Gemfile
 ```
 
 ### Local Development Server
