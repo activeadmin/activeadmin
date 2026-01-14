@@ -10,6 +10,7 @@ module ActiveAdmin
     helper AutoLinkHelper
     helper DisplayHelper
     helper IndexHelper
+    helper PaginationHelper
 
     layout "active_admin"
 

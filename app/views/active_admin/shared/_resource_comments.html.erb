@@ -39,9 +39,9 @@
     <% end %>
     <div class="p-2 lg:p-4 flex flex-col-reverse lg:flex-row gap-4 items-center justify-between">
       <div>
-        <%= page_entries_info(comments).html_safe %>
+        <%= active_admin_page_entries_info(comments).html_safe %>
       </div>
-      <%= paginate(comments, views_prefix: :active_admin, outer_window: 1, window: 2) %>
+      <%= active_admin_paginate(comments, views_prefix: :active_admin, outer_window: 1, window: 2) %>
     </div>
   <% else %>
     <div class="p-8 text-center">
