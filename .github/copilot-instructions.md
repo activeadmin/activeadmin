@@ -93,14 +93,16 @@ bin/rake local db:migrate   # Run migrations
 4. **Documentation**: Update documentation in `docs/` if adding user-facing features.
 5. **Internationalization**: Support i18n - translation files are in `config/locales/`
 6. **Security**: This is an authentication/authorization framework - be extra cautious with security implications.
+7. **Code Quality**: Always run `bundle exec rubocop` before submitting any PR to ensure code follows project style guidelines.
 
 ## Contributing Workflow
 
 1. Create feature request discussion before starting significant new features
 2. Fork and create a descriptive branch
 3. Ensure tests pass: `bin/rake`
-4. View changes in browser: `bin/rake local server`
-5. Submit pull request with passing CI
+4. Run linting: `bundle exec rubocop` for Ruby code, `npm run lint` for JavaScript
+5. View changes in browser: `bin/rake local server`
+6. Submit pull request with passing CI
 
 ## Release Process (Maintainers Only)
 
