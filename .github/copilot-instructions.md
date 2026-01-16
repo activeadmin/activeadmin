@@ -89,7 +89,7 @@ bin/rake local db:migrate   # Run migrations
 
 1. **Minimal Changes**: Make surgical, precise changes. Don't refactor unrelated code.
 2. **Backward Compatibility**: Active Admin is a widely-used gem. Maintain backward compatibility unless explicitly breaking changes are intended.
-3. **Test Coverage**: Include tests for new features. Follow existing test patterns.
+3. **Test Coverage**: Include tests for new features. Prefer RSpec specs (especially request specs) over Cucumber features when possible, as specs are easier to work with and maintain.
 4. **Documentation**: Update documentation in `docs/` if adding user-facing features.
 5. **Internationalization**: Support i18n - translation files are in `config/locales/`
 6. **Security**: This is an administration framework so be extra cautious with security implications.
