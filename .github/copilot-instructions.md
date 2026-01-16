@@ -104,14 +104,6 @@ bin/rake local db:migrate   # Run migrations
 5. View changes in browser: `bin/rake local server`
 6. Submit pull request with passing CI
 
-## Release Process (Maintainers Only)
-
-1. Create feature branch from master
-2. Run `bin/prep-release [version]` and commit
-3. Merge PR
-4. Run `bin/rake release` from master branch
-5. Create GitHub Release from tag
-
 ## Additional Context
 
 - This is both a Ruby gem and an npm package
