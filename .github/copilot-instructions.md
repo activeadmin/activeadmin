@@ -92,7 +92,7 @@ bin/rake local db:migrate   # Run migrations
 3. **Test Coverage**: Include tests for new features. Follow existing test patterns.
 4. **Documentation**: Update documentation in `docs/` if adding user-facing features.
 5. **Internationalization**: Support i18n - translation files are in `config/locales/`
-6. **Security**: This is an authentication/authorization framework - be extra cautious with security implications.
+6. **Security**: This is an administration framework so be extra cautious with security implications.
 7. **Code Quality**: Always run `bundle exec rubocop` before submitting any PR to ensure code follows project style guidelines.
 
 ## Contributing Workflow
