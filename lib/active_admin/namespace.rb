@@ -223,3 +223,5 @@ module ActiveAdmin
     end
   end
 end
+
+require_relative "namespace/auto_link_resource_preference"
