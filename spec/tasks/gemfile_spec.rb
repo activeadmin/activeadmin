@@ -12,7 +12,7 @@ RSpec.describe "Gemfile sanity" do
   def strip_bundled_with(lockfile_content)
     # Normalize line endings to Unix style for consistent comparison
     normalized = lockfile_content.gsub(/\r\n/, "\n")
-    
+
     # Remove the BUNDLED WITH section and everything after it
     # The regex matches:
     # - Optional newline before BUNDLED WITH
