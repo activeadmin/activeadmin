@@ -111,6 +111,41 @@ bin/rake local db:migrate   # Run migrations
 5. View changes in browser: `bin/rake local server`
 6. Submit pull request with passing CI
 
+## Commit Message Guidelines
+
+Follow the project's commit message standards as outlined in [CONTRIBUTING.md](../CONTRIBUTING.md):
+
+### Format Requirements
+- **Reference**: Follow [How to Write a Git Commit Message](https://cbea.ms/git-commit/#seven-rules)
+- **Format**: Use imperative mood ("Add feature" not "Added feature")
+- **Length**: Limit subject line to 50 characters, body lines to 72 characters
+- **Structure**:
+  ```
+  Short summary (50 chars max)
+
+  Detailed explanation if needed (72 chars per line)
+
+  - Use bullet points for multiple changes
+  - Reference issues with "Fixes #123" or "Closes #456"
+  ```
+
+### Commit Message Examples
+```
+Fix temporal query performance regression
+
+Add support for Rails 8.0 compatibility
+
+Update dependencies for security patches
+
+Fixes #123
+```
+
+### Best Practices
+- Keep commits atomic (one logical change per commit)
+- Write clear, descriptive commit messages
+- Reference related issues and pull requests
+- Avoid generic messages like "Fix bug" or "Update code"
+
 ## Additional Context
 
 - This is both a Ruby gem and an npm package
