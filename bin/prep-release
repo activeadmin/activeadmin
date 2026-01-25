@@ -27,7 +27,7 @@ def bump_npm_package(version)
 end
 
 bump_version_file(version)
-system "bin/bundle"
+system "bin/bundle install"
 bump_npm_package(version)
 system "yarn install --frozen-lockfile"
 system "bin/rake", "dependencies:vendor"
