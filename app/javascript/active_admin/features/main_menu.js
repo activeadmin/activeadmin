@@ -1,7 +1,7 @@
 import Rails from '@rails/ujs';
 
 const toggleMenu = function() {
-  const parent = this.closest([`[data-item-id="${this.dataset.parentId}"]`])
+  const parent = this.closest([`[data-item-id="${this.dataset.parentId}"]`]) || this.parentNode
 
   if (!("open" in parent.dataset)) {
     parent.dataset.open = ""
