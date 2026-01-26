@@ -354,6 +354,9 @@ export default plugin(
       '.formtastic': {
         '@apply text-sm': {}
       },
+      '.formtastic :where(.inputs,.has-many-fields)': {
+        '@apply mb-6': {}
+      },
       '.formtastic :where(.fieldset-title, .has-many-fields-title)': {
         '@apply block w-full mb-3 border-b border-gray-200 dark:border-gray-800 font-bold text-lg': {}
       },
@@ -406,10 +409,7 @@ export default plugin(
         '@apply font-semibold leading-6 text-gray-900 dark:text-white no-underline': {}
       },
       '.formtastic :where(.has-many-add)': {
-        '@apply inline-block py-3': {}
-      },
-      '.formtastic :where(.has-many-container)': {
-        '@apply space-y-8': {}
+        '@apply inline-block py-3 mb-3': {}
       },
       '.formtastic :where(.has-many-fields)': {
         '@apply ps-3 border-s-4 border-s-gray-200 dark:border-s-gray-700': {}
