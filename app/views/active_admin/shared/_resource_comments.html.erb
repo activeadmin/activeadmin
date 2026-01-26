@@ -37,14 +37,14 @@
         <% end %>
       </div>
     <% end %>
-    <div class="p-2 lg:p-4 flex flex-col-reverse lg:flex-row gap-4 items-center justify-between">
+    <div class="py-2 lg:py-4 flex flex-col-reverse lg:flex-row gap-4 items-center justify-between">
       <div>
         <%= page_entries_info(comments).html_safe %>
       </div>
       <%= paginate(comments, views_prefix: :active_admin, outer_window: 1, window: 2) %>
     </div>
   <% else %>
-    <div class="p-8 text-center">
+    <div class="py-8 text-center">
       <%= I18n.t("active_admin.comments.no_comments_yet") %>
     </div>
   <% end %>
