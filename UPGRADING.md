@@ -7,14 +7,14 @@ ActiveAdmin v4 uses Tailwind CSS v4. It has **mobile web, dark mode and RTL supp
 
 These instructions assume the `cssbundling-rails` and `importmap-rails` gems are already installed and you have run their install commands in your app. If you haven't done so, please do before continuing.
 
-Update your `Gemfile` with `gem "activeadmin", "4.0.0.beta19"` and then run `gem install activeadmin --pre`.
+Update your `Gemfile` with `gem "activeadmin", "4.0.0.beta20"` and then run `gem install activeadmin --pre`.
 
 Now, run `rails generate active_admin:assets` to replace the old assets with the new files.
 
 Then add the npm package and update the `build:css` script.
 
 ```
-yarn add @activeadmin/activeadmin@4.0.0-beta19
+yarn add @activeadmin/activeadmin@4.0.0-beta20
 npm pkg set scripts.build:css="npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
 ```
 
@@ -46,7 +46,7 @@ Note that the templates can and will change across releases. There are additiona
 
 With the setup complete, please review the Breaking Changes section and resolve any that may or may not impact your integration.
 
-### Upgrading from earlier 4.x beta to 4.0.0.beta19
+### Upgrading from an earlier 4.x beta release
 
 When upgrading from any earlier 4.0.0 beta release, please apply the changes outlined below.
 
