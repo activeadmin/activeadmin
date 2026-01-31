@@ -43,8 +43,8 @@
     "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src && cp -R app/assets/stylesheets/active_admin src/scss"
   },
   "dependencies": {
-    "jquery": "^3.4.1",
-    "jquery-ui": "^1.13.3",
+    "jquery": "^3.7.1 || ^4.0.0",
+    "jquery-ui": "^1.14.2",
     "jquery-ujs": "^1.2.2"
   }
 }
