@@ -275,10 +275,10 @@ GEM
     parallel (1.27.0)
     parallel_tests (5.5.0)
       parallel
-    parser (3.3.10.0)
+    parser (3.3.10.1)
       ast (~> 2.4.1)
       racc
-    prism (1.8.0)
+    prism (1.9.0)
     public_suffix (6.0.2)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
@@ -348,7 +348,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.6)
+    rspec-support (3.13.7)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     sassc (2.4.0)
@@ -418,7 +418,7 @@ DEPENDENCIES
   cucumber-rails
   cuprite
   database_cleaner-active_record
-  devise
+  devise (~> 4.9)
   draper
   i18n-spec
   i18n-tasks
