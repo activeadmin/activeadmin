@@ -14,7 +14,7 @@ const terserOptions = {
       /**
        * Warning: This file is auto-generated, do not modify. Instead, make your changes in 'app/javascript/active_admin/' and run \`yarn build\`
        */
-      //= require jquery3
+      //= require jquery4
       //= require jquery-ui/widgets/datepicker
       //= require jquery-ui/widgets/dialog
       //= require jquery-ui/widgets/sortable

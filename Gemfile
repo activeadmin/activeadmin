@@ -11,6 +11,7 @@ group :development, :test do
   gem "devise", "~> 4.9" # TODO: relax this dependency when formtastic/formtastic#1401 will be fixed
 
   gem "rails", "~> 8.1.0"
+  gem "jquery-rails", path: '~/dev/jquery-rails'
 
   gem "sprockets-rails"
   gem "sassc-rails"
