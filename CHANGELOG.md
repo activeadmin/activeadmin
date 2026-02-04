@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Update vendored jQuery UI to 1.14.2 [#8670] by [@tagliala] (thanks to [@tobischo])
+
 ## 3.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.3.0..v3.4.0)
 
 * Add Rails 8.1 compatibility and drop Ruby < 3.0 support [#8837] by [@tagliala]
@@ -988,6 +990,7 @@ Please check [0-6-stable] for previous changes.
 [#8614]: https://github.com/activeadmin/activeadmin/pull/8614
 [#8650]: https://github.com/activeadmin/activeadmin/pull/8650
 [#8652]: https://github.com/activeadmin/activeadmin/pull/8652
+[#8670]: https://github.com/activeadmin/activeadmin/pull/8670
 [#8837]: https://github.com/activeadmin/activeadmin/pull/8837
 
 [@1000ship]: https://github.com/1000ship
@@ -1113,6 +1116,7 @@ Please check [0-6-stable] for previous changes.
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@timwis]: https://github.com/timwis
+[@tobischo]: https://github.com/tobischo
 [@tomgilligan]: https://github.com/tomgilligan
 [@TonyArra]: https://github.com/TonyArra
 [@tordans]: https://github.com/tordans

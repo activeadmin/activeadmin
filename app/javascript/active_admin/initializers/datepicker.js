@@ -11,6 +11,9 @@
       const options  = input.data('datepicker-options');
 
       input.datepicker($.extend(defaults, options));
+
+      // See https://github.com/jquery/jquery-ui/issues/2385
+      input.triggerHandler('focus');
     });
 
 })(jQuery);
