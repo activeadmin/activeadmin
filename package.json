@@ -1,6 +1,6 @@
 {
   "name": "@activeadmin/activeadmin",
-  "version": "4.0.0-beta20",
+  "version": "4.0.0-beta21",
   "description": "The administration framework for Ruby on Rails.",
   "main": "dist/active_admin.js",
   "type": "module",
