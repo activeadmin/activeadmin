@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  RUBY_VERSION: ruby-4.0
+  RUBY_VERSION: "4.0"
 
 jobs:
   bug_report_template_test:
