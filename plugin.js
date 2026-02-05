@@ -194,6 +194,11 @@ export default plugin(
       [['[type=datetime-local]', '[type=month]', '[type=week]', '[type=search]', '[type=date]', '[type=email]', '[type=number]', '[type=password]', '[type=tel]', '[type=text]', '[type=time]', '[type=url]', 'select', 'textarea']]: {
         '@apply bg-gray-50 border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
       },
+      [':where(select:not([multiple]))']: {
+        'option, optgroup': {
+          '@apply dark:bg-gray-800': {}
+        }
+      },
       'a': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
