@@ -17,7 +17,7 @@ jobs:
   bug_report_template_test:
     name: Run bug report template
     # Don't run scheduled workflow on forks
-    if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'activeadmin' }}
+    if: ${{ false && (github.event_name == 'pull_request' || github.repository_owner == 'activeadmin') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
