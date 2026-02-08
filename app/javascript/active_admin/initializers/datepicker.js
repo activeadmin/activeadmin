@@ -13,7 +13,7 @@
       input.datepicker($.extend(defaults, options));
 
       // See https://github.com/jquery/jquery-ui/issues/2385
-      input.triggerHandler('focus');
+      input.datepicker('show');
     });
 
 })(jQuery);

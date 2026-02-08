@@ -187,7 +187,7 @@
       };
       var options = input.data("datepicker-options");
       input.datepicker($.extend(defaults, options));
-      input.triggerHandler("focus");
+      input.datepicker("show");
     });
   })(jQuery);
   var DropdownMenu = function() {
