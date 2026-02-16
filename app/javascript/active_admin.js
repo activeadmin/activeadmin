@@ -6,5 +6,6 @@ import "active_admin/features/has_many"
 import "active_admin/features/filters"
 import "active_admin/features/main_menu"
 import "active_admin/features/per_page"
+import "active_admin/features/go_to_page"
 
 Rails.start()

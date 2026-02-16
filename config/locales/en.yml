@@ -107,6 +107,7 @@ en:
       next: Next
       one: Showing <b>1</b> of <b>1</b>
       one_page: Showing <b>all %{n}</b>
+      go_to_page: 'Go to'
       per_page: 'Per page '
       previous: Previous
       truncate: "&hellip;"
