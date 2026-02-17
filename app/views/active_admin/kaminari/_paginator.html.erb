@@ -7,7 +7,7 @@
     paginator:     the paginator that renders the pagination tags inside
 -%>
 <%= paginator.render do -%>
-  <nav data-test-pagination class="inline-flex flex-wrap -space-x-px text-sm gap-1">
+  <nav data-test-pagination class="inline-flex flex-wrap items-center text-sm gap-1">
     <%= prev_page_tag unless current_page.first? %>
     <% each_page do |page| -%>
       <% if page.display_tag? -%>
@@ -18,6 +18,14 @@
     <% end -%>
     <% unless current_page.out_of_range? %>
       <%= next_page_tag unless current_page.last? %>
+    <% end %>
+    <% if total_pages > 1 %>
+      <span class="flex items-center justify-center px-2.5 py-3 h-8 leading-tight text-gray-500 dark:text-gray-400">
+        <%= t('active_admin.pagination.go_to_page') %>
+      </span>
+      <input type="number" min="1" max="<%= total_pages %>" value="<%= current_page %>"
+             class="pagination-go-to-page w-14 h-8 px-2 py-1 text-sm text-center text-gray-500 dark:text-gray-400 border border-gray-300 rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-blue-500 focus:border-blue-500"
+             data-total-pages="<%= total_pages %>" />
     <% end %>
   </nav>
 <% end -%>
