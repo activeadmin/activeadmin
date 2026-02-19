@@ -1903,10 +1903,10 @@ tabbable@^6.4.0:
   resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-6.4.0.tgz#36eb7a06d80b3924a22095daf45740dea3bf5581"
   integrity sha512-05PUHKSNE8ou2dwIxTngl4EzcnsCDZGJ/iCLtDflR/SHB/ny14rXc+qU5P4mG9JkusiV7EivzY9Mhm55AzAvCg==
 
-tailwindcss@^4.1.18:
-  version "4.1.18"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.1.18.tgz#f488ba47853abdb5354daf9679d3e7791fc4f4e3"
-  integrity sha512-4+Z+0yiYyEtUVCScyfHCxOYP06L5Ne+JiHhY2IjR2KWMIWhJOYZKLSGZaP5HkZ8+bY0cxfzwDE5uOmzFXyIwxw==
+tailwindcss@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.2.0.tgz#fe0a67ddebe0c383096f68d22c677ae8af428ded"
+  integrity sha512-yYzTZ4++b7fNYxFfpnberEEKu43w44aqDMNM9MHMmcKuCH7lL8jJ4yJ7LGHv7rSwiqM0nkiobF9I6cLlpS2P7Q==
 
 trim-lines@^3.0.0:
   version "3.0.1"

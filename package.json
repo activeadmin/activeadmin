@@ -30,7 +30,7 @@
     "eslint": "^10.0.0",
     "gherkin-lint": "^4.2.4",
     "rollup": "^4.56.0",
-    "tailwindcss": "^4.1.18",
+    "tailwindcss": "^4.2.0",
     "vitepress": "^1.6.4"
   },
   "scripts": {
