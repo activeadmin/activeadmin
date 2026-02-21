@@ -157,10 +157,10 @@ GEM
       database_cleaner-core (~> 2.0)
     database_cleaner-core (2.0.1)
     date (3.5.1)
-    devise (4.9.4)
+    devise (5.0.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
+      railties (>= 7.0)
       responders
       warden (~> 1.2.3)
     diff-lcs (1.6.2)
@@ -441,9 +441,9 @@ DEPENDENCIES
   cucumber-rails
   cuprite
   database_cleaner-active_record
-  devise (~> 4.9)
+  devise
   draper
-  formtastic (>= 5.0.0)
+  formtastic (>= 6.0.0)
   i18n-spec
   i18n-tasks
   importmap-rails
