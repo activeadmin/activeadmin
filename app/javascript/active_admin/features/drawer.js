@@ -40,12 +40,38 @@ const showClick = function(event) {
   const drawer = document.getElementById(id)
   if (!drawer) { return }
 
+  close()
+  open(drawer)
+}
+
+const toggleClick = function(event) {
+  event.preventDefault()
+  const id = this.dataset.drawerToggle
+  const drawer = document.getElementById(id)
+  if (!drawer) { return }
+
   if (activeDrawer === drawer) {
     close()
   } else {
     close()
     open(drawer)
   }
+}
+
+const hideClick = function(event) {
+  event.preventDefault()
+  const id = this.dataset.drawerHide || this.dataset.drawerDismiss
+
+  if (!id) {
+    close()
+    return
+  }
+
+  const drawer = document.getElementById(id)
+  if (!drawer) { return }
+  if (activeDrawer !== drawer) { return }
+
+  close()
 }
 
 const backdropClick = function(event) {
@@ -57,5 +83,7 @@ const escapeKey = function(event) {
 }
 
 Rails.delegate(document, "[data-drawer-show]", "click", showClick)
+Rails.delegate(document, "[data-drawer-toggle]", "click", toggleClick)
+Rails.delegate(document, "[data-drawer-hide], [data-drawer-dismiss]", "click", hideClick)
 document.addEventListener("click", backdropClick)
 document.addEventListener("keydown", escapeKey)

@@ -317,7 +317,7 @@ export default plugin(
         '@apply w-2.5 h-2.5': {}
       },
       '.batch-actions-dropdown-menu': {
-        '@apply z-10 hidden min-w-28 bg-white rounded-md shadow-lg ring-1 ring-black/5 focus:outline-hidden dark:bg-gray-800 py-1 text-sm text-gray-700 dark:text-gray-200': {}
+        '@apply absolute z-10 hidden min-w-28 bg-white rounded-md shadow-lg ring-1 ring-black/5 focus:outline-hidden dark:bg-gray-800 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
       '.batch-actions-dropdown-menu :where(li > a)': {
         '@apply block px-2.5 py-2 no-underline text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white': {}

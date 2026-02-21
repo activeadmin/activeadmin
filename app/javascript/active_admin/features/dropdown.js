@@ -12,7 +12,6 @@ const position = function(toggle, menu) {
     middleware: [offset(distance), flip()]
   }).then(({x, y}) => {
     Object.assign(menu.style, {
-      position: 'absolute',
       left: `${x}px`,
       top: `${y}px`,
     });
