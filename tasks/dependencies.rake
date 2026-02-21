@@ -6,11 +6,11 @@ namespace :dependencies do
     node_modules = File.expand_path("../node_modules", __dir__)
     vendor = File.expand_path("../vendor/javascript", __dir__)
 
-    # Copy flowbite to vendor
-    FileUtils.cp(
-      File.join(node_modules, 'flowbite', 'dist', 'flowbite.min.js'),
-      File.join(vendor, 'flowbite.js')
-    )
+    # Bundle @floating-ui/dom into a self-contained ESM file
+    system("npx", "esbuild", "--bundle", "--format=esm", "--minify",
+      File.join(node_modules, "@floating-ui", "dom", "dist", "floating-ui.dom.mjs"),
+      "--outfile=#{File.join(vendor, '@floating-ui--dom.js')}"
+    ) || abort("Error: esbuild failed to bundle @floating-ui/dom")
 
     # Delete sourcemaps refs
     Dir.glob(File.join(vendor, '**', '*.js')).each do |file|
