@@ -1,5 +1,5 @@
 import Rails from '@rails/ujs';
-import { computePosition, flip, offset } from '@floating-ui/dom';
+import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 
 let activeDropdown = null
 
@@ -10,22 +10,36 @@ const position = function(toggle, menu) {
   computePosition(toggle, menu, {
     placement: placement,
     middleware: [offset(distance), flip()]
-  }).then(function(result) {
-    menu.style.position = "absolute"
-    menu.style.left = result.x + "px"
-    menu.style.top = result.y + "px"
+  }).then(({x, y}) => {
+    Object.assign(menu.style, {
+      position: 'absolute',
+      left: `${x}px`,
+      top: `${y}px`,
+    });
   })
 }
 
 const open = function(toggle, menu) {
   menu.classList.remove("hidden")
+  menu.classList.add("block")
   position(toggle, menu)
-  activeDropdown = { toggle: toggle, menu: menu }
+
+  const cleanupAutoUpdate = autoUpdate(toggle, menu, () => {
+    position(toggle, menu)
+  })
+
+  activeDropdown = {
+    toggle: toggle,
+    menu: menu,
+    cleanupAutoUpdate: cleanupAutoUpdate,
+  }
 }
 
 const close = function() {
   if (!activeDropdown) { return }
+  activeDropdown.menu.classList.remove("block")
   activeDropdown.menu.classList.add("hidden")
+  activeDropdown.cleanupAutoUpdate()
   activeDropdown = null
 }
 
