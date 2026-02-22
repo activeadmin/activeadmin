@@ -1,4 +1,8 @@
 version: 2
+multi-ecosystem-groups:
+  bundler:
+    schedule:
+      interval: weekly
 updates:
   - package-ecosystem: github-actions
     directory: /
@@ -10,13 +14,10 @@ updates:
           - "*"
   - package-ecosystem: bundler
     directory: /
-    schedule:
-      interval: monthly
     versioning-strategy: lockfile-only
-    groups:
-      rails_default:
-        patterns:
-          - "*"
+    patterns:
+      - "*"
+    multi-ecosystem-group: bundler
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -27,54 +28,11 @@ updates:
         patterns:
           - "*"
   - package-ecosystem: bundler
-    directory: /gemfiles/rails_70
-    schedule:
-      interval: monthly
-    versioning-strategy: lockfile-only
-    groups:
-      rails_70:
-        patterns:
-          - "*"
-    ignore:
-      - dependency-name: rails
-        versions: ">= 7.1.0"
-      - dependency-name: rails-i18n
-        versions: ">= 8.0.0"
-      - dependency-name: railties
-        versions: ">= 7.1.0"
-      - dependency-name: rspec-rails
-        versions: ">= 8.0.0"
-      - dependency-name: sqlite3
-        versions: ">= 2"
-  - package-ecosystem: bundler
-    directory: /gemfiles/rails_71
-    schedule:
-      interval: monthly
-    versioning-strategy: lockfile-only
-    groups:
-      rails_71:
-        patterns:
-          - "*"
-    ignore:
-      - dependency-name: rails
-        versions: ">= 7.2.0"
-      - dependency-name: rails-i18n
-        versions: ">= 8.0.0"
-      - dependency-name: railties
-        versions: ">= 7.2.0"
-      - dependency-name: ransack
-        versions: ">= 4.4.1"
-      - dependency-name: rspec-rails
-        versions: ">= 8.0.0"
-  - package-ecosystem: bundler
     directory: /gemfiles/rails_72
-    schedule:
-      interval: monthly
     versioning-strategy: lockfile-only
-    groups:
-      rails_72:
-        patterns:
-          - "*"
+    patterns:
+      - "*"
+    multi-ecosystem-group: bundler
     ignore:
       - dependency-name: rails
         versions: ">= 8.0.0"
@@ -84,13 +42,10 @@ updates:
         versions: ">= 8.0.0"
   - package-ecosystem: bundler
     directory: /gemfiles/rails_80
-    schedule:
-      interval: monthly
     versioning-strategy: lockfile-only
-    groups:
-      rails_80:
-        patterns:
-          - "*"
+    patterns:
+      - "*"
+    multi-ecosystem-group: bundler
     ignore:
       - dependency-name: rails
         versions: ">= 8.1.0"
