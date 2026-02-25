@@ -8,8 +8,8 @@ namespace :dependencies do
 
     # Copy flowbite to vendor
     FileUtils.cp(
-      File.join(node_modules, 'flowbite', 'dist', 'flowbite.min.js'),
-      File.join(vendor, 'flowbite.js')
+      File.join(node_modules, '@floating-ui', 'dom', 'dist', 'floating-ui.dom.umd.min.js'),
+      File.join(vendor, 'floating-ui--dom.js')
     )
 
     # Delete sourcemaps refs
