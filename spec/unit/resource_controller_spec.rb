@@ -121,7 +121,7 @@ RSpec.describe ActiveAdmin::ResourceController, type: :controller do
 
     it "should have actual action methods" do
       controller.class.clear_action_methods! # make controller recalculate :action_methods on the next call
-      expect(controller.action_methods.sort).to eq ["batch_action", "create", "destroy", "edit", "index", "new", "show", "update"]
+      expect(controller.action_methods.sort).to eq ["batch_action", "create", "destroy", "edit", "index", "index!", "new", "show", "update"]
     end
   end
 
