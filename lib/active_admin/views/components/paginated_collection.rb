@@ -96,21 +96,20 @@ module ActiveAdmin
         options[:params] = @params if @params
         options[:param_name] = @param_name if @param_name
 
-        if !@display_total
-          # The #paginate method in kaminari will query the resource with a
-          # count(*) to determine how many pages there should be unless
-          # you pass in the :total_pages option. We issue a query to determine
-          # if there is another page or not, but the limit/offset make this
-          # query fast.
-          offset_scope = @collection.offset(@collection.current_page * @collection.limit_value)
+        if @display_total
+          text_node paginate @collection, **options
+        else
+          # Load one extra record to determine if there is a next page without performing a `SELECT COUNT(*)` query.
+          scope_to_load = @collection.offset((@collection.current_page - 1) * @collection.limit_value).limit(@collection.limit_value + 1)
           # Support array collections. Kaminari::PaginatableArray does not respond to except
-          offset_scope = offset_scope.except(:select, :order) if offset_scope.respond_to?(:except)
-          offset = offset_scope.limit(1).count
-          options[:total_pages] = @collection.current_page + offset
+          scope_to_load = scope_to_load.except(:select, :order) if scope_to_load.respond_to?(:except)
+          records = scope_to_load.to_a
+          options[:total_pages] = @collection.current_page + (records.size > @collection.limit_value ? 1 : 0)
           options[:right] = 0
+          to_paginate = Kaminari.paginate_array(records.take(@collection.limit_value)).page(@collection.current_page).per(@collection.limit_value)
+          text_node paginate to_paginate, **options
         end
 
-        text_node paginate @collection, **options
       end
 
       # modified from will_paginate
