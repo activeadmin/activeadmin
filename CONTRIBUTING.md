@@ -27,7 +27,7 @@ Now install the development dependencies:
 
 ```sh
 gem install foreman
-bundle install
+bundle install --all
 yarn install
 ```
 
