@@ -136,8 +136,11 @@ module ActiveAdmin
     #
     # @param rails_router [ActionDispatch::Routing::Mapper]
     def routes(rails_router)
-      load!
-      Router.new(router: rails_router, namespaces: namespaces).apply
+      ActiveSupport.on_load(:active_record) do
+        app = ActiveAdmin.application
+        app.load!
+        Router.new(router: rails_router, namespaces: app.namespaces).apply
+      end
     end
 
     # Adds before, around and after filters to all controllers.
