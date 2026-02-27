@@ -44,7 +44,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@rails/ujs": "7.1.600",
-    "flowbite": "3.1.2"
+    "@floating-ui/dom": "^1.7.5",
+    "@rails/ujs": "7.1.600"
   }
 }
