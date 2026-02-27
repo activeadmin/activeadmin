@@ -230,41 +230,28 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
     end
 
     describe "when pagination_total is false" do
-      it "makes no expensive COUNT queries" do
-        undecorated_collection = Post.all.page(1).per(30)
-
-        expect { paginated_collection(undecorated_collection, pagination_total: false) }
-          .not_to perform_database_query("SELECT COUNT(*) FROM \"posts\"")
-
-        decorated_collection = controller_with_decorator("index", PostDecorator).apply_collection_decorator(undecorated_collection.reset)
-
-        expect { paginated_collection(decorated_collection, pagination_total: false) }
-          .not_to perform_database_query("SELECT COUNT(*) FROM \"posts\"")
-      end
-
-      it "makes a performant COUNT query to figure out if we are on the last page" do
-        # "SELECT COUNT(*) FROM (SELECT 1". Let's make sure the subquery has LIMIT and OFFSET. It shouldn't have ORDER BY
-        count_query = %r{SELECT COUNT\(\*\) FROM \(SELECT 1 .*FROM "posts" (?=.*OFFSET \?)(?=.*LIMIT \?)(?!.*ORDER BY)}
+      it "performs no COUNT queries" do
+        count_query = %r{SELECT COUNT}
 
         undecorated_collection = Post.all.page(1).per(30)
 
         expect { paginated_collection(undecorated_collection, pagination_total: false) }
-          .to perform_database_query(count_query)
+          .not_to perform_database_query(count_query)
 
         undecorated_sorted_collection = undecorated_collection.reset.order(id: :desc)
 
         expect { paginated_collection(undecorated_sorted_collection, pagination_total: false) }
-          .to perform_database_query(count_query)
+          .not_to perform_database_query(count_query)
 
         decorated_collection = controller_with_decorator("index", PostDecorator).apply_collection_decorator(undecorated_collection.reset)
 
         expect { paginated_collection(decorated_collection, pagination_total: false) }
-          .to perform_database_query(count_query)
+          .not_to perform_database_query(count_query)
 
         decorated_sorted_collection = controller_with_decorator("index", PostDecorator).apply_collection_decorator(undecorated_sorted_collection.reset)
 
         expect { paginated_collection(decorated_sorted_collection, pagination_total: false) }
-          .to perform_database_query(count_query)
+          .not_to perform_database_query(count_query)
       end
     end
 
