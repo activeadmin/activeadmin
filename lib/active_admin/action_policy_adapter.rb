@@ -20,10 +20,10 @@ module ActiveAdmin
 
     def scope_collection(collection, _action = Auth::READ)
       target = policy_target(collection)
-      policy_class = policy_class_for(target)
+      policy = retrieve_policy(target)
 
-      if policy_class&.respond_to?(:apply_scope)
-        policy_class.apply_scope(collection, user: user, type: default_scope_type)
+      if policy&.respond_to?(:apply_scope)
+        policy.apply_scope(collection, type: default_scope_type)
       else
         collection
       end
