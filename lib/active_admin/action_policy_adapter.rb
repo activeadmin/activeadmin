@@ -21,12 +21,7 @@ module ActiveAdmin
     def scope_collection(collection, _action = Auth::READ)
       target = policy_target(collection)
       policy = retrieve_policy(target)
-
-      if policy&.respond_to?(:apply_scope)
-        policy.apply_scope(collection, type: default_scope_type)
-      else
-        collection
-      end
+      policy.apply_scope(collection, type: default_scope_type)
     rescue ActionPolicy::NotFound => e
       raise e unless default_policy_class&.respond_to?(:scope_for)
 
