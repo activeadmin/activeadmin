@@ -112,6 +112,7 @@ module ActiveAdmin
     def policy_target(subject)
       case subject
       when nil then resource.resource_class
+      when ActiveRecord::Relation then subject.klass
       when Class then subject.new
       else
         subject
