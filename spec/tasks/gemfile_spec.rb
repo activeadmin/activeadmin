@@ -29,7 +29,7 @@ RSpec.describe "Gemfile sanity" do
       `bundle lock --print`
     end
 
-    msg = "Please update #{gemfile}'s lock file with `BUNDLE_GEMFILE=#{gemfile} bundle install` and commit the result"
+    msg = "Please update #{gemfile}'s lock file with `BUNDLE_GEMFILE=#{gemfile} bundle install --all` and commit the result"
 
     # Compare lockfiles without the BUNDLED WITH section to avoid false failures
     # when only the Bundler version differs between environments
