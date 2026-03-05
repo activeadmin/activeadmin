@@ -143,9 +143,9 @@ The Tailwind config file now uses ES module syntax. To fix it, either:
   <details>
   <summary>Batch Action Partial Example</summary>
 
-  Assuming a Post resource (in the default namespace) with a `mark_published` batch action, we set the partial name and a set of HTML data attributes to trigger a modal using Flowbite which is included by default.
+  Assuming a Post resource (in the default namespace) with a `mark_published` batch action, we set the partial name and a set of HTML data attributes to trigger ActiveAdmin's built-in modal.
 
-  Note that you can use any modal JS library you want as long as it can be triggered to open using data attributes. Flowbite usage is not a requirement.
+  Note that you can use any modal JS library you want as long as it can be triggered to open using data attributes.
 
   ```ruby
   batch_action(
