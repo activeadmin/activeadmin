@@ -7,10 +7,10 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 ## Technology Stack
 
 - **Backend**: Ruby on Rails (currently Rails ~> 8.1.0)
-- **Frontend**: JavaScript (ES6+), Tailwind CSS, Flowbite
+- **Frontend**: JavaScript (ES6+), Tailwind CSS
 - **Testing**: RSpec (unit tests), Cucumber (feature tests), Capybara (integration tests)
 - **Build Tools**: Rollup (JavaScript bundling), cssbundling-rails
-- **Key Dependencies**: Devise (authentication), Ransack (search), Formtastic (forms), Kaminari (pagination)
+- **Key Dependencies**: Devise (authentication), Ransack (search), Formtastic (forms), Kaminari (pagination), Floating UI (dropdown positioning)
 
 ## Ruby Conventions
 
