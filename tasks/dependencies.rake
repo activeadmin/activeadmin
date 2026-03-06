@@ -6,7 +6,7 @@ namespace :dependencies do
     node_modules = File.expand_path("../node_modules", __dir__)
     vendor = File.expand_path("../vendor/javascript", __dir__)
 
-    # Copy flowbite to vendor
+    # Copy @floating-ui/dom to vendor
     FileUtils.cp(
       File.join(node_modules, '@floating-ui', 'dom', 'dist', 'floating-ui.dom.umd.min.js'),
       File.join(vendor, 'floating-ui--dom.js')
