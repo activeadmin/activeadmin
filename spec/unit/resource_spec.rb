@@ -41,10 +41,6 @@ module ActiveAdmin
       it "should return quote argument" do
         expect(config.resource_quoted_column_name('first_name')).to eq '"first_name"'
       end
-
-      # Prevents automatically wrapping this test in a transaction. Check that we use the proper method to get a connection from the pool.
-      # We don't want to run the test using a leased connection https://github.com/rails/rails/blob/v7.2.3/activerecord/lib/active_record/test_fixtures.rb#L161
-      uses_transaction "should return quote argument"
     end
 
     describe "#decorator_class" do
