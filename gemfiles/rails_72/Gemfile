@@ -8,14 +8,19 @@ group :development, :test do
   gem "pundit"
 
   gem "draper"
-  gem "devise", "~> 4.9" # TODO: relax this dependency when formtastic/formtastic#1401 will be fixed
+
+  # Devise 5 requires Formtastic 6, which requires Ruby 3.2. This Rails version
+  # is tested against Ruby 3.1, so this dependency cannot be relaxed
+  gem "devise", "~> 4.9"
 
   gem "rails", "~> 7.2.0"
 
   gem "sprockets-rails"
   gem "sassc-rails"
   gem "ransack", ">= 4.2.0"
-  gem "formtastic", ">= 5.0.0"
+
+  # FIXME: relax this dependency when Ruby 3.1 support will be dropped
+  gem "formtastic", "~> 5.0"
 
   # FIXME: relax this dependency when Ruby 3.1 support will be dropped
   gem "zeitwerk", "~> 2.6.18"
