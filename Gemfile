@@ -8,14 +8,14 @@ group :development, :test do
   gem "pundit"
 
   gem "draper"
-  gem "devise", "~> 4.9" # TODO: relax this dependency when formtastic/formtastic#1401 will be fixed
+  gem "devise", "~> 5.0"
 
   gem "rails", "~> 8.1.0"
 
   gem "sprockets-rails"
   gem "sassc-rails"
   gem "ransack", ">= 4.2.0"
-  gem "formtastic", ">= 5.0.0"
+  gem "formtastic", ">= 6.0.0"
 end
 
 group :test do

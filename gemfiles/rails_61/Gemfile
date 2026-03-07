@@ -9,7 +9,10 @@ group :development, :test do
   gem "jruby-openssl", platform: :jruby
 
   gem "draper"
-  gem "devise"
+
+  # Devise 5 requires Formtastic 6, which requires Ruby 3.2. This Rails version
+  # is tested against Ruby 3.1, so this dependency cannot be relaxed
+  gem "devise", "~> 4.9"
 
   gem "rails", "~> 6.1.0"
   gem "activerecord-jdbcsqlite3-adapter", platform: :jruby
