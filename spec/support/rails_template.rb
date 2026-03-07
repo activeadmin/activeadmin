@@ -95,6 +95,11 @@ inject_into_file "config/application.rb", after: "class Application < Rails::App
   "\n    config.action_controller.action_on_unpermitted_parameters = :raise\n"
 end
 
+# Disallow permanent connection checkout (Rails >= 7.2)
+if Rails.gem_version >= Gem::Version.new("7.2.0")
+  environment "config.active_record.permanent_connection_checkout = :disallowed"
+end
+
 # Add some translations
 append_file "config/locales/en.yml", File.read(File.expand_path("templates/en.yml", __dir__))
 

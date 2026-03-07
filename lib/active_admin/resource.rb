@@ -119,7 +119,13 @@ module ActiveAdmin
     end
 
     def resource_quoted_column_name(column)
-      resource_class.connection.quote_column_name(column)
+      if resource_class.respond_to?(:with_connection)
+        resource_class.with_connection do |connection|
+          connection.quote_column_name(column)
+        end
+      else
+        resource_class.connection.quote_column_name(column)
+      end
     end
 
     # Clears all the member actions this resource knows about
