@@ -50,7 +50,7 @@ We try not to reinvent the wheel, so Active Admin is built with other open sourc
 
 * [Arbre]
 * [Devise]
-* [Flowbite](https://flowbite.com)
+* [Floating UI](https://floating-ui.com)
 * [Formtastic]
 * [Inherited Resources]
 * [Kaminari]

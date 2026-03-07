@@ -6,10 +6,14 @@ namespace :dependencies do
     node_modules = File.expand_path("../node_modules", __dir__)
     vendor = File.expand_path("../vendor/javascript", __dir__)
 
-    # Copy flowbite to vendor
+    # Copy @floating-ui/core and @floating-ui/dom ESM files to vendor
     FileUtils.cp(
-      File.join(node_modules, 'flowbite', 'dist', 'flowbite.min.js'),
-      File.join(vendor, 'flowbite.js')
+      File.join(node_modules, '@floating-ui', 'core', 'dist', 'floating-ui.core.browser.mjs'),
+      File.join(vendor, '@floating-ui--core.js')
+    )
+    FileUtils.cp(
+      File.join(node_modules, '@floating-ui', 'dom', 'dist', 'floating-ui.dom.browser.mjs'),
+      File.join(vendor, '@floating-ui--dom.js')
     )
 
     # Delete sourcemaps refs
