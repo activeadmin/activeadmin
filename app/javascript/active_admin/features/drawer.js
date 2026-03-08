@@ -23,7 +23,7 @@ const open = function(drawer, trigger) {
   drawer.setAttribute("aria-modal", "true")
   drawer.setAttribute("role", "dialog")
 
-  document.body.classList.add("overflow-hidden", "xl:overflow-auto")
+  document.body.classList.add("overflow-hidden")
 
   backdrop = document.createElement("div")
   backdrop.className = "fixed inset-0 z-30 bg-gray-900/50 dark:bg-gray-900/80"
@@ -46,7 +46,7 @@ const close = function() {
   activeDrawer.classList.remove("translate-x-0")
   activeDrawer.removeAttribute("aria-modal")
   activeDrawer.removeAttribute("role")
-  document.body.classList.remove("overflow-hidden", "xl:overflow-auto")
+  document.body.classList.remove("overflow-hidden")
   backdrop.remove()
   cleanupTrap()
 
