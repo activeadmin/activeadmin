@@ -37,6 +37,12 @@ module ActiveAdmin
       end
     end
 
+    describe "#resource_quoted_column_name" do
+      it "should return quote argument" do
+        expect(config.resource_quoted_column_name('first_name')).to eq '"first_name"'
+      end
+    end
+
     describe "#decorator_class" do
       it "returns nil by default" do
         expect(config.decorator_class).to eq nil
