@@ -17,7 +17,7 @@ Feature: JavaScript UI Components
     When I go to the dashboard
     And I click the element "[data-dropdown-toggle='user-menu']"
     Then I should see the element "#user-menu"
-    When I press the Escape key
+    When I press the "Escape" key
     Then I should not see the element "#user-menu"
 
   Scenario: User menu dropdown closes on outside click
@@ -37,7 +37,7 @@ Feature: JavaScript UI Components
     When I check the 1st record
     And I press "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
-    When I press the Escape key
+    When I press the "Escape" key
     Then I should not see the batch action :destroy "Delete Selected"
 
   Scenario: Modal closes on Escape key
@@ -54,7 +54,7 @@ Feature: JavaScript UI Components
     And I press "Batch Actions"
     And I click "Set Starred"
     Then I should see "Toggle Starred"
-    When I press the Escape key
+    When I press the "Escape" key
     Then I should not see "Toggle Starred"
 
   Scenario: Modal closes on X button click
@@ -122,6 +122,6 @@ Feature: JavaScript UI Components
     When I go to the dashboard
     And I click the element "[data-dropdown-toggle='user-menu']"
     Then I should see the element "#user-menu"
-    When I press the Escape key
+    When I press the "Escape" key
     Then I should not see the element "#user-menu"
     And the active element should match "[data-dropdown-toggle='user-menu']"

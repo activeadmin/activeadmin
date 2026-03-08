@@ -3,10 +3,6 @@ When(/^I click the element "([^"]*)"$/) do |selector|
   find(selector).click
 end
 
-When(/^I press the Escape key$/) do
-  page.driver.browser.keyboard.type(:Escape)
-end
-
 When(/^I click the modal backdrop$/) do
   page.execute_script("document.querySelector('[aria-modal=\"true\"]').click()")
 end
@@ -21,11 +17,8 @@ When(/^I press the "([^"]*)" key$/) do |key|
     "ArrowUp" => :up,
     "ArrowLeft" => :left,
     "ArrowRight" => :right,
-    "Escape" => :escape,
-    "Home" => :home,
-    "End" => :end
   }
-  page.driver.browser.keyboard.type(key_map.fetch(key, key.to_sym))
+  page.driver.browser.keyboard.type(key_map.fetch(key, key.downcase.to_sym))
 end
 
 Then(/^the active element should be inside "([^"]*)"$/) do |selector|
