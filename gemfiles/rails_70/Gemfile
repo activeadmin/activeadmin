@@ -8,7 +8,10 @@ group :development, :test do
   gem "pundit"
 
   gem "draper"
-  gem "devise", "~> 4.9" # TODO: relax this dependency when formtastic/formtastic#1401 will be fixed
+
+  # Devise 5 requires Formtastic 6, which requires Ruby 3.2. This Rails version
+  # is tested against Ruby 3.1, so this dependency cannot be relaxed
+  gem "devise", "~> 4.9"
 
   gem "rails", "~> 7.0.0"
 
