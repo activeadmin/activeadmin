@@ -8,7 +8,7 @@ RSpec.describe "Gemfile sanity" do
       `bundle lock --print`
     end
 
-    msg = "Please update #{gemfile}'s lock file with `BUNDLE_GEMFILE=#{gemfile} bundle install` and commit the result"
+    msg = "Please update #{gemfile}'s lock file with `BUNDLE_GEMFILE=#{gemfile} bundle install --all` and commit the result"
 
     expect(current_lockfile).to eq(new_lockfile), msg
   end

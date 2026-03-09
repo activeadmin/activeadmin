@@ -4,7 +4,7 @@ PATH
     activeadmin (3.4.0)
       arbre (~> 1.2, >= 1.2.1)
       csv
-      formtastic (>= 3.1)
+      formtastic (>= 6.0)
       formtastic_i18n (>= 0.4)
       inherited_resources (~> 1.7)
       jquery-rails (>= 4.2)
@@ -186,8 +186,8 @@ GEM
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     ffi (1.17.2-x86_64-linux-musl)
-    formtastic (5.0.0)
-      actionpack (>= 6.0.0)
+    formtastic (6.0.0)
+      actionpack (>= 7.2.0)
     formtastic_i18n (0.7.0)
     globalid (1.3.0)
       activesupport (>= 6.1)
@@ -463,7 +463,7 @@ DEPENDENCIES
   database_cleaner-active_record
   devise
   draper
-  formtastic (>= 5.0.0)
+  formtastic (>= 6.0.0)
   i18n-spec
   i18n-tasks
   launchy
