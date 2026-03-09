@@ -4,6 +4,14 @@
 
 ## 3.5.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.4.0..v3.5.0)
 
+### Enhancements
+
+* Backport Devise 5 support [#8964] by @tagliala
+* Backport Drop legacy connection support [#8965] by @tagliala
+
+### Dependency Changes
+
+* Update vendored jQuery UI to 1.14.2 [#8670] by @tagliala (thanks to @tobischo)
 
 ## 3.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.3.0..v3.4.0)
 
@@ -993,6 +1001,8 @@ Please check [0-6-stable] for previous changes.
 [#8652]: https://github.com/activeadmin/activeadmin/pull/8652
 [#8670]: https://github.com/activeadmin/activeadmin/pull/8670
 [#8837]: https://github.com/activeadmin/activeadmin/pull/8837
+[#8964]: https://github.com/activeadmin/activeadmin/pull/8964
+[#8965]: https://github.com/activeadmin/activeadmin/pull/8965
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
