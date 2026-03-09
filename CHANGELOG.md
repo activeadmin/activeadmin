@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-* Update vendored jQuery UI to 1.14.2 [#8670] by [@tagliala] (thanks to [@tobischo])
+## 3.5.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.4.0..v3.5.0)
+
 
 ## 3.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.3.0..v3.4.0)
 
