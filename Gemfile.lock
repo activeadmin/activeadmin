@@ -92,7 +92,7 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
-    addressable (2.8.8)
+    addressable (2.8.9)
       public_suffix (>= 2.0.2, < 8.0)
     arbre (2.2.1)
       activesupport (>= 7.0)
@@ -227,8 +227,8 @@ GEM
       reline (>= 0.4.2)
     iso (0.4.0)
       i18n
-    json (2.18.1)
-    json-schema (6.1.0)
+    json (2.19.1)
+    json-schema (6.2.0)
       addressable (~> 2.8)
       bigdecimal (>= 3.1, < 5)
     kaminari (1.2.2)
@@ -301,7 +301,7 @@ GEM
     psych (5.3.1)
       date
       stringio
-    public_suffix (7.0.2)
+    public_suffix (7.0.5)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
     racc (1.8.1)
@@ -382,7 +382,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.7)
-    rubocop (1.85.0)
+    rubocop (1.85.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
