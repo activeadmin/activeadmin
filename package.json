@@ -31,7 +31,7 @@
     "gherkin-lint": "^4.2.4",
     "rollup": "^4.59.0",
     "tailwindcss": "^4.2.2",
-    "vitepress": "^1.6.4"
+    "vitepress": "^2.0.0-alpha.17"
   },
   "scripts": {
     "gherkin-lint": "gherkin-lint",
