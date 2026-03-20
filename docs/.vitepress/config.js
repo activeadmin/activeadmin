@@ -30,6 +30,10 @@ export default defineConfig({
         text: version.replace("-", "."), // use Ruby format for version text
         items: [
           {
+            text: '3.x (stable)',
+            link: '/v3/0-installation'
+          },
+          {
             text: 'Changelog',
             link: 'https://github.com/activeadmin/activeadmin/releases',
           },

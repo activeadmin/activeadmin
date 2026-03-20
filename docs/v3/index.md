@@ -10,7 +10,7 @@ hero:
   actions:
     - theme: brand
       text: Getting Started
-      link: /v4/0-installation
+      link: /v3/0-installation
     - theme: alt
       text: View on GitHub
       link: https://github.com/activeadmin/activeadmin
@@ -25,12 +25,12 @@ features:
   - icon: 🎬
     title: Action Items
     details: Add buttons or links as action items in the page header for a resource.
-    link: /v4/8-custom-actions
+    link: /v3/8-custom-actions
     linkText: Learn about action items
   - icon: 🔍
     title: Filters
     details: Allow users to filter resources by searching strings, text fields, dates, and numeric values.
-    link: /v4/3-index-pages
+    link: /v3/3-index-pages
     linkText: Learn about filters
   - icon: 🗂️
     title: Scopes
@@ -41,7 +41,7 @@ features:
   - icon: 📋
     title: Sidebar Sections
     details: Add your own sections to the sidebar using a simple DSL.
-    link: /v4/7-sidebars
+    link: /v3/7-sidebars
     linkText: Learn about sidebar sections
   - icon: 💾
     title: Downloads
