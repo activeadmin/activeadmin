@@ -1,4 +1,3 @@
-import { version } from '../../package.json'
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
@@ -17,7 +16,7 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Guide', link: '/0-installation' },
+      { text: 'Guide', link: '/v3/0-installation' },
       { text: 'Discuss', link: 'https://github.com/activeadmin/activeadmin/discussions' },
       {
         text: 'Demo',
@@ -27,8 +26,12 @@ export default defineConfig({
         ]
       },
       {
-        text: version.replace("-", "."), // use Ruby format for version text
+        text: 'v3.x', // use Ruby format for version text
         items: [
+          {
+            text: 'v3.x',
+            link: '/v3/0-installation'
+          },
           {
             text: 'Changelog',
             link: 'https://github.com/activeadmin/activeadmin/releases',
@@ -38,40 +41,6 @@ export default defineConfig({
             link: 'https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md',
           },
         ],
-      }
-    ],
-    sidebar: [
-      {
-        text: 'Setup',
-        items: [
-          { text: 'Installation', link: '/0-installation' },
-          { text: 'Configuration', link: '/1-general-configuration' }
-        ]
-      },
-      {
-        text: 'Resources',
-        items: [
-          { text: 'Working with Resources', link: '/2-resource-customization' },
-          { text: 'Customize the Index page', link: '/3-index-pages' },
-          { text: 'Index as a Table', link: '/3-index-pages/index-as-table' },
-          { text: 'Custom Index View', link: '/3-index-pages/custom-index' },
-          { text: 'CSV Format', link: '/4-csv-format' },
-          { text: 'Forms', link: '/5-forms' },
-          { text: 'Customize the Show Page', link: '/6-show-pages' },
-          { text: 'Sidebar Sections', link: '/7-sidebars' },
-          { text: 'Custom Controller Actions', link: '/8-custom-actions' },
-          { text: 'Batch Actions', link: '/9-batch-actions' },
-          { text: 'Decorators', link: '/11-decorators' },
-          { text: 'Authorization Adapter', link: '/13-authorization-adapter' }
-        ]
-      },
-      {
-        text: 'Other',
-        items: [
-          { text: 'Custom Pages', link: '/10-custom-pages' },
-          { text: 'Arbre Components', link: '/12-arbre-components' },
-          { text: 'Gotchas', link: '/14-gotchas' },
-        ]
       }
     ],
     socialLinks: [
