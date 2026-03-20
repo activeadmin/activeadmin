@@ -97,7 +97,7 @@ GEM
       activesupport (>= 7.0)
     ast (2.4.3)
     base64 (0.3.0)
-    bcrypt (3.1.21)
+    bcrypt (3.1.22)
     benchmark (0.5.0)
     bigdecimal (4.0.1)
     builder (3.3.0)
@@ -246,7 +246,7 @@ GEM
       childprocess (~> 5.0)
       logger (~> 1.6)
     logger (1.7.0)
-    loofah (2.25.0)
+    loofah (2.25.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.9.0)
@@ -273,13 +273,13 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
-    nokogiri (1.19.1-aarch64-linux-gnu)
+    nokogiri (1.19.2-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.1-arm64-darwin)
+    nokogiri (1.19.2-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-darwin)
+    nokogiri (1.19.2-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-linux-gnu)
+    nokogiri (1.19.2-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.27.0)
@@ -402,13 +402,13 @@ GEM
     sqlite3 (2.9.2-x86_64-darwin)
     sqlite3 (2.9.2-x86_64-linux-gnu)
     stringio (3.2.0)
-    sys-uname (1.5.0)
+    sys-uname (1.5.1)
       ffi (~> 1.1)
       memoist3 (~> 1.0.0)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.5.0)
-    timeout (0.6.0)
+    timeout (0.6.1)
     tsort (0.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -463,4 +463,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-  4.0.7
+  4.0.8
