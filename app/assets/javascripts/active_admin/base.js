@@ -69,7 +69,9 @@
       open: function open(_event, _ui) {
         $("body").trigger("modal_dialog:after_open", [ form ]);
       },
-      dialogClass: "active_admin_dialog",
+      classes: {
+        "ui-dialog": "active_admin_dialog"
+      },
       buttons: {
         OK: function OK() {
           callback($(this).serializeObject());
