@@ -47,7 +47,7 @@ function ModalDialog(message, inputs, callback){
     open(_event, _ui) {
       $('body').trigger('modal_dialog:after_open', [form]);
     },
-    dialogClass: 'active_admin_dialog',
+    classes: { 'ui-dialog': 'active_admin_dialog' },
     buttons: {
       OK() {
         callback($(this).serializeObject());
