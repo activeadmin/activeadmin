@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 3.5.1 [☰](https://github.com/activeadmin/activeadmin/compare/v3.5.0..v3.5.1)
+
+### Bug Fixes
+
+* Fix UI issue in modal dialog [#8978] by @tagliala
+
 ## 3.5.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.4.0..v3.5.0)
 
 ### Enhancements
@@ -1003,6 +1009,7 @@ Please check [0-6-stable] for previous changes.
 [#8837]: https://github.com/activeadmin/activeadmin/pull/8837
 [#8964]: https://github.com/activeadmin/activeadmin/pull/8964
 [#8965]: https://github.com/activeadmin/activeadmin/pull/8965
+[#8978]: https://github.com/activeadmin/activeadmin/pull/8978
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
