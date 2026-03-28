@@ -27,7 +27,7 @@ Now install the development dependencies:
 
 ```sh
 gem install foreman
-bundle install
+bundle install --all
 yarn install
 ```
 
@@ -83,6 +83,10 @@ At this point, if your changes look good and tests are passing, you are ready to
 
 Github Actions will run our test suite against all supported Rails versions. It's possible that your changes pass tests in one Rails version but fail in another. In that case, you'll have to setup your development
 environment with the Gemfile for the problematic Rails version, and investigate what's going on.
+
+## Commit messages
+
+Try your best to follow these [seven rules for a great commit message](https://cbea.ms/git-commit/#seven-rules).
 
 ## Merging a PR (maintainers only)
 

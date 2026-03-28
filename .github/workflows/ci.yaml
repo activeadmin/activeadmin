@@ -19,6 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
+          - "4.0"
           - "3.4"
           - "3.3"
           - "3.2"
@@ -28,12 +29,10 @@ jobs:
           - rails_81
           - rails_80
           - rails_72
-          - rails_71
-          - rails_70
         exclude:
-          - ruby: '3.4'
+          - ruby: '4.0'
             os: ubuntu-latest
-            rails: rails_70
+            rails: rails_72
     steps:
       - uses: actions/checkout@v6
       - name: Configure bundler (default)
@@ -76,7 +75,7 @@ jobs:
           bin/cucumber --profile class-reloading
       - name: Rename coverage file by matrix run
         run: mv coverage/coverage.xml coverage/coverage-ruby-${{ matrix.ruby }}-${{ matrix.rails }}.xml
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: coverage-ruby-${{ matrix.ruby }}-${{ matrix.rails }}
           path: coverage
@@ -90,12 +89,12 @@ jobs:
     needs: [test]
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           path: coverage
           pattern: coverage-ruby-*
           merge-multiple: true
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: coverage
@@ -116,7 +115,7 @@ jobs:
       - uses: actions/setup-node@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
-          node-version: 22
+          node-version: 24
           cache: yarn
       - run: yarn install
         if: steps.changed-files.outputs.any_changed == 'true'

@@ -194,6 +194,11 @@ export default plugin(
       [['[type=datetime-local]', '[type=month]', '[type=week]', '[type=search]', '[type=date]', '[type=email]', '[type=number]', '[type=password]', '[type=tel]', '[type=text]', '[type=time]', '[type=url]', 'select', 'textarea']]: {
         '@apply bg-gray-50 border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500': {}
       },
+      [':where(select:not([multiple]))']: {
+        'option, optgroup': {
+          '@apply dark:bg-gray-800': {}
+        }
+      },
       'a': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
       },
@@ -246,7 +251,7 @@ export default plugin(
         '@apply w-full text-sm text-gray-800 dark:text-gray-300': {}
       },
       '.data-table :where(thead > tr > th)': {
-        '@apply px-3 py-3.5 whitespace-nowrap font-semibold text-start text-xs uppercase border-b border-gray-200 text-gray-700 bg-gray-50 dark:bg-gray-950/50 dark:border-gray-800 dark:text-white': {}
+        '@apply px-3 py-3.5 font-semibold text-start text-xs uppercase border-b border-gray-200 text-gray-700 bg-gray-50 dark:bg-gray-950/50 dark:border-gray-800 dark:text-white': {}
       },
       '.data-table :where(thead > tr > th > a)': {
         '@apply text-inherit no-underline inline-flex items-center gap-2': {}
@@ -354,6 +359,9 @@ export default plugin(
       '.formtastic': {
         '@apply text-sm': {}
       },
+      '.formtastic :where(.inputs,.has-many-fields)': {
+        '@apply mb-6': {}
+      },
       '.formtastic :where(.fieldset-title, .has-many-fields-title)': {
         '@apply block w-full mb-3 border-b border-gray-200 dark:border-gray-800 font-bold text-lg': {}
       },
@@ -406,10 +414,7 @@ export default plugin(
         '@apply font-semibold leading-6 text-gray-900 dark:text-white no-underline': {}
       },
       '.formtastic :where(.has-many-add)': {
-        '@apply inline-block py-3': {}
-      },
-      '.formtastic :where(.has-many-container)': {
-        '@apply space-y-8': {}
+        '@apply inline-block py-3 mb-3': {}
       },
       '.formtastic :where(.has-many-fields)': {
         '@apply ps-3 border-s-4 border-s-gray-200 dark:border-s-gray-700': {}

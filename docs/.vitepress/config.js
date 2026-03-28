@@ -71,7 +71,6 @@ export default defineConfig({
           { text: 'Custom Pages', link: '/10-custom-pages' },
           { text: 'Arbre Components', link: '/12-arbre-components' },
           { text: 'Gotchas', link: '/14-gotchas' },
-          { text: 'Documentation Tips', link: '/markdown-examples' },
         ]
       }
     ],

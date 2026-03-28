@@ -1,6 +1,6 @@
 {
   "name": "@activeadmin/activeadmin",
-  "version": "4.0.0-beta19",
+  "version": "4.0.0-beta22",
   "description": "The administration framework for Ruby on Rails.",
   "main": "dist/active_admin.js",
   "type": "module",
@@ -25,11 +25,12 @@
   },
   "homepage": "https://activeadmin.info",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@rollup/plugin-alias": "^6.0.0",
-    "eslint": "^9.39.1",
+    "eslint": "^10.1.0",
     "gherkin-lint": "^4.2.4",
-    "rollup": "^4.53.3",
-    "tailwindcss": "^4.1.18",
+    "rollup": "^4.60.0",
+    "tailwindcss": "^4.2.2",
     "vitepress": "^1.6.4"
   },
   "scripts": {

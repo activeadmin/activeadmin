@@ -44,16 +44,6 @@ RSpec.describe ActiveAdmin::AsyncCount do
       async_count = described_class.new(Post.group(:author_id))
       expect(async_count.count).to eq(100 => 1, 200 => 1)
     end
-
-    # See https://github.com/rails/rails/issues/50776
-    it "works around a Rails 7.1.3 bug with wrapped promises" do
-      promise = instance_double(ActiveRecord::Promise, value: Post.count)
-      promise_wrapper = instance_double(ActiveRecord::Promise, value: promise)
-      collection = class_double(Post, async_count: promise_wrapper)
-      expect(collection).to receive(:except).and_return(collection)
-
-      expect(described_class.new(collection).count).to eq(Post.count)
-    end
   end
 
   describe "delegation", if: Post.respond_to?(:async_count) do
