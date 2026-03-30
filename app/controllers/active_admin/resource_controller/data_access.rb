@@ -127,9 +127,15 @@ module ActiveAdmin
       # Builds a new resource. This method uses the method_for_build provided
       # by Inherited Resources.
       #
+      # Authorization scoping is intentionally not applied here because
+      # scope conditions (e.g. where clauses) would be propagated as
+      # attributes on the new record by Active Record.
+      # Authorization for new resources is handled by authorize_resource!
+      # in build_resource instead.
+      #
       # @return [ActiveRecord::Base] An un-saved active record base object
       def build_new_resource
-        apply_authorization_scope(scoped_collection).send(
+        scoped_collection.send(
           method_for_build,
           *resource_params.map { |params| params.slice(active_admin_config.resource_class.inheritance_column) }
         )

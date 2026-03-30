@@ -266,11 +266,9 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     context "given authorization scope" do
       let(:authorization) { controller.send(:active_admin_authorization) }
 
-      it "should apply authorization scope" do
-        expect(authorization).to receive(:scope_collection) do |collection|
-          collection.where(age: "42")
-        end
-        expect(subject.age).to eq(42)
+      it "should not apply authorization scope to avoid scoped attributes leaking into new records" do
+        expect(authorization).not_to receive(:scope_collection)
+        subject
       end
     end
   end
