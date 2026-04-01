@@ -15,14 +15,13 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: yarn
+          cache: npm
       - uses: tj-actions/changed-files@v47
         id: changed-files
         with:
           files: |
             **.js
             package*.json
-            yarn.lock
             .github/workflows/eslint.yml
       - uses: reviewdog/action-eslint@v1
         if: steps.changed-files.outputs.any_changed == 'true'
