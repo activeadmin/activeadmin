@@ -27,10 +27,10 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: yarn
+          cache: npm
       - uses: actions/configure-pages@v6
-      - run: yarn install
-      - run: yarn docs:build
+      - run: npm install
+      - run: npm run docs:build
       - uses: actions/upload-pages-artifact@v4
         with:
           path: docs/.vitepress/dist
