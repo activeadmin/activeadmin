@@ -19,14 +19,16 @@ jobs:
             **.feature
             .gherkin-lintrc
             package*.json
-            yarn.lock
+            pnpm-lock.yaml
             .github/workflows/gherkin-lint.yml
+      - uses: pnpm/action-setup@v5
+        if: steps.changed-files.outputs.any_changed == 'true'
       - uses: actions/setup-node@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: yarn
-      - run: yarn install --frozen-lockfile --immutable
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
         if: steps.changed-files.outputs.any_changed == 'true'
-      - run: yarn gherkin-lint
+      - run: pnpm gherkin-lint
         if: steps.changed-files.outputs.any_changed == 'true'

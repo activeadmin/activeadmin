@@ -111,13 +111,15 @@ jobs:
           files: |
             docs/**
             package*.json
-            yarn.lock
+            pnpm-lock.yaml
+      - uses: pnpm/action-setup@v5
+        if: steps.changed-files.outputs.any_changed == 'true'
       - uses: actions/setup-node@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           node-version: 24
-          cache: yarn
-      - run: yarn install
+          cache: pnpm
+      - run: pnpm install
         if: steps.changed-files.outputs.any_changed == 'true'
-      - run: yarn docs:build
+      - run: pnpm docs:build
         if: steps.changed-files.outputs.any_changed == 'true'

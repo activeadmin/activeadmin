@@ -24,13 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: yarn
+          cache: pnpm
       - uses: actions/configure-pages@v6
-      - run: yarn install
-      - run: yarn docs:build
+      - run: pnpm install
+      - run: pnpm docs:build
       - uses: actions/upload-pages-artifact@v4
         with:
           path: docs/.vitepress/dist
