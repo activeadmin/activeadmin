@@ -17,7 +17,7 @@ module ActiveAdmin
         generate
       end
       Bundler.with_original_env do
-        Kernel.system("npm install") # so tailwindcss/plugin is available for test app
+        Kernel.system("npm ci") # so tailwindcss/plugin is available for test app
         Kernel.system("rake dependencies:vendor") # ensure flowbite is updated for test app
         Dir.chdir(app_dir) do
           Kernel.system("npm install @activeadmin/activeadmin")
