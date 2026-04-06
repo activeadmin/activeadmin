@@ -24,6 +24,7 @@ module ActiveAdmin
   autoload :Callbacks, "active_admin/callbacks"
   autoload :Component, "active_admin/component"
   autoload :CanCanAdapter, "active_admin/cancan_adapter"
+  autoload :ActionPolicyAdapter, "active_admin/action_policy_adapter"
   autoload :ControllerAction, "active_admin/controller_action"
   autoload :CSVBuilder, "active_admin/csv_builder"
   autoload :Dependency, "active_admin/dependency"

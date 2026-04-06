@@ -14,6 +14,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    action_policy (0.7.5)
+      ruby-next-core (>= 1.0)
     action_text-trix (2.1.17)
       railties
     actioncable (8.1.3)
@@ -410,6 +412,7 @@ GEM
     rubocop-rspec (3.9.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.81)
+    ruby-next-core (1.1.2)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.1)
@@ -468,6 +471,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  action_policy
   activeadmin!
   cancancan
   capybara
@@ -503,4 +507,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-  4.0.9
+   4.0.9
