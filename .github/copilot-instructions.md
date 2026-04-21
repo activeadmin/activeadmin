@@ -14,7 +14,7 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 ## Ruby Conventions
 
-- Minimum Ruby version: 3.2+ (required)
+- Minimum Ruby version: 3.3+ (required)
 - Minimum Rails version: 7.2+ (required by gemspec)
 - Current development uses Rails ~> 8.1.0
 - Follow RuboCop style guide (configuration in `.rubocop.yml`)

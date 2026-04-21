@@ -22,7 +22,6 @@ jobs:
           - "4.0"
           - "3.4"
           - "3.3"
-          - "3.2"
         os:
           - ubuntu-latest
         rails:
