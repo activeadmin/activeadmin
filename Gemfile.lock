@@ -119,18 +119,18 @@ GEM
     cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
     csv (3.3.5)
-    cucumber (11.0.0)
+    cucumber (10.2.0)
       base64 (~> 0.2)
       builder (~> 3.2)
       cucumber-ci-environment (> 9, < 12)
-      cucumber-core (>= 16.2.0, < 17)
+      cucumber-core (> 15, < 17)
       cucumber-cucumber-expressions (> 17, < 20)
-      cucumber-html-formatter (> 21, < 24)
+      cucumber-html-formatter (> 21, < 23)
       diff-lcs (~> 1.5)
       logger (~> 1.6)
       mini_mime (~> 1.1)
       multi_test (~> 1.1)
-      sys-uname (~> 1.5)
+      sys-uname (~> 1.3)
     cucumber-ci-environment (11.0.0)
     cucumber-core (16.2.0)
       cucumber-gherkin (> 36, < 40)
@@ -140,14 +140,13 @@ GEM
       bigdecimal
     cucumber-gherkin (39.0.0)
       cucumber-messages (>= 31, < 33)
-    cucumber-html-formatter (23.1.0)
+    cucumber-html-formatter (22.3.0)
       cucumber-messages (> 23, < 33)
     cucumber-messages (32.3.1)
-    cucumber-rails (1.4.0)
-      capybara (>= 1.1.2)
-      cucumber (>= 1.2.0)
-      nokogiri (>= 1.5.0)
-      rails (>= 3.0.0)
+    cucumber-rails (4.0.1)
+      capybara (>= 3.25, < 4)
+      cucumber (>= 7, < 11)
+      railties (>= 6.1, < 9)
     cucumber-tag-expressions (8.1.0)
     cuprite (0.17)
       capybara (~> 3.0)
@@ -473,7 +472,6 @@ DEPENDENCIES
   cancancan
   capybara
   cssbundling-rails
-  cucumber
   cucumber-rails
   cuprite
   database_cleaner-active_record
