@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe ActiveAdmin::BatchActions::ResourceExtension do
+RSpec.describe "ActiveAdmin::BatchActions::ResourceExtension" do
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
     namespace.batch_actions = true

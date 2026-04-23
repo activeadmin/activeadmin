@@ -1,28 +1,30 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-class NumberDecorator
-  def initialize(number)
-    @number = number
+RSpec.describe "ActiveAdmin::CollectionDecorator" do
+  let(:number_decorator) do
+    Class.new do
+      def initialize(number)
+        @number = number
+      end
+
+      def selectable?
+        @number.even?
+      end
+    end
   end
 
-  def selectable?
-    @number.even?
-  end
-end
-
-RSpec.describe ActiveAdmin::CollectionDecorator do
   describe "#decorated_collection" do
     subject { collection.decorated_collection }
-    let(:collection) { ActiveAdmin::CollectionDecorator.decorate((1..10).to_a, with: NumberDecorator) }
+    let(:collection) { ActiveAdmin::CollectionDecorator.decorate((1..10).to_a, with: number_decorator) }
 
     it "returns an array of decorated objects" do
-      expect(subject).to all(be_a(NumberDecorator))
+      expect(subject).to all(be_a(number_decorator))
     end
   end
 
   describe "array methods" do
-    subject { ActiveAdmin::CollectionDecorator.decorate((1..10).to_a, with: NumberDecorator) }
+    subject { ActiveAdmin::CollectionDecorator.decorate((1..10).to_a, with: number_decorator) }
 
     it "delegates them to the decorated collection" do
       expect(subject.count(&:selectable?)).to eq(5)
