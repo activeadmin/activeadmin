@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.rails }}/Gemfile" >> "$GITHUB_ENV"
         if: matrix.rails != 'rails_81'
-      - uses: ruby/setup-ruby@v1.302.0
+      - uses: ruby/setup-ruby@v1.305.0
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
