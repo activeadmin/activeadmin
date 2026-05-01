@@ -36,43 +36,49 @@ AllCops:
 Capybara:
   Enabled: true
 
-Capybara/ClickLinkOrButtonStyle:
+Capybara/AssertStyle:
   Enabled: true
 
-Capybara/CurrentPathExpectation:
+Capybara/ClickLinkOrButtonStyle:
   Enabled: true
 
 Capybara/FindAllFirst:
   Enabled: true
 
-Capybara/MatchStyle:
-  Enabled: true
-
-Capybara/NegationMatcher:
-  Enabled: true
-
-Capybara/NegationMatcherAfterVisit:
-  Enabled: true
-
 Capybara/RedundantWithinFind:
+  Enabled: true
+
+Capybara/RSpec/CurrentPathExpectation:
+  Enabled: true
+
+Capybara/RSpec/HaveContent:
   Enabled: true
 
 Capybara/RSpec/HaveSelector:
   Enabled: true
 
+Capybara/RSpec/MatchStyle:
+  Enabled: true
+
+Capybara/RSpec/NegationMatcher:
+  Enabled: true
+
+Capybara/RSpec/NegationMatcherAfterVisit:
+  Enabled: true
+
 Capybara/RSpec/PredicateMatcher:
+  Enabled: true
+
+Capybara/RSpec/SpecificMatcher:
+  Enabled: true
+
+Capybara/RSpec/VisibilityMatcher:
   Enabled: true
 
 Capybara/SpecificActions:
   Enabled: true
 
 Capybara/SpecificFinders:
-  Enabled: true
-
-Capybara/SpecificMatcher:
-  Enabled: true
-
-Capybara/VisibilityMatcher:
   Enabled: true
 
 Layout/EndAlignment:

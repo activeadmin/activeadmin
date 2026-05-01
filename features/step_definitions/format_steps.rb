@@ -63,5 +63,5 @@ Then(/^the CSV file should start with BOM$/) do
 end
 
 Then(/^access denied$/) do
-  expect(page).to have_content(I18n.t("active_admin.access_denied.message"))
+  expect(page).to have_text(I18n.t("active_admin.access_denied.message"))
 end
