@@ -29,7 +29,7 @@ jobs:
             Rakefile
             *.gemspec
             .simplecov
-      - uses: ruby/setup-ruby@v1.305.0
+      - uses: ruby/setup-ruby@v1.306.0
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
