@@ -83,9 +83,9 @@ module ActiveAdmin
         if sort_key
           th(attributes) do
             link_to params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key)}" do
-              svg = '<svg class="data-table-sorted-icon" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>'
+              svg = '<svg class="data-table-sorted-icon" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>'.html_safe
 
-              (col.pretty_title + svg).html_safe
+              safe_join([col.pretty_title, svg])
             end
           end
         else
