@@ -86,6 +86,13 @@ The Tailwind config file now uses ES module syntax. To fix it, either:
 - Rename `tailwind-active_admin.config.js` to `tailwind-active_admin.config.mjs`; or
 - Add `"type": "module"` to your `package.json` (your application may already be compatible with ESM).
 
+There were important template changes in 4.0.0.beta23. See [PR #8983](https://github.com/activeadmin/activeadmin/pull/8983) for details.
+- A new `app/views/active_admin/_icons_definitions.html.erb` partial was added containing a centralized SVG symbol sprite. The `active_admin.html.erb` layout now renders this partial at the top of the `<body>`. If your app has copied and overridden this layout template, add the following line at the start of the `<body>` tag to avoid missing icons:
+
+  ```erb
+  <%= render "active_admin/icons_definitions" %>
+  ```
+
 ### Breaking Changes
 - jQuery and jQuery UI have been removed.
 - The `columns` component has been removed. Use `div`'s with Tailwind classes for modern, responsive layout.
