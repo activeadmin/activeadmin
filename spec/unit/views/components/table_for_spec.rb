@@ -245,7 +245,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         end
       end
 
-      it "should not contain an escaped content" do
+      it "should not contain escaped content" do
         expect(table.find_by_tag("th").first.content).not_to include("&lt;")
       end
     end
