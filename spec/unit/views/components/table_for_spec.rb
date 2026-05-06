@@ -229,6 +229,26 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
     end
 
+    context "when adding html to a sortable column header" do
+      before { allow(helpers).to receive(:url_target) { "routing_stub" } }
+
+      let(:active_admin_config) { ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
+      let(:assigns) { { collection: collection, active_admin_config: active_admin_config } }
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          span = content_tag :span, 'Title'
+          table_for(collection, sortable: true) do
+            column(span, sortable: :title) { |post| post.title }
+          end
+        end
+      end
+
+      it "should not escape the inner html" do
+        expect(table.find_by_tag("th").first.content).to include("<span")
+        expect(table.find_by_tag("th").first.content).to include("<svg")
+      end
+    end
+
     context "when using a single record instead of a collection" do
       let(:table) do
         render_arbre_component nil, helpers do
