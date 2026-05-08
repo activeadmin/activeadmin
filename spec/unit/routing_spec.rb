@@ -222,5 +222,52 @@ RSpec.describe "Routing", type: :routing do
         expect(admin_log_path).to eq "/admin/log"
       end
     end
+
+    context "with page_actions" do
+      around do |example|
+        with_resources_during(example) do
+          ActiveAdmin.register_page("Log") do
+            page_action :archive, method: :post
+            page_action :stats, method: :get
+          end
+        end
+      end
+
+      it "routes a POST page_action" do
+        expect({ post: "/admin/log/archive" }).to \
+          route_to({ controller: "admin/log", action: "archive" })
+      end
+
+      it "routes a GET page_action" do
+        expect({ get: "/admin/log/stats" }).to \
+          route_to({ controller: "admin/log", action: "stats" })
+      end
+    end
+
+    # Regression coverage for the Rails 8.1 deprecation that `Router#page_routes`
+    # used to emit via `build_route(verb, "/path" => "controller#action")`.
+    # Reproduces by intercepting `ActionDispatch.deprecator.warn` during route
+    # registration and asserting no "received a hash argument" message fires.
+    context "when registering a page with page_actions" do
+      it "does not emit a hash-argument deprecation from the routing DSL" do
+        deprecations = []
+        allow(ActionDispatch.deprecator).to receive(:warn) do |message, *|
+          deprecations << message.to_s
+        end
+
+        load_resources do
+          ActiveAdmin.register_page("Log") do
+            page_action :archive, method: :post
+            page_action :stats, method: :get
+          end
+        end
+
+        hash_arg_warnings = deprecations.grep(/received a hash argument/)
+        expect(hash_arg_warnings).to be_empty,
+          "expected no 'received a hash argument' deprecation, got: #{hash_arg_warnings.inspect}"
+      ensure
+        load_resources {}
+      end
+    end
   end
 end
