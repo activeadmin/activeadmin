@@ -1,0 +1,61 @@
+name: Rails edge
+
+on:
+  schedule:
+    # Run every Monday at noon UTC
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  RUBY_VERSION: "3.4"
+
+jobs:
+  test:
+    name: test (${{ env.RUBY_VERSION }}, rails edge)
+    # Don't run scheduled workflow on forks
+    if: ${{ github.event_name != 'schedule' || github.repository_owner == 'activeadmin' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - name: Configure bundler
+        run: |
+          echo "BUNDLE_GEMFILE=gemfiles/rails_edge/Gemfile" >> "$GITHUB_ENV"
+      - uses: ruby/setup-ruby@v1.306.0
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: false
+          rubygems: latest
+      - name: Refresh rails edge lockfile
+        run: bundle lock
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
+      - name: Create test app
+        run: bin/rake setup
+      - name: Restore cached RSpec runtimes
+        uses: actions/cache@v5
+        with:
+          path: tmp/parallel_runtime_rspec.log
+          key: runtimes-rspec-${{ env.RUBY_VERSION }}-rails-edge-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
+      - name: Run RSpec tests
+        env:
+          COVERAGE: true
+        run: |
+          bin/parallel_rspec
+          RSPEC_FILESYSTEM_CHANGES=true bin/rspec
+      - name: Restore cached cucumber runtimes
+        uses: actions/cache@v5
+        with:
+          path: tmp/parallel_runtime_cucumber.log
+          key: runtimes-cucumber-${{ env.RUBY_VERSION }}-rails-edge-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
+      - name: Run Cucumber features
+        env:
+          COVERAGE: true
+        run: |
+          bin/parallel_cucumber --fail-fast
+          bin/cucumber --profile filesystem-changes
+          bin/cucumber --profile class-reloading

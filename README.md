@@ -5,6 +5,7 @@ creating elegant backends for website administration.
 
 [![Version][rubygems_badge]][rubygems]
 [![Github Actions][actions_badge]][actions]
+[![Rails edge][rails_edge_badge]][rails_edge_actions]
 [![Coverage][coverage_badge]][coverage]
 [![Tidelift][tidelift_badge]][tidelift]
 
@@ -85,6 +86,8 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [rubygems]: https://rubygems.org/gems/activeadmin
 [actions_badge]: https://github.com/activeadmin/activeadmin/workflows/ci/badge.svg
 [actions]: https://github.com/activeadmin/activeadmin/actions
+[rails_edge_badge]: https://github.com/activeadmin/activeadmin/actions/workflows/rails-edge.yml/badge.svg
+[rails_edge_actions]: https://github.com/activeadmin/activeadmin/actions/workflows/rails-edge.yml
 [coverage_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg?token=NAjeBdkQXW
 [coverage]: https://codecov.io/gh/activeadmin/activeadmin
 [tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
