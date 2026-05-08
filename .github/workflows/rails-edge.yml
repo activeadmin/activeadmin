@@ -10,6 +10,9 @@ concurrency:
   group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+permissions:
+  contents: read
+
 env:
   RUBY_VERSION: "3.4"
 
@@ -31,6 +34,7 @@ jobs:
           bundler-cache: false
           rubygems: latest
       - name: Refresh rails edge lockfile
+        # Regenerate the lockfile on each run so rails edge tracks the current Rails main branch.
         run: bundle lock
       - name: Install gems
         run: bundle install --jobs 4 --retry 3
