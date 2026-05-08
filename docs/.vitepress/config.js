@@ -6,6 +6,12 @@ export default defineConfig({
   title: "ActiveAdmin",
   description: "The administration framework for business critical Ruby on Rails applications.",
   head: [
+    ['script', {}, `
+      if (window.location.pathname === '/docs' || window.location.pathname.startsWith('/docs/')) {
+        const path = window.location.pathname.slice('/docs'.length) || '/'
+        window.location.replace(path + window.location.search + window.location.hash)
+      }
+    `],
     // ['link', { rel: 'icon', type: 'image/svg+xml', href: '/vitepress-logo-mini.svg' }],
     // ['link', { rel: 'icon', type: 'image/png', href: '/vitepress-logo-mini.png' }],
     // ['meta', { name: 'theme-color', content: '#5f67ee' }],
