@@ -27,10 +27,10 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@rollup/plugin-alias": "^6.0.0",
-    "eslint": "^10.1.0",
+    "eslint": "^10.3.0",
     "gherkin-lint": "^4.2.4",
-    "rollup": "^4.60.0",
-    "tailwindcss": "^4.2.2",
+    "rollup": "^4.60.3",
+    "tailwindcss": "^4.3.0",
     "vitepress": "^1.6.4"
   },
   "scripts": {
