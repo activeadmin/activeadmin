@@ -68,7 +68,7 @@ module ActiveAdmin
       router.get "/#{page}", to: "#{page}#index"
       config.page_actions.each do |action|
         Array.wrap(action.http_verb).each do |verb|
-          build_route(verb, "/#{page}/#{action.name}" => "#{page}##{action.name}")
+          build_route(verb, "/#{page}/#{action.name}", to: "#{page}##{action.name}")
         end
       end
     end
