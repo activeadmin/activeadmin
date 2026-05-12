@@ -116,6 +116,7 @@ ca:
     search_status:
       no_current_filters: Sense filtres actius
       title: Cerca activa
+      current_scope: Abast:
       title_with_scope: Cerca activa per %{name}
     sidebars:
       filters: Filtres
@@ -124,6 +125,10 @@ ca:
       'no': 'No'
       unset: Desconegut
       'yes': Sí
+    toggle_dark_mode: Activar el modus fosc
+    toggle_main_navigation_menu: Activar el menú principal de navegació
+    toggle_section: Activar la secció
+    toggle_user_menu: Activar el menú d'usuari
     view: Mostra
   activerecord:
     attributes:
