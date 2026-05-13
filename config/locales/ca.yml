@@ -109,6 +109,7 @@ ca:
       one_page: S'estan mostrant <b>tots %{n}</b>
       per_page: Per pàgina
       previous: Anterior
+      truncate: "&hellip;"
     powered_by: Powered by %{active_admin} %{version}
     previous: Anterior
     scopes:
@@ -124,6 +125,10 @@ ca:
       'no': 'No'
       unset: Desconegut
       'yes': Sí
+    toggle_dark_mode: Activar el modus fosc
+    toggle_main_navigation_menu: Activar el menú principal de navegació
+    toggle_section: Activar la secció
+    toggle_user_menu: Activar el menú d'usuari
     view: Mostra
   activerecord:
     attributes:
