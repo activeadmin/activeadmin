@@ -117,7 +117,6 @@ ca:
     search_status:
       no_current_filters: Sense filtres actius
       title: Cerca activa
-      current_scope: "Abast:"
       title_with_scope: Cerca activa per %{name}
     sidebars:
       filters: Filtres
