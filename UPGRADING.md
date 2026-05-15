@@ -14,7 +14,7 @@ Now, run `rails generate active_admin:assets` to replace the old assets with the
 Then add the npm package and update the `build:css` script.
 
 ```
-yarn add @activeadmin/activeadmin@4.0.0-beta22
+npm install @activeadmin/activeadmin@4.0.0-beta22
 npm pkg set scripts.build:css="npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
 ```
 
