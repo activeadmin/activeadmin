@@ -111,6 +111,29 @@ To override options for string or numeric filter pass `filters` option.
   filter :title, filters: [:start, :end]
 ```
 
+To set the same options for every string filter at once, instead of passing the
+`filters` option on each one, use `string_input_filters` at the namespace or
+resource level. A resource-level setting overrides the namespace one, and the
+per-filter `filters` option still takes precedence over both.
+
+```ruby
+# config/initializers/active_admin.rb
+ActiveAdmin.setup do |config|
+
+  # Namespace level:
+  config.namespace :admin do |admin|
+    admin.string_input_filters = [:eq, :cont]
+  end
+end
+
+# app/admin/post.rb
+ActiveAdmin.register Post do
+
+  # Resource level:
+  string_input_filters [:eq, :cont]
+end
+```
+
 Also, if you don't need the select with the options 'cont', 'eq', 'start' or
 'end' just add the option to the filter name with an underscore.
 
