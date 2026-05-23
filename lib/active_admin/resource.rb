@@ -68,6 +68,10 @@ module ActiveAdmin
     # nil to not decorate.
     attr_accessor :decorator_class_name
 
+    # Default `filters` list for string filters on this resource.
+    # When nil, the namespace setting (and then the global default) is used.
+    attr_accessor :string_input_filters
+
     module Base
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace

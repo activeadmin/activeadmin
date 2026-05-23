@@ -121,6 +121,59 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
         end
       end
     end
+
+    context "with namespace-level string_input_filters" do
+      let(:body) do
+        admin = ActiveAdmin.application.namespace(:admin)
+        admin.string_input_filters = [:eq, :cont]
+        allow(helper).to receive(:active_admin_config)
+          .and_return(double(string_input_filters: nil, namespace: admin))
+        filter :title
+      ensure
+        admin.string_input_filters = nil
+      end
+
+      it "uses the namespace operators (subset and order) instead of the global default" do
+        expect(body).to have_css("option[value=title_eq]", text: "Equals")
+        expect(body).to have_css("option[value=title_cont]", text: "Contains")
+        expect(body).to have_no_css("option[value=title_start]")
+        expect(body).to have_no_css("option[value=title_end]")
+      end
+    end
+
+    context "with resource-level string_input_filters" do
+      let(:body) do
+        allow(helper).to receive(:active_admin_config)
+          .and_return(double(string_input_filters: [:eq, :cont], namespace: nil))
+        filter :title
+      end
+
+      it "uses the resource operators (subset and order) instead of the global default" do
+        expect(body).to have_css("option[value=title_eq]", text: "Equals")
+        expect(body).to have_css("option[value=title_cont]", text: "Contains")
+        expect(body).to have_no_css("option[value=title_start]")
+        expect(body).to have_no_css("option[value=title_end]")
+      end
+    end
+
+    context "with both resource-level and namespace-level string_input_filters" do
+      let(:body) do
+        admin = ActiveAdmin.application.namespace(:admin)
+        admin.string_input_filters = [:cont, :start, :end]
+        allow(helper).to receive(:active_admin_config)
+          .and_return(double(string_input_filters: [:eq, :cont], namespace: admin))
+        filter :title
+      ensure
+        admin.string_input_filters = nil
+      end
+
+      it "lets the resource setting take priority over the namespace setting" do
+        expect(body).to have_css("option[value=title_eq]", text: "Equals")
+        expect(body).to have_css("option[value=title_cont]", text: "Contains")
+        expect(body).to have_no_css("option[value=title_start]")
+        expect(body).to have_no_css("option[value=title_end]")
+      end
+    end
   end
 
   describe "string attribute ended with ransack predicate" do
