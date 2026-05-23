@@ -75,6 +75,15 @@ module ActiveAdmin
         end_of_association_chain
       end
 
+      # Derive the parent's `has_many` association name from the
+      # resource's model class so that resources registered with an
+      # `as:` alias still scope through the correct collection.
+      def method_for_association_chain
+        return super unless active_admin_config&.belongs_to?
+
+        active_admin_config.resource_class.model_name.element.pluralize.to_sym
+      end
+
       # Retrieve, memoize and authorize a resource based on params[:id]. The
       # actual work of finding the resource is done in #find_resource.
       #

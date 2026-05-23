@@ -36,6 +36,9 @@ module NavigationHelpers
     when /^the last author's posts$/
       admin_user_posts_path(User.last)
 
+    when /^the last author's stories$/
+      admin_user_stories_path(User.last)
+
     when /^the last author's last post page$/
       admin_user_post_path(User.last, Post.where(author_id: User.last.id).last)
 

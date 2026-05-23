@@ -160,3 +160,16 @@ Feature: Belongs To
     When I go to the last author's posts
     And I follow "View"
     Then the "Posts" menu item should be selected
+
+  Scenario: Viewing the child resource index page when the resource has an `as:` alias
+    Given a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post, as: "Story" do
+        belongs_to :user, optional: true
+      end
+    """
+    When I go to the last author's stories
+    Then I should see "Showing 1 of 1"
+    And I should see a link to "Users" in the breadcrumb
+    And I should see a link to "Jane Doe" in the breadcrumb
