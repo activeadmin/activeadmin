@@ -33,7 +33,7 @@
           <%= simple_format(comment.body) %>
         </div>
         <% if authorized?(ActiveAdmin::Auth::DESTROY, comment) %>
-          <%= link_to I18n.t("active_admin.comments.delete"), url_for_comments(comment.id), method: :delete, data: { confirm: I18n.t("active_admin.comments.delete_confirmation") } %>
+          <%= link_to I18n.t("active_admin.comments.delete"), url_for_comments(comment.id, return_to: "back"), method: :delete, data: { confirm: I18n.t("active_admin.comments.delete_confirmation") } %>
         <% end %>
       </div>
     <% end %>

@@ -245,6 +245,27 @@ Feature: Commenting
     And I should see 3 comments
     And I should be able to add a comment
 
+  Scenario: Deleting a comment from its own show page redirects to the comments index
+    Given a show configuration of:
+      """
+        ActiveAdmin.register Post
+      """
+    When I add a comment "Hello from Comment"
+    And I am on the index page for comments
+    And I follow "View"
+    And I follow "Delete Comment"
+    Then I should be on the index page for comments
+
+  Scenario: Deleting a comment from a commentable resource's page returns to that resource
+    Given a show configuration of:
+      """
+        ActiveAdmin.register Post
+      """
+    When I add a comment "Hello from Comment"
+    And I follow "Delete Comment"
+    Then I should be in the resource section for posts
+    And I should see "Comments (0)"
+
   @authorization
   Scenario: Not authorized to create comments
     Given 5 comments added by admin with an email "commenter@example.com"
