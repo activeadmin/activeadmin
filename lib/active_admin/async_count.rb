@@ -11,9 +11,7 @@ module ActiveAdmin
     end
 
     def count
-      value = @promise.value
-      # value.value due to Rails bug https://github.com/rails/rails/issues/50776
-      value.respond_to?(:value) ? value.value : value
+      @promise.value
     end
 
     alias size count

@@ -85,7 +85,7 @@ end
 
 Then(/^I should( not)? see( the element)? "([^"]*)"$/) do |negate, is_css, text|
   should = negate ? :not_to : :to
-  have = is_css ? have_css(text) : have_content(text)
+  have = is_css ? have_css(text) : have_text(text)
   expect(page).send should, have
 end
 
@@ -132,5 +132,5 @@ Then(/^I should see content "(.*?)" above other content "(.*?)"$/) do |top_title
 end
 
 Then(/^I should see a flash with "([^"]*)"$/) do |text|
-  expect(page).to have_content text
+  expect(page).to have_text text
 end

@@ -278,7 +278,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   describe "in_paginated_batches" do
     it "calls find_collection just once and disables the ActiveRecord query cache" do
       expect(controller).to receive(:find_collection).once do
-        expect(ActiveRecord::Base.connection.query_cache_enabled).to be_falsy
+        expect(ActiveRecord::Base.lease_connection.query_cache_enabled).to be_falsy
         Post.none
       end
       ActiveRecord::Base.cache do

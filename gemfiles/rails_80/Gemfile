@@ -14,7 +14,7 @@ group :development, :test do
 
   gem "sprockets-rails"
   gem "ransack", ">= 4.2.0"
-  gem "formtastic", ">= 5.0.0"
+  gem "formtastic", ">= 6.0.0"
 
   gem "cssbundling-rails"
   gem "importmap-rails"
@@ -28,7 +28,6 @@ group :test do
   gem "simplecov", require: false # Test coverage generator. Go to /coverage/ after running tests
   gem "simplecov-cobertura", require: false
   gem "cucumber-rails", require: false
-  gem "cucumber"
   gem "database_cleaner-active_record"
   gem "launchy"
   gem "parallel_tests"

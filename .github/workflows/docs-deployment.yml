@@ -24,14 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 22
-          cache: yarn
-      - uses: actions/configure-pages@v5
-      - run: yarn install
-      - run: yarn docs:build
-      - uses: actions/upload-pages-artifact@v4
+          node-version: 24
+          cache: npm
+      - uses: actions/configure-pages@v6
+      - run: npm install
+      - run: npm run docs:build
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: docs/.vitepress/dist
 
@@ -43,5 +43,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
         id: deployment

@@ -8,11 +8,7 @@ module ActiveAdmin
   # So, we are using ActiveAdmin::DeprecationHelper instead.
   module DeprecationHelper
     def self.behavior=(value)
-      if Rails.gem_version >= Gem::Version.new("7.1.0")
-        Rails.application.deprecators.behavior = :raise
-      else
-        ActiveSupport::Deprecation.behavior = :raise
-      end
+      Rails.application.deprecators.behavior = :raise
     end
   end
 end

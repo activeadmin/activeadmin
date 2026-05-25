@@ -11,17 +11,17 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  RUBY_VERSION: ruby-4.0
+  RUBY_VERSION: "4.0"
 
 jobs:
   bug_report_template_test:
     name: Run bug report template
     # Don't run scheduled workflow on forks
-    if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'activeadmin' }}
+    if: ${{ (github.event_name == 'pull_request' || github.repository_owner == 'activeadmin') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: tj-actions/changed-files@v47
+      - uses: tj-actions/changed-files@v47.0.6
         id: changed-files
         with:
           files: |
@@ -32,7 +32,7 @@ jobs:
             tasks/bug_report_template.rb
             Gemfile*
             *.gemspec
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1.310.0
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           ruby-version: ${{ env.RUBY_VERSION }}

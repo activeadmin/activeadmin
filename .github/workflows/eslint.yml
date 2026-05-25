@@ -4,7 +4,7 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: ${{ vars.ESLINT_NODE_VERSION || '22.x' }}
+  NODE_VERSION: ${{ vars.ESLINT_NODE_VERSION || '24.x' }}
 
 jobs:
   eslint:
@@ -12,17 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v6.4.0
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: yarn
-      - uses: tj-actions/changed-files@v47
+          cache: npm
+      - uses: tj-actions/changed-files@v47.0.6
         id: changed-files
         with:
           files: |
             **.js
             package*.json
-            yarn.lock
             .github/workflows/eslint.yml
       - uses: reviewdog/action-eslint@v1
         if: steps.changed-files.outputs.any_changed == 'true'

@@ -66,8 +66,8 @@ module ActiveAdmin
       end
 
       # Used in the UI to visually distinguish which menu item is selected.
-      def current?(item)
-        self == item || include?(item)
+      def current?(item, children: true)
+        self == item || (children && include?(item))
       end
 
       # Returns sorted array of menu items that should be displayed in this context.

@@ -53,7 +53,7 @@ end
 
 Then(/^I should see the page title "([^"]*)"$/) do |title|
   within("[data-test-page-header]") do
-    expect(page).to have_content title
+    expect(page).to have_text title
   end
 end
 
