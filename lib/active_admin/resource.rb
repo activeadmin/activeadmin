@@ -116,6 +116,8 @@ module ActiveAdmin
     end
 
     def resource_column_names
+      return [] unless resource_class.respond_to?(:column_names)
+
       resource_class.column_names
     end
 
