@@ -20,7 +20,7 @@ jobs:
     if: ${{ (github.event_name == 'pull_request' || github.repository_owner == 'activeadmin') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v6.0.3
       - uses: tj-actions/changed-files@v47.0.6
         id: changed-files
         with:
