@@ -134,9 +134,9 @@ GEM
       cucumber-gherkin (> 36, < 40)
       cucumber-messages (> 31, < 33)
       cucumber-tag-expressions (> 6, < 9)
-    cucumber-cucumber-expressions (19.0.0)
+    cucumber-cucumber-expressions (19.0.1)
       bigdecimal
-    cucumber-gherkin (39.0.0)
+    cucumber-gherkin (39.1.0)
       cucumber-messages (>= 31, < 33)
     cucumber-html-formatter (22.3.0)
       cucumber-messages (> 23, < 33)
@@ -152,7 +152,7 @@ GEM
     database_cleaner-active_record (2.2.2)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0)
-    database_cleaner-core (2.0.1)
+    database_cleaner-core (2.1.0)
     date (3.5.1)
     devise (5.0.4)
       bcrypt (~> 3.0)
@@ -251,7 +251,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.1.0)
+    marcel (1.2.1)
     matrix (0.4.3)
     memoist3 (1.0.0)
     mini_mime (1.1.5)
@@ -259,7 +259,7 @@ GEM
       drb (~> 2.0)
       prism (~> 1.5)
     multi_test (1.1.0)
-    net-imap (0.6.3)
+    net-imap (0.6.4)
       date
       net-protocol
     net-pop (0.1.2)
@@ -278,7 +278,7 @@ GEM
     nokogiri (1.19.3-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    parallel (2.0.1)
+    parallel (2.1.0)
     parallel_tests (5.7.0)
       parallel
     parser (3.3.11.1)
@@ -288,7 +288,7 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.9.0)
-    psych (5.3.1)
+    psych (5.4.0)
       date
       stringio
     public_suffix (7.0.5)
@@ -421,7 +421,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.8.0)
+    zeitwerk (2.8.2)
 
 PLATFORMS
   aarch64-linux
@@ -458,4 +458,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-  4.0.11
+  4.0.13
