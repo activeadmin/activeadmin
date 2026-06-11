@@ -15,5 +15,7 @@ module ActiveAdmin
       autoload :CheckBoxesInput
       autoload :BooleanInput
     end
+
+    autoload :AssociationInput
   end
 end
