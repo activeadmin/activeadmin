@@ -338,16 +338,29 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "renders text input instead of select when association cardinality is above threshold" do
+      author = User.create first_name: "John", last_name: "Doe"
+      User.create first_name: "Jane", last_name: "Doe"
+      User.create first_name: "Jim", last_name: "Beam"
+
+      post = Post.new(author: author)
+      body = build_form({}, post) do |f|
+        f.input :author
+      end
+
+      expect(body).to have_field("post[author_id]", type: "text", with: author.id.to_s)
+      expect(body).to have_no_select("post[author_id]")
+    end
+
+    it "preserves explicit select override when association cardinality is above threshold" do
       User.create first_name: "John", last_name: "Doe"
       User.create first_name: "Jane", last_name: "Doe"
       User.create first_name: "Jim", last_name: "Beam"
 
       body = build_form do |f|
-        f.input :author
+        f.input :author, as: :select
       end
 
-      expect(body).to have_field("post[author_id]", type: "text")
-      expect(body).to have_no_select("post[author_id]")
+      expect(body).to have_select("post[author_id]")
     end
 
     it "still renders select when association cardinality is below threshold" do

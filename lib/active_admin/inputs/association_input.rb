@@ -3,6 +3,12 @@
 module ActiveAdmin
   module Inputs
     class AssociationInput < ::Formtastic::Inputs::StringInput
+      def to_html
+        input_wrapping do
+          label_html << builder.text_field(reflection.foreign_key, input_html_options)
+        end
+      end
+
       def input_html_options
         options = super
         options.merge(
