@@ -12,16 +12,16 @@ RSpec.describe "ActiveAdmin Comments", type: :controller do
     let(:comment) { ActiveAdmin::Comment.create!(body: "body", namespace: :admin, resource: user, author: user) }
 
     context "success" do
-      it "deletes comments and redirects to root fallback" do
+      it "deletes comments and redirects to the comments index" do
         delete :destroy, params: { id: comment.id }
 
-        expect(response).to redirect_to admin_root_url
+        expect(response).to redirect_to admin_comments_url
       end
 
-      it "deletes comments and redirects back" do
+      it "deletes comments and redirects back when return_to is 'back'" do
         request.env["HTTP_REFERER"] = "/admin/users/1"
 
-        delete :destroy, params: { id: comment.id }
+        delete :destroy, params: { id: comment.id, return_to: "back" }
 
         expect(response).to redirect_to "/admin/users/1"
       end
