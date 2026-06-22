@@ -33,7 +33,7 @@ jobs:
             os: ubuntu-latest
             rails: rails_72
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
       - name: Configure bundler (default)
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
@@ -87,7 +87,7 @@ jobs:
     if: ${{ github.repository_owner == 'activeadmin' }}
     needs: [test]
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
       - uses: actions/download-artifact@v8
         with:
           path: coverage
@@ -103,7 +103,7 @@ jobs:
     name: Build docs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
       - uses: tj-actions/changed-files@v47.0.6
         id: changed-files
         with:

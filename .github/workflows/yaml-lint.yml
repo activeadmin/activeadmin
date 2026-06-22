@@ -8,14 +8,14 @@ jobs:
     name: Run yamllint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
       - uses: tj-actions/changed-files@v47.0.6
         id: changed-files
         with:
           files: |
             **.yaml
             **.yml
-      - uses: reviewdog/action-yamllint@v1
+      - uses: reviewdog/action-yamllint@v1.21.0
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           fail_level: any
