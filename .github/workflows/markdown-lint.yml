@@ -11,7 +11,7 @@ jobs:
     name: Run markdownlint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
       - uses: tj-actions/changed-files@v47.0.6
         id: changed-files
         with:
@@ -19,7 +19,7 @@ jobs:
             **.md
             .markdownlint.yml
             .github/workflows/markdown-lint.yml
-      - uses: reviewdog/action-markdownlint@v0
+      - uses: reviewdog/action-markdownlint@v0.26.2
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
