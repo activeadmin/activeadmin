@@ -19,7 +19,7 @@ jobs:
             **.md
             .markdownlint.yml
             .github/workflows/markdown-lint.yml
-      - uses: reviewdog/action-markdownlint@v0.26.2
+      - uses: reviewdog/action-markdownlint@v0.27.0
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

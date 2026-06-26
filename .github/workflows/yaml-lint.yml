@@ -15,7 +15,7 @@ jobs:
           files: |
             **.yaml
             **.yml
-      - uses: reviewdog/action-yamllint@v1.21.0
+      - uses: reviewdog/action-yamllint@v1.22.0
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           fail_level: any
