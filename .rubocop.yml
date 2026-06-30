@@ -39,9 +39,6 @@ Capybara:
 Capybara/AssertStyle:
   Enabled: true
 
-Capybara/ClickLinkOrButtonStyle:
-  Enabled: true
-
 Capybara/FindAllFirst:
   Enabled: true
 
