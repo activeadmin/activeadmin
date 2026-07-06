@@ -8,8 +8,8 @@ Given(/^(?:I am logged|log) out$/) do
 end
 
 Given(/^I am logged in$/) do
-  logout(:user)
-  login_as ensure_user_created "admin@example.com"
+  logout(:admin_user)
+  login_as ensure_user_created("admin@example.com"), scope: :admin_user
 end
 
 Given(/^I am logged in with capybara$/) do

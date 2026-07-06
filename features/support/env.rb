@@ -60,6 +60,7 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 # Warden helpers to speed up login
 # See https://github.com/heartcombo/devise/wiki/How-To:-Test-with-Capybara
 include Warden::Test::Helpers
+Devise.configure_warden!
 
 After do
   Warden.test_reset!
