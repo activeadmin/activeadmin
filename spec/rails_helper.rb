@@ -13,6 +13,7 @@ require "rspec/rails"
 # it allover the place
 ActiveAdmin.application.authentication_method = false
 ActiveAdmin.application.current_user_method = false
+ActiveAdmin.application.load!
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
