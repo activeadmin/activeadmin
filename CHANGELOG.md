@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 3.5.2 [☰](https://github.com/activeadmin/activeadmin/compare/v3.5.1..v3.5.2)
+
+### Bug Fixes
+
+* Backport run update_resource inside a transaction to avoid autosaving relationships through assign_attributes when the record is invalid [#9064] by [@mgrunberg] and [@deivid-rodriguez]
+
 ## 3.5.1 [☰](https://github.com/activeadmin/activeadmin/compare/v3.5.0..v3.5.1)
 
 ### Bug Fixes
@@ -1010,6 +1016,7 @@ Please check [0-6-stable] for previous changes.
 [#8964]: https://github.com/activeadmin/activeadmin/pull/8964
 [#8965]: https://github.com/activeadmin/activeadmin/pull/8965
 [#8978]: https://github.com/activeadmin/activeadmin/pull/8978
+[#9064]: https://github.com/activeadmin/activeadmin/pull/9064
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
