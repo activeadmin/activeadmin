@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 ENV["RAILS_ENV"] = "test"
 
-require "simplecov" if ENV["COVERAGE"] == "true"
+require_relative "../../spec/support/simplecov_helper"
+
+ActiveAdmin::TestSupport::SimpleCovHelper.start("features")
 
 Dir["#{File.expand_path('../step_definitions', __dir__)}/*.rb"].each do |f|
   require f
@@ -30,9 +32,9 @@ Around "@mocks" do |scenario, block|
 end
 
 After "@debug" do |scenario|
-  # :nocov:
+  # simplecov:disable
   save_and_open_page if scenario.failed?
-  # :nocov:
+  # simplecov:enable
 end
 
 require "capybara/cuprite"

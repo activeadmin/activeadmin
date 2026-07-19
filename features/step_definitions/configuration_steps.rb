@@ -25,9 +25,9 @@ Given(/^a(?:n? (index|show))? configuration of:$/) do |action, config_content|
     when "User"
       step "I am on the index page for users"
     else
-      # :nocov:
+      # simplecov:disable
       raise "#{resource} is not supported"
-      # :nocov:
+      # simplecov:enable
     end
   when "show"
     case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
@@ -48,9 +48,9 @@ Given(/^a(?:n? (index|show))? configuration of:$/) do |action, config_content|
       Tag.create!
       visit admin_tag_path Tag.last
     else
-      # :nocov:
+      # simplecov:disable
       raise "#{resource} is not supported"
-      # :nocov:
+      # simplecov:enable
     end
   end
 end
