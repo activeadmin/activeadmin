@@ -1,8 +1,6 @@
 # frozen_string_literal: true
-if ENV["COVERAGE"] == "true"
-  require "simplecov"
+require_relative "../../spec/support/simplecov_helper"
 
-  SimpleCov.command_name "reload features"
-end
+ActiveAdmin::TestSupport::SimpleCovHelper.start("reload features")
 
 require_relative "env"

@@ -49,9 +49,9 @@ class HtmlTableToTextHelper
     when "checkbox"
       "[ ]"
     else
-      # :nocov:
+      # simplecov:disable
       raise "I don't know what to do with #{input}"
-      # :nocov:
+      # simplecov:enable
     end
   end
 end
@@ -75,14 +75,14 @@ module TableMatchHelper
         begin
           assert_cells_match(cell, expected_cell)
         rescue
-          # :nocov:
+          # simplecov:disable
           puts "Cell at line #{row_index} and column #{column_index}: #{cell.inspect} does not match #{expected_cell.inspect}"
           puts "Expecting:"
           table.each { |row| puts row.inspect }
           puts "to match:"
           expected_table.each { |row| puts row.inspect }
           raise $!
-          # :nocov:
+          # simplecov:enable
         end
       end
     end
