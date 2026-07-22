@@ -8,14 +8,14 @@ jobs:
     name: Run actionlint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
       - uses: tj-actions/changed-files@v47.0.6
         id: changed-files
         with:
           files: |
             .github/workflows/*.yaml
             .github/workflows/*.yml
-      - uses: reviewdog/action-actionlint@v1
+      - uses: reviewdog/action-actionlint@v1.72.0
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           fail_level: any
