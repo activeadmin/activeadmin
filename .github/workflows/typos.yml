@@ -8,7 +8,7 @@ jobs:
     name: Run typos
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
       - uses: reviewdog/action-typos@v1
         with:
           fail_level: any
