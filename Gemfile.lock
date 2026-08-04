@@ -118,7 +118,7 @@ GEM
     crass (1.0.7)
     cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
-    csv (3.3.5)
+    csv (3.3.6)
     cucumber (11.1.1)
       base64 (~> 0.2)
       builder (~> 3.2)
@@ -415,7 +415,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.1)
-    simplecov (1.0.2)
+    simplecov (1.0.3)
     simplecov-cobertura (4.0.0)
       rexml
       simplecov (~> 1.0)
