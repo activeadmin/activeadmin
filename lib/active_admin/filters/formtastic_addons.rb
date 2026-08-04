@@ -32,9 +32,9 @@ module ActiveAdmin
       # The below are custom methods that Formtastic does not provide.
       #
 
-      # The resource class, unwrapped from Ransack
+      # The resource class, unwrapped from Ransack. Nil for non-Ransack search objects.
       def klass
-        @object.object.klass
+        @object.object.klass if @object.respond_to?(:object) && @object.object.respond_to?(:klass)
       end
 
       def polymorphic_foreign_type?(method)
@@ -66,6 +66,8 @@ module ActiveAdmin
 
       # Ransack supports exposing selected scopes on your model for advanced searches.
       def scope?
+        return false if klass.nil?
+
         context = Ransack::Context.for klass
         context.respond_to?(:ransackable_scope?) && context.ransackable_scope?(method.to_s, klass)
       end
