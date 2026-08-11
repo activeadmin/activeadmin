@@ -15,7 +15,7 @@ jobs:
           files: |
             .github/workflows/*.yaml
             .github/workflows/*.yml
-      - uses: reviewdog/action-actionlint@v1.73.0
+      - uses: reviewdog/action-actionlint@v1.73.1
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           fail_level: any
