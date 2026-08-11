@@ -2,7 +2,7 @@
   <div class="batch-actions-dropdown">
     <button type="button" class="batch-actions-dropdown-toggle" data-dropdown-toggle="batch-action-menu" disabled data-dropdown-offset-distance="5" data-dropdown-placement="bottom-start">
       <%= I18n.t("active_admin.batch_actions.button_label") %>
-      <svg class="batch-actions-dropdown-arrow" aria-hidden="true" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+      <svg class="batch-actions-dropdown-arrow" aria-hidden="true"><use href="#chevron-down"></use></svg>
     </button>
     <ul class="batch-actions-dropdown-menu" id="batch-action-menu">
       <% batch_actions_to_display.each do |batch_action| %>
