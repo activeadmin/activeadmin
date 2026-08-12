@@ -17,6 +17,18 @@ module ActiveAdmin
 
     self.input_namespaces = [::Object, ::ActiveAdmin::Inputs, ::Formtastic::Inputs]
 
+    def default_input_type(method, options = {})
+      return super unless method.present? && options[:as].nil?
+      return super if options.key?(:collection)
+
+      reflection = reflection_for(method)
+      if reflection && reflection.macro == :belongs_to && !reflection.polymorphic? && large_association_for_form?(reflection)
+        :association
+      else
+        super
+      end
+    end
+
     def cancel_link(url = { action: "index" }, html_options = {}, li_attrs = {})
       li_attrs[:class] ||= "action cancel"
       html_options[:class] ||= "cancel-link"
@@ -28,6 +40,24 @@ module ActiveAdmin
 
     def has_many(assoc, options = {}, &block)
       HasManyBuilder.new(self, assoc, options).render(&block)
+    end
+
+    private
+
+    def active_admin_config
+      return unless template.respond_to?(:active_admin_config)
+
+      template.active_admin_config
+    end
+
+    def large_association_for_form?(reflection)
+      return false unless active_admin_config
+      max = active_admin_config.namespace.maximum_association_form_arity
+      return false if max.nil? || max == :unlimited
+
+      reflection.klass.reorder(nil).limit(max + 1).count > max
+    rescue StandardError
+      false
     end
   end
 
