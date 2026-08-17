@@ -51,7 +51,7 @@ module ActiveAdmin
           end
 
           def filters
-            options[:filters] || self.class.filters
+            options[:filters] || resource_default_filters || namespace_default_filters || self.class.filters
           end
 
           def current_filter
@@ -65,6 +65,18 @@ module ActiveAdmin
             filters.collect do |filter|
               [Ransack::Translate.predicate(filter).capitalize, "#{method}_#{filter}"]
             end
+          end
+
+          private
+
+          def resource_default_filters
+            template.respond_to?(:active_admin_config) &&
+              template.active_admin_config&.string_input_filters
+          end
+
+          def namespace_default_filters
+            template.respond_to?(:active_admin_config) &&
+              template.active_admin_config&.namespace.string_input_filters
           end
 
         end
