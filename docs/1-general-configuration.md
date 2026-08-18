@@ -38,11 +38,10 @@ If you want, you can customize it.
 
 ```ruby
 config.site_title       = "My Admin Site"
-config.site_title_link  = "/"
-config.site_title_image = "site_image.png"
-config.site_title_image = "https://www.google.com/images/logos/google_logo_41.png"
-config.site_title_image = ->(context) { context.current_user.company.logo_url }
 ```
+
+> **Note**: To customize the site title linking or image, you can override the `app/views/active_admin/_site_header.html.erb` partial in your application.
+
 
 ## Internationalization (I18n)
 
@@ -215,9 +214,13 @@ end
 
 ## Footer Customization
 
-By default, Active Admin displays a "Powered by ActiveAdmin" message on every
-page. You can override this message and show domain-specific messaging:
+By default, Active Admin displays a "Powered by ActiveAdmin" message on the footer of every
+page. To customize or override this message and show domain-specific messaging, you can override the `app/views/active_admin/_site_footer.html.erb` partial in your application.
 
-```ruby
-config.footer = "MyApp Revision v1.3"
+For example, create the file `app/views/active_admin/_site_footer.html.erb` with the following content:
+
+```erb
+<div class="text-sm text-center mt-16 mx-8 pt-9 pb-12 text-gray-500 border-t border-gray-200 dark:border-gray-800">
+  MyApp Revision v1.3
+</div>
 ```
