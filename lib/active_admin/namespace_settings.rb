@@ -80,6 +80,11 @@ module ActiveAdmin
 
     register :maximum_association_filter_arity, :unlimited
 
+    # When a belongs_to association has more than this many records, Active Admin
+    # will render an association text input on the edit/new form instead of a
+    # select box to avoid loading too many options.
+    register :maximum_association_form_arity, :unlimited
+
     register :filter_columns_for_large_association, [
         :display_name,
         :full_name,
