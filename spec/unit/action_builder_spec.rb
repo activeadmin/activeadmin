@@ -64,6 +64,62 @@ RSpec.describe "defining actions from registration blocks", type: :controller do
         expect(controller.instance_variable_get(:@page_title)).to eq "My Awesome Comment"
       end
     end
+
+    context "with :if proc" do
+      let(:action!) do
+        ActiveAdmin.register Post do
+          member_action :comment, if: -> { params[:allowed] == "true" } do
+            render json: { a: 2 }
+          end
+        end
+      end
+
+      context "when the proc returns a truthy value" do
+        it "allows the request" do
+          get :comment, params: { id: 1, allowed: "true" }
+
+          expect(response).to be_successful
+        end
+      end
+
+      context "when the proc returns a falsey value" do
+        it "raises a routing error" do
+          expect { get :comment, params: { id: 1 } }.to raise_error ActionController::RoutingError
+        end
+      end
+    end
+
+    context "with :if symbol" do
+      let(:action!) do
+        ActiveAdmin.register Post do
+          member_action :comment, if: :comment_allowed? do
+            render json: { a: 2 }
+          end
+
+          controller do
+            private
+
+            def comment_allowed?
+              params[:allowed] == "true"
+            end
+          end
+        end
+      end
+
+      context "when the method returns a truthy value" do
+        it "allows the request" do
+          get :comment, params: { id: 1, allowed: "true" }
+
+          expect(response).to be_successful
+        end
+      end
+
+      context "when the method returns a falsey value" do
+        it "raises a routing error" do
+          expect { get :comment, params: { id: 1 } }.to raise_error ActionController::RoutingError
+        end
+      end
+    end
   end
 
   describe "creates a collection action" do
@@ -118,6 +174,30 @@ RSpec.describe "defining actions from registration blocks", type: :controller do
         get :comments
 
         expect(controller.instance_variable_get(:@page_title)).to eq "My Awesome Comments"
+      end
+    end
+
+    context "with :if proc" do
+      let(:action!) do
+        ActiveAdmin.register Post do
+          collection_action :comments, if: -> { params[:allowed] == "true" } do
+            render json: { a: 2 }
+          end
+        end
+      end
+
+      context "when the proc returns a truthy value" do
+        it "allows the request" do
+          get :comments, params: { allowed: "true" }
+
+          expect(response).to be_successful
+        end
+      end
+
+      context "when the proc returns a falsey value" do
+        it "raises a routing error" do
+          expect { get :comments }.to raise_error ActionController::RoutingError
+        end
       end
     end
   end

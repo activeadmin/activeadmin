@@ -5,6 +5,20 @@ module ActiveAdmin
     module ActionBuilder
       extend ActiveSupport::Concern
 
+      private
+
+      def restrict_action_access!(condition)
+        allowed =
+          case condition
+          when Symbol, String
+            send condition
+          when Proc
+            instance_exec(&condition)
+          end
+
+        raise ActionController::RoutingError, "Not Found" unless allowed
+      end
+
       module ClassMethods
 
         def clear_member_actions!
