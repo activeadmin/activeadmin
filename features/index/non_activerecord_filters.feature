@@ -27,8 +27,8 @@ Feature: Filters on non-ActiveRecord resources
         end
 
         controller do
-          # Non-AR resources override `find_collection`; Kaminari.paginate_array
-          # adapts the API response for AA's pagination UI.
+          # Non-ActiveRecord resources override `find_collection`; Kaminari.paginate_array
+          # adapts the API response for ActiveAdmin's pagination UI.
           def find_collection(*)
             q = params[:q] || {}
             @search = ApiPost::Search.new(

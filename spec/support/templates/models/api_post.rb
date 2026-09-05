@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # A non-ActiveRecord resource used in features to prove ActiveAdmin's
-# filter DSL works for resources that bypass the AR DataAccess path.
+# filter DSL works for resources that bypass the ActiveRecord DataAccess path.
 # `.fetch` returns a page of records plus total_count, like an HTTP API client.
 class ApiPost
   extend ActiveModel::Naming
