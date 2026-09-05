@@ -69,7 +69,7 @@ module ActiveAdmin
     attr_accessor :decorator_class_name
 
     # Default `filters` list for string filters on this resource.
-    # When nil, the namespace setting (and then the global default) is used.
+    # If `nil`, then uses the namespace setting, otherwise uses the global default.
     attr_accessor :string_input_filters
 
     module Base
