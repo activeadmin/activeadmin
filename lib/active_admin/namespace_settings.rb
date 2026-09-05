@@ -29,6 +29,10 @@ module ActiveAdmin
     # Whether filters are enabled
     register :filters, true
 
+    # Default `filters` list for string filters in the namespace.
+    # When `nil`, the global `ActiveAdmin::Inputs::Filters::StringInput.filters` list is used.
+    register :string_input_filters, nil
+
     # The namespace root
     register :root_to, "dashboard#index"
 
