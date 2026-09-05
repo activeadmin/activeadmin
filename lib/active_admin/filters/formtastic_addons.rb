@@ -32,7 +32,7 @@ module ActiveAdmin
       # The below are custom methods that Formtastic does not provide.
       #
 
-      # The resource class, unwrapped from Ransack. Nil for non-Ransack search objects.
+      # The resource class, unwrapped from Ransack or `nil` for non-Ransack search objects.
       def klass
         @object.object.klass if @object.respond_to?(:object) && @object.object.respond_to?(:klass)
       end
