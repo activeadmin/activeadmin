@@ -14,7 +14,8 @@ module ActiveAdmin
       # @see ActiveAdmin::ResourceController::DataAccess#apply_filtering
       def initialize(resource, search)
         @resource = resource
-        @filters = build_filters(search.conditions)
+        # Ransack::Search uses method_missing for #conditions, so gate on the class.
+        @filters = search.is_a?(::Ransack::Search) ? build_filters(search.conditions) : []
         @scopes = search.instance_variable_get(:@scope_args)
       end
 

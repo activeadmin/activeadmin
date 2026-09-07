@@ -160,7 +160,7 @@ module ActiveAdmin
         def sortable?
           if @options.has_key?(:sortable)
             !!@options[:sortable]
-          elsif @resource_class
+          elsif @resource_class.respond_to?(:column_names)
             @resource_class.column_names.include?(sort_column_name)
           else
             @title.present?
