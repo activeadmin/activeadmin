@@ -254,4 +254,71 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
       expect(subject.values.first).to eq user
     end
   end
+
+  describe "Enum values in current search status view" do
+    enum_attributes = Store.defined_enums
+    let(:resource_klass) { Store }
+    let(:resource) do
+      namespace.register(resource_klass)
+    end
+    enum_attributes.each do |enum_attribute, enum_options|
+      enum_options.each do |enum_label, enum_value|
+        context "with no custom collection provided as filter options" do
+          let(:search) do
+            resource_klass.ransack("#{enum_attribute}_eq" => enum_value.to_s)
+          end
+
+          it "should use the enum label from enum definition instead of the database value" do
+            expect(subject.values.first).to eq enum_label.to_s.humanize
+          end
+        end
+      end
+    end
+
+    context "with custom array collection for filter options" do
+      let(:resource) do
+        namespace.register(resource_klass) do
+          filter :reject_reason, as: :select, collection: [[:not_a_good_fit, "0"], ["\u274c Vetoed", "10"]]
+        end
+      end
+      let(:search) do
+        resource_klass.ransack(reject_reason_eq: "10")
+      end
+
+      it "should use the collection label instead of the database value" do
+        expect(subject.values.first).to eq "\u274c Vetoed".humanize
+      end
+    end
+
+    context "with custom hash collection for filter options" do
+      let(:resource) do
+        namespace.register(resource_klass) do
+          filter :reject_reason, as: :select, collection: { requirements_not_met: 0, "\u274c Vetoed" => 10 }
+        end
+      end
+      let(:search) do
+        resource_klass.ransack(reject_reason_eq: "0")
+      end
+
+      it "should use the queried value as a fallback, even if the lookup failed" do
+        expect(subject.values.first).to eq :requirements_not_met.to_s.humanize
+      end
+    end
+
+    context "filtering by multiple selections" do
+      let(:resource) do
+        namespace.register(resource_klass) do
+          filter :reject_reason, as: :select, collection: { requirements_not_met: 0, "\u274c Vetoed" => 10 }
+        end
+      end
+      let(:search) do
+        resource_klass.ransack(reject_reason_in: ["0", "10"])
+      end
+
+      it "should perform label lookups for multiple items, in case of multiple selections" do
+        expect(subject.values.first).to eq :requirements_not_met.to_s.humanize
+        expect(subject.values.second).to eq "\u274c Vetoed".to_s.humanize
+      end
+    end
+  end
 end
