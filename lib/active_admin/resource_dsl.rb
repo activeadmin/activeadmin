@@ -139,9 +139,11 @@ module ActiveAdmin
 
       set << ControllerAction.new(name, options)
       title = options.delete(:title)
+      condition = options.delete(:if)
 
       controller do
         before_action(only: [name]) { @page_title = title } if title
+        before_action(only: [name]) { restrict_action_access!(condition) } if condition
         define_method(name, &block || Proc.new {})
       end
     end

@@ -70,6 +70,24 @@ member_action :foo, method: [:get, :post] do
 end
 ```
 
+## Conditionally Enabling Actions
+
+The `collection_action` and `member_action` methods both accept
+the `:if` argument to guard the action on a per-request basis.
+It accepts a proc (evaluated in the controller context) or a symbol naming a controller method.
+When it returns a falsey value, the request raises `ActionController::RoutingError`,
+which Rails renders as a 404 in production.
+
+```ruby
+member_action :archive, method: :post, if: -> { resource.archivable? } do
+  resource.archive!
+  redirect_to resource_path, notice: "Archived!"
+end
+```
+
+Note that this only guards the controller action itself. If you also display a
+link to the action with `action_item`, hide it with its own `:if` option.
+
 ## Rendering
 
 Custom controller actions support rendering within the standard Active Admin
