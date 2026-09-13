@@ -156,6 +156,36 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
     end
 
+    context "when active_admin_config is nil" do
+      let(:body) do
+        allow(helper).to receive(:active_admin_config).and_return(nil)
+        filter :title
+      end
+
+      it "falls back to the global default" do
+        expect(body).to have_css("option[value=title_cont]", text: "Contains")
+        expect(body).to have_css("option[value=title_eq]", text: "Equals")
+        expect(body).to have_css("option[value=title_start]", text: "Starts with")
+        expect(body).to have_css("option[value=title_end]", text: "Ends with")
+      end
+    end
+
+    context "when active_admin_config is a Page (no string_input_filters accessor)" do
+      let(:body) do
+        admin = ActiveAdmin.application.namespace(:admin)
+        page_config = ActiveAdmin::Page.new(admin, "Report", {})
+        allow(helper).to receive(:active_admin_config).and_return(page_config)
+        filter :title
+      end
+
+      it "falls back to the global default" do
+        expect(body).to have_css("option[value=title_cont]", text: "Contains")
+        expect(body).to have_css("option[value=title_eq]", text: "Equals")
+        expect(body).to have_css("option[value=title_start]", text: "Starts with")
+        expect(body).to have_css("option[value=title_end]", text: "Ends with")
+      end
+    end
+
     context "with both resource-level and namespace-level string_input_filters" do
       let(:body) do
         admin = ActiveAdmin.application.namespace(:admin)
@@ -343,6 +373,20 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
 
       it "should not generate a select option for less than" do
         expect(body).to have_no_css("option[value=id_lt]")
+      end
+    end
+
+    context "with namespace- and resource-level string_input_filters set" do
+      let(:body) do
+        admin = ActiveAdmin.application.namespace(:admin)
+        admin.string_input_filters = [:eq, :cont]
+        filter :id
+      ensure
+        admin.string_input_filters = nil
+      end
+
+      it "keeps the numeric operators unaffected" do
+        expect(body).to have_select(options: ["Equals", "Greater than", "Less than"])
       end
     end
   end
