@@ -19,6 +19,8 @@ Feature: Filters on non-ActiveRecord resources
         filter :title_cont, as: :string, label: "Title contains"
         filter :status_eq,  as: :select, label: "Status",
                collection: %w[active inactive]
+        filter :title, as: :select, label: "Title (no predicate)",
+               collection: %w[foo bar]
 
         index do
           column :id
@@ -64,8 +66,9 @@ Feature: Filters on non-ActiveRecord resources
     And I should see "Showing 1-5 of 7"
     And I should see pagination page 2 link
     And I should see the following filters:
-      | Title contains | string |
-      | Status         | select |
+      | Title contains        | string |
+      | Status                | select |
+      | Title (no predicate)  | select |
 
     When I follow "2"
     Then I should see "Zeta"

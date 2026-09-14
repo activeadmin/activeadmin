@@ -8,8 +8,13 @@ class ApiPost
 
   Record = Data.define(:id, :title, :status)
 
-  # The filter form pre-fills inputs via `@search.<filter_name>`, so this needs a reader per filter.
-  Search = Data.define(:title_cont, :status_eq)
+  # Filter widgets probe predicate-suffixed accessors ActiveAdmin computes on the fly
+  # (e.g. `_eq`/`_in` for bare, non-predicate filter names), so unknown readers return nil
+  # instead of raising, matching Ransack::Search's own permissive method_missing.
+  Search = Data.define(:title_cont, :status_eq) do
+    def method_missing(name, *) = nil
+    def respond_to_missing?(name, include_private = false) = true
+  end
 
   ALL_RECORDS = [
     Record.new(id: 1, title: "Alpha", status: "active"),
