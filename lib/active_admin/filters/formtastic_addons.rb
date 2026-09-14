@@ -38,6 +38,8 @@ module ActiveAdmin
       end
 
       def polymorphic_foreign_type?(method)
+        return false if klass.nil?
+
         klass.reflect_on_all_associations.select { |r| r.macro == :belongs_to && r.options[:polymorphic] }
           .map(&:foreign_type).include? method.to_s
       end
@@ -47,6 +49,8 @@ module ActiveAdmin
       #
 
       def searchable_has_many_through?
+        return false if klass.nil?
+
         if klass.ransackable_associations.include?(method.to_s) && reflection && reflection.options[:through]
           reflection.through_reflection.klass.ransackable_attributes.include? reflection.foreign_key
         else
