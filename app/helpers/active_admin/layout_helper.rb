@@ -17,7 +17,7 @@ module ActiveAdmin
     end
 
     def html_head_site_title(separator: "-")
-      "#{@page_title || page_title} #{separator} #{site_title}"
+      safe_join([@page_title || page_title, site_title], " #{separator} ")
     end
 
     def action_items_for_action
