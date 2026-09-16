@@ -10,9 +10,9 @@ ActiveAdmin.register ApiPost do
   filter :status_eq, as: :select, label: "Status", collection: %w[active inactive]
 
   index title: "PORO Posts", download_links: false do
-    column :id
-    column :title
-    column :status
+    column :id, sortable: false
+    column :title, sortable: false
+    column :status, sortable: false
   end
 
   controller do
