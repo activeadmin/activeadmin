@@ -130,6 +130,38 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       end
     end
 
+    context "when decorator name contains policy namespace name" do
+      before do
+        allow(ActiveAdmin.application).to receive(:pundit_policy_namespace).and_return :foobar
+      end
+
+      class Admin::PostDecorator
+        attr_reader :object
+        delegate_missing_to :object
+
+        def initialize(object)
+          @object = object
+        end
+
+        def decorated?
+          true
+        end
+
+        def model
+          object
+        end
+      end
+
+      it "asks Pundit for a policy for the undecorated object" do
+        policy = DefaultPolicy.new(double, double)
+        allow(policy).to receive(:show?).and_return(true)
+
+        expect(Pundit).to receive(:policy).with(anything, [:foobar, an_instance_of(Post)]).and_return(policy)
+
+        auth.authorized?(:read, Admin::PostDecorator.new(Post.new))
+      end
+    end
+
     context "when Pundit is unable to find policy scope" do
       let(:collection) { double("collection", to_sym: :collection) }
       subject(:scope) { auth.scope_collection(collection, :read) }
