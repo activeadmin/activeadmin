@@ -19,6 +19,12 @@ module ActiveAdmin
         condition_values = condition.values.map(&:value)
         if related_class
           related_class.where(related_primary_key => condition_values)
+        elsif custom_filter_collection && custom_filter_collection.is_a?(Array) && custom_filter_collection.all?(Array)
+          hash_lookup_by_values(custom_filter_collection.to_h, condition_values)
+        elsif custom_filter_collection && custom_filter_collection.is_a?(Hash)
+          hash_lookup_by_values(custom_filter_collection, condition_values)
+        elsif enum_attribute
+          hash_lookup_by_values(enum_attribute, condition_values)
         else
           condition_values
         end
@@ -110,6 +116,22 @@ module ActiveAdmin
         condition_attribute.klass.reflect_on_all_associations.
           reject { |r| r.options[:polymorphic] }. #skip polymorphic
           detect { |r| r.foreign_key.to_s == name.to_s }
+      end
+
+      def enum_attribute
+        resource_class.defined_enums[name]
+      end
+
+      def custom_filter_collection
+        resource.filters.dig(name.to_sym, :collection)
+      end
+
+      def hash_lookup_by_values(hash, condition_values)
+        condition_values.map do |value|
+          # value(filter form's search params) will be a string,
+          # so let us transform the lookup object (e.g. for integer backed enums)
+          (hash.transform_values(&:to_s).key(value) || value).to_s.humanize
+        end
       end
     end
   end
