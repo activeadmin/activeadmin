@@ -33,9 +33,6 @@ AllCops:
 
   StyleGuideCopsOnly: false
 
-Capybara:
-  Enabled: true
-
 Capybara/AssertStyle:
   Enabled: true
 
@@ -78,12 +75,6 @@ Capybara/SpecificActions:
 Capybara/SpecificFinders:
   Enabled: true
 
-Layout/EndAlignment:
-  Enabled: true
-
-Layout/HashAlignment:
-  Enabled: true
-
 Layout/AccessModifierIndentation:
   Enabled: true
 
@@ -108,6 +99,9 @@ Layout/EmptyLines:
 Layout/EmptyLinesAroundBlockBody:
   Enabled: true
 
+Layout/EndAlignment:
+  Enabled: true
+
 Layout/EndOfLine:
   Enabled: true
 
@@ -128,13 +122,55 @@ Layout/FirstMethodArgumentLineBreak:
 Layout/FirstParameterIndentation:
   Enabled: true
 
-Layout/ParameterAlignment:
+Layout/HashAlignment:
   Enabled: true
-  EnforcedStyle: with_fixed_indentation
+
+Layout/IndentationConsistency:
+  Enabled: true
 
 Layout/IndentationStyle:
   Enabled: true
   EnforcedStyle: spaces
+
+Layout/IndentationWidth:
+  Enabled: true
+
+Layout/ParameterAlignment:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+
+Layout/SpaceAfterComma:
+  Enabled: true
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
+Layout/SpaceAroundOperators:
+  Enabled: true
+
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+
+Layout/SpaceBeforeComma:
+  Enabled: true
+
+Layout/SpaceBeforeFirstArg:
+  Enabled: true
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+Layout/SpaceInsideParens:
+  Enabled: true
+
+Layout/TrailingEmptyLines:
+  Enabled: true
+
+Layout/TrailingWhitespace:
+  Enabled: true
 
 Lint/AmbiguousOperator:
   Enabled: true
@@ -154,6 +190,17 @@ Lint/UselessAccessModifier:
 Lint/UselessAssignment:
   Enabled: true
 
+Naming/PredicatePrefix:
+  Enabled: true
+
+  ForbiddenPrefixes:
+    - is_
+    - have_
+
+  AllowedMethods:
+    - has_many
+    - has_many_actions
+
 Packaging/BundlerSetupInTests:
   Enabled: true
 
@@ -164,9 +211,6 @@ Packaging/RequireHardcodingLib:
   Enabled: true
 
 Packaging/RequireRelativeHardcodingLib:
-  Enabled: true
-
-Performance:
   Enabled: true
 
 Performance/AncestorsInclude:
@@ -187,11 +231,11 @@ Performance/BlockGivenWithExplicitBlock:
 Performance/Caller:
   Enabled: true
 
-Performance/CaseWhenSplat:
-  Enabled: true
-
 Performance/Casecmp:
   Enabled: false
+
+Performance/CaseWhenSplat:
+  Enabled: true
 
 Performance/ChainArrayAllocation:
   Enabled: false
@@ -303,6 +347,9 @@ Performance/Squeeze:
 Performance/StartWith:
   Enabled: true
 
+Performance/StringBytesize:
+  Enabled: true
+
 Performance/StringIdentifierArgument:
   Enabled: true
 
@@ -310,9 +357,6 @@ Performance/StringInclude:
   Enabled: true
 
 Performance/StringReplacement:
-  Enabled: true
-
-Performance/StringBytesize:
   Enabled: true
 
 Performance/Sum:
@@ -369,58 +413,8 @@ Style/HashSyntax:
 Style/ParallelAssignment:
   Enabled: true
 
-Layout/IndentationConsistency:
-  Enabled: true
-
-Layout/IndentationWidth:
-  Enabled: true
-
-Naming/PredicatePrefix:
-  Enabled: true
-
-  ForbiddenPrefixes:
-    - is_
-    - have_
-
-  AllowedMethods:
-    - has_many
-    - has_many_actions
-
 Style/StringLiterals:
   Enabled: false
 
 Style/TrailingCommaInArguments:
-  Enabled: true
-
-Layout/TrailingEmptyLines:
-  Enabled: true
-
-Layout/TrailingWhitespace:
-  Enabled: true
-
-Layout/SpaceAfterComma:
-  Enabled: true
-
-Layout/SpaceAroundEqualsInParameterDefault:
-  Enabled: true
-
-Layout/SpaceAroundOperators:
-  Enabled: true
-
-Layout/SpaceBeforeBlockBraces:
-  Enabled: true
-
-Layout/SpaceBeforeComma:
-  Enabled: true
-
-Layout/SpaceBeforeFirstArg:
-  Enabled: true
-
-Layout/SpaceInsideBlockBraces:
-  Enabled: true
-
-Layout/SpaceInsideHashLiteralBraces:
-  Enabled: true
-
-Layout/SpaceInsideParens:
   Enabled: true
