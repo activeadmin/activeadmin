@@ -99,7 +99,7 @@ GEM
     base64 (0.3.0)
     bcrypt (3.1.22)
     benchmark (0.5.0)
-    bigdecimal (4.1.2)
+    bigdecimal (4.1.3)
     builder (3.3.0)
     cancancan (3.6.1)
     capybara (3.40.0)
@@ -258,7 +258,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.27.0)
     multi_test (1.1.0)
-    net-imap (0.6.6)
+    net-imap (0.6.7)
       date
       net-protocol
     net-pop (0.1.2)
@@ -277,7 +277,7 @@ GEM
     nokogiri (1.19.4-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    parallel (2.1.0)
+    parallel (2.2.0)
     parallel_tests (5.7.0)
       parallel
     parser (3.3.12.0)
@@ -377,7 +377,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.1)
-    simplecov (1.2.0)
+    simplecov (1.3.0)
     simplecov-cobertura (4.0.0)
       rexml
       simplecov (~> 1.0)
@@ -453,4 +453,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-  4.0.19
+  4.0.21
