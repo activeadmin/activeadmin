@@ -25,7 +25,7 @@ RSpec.describe "Controller Authorization", type: :controller do
   it "should authorize the create action with the new resource" do
     expect(authorization).to receive(:authorized?).with(auth::CREATE, an_instance_of(Post)).and_return true
     post :create
-    expect(response).to redirect_to action: "show", id: Post.last.id
+    expect(response).to redirect_to "/admin/posts/#{Post.last.id}"
   end
 
   it "should redirect when the user isn't authorized" do
