@@ -134,6 +134,12 @@ Gemspec/RequireMFA:
 Gemspec/RubyVersionGlobalsUsage:
   Enabled: true
 
+Layout/AccessModifierIndentation:
+  Enabled: true
+
+Layout/ArgumentAlignment:
+  Enabled: true
+
 # TODO: One offense; enable after normalizing multi-line array alignment.
 # Layout/ArrayAlignment:
 #   Enabled: false
@@ -152,11 +158,20 @@ Layout/BlockAlignment:
 Layout/BlockEndNewline:
   Enabled: true
 
+Layout/CaseIndentation:
+  Enabled: true
+
 # TODO: 13 offenses; reordering sections (constants, private methods) has no functional value here.
 # Layout/ClassStructure:
 #   Enabled: false
 
 Layout/ClosingHeredocIndentation:
+  Enabled: true
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
+Layout/CommentIndentation:
   Enabled: true
 
 Layout/ConditionPosition:
@@ -168,6 +183,9 @@ Layout/DefEndAlignment:
 # TODO: Both leading and trailing dot styles exist (22 vs 30); pick one codebase-wide, then enable.
 # Layout/DotPosition:
 #   Enabled: false
+
+Layout/ElseAlignment:
+  Enabled: true
 
 Layout/EmptyComment:
   Enabled: true
@@ -187,6 +205,9 @@ Layout/EmptyComment:
 Layout/EmptyLineBetweenDefs:
   Enabled: true
 
+Layout/EmptyLines:
+  Enabled: true
+
 # TODO: Minor; enable after blank-lining module includes.
 # Layout/EmptyLinesAfterModuleInclusion:
 #   Enabled: false
@@ -203,6 +224,9 @@ Layout/EmptyLinesAroundArguments:
 #   Enabled: false
 
 Layout/EmptyLinesAroundBeginBody:
+  Enabled: true
+
+Layout/EmptyLinesAroundBlockBody:
   Enabled: true
 
 # TODO: Repo allows a blank line inside class bodies; uniform style change across 52 sites.
@@ -224,48 +248,6 @@ Layout/EmptyLinesAroundBeginBody:
 Layout/EndAlignment:
   Enabled: true
 
-# TODO: One offense; enable after fixing indentation.
-# Layout/FirstArrayElementIndentation:
-#   Enabled: false
-
-# TODO: Minor; enable after moving first array element to its own line.
-# Layout/FirstArrayElementLineBreak:
-#   Enabled: false
-
-# TODO: Minor; enable after moving first hash element to its own line.
-# Layout/FirstHashElementLineBreak:
-#   Enabled: false
-
-Layout/FirstMethodParameterLineBreak:
-  Enabled: true
-
-Layout/HashAlignment:
-  Enabled: true
-
-Layout/AccessModifierIndentation:
-  Enabled: true
-
-Layout/ArgumentAlignment:
-  Enabled: true
-
-Layout/CaseIndentation:
-  Enabled: true
-
-Layout/ClosingParenthesisIndentation:
-  Enabled: true
-
-Layout/CommentIndentation:
-  Enabled: true
-
-Layout/ElseAlignment:
-  Enabled: true
-
-Layout/EmptyLines:
-  Enabled: true
-
-Layout/EmptyLinesAroundBlockBody:
-  Enabled: true
-
 Layout/EndOfLine:
   Enabled: true
 
@@ -276,20 +258,48 @@ Layout/ExtraSpacing:
 Layout/FirstArgumentIndentation:
   Enabled: true
 
+# TODO: One offense; enable after fixing indentation.
+# Layout/FirstArrayElementIndentation:
+#   Enabled: false
+
+# TODO: Minor; enable after moving first array element to its own line.
+# Layout/FirstArrayElementLineBreak:
+#   Enabled: false
+
 Layout/FirstHashElementIndentation:
   Enabled: true
   EnforcedStyle: consistent
 
+# TODO: Minor; enable after moving first hash element to its own line.
+# Layout/FirstHashElementLineBreak:
+#   Enabled: false
+
 Layout/FirstMethodArgumentLineBreak:
   Enabled: true
 
+Layout/FirstMethodParameterLineBreak:
+  Enabled: true
+
 Layout/FirstParameterIndentation:
+  Enabled: true
+
+Layout/HashAlignment:
   Enabled: true
 
 Layout/HeredocArgumentClosingParenthesis:
   Enabled: true
 
 Layout/HeredocIndentation:
+  Enabled: true
+
+Layout/IndentationConsistency:
+  Enabled: true
+
+Layout/IndentationStyle:
+  Enabled: true
+  EnforcedStyle: spaces
+
+Layout/IndentationWidth:
   Enabled: true
 
 Layout/InitialIndentation:
@@ -365,10 +375,6 @@ Layout/ParameterAlignment:
   Enabled: true
   EnforcedStyle: with_fixed_indentation
 
-Layout/IndentationStyle:
-  Enabled: true
-  EnforcedStyle: spaces
-
 # TODO: Repo intentionally packs one-liners in the DSL-heavy templates (gemspec, etc.).
 # Layout/RedundantLineBreak:
 #   Enabled: false
@@ -381,6 +387,9 @@ Layout/RescueEnsureAlignment:
 #   Enabled: false
 
 Layout/SpaceAfterColon:
+  Enabled: true
+
+Layout/SpaceAfterComma:
   Enabled: true
 
 Layout/SpaceAfterMethodName:
@@ -396,16 +405,31 @@ Layout/SpaceAfterSemicolon:
 Layout/SpaceAroundBlockParameters:
   Enabled: true
 
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
 Layout/SpaceAroundKeyword:
   Enabled: true
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
+Layout/SpaceAroundOperators:
+  Enabled: true
+
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+
 Layout/SpaceBeforeBrackets:
   Enabled: true
 
+Layout/SpaceBeforeComma:
+  Enabled: true
+
 Layout/SpaceBeforeComment:
+  Enabled: true
+
+Layout/SpaceBeforeFirstArg:
   Enabled: true
 
 Layout/SpaceBeforeSemicolon:
@@ -422,6 +446,15 @@ Layout/SpaceBeforeSemicolon:
 Layout/SpaceInsideArrayPercentLiteral:
   Enabled: true
 
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+Layout/SpaceInsideParens:
+  Enabled: true
+
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: true
 
@@ -434,6 +467,12 @@ Layout/SpaceInsideReferenceBrackets:
 # TODO: Repo uses # { } spacing in a few places (8 sites); normalize then enable.
 # Layout/SpaceInsideStringInterpolation:
 #   Enabled: false
+
+Layout/TrailingEmptyLines:
+  Enabled: true
+
+Layout/TrailingWhitespace:
+  Enabled: true
 
 Lint/AmbiguousAssignment:
   Enabled: true
@@ -1030,6 +1069,17 @@ Naming/MethodName:
 Naming/PredicateMethod:
   Enabled: true
 
+Naming/PredicatePrefix:
+  Enabled: true
+
+  ForbiddenPrefixes:
+    - is_
+    - have_
+
+  AllowedMethods:
+    - has_many
+    - has_many_actions
+
 # TODO: 'exception' instead of 'e' is clearer in error.rb; rename if enabling.
 # Naming/RescuedExceptionsVariableName:
 #   Enabled: false
@@ -1071,11 +1121,11 @@ Performance/BlockGivenWithExplicitBlock:
 Performance/Caller:
   Enabled: true
 
-Performance/CaseWhenSplat:
-  Enabled: true
-
 Performance/Casecmp:
   Enabled: false
+
+Performance/CaseWhenSplat:
+  Enabled: true
 
 Performance/ChainArrayAllocation:
   Enabled: false
@@ -1187,6 +1237,9 @@ Performance/Squeeze:
 Performance/StartWith:
   Enabled: true
 
+Performance/StringBytesize:
+  Enabled: true
+
 Performance/StringIdentifierArgument:
   Enabled: true
 
@@ -1194,9 +1247,6 @@ Performance/StringInclude:
   Enabled: true
 
 Performance/StringReplacement:
-  Enabled: true
-
-Performance/StringBytesize:
   Enabled: true
 
 Performance/Sum:
@@ -2696,23 +2746,6 @@ Style/OrAssignment:
 Style/ParallelAssignment:
   Enabled: true
 
-Layout/IndentationConsistency:
-  Enabled: true
-
-Layout/IndentationWidth:
-  Enabled: true
-
-Naming/PredicatePrefix:
-  Enabled: true
-
-  ForbiddenPrefixes:
-    - is_
-    - have_
-
-  AllowedMethods:
-    - has_many
-    - has_many_actions
-
 # TODO: One offense; drop parens then enable.
 # Style/ParenthesesAroundCondition:
 #   Enabled: false
@@ -3060,38 +3093,6 @@ Style/TrailingBodyOnModule:
 Style/TrailingCommaInArguments:
   Enabled: true
 
-Layout/TrailingEmptyLines:
-  Enabled: true
-
-Layout/TrailingWhitespace:
-  Enabled: true
-
-Layout/SpaceAfterComma:
-  Enabled: true
-
-Layout/SpaceAroundEqualsInParameterDefault:
-  Enabled: true
-
-Layout/SpaceAroundOperators:
-  Enabled: true
-
-Layout/SpaceBeforeBlockBraces:
-  Enabled: true
-
-Layout/SpaceBeforeComma:
-  Enabled: true
-
-Layout/SpaceBeforeFirstArg:
-  Enabled: true
-
-Layout/SpaceInsideBlockBraces:
-  Enabled: true
-
-Layout/SpaceInsideHashLiteralBraces:
-  Enabled: true
-
-Layout/SpaceInsideParens:
-  Enabled: true
 # TODO: Trailing commas removed (4 sites); enable after normalization.
 # Style/TrailingCommaInArrayLiteral:
 #   Enabled: false
