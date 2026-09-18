@@ -15,6 +15,7 @@ module ActiveAdmin
           yield(format) if block_given?
         end
       end
+      alias :index! :index
 
       protected
 
