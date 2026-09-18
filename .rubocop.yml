@@ -33,8 +33,33 @@ AllCops:
 
   StyleGuideCopsOnly: false
 
-Capybara:
+Bundler/DuplicatedGem:
   Enabled: true
+
+Bundler/DuplicatedGroup:
+  Enabled: true
+
+# TODO: Gemfile relies on group headers, not per-gem comments; adding 70+ comments is churn. Keep disabled.
+# Bundler/GemComment:
+#   Enabled: false
+
+Bundler/GemFilename:
+  Enabled: true
+
+# TODO: Main Gemfile deliberately leaves versions loose (pinned in gemfiles/*/Gemfile instead). Keep disabled.
+# Bundler/GemVersion:
+#   Enabled: false
+
+Bundler/InsecureProtocolSource:
+  Enabled: true
+
+# TODO: Gemfile groups are alphabetized but ransack/formtastic etc. intentionally stuck together. Sort then enable.
+# Bundler/OrderedGems:
+#   Enabled: false
+
+# TODO: Steps use generic click_on; splitting into click_link/click_button across feature steps is churn.
+# Capybara/AmbiguousClick:
+#   Enabled: false
 
 Capybara/AssertStyle:
   Enabled: true
@@ -78,7 +103,140 @@ Capybara/SpecificActions:
 Capybara/SpecificFinders:
   Enabled: true
 
+Gemspec/AddRuntimeDependency:
+  Enabled: true
+
+Gemspec/AttributeAssignment:
+  Enabled: true
+
+# TODO: Gemspec intentionally accepts any compatible version. Keep disabled.
+# Gemspec/DependencyVersion:
+#   Enabled: false
+
+Gemspec/DeprecatedAttributeAssignment:
+  Enabled: true
+
+Gemspec/DevelopmentDependencies:
+  Enabled: true
+
+Gemspec/DuplicatedAssignment:
+  Enabled: true
+
+Gemspec/OrderedDependencies:
+  Enabled: true
+
+Gemspec/RequiredRubyVersion:
+  Enabled: true
+
+Gemspec/RequireMFA:
+  Enabled: true
+
+Gemspec/RubyVersionGlobalsUsage:
+  Enabled: true
+
+# TODO: One offense; enable after normalizing multi-line array alignment.
+# Layout/ArrayAlignment:
+#   Enabled: false
+
+# TODO: One offense; enable after re-indenting RHS of multi-line assignments.
+# Layout/AssignmentIndentation:
+#   Enabled: false
+
+# TODO: One offense in date_range_input.rb; enable after aligning the begin/end block.
+# Layout/BeginEndAlignment:
+#   Enabled: false
+
+Layout/BlockAlignment:
+  Enabled: true
+
+Layout/BlockEndNewline:
+  Enabled: true
+
+# TODO: 13 offenses; reordering sections (constants, private methods) has no functional value here.
+# Layout/ClassStructure:
+#   Enabled: false
+
+Layout/ClosingHeredocIndentation:
+  Enabled: true
+
+Layout/ConditionPosition:
+  Enabled: true
+
+Layout/DefEndAlignment:
+  Enabled: true
+
+# TODO: Both leading and trailing dot styles exist (22 vs 30); pick one codebase-wide, then enable.
+# Layout/DotPosition:
+#   Enabled: false
+
+Layout/EmptyComment:
+  Enabled: true
+
+# TODO: Blank line after guard clauses is not uniform in the codebase (13 offenses).
+# Layout/EmptyLineAfterGuardClause:
+#   Enabled: false
+
+# TODO: Repo style: no blank line after # frozen_string_literal (e.g. Gemfile). No config allows that. Keep disabled.
+# Layout/EmptyLineAfterMagicComment:
+#   Enabled: false
+
+# TODO: Minor; enable after adding blank lines after multiline conditions.
+# Layout/EmptyLineAfterMultilineCondition:
+#   Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  Enabled: true
+
+# TODO: Minor; enable after blank-lining module includes.
+# Layout/EmptyLinesAfterModuleInclusion:
+#   Enabled: false
+
+# TODO: Minor; enable after normalizing blank lines around private/protected.
+# Layout/EmptyLinesAroundAccessModifier:
+#   Enabled: false
+
+Layout/EmptyLinesAroundArguments:
+  Enabled: true
+
+# TODO: Minor; enable after normalizing blank lines around attr_accessor.
+# Layout/EmptyLinesAroundAttributeAccessor:
+#   Enabled: false
+
+Layout/EmptyLinesAroundBeginBody:
+  Enabled: true
+
+# TODO: Repo allows a blank line inside class bodies; uniform style change across 52 sites.
+# Layout/EmptyLinesAroundClassBody:
+#   Enabled: false
+
+# TODO: One offense; enable after fixing blank line before ensure.
+# Layout/EmptyLinesAroundExceptionHandlingKeywords:
+#   Enabled: false
+
+# TODO: Minor; enable after normalizing blank lines inside method bodies.
+# Layout/EmptyLinesAroundMethodBody:
+#   Enabled: false
+
+# TODO: Repo allows a blank line inside module bodies (88 sites).
+# Layout/EmptyLinesAroundModuleBody:
+#   Enabled: false
+
 Layout/EndAlignment:
+  Enabled: true
+
+# TODO: One offense; enable after fixing indentation.
+# Layout/FirstArrayElementIndentation:
+#   Enabled: false
+
+# TODO: Minor; enable after moving first array element to its own line.
+# Layout/FirstArrayElementLineBreak:
+#   Enabled: false
+
+# TODO: Minor; enable after moving first hash element to its own line.
+# Layout/FirstHashElementLineBreak:
+#   Enabled: false
+
+Layout/FirstMethodParameterLineBreak:
   Enabled: true
 
 Layout/HashAlignment:
@@ -128,6 +286,81 @@ Layout/FirstMethodArgumentLineBreak:
 Layout/FirstParameterIndentation:
   Enabled: true
 
+Layout/HeredocArgumentClosingParenthesis:
+  Enabled: true
+
+Layout/HeredocIndentation:
+  Enabled: true
+
+Layout/InitialIndentation:
+  Enabled: true
+
+# TODO: Minor; enable after fixing # comments missing leading space.
+# Layout/LeadingCommentSpace:
+#   Enabled: false
+
+Layout/LeadingEmptyLines:
+  Enabled: true
+
+Layout/LineContinuationLeadingSpace:
+  Enabled: true
+
+Layout/LineContinuationSpacing:
+  Enabled: true
+
+# TODO: Minor; enable after aligning backslash string continuations in gemspec.
+# Layout/LineEndStringConcatenationIndentation:
+#   Enabled: false
+
+# TODO: Intentionally long fixture/template lines (up to 554 in kitchen_sink.rb) and the DSL-heavy
+#        style exceed 120 without structural cost. Exclude fixtures and raise Max before enabling.
+# Layout/LineLength:
+#   Enabled: false
+
+# TODO: Minor; enable after fixing brace layout in multiline arrays.
+# Layout/MultilineArrayBraceLayout:
+#   Enabled: false
+
+# TODO: Minor; enable after one-item-per-line in multiline arrays.
+# Layout/MultilineArrayLineBreaks:
+#   Enabled: false
+
+# TODO: 56 sites; repo prefers assignment on the = line even for multiline RHS.
+# Layout/MultilineAssignmentLayout:
+#   Enabled: false
+
+Layout/MultilineBlockLayout:
+  Enabled: true
+
+# TODO: One offense; enable after fixing brace layout.
+# Layout/MultilineHashBraceLayout:
+#   Enabled: false
+
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+# TODO: Minor; enable after one-arg-per-line in multiline calls.
+# Layout/MultilineMethodArgumentLineBreaks:
+#   Enabled: false
+
+# TODO: Minor; enable after fixing brace layout of multiline calls.
+# Layout/MultilineMethodCallBraceLayout:
+#   Enabled: false
+
+# TODO: Minor; enable after aligning chained call indentation.
+# Layout/MultilineMethodCallIndentation:
+#   Enabled: false
+
+Layout/MultilineMethodDefinitionBraceLayout:
+  Enabled: true
+
+Layout/MultilineMethodParameterLineBreaks:
+  Enabled: true
+
+# TODO: Minor; enable after aligning operands in multiline conditions.
+# Layout/MultilineOperationIndentation:
+#   Enabled: false
+
 Layout/ParameterAlignment:
   Enabled: true
   EnforcedStyle: with_fixed_indentation
@@ -136,16 +369,528 @@ Layout/IndentationStyle:
   Enabled: true
   EnforcedStyle: spaces
 
+# TODO: Repo intentionally packs one-liners in the DSL-heavy templates (gemspec, etc.).
+# Layout/RedundantLineBreak:
+#   Enabled: false
+
+Layout/RescueEnsureAlignment:
+  Enabled: true
+
+# TODO: Minor; enable after moving chained calls off single-line blocks.
+# Layout/SingleLineBlockChain:
+#   Enabled: false
+
+Layout/SpaceAfterColon:
+  Enabled: true
+
+Layout/SpaceAfterMethodName:
+  Enabled: true
+
+# TODO: One offense; enable after removing space after !.
+# Layout/SpaceAfterNot:
+#   Enabled: false
+
+Layout/SpaceAfterSemicolon:
+  Enabled: true
+
+Layout/SpaceAroundBlockParameters:
+  Enabled: true
+
+Layout/SpaceAroundKeyword:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/SpaceBeforeBrackets:
+  Enabled: true
+
+Layout/SpaceBeforeComment:
+  Enabled: true
+
+Layout/SpaceBeforeSemicolon:
+  Enabled: true
+
+# TODO: Minor; enable after removing spaces in stabby lambda literals.
+# Layout/SpaceInLambdaLiteral:
+#   Enabled: false
+
+# TODO: Repo uses [ ] spacing in a few places (28 sites); normalize then enable.
+# Layout/SpaceInsideArrayLiteralBrackets:
+#   Enabled: false
+
+Layout/SpaceInsideArrayPercentLiteral:
+  Enabled: true
+
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: true
+
+Layout/SpaceInsideRangeLiteral:
+  Enabled: true
+
+Layout/SpaceInsideReferenceBrackets:
+  Enabled: true
+
+# TODO: Repo uses # { } spacing in a few places (8 sites); normalize then enable.
+# Layout/SpaceInsideStringInterpolation:
+#   Enabled: false
+
+Lint/AmbiguousAssignment:
+  Enabled: true
+
+# TODO: Minor; parenthesize capture blocks in form_builder to enable.
+# Lint/AmbiguousBlockAssociation:
+#   Enabled: false
+
 Lint/AmbiguousOperator:
+  Enabled: true
+
+# TODO: Minor; parenthesize mixed-precedence expressions to enable.
+# Lint/AmbiguousOperatorPrecedence:
+#   Enabled: false
+
+Lint/AmbiguousRange:
   Enabled: true
 
 Lint/AmbiguousRegexpLiteral:
   Enabled: true
 
+Lint/ArgumentMismatch:
+  Enabled: true
+
+Lint/ArrayLiteralInRegexp:
+  Enabled: true
+
+# TODO: Assignments-in-condition are deliberate in controller filters (8 sites); keep disabled.
+# Lint/AssignmentInCondition:
+#   Enabled: false
+
+Lint/BigDecimalNew:
+  Enabled: true
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+
+Lint/BooleanSymbol:
+  Enabled: true
+
+Lint/CircularArgumentReference:
+  Enabled: true
+
+# TODO: Spec helper constants in blocks; refactor before enabling.
+# Lint/ConstantDefinitionInBlock:
+#   Enabled: false
+
+Lint/ConstantOverwrittenInRescue:
+  Enabled: true
+
+Lint/ConstantReassignment:
+  Enabled: true
+
+# TODO: Fully qualifying all module-path constants (2k+ sites) is not idiomatic here; revisit only
+#        if an actual ambiguity bug appears.
+# Lint/ConstantResolution:
+#   Enabled: false
+
+# TODO: streaming.rb:27 bundles a reason after the disable comment; rewrite as "-- reasoning"
+#        (the directive itself is required for Performanance/UnfreezeString), then enable.
+# Lint/CopDirectiveSyntax:
+#   Enabled: false
+
+Lint/DataDefineOverride:
+  Enabled: true
+
+# TODO: save_and_open_page is a deliberate debug aid in features/support/env.rb; keep disabled.
+# Lint/Debugger:
+#   Enabled: false
+
+Lint/DeprecatedClassMethods:
+  Enabled: true
+
+Lint/DeprecatedConstants:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/DeprecatedReference:
+  Enabled: true
+
+Lint/DisjunctiveAssignmentInConstructor:
+  Enabled: true
+
+# TODO: paths.rb has two identical branches by design; dedupe then enable.
+# Lint/DuplicateBranch:
+#   Enabled: false
+
+Lint/DuplicateCaseCondition:
+  Enabled: true
+
+Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/DuplicateHashKey:
+  Enabled: true
+
+Lint/DuplicateMagicComment:
+  Enabled: true
+
+Lint/DuplicateMatchPattern:
+  Enabled: true
+
+# TODO: lib/active_admin.rb reopens application as attr_reader pattern; resolve duplication then enable.
+# Lint/DuplicateMethods:
+#   Enabled: false
+
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+
+Lint/DuplicateRequire:
+  Enabled: true
+
+Lint/DuplicateRescueException:
+  Enabled: true
+
+Lint/DuplicateSetElement:
+  Enabled: true
+
+Lint/EachWithObjectArgument:
+  Enabled: true
+
+Lint/ElseLayout:
+  Enabled: true
+
+# TODO: Empty stub blocks in specs; fill or remove before enabling.
+# Lint/EmptyBlock:
+#   Enabled: false
+
+# TODO: One offense; remove empty class in resource_spec.rb then enable.
+# Lint/EmptyClass:
+#   Enabled: false
+
+Lint/EmptyConditionalBody:
+  Enabled: true
+
+Lint/EmptyEnsure:
+  Enabled: true
+
+Lint/EmptyExpression:
+  Enabled: true
+
+Lint/EmptyFile:
+  Enabled: true
+
+Lint/EmptyInPattern:
+  Enabled: true
+
+Lint/EmptyInterpolation:
+  Enabled: true
+
+Lint/EmptyWhen:
+  Enabled: true
+
+Lint/EnsureReturn:
+  Enabled: true
+
+Lint/ErbNewArguments:
+  Enabled: true
+
+Lint/FlipFlop:
+  Enabled: true
+
+Lint/FloatComparison:
+  Enabled: true
+
+Lint/FloatOutOfRange:
+  Enabled: true
+
+Lint/FormatParameterMismatch:
+  Enabled: true
+
+Lint/HashCompareByIdentity:
+  Enabled: true
+
+Lint/HashNewWithKeywordArgumentsAsDefault:
+  Enabled: true
+
+Lint/HeredocMethodCallPosition:
+  Enabled: true
+
+Lint/IdentityComparison:
+  Enabled: true
+
+Lint/ImplicitStringConcatenation:
+  Enabled: true
+
+Lint/IncompatibleIoSelectWithFiberScheduler:
+  Enabled: true
+
+# TODO: One offense in decorators.rb; move protected inside class << self then enable.
+# Lint/IneffectiveAccessModifier:
+#   Enabled: false
+
+Lint/InheritException:
+  Enabled: true
+
+Lint/InterpolationCheck:
+  Enabled: true
+
+Lint/ItWithoutArgumentsInBlock:
+  Enabled: true
+
+Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+
+Lint/LiteralAsCondition:
+  Enabled: true
+
+Lint/LiteralAssignmentInCondition:
+  Enabled: true
+
+Lint/LiteralInInterpolation:
+  Enabled: true
+
+Lint/Loop:
+  Enabled: true
+
+Lint/MissingCopEnableDirective:
+  Enabled: true
+
+Lint/MissingSuper:
+  Enabled: true
+
+Lint/MixedCaseRange:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+Lint/MultipleComparison:
+  Enabled: true
+
+Lint/NameTypo:
+  Enabled: true
+
+Lint/NestedMethodDefinition:
+  Enabled: true
+
+Lint/NestedPercentLiteral:
+  Enabled: true
+
+Lint/NextWithoutAccumulator:
+  Enabled: true
+
+Lint/NonAtomicFileOperation:
+  Enabled: true
+
+Lint/NonDeterministicRequireOrder:
+  Enabled: true
+
+Lint/NonLocalExitFromIterator:
+  Enabled: true
+
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+
+# TODO: to_i/to_f conversions in step definitions; stricter Integer() parsing is safer, but churny.
+# Lint/NumberConversion:
+#   Enabled: false
+
+Lint/NumberedParameterAssignment:
+  Enabled: true
+
+Lint/NumericOperationWithConstantResult:
+  Enabled: true
+
+Lint/OrAssignmentToConstant:
+  Enabled: true
+
+Lint/OrderedMagicComments:
+  Enabled: true
+
+Lint/OutOfRangeRegexpRef:
+  Enabled: true
+
 Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 
+Lint/PercentStringArray:
+  Enabled: true
+
+Lint/PercentSymbolArray:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/RandOne:
+  Enabled: true
+
+Lint/RedundantCopDisableDirective:
+  Enabled: true
+
+Lint/RedundantCopEnableDirective:
+  Enabled: true
+
+# TODO: One offense; remove redundant sort in lib/active_admin/views.rb then enable.
+# Lint/RedundantDirGlobSort:
+#   Enabled: false
+
+Lint/RedundantRegexpQuantifiers:
+  Enabled: true
+
+# TODO: One offense; drop unused require in lib/active_admin.rb then enable.
+# Lint/RedundantRequireStatement:
+#   Enabled: false
+
+Lint/RedundantSafeNavigation:
+  Enabled: true
+
+Lint/RedundantSplatExpansion:
+  Enabled: true
+
 Lint/RedundantStringCoercion:
+  Enabled: true
+
+Lint/RedundantTypeConversion:
+  Enabled: true
+
+Lint/RedundantWithIndex:
+  Enabled: true
+
+Lint/RedundantWithObject:
+  Enabled: true
+
+Lint/RefinementImportMethods:
+  Enabled: true
+
+Lint/RegexpAsCondition:
+  Enabled: true
+
+Lint/RequireParentheses:
+  Enabled: true
+
+Lint/RequireRangeParentheses:
+  Enabled: true
+
+Lint/RequireRelativeSelfPath:
+  Enabled: true
+
+Lint/RescueException:
+  Enabled: true
+
+Lint/RescueType:
+  Enabled: true
+
+Lint/ReturnInVoidContext:
+  Enabled: true
+
+Lint/SafeNavigationChain:
+  Enabled: true
+
+Lint/SafeNavigationConsistency:
+  Enabled: true
+
+Lint/SafeNavigationWithEmpty:
+  Enabled: true
+
+Lint/ScriptPermission:
+  Enabled: true
+
+Lint/SelfAssignment:
+  Enabled: true
+
+# TODO: send :include is used for metaprogramming extension here; prefer literal include (6 sites).
+# Lint/SendWithMixinArgument:
+#   Enabled: false
+
+Lint/ShadowedArgument:
+  Enabled: true
+
+Lint/ShadowedException:
+  Enabled: true
+
+# TODO: Block params shadow outer locals in form_helper; rename before enabling.
+# Lint/ShadowingOuterLocalVariable:
+#   Enabled: false
+
+Lint/SharedMutableDefault:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Lint/SuperArgumentMismatch:
+  Enabled: true
+
+# TODO: rescue nil in filesystem steps is intentional test support; keep disabled.
+# Lint/SuppressedException:
+#   Enabled: false
+
+Lint/SuppressedExceptionInNumberConversion:
+  Enabled: true
+
+# TODO: Minor; use symbol literal (->scopes) instead of to_sym conversion (6 sites).
+# Lint/SymbolConversion:
+#   Enabled: false
+
+Lint/Syntax:
+  Enabled: true
+
+Lint/ToEnumArguments:
+  Enabled: true
+
+Lint/ToJSON:
+  Enabled: true
+
+Lint/TopLevelReturnWithArgument:
+  Enabled: true
+
+Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
+Lint/TripleQuotes:
+  Enabled: true
+
+Lint/UnderscorePrefixedVariableName:
+  Enabled: true
+
+Lint/UnescapedBracketInRegexp:
+  Enabled: true
+
+Lint/UnexpectedBlockArity:
+  Enabled: true
+
+Lint/UnifiedInteger:
+  Enabled: true
+
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true
+
+Lint/UnreachableCode:
+  Enabled: true
+
+Lint/UnreachableLoop:
+  Enabled: true
+
+Lint/UnreachablePatternBranch:
+  Enabled: true
+
+# TODO: Underscore or remove unused block args across templates (18 sites), then enable.
+# Lint/UnusedBlockArgument:
+#   Enabled: false
+
+# TODO: Extension API keeps unused options args; use _options or drop (25 sites).
+# Lint/UnusedMethodArgument:
+#   Enabled: false
+
+Lint/UnusedPrivateMethod:
+  Enabled: true
+
+Lint/UriEscapeUnescape:
+  Enabled: true
+
+Lint/UriRegexp:
   Enabled: true
 
 Lint/UselessAccessModifier:
@@ -153,6 +898,148 @@ Lint/UselessAccessModifier:
 
 Lint/UselessAssignment:
   Enabled: true
+
+# TODO: Access modifiers on constants are redundant here; remove then enable.
+# Lint/UselessConstantScoping:
+#   Enabled: false
+
+Lint/UselessDefaultValueArgument:
+  Enabled: true
+
+Lint/UselessDefined:
+  Enabled: true
+
+Lint/UselessElseWithoutRescue:
+  Enabled: true
+
+Lint/UselessMethodDefinition:
+  Enabled: true
+
+Lint/UselessNumericOperation:
+  Enabled: true
+
+Lint/UselessOr:
+  Enabled: true
+
+Lint/UselessRescue:
+  Enabled: true
+
+Lint/UselessRuby2Keywords:
+  Enabled: true
+
+Lint/UselessSetterCall:
+  Enabled: true
+
+Lint/UselessTimes:
+  Enabled: true
+
+Lint/Void:
+  Enabled: true
+
+# TODO: Complex DSL methods (page_title etc.) exceed ABC 17 (32 sites); refactoring required. Keep disabled.
+# Metrics/AbcSize:
+#   Enabled: false
+
+# TODO: Long feature-step blocks are inherent to Cucumber support; block refactor before enabling.
+# Metrics/BlockLength:
+#   Enabled: false
+
+Metrics/BlockNesting:
+  Enabled: true
+
+# TODO: Large DSL/config classes (Application 125 lines) are inherent; refactor before enabling.
+# Metrics/ClassLength:
+#   Enabled: false
+
+Metrics/CollectionLiteralLength:
+  Enabled: true
+
+# TODO: default_breadcrumb_links etc. exceed cyclomatic 7; refactor before enabling.
+# Metrics/CyclomaticComplexity:
+#   Enabled: false
+
+# TODO: Many controller methods exceed 10 lines (47 sites); repo favors long, linear DSL methods.
+#        Would require method extraction across the app. Keep disabled.
+# Metrics/MethodLength:
+#   Enabled: false
+
+# TODO: Long DSL modules (data_access 200 lines) are inherent here. Keep disabled.
+# Metrics/ModuleLength:
+#   Enabled: false
+
+# TODO: Factory step definition takes 7 params; one-off. Refactor then enable.
+# Metrics/ParameterLists:
+#   Enabled: false
+
+# TODO: Negations/inversions in helpers exceed threshold; refactor before enabling.
+# Metrics/PerceivedComplexity:
+#   Enabled: false
+
+Migration/DepartmentName:
+  Enabled: true
+
+# TODO: set_* writer in layout_helper is part of the public helper DSL; renaming is a breaking change.
+# Naming/AccessorMethodName:
+#   Enabled: false
+
+Naming/AsciiIdentifiers:
+  Enabled: true
+
+Naming/BinaryOperatorParameterName:
+  Enabled: true
+
+# TODO: Anonymous (*, &) block forwarding is adopted (77 sites) but the repo pins Ruby >= 3.0 target
+#        uses explicit args for readability. Keep disabled.
+# Naming/BlockForwarding:
+#   Enabled: false
+
+Naming/BlockParameterName:
+  Enabled: true
+
+Naming/ClassAndModuleCamelCase:
+  Enabled: true
+
+# TODO: SCREAMING_SNAKE constant rename (4 sites) crosses public API (Application.ready); careful.
+# Naming/ConstantName:
+#   Enabled: false
+
+Naming/FileName:
+  Enabled: true
+
+Naming/HeredocDelimiterCase:
+  Enabled: true
+
+Naming/HeredocDelimiterNaming:
+  Enabled: true
+
+# TODO: One 'whitelist' reference; rename then enable.
+# Naming/InclusiveLanguage:
+#   Enabled: false
+
+# TODO: One offense; rename memo var then enable.
+# Naming/MemoizedInstanceVariableName:
+#   Enabled: false
+
+Naming/MethodName:
+  Enabled: true
+
+# TODO: DSL block params are short by design (e.g. pagination args); repo style, keep disabled.
+# Naming/MethodParameterName:
+#   Enabled: false
+
+Naming/PredicateMethod:
+  Enabled: true
+
+# TODO: 'exception' instead of 'e' is clearer in error.rb; rename if enabling.
+# Naming/RescuedExceptionsVariableName:
+#   Enabled: false
+
+Naming/VariableName:
+  Enabled: true
+
+# TODO: Named number vars like variable_1 are descriptive in form components; keep disabled.
+# Naming/VariableNumber:
+#   Enabled: false
 
 Packaging/BundlerSetupInTests:
   Enabled: true
@@ -164,9 +1051,6 @@ Packaging/RequireHardcodingLib:
   Enabled: true
 
 Packaging/RequireRelativeHardcodingLib:
-  Enabled: true
-
-Performance:
   Enabled: true
 
 Performance/AncestorsInclude:
@@ -330,11 +1214,532 @@ Performance/UriDefaultParser:
 Performance/ZipWithoutBlock:
   Enabled: true
 
+Rails/ActionControllerFlashBeforeRender:
+  Enabled: true
+
+Rails/ActionControllerTestCase:
+  Enabled: true
+
+Rails/ActionFilter:
+  Enabled: true
+
+Rails/ActionOrder:
+  Enabled: true
+
+Rails/ActiveRecordAliases:
+  Enabled: true
+
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+
+Rails/ActiveRecordOverride:
+  Enabled: true
+
+Rails/ActiveSupportAliases:
+  Enabled: true
+
+Rails/ActiveSupportOnLoad:
+  Enabled: true
+
+Rails/AddColumnIndex:
+  Enabled: true
+
+Rails/AfterCommitOverride:
+  Enabled: true
+
+Rails/ApplicationController:
+  Enabled: true
+
+Rails/ApplicationJob:
+  Enabled: true
+
+Rails/ApplicationMailer:
+  Enabled: true
+
+# TODO: The AA-provided Comment model subclasses AR::Base intentionally (works outside app models too).
+# Rails/ApplicationRecord:
+#   Enabled: false
+
+Rails/ArelStar:
+  Enabled: true
+
+Rails/AssertNot:
+  Enabled: true
+
+Rails/AttributeDefaultBlockValue:
+  Enabled: true
+
+Rails/BelongsTo:
+  Enabled: true
+
+Rails/Blank:
+  Enabled: true
+
+Rails/BulkChangeTable:
+  Enabled: true
+
+# TODO: One offense; prefer compact_blank then enable.
+# Rails/CompactBlank:
+#   Enabled: false
+
+Rails/ContentTag:
+  Enabled: true
+
+Rails/CreateTableWithTimestamps:
+  Enabled: true
+
+Rails/DangerousColumnNames:
+  Enabled: true
+
+# TODO: Date.today in CSV builder spec; switch to Time.zone.today then enable (5 sites).
+# Rails/Date:
+#   Enabled: false
+
+Rails/DefaultScope:
+  Enabled: true
+
+# TODO: Hand-written delegation is clearer in CSV builder; keep disabled.
+# Rails/Delegate:
+#   Enabled: false
+
+Rails/DelegateAllowBlank:
+  Enabled: true
+
+Rails/DeprecatedActiveModelErrorsMethods:
+  Enabled: true
+
+Rails/DotSeparatedKeys:
+  Enabled: true
+
+Rails/DuplicateAssociation:
+  Enabled: true
+
+Rails/DuplicateScope:
+  Enabled: true
+
+Rails/DurationArithmetic:
+  Enabled: true
+
+# TODO: dynamic find_by_* in spec helpers (116 sites); prefer explicit find_by keys, large test churn.
+# Rails/DynamicFindBy:
+#   Enabled: false
+
+Rails/EagerEvaluationLogMessage:
+  Enabled: true
+
+Rails/EnumHash:
+  Enabled: true
+
+Rails/EnumSyntax:
+  Enabled: true
+
+Rails/EnumUniqueness:
+  Enabled: true
+
+Rails/Env:
+  Enabled: true
+
+Rails/EnvironmentComparison:
+  Enabled: true
+
+Rails/EnvironmentVariableAccess:
+  Enabled: true
+
+Rails/EnvLocal:
+  Enabled: true
+
+Rails/Exit:
+  Enabled: true
+
+Rails/ExpandedDateRange:
+  Enabled: true
+
 Rails/FilePath:
   Enabled: true
   EnforcedStyle: slashes
 
+Rails/FindBy:
+  Enabled: true
+
+Rails/FindById:
+  Enabled: true
+
+Rails/FindByOrAssignmentMemoization:
+  Enabled: true
+
+# TODO: find_each across loaded collections in specs (2 sites) is inconsistent; enable after fixing.
+# Rails/FindEach:
+#   Enabled: false
+
+Rails/FreezeTime:
+  Enabled: true
+
+Rails/HasAndBelongsToMany:
+  Enabled: true
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: true
+
+# TODO: Helpers intentionally share state via ivars (4 sites); keep disabled.
+# Rails/HelperInstanceVariable:
+#   Enabled: false
+
+Rails/HttpPositionalArguments:
+  Enabled: true
+
+Rails/HttpStatus:
+  Enabled: true
+
+Rails/HttpStatusNameConsistency:
+  Enabled: true
+
+Rails/I18nLazyLookup:
+  Enabled: true
+
+Rails/I18nLocaleAssignment:
+  Enabled: true
+
+# TODO: Spec-only locale strings are intentionally inline; keep disabled.
+# Rails/I18nLocaleTexts:
+#   Enabled: false
+
+Rails/IgnoredColumnsAssignment:
+  Enabled: true
+
+Rails/IgnoredSkipActionFilterOption:
+  Enabled: true
+
+Rails/IndexBy:
+  Enabled: true
+
+Rails/IndexWith:
+  Enabled: true
+
+Rails/Inquiry:
+  Enabled: true
+
+Rails/InverseOf:
+  Enabled: true
+
+# TODO: Inherited actions (index/show) trigger this false positive on ResourceController; keep disabled.
+# Rails/LexicallyScopedActionFilter:
+#   Enabled: false
+
+Rails/LinkToBlank:
+  Enabled: true
+
+Rails/MailerName:
+  Enabled: true
+
+Rails/MatchRoute:
+  Enabled: true
+
+Rails/MigrationClassName:
+  Enabled: true
+
+Rails/MultipleRoutePaths:
+  Enabled: true
+
+# TODO: Use exclude? (2 sites); enable after fixing.
+# Rails/NegateInclude:
+#   Enabled: false
+
+Rails/NotNullColumn:
+  Enabled: true
+
+# TODO: Minor; enable after reordering validation args in specs.
+# Rails/OrderArguments:
+#   Enabled: false
+
+# TODO: Spec orders by id deliberately; keep disabled.
+# Rails/OrderById:
+#   Enabled: false
+
+Rails/Output:
+  Enabled: true
+
+# TODO: html_safe strings in form_helper are intentional for trusted HTML; keep disabled.
+# Rails/OutputSafety:
+#   Enabled: false
+
+Rails/Pick:
+  Enabled: true
+
+# TODO: One offense; use pluck in spec then enable.
+# Rails/Pluck:
+#   Enabled: false
+
+Rails/PluckId:
+  Enabled: true
+
+Rails/PluckInWhere:
+  Enabled: true
+
+# TODO: One offense; use Rails inflector (2.days) then enable.
+# Rails/PluralizationGrammar:
+#   Enabled: false
+
+# TODO: present? ternary is clearer in display_helper; keep disabled.
+# Rails/Presence:
+#   Enabled: false
+
+Rails/Present:
+  Enabled: true
+
+# TODO: Rakefile tasks intentionally skip :environment where unnecessary (12 sites); keep disabled.
+# Rails/RakeEnvironment:
+#   Enabled: false
+
+Rails/ReadWriteAttribute:
+  Enabled: true
+
+# TODO: redirect_back with fallback_location is explicit; switch then enable.
+# Rails/RedirectBackOrTo:
+#   Enabled: false
+
+Rails/RedundantActiveRecordAllMethod:
+  Enabled: true
+
+Rails/RedundantAllowNil:
+  Enabled: true
+
+Rails/RedundantForeignKey:
+  Enabled: true
+
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Enabled: true
+
+Rails/RedundantReceiverInWithOptions:
+  Enabled: true
+
+Rails/RedundantTravelBack:
+  Enabled: true
+
+Rails/ReflectionClassName:
+  Enabled: true
+
+Rails/RefuteMethods:
+  Enabled: true
+
+Rails/RelativeDateConstant:
+  Enabled: true
+
+Rails/RenderInline:
+  Enabled: true
+
+Rails/RenderPlainText:
+  Enabled: true
+
+Rails/RequestReferer:
+  Enabled: true
+
+Rails/RequireDependency:
+  Enabled: true
+
+Rails/ResponseParsedBody:
+  Enabled: true
+
+Rails/ReversibleMigration:
+  Enabled: true
+
+Rails/ReversibleMigrationMethodDefinition:
+  Enabled: true
+
+Rails/RootJoinChain:
+  Enabled: true
+
 Rails/RootPathnameMethods:
+  Enabled: true
+
+Rails/RootPublicPath:
+  Enabled: true
+
+Rails/SafeNavigation:
+  Enabled: true
+
+Rails/SafeNavigationWithBlank:
+  Enabled: true
+
+# TODO: first_or_create in step definitions; check return or use ! then enable.
+# Rails/SaveBang:
+#   Enabled: false
+
+# TODO: Bug-report template schema needs comments; add then enable.
+# Rails/SchemaComment:
+#   Enabled: false
+
+Rails/ScopeArgs:
+  Enabled: true
+
+Rails/SelectMap:
+  Enabled: true
+
+# TODO: localize spelled out is clearer in display_helper; keep disabled.
+# Rails/ShortI18n:
+#   Enabled: false
+
+# TODO: update_attribute in user step definitions (test setup) is intentional.
+# Rails/SkipsModelValidations:
+#   Enabled: false
+
+Rails/SquishedSQLHeredocs:
+  Enabled: true
+
+Rails/StripHeredoc:
+  Enabled: true
+
+Rails/StrongParametersExpect:
+  Enabled: true
+
+Rails/TableNameAssignment:
+  Enabled: true
+
+Rails/ThreeStateBooleanColumn:
+  Enabled: true
+
+# TODO: Time.now in factory steps; use Time.zone.now or Time.current then enable.
+# Rails/TimeZone:
+#   Enabled: false
+
+Rails/TimeZoneAssignment:
+  Enabled: true
+
+Rails/ToFormattedS:
+  Enabled: true
+
+Rails/TopLevelHashWithIndifferentAccess:
+  Enabled: true
+
+Rails/ToSWithArgument:
+  Enabled: true
+
+Rails/TransactionExitStatement:
+  Enabled: true
+
+Rails/UniqBeforePluck:
+  Enabled: true
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: true
+
+Rails/UnknownEnv:
+  Enabled: true
+
+Rails/UnusedIgnoredColumns:
+  Enabled: true
+
+Rails/UnusedRenderContent:
+  Enabled: true
+
+Rails/Validation:
+  Enabled: true
+
+# TODO: One offense; enable after using where(key: nil) style.
+# Rails/WhereEquals:
+#   Enabled: false
+
+# TODO: One offense; enable after using exists?(id:) style.
+# Rails/WhereExists:
+#   Enabled: false
+
+Rails/WhereMissing:
+  Enabled: true
+
+Rails/WhereNot:
+  Enabled: true
+
+Rails/WhereNotWithMultipleConditions:
+  Enabled: true
+
+Rails/WhereRange:
+  Enabled: true
+
+# TODO: Straight let-block indentation is easier to scan in large spec files; keep disabled (71 sites).
+# RSpec/AlignLeftLetBrace:
+#   Enabled: false
+
+# TODO: Same — repo prefers plain left-aligned lets; keep disabled (78 sites).
+# RSpec/AlignRightLetBrace:
+#   Enabled: false
+
+# TODO: expect_any_instance_of in filter helper specs; replace with dependency injection (2 sites).
+# RSpec/AnyInstance:
+#   Enabled: false
+
+RSpec/AroundBlock:
+  Enabled: true
+
+RSpec/Be:
+  Enabled: true
+
+RSpec/BeEmpty:
+  Enabled: true
+
+# TODO: eq is used 2x more than be here; the distinction (identity vs equality) matters in unit tests.
+#        Keep disabled.
+# RSpec/BeEq:
+#   Enabled: false
+
+RSpec/BeEql:
+  Enabled: true
+
+RSpec/BeforeAfterAll:
+  Enabled: true
+
+RSpec/BeNil:
+  Enabled: true
+
+RSpec/ChangeByZero:
+  Enabled: true
+
+# TODO: be_kind_of reads better in component specs (11 sites); keep disabled.
+# RSpec/ClassCheck:
+#   Enabled: false
+
+RSpec/ContainExactly:
+  Enabled: true
+
+RSpec/ContextMethod:
+  Enabled: true
+
+# TODO: Context descriptions don't all start with when/with (60 sites); functional-style descriptions
+#        are used intentionally. Keep disabled.
+# RSpec/ContextWording:
+#   Enabled: false
+
+# TODO: Top-level describe on strings in specs (gemfile_spec); restructure then enable.
+# RSpec/DescribeClass:
+#   Enabled: false
+
+# TODO: Specs reference the module/class constant directly for clarity (110 sites); keep disabled.
+# RSpec/DescribedClass:
+#   Enabled: false
+
+# TODO: Specs open namespaces to scope lets/describes (9 sites); keep disabled.
+# RSpec/DescribedClassModuleWrapping:
+#   Enabled: false
+
+# TODO: describe '#'/. method naming not always used; low value, keep disabled.
+# RSpec/DescribeMethod:
+#   Enabled: false
+
+RSpec/DescribeSymbol:
+  Enabled: true
+
+RSpec/Dialect:
+  Enabled: true
+
+RSpec/DiscardedMatcher:
+  Enabled: true
+
+RSpec/DuplicatedMetadata:
+  Enabled: true
+
+# TODO: One offense; remove empty group then enable.
+# RSpec/EmptyExampleGroup:
+#   Enabled: false
+
+RSpec/EmptyHook:
   Enabled: true
 
 RSpec/EmptyLineAfterExample:
@@ -343,28 +1748,950 @@ RSpec/EmptyLineAfterExample:
 RSpec/EmptyLineAfterExampleGroup:
   Enabled: true
 
+# TODO: Blank line after let is idiomatic and mostly present (41 sites); normalize then enable.
+# RSpec/EmptyLineAfterFinalLet:
+#   Enabled: false
+
+# TODO: Normalize blank lines after before hooks then enable (20 sites).
+# RSpec/EmptyLineAfterHook:
+#   Enabled: false
+
+# TODO: Repo commonly omits blank line after subject (84 sites); style churn.
+# RSpec/EmptyLineAfterSubject:
+#   Enabled: false
+
+RSpec/EmptyMetadata:
+  Enabled: true
+
+RSpec/EmptyOutput:
+  Enabled: true
+
+RSpec/Eq:
+  Enabled: true
+
+# TODO: Long examples are the norm in feature-heavy helper specs (56 sites); keep disabled.
+# RSpec/ExampleLength:
+#   Enabled: false
+
+RSpec/ExampleWithoutDescription:
+  Enabled: true
+
+# TODO: 'should' wording is used across the entire suite (741 sites) as a deliberate convention;
+#        migrating is high churn and low value. Keep disabled.
+# RSpec/ExampleWording:
+#   Enabled: false
+
+# TODO: One offense; fix double spacing then enable.
+# RSpec/ExcessiveDocstringSpacing:
+#   Enabled: false
+
+RSpec/ExpectActual:
+  Enabled: true
+
+RSpec/ExpectChange:
+  Enabled: true
+
+# TODO: Expectations in before hooks (filter_form_helper_spec) are a design smell; fix then enable.
+# RSpec/ExpectInHook:
+#   Enabled: false
+
+RSpec/ExpectInLet:
+  Enabled: true
+
+# TODO: $stderr mutation in capture support; use expect { }.to output before enabling.
+# RSpec/ExpectOutput:
+#   Enabled: false
+
+RSpec/Focus:
+  Enabled: true
+
 RSpec/HookArgument:
+  Enabled: true
+
+# TODO: One offense; move around hook above examples then enable.
+# RSpec/HooksBeforeExamples:
+#   Enabled: false
+
+# TODO: One offense; the pundit spec compares identical expressions; fix then enable.
+# RSpec/IdenticalEqualityAssertion:
+#   Enabled: false
+
+RSpec/ImplicitBlockExpectation:
+  Enabled: true
+
+RSpec/ImplicitExpect:
+  Enabled: true
+
+# TODO: is_expected shorthand is used widely (3 current sites but heavy general usage); keep disabled.
+# RSpec/ImplicitSubject:
+#   Enabled: false
+
+# TODO: include_examples is used intentionally where shared behavior spans contexts (3 sites);
+#        it_behaves_like preferred; migrate then enable.
+# RSpec/IncludeExamples:
+#   Enabled: false
+
+RSpec/IndexedLet:
+  Enabled: true
+
+RSpec/InstanceSpy:
+  Enabled: true
+
+# TODO: Specs set up ivars heavily (23 sites); the suite predates memoized helpers style. Migrate then enable.
+# RSpec/InstanceVariable:
+#   Enabled: false
+
+RSpec/IsExpectedSpecify:
+  Enabled: true
+
+# TODO: Use it_behaves_like (2 sites); migrate then enable.
+# RSpec/ItBehavesLike:
+#   Enabled: false
+
+# TODO: Minor; use all matcher then enable.
+# RSpec/IteratedExpectation:
+#   Enabled: false
+
+# TODO: subject declared after lets (13 sites); reorder spec groups then enable.
+# RSpec/LeadingSubject:
+#   Enabled: false
+
+# TODO: Specs declare constants for testing (10 sites); use stub_const then enable.
+# RSpec/LeakyConstantDeclaration:
+#   Enabled: false
+
+# TODO: Local vars defined outside examples used inside (filter_form helper); fix then enable.
+# RSpec/LeakyLocalVariable:
+#   Enabled: false
+
+# TODO: let after examples (5 sites); reorder then enable.
+# RSpec/LetBeforeExamples:
+#   Enabled: false
+
+# TODO: let! pins data referenced implicitly through renders (2 sites); restructure then enable.
+# RSpec/LetSetup:
+#   Enabled: false
+
+# TODO: Prefer contain_exactly for array literal matches (5 sites); migrate then enable.
+# RSpec/MatchArray:
+#   Enabled: false
+
+# TODO: Simple string match is clearer here; prefer include (4 sites).
+# RSpec/MatchWithSimpleRegex:
+#   Enabled: false
+
+RSpec/MessageChain:
+  Enabled: true
+
+# TODO: expect(...).to receive spy-style; converting to allow/have_received across the suite (99 sites)
+#        is churny but improves fidelity. Keep disabled until a targeted test pass.
+# RSpec/MessageExpectation:
+#   Enabled: false
+
+# TODO: Same as MessageExpectation (104 sites) — spy migration across helper/component specs.
+# RSpec/MessageSpies:
+#   Enabled: false
+
+RSpec/MetadataStyle:
+  Enabled: true
+
+RSpec/MissingExampleGroupArgument:
+  Enabled: true
+
+# TODO: Incomplete expectations in filter specs; fix then enable.
+# RSpec/MissingExpectationTargetMethod:
+#   Enabled: false
+
+# TODO: One file with two top-level describes; nest then enable.
+# RSpec/MultipleDescribes:
+#   Enabled: false
+
+# TODO: Examples frequently assert several expectations (217 sites); spec style favors focused
+#        multi-assertion examples over one-per-example. Keep disabled.
+# RSpec/MultipleExpectations:
+#   Enabled: false
+
+# TODO: Groups with 5+ lets are common (73 sites); keep disabled.
+# RSpec/MultipleMemoizedHelpers:
+#   Enabled: false
+
+RSpec/MultipleSubjects:
+  Enabled: true
+
+# TODO: Implicit subject references via described_class (62 sites) are idiomatic here; keep disabled.
+# RSpec/NamedSubject:
+#   Enabled: false
+
+# TODO: Deep context nesting (4 levels) in helper specs (104 sites); flatter alternative is churn.
+# RSpec/NestedGroups:
+#   Enabled: false
+
+# TODO: Shared config examples assert nothing directly (9 sites); keep disabled.
+# RSpec/NoExpectationExample:
+#   Enabled: false
+
+# TODO: to_not and not_to both used; unify then enable (44 sites).
+# RSpec/NotToNot:
+#   Enabled: false
+
+RSpec/Output:
+  Enabled: true
+
+RSpec/OverwritingSetup:
+  Enabled: true
+
+RSpec/Pending:
+  Enabled: true
+
+RSpec/PendingWithoutReason:
+  Enabled: true
+
+# TODO: be_optional matcher vs optional? predicate (2 sites); minor.
+# RSpec/PredicateMatcher:
+#   Enabled: false
+
+RSpec/ReceiveCounts:
+  Enabled: true
+
+# TODO: Multiple-line stubs could use receive_messages (18 sites); cosmetic.
+# RSpec/ReceiveMessages:
+#   Enabled: false
+
+RSpec/ReceiveNever:
+  Enabled: true
+
+RSpec/RedundantAround:
+  Enabled: true
+
+RSpec/RedundantPredicateMatcher:
+  Enabled: true
+
+# TODO: remove_const in namespace specs; use stub_const then enable.
+# RSpec/RemoveConst:
+#   Enabled: false
+
+# TODO: Repeated descriptions in filter specs; disambiguate then enable.
+# RSpec/RepeatedDescription:
+#   Enabled: false
+
+RSpec/RepeatedExample:
+  Enabled: true
+
+RSpec/RepeatedExampleGroupBody:
+  Enabled: true
+
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: true
+
+RSpec/RepeatedIncludeExample:
+  Enabled: true
+
+RSpec/RepeatedSubjectCall:
+  Enabled: true
+
+# TODO: Explicit and_return for clarity in stubs (12 sites); keep disabled.
+# RSpec/ReturnFromStub:
+#   Enabled: false
+
+# TODO: Group lets together (6 sites); reorder then enable.
+# RSpec/ScatteredLet:
+#   Enabled: false
+
+RSpec/ScatteredSetup:
+  Enabled: true
+
+RSpec/SharedContext:
+  Enabled: true
+
+# TODO: Prefer string identifier over symbol for shared examples titles (4 sites); migrate then enable.
+# RSpec/SharedExamples:
+#   Enabled: false
+
+RSpec/SingleArgumentMessageChain:
+  Enabled: true
+
+RSpec/SkipBlockInsideExample:
+  Enabled: true
+
+# TODO: One offense; sort metadata hash then enable.
+# RSpec/SortMetadata:
+#   Enabled: false
+
+# TODO: Specs live by feature/resource (spec/helpers, spec/unit) not class-path mirrors (53 sites);
+#        structural reorganization of the suite. Keep disabled.
+# RSpec/SpecFilePathFormat:
+#   Enabled: false
+
+RSpec/SpecFilePathSuffix:
+  Enabled: true
+
+# TODO: expect(...).to receive with blocks is used widely (44 sites); allow/have_received migration.
+# RSpec/StubbedMock:
+#   Enabled: false
+
+RSpec/SubjectDeclaration:
+  Enabled: true
+
+RSpec/SubjectStub:
+  Enabled: true
+
+RSpec/UndescriptiveLiteralsDescription:
+  Enabled: true
+
+RSpec/UnspecifiedException:
+  Enabled: true
+
+RSpec/VariableDefinition:
+  Enabled: true
+
+RSpec/VariableName:
+  Enabled: true
+
+RSpec/VerifiedDoubleReference:
+  Enabled: true
+
+# TODO: Unverified doubles in helper/form specs (22 sites); migrate to instance_double then enable.
+# RSpec/VerifiedDoubles:
+#   Enabled: false
+
+RSpec/VoidExpect:
+  Enabled: true
+
+RSpec/Yield:
+  Enabled: true
+
+Security/CompoundHash:
+  Enabled: true
+
+# TODO: eval in configuration step definitions (test-only) — keep disabled and audited.
+# Security/Eval:
+#   Enabled: false
+
+Security/IoMethods:
+  Enabled: true
+
+Security/JSONLoad:
+  Enabled: true
+
+Security/MarshalLoad:
+  Enabled: true
+
+Security/Open:
+  Enabled: true
+
+Security/YAMLLoad:
+  Enabled: true
+
+# TODO: One offense; inline public is used in spec support; move to its own line then enable.
+# Style/AccessModifierDeclarations:
+#   Enabled: false
+
+# TODO: Group attr_readers (4 sites); reorder then enable.
+# Style/AccessorGrouping:
+#   Enabled: false
+
+# TODO: alias_method with symbolic intent (4 sites); use alias then enable.
+# Style/Alias:
+#   Enabled: false
+
+Style/AmbiguousEndlessMethodDefinition:
+  Enabled: true
+
+# TODO: One offense; use && then enable.
+# Style/AndOr:
+#   Enabled: false
+
+# TODO: Anonymous forwarding (*) or ... (110 sites) — repo pins older Ruby target semantics and
+#        prefers explicit args for API clarity. Keep disabled.
+# Style/ArgumentsForwarding:
+#   Enabled: false
+
+Style/ArrayCoercion:
+  Enabled: true
+
+# TODO: Use first/last (38 sites); normalize then enable.
+# Style/ArrayFirstLast:
+#   Enabled: false
+
+Style/ArrayIntersect:
+  Enabled: true
+
+Style/ArrayIntersectWithSingleElement:
+  Enabled: true
+
+Style/ArrayJoin:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: true
+
+Style/Attr:
+  Enabled: true
+
+Style/AutoResourceCleanup:
+  Enabled: true
+
+# TODO: %Q used with interpolation in web steps (2 sites); use %( ) then enable.
+# Style/BarePercentLiterals:
+#   Enabled: false
+
+Style/BeginBlock:
+  Enabled: true
+
+Style/BisectedAttrAccessor:
+  Enabled: true
+
+Style/BitwisePredicate:
+  Enabled: true
+
+Style/BlockComments:
   Enabled: true
 
 Style/BlockDelimiters:
   Enabled: true
 
+Style/CaseEquality:
+  Enabled: true
+
+Style/CaseLikeIf:
+  Enabled: true
+
+Style/CharacterLiteral:
+  Enabled: true
+
+# TODO: Compact style (Foo::Bar) is used across the templates with engine auto-loading (3 sites in
+#        generated templates); keep disabled.
+# Style/ClassAndModuleChildren:
+#   Enabled: false
+
+# TODO: kind_of? is preferred here over is_a? (3 sites); unify then enable.
+# Style/ClassCheck:
+#   Enabled: false
+
+Style/ClassEqualityComparison:
+  Enabled: true
+
+Style/ClassMethods:
+  Enabled: true
+
+# TODO: Public methods inside class << self (7 sites) in the config DSL; reorder then enable.
+# Style/ClassMethodsDefinitions:
+#   Enabled: false
+
+# TODO: @@display_name_methods_cache is a deliberate cross-class cache; refactor to class-ivar.
+# Style/ClassVars:
+#   Enabled: false
+
+Style/CollectionCompact:
+  Enabled: true
+
+# TODO: detect vs find (18 sites); repo prefers detect in some spots; unify then enable.
+# Style/CollectionMethods:
+#   Enabled: false
+
+Style/CollectionQuerying:
+  Enabled: true
+
+Style/ColonMethodCall:
+  Enabled: true
+
+Style/ColonMethodDefinition:
+  Enabled: true
+
+Style/CombinableDefined:
+  Enabled: true
+
+Style/CombinableLoops:
+  Enabled: true
+
+Style/CommandLiteral:
+  Enabled: true
+
+# TODO: Annotation comments (Note:) style (3 sites); reformat then enable.
+# Style/CommentAnnotation:
+#   Enabled: false
+
+# TODO: Comments on end keyword lines (23 sites) are informative (explaining end) in lib; keep disabled.
+# Style/CommentedKeyword:
+#   Enabled: false
+
+Style/ComparableBetween:
+  Enabled: true
+
+Style/ComparableClamp:
+  Enabled: true
+
+Style/ConcatArrayLiterals:
+  Enabled: true
+
+# TODO: One offense; use conditional return then enable.
+# Style/ConditionalAssignment:
+#   Enabled: false
+
+# TODO: Explicit public/private_constant not used (29 sites); adds noise, keep disabled.
+# Style/ConstantVisibility:
+#   Enabled: false
+
+# TODO: No project-wide copyright header exists; decide on a file header style before enabling.
+# Style/Copyright:
+#   Enabled: false
+
+Style/DataInheritance:
+  Enabled: true
+
+# TODO: One spec offense; use Time then enable.
+# Style/DateTime:
+#   Enabled: false
+
+Style/DefWithParentheses:
+  Enabled: true
+
+Style/DigChain:
+  Enabled: true
+
 Style/Dir:
+  Enabled: true
+
+Style/DirectiveScope:
+  Enabled: true
+
+Style/DirEmpty:
+  Enabled: true
+
+# TODO: streaming.rb:27 requires a disable directive for Performance/UnfreezeString; the repo uses
+#        one deliberate inline disable. Keep disabled while that exists.
+# Style/DisableCopsWithinSourceCodeDirective:
+#   Enabled: false
+
+# TODO: Public classes/modules aren't all documented (131 sites); repo relies on judicious docs,
+#        not blanket coverage. Keep disabled.
+# Style/Documentation:
+#   Enabled: false
+
+# TODO: Requiring docs on every private constant/DSL method (341 sites) is not the repo convention.
+# Style/DocumentationMethod:
+#   Enabled: false
+
+# TODO: eval in namespace.rb (2 sites) is craft; add demonstration comment or refactor.
+# Style/DocumentDynamicEvalDefinition:
+#   Enabled: false
+
+Style/DoubleCopDisableDirective:
+  Enabled: true
+
+Style/DoubleNegation:
+  Enabled: true
+
+Style/EachForSimpleLoop:
+  Enabled: true
+
+Style/EachWithObject:
+  Enabled: true
+
+Style/EmptyBlockParameter:
+  Enabled: true
+
+Style/EmptyCaseCondition:
+  Enabled: true
+
+# TODO: One offense in ordering_spec; use class keyword then enable.
+# Style/EmptyClassDefinition:
+#   Enabled: false
+
+Style/EmptyElse:
+  Enabled: true
+
+Style/EmptyHeredoc:
+  Enabled: true
+
+Style/EmptyLambdaParameter:
+  Enabled: true
+
+Style/EmptyLiteral:
+  Enabled: true
+
+# TODO: Empty method definitions written multi-line (6 sites); prefer one-line defs then enable.
+# Style/EmptyMethod:
+#   Enabled: false
+
+Style/EmptyStringInsideInterpolation:
   Enabled: true
 
 Style/Encoding:
   Enabled: true
 
+Style/EndBlock:
+  Enabled: true
+
+Style/EndlessMethod:
+  Enabled: true
+
+Style/EnvHome:
+  Enabled: true
+
+# TODO: eval in namespace.rb lacks binding/file/line for dynamic DSL; fix then enable.
+# Style/EvalWithLocation:
+#   Enabled: false
+
+Style/EvenOdd:
+  Enabled: true
+
+Style/ExactRegexpMatch:
+  Enabled: true
+
 Style/ExpandPathArguments:
+  Enabled: true
+
+# TODO: yield vs explicit block param (4 sites) in web steps; keep disabled (yield idiomatic).
+# Style/ExplicitBlockArgument:
+#   Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+# TODO: ENV[] arms with defaults in Rakefile (7 sites); switch to ENV.fetch then enable.
+# Style/FetchEnvVar:
+#   Enabled: false
+
+Style/FileEmpty:
+  Enabled: true
+
+Style/FileNull:
+  Enabled: true
+
+Style/FileOpen:
+  Enabled: true
+
+Style/FileRead:
+  Enabled: true
+
+Style/FileTouch:
+  Enabled: true
+
+Style/FileWrite:
+  Enabled: true
+
+Style/FloatDivision:
+  Enabled: true
+
+Style/For:
+  Enabled: true
+
+Style/FormatString:
+  Enabled: true
+
+Style/FormatStringToken:
   Enabled: true
 
 Style/FrozenStringLiteralComment:
   Enabled: true
   EnforcedStyle: always
 
+# TODO: One offense; use $stdout then enable.
+# Style/GlobalStdStream:
+#   Enabled: false
+
+Style/GlobalVars:
+  Enabled: true
+
+# TODO: Many early-return opportunities exist (29 sites); guard clauses alter control-flow readability
+#        in the action-response DSL. Keep disabled.
+# Style/GuardClause:
+#   Enabled: false
+
+# TODO: One offense; wrap trailing hash in braces then enable.
+# Style/HashAsLastArrayItem:
+#   Enabled: false
+
+# TODO: One offense; use literal hash then enable.
+# Style/HashConversion:
+#   Enabled: false
+
+# TODO: One offense; use each_value then enable.
+# Style/HashEachMethods:
+#   Enabled: false
+
+Style/HashExcept:
+  Enabled: true
+
+Style/HashFetchChain:
+  Enabled: true
+
+Style/HashLikeCase:
+  Enabled: true
+
+# TODO: fetch used deliberately with defaults (9 sites); keep disabled.
+# Style/HashLookupMethod:
+#   Enabled: false
+
+Style/HashSlice:
+  Enabled: true
+
 Style/HashSyntax:
   Enabled: true
   EnforcedShorthandSyntax: never
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/IdenticalConditionalBranches:
+  Enabled: true
+
+Style/IfInsideElse:
+  Enabled: true
+
+# TODO: Modifier if changing long method bodies (35 sites); repo style favors explicit if/unless.
+# Style/IfUnlessModifier:
+#   Enabled: false
+
+Style/IfUnlessModifierOfIfUnless:
+  Enabled: true
+
+Style/IfWithBooleanLiteralBranches:
+  Enabled: true
+
+Style/IfWithSemicolon:
+  Enabled: true
+
+# TODO: raise with bare string messages in step definitions (13 sites); add explicit class then enable.
+# Style/ImplicitRuntimeError:
+#   Enabled: false
+
+Style/InfiniteLoop:
+  Enabled: true
+
+# TODO: Trailing inline comments are used throughout (e.g., Gemfile) as project annotations (82 sites);
+#        repo convention favors them over dedicated lines.
+# Style/InlineComment:
+#   Enabled: false
+
+Style/InPatternThen:
+  Enabled: true
+
+# TODO: Minor; use none?/exclude? (2 sites).
+# Style/InverseMethods:
+#   Enabled: false
+
+# TODO: unless with exclude? etc (5 sites); invert then enable.
+# Style/InvertibleUnlessCondition:
+#   Enabled: false
+
+Style/IpAddresses:
+  Enabled: true
+
+Style/ItAssignment:
+  Enabled: true
+
+Style/ItBlockParameter:
+  Enabled: true
+
+# TODO: One offense; pass args directly then enable.
+# Style/KeywordArgumentsMerging:
+#   Enabled: false
+
+Style/KeywordParametersOrder:
+  Enabled: true
+
+# TODO: lambda vs multiline -> (3 sites); repo prefers -> even multiline. Keep disabled.
+# Style/Lambda:
+#   Enabled: false
+
+Style/LambdaCall:
+  Enabled: true
+
+# TODO: Backslash continuations in step files (9 sites); rework then enable.
+# Style/LineEndConcatenation:
+#   Enabled: false
+
+Style/MagicCommentFormat:
+  Enabled: true
+
+Style/MapCompactWithConditionalBlock:
+  Enabled: true
+
+# TODO: One offense; map into array then enable.
+# Style/MapIntoArray:
+#   Enabled: false
+
+Style/MapJoin:
+  Enabled: true
+
+Style/MapToHash:
+  Enabled: true
+
+Style/MapToSet:
+  Enabled: true
+
+# TODO: Chaining on do...end blocks in form DSL (34 sites); parens-block refactor is invasive.
+# Style/MethodCalledOnDoEndBlock:
+#   Enabled: false
+
+# TODO: The ActiveAdmin DSL is built on parens-less calls (3.5k sites); enforcing parentheses would
+#        rewrite the public DSL surface for no signal. Keep disabled.
+# Style/MethodCallWithArgsParentheses:
+#   Enabled: false
+
+# TODO: No-arg calls with parens used in specs (2 current); unify then enable.
+# Style/MethodCallWithoutArgsParentheses:
+#   Enabled: false
+
+# TODO: Repo defines def without parens for args (465 sites) as DSL convention; keep disabled.
+# Style/MethodDefParentheses:
+#   Enabled: false
+
+Style/MinMax:
+  Enabled: true
+
+Style/MinMaxComparison:
+  Enabled: true
+
+# TODO: if without else in control flow is common and readable here (86 sites); keep disabled.
+# Style/MissingElse:
+#   Enabled: false
+
+# TODO: csv_builder method_missing lacks respond_to_missing? (3 sites); correct then enable.
+# Style/MissingRespondToMissing:
+#   Enabled: false
+
+Style/MixinGrouping:
+  Enabled: true
+
+# TODO: Top-level include in features/support/env.rb (2 sites) is intentional support code.
+# Style/MixinUsage:
+#   Enabled: false
+
+# TODO: extend self used instead of module_function (2 sites); unify then enable.
+# Style/ModuleFunction:
+#   Enabled: false
+
+Style/ModuleMemberExistenceCheck:
+  Enabled: true
+
+# TODO: One offense; restructure chain then enable.
+# Style/MultilineBlockChain:
+#   Enabled: false
+
+# TODO: One offense in index template; rewrite then enable.
+# Style/MultilineIfModifier:
+#   Enabled: false
+
+Style/MultilineIfThen:
+  Enabled: true
+
+Style/MultilineInPatternThen:
+  Enabled: true
+
+Style/MultilineMemoization:
+  Enabled: true
+
+Style/MultilineMethodSignature:
+  Enabled: true
+
+Style/MultilineTernaryOperator:
+  Enabled: true
+
+# TODO: One offense; remove then in multi-line when then enable.
+# Style/MultilineWhenThen:
+#   Enabled: false
+
+Style/MultipleComparison:
+  Enabled: true
+
+# TODO: Freeze mutable constants (7 sites); add .freeze then enable.
+# Style/MutableConstant:
+#   Enabled: false
+
+# TODO: One offense; invert then enable.
+# Style/NegatedIf:
+#   Enabled: false
+
+Style/NegatedIfElseCondition:
+  Enabled: true
+
+Style/NegatedUnless:
+  Enabled: true
+
+Style/NegatedWhile:
+  Enabled: true
+
+Style/NegativeArrayIndex:
+  Enabled: true
+
+Style/NestedFileDirname:
+  Enabled: true
+
+Style/NestedModifier:
+  Enabled: true
+
+# TODO: Unparenthesized nested calls in Arel sql (29 sites); add parens then enable (behavior-safe).
+# Style/NestedParenthesizedCalls:
+#   Enabled: false
+
+Style/NestedTernaryOperator:
+  Enabled: true
+
+Style/Next:
+  Enabled: true
+
+Style/NilComparison:
+  Enabled: true
+
+Style/NilLambda:
+  Enabled: true
+
+Style/NonNilCheck:
+  Enabled: true
+
+Style/Not:
+  Enabled: true
+
+Style/NumberedParameters:
+  Enabled: true
+
+Style/NumberedParametersLimit:
+  Enabled: true
+
+Style/NumericLiteralPrefix:
+  Enabled: true
+
+Style/NumericLiterals:
+  Enabled: true
+
+# TODO: Use .zero? (3 sites); minor.
+# Style/NumericPredicate:
+#   Enabled: false
+
+Style/ObjectThen:
+  Enabled: true
+
+# TODO: Multiple classes in Cucumber step files (6 sites) support shared helpers; keep disabled.
+# Style/OneClassPerFile:
+#   Enabled: false
+
+Style/OneLineConditional:
+  Enabled: true
+
+Style/OpenStructUse:
+  Enabled: true
+
+Style/OperatorMethodCall:
+  Enabled: true
+
+Style/OptionalArguments:
+  Enabled: true
+
+Style/OptionalBooleanParameter:
+  Enabled: true
+
+# TODO: Options hashes in DSL (31 sites) preceded keyword args; repo API predates kwarg migration.
+# Style/OptionHash:
+#   Enabled: false
+
+Style/OrAssignment:
+  Enabled: true
 
 Style/ParallelAssignment:
   Enabled: true
@@ -386,8 +2713,349 @@ Naming/PredicatePrefix:
     - has_many
     - has_many_actions
 
+# TODO: One offense; drop parens then enable.
+# Style/ParenthesesAroundCondition:
+#   Enabled: false
+
+Style/PartitionInsteadOfDoubleSelect:
+  Enabled: true
+
+# TODO: %w[ ] and %i[ ] style conflicts with default ( ) (30 sites); pick a delimiter then enable.
+# Style/PercentLiteralDelimiters:
+#   Enabled: false
+
+# TODO: %Q vs %q nuance (1 site); normalize then enable.
+# Style/PercentQLiterals:
+#   Enabled: false
+
+# TODO: $1-style backrefs in step regexes (14 sites); switch to Regexp.last_match.
+# Style/PerlBackrefs:
+#   Enabled: false
+
+Style/PredicateWithKind:
+  Enabled: true
+
+# TODO: has_key? vs key? (3 sites); unify then enable.
+# Style/PreferredHashMethods:
+#   Enabled: false
+
+# TODO: Proc.new vs proc (10 sites); normalize then enable.
+# Style/Proc:
+#   Enabled: false
+
+# TODO: Both :"..." and :... used; repo mixes quotes in symbols (50 sites). Pick a convention then enable.
+# Style/QuotedSymbols:
+#   Enabled: false
+
+# TODO: raise with String covers ArgumentError expectation (2 sites); explicit class then enable.
+# Style/RaiseArgs:
+#   Enabled: false
+
+Style/RandomWithOffset:
+  Enabled: true
+
+Style/ReduceToHash:
+  Enabled: true
+
+# TODO: One offense; drop redundant arg then enable.
+# Style/RedundantArgument:
+#   Enabled: false
+
+Style/RedundantArrayConstructor:
+  Enabled: true
+
+Style/RedundantArrayFlatten:
+  Enabled: true
+
+Style/RedundantAssignment:
+  Enabled: true
+
+# TODO: Remove redundant begin blocks (4 sites) then enable.
+# Style/RedundantBegin:
+#   Enabled: false
+
+Style/RedundantCapitalW:
+  Enabled: true
+
+Style/RedundantCondition:
+  Enabled: true
+
+Style/RedundantConditional:
+  Enabled: true
+
+# TODO: Remove leading :: (2 sites) then enable.
+# Style/RedundantConstantBase:
+#   Enabled: false
+
+Style/RedundantCurrentDirectoryInPath:
+  Enabled: true
+
+# TODO: One offense; use kwargs directly then enable.
+# Style/RedundantDoubleSplatHashBraces:
+#   Enabled: false
+
+Style/RedundantEach:
+  Enabled: true
+
+Style/RedundantException:
+  Enabled: true
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+
+Style/RedundantFilterChain:
+  Enabled: true
+
+Style/RedundantFormat:
+  Enabled: true
+
+# TODO: Remove .freeze on literals (5 sites) then enable.
+# Style/RedundantFreeze:
+#   Enabled: false
+
+Style/RedundantHeredocDelimiterQuotes:
+  Enabled: true
+
+Style/RedundantInitialize:
+  Enabled: true
+
+Style/RedundantInterpolation:
+  Enabled: true
+
+Style/RedundantInterpolationUnfreeze:
+  Enabled: true
+
+Style/RedundantLineContinuation:
+  Enabled: true
+
+Style/RedundantMinMaxBy:
+  Enabled: true
+
+# TODO: Remove parens around method calls (2 sites) then enable.
+# Style/RedundantParentheses:
+#   Enabled: false
+
+# TODO: Normalize %Q usage (2 sites) then enable.
+# Style/RedundantPercentQ:
+#   Enabled: false
+
+# TODO: Use string arg over regexp (2 sites) then enable.
+# Style/RedundantRegexpArgument:
+#   Enabled: false
+
+# TODO: One offense; simplify character class then enable.
+# Style/RedundantRegexpCharacterClass:
+#   Enabled: false
+
+Style/RedundantRegexpConstructor:
+  Enabled: true
+
+# TODO: Remove redundant regexp escapes (4 sites) then enable.
+# Style/RedundantRegexpEscape:
+#   Enabled: false
+
+# TODO: Remove redundant returns (1 site + similar) then enable.
+# Style/RedundantReturn:
+#   Enabled: false
+
+# TODO: Remove redundant self (9 sites) then enable.
+# Style/RedundantSelf:
+#   Enabled: false
+
+Style/RedundantSelfAssignment:
+  Enabled: true
+
+Style/RedundantSelfAssignmentBranch:
+  Enabled: true
+
+Style/RedundantSort:
+  Enabled: true
+
+Style/RedundantSortBy:
+  Enabled: true
+
+Style/RedundantStringEscape:
+  Enabled: true
+
+Style/RedundantStructKeywordInit:
+  Enabled: true
+
+# TODO: %r vs / regexes mixed (10 sites); pick one convention then enable.
+# Style/RegexpLiteral:
+#   Enabled: false
+
+# TODO: Sort require_relative lines (41 sites); one autocorrect pass then enable.
+# Style/RequireOrder:
+#   Enabled: false
+
+# TODO: rescue modifier in step definitions (3 sites); explicit rescue then enable.
+# Style/RescueModifier:
+#   Enabled: false
+
+# TODO: Bare rescue (2 sites); explicit StandardError then enable.
+# Style/RescueStandardError:
+#   Enabled: false
+
+# TODO: return nil vs return (1 site); simplify then enable.
+# Style/ReturnNil:
+#   Enabled: false
+
+Style/ReturnNilInPredicateMethodDefinition:
+  Enabled: true
+
+Style/ReverseFind:
+  Enabled: true
+
+# TODO: safe navigation candidates (5 sites); &. reads fine but repo prefers explicit nil checks
+#        in controller guard logic. Keep disabled.
+# Style/SafeNavigation:
+#   Enabled: false
+
+Style/SafeNavigationChainLength:
+  Enabled: true
+
+Style/Sample:
+  Enabled: true
+
+Style/SelectByKind:
+  Enabled: true
+
+Style/SelectByRange:
+  Enabled: true
+
+Style/SelectByRegexp:
+  Enabled: true
+
+Style/SelfAssignment:
+  Enabled: true
+
+# TODO: Semicolon statements (4 sites); remove then enable.
+# Style/Semicolon:
+#   Enabled: false
+
+# TODO: dynamic send in metaprogramming (122 sites) is core to ActiveAdmin's DSL; __send__ adds
+#        noise without value here. Keep disabled.
+# Style/Send:
+#   Enabled: false
+
+Style/SendWithLiteralMethodName:
+  Enabled: true
+
+Style/SignalException:
+  Enabled: true
+
+Style/SingleArgumentDig:
+  Enabled: true
+
+# TODO: inject block param naming (2 sites); normalize then enable.
+# Style/SingleLineBlockParams:
+#   Enabled: false
+
+Style/SingleLineDoEndBlock:
+  Enabled: true
+
+Style/SingleLineMethods:
+  Enabled: true
+
+# TODO: [1..] vs [1..-1] (4 sites); normalize then enable.
+# Style/SlicingWithRange:
+#   Enabled: false
+
+Style/SoleNestedConditional:
+  Enabled: true
+
+# TODO: $! in web steps (1 site); use $ERROR_INFO with English require then enable.
+# Style/SpecialGlobalVars:
+#   Enabled: false
+
+# TODO: Stabby lambda parens (4 sites); normalize then enable.
+# Style/StabbyLambdaParentheses:
+#   Enabled: false
+
+# TODO: Classes with only class methods (5 sites) in the extension API; module conversion is
+#        technically breaking for StatusTag.new-style callers.
+# Style/StaticClass:
+#   Enabled: false
+
+Style/StderrPuts:
+  Enabled: true
+
+Style/StringChars:
+  Enabled: true
+
+# TODO: String concatenation vs interpolation (14 sites); interpolation preferred; normalize then enable.
+# Style/StringConcatenation:
+#   Enabled: false
+
+# TODO: String keys in gemspec/ruby versions maps (45 sites); symbol keys then enable.
+# Style/StringHashKeys:
+#   Enabled: false
+
 Style/StringLiterals:
   Enabled: false
+
+# TODO: Single quotes inside interpolation (6 sites); normalize then enable.
+# Style/StringLiteralsInInterpolation:
+#   Enabled: false
+
+Style/StringMethods:
+  Enabled: true
+
+Style/Strip:
+  Enabled: true
+
+# TODO: One offense; use block to customize struct then enable.
+# Style/StructInheritance:
+#   Enabled: false
+
+# TODO: Explicit super args for clarity (1 site); keep disabled.
+# Style/SuperArguments:
+#   Enabled: false
+
+# TODO: super(args) vs super args (6 sites); add parens then enable.
+# Style/SuperWithArgsParentheses:
+#   Enabled: false
+
+Style/SwapValues:
+  Enabled: true
+
+# TODO: Mixed %i / [:a, :b] (40 sites); pick one convention then enable.
+# Style/SymbolArray:
+#   Enabled: false
+
+# TODO: One offense; symbol literal then enable.
+# Style/SymbolLiteral:
+#   Enabled: false
+
+# TODO: Symbol-to-proc (4 sites); normalize then enable.
+# Style/SymbolProc:
+#   Enabled: false
+
+Style/TallyMethod:
+  Enabled: true
+
+# TODO: Ternaries with parens (3 sites); normalize then enable.
+# Style/TernaryParentheses:
+#   Enabled: false
+
+Style/TimeNow:
+  Enabled: true
+
+# TODO: Top-level helper methods in .arb templates (11 sites) are Arbre DSL content; keep disabled.
+# Style/TopLevelMethodDefinition:
+#   Enabled: false
+
+Style/TrailingBodyOnClass:
+  Enabled: true
+
+Style/TrailingBodyOnMethodDefinition:
+  Enabled: true
+
+Style/TrailingBodyOnModule:
+  Enabled: true
 
 Style/TrailingCommaInArguments:
   Enabled: true
@@ -424,3 +3092,64 @@ Layout/SpaceInsideHashLiteralBraces:
 
 Layout/SpaceInsideParens:
   Enabled: true
+# TODO: Trailing commas removed (4 sites); enable after normalization.
+# Style/TrailingCommaInArrayLiteral:
+#   Enabled: false
+
+Style/TrailingCommaInBlockArgs:
+  Enabled: true
+
+# TODO: Trailing commas removed (4 sites); enable after normalization.
+# Style/TrailingCommaInHashLiteral:
+#   Enabled: false
+
+Style/TrailingMethodEndStatement:
+  Enabled: true
+
+Style/TrailingUnderscoreVariable:
+  Enabled: true
+
+# TODO: One offense; attr_reader then enable.
+# Style/TrivialAccessors:
+#   Enabled: false
+
+# TODO: One offense; rewrite positive case first then enable.
+# Style/UnlessElse:
+#   Enabled: false
+
+Style/UnlessLogicalOperators:
+  Enabled: true
+
+Style/UnpackFirst:
+  Enabled: true
+
+Style/VariableInterpolation:
+  Enabled: true
+
+# TODO: One site with inline when body; normalize then enable.
+# Style/WhenThen:
+#   Enabled: false
+
+Style/WhileUntilDo:
+  Enabled: true
+
+Style/WhileUntilModifier:
+  Enabled: true
+
+# TODO: Mixed %w / ['a','b'] (5 sites); pick one convention then enable.
+# Style/WordArray:
+#   Enabled: false
+
+Style/YAMLFileRead:
+  Enabled: true
+
+Style/YodaCondition:
+  Enabled: true
+
+# TODO: One offense in data_access.rb; reorganize expression then enable.
+# Style/YodaExpression:
+#   Enabled: false
+
+Style/ZeroLengthPredicate:
+  Enabled: true
+
