@@ -37,8 +37,8 @@ RSpec.describe ActiveAdmin::LayoutHelper, type: :helper do
 
   describe "html_head_site_title escaping" do
     it "does not double-escape an already html_safe page title" do
-      allow(helper).to receive(:site_title).and_return("MyAdmin")
-      allow(helper).to receive(:page_title).and_return(ERB::Util.html_escape("Smith & Sons"))
+      expect(helper).to receive(:site_title).and_return("MyAdmin")
+      expect(helper).to receive(:page_title).and_return(ERB::Util.html_escape("Smith & Sons"))
 
       result = helper.html_head_site_title
 
