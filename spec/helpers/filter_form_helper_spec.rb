@@ -376,7 +376,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
     end
 
-    context "with namespace- and resource-level string_input_filters set" do
+    context "with string_input_filters set" do
       let(:body) do
         admin = ActiveAdmin.application.namespace(:admin)
         admin.string_input_filters = [:eq, :cont]
