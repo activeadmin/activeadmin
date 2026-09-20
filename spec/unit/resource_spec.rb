@@ -64,6 +64,24 @@ module ActiveAdmin
       end
     end
 
+    describe "#string_input_filters" do
+      it "returns nil by default" do
+        expect(config.string_input_filters).to eq nil
+      end
+
+      context "when set via the DSL" do
+        around do |example|
+          with_resources_during(example) { resource }
+        end
+
+        let(:resource) { namespace.register(Post) { string_input_filters [:eq, :cont] } }
+
+        it "returns the configured filters" do
+          expect(resource.string_input_filters).to eq [:eq, :cont]
+        end
+      end
+    end
+
     describe "controller name" do
       it "should return a namespaced controller name" do
         expect(config.controller_name).to eq "Admin::CategoriesController"
