@@ -692,31 +692,25 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     end
 
     it "renders checkboxes and preserves the selected values" do
-      body = filter :status, as: :check_boxes,
-                             collection: %w[active inactive]
+      body = filter :status, as: :check_boxes, collection: %w[active inactive]
 
       expect(body).to have_checked_field("q[status_in][]", with: "inactive")
     end
 
     it "renders a select without an explicit predicate" do
-      body = filter :status, as: :select,
-                             collection: %w[active inactive]
+      body = filter :status, as: :select, collection: %w[active inactive]
 
       expect(body).to have_select("q[status_eq]", selected: "inactive")
     end
 
     it "renders a multi-select without an explicit predicate" do
-      body = filter :status, as: :select, multiple: true,
-                             collection: %w[active inactive]
+      body = filter :status, as: :select, multiple: true, collection: %w[active inactive]
 
-      expect(body).to have_select(
-        "q[status_in][]", multiple: true,
-                          selected: ["inactive"])
+      expect(body).to have_select("q[status_in][]", multiple: true, selected: ["inactive"])
     end
 
     it "renders a select with an explicit predicate" do
-      body = filter :status_eq, as: :select,
-                                collection: %w[active inactive]
+      body = filter :status_eq, as: :select, collection: %w[active inactive]
 
       expect(body).to have_select("q[status_eq]", selected: "inactive")
     end
