@@ -35,6 +35,19 @@ RSpec.describe ActiveAdmin::LayoutHelper, type: :helper do
     end
   end
 
+  describe "html_head_site_title escaping" do
+    it "does not double-escape an already html_safe page title" do
+      expect(helper).to receive(:site_title).and_return("MyAdmin")
+      expect(helper).to receive(:page_title).and_return(ERB::Util.html_escape("Smith & Sons"))
+
+      result = helper.html_head_site_title
+
+      expect(result).to be_html_safe
+      expect(result).to eq "Smith &amp; Sons - MyAdmin"
+      expect(result).to_not include("&amp;amp;")
+    end
+  end
+
   describe "skip_sidebar?" do
     it "should return true if skipped" do
       helper.skip_sidebar!
