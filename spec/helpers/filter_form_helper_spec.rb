@@ -138,6 +138,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
         expect(body).to have_css("option[value=title_cont]", text: "Contains")
         expect(body).to have_no_css("option[value=title_start]")
         expect(body).to have_no_css("option[value=title_end]")
+        expect(helper).to have_received(:active_admin_config).at_least(:once)
       end
     end
 
@@ -153,6 +154,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
         expect(body).to have_css("option[value=title_cont]", text: "Contains")
         expect(body).to have_no_css("option[value=title_start]")
         expect(body).to have_no_css("option[value=title_end]")
+        expect(helper).to have_received(:active_admin_config).at_least(:once)
       end
     end
 
@@ -167,6 +169,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
         expect(body).to have_css("option[value=title_eq]", text: "Equals")
         expect(body).to have_css("option[value=title_start]", text: "Starts with")
         expect(body).to have_css("option[value=title_end]", text: "Ends with")
+        expect(helper).to have_received(:active_admin_config).at_least(:once)
       end
     end
 
@@ -183,6 +186,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
         expect(body).to have_css("option[value=title_eq]", text: "Equals")
         expect(body).to have_css("option[value=title_start]", text: "Starts with")
         expect(body).to have_css("option[value=title_end]", text: "Ends with")
+        expect(helper).to have_received(:active_admin_config).at_least(:once)
       end
     end
 
@@ -202,6 +206,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
         expect(body).to have_css("option[value=title_cont]", text: "Contains")
         expect(body).to have_no_css("option[value=title_start]")
         expect(body).to have_no_css("option[value=title_end]")
+        expect(helper).to have_received(:active_admin_config).at_least(:once)
       end
     end
   end
