@@ -11,6 +11,7 @@ group :development, :test do
   gem "devise"
 
   gem "rails", "~> 8.1.0"
+  gem "json", "< 3.0" # TODO: relax this constraint when rails/rails#58601 will be released
 
   gem "sprockets-rails"
   gem "ransack", ">= 4.2.0"
