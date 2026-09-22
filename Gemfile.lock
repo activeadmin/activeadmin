@@ -476,6 +476,7 @@ DEPENDENCIES
   i18n-spec
   i18n-tasks
   importmap-rails
+  json (< 3.0)
   launchy
   parallel_tests
   pundit
