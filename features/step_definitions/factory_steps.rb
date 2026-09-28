@@ -4,7 +4,7 @@ def create_user(name, type = "User")
   type.camelize.constantize.where(first_name: first_name, last_name: last_name).first_or_create(username: name.tr(" ", "").underscore)
 end
 
-Given(/^(a|\d+)( published)?( unstarred|starred)? posts?(?: with the title "([^"]*)")?(?: and body "([^"]*)")?(?: written by "([^"]*)")?(?: in category "([^"]*)")? exists?$/) do |count, published, starred, title, body, user, category_name|
+Given(/^(a|\d+)( published)?( unstarred| starred)? posts?(?: with the title "([^"]*)")?(?: and body "([^"]*)")?(?: written by "([^"]*)")?(?: in category "([^"]*)")? exists?$/) do |count, published, starred, title, body, user, category_name|
   count = count == "a" ? 1 : count.to_i
   published = Time.now if published
   starred = starred == " starred" if starred

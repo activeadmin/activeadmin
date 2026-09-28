@@ -349,14 +349,17 @@ Feature: Index Filtering
       end
     """
     And 1 unstarred post with the title "Hello World" written by "Jane Doe" exists
+    And 1 starred post with the title "Starred World" written by "Jane Doe" exists
     When I select "Starred" from "Ransackable Custom Filter"
     And I press "Filter"
     Then I should see current filter "fancy_filter" equal to "Starred" with label "Ransackable Custom Filter"
+    And I should see "Starred World"
     And I should not see "Hello World"
     When I select "Not Starred" from "Ransackable Custom Filter"
     And I press "Filter"
     Then I should see current filter "fancy_filter" equal to "Not Starred" with label "Ransackable Custom Filter"
     And I should see "Hello World"
+    And I should not see "Starred World"
 
   Scenario: "counter cache"-like filters
     Given a user named "Jane Doe" exists
