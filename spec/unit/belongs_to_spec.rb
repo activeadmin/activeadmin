@@ -74,6 +74,31 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
     end
   end
 
+  describe "method_for_association_chain (with `defaults collection_name:`)" do
+    around do |example|
+      with_resources_during(example) do
+        ActiveAdmin.register User
+        ActiveAdmin.register(Post) do
+          belongs_to :user, optional: true
+          controller do
+            defaults collection_name: :unstarred_posts
+          end
+        end
+      end
+    end
+
+    let(:post_config) { ActiveAdmin.application.namespaces[:admin].resources["Post"] }
+    let(:controller) { post_config.controller.new }
+
+    it "scopes through the configured collection name, which is the parent's association" do
+      expect(controller.send(:method_for_association_chain)).to eq(:unstarred_posts)
+    end
+
+    it "is not treated as an aliased registration" do
+      expect(post_config).to_not be_aliased
+    end
+  end
+
   describe "method_for_association_chain (with `as:` alias)" do
     around do |example|
       with_resources_during(example) do
@@ -87,6 +112,10 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
 
     it "derives the parent's association name from the resource's model class" do
       expect(controller.send(:method_for_association_chain)).to eq(:posts)
+    end
+
+    it "is treated as an aliased registration" do
+      expect(post_config).to be_aliased
     end
   end
 end

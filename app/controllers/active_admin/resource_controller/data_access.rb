@@ -75,11 +75,11 @@ module ActiveAdmin
         end_of_association_chain
       end
 
-      # Derive the parent's `has_many` association name from the
-      # resource's model class so that resources registered with an
-      # `as:` alias still scope through the correct collection.
+      # `super` is `resource_collection_name`, which honours `defaults collection_name:`. An
+      # `as:` alias makes it the alias's plural, which names no association on the parent.
       def method_for_association_chain
         return super unless active_admin_config&.belongs_to?
+        return super unless active_admin_config.aliased?
 
         active_admin_config.resource_class.model_name.element.pluralize.to_sym
       end
