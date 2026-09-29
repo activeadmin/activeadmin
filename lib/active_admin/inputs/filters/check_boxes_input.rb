@@ -9,6 +9,10 @@ module ActiveAdmin
           "#{object_name}[#{searchable_method_name}_in][]"
         end
 
+        def checked?(value)
+          selected_values.map(&:to_s).include?(value.to_s)
+        end
+
         def selected_values
           @object.public_send(:"#{searchable_method_name}_in") || []
         end

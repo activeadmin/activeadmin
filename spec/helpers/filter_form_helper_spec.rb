@@ -302,6 +302,16 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       expect(resubmitted_scope.result).to contain_exactly(published_post)
     end
 
+    context "with string-valued collection options" do
+      let(:body) { filter :position, as: :check_boxes, collection: proc { EnumPost.positions.transform_values(&:to_s) } }
+
+      it "preserves the selected checkbox" do
+        expect(body).to have_checked_field("q[position_in][]", with: "1")
+        expect(body).to have_unchecked_field("q[position_in][]", with: "0")
+        expect(body).to have_unchecked_field("q[position_in][]", with: "2")
+      end
+    end
+
     context "with multiple selected values" do
       let(:selected_values) { ["0", "2"] }
 
@@ -568,6 +578,15 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       it "should create a check box for each related object" do
         expect(body).to have_field("q[author_id_in][]", type: :checkbox, with: @jane.id)
         expect(body).to have_field("q[author_id_in][]", type: :checkbox, with: @jane.id)
+      end
+
+      context "with a selected association" do
+        let(:scope) { Post.ransack(author_id_in: [@jane.id.to_s]) }
+
+        it "preserves the selected checkbox" do
+          expect(body).to have_checked_field("q[author_id_in][]", with: @jane.id.to_s)
+          expect(body).to have_unchecked_field("q[author_id_in][]", with: @john.id.to_s)
+        end
       end
     end
 
