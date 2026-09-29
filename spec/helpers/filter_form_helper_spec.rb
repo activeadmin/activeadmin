@@ -270,6 +270,59 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     end
   end
 
+  describe "enum attribute, as check boxes" do
+    let(:resource_klass) do
+      stub_const(
+        "EnumPost",
+        Class.new(Post) do
+          enum :position, { draft: 0, published: 1, archived: 2 }
+        end
+      )
+    end
+
+    let(:selected_values) { ["1"] }
+    let(:scope) { resource_klass.ransack(position_in: selected_values) }
+    let(:body) { filter :position, as: :check_boxes, collection: proc { EnumPost.positions } }
+
+    it "preserves the selected checkbox from submitted string parameters" do
+      expect(body).to have_checked_field("q[position_in][]", with: "1")
+      expect(body).to have_unchecked_field("q[position_in][]", with: "0")
+      expect(body).to have_unchecked_field("q[position_in][]", with: "2")
+    end
+
+    it "preserves the filtered results when the rendered form is submitted again" do
+      resource_klass.create!(position: :draft)
+      published_post = resource_klass.create!(position: :published)
+      resource_klass.create!(position: :archived)
+      expect(scope.result).to contain_exactly(published_post)
+
+      values = body.all('input[type="checkbox"][checked]').map { |checkbox| checkbox[:value] }
+      resubmitted_scope = resource_klass.ransack(position_in: values)
+
+      expect(resubmitted_scope.result).to contain_exactly(published_post)
+    end
+
+    context "with multiple selected values" do
+      let(:selected_values) { ["0", "2"] }
+
+      it "preserves every selected checkbox, including zero" do
+        expect(body).to have_checked_field("q[position_in][]", with: "0")
+        expect(body).to have_unchecked_field("q[position_in][]", with: "1")
+        expect(body).to have_checked_field("q[position_in][]", with: "2")
+      end
+    end
+
+    context "without selected values" do
+      let(:selected_values) { [] }
+
+      it "leaves every checkbox unchecked" do
+        expect(body).to have_unchecked_field("q[position_in][]", with: "0")
+        expect(body).to have_unchecked_field("q[position_in][]", with: "1")
+        expect(body).to have_unchecked_field("q[position_in][]", with: "2")
+      end
+    end
+  end
+
   describe "date attribute" do
     let(:body) { filter :published_date }
 
