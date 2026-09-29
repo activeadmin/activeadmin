@@ -89,8 +89,11 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
 
     let(:post_config) { ActiveAdmin.application.namespaces[:admin].resources["Post"] }
     let(:controller) { post_config.controller.new }
+    let(:user) { User.create! }
 
     it "scopes through the configured collection name, which is the parent's association" do
+      controller.params = ActionController::Parameters.new(user_id: user.id)
+
       expect(controller.send(:method_for_association_chain)).to eq(:unstarred_posts)
     end
   end
@@ -110,8 +113,11 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
 
     let(:post_config) { ActiveAdmin.application.namespaces[:admin].resources["Story"] }
     let(:controller) { post_config.controller.new }
+    let(:user) { User.create! }
 
     it "prefers the collection name that was set over the alias's plural" do
+      controller.params = ActionController::Parameters.new(user_id: user.id)
+
       expect(controller.send(:method_for_association_chain)).to eq(:unstarred_posts)
     end
   end
@@ -128,8 +134,11 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
 
     let(:post_config) { ActiveAdmin.application.namespaces[:admin].resources["Highlight"] }
     let(:controller) { post_config.controller.new }
+    let(:user) { User.create! }
 
     it "scopes through it rather than deriving the model's plural" do
+      controller.params = ActionController::Parameters.new(user_id: user.id)
+
       expect(controller.send(:method_for_association_chain)).to eq(:highlights)
     end
   end
@@ -144,9 +153,54 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
 
     let(:post_config) { ActiveAdmin.application.namespaces[:admin].resources["Story"] }
     let(:controller) { post_config.controller.new }
+    let(:user) { User.create! }
 
     it "derives the parent's association name from the resource's model class" do
+      controller.params = ActionController::Parameters.new(user_id: user.id)
+
       expect(controller.send(:method_for_association_chain)).to eq(:posts)
+    end
+  end
+
+  describe "controller with an alias matching an unrelated association" do
+    around do |example|
+      with_resources_during(example) do
+        ActiveAdmin.register Category
+        ActiveAdmin.register(Post, as: "Author") { belongs_to :category }
+      end
+    end
+
+    let(:post_config) { ActiveAdmin.application.namespaces[:admin].resources["Author"] }
+    let(:controller) { post_config.controller.new }
+    let(:category) { Category.create!(name: "News") }
+
+    it "scopes through posts rather than the category's authors" do
+      controller.params = ActionController::Parameters.new(category_id: category.id)
+
+      expect(controller.send(:scoped_collection).klass).to eq(Post)
+    end
+  end
+
+  describe "controller with optional nesting and scope_to" do
+    around do |example|
+      with_resources_during(example) do
+        ActiveAdmin.register User
+        ActiveAdmin.register(Post, as: "Article") do
+          belongs_to :user, optional: true
+          scope_to :current_category
+        end
+      end
+    end
+
+    let(:post_config) { ActiveAdmin.application.namespaces[:admin].resources["Article"] }
+    let(:controller) { post_config.controller.new }
+    let(:category) { Category.create!(name: "News") }
+
+    it "uses the scope_to parent's association on the non-nested route" do
+      controller.params = ActionController::Parameters.new
+      allow(controller).to receive(:current_category).and_return(category)
+
+      expect(controller.send(:scoped_collection).klass).to eq(Post)
     end
   end
 end

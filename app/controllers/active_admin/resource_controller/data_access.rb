@@ -77,19 +77,21 @@ module ActiveAdmin
 
       # `super` is `resource_collection_name`, which honours `defaults collection_name:`. An
       # `as:` alias makes it the alias's plural, which usually names no association on the
-      # parent, so the model's plural is derived instead. The parent is asked rather than the
-      # registration, because only the parent knows which of the two it actually has.
+      # parent, so the model's plural is derived instead. The chain parent is asked rather
+      # than the registration, because only it knows which of the two it actually has.
       def method_for_association_chain
         return super unless active_admin_config&.belongs_to?
-        return super if parent_has_association?(resource_collection_name)
+        return super if chain_parent_association?(resource_collection_name)
 
         active_admin_config.resource_class.model_name.element.pluralize.to_sym
       end
 
-      # `resource` rather than `target`, which raises when the parent is not registered.
-      def parent_has_association?(name)
-        parent = active_admin_config.belongs_to_config.resource&.resource_class
-        parent.respond_to?(:reflect_on_association) && parent.reflect_on_association(name).present?
+      # Ask the actual chain parent (`scope_to` can make it something other than the
+      # `belongs_to` target) and require the association to target the resource's model,
+      # because an alias's plural can coincide with an unrelated association's name.
+      def chain_parent_association?(name)
+        reflection = association_chain.last.class.try(:reflect_on_association, name)
+        reflection&.class_name == active_admin_config.resource_class.name
       end
 
       # Retrieve, memoize and authorize a resource based on params[:id]. The
