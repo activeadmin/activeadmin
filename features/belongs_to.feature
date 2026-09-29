@@ -173,3 +173,20 @@ Feature: Belongs To
     Then I should see "Showing 1 of 1"
     And I should see a link to "Users" in the breadcrumb
     And I should see a link to "Jane Doe" in the breadcrumb
+
+  Scenario: Viewing the child resource index page with a custom collection_name
+    Given a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        belongs_to :user, optional: true
+        controller do
+          defaults collection_name: :unstarred_posts
+        end
+      end
+    """
+    And a unstarred post with the title "In the collection" written by "Jane Doe" exists
+    And a post with the title "Outside it" written by "Jane Doe" exists
+    When I go to the last author's posts
+    Then I should see "In the collection"
+    And I should not see "Outside it"
