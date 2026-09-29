@@ -76,10 +76,12 @@ module ActiveAdmin
       end
 
       # `super` is `resource_collection_name`, which honours `defaults collection_name:`. An
-      # `as:` alias makes it the alias's plural, which names no association on the parent.
+      # `as:` alias makes it the alias's plural, which names no association on the parent - so
+      # the model's plural is derived instead, unless a collection name was set deliberately.
       def method_for_association_chain
         return super unless active_admin_config&.belongs_to?
         return super unless active_admin_config.aliased?
+        return super unless resource_collection_name.to_s == active_admin_config.resource_name.plural
 
         active_admin_config.resource_class.model_name.element.pluralize.to_sym
       end

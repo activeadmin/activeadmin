@@ -99,6 +99,27 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
     end
   end
 
+  describe "method_for_association_chain (with `as:` alias and `defaults collection_name:`)" do
+    around do |example|
+      with_resources_during(example) do
+        ActiveAdmin.register User
+        ActiveAdmin.register(Post, as: "Story") do
+          belongs_to :user, optional: true
+          controller do
+            defaults collection_name: :unstarred_posts
+          end
+        end
+      end
+    end
+
+    let(:post_config) { ActiveAdmin.application.namespaces[:admin].resources["Story"] }
+    let(:controller) { post_config.controller.new }
+
+    it "prefers the collection name that was set over the alias's plural" do
+      expect(controller.send(:method_for_association_chain)).to eq(:unstarred_posts)
+    end
+  end
+
   describe "method_for_association_chain (with `as:` alias)" do
     around do |example|
       with_resources_during(example) do
