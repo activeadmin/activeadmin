@@ -15,11 +15,6 @@ module ActiveAdmin
         end
       end
 
-      # Whether the resource was registered as: another name.
-      def aliased?
-        @options[:as].present?
-      end
-
       # Returns the name to call this resource such as "Bank Account"
       def resource_label
         resource_name.translate count: 1,
