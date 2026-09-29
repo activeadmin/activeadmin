@@ -96,6 +96,13 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
 
       expect(controller.send(:method_for_association_chain)).to eq(:unstarred_posts)
     end
+
+    it "falls back to the model's plural when the association's class name does not resolve" do
+      controller.params = ActionController::Parameters.new(user_id: user.id)
+      allow(User.reflect_on_association(:unstarred_posts)).to receive(:klass).and_raise(NameError)
+
+      expect(controller.send(:method_for_association_chain)).to eq(:posts)
+    end
   end
 
   describe "controller with a fully qualified association class name" do
