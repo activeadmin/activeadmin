@@ -98,6 +98,32 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
     end
   end
 
+  describe "controller with a fully qualified association class name" do
+    around do |example|
+      with_resources_during(example) do
+        ActiveAdmin.register User
+        ActiveAdmin.register(Post) do
+          belongs_to :user
+          controller do
+            defaults collection_name: :qualified_posts
+          end
+        end
+      end
+    end
+
+    let(:post_config) { ActiveAdmin.application.namespaces[:admin].resources["Post"] }
+    let(:controller) { post_config.controller.new }
+    let(:user) { User.create! }
+
+    it "preserves the configured association scope" do
+      included_post = user.posts.create!(starred: false)
+      user.posts.create!(starred: true)
+      controller.params = ActionController::Parameters.new(user_id: user.id)
+
+      expect(controller.send(:scoped_collection).to_a).to eq([included_post])
+    end
+  end
+
   describe "method_for_association_chain (with `as:` alias and `defaults collection_name:`)" do
     around do |example|
       with_resources_during(example) do

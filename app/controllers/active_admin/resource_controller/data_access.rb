@@ -91,7 +91,9 @@ module ActiveAdmin
       # because an alias's plural can coincide with an unrelated association's name.
       def chain_parent_association?(name)
         reflection = association_chain.last.class.try(:reflect_on_association, name)
-        reflection&.class_name == active_admin_config.resource_class.name
+        reflection.present? && reflection.klass <= active_admin_config.resource_class
+      rescue NameError
+        false
       end
 
       # Retrieve, memoize and authorize a resource based on params[:id]. The
