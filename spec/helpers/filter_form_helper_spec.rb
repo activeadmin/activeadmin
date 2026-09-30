@@ -290,6 +290,12 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       expect(body).to have_unchecked_field("q[position_in][]", with: "2")
     end
 
+    it "reads the selected values only once when rendering the checkbox collection" do
+      expect(scope).to receive(:position_in).once.and_call_original
+
+      expect(body).to have_checked_field("q[position_in][]", with: "1")
+    end
+
     it "preserves the filtered results when the rendered form is submitted again" do
       resource_klass.create!(position: :draft)
       published_post = resource_klass.create!(position: :published)
@@ -326,6 +332,8 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       let(:selected_values) { [] }
 
       it "leaves every checkbox unchecked" do
+        expect(scope).to receive(:position_in).once.and_call_original
+
         expect(body).to have_unchecked_field("q[position_in][]", with: "0")
         expect(body).to have_unchecked_field("q[position_in][]", with: "1")
         expect(body).to have_unchecked_field("q[position_in][]", with: "2")
