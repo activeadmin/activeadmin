@@ -2,6 +2,7 @@ class CreateStores < ActiveRecord::Migration[<%= Rails::VERSION::MAJOR %>.<%= Ra
   def change
     create_table :stores do |t|
       t.string :name
+      t.decimal :revenue, precision: 10, scale: 2
       t.integer :user_id
       t.datetime :created_at
       t.datetime :updated_at

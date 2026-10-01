@@ -729,6 +729,17 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     end
   end
 
+  describe "decimal attribute" do
+    let(:body) { Capybara.string(render_filter(Store.ransack, revenue: {})) }
+
+    it "should default to a numeric filter" do
+      expect(body).to have_css("option[value=revenue_eq]")
+      expect(body).to have_css("option[value=revenue_gt]")
+      expect(body).to have_css("option[value=revenue_lt]")
+      expect(body).to have_field("q[revenue_eq]")
+    end
+  end
+
   describe "numeric range attribute" do
     let(:scope) { Post.ransack position_gteq: 1, position_lteq: 10 }
     let(:body) { filter :position, as: :numeric_range }
@@ -774,6 +785,13 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     it "should step by whole numbers on an integer column" do
       expect(body).to have_css("input[name='q[position_gteq]'][step='1']")
       expect(body).to have_css("input[name='q[position_lteq]'][step='1']")
+    end
+
+    it "should accept decimal values on a decimal column" do
+      body = Capybara.string(render_filter(Store.ransack(revenue_gteq: 12.5), revenue: { as: :numeric_range }))
+      expect(body).to have_field("q[revenue_gteq]", type: "number", with: "12.5")
+      expect(body).to have_css("input[name='q[revenue_gteq]'][step='0.01']")
+      expect(body).to have_css("input[name='q[revenue_lteq]'][step='0.01']")
     end
 
     it "should accept decimal values when the attribute has no column" do
@@ -837,6 +855,11 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     it "should let input_html override the placeholder and value" do
       body = Capybara.string(render_filter(scope, position: { as: :numeric_range, input_html: { placeholder: "Min" } }))
       expect(body).to have_field("q[position_gteq]", placeholder: "Min")
+    end
+
+    it "should step by the column scale on a decimal column" do
+      body = Capybara.string(render_filter(Store.ransack, revenue: { as: :numeric_range }))
+      expect(body).to have_css("input[name='q[revenue_gteq]'][step='0.01']")
     end
 
     context "with exclusive bounds" do
