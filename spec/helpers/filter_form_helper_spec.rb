@@ -729,6 +729,130 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     end
   end
 
+  describe "numeric range attribute" do
+    let(:scope) { Post.ransack position_gteq: 1, position_lteq: 10 }
+    let(:body) { filter :position, as: :numeric_range }
+
+    it "should generate two number fields" do
+      expect(body).to have_field("q[position_gteq]", type: "number", with: "1")
+      expect(body).to have_field("q[position_lteq]", type: "number", with: "10")
+    end
+
+    it "should generate two inputs with different ids" do
+      ids = body.find_css("input[type=number]").to_a.map { |n| n[:id] }
+      expect(ids).to contain_exactly("q_position_gteq", "q_position_lteq")
+    end
+
+    it "should label the lower bound" do
+      expect(body).to have_css("label[for=q_position_gteq]", text: "Position")
+    end
+
+    it "should give both bounds an accessible name" do
+      expect(body).to have_field("q[position_gteq]", with: "1")
+      expect(body).to have_css("input[name='q[position_gteq]'][aria-label='Position From']")
+      expect(body).to have_css("input[name='q[position_lteq]'][aria-label='Position To']")
+    end
+
+    it "should not double-escape a label in the accessible name" do
+      body = Capybara.string(render_filter(scope, position: { as: :numeric_range, label: "Bob's profit & loss" }))
+      expect(body).to have_css("label", text: "Bob's profit & loss")
+      %w[From To].each do |bound|
+        expect(body).to have_css(%([aria-label="Bob's profit & loss #{bound}"]))
+      end
+    end
+
+    it "should keep the wrapper id derived from the attribute" do
+      expect(body).to have_css("#q_position_input")
+    end
+
+    it "should keep the unfilled bound editable" do
+      body = Capybara.string(render_filter(Post.ransack(position_gteq: 3), position: { as: :numeric_range }))
+      expect(body).to have_field("q[position_gteq]", with: "3")
+      expect(body).to have_field("q[position_lteq]", with: "")
+    end
+
+    it "should step by whole numbers on an integer column" do
+      expect(body).to have_css("input[name='q[position_gteq]'][step='1']")
+      expect(body).to have_css("input[name='q[position_lteq]'][step='1']")
+    end
+
+    it "should accept decimal values when the attribute has no column" do
+      body = Capybara.string(render_filter(Post.ransack, custom_searcher_numeric: { as: :numeric_range }))
+      expect(body).to have_css("input[name='q[custom_searcher_numeric_gteq]'][step=any]")
+    end
+
+    it "should pass min and max through to both fields" do
+      body = Capybara.string(render_filter(scope, position: { as: :numeric_range, min: 0, max: 100 }))
+      expect(body).to have_css("input[name='q[position_gteq]'][min='0'][max='100']")
+      expect(body).to have_css("input[name='q[position_lteq]'][min='0'][max='100']")
+    end
+
+    context "with input_html" do
+      let(:body) { filter :position, as: :numeric_range, input_html: { step: 5, id: "shared" } }
+
+      it "should override the default step" do
+        expect(body).to have_css("input[name='q[position_gteq]'][step='5']")
+      end
+
+      it "should not let a shared id collide across the two fields" do
+        expect(body).to have_no_field(id: "shared")
+        expect(body).to have_field(id: "q_position_gteq")
+        expect(body).to have_field(id: "q_position_lteq")
+      end
+    end
+
+    context "with predicates that are not a valid pair" do
+      [[:gteq], :gteq, [:eq, :gt, :lt]].each do |invalid|
+        it "should reject #{invalid.inspect}" do
+          expect do
+            render_filter(scope, position: { as: :numeric_range, filters: invalid })
+          end.to raise_error(ArgumentError, /lower bound/)
+        end
+      end
+
+      it "should reject a predicate Ransack does not know" do
+        expect do
+          render_filter(scope, position: { as: :numeric_range, filters: [:gte, :lte] })
+        end.to raise_error(ArgumentError, /gte/)
+      end
+
+      it "should reject the same predicate twice" do
+        expect do
+          render_filter(scope, position: { as: :numeric_range, filters: [:gteq, :gteq] })
+        end.to raise_error(ArgumentError)
+      end
+
+      it "should reject an upper bound given as the lower one" do
+        expect do
+          render_filter(scope, position: { as: :numeric_range, filters: [:lteq, :gteq] })
+        end.to raise_error(ArgumentError)
+      end
+    end
+
+    it "should not leak a named HTML entity into the accessible name" do
+      body = Capybara.string(render_filter(scope, position: { as: :numeric_range, label: "Smith&rsquo;s score" }))
+      expect(body).to have_css(%([aria-label="Smith\u2019s score From"]))
+    end
+
+    it "should let input_html override the placeholder and value" do
+      body = Capybara.string(render_filter(scope, position: { as: :numeric_range, input_html: { placeholder: "Min" } }))
+      expect(body).to have_field("q[position_gteq]", placeholder: "Min")
+    end
+
+    context "with exclusive bounds" do
+      let(:scope) { Post.ransack position_gt: 1, position_lt: 10 }
+      let(:body) { filter :position, as: :numeric_range, filters: [:gt, :lt] }
+
+      it "should use the given predicates" do
+        expect(body).to have_field("q[position_gt]", type: "number", with: "1")
+        expect(body).to have_field("q[position_lt]", type: "number", with: "10")
+        expect(body).to have_no_field("q[position_gteq]")
+        expect(body).to have_css("label[for=q_position_gt]")
+        expect(body).to have_no_field("q[position_lteq]")
+      end
+    end
+  end
+
   describe "does not support some filter inputs" do
     it "should fallback to use formtastic inputs" do
       body = filter :custom_title_searcher, as: :text
