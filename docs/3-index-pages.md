@@ -86,6 +86,7 @@ Out of the box, Active Admin supports the following filter types:
 * *:date_range* - A start and end date field with calendar inputs
 * *:numeric* - A drop down for selecting "Equal To", "Greater Than" or "Less
   Than" and an input for a value.
+* *:numeric_range* - A pair of number fields for the lower and upper bound
 * *:select* - A drop down which filters based on a selected item in a collection
   or all.
 * *:check_boxes* - A list of check boxes users can turn on and off to filter
@@ -109,6 +110,16 @@ To override options for string or numeric filter pass `filters` option.
 
 ```ruby
   filter :title, filters: [:start, :end]
+```
+
+For `:numeric_range` the same option means something different: it takes exactly
+two predicates, the lower and the upper bound, in that order. Bounds are
+inclusive unless you say otherwise, so a filter form filled in with 2 and 6
+matches:
+
+```ruby
+  filter :position, as: :numeric_range                       # 2 <= position <= 6
+  filter :position, as: :numeric_range, filters: [:gt, :lt]  # 2 <  position <  6
 ```
 
 To set the same options for every string filter, instead of passing the `filters`

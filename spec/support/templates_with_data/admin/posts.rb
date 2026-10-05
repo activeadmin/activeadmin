@@ -9,7 +9,7 @@ ActiveAdmin.register Post do
   filter :title
   filter :body
   filter :published_date
-  filter :position
+  filter :position, as: :numeric_range
   filter :starred
   filter :foo_id
   filter :created_at
