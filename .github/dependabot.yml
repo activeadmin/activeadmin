@@ -42,6 +42,8 @@ updates:
       - "*"
     multi-ecosystem-group: bundler
     ignore:
+      - dependency-name: connection_pool
+        versions: ">= 3" # TODO: remove when dropping Rails 7.2 (see rails/rails#56620)
       - dependency-name: rails
         versions: ">= 8.0.0"
       - dependency-name: rails-i18n
