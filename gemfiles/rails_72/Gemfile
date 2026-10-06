@@ -11,6 +11,8 @@ group :development, :test do
   gem "devise"
 
   gem "rails", "~> 7.2.0"
+  # Rails 7.2.4 caps connection_pool below 3, whose keyword-argument API breaks cache stores
+  gem "connection_pool", "< 3" # TODO: remove when dropping Rails 7.2 (see rails/rails#56620)
 
   gem "sprockets-rails"
   gem "ransack", ">= 4.2.0"
