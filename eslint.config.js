@@ -8,6 +8,7 @@ export default [
       "coverage/**",
       "docs/.vitepress/cache/**",
       "docs/.vitepress/dist/**",
+      "docs/.vitepress/.temp/**",
       "lib/generators/**",
       "src/**",
       "tmp/**",
