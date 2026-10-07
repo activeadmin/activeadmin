@@ -3,17 +3,14 @@
 layout: home
 
 hero:
-  name: ActiveAdmin
+  name: ActiveAdmin v3
   text: An admin engine for Rails applications
-  tagline: Abstracts common patterns to implement beautiful and elegant interfaces with ease.
+  tagline: Documentation for ActiveAdmin v3. Use the version selector for v4 beta.
 
   actions:
     - theme: brand
       text: Getting Started
-      link: /docs/0-installation
-    - theme: alt
-      text: Upgrading from v3
-      link: /docs/upgrading
+      link: /docs/v3/0-installation
     - theme: alt
       text: View on GitHub
       link: https://github.com/activeadmin/activeadmin
@@ -28,12 +25,12 @@ features:
   - icon: 🎬
     title: Action Items
     details: Add buttons or links as action items in the page header for a resource.
-    link: /docs/8-custom-actions
+    link: /docs/v3/8-custom-actions
     linkText: Learn about action items
   - icon: 🔍
     title: Filters
     details: Allow users to filter resources by searching strings, text fields, dates, and numeric values.
-    link: /docs/3-index-pages
+    link: /docs/v3/3-index-pages
     linkText: Learn about filters
   - icon: 🗂️
     title: Scopes
@@ -44,7 +41,7 @@ features:
   - icon: 📋
     title: Sidebar Sections
     details: Add your own sections to the sidebar using a simple DSL.
-    link: /docs/7-sidebars
+    link: /docs/v3/7-sidebars
     linkText: Learn about sidebar sections
   - icon: 💾
     title: Downloads

@@ -77,6 +77,23 @@ Or to migrate the database for a new migration:
 bin/rake local db:migrate
 ```
 
+### Documentation
+
+Run `npm run docs:dev` and open `/docs/` to preview v4 beta documentation in VitePress.
+The version selector opens the matching page under `/docs/v3/`.
+
+Edit the current documentation in `docs/` and the archived v3 documentation
+in `docs/v3/`. The site includes `UPGRADING.md` directly as its v4 upgrade guide.
+
+Run `npm run docs:test` to build the site and check version links and legacy
+redirects. The deployment artifact is `docs/.vitepress/dist`: it contains the
+site in `docs/` and generated HTML redirects for the former root URLs. These
+redirects target the matching pages under `/docs/v3/` and are generated from
+the v3 archive, including all five files in `docs/v3/3-index-pages/`. These
+redirects do not depend on the layout of the current v4 pages.
+Publish this entire directory so links such as `/3-index-pages.html` and
+`/3-index-pages/index-as-grid.html` keep working.
+
 ### Create a Pull Request
 
 At this point, if your changes look good and tests are passing, you are ready to create a pull request.

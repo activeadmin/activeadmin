@@ -43,17 +43,17 @@ config.site_title_image = ->(context) { context.current_user.company.logo_url }
 ## Internationalization (I18n)
 
 Active Admin comes with translations for a lot of
-[locales](https://github.com/activeadmin/activeadmin/blob/master/config/locales/).
+[locales](https://github.com/activeadmin/activeadmin/blob/v3.5.2/config/locales/).
 Active Admin does not provide the translations for the kaminari gem it uses for pagination,
 to get these you can use the
 [kaminari-i18n](https://github.com/tigrish/kaminari-i18n) gem.
 
 To translate Active Admin to a new language or customize an existing
 translation, you can copy
-[config/locales/en.yml](https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml)
+[config/locales/en.yml](https://github.com/activeadmin/activeadmin/blob/v3.5.2/config/locales/en.yml)
 to your application's `config/locales` folder and update it. We welcome
 new/updated translations, so feel free to
-[contribute](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)!
+[contribute](https://github.com/activeadmin/activeadmin/blob/v3.5.2/CONTRIBUTING.md)!
 
 When using [devise](https://github.com/plataformatec/devise) for authentication,
 you can use the [devise-i18n](https://github.com/tigrish/devise-i18n)

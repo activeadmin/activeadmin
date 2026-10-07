@@ -117,5 +117,5 @@ jobs:
           cache: npm
       - run: npm ci
         if: steps.changed-files.outputs.any_changed == 'true'
-      - run: npm run docs:build
+      - run: npm run docs:test
         if: steps.changed-files.outputs.any_changed == 'true'

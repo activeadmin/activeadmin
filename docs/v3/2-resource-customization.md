@@ -129,7 +129,7 @@ en:
         delete_model: 'Cancel Offer' # delete action item
 ```
 
-See the [default en.yml locale file](https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml) for existing translations and examples.
+See the [default en.yml locale file](https://github.com/activeadmin/activeadmin/blob/v3.5.2/config/locales/en.yml) for existing translations and examples.
 
 ## Rename the Resource
 
