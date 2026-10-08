@@ -4,7 +4,7 @@ Filtering and listing resources is one of the most important tasks for
 administering a web application. Active Admin provides many different tools for
 you to build a compelling interface into your data for the admin staff.
 
-Built in, Active Admin has the *Table* index renderer. ([View Table Docs](3-index-pages/index-as-table.md))
+Built in, Active Admin has the *Table* index renderer. ([View Table Docs](3-index-as-table.md))
 
 All index pages also support scopes, filters, pagination, action items, and
 sidebar sections.
