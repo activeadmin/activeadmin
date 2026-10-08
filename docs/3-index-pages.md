@@ -45,9 +45,36 @@ end
 
 ## Custom Index
 
-Active Admin does not limit the index page to be a table, block, blog or grid.
-If you've created your own [custom index](3-index-pages/custom-index.md) page it
-can be included by setting `:as` to the class of the index component you created.
+If the supplied Active Admin index components are insufficient for your project
+feel free to define your own. Index classes inherit from `ActiveAdmin::Component`
+and require a `build` method and an `index_name` class method.
+
+```ruby
+module ActiveAdmin
+  module Views
+    class IndexAsMyIdea < ActiveAdmin::Component
+
+      def build(page_presenter, collection)
+        # ...
+      end
+
+      def self.index_name
+        "my_idea"
+      end
+
+    end
+  end
+end
+```
+
+The `build` method takes a PagePresenter object and collection of whatever you
+choose.
+
+The `index_name` class method takes no arguments and returns a string that should
+be representative of the class name.
+
+Your custom index component can then be included by setting `index as: ...` to
+the class of the index component you created.
 
 ```ruby
 index as: ActiveAdmin::Views::IndexAsMyIdea do
