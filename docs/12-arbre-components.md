@@ -127,28 +127,3 @@ status_tag nil
 
 The default labels can be configured through the `"en.active_admin.status_tag"`
 locale.
-
-## Tabs
-
-The Tabs component is helpful for saving page real estate. The first tab will be
-the one open when the page initially loads and the rest hidden. You can click
-each tab to toggle back and forth between them. Arbre supports unlimited number
-of tabs.
-
-```ruby
-tabs do
-  tab :active do
-    table_for orders.active do
-      # ...
-    end
-  end
-
-  tab :inactive, html_options: { class: "specific_css_class" } do
-    table_for orders.inactive do
-      # ...
-    end
-  end
-end
-```
-
-The `html_options` will set additional HTML attributes on the tab button.
