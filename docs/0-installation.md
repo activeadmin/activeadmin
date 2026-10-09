@@ -1,5 +1,10 @@
 # Installation
 
+> [!IMPORTANT]
+> Please use the [Upgrading guide for **installing ActiveAdmin v4 beta**](upgrading.md) as these installation instructions have not yet been updated and are still v3 specific.
+>
+> We **welcome contributions** to update these [installation instructions for ActiveAdmin v4 beta](upgrading.md).
+
 Active Admin is a Ruby Gem.
 
 ```ruby
