@@ -67,7 +67,7 @@ Form for use the same helpers are used in the admin file:
   = semantic_form_for [:admin, @post], builder: ActiveAdmin::FormBuilder do |f|
     = f.inputs "Details" do
       = f.input :title
-    - f.has_many :taggings, sortable: :position, sortable_start: 1 do |t|
+    - f.has_many :taggings do |t|
       - t.input :tag
     = f.actions
 
@@ -99,7 +99,7 @@ ActiveAdmin.register Post do
       end
     end
     f.inputs 'Tags' do
-      f.has_many :taggings, heading: false, sortable: :position, sortable_start: 1 do |t|
+      f.has_many :taggings, heading: false do |t|
         t.input :tag
       end
     end
@@ -119,7 +119,7 @@ end
 ```
 
 *NOTE*: In addition to using `has_many` as illustrated above, you'll need to add
-`accepts_nested_attributes` to your parent model and [configure strong parameters](https://activeadmin.info/2-resource-customization.html)
+`accepts_nested_attributes` to your parent model and [configure strong parameters](2-resource-customization.md)
 
 The `:allow_destroy` option adds a checkbox to the end of the nested form allowing
 removal of the child object upon submission. Be sure to set `allow_destroy: true`
@@ -138,13 +138,6 @@ record button.
 The `:remove_record` option controls the text of the remove button (shown after
 the new record button is pressed). If you pass a string, it will be used as the
 text for the remove button.
-
-The `:sortable` option adds a hidden field and will enable drag & drop sorting
-of the children. It expects the name of the column that will store the index of
-each child.
-
-The `:sortable_start` option sets the value (0 by default) of the first position
-in the list.
 
 ## Datepicker
 
