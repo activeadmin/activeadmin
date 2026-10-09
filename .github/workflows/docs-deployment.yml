@@ -1,6 +1,9 @@
 name: Docs Deployment
 
 on:
+  push:
+    branches:
+      - master
   release:
     types:
       - published
