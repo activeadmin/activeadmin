@@ -1,7 +1,3 @@
----
-redirect_from: /docs/3-index-pages/index-as-table.html
----
-
 # Index as a Table
 
 By default, the index page is a table with each of the models content columns and links to

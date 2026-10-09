@@ -1,0 +1,10 @@
+/* Use the built-in locale switcher for doc versions, with a clear desktop label. */
+.VPNavBarTranslations .button::before {
+  content: "Version";
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.VPNavBarTranslations .vpi-languages {
+  display: none;
+}

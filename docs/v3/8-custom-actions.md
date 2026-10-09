@@ -119,7 +119,7 @@ ActiveAdmin.register Post do
 end
 ```
 
-# Action Items
+## Action Items
 
 To include your own action items (like the New, Edit and Delete buttons), add an
 `action_item` block. The first parameter is just a name to identify the action,
@@ -153,7 +153,7 @@ end
 
 Default action item priority is 10.
 
-# Modifying the Controller
+## Modifying the Controller
 
 The generated controller is available to you within the registration block by
 using the `controller` method.

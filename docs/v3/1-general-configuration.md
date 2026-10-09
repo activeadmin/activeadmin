@@ -33,23 +33,27 @@ Every page has what's called the site title on the left side of the menu bar.
 If you want, you can customize it.
 
 ```ruby
-config.site_title = "My Admin Site"
+config.site_title       = "My Admin Site"
+config.site_title_link  = "/"
+config.site_title_image = "site_image.png"
+config.site_title_image = "https://www.google.com/images/logos/google_logo_41.png"
+config.site_title_image = ->(context) { context.current_user.company.logo_url }
 ```
 
 ## Internationalization (I18n)
 
 Active Admin comes with translations for a lot of
-[locales](https://github.com/activeadmin/activeadmin/blob/master/config/locales/).
+[locales](https://github.com/activeadmin/activeadmin/blob/v3.5.2/config/locales/).
 Active Admin does not provide the translations for the kaminari gem it uses for pagination,
 to get these you can use the
 [kaminari-i18n](https://github.com/tigrish/kaminari-i18n) gem.
 
 To translate Active Admin to a new language or customize an existing
 translation, you can copy
-[config/locales/en.yml](https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml)
+[config/locales/en.yml](https://github.com/activeadmin/activeadmin/blob/v3.5.2/config/locales/en.yml)
 to your application's `config/locales` folder and update it. We welcome
 new/updated translations, so feel free to
-[contribute](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)!
+[contribute](https://github.com/activeadmin/activeadmin/blob/v3.5.2/CONTRIBUTING.md)!
 
 When using [devise](https://github.com/plataformatec/devise) for authentication,
 you can use the [devise-i18n](https://github.com/tigrish/devise-i18n)
@@ -184,4 +188,32 @@ Remember to indicate where to place the comments and form with:
 
 ```ruby
 active_admin_comments_for(resource)
+```
+
+## Utility Navigation
+
+The "utility navigation" shown at the top right normally shows the current user
+and a link to log out. However, the utility navigation is just like any other
+menu in the system; you can provide your own menu to be rendered in its place.
+
+```ruby
+ActiveAdmin.setup do |config|
+  config.namespace :admin do |admin|
+    admin.build_menu :utility_navigation do |menu|
+      menu.add label: "ActiveAdmin.info", url: "https://www.activeadmin.info",
+                                          html_options: { target: "_blank" }
+      admin.add_current_user_to_menu  menu
+      admin.add_logout_button_to_menu menu
+    end
+  end
+end
+```
+
+## Footer Customization
+
+By default, Active Admin displays a "Powered by ActiveAdmin" message on every
+page. You can override this message and show domain-specific messaging:
+
+```ruby
+config.footer = "MyApp Revision v1.3"
 ```

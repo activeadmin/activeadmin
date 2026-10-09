@@ -67,7 +67,7 @@ Form for use the same helpers are used in the admin file:
   = semantic_form_for [:admin, @post], builder: ActiveAdmin::FormBuilder do |f|
     = f.inputs "Details" do
       = f.input :title
-    - f.has_many :taggings do |t|
+    - f.has_many :taggings, sortable: :position, sortable_start: 1 do |t|
       - t.input :tag
     = f.actions
 
@@ -99,7 +99,7 @@ ActiveAdmin.register Post do
       end
     end
     f.inputs 'Tags' do
-      f.has_many :taggings, heading: false do |t|
+      f.has_many :taggings, heading: false, sortable: :position, sortable_start: 1 do |t|
         t.input :tag
       end
     end
@@ -139,10 +139,37 @@ The `:remove_record` option controls the text of the remove button (shown after
 the new record button is pressed). If you pass a string, it will be used as the
 text for the remove button.
 
+The `:sortable` option adds a hidden field and will enable drag & drop sorting
+of the children. It expects the name of the column that will store the index of
+each child.
+
+The `:sortable_start` option sets the value (0 by default) of the first position
+in the list.
+
 ## Datepicker
 
-ActiveAdmin will use the native HTML date input as a default datepicker. You can
-supply your own datepicker alternative and use JS to override any date input.
+ActiveAdmin offers the `datepicker` input, which uses the [jQuery UI
+datepicker](https://jqueryui.com/datepicker/).  The datepicker input accepts any
+of the options available to the standard jQueryUI Datepicker. For example:
+
+```ruby
+form do |f|
+  f.input :starts_at, as: :datepicker,
+                      datepicker_options: {
+                        min_date: "2013-10-8",
+                        max_date: "+3D"
+                      }
+
+  f.input :ends_at, as: :datepicker,
+                    datepicker_options: {
+                      min_date: 3.days.ago.to_date,
+                      max_date: "+1W +5D"
+                    }
+end
+```
+
+Datepicker also accepts the `:label` option as a string or proc to display.
+If it's a proc, it will be called each time the datepicker is rendered.
 
 ## Displaying Errors
 
@@ -158,7 +185,7 @@ end
 
 This is particularly useful to display errors on virtual or hidden attributes.
 
-# Customize the Create Another checkbox
+## Customize the Create Another checkbox
 
 In order to simplify creating multiple resources you may enable ActiveAdmin to
 show nice "Create Another" checkbox alongside of Create Model button. It may be

@@ -1,7 +1,3 @@
----
-redirect_from: /docs/3-index-pages/index-as-block.html
----
-
 # Index as a Block
 
 If you want to fully customize the display of your resources on the index

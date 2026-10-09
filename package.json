@@ -41,6 +41,7 @@
     "prepublishOnly": "npm run build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
+    "docs:test": "npm run docs:build && node --test docs/.vitepress/site.test.js",
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {

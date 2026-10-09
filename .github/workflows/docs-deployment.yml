@@ -29,8 +29,8 @@ jobs:
           node-version: 24
           cache: npm
       - uses: actions/configure-pages@v6
-      - run: npm install
-      - run: npm run docs:build
+      - run: npm ci
+      - run: npm run docs:test
       - uses: actions/upload-pages-artifact@v5
         with:
           path: docs/.vitepress/dist

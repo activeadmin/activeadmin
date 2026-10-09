@@ -1,10 +1,5 @@
 # Installation
 
-> [!IMPORTANT]
-> Please use the [Upgrading guide for **installing ActiveAdmin v4 beta**](upgrading.md) as these installation instructions have not yet been updated and are still v3 specific.
->
-> We **welcome contributions** to update these [installation instructions for ActiveAdmin v4 beta](upgrading.md).
-
 Active Admin is a Ruby Gem.
 
 ```ruby
@@ -45,9 +40,9 @@ After installing the gem, you need to run the generator. Here are your options:
 The generator adds these core files, among others:
 
 * `app/admin/dashboard.rb`
-* `app/assets/stylesheets/active_admin.css`
+* `app/assets/javascripts/active_admin.js`
+* `app/assets/stylesheets/active_admin.scss`
 * `config/initializers/active_admin.rb`
-* `tailwind-active_admin.config.js`
 
 Now, migrate and seed your database before starting the server:
 
@@ -59,8 +54,8 @@ rails server
 
 Visit `http://localhost:3000/admin` and log in as the default user:
 
-* __User__: admin@example.com
-* __Password__: password
+* **User**: `admin@example.com`
+* **Password**: password
 
 Voila! You're on your brand new Active Admin dashboard.
 
@@ -73,7 +68,7 @@ rails generate active_admin:resource Post
 This creates a `app/admin/post.rb` file with some content to start. Preview
 any changes in your browser.
 
-# Upgrading
+## Upgrading
 
 When upgrading to a new version, it's a good idea to check the [CHANGELOG].
 
@@ -90,9 +85,9 @@ You should also sync these files with their counterparts in the AA source code:
 
 Along with any template partials you've copied and modified.
 
-# Gem compatibility
+## Gem compatibility
 
-## will_paginate
+### will_paginate
 
 If you use `will_paginate` in your app, you need to configure an initializer for
 Kaminari to avoid conflicts.
@@ -111,11 +106,35 @@ want to make sure `per_page_kaminari` is delegated correctly:
 Draper::CollectionDecorator.send :delegate, :per_page_kaminari
 ```
 
-## simple_form
+### simple_form
 
 If you're getting the error `wrong number of arguments (6 for 4..5)`, [read #2703].
 
-## vite_rails
+### webpacker
+
+You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating your configuration to turn on the `use_webpacker` option, either at installation time or manually.
+
+* at active_admin installation:
+
+  ```sh
+  rails g active_admin:install --use_webpacker
+  ```
+
+* manually:
+
+  ```ruby
+  ActiveAdmin.setup do |config|
+    config.use_webpacker = true
+  end
+  ```
+
+  And run the generator to get default Active Admin assets:
+
+  ```sh
+  rails g active_admin:webpacker
+  ```
+
+### vite_rails
 
 To use Active Admin with Vite, make sure the `@activeadmin/activeadmin` dependency is added to your `package.json` using e.g. Yarn:
 
@@ -123,9 +142,9 @@ To use Active Admin with Vite, make sure the `@activeadmin/activeadmin` dependen
 yarn add @activeadmin/activeadmin@^3
 ```
 
-Then follow the steps outlined in this discussion comment: https://github.com/activeadmin/activeadmin/discussions/7947#discussioncomment-5867902
+Then follow the steps outlined in this discussion comment: <https://github.com/activeadmin/activeadmin/discussions/7947#discussioncomment-5867902>
 
-[CHANGELOG]: https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md
-[dashboard.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb
-[active_admin.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/active_admin.rb.erb
+[CHANGELOG]: https://github.com/activeadmin/activeadmin/blob/v3.5.2/CHANGELOG.md
+[dashboard.rb]: https://github.com/activeadmin/activeadmin/blob/v3.5.2/lib/generators/active_admin/install/templates/dashboard.rb
+[active_admin.rb]: https://github.com/activeadmin/activeadmin/blob/v3.5.2/lib/generators/active_admin/install/templates/active_admin.rb.erb
 [read #2703]: https://github.com/activeadmin/activeadmin/issues/2703#issuecomment-38140864

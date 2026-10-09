@@ -1,7 +1,3 @@
----
-redirect_from: /docs/3-index-pages/index-as-grid.html
----
-
 # Index as a Grid
 
 Sometimes you want to display the index screen for a set of resources as a grid

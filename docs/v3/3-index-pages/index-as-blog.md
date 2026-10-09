@@ -1,7 +1,3 @@
----
-redirect_from: /docs/3-index-pages/index-as-blog.html
----
-
 # Index as Blog
 
 Render your index page as a set of posts. The post has two main options:
