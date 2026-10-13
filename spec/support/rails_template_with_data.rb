@@ -63,6 +63,7 @@ append_file "db/seeds.rb", "\n\n" + <<~RUBY
       custom_category_id: category_id,
       published_date: published,
       author_id: user_id,
+      position: i,
       starred: true
     }
   end
