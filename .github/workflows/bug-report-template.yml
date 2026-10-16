@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: tj-actions/changed-files@v47.0.6
+      - uses: tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96 # v47.0.6
         id: changed-files
         with:
           files: |
@@ -32,7 +32,7 @@ jobs:
             tasks/bug_report_template.rb
             Gemfile*
             *.gemspec
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@651ff0d62c5c79bed6d53ec518387aae20e72c1a # v1.329.0
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           ruby-version: ${{ env.RUBY_VERSION }}

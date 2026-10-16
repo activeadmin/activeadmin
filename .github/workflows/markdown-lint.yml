@@ -13,14 +13,14 @@ jobs:
     if: ${{ vars.SKIP_REVIEWDOG_MARKDOWNLINT != 'true' }}
     steps:
       - uses: actions/checkout@v7
-      - uses: tj-actions/changed-files@v47.0.6
+      - uses: tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96 # v47.0.6
         id: changed-files
         with:
           files: |
             **.md
             .markdownlint.yml
             .github/workflows/markdown-lint.yml
-      - uses: reviewdog/action-markdownlint@v0
+      - uses: reviewdog/action-markdownlint@b85a623ec721cb42896c485633f527cbd2d58063 # v0.31.5
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

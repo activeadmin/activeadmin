@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: reviewdog/action-typos@v1
+      - uses: reviewdog/action-typos@d5eb1bbcd1b3bfde596f6eeb470322727862fe98 # v1.19.0
         with:
           fail_level: any
           filter_mode: nofilter # added (default), diff_context, file, nofilter
