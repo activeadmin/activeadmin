@@ -8,6 +8,9 @@ on:
       - synchronize
       - labeled
       - unlabeled
+permissions:
+  contents: read
+
 
 jobs:
   do-not-merge:

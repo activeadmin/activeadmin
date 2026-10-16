@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - master
+permissions:
+  contents: read
+
 
 concurrency:
   group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
@@ -100,6 +103,9 @@ jobs:
           fail_ci_if_error: true
 
   test_docs_build:
+    permissions:
+      contents: read
+      pull-requests: read
     name: Build docs
     runs-on: ubuntu-latest
     steps:

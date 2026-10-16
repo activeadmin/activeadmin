@@ -2,12 +2,18 @@ name: Gherkin Lint
 
 on:
   pull_request:
+permissions:
+  contents: read
+
 
 env:
   NODE_VERSION: 24.x
 
 jobs:
   gherkin_lint:
+    permissions:
+      contents: read
+      pull-requests: read
     name: Run gherkin-lint
     runs-on: ubuntu-latest
     steps:

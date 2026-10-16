@@ -2,12 +2,19 @@ name: Markdown Lint
 
 on:
   pull_request:
+permissions:
+  contents: read
+
 
 env:
   MARKDOWNLINT_FLAGS: ${{ vars.REVIEWDOG_MARKDOWNLINT_FLAGS || '--git-recurse .' }}
 
 jobs:
   markdownlint:
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: read
     name: Run markdownlint
     runs-on: ubuntu-latest
     if: ${{ vars.SKIP_REVIEWDOG_MARKDOWNLINT != 'true' }}

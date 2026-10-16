@@ -2,12 +2,19 @@ name: Rubocop
 
 on:
   pull_request:
+permissions:
+  contents: read
+
 
 env:
   RUBY_VERSION: ${{ vars.RUBOCOP_RUBY_VERSION || '4.0' }}
 
 jobs:
   rubocop:
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: read
     name: Run rubocop
     runs-on: ubuntu-latest
     env:

@@ -2,9 +2,16 @@ name: GitHub Actions Lint
 
 on:
   pull_request:
+permissions:
+  contents: read
+
 
 jobs:
   github_actions_lint:
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: read
     name: Run actionlint
     runs-on: ubuntu-latest
     steps:

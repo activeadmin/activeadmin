@@ -2,12 +2,19 @@ name: ESLint
 
 on:
   pull_request:
+permissions:
+  contents: read
+
 
 env:
   NODE_VERSION: ${{ vars.ESLINT_NODE_VERSION || '24.x' }}
 
 jobs:
   eslint:
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: read
     name: Run eslint
     runs-on: ubuntu-latest
     steps:

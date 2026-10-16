@@ -2,9 +2,16 @@ name: YAML Lint
 
 on:
   pull_request:
+permissions:
+  contents: read
+
 
 jobs:
   yaml_lint:
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: read
     name: Run yamllint
     runs-on: ubuntu-latest
     steps:
