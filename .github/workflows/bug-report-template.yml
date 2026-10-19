@@ -6,6 +6,10 @@ on:
     - cron: '0 12 * * *'
   pull_request:
 
+permissions:
+  contents: read
+  pull-requests: read
+
 concurrency:
   group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -21,7 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: tj-actions/changed-files@v47.0.6
+        with:
+          persist-credentials: false
+      - uses: tj-actions/changed-files@v47
         id: changed-files
         with:
           files: |

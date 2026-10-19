@@ -3,6 +3,11 @@ name: Markdown Lint
 on:
   pull_request:
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: read
+
 env:
   MARKDOWNLINT_FLAGS: ${{ vars.REVIEWDOG_MARKDOWNLINT_FLAGS || '--git-recurse .' }}
 
@@ -13,7 +18,9 @@ jobs:
     if: ${{ vars.SKIP_REVIEWDOG_MARKDOWNLINT != 'true' }}
     steps:
       - uses: actions/checkout@v7
-      - uses: tj-actions/changed-files@v47.0.6
+        with:
+          persist-credentials: false
+      - uses: tj-actions/changed-files@v47
         id: changed-files
         with:
           files: |
