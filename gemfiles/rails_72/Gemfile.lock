@@ -101,7 +101,7 @@ GEM
     benchmark (0.5.0)
     bigdecimal (4.1.3)
     builder (3.3.0)
-    cancancan (3.6.1)
+    cancancan (3.7.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -335,7 +335,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.4.2)
-    ransack (5.0.2)
+    ransack (6.0.0)
       activerecord (>= 7.2)
       activesupport (>= 7.2)
       i18n
@@ -389,10 +389,10 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (2.9.6-aarch64-linux-gnu)
-    sqlite3 (2.9.6-arm64-darwin)
-    sqlite3 (2.9.6-x86_64-darwin)
-    sqlite3 (2.9.6-x86_64-linux-gnu)
+    sqlite3 (2.10.0-aarch64-linux-gnu)
+    sqlite3 (2.10.0-arm64-darwin)
+    sqlite3 (2.10.0-x86_64-darwin)
+    sqlite3 (2.10.0-x86_64-linux-gnu)
     sys-uname (1.5.1)
       ffi (~> 1.1)
       memoist3 (~> 1.0.0)
