@@ -48,6 +48,13 @@ Then(/^I should see current filter "([^"]*)" equal to "([^"]*)" with label "([^"
   expect(page).to have_css ".active-filters [data-filter='#{name}'] strong", text: value
 end
 
+Then(/^I should see current default string filter on "([^"]*)" equal to "([^"]*)" with label "([^"]*)"$/) do |attribute, value, label|
+  predicate = ActiveAdmin::Inputs::Filters::StringInput.filters.first
+  name = "#{attribute}_#{predicate}"
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] span", text: "#{label} #{Ransack::Translate.predicate(predicate)}"
+  expect(page).to have_css ".active-filters [data-filter='#{name}'] strong", text: value
+end
+
 Then(/^I should see current filter "([^"]*)" equal to "([^"]*)"$/) do |name, value|
   expect(page).to have_css ".active-filters [data-filter='#{name}'] strong", text: value
 end

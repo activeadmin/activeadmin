@@ -16,7 +16,15 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     Capybara.string(render_filter(scope, name => options))
   end
 
+  def expect_default_string_options(body, attribute)
+    ActiveAdmin::Inputs::Filters::StringInput.filters.each do |predicate|
+      label = Ransack::Translate.predicate(predicate).capitalize
+      expect(body).to have_css("option[value=#{attribute}_#{predicate}]", text: label)
+    end
+  end
+
   let(:scope) { Post.ransack }
+  let(:default_string_filters) { ActiveAdmin::Inputs::Filters::StringInput.filters }
 
   before do
     helper.class.send(:include, MethodOrProcHelper)
@@ -61,20 +69,38 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
   describe "string attribute" do
     let(:body) { filter :title }
 
-    it "should generate a select option for starts with" do
-      expect(body).to have_css("option[value=title_i_start]", text: "Starts with")
-    end
-
-    it "should generate a select option for ends with" do
-      expect(body).to have_css("option[value=title_i_end]", text: "Ends with")
-    end
-
-    it "should generate a select option for contains" do
-      expect(body).to have_css("option[value=title_i_cont]", text: "Contains")
+    it "should generate a select option for each default predicate" do
+      expect_default_string_options(body, :title)
     end
 
     it "should generate a text field for input" do
-      expect(body).to have_field("q[title_i_cont]")
+      expect(body).to have_field("q[title_#{default_string_filters.first}]")
+    end
+
+    context "when ransack provides case-insensitive start and end predicates" do
+      before do
+        allow(Ransack::Predicate).to receive(:named).and_call_original
+        allow(Ransack::Predicate).to receive(:named).with("i_start").and_return(instance_double(Ransack::Predicate))
+      end
+
+      it "defaults to case-insensitive predicates" do
+        expect(body).to have_field("q[title_i_cont]")
+        expect(body).to have_css("option[value=title_i_start]")
+        expect(body).to have_css("option[value=title_i_end]")
+      end
+    end
+
+    context "when ransack lacks case-insensitive start and end predicates" do
+      before do
+        allow(Ransack::Predicate).to receive(:named).and_call_original
+        allow(Ransack::Predicate).to receive(:named).with("i_start").and_return(nil)
+      end
+
+      it "defaults to case-sensitive predicates" do
+        expect(body).to have_field("q[title_cont]")
+        expect(body).to have_css("option[value=title_start]")
+        expect(body).to have_css("option[value=title_end]")
+      end
     end
 
     it "should have a proper label" do
@@ -88,9 +114,11 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     end
 
     it "should select the option which is currently being filtered" do
-      scope = Post.ransack title_i_start: "foo"
+      predicate = default_string_filters.last
+      scope = Post.ransack "title_#{predicate}": "foo"
       body = Capybara.string(render_filter scope, title: {})
-      expect(body).to have_css("option[value=title_i_start][selected=selected]", text: "Starts with")
+      label = Ransack::Translate.predicate(predicate).capitalize
+      expect(body).to have_css("option[value=title_#{predicate}][selected=selected]", text: label)
     end
 
     context "with filters options" do
@@ -165,10 +193,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       it "falls back to the global default" do
-        expect(body).to have_css("option[value=title_i_cont]", text: "Contains")
-        expect(body).to have_css("option[value=title_eq]", text: "Equals")
-        expect(body).to have_css("option[value=title_i_start]", text: "Starts with")
-        expect(body).to have_css("option[value=title_i_end]", text: "Ends with")
+        expect_default_string_options(body, :title)
         expect(helper).to have_received(:active_admin_config).at_least(:once)
       end
     end
@@ -182,10 +207,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       it "falls back to the global default" do
-        expect(body).to have_css("option[value=title_i_cont]", text: "Contains")
-        expect(body).to have_css("option[value=title_eq]", text: "Equals")
-        expect(body).to have_css("option[value=title_i_start]", text: "Starts with")
-        expect(body).to have_css("option[value=title_i_end]", text: "Ends with")
+        expect_default_string_options(body, :title)
         expect(helper).to have_received(:active_admin_config).at_least(:once)
       end
     end
@@ -216,9 +238,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     let(:body) { filter :reason_of_sign_in }
 
     it "should generate a select options" do
-      expect(body).to have_css("option[value=reason_of_sign_in_i_start]")
-      expect(body).to have_css("option[value=reason_of_sign_in_i_end]")
-      expect(body).to have_css("option[value=reason_of_sign_in_i_cont]")
+      expect_default_string_options(body, :reason_of_sign_in)
     end
   end
 
@@ -226,7 +246,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     let(:body) { filter :body }
 
     it "should generate a search field for a text attribute" do
-      expect(body).to have_field("q[body_i_cont]")
+      expect(body).to have_field("q[body_#{default_string_filters.first}]")
     end
 
     it "should have a proper label" do
@@ -661,26 +681,26 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       context "with #{verb.inspect} proc" do
         it "#{should} be displayed if true" do
           body = filter :body, verb => proc { true }
-          expect(body).send if_true, have_field("q[body_i_cont]")
+          expect(body).send if_true, have_field("q[body_#{default_string_filters.first}]")
         end
 
         it "#{should} be displayed if false" do
           body = filter :body, verb => proc { false }
-          expect(body).send if_false, have_field("q[body_i_cont]")
+          expect(body).send if_false, have_field("q[body_#{default_string_filters.first}]")
         end
 
         it "should still be hidden on the second render" do
           filters = { body: { verb => proc { verb == :unless } } }
           2.times do
             body = Capybara.string(render_filter scope, filters)
-            expect(body).to have_no_field("q[body_i_cont]")
+            expect(body).to have_no_field("q[body_#{default_string_filters.first}]")
           end
         end
 
         it "should successfully keep rendering other filters after one is hidden" do
           filters = { body: { verb => proc { verb == :unless } }, author: {} }
           body = Capybara.string(render_filter scope, filters)
-          expect(body).to have_no_field("q[body_i_cont]")
+          expect(body).to have_no_field("q[body_#{default_string_filters.first}]")
           expect(body).to have_select("q[author_id_eq]")
         end
       end
@@ -702,8 +722,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
 
     it "should work as string" do
       body = filter :custom_title_searcher, as: :string
-      expect(body).to have_css("option[value=custom_title_searcher_i_cont]")
-      expect(body).to have_css("option[value=custom_title_searcher_i_start]")
+      expect_default_string_options(body, :custom_title_searcher)
     end
 
     describe "custom date range search" do
