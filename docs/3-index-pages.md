@@ -126,14 +126,16 @@ filter :author, as: :check_boxes, collection: proc { Author.all }
 To override options for string or numeric filter pass `filters` option.
 
 ```ruby
-  filter :title, filters: [:i_start, :i_end]
+  filter :title, filters: [:start, :end]
 ```
 
-String filters default to the `i_cont`, `eq`, `i_start` and `i_end` predicates.
-The `i_` predicates are case-insensitive on every database. On PostgreSQL,
-`cont`, `start` and `end` are case-sensitive; use them only when you want
-case-sensitive matching, or with a case-insensitive column type such as
-`citext`.
+String filters default to the case-insensitive `i_cont`, `eq`, `i_start` and
+`i_end` predicates with Ransack 6.0 or later, and to `cont`, `eq`, `start` and
+`end` with earlier versions. On PostgreSQL, Ransack 6 makes `cont`, `start`
+and `end` case-sensitive, so use the `i_` predicates (e.g.
+`filters: [:i_start, :i_end]` or `filter :name_i_cont`) for case-insensitive
+matching. Ransack 6.0 shows the `i_` predicates with their raw names (e.g.
+"i_cont"); Ransack 6.1, which requires Rails 8.1, translates them.
 
 To set the same options for every string filter, instead of passing the `filters`
 option on each, use the `string_input_filters` config at the namespace or
@@ -144,25 +146,25 @@ per-filter `filters` option still takes precedence over both.
 # config/initializers/active_admin.rb
 ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
-    admin.string_input_filters = [:eq, :i_cont]
+    admin.string_input_filters = [:eq, :cont]
   end
 end
 
 # app/admin/post.rb
 ActiveAdmin.register Post do
-  string_input_filters [:eq, :i_cont]
+  string_input_filters [:eq, :cont]
 end
 ```
 
-Also, if you don't need the select with the options 'i_cont', 'eq', 'i_start' or
-'i_end' just add the option to the filter name with an underscore.
+Also, if you don't need the select with the options 'cont', 'eq', 'start' or
+'end' just add the option to the filter name with an underscore.
 
 For example:
 
 ```ruby
 filter :name_eq
 # or
-filter :name_i_cont
+filter :name_cont
 ```
 
 You can change the filter label by passing a label option:
@@ -180,7 +182,7 @@ If using a custom search method, you will also need to specify the field type
 using `:as` and the label.
 
 ```ruby
-filter :first_name_or_last_name_i_cont, as: :string, label: "Name"
+filter :first_name_or_last_name_cont, as: :string, label: "Name"
 ```
 
 Filters can also be disabled for a resource, a namespace or the entire
