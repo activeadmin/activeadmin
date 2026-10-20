@@ -9,7 +9,7 @@ PATH
       inherited_resources (~> 2.0)
       kaminari (>= 1.2.1)
       railties (>= 7.2)
-      ransack (>= 4.0)
+      ransack (>= 6.0)
 
 GEM
   remote: https://rubygems.org/
@@ -333,7 +333,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.4.2)
-    ransack (5.0.2)
+    ransack (6.0.0)
       activerecord (>= 7.2)
       activesupport (>= 7.2)
       i18n
@@ -443,7 +443,7 @@ DEPENDENCIES
   rails (~> 8.0.0)
   rails-i18n
   rake
-  ransack (>= 4.2.0)
+  ransack (>= 6.0)
   rspec-rails
   simplecov
   simplecov-cobertura
