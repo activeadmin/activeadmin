@@ -180,13 +180,14 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
       end
     end
 
-    context "when filter condition has a case-insensitive predicate" do
+    context "when filter condition has the default string predicate" do
+      let(:predicate) { ActiveAdmin::Inputs::Filters::StringInput.filters.first }
       let(:search) do
-        Post.ransack(title_i_cont: "Hello")
+        Post.ransack("title_#{predicate}": "Hello")
       end
 
-      it "should translate the predicate as its case-sensitive counterpart" do
-        expect(subject.label).to eq("Title contains")
+      it "should use the ransack translation of the predicate" do
+        expect(subject.label).to eq("Title #{Ransack::Translate.predicate(predicate)}")
       end
     end
 
