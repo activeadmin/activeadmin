@@ -62,19 +62,19 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     let(:body) { filter :title }
 
     it "should generate a select option for starts with" do
-      expect(body).to have_css("option[value=title_start]", text: "Starts with")
+      expect(body).to have_css("option[value=title_i_start]", text: "Starts with")
     end
 
     it "should generate a select option for ends with" do
-      expect(body).to have_css("option[value=title_end]", text: "Ends with")
+      expect(body).to have_css("option[value=title_i_end]", text: "Ends with")
     end
 
     it "should generate a select option for contains" do
-      expect(body).to have_css("option[value=title_cont]", text: "Contains")
+      expect(body).to have_css("option[value=title_i_cont]", text: "Contains")
     end
 
     it "should generate a text field for input" do
-      expect(body).to have_field("q[title_cont]")
+      expect(body).to have_field("q[title_i_cont]")
     end
 
     it "should have a proper label" do
@@ -88,9 +88,9 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     end
 
     it "should select the option which is currently being filtered" do
-      scope = Post.ransack title_start: "foo"
+      scope = Post.ransack title_i_start: "foo"
       body = Capybara.string(render_filter scope, title: {})
-      expect(body).to have_css("option[value=title_start][selected=selected]", text: "Starts with")
+      expect(body).to have_css("option[value=title_i_start][selected=selected]", text: "Starts with")
     end
 
     context "with filters options" do
@@ -165,10 +165,10 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       it "falls back to the global default" do
-        expect(body).to have_css("option[value=title_cont]", text: "Contains")
+        expect(body).to have_css("option[value=title_i_cont]", text: "Contains")
         expect(body).to have_css("option[value=title_eq]", text: "Equals")
-        expect(body).to have_css("option[value=title_start]", text: "Starts with")
-        expect(body).to have_css("option[value=title_end]", text: "Ends with")
+        expect(body).to have_css("option[value=title_i_start]", text: "Starts with")
+        expect(body).to have_css("option[value=title_i_end]", text: "Ends with")
         expect(helper).to have_received(:active_admin_config).at_least(:once)
       end
     end
@@ -182,10 +182,10 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       it "falls back to the global default" do
-        expect(body).to have_css("option[value=title_cont]", text: "Contains")
+        expect(body).to have_css("option[value=title_i_cont]", text: "Contains")
         expect(body).to have_css("option[value=title_eq]", text: "Equals")
-        expect(body).to have_css("option[value=title_start]", text: "Starts with")
-        expect(body).to have_css("option[value=title_end]", text: "Ends with")
+        expect(body).to have_css("option[value=title_i_start]", text: "Starts with")
+        expect(body).to have_css("option[value=title_i_end]", text: "Ends with")
         expect(helper).to have_received(:active_admin_config).at_least(:once)
       end
     end
@@ -216,9 +216,9 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     let(:body) { filter :reason_of_sign_in }
 
     it "should generate a select options" do
-      expect(body).to have_css("option[value=reason_of_sign_in_start]")
-      expect(body).to have_css("option[value=reason_of_sign_in_end]")
-      expect(body).to have_css("option[value=reason_of_sign_in_cont]")
+      expect(body).to have_css("option[value=reason_of_sign_in_i_start]")
+      expect(body).to have_css("option[value=reason_of_sign_in_i_end]")
+      expect(body).to have_css("option[value=reason_of_sign_in_i_cont]")
     end
   end
 
@@ -226,7 +226,7 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
     let(:body) { filter :body }
 
     it "should generate a search field for a text attribute" do
-      expect(body).to have_field("q[body_cont]")
+      expect(body).to have_field("q[body_i_cont]")
     end
 
     it "should have a proper label" do
@@ -661,26 +661,26 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       context "with #{verb.inspect} proc" do
         it "#{should} be displayed if true" do
           body = filter :body, verb => proc { true }
-          expect(body).send if_true, have_field("q[body_cont]")
+          expect(body).send if_true, have_field("q[body_i_cont]")
         end
 
         it "#{should} be displayed if false" do
           body = filter :body, verb => proc { false }
-          expect(body).send if_false, have_field("q[body_cont]")
+          expect(body).send if_false, have_field("q[body_i_cont]")
         end
 
         it "should still be hidden on the second render" do
           filters = { body: { verb => proc { verb == :unless } } }
           2.times do
             body = Capybara.string(render_filter scope, filters)
-            expect(body).to have_no_field("q[body_cont]")
+            expect(body).to have_no_field("q[body_i_cont]")
           end
         end
 
         it "should successfully keep rendering other filters after one is hidden" do
           filters = { body: { verb => proc { verb == :unless } }, author: {} }
           body = Capybara.string(render_filter scope, filters)
-          expect(body).to have_no_field("q[body_cont]")
+          expect(body).to have_no_field("q[body_i_cont]")
           expect(body).to have_select("q[author_id_eq]")
         end
       end
@@ -702,8 +702,8 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
 
     it "should work as string" do
       body = filter :custom_title_searcher, as: :string
-      expect(body).to have_css("option[value=custom_title_searcher_cont]")
-      expect(body).to have_css("option[value=custom_title_searcher_start]")
+      expect(body).to have_css("option[value=custom_title_searcher_i_cont]")
+      expect(body).to have_css("option[value=custom_title_searcher_i_start]")
     end
 
     describe "custom date range search" do

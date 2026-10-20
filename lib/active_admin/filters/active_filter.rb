@@ -38,7 +38,7 @@ module ActiveAdmin
       end
 
       def predicate_name
-        Ransack::Translate.predicate(condition.predicate.name)
+        ActiveAdmin::Filters.predicate_label(condition.predicate.name)
       end
 
       def html_options
