@@ -25,6 +25,7 @@ jobs:
   build_docs:
     name: Build docs
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
       - uses: actions/checkout@v7
         with:
@@ -43,6 +44,7 @@ jobs:
   deploy_docs:
     name: Deploy docs site
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     needs: build_docs
     environment:
       name: github-pages

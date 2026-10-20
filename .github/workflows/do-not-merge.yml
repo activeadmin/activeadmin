@@ -16,6 +16,7 @@ jobs:
     if: ${{ contains(github.event.*.labels.*.name, 'do not merge') }}
     name: Prevent merging
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     steps:
       - name: Check for PR label
         run: |

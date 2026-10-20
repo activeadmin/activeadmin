@@ -12,6 +12,7 @@ jobs:
   yaml_lint:
     name: Run yamllint
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
       - uses: actions/checkout@v7
         with:

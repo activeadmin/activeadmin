@@ -17,7 +17,7 @@ jobs:
   test:
     name: test (${{ matrix.ruby }}, ${{ matrix.rails }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 5
     strategy:
       fail-fast: false
       matrix:
@@ -88,6 +88,7 @@ jobs:
   upload_coverage:
     name: Upload Coverage
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     # Do not run on forks
     if: ${{ github.repository_owner == 'activeadmin' }}
     needs: [test]
@@ -112,6 +113,7 @@ jobs:
       pull-requests: read
     name: Build docs
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
       - uses: actions/checkout@v7
         with:

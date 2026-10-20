@@ -15,6 +15,7 @@ jobs:
   markdownlint:
     name: Run markdownlint
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     if: ${{ vars.SKIP_REVIEWDOG_MARKDOWNLINT != 'true' }}
     steps:
       - uses: actions/checkout@v7

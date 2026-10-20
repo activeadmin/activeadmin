@@ -15,6 +15,7 @@ jobs:
   eslint:
     name: Run eslint
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
       - uses: actions/checkout@v7
         with:

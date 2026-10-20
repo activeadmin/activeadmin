@@ -15,6 +15,7 @@ jobs:
   rubocop:
     name: Run rubocop
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     env:
       BUNDLE_ONLY: ${{ vars.RUBOCOP_BUNDLE_ONLY || 'rubocop' }}
     steps:

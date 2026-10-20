@@ -12,6 +12,7 @@ jobs:
   github_actions_lint:
     name: Run actionlint
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
       - uses: actions/checkout@v7
         with:
