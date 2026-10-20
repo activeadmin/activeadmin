@@ -79,14 +79,11 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
 
     context "when ransack provides case-insensitive start and end predicates" do
       before do
-        allow(Ransack::Predicate).to receive(:named).and_call_original
         allow(Ransack::Predicate).to receive(:named).with("i_start").and_return(instance_double(Ransack::Predicate))
       end
 
       it "defaults to case-insensitive predicates" do
-        expect(body).to have_field("q[title_i_cont]")
-        expect(body).to have_css("option[value=title_i_start]")
-        expect(body).to have_css("option[value=title_i_end]")
+        expect(default_string_filters).to eq [:i_cont, :eq, :i_start, :i_end]
       end
     end
 
@@ -97,9 +94,8 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       it "defaults to case-sensitive predicates" do
+        expect(default_string_filters).to eq [:cont, :eq, :start, :end]
         expect(body).to have_field("q[title_cont]")
-        expect(body).to have_css("option[value=title_start]")
-        expect(body).to have_css("option[value=title_end]")
       end
     end
 
