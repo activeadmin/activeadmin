@@ -9,7 +9,7 @@ PATH
       inherited_resources (~> 2.0)
       kaminari (>= 1.2.1)
       railties (>= 7.2)
-      ransack (>= 6.0)
+      ransack (>= 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -482,7 +482,7 @@ DEPENDENCIES
   rails (~> 8.1.0)
   rails-i18n
   rake
-  ransack (>= 6.0)
+  ransack (>= 4.2.0)
   rspec-rails
   rubocop
   rubocop-capybara
