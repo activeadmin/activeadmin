@@ -86,7 +86,13 @@ The Tailwind config file now uses ES module syntax. To fix it, either:
 - Rename `tailwind-active_admin.config.js` to `tailwind-active_admin.config.mjs`; or
 - Add `"type": "module"` to your `package.json` (your application may already be compatible with ESM).
 
+ActiveAdmin now requires Ransack 6.0 or later, which changes how string filters match on PostgreSQL. See the Ransack 6 entry under Breaking Changes.
+
 ### Breaking Changes
+- Ransack 6.0 or later is required. On PostgreSQL, Ransack 6 makes the `cont`, `start` and `end` predicates case-sensitive (`LIKE` instead of `ILIKE`); MySQL and SQLite keep their collation-based behavior. String filters now default to the case-insensitive `i_cont`, `eq`, `i_start` and `i_end` predicates, so the default search remains case-insensitive and the labels are unchanged.
+  - If you set `string_input_filters` (e.g. `[:eq, :cont]`), pass `filters:` (e.g. `[:start, :end]`) or declare filters with a predicate (e.g. `filter :name_cont`), those filters are now case-sensitive on PostgreSQL. Switch to the `i_` predicates (`:i_cont`, `:i_start`, `:i_end`, `filter :name_i_cont`) to keep case-insensitive matching.
+  - `filter_method_for_large_association` still defaults to `"_start"`, which is now case-sensitive on PostgreSQL. Set it to `"_i_start"` to keep case-insensitive matching; the filter label then reads "... i start", so you may want to set a custom label.
+  - Bookmarked URLs with the previous parameters (e.g. `q[title_cont]`) still filter the results and appear in the active filters, but the sidebar shows that filter empty with its first predicate selected.
 - jQuery and jQuery UI have been removed.
 - The `columns` component has been removed. Use `div`'s with Tailwind classes for modern, responsive layout.
 
