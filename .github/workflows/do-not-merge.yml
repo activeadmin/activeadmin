@@ -9,6 +9,8 @@ on:
       - labeled
       - unlabeled
 
+permissions: {}
+
 jobs:
   do-not-merge:
     if: ${{ contains(github.event.*.labels.*.name, 'do not merge') }}

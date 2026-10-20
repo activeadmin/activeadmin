@@ -3,6 +3,11 @@ name: ESLint
 on:
   pull_request:
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: read
+
 env:
   NODE_VERSION: ${{ vars.ESLINT_NODE_VERSION || '24.x' }}
 
@@ -12,11 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
-      - uses: tj-actions/changed-files@v47.0.6
+      - uses: tj-actions/changed-files@v47
         id: changed-files
         with:
           files: |
