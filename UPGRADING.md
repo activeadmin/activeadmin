@@ -87,6 +87,11 @@ The Tailwind config file now uses ES module syntax. To fix it, either:
 - Add `"type": "module"` to your `package.json` (your application may already be compatible with ESM).
 
 ### Breaking Changes
+- With Ransack 6.0 or later, string filters default to the case-insensitive `i_cont`, `eq`, `i_start` and `i_end` predicates instead of `cont`, `eq`, `start` and `end`. Earlier Ransack versions keep the previous defaults. On PostgreSQL, Ransack 6 makes `cont`, `start` and `end` case-sensitive (`LIKE` instead of `ILIKE`); MySQL and SQLite keep their collation-based behavior.
+  - If you set `string_input_filters` (e.g. `[:eq, :cont]`), pass `filters:` (e.g. `[:start, :end]`) or declare filters with a predicate (e.g. `filter :name_cont`), those filters become case-sensitive on PostgreSQL with Ransack 6. Switch to the `i_` predicates (`:i_cont`, `:i_start`, `:i_end`, `filter :name_i_cont`) to keep case-insensitive matching.
+  - `filter_method_for_large_association` still defaults to `"_start"`, which becomes case-sensitive on PostgreSQL with Ransack 6. Set it to `"_i_start"` to keep case-insensitive matching.
+  - Ransack 6.0 has no translations for the `i_` predicates, so the filter select and the active filters show their raw names (e.g. "i_cont"). Ransack 6.1 translates them but requires Rails 8.1; applications on earlier Rails versions stay on Ransack 6.0 and can add their own translations under `ransack.predicates` (e.g. `i_cont: "contains"`).
+  - Bookmarked URLs with the previous parameters (e.g. `q[title_cont]`) still filter the results and appear in the active filters, but the sidebar shows that filter empty with its first predicate selected.
 - jQuery and jQuery UI have been removed.
 - The `columns` component has been removed. Use `div`'s with Tailwind classes for modern, responsive layout.
 

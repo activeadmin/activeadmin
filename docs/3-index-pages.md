@@ -129,6 +129,14 @@ To override options for string or numeric filter pass `filters` option.
   filter :title, filters: [:start, :end]
 ```
 
+String filters default to the case-insensitive `i_cont`, `eq`, `i_start` and
+`i_end` predicates with Ransack 6.0 or later, and to `cont`, `eq`, `start` and
+`end` with earlier versions. On PostgreSQL, Ransack 6 makes `cont`, `start`
+and `end` case-sensitive, so use the `i_` predicates (e.g.
+`filters: [:i_start, :i_end]` or `filter :name_i_cont`) for case-insensitive
+matching. Ransack 6.0 shows the `i_` predicates with their raw names (e.g.
+"i_cont"); Ransack 6.1, which requires Rails 8.1, translates them.
+
 To set the same options for every string filter, instead of passing the `filters`
 option on each, use the `string_input_filters` config at the namespace or
 resource level. A resource-level setting overrides the namespace one, and the

@@ -6,7 +6,14 @@ module ActiveAdmin
         include Base
         include Base::SearchMethodSelect
 
-        filter :cont, :eq, :start, :end
+        # Ransack 6.0 added i_start and i_end; earlier versions get the case-sensitive predicates.
+        def self.filters
+          if Ransack::Predicate.named("i_start")
+            [:i_cont, :eq, :i_start, :i_end]
+          else
+            [:cont, :eq, :start, :end]
+          end
+        end
 
         # If the filter method includes a search condition, build a normal string search field.
         # Else, build a search field with a companion dropdown to choose a search condition from.

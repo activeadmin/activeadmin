@@ -180,6 +180,17 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
       end
     end
 
+    context "when filter condition has the default string predicate" do
+      let(:predicate) { ActiveAdmin::Inputs::Filters::StringInput.filters.first }
+      let(:search) do
+        Post.ransack("title_#{predicate}": "Hello")
+      end
+
+      it "should use the ransack translation of the predicate" do
+        expect(subject.label).to eq("Title #{Ransack::Translate.predicate(predicate)}")
+      end
+    end
+
     context "when filter condition has multiple fields" do
       let(:search) do
         Post.ransack(title_or_body_cont: "Hello World")

@@ -13,7 +13,7 @@ group :development, :test do
   gem "rails", "~> 8.0.0"
 
   gem "sprockets-rails"
-  gem "ransack", ">= 4.2.0"
+  gem "ransack", "~> 6.0.0"
   gem "formtastic", ">= 6.0.0"
 
   gem "cssbundling-rails"

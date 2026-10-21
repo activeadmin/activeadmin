@@ -445,7 +445,7 @@ DEPENDENCIES
   rails (~> 7.2.0)
   rails-i18n
   rake
-  ransack (>= 4.2.0)
+  ransack (~> 5.0)
   rspec-rails
   simplecov
   simplecov-cobertura
