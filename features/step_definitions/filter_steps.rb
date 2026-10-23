@@ -21,8 +21,13 @@ Then(/^I should see a date range filter for "([^"]*)"$/) do |label|
   expect(page).to have_css ".filters-form-field.date_range label", text: label
 end
 
+# NumberInput ancestry puts `numeric` on the range wrapper too, so exclude it here.
 Then(/^I should see a number filter for "([^"]*)"$/) do |label|
-  expect(page).to have_css ".filters-form-field.numeric label", text: label
+  expect(page).to have_css ".filters-form-field.numeric:not(.numeric_range) label", text: label
+end
+
+Then(/^I should see a number range filter for "([^"]*)"$/) do |label|
+  expect(page).to have_css ".filters-form-field.numeric_range label", text: label
 end
 
 Then(/^I should see the following filters:$/) do |table|

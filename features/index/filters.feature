@@ -115,6 +115,59 @@ Feature: Index Filtering
     And the "Jane Doe" checkbox should be checked
     And I should see current filter "author_id_in" equal to "Jane Doe"
 
+  Scenario: Numeric range - Bounds are inclusive by default
+    Given a post with position 1 exists
+    And a post with position 2 exists
+    And a post with position 5 exists
+    And a post with position 6 exists
+    And a post with position 7 exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        filter :position, as: :numeric_range
+      end
+    """
+    When I am on the index page for posts
+    Then I should see "Showing all 5"
+    And I should see the following filters:
+     | Position | number range |
+
+    When I fill in "From" with "2"
+    And I fill in "To" with "6"
+    And I press "Filter"
+    Then I should see 3 posts in the table
+    And I should see "Post 2" in the table
+    And I should see "Post 6" in the table
+    And I should not see "Post 1" in the table
+    And I should not see "Post 7" in the table
+    And I should see current filter "position_gteq" equal to "2"
+    And I should see current filter "position_lteq" equal to "6"
+
+  Scenario: Numeric range - Exclusive bounds leave the boundary rows out
+    Given a post with position 1 exists
+    And a post with position 2 exists
+    And a post with position 5 exists
+    And a post with position 6 exists
+    And a post with position 7 exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        filter :position, as: :numeric_range, filters: [:gt, :lt]
+      end
+    """
+    When I am on the index page for posts
+    And I fill in "From" with "2"
+    And I fill in "To" with "6"
+    And I press "Filter"
+    Then I should see 1 posts in the table
+    And I should see "Post 5" in the table
+    And I should not see "Post 1" in the table
+    And I should not see "Post 2" in the table
+    And I should not see "Post 6" in the table
+    And I should not see "Post 7" in the table
+    And I should see current filter "position_gt" equal to "2"
+    And I should see current filter "position_lt" equal to "6"
+
   Scenario: Disabling filters
     Given an index configuration of:
     """

@@ -11,6 +11,7 @@ module ActiveAdmin
       autoload :TextInput
       autoload :DateRangeInput
       autoload :NumericInput
+      autoload :NumericRangeInput
       autoload :SelectInput
       autoload :CheckBoxesInput
       autoload :BooleanInput
