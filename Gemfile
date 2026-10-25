@@ -13,7 +13,7 @@ group :development, :test do
   gem "rails", "~> 8.1.0"
 
   gem "sprockets-rails"
-  gem "ransack", ">= 4.2.0"
+  gem "ransack", ">= 4.2.0", "< 6.0" # TODO: remove version constraint when https://github.com/activeadmin/activeadmin/issues/9135 is resolved
   gem "formtastic", ">= 6.0.0"
 
   gem "cssbundling-rails"

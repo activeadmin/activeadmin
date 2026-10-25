@@ -164,18 +164,18 @@ Feature: Commenting
         ActiveAdmin.register Post
       """
     Then I should see "Comments (70)"
-    And I should see "Displaying comments 1 - 25 of 70 in total"
+    And I should see "Displaying comments 1–25 of 70 in total"
     And I should see 25 comments
     And I should see pagination page 2 link
     And I should see pagination page 3 link
     And I should see the pagination "Next" link
     When I follow "2"
-    Then I should see "Displaying comments 26 - 50 of 70 in total"
+    Then I should see "Displaying comments 26–50 of 70 in total"
     And I should see 25 comments
     And I should see the pagination "Next" link
     When I follow "Next"
     Then I should see 20 comments
-    And I should see "Displaying comments 51 - 70 of 70 in total"
+    And I should see "Displaying comments 51–70 of 70 in total"
     And I should not see the pagination "Next" link
 
   Scenario: Comments through explicit helper from custom controller

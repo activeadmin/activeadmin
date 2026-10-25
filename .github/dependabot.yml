@@ -22,6 +22,10 @@ updates:
     patterns:
       - "*"
     multi-ecosystem-group: bundler
+    ignore:
+      - dependency-name: "ransack"
+        versions: [">= 6.0.0"]
+        # TODO: remove when https://github.com/activeadmin/activeadmin/issues/9135 is resolved
   - package-ecosystem: npm
     directory: /
     schedule:
