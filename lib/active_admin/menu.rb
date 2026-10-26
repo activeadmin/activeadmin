@@ -49,7 +49,7 @@ module ActiveAdmin
       #
       def add(options)
         options = options.dup # Make sure parameter is not modified
-        parent_chain = Array.wrap(options.delete(:parent))
+        parent_chain = Array.wrap(options.delete(:parent)).dup # Array.wrap returns a given array itself
 
         item = if parent = parent_chain.shift
                  options[:parent] = parent_chain if parent_chain.any?
