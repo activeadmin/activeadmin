@@ -64,6 +64,16 @@ RSpec.describe ActiveAdmin::Menu do
       expect(menu["Users"].url).to eq "/some/url"
       expect(menu["Users"]["Posts"]).to be_a ActiveAdmin::MenuItem
     end
+
+    it "should keep nesting when the same options build the menu again" do
+      options = { parent: ["Admin", "Users"], label: "Projects" }
+      Menu.new.add options
+      menu = Menu.new
+      menu.add options
+
+      expect(options[:parent]).to eq ["Admin", "Users"]
+      expect(menu["Admin"]["Users"]["Projects"]).to be_an_instance_of(ActiveAdmin::MenuItem)
+    end
   end
 
   describe "determining if node is current" do
