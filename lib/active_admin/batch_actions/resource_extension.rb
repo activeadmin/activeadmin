@@ -10,6 +10,7 @@ module ActiveAdmin
 
       # @return [Array] The set of batch actions for this resource
       def batch_actions
+        @batch_actions ||= {}
         batch_actions_enabled? ? @batch_actions.values.sort : []
       end
 
