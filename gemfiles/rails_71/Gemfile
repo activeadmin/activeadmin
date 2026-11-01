@@ -15,6 +15,9 @@ group :development, :test do
 
   gem "rails", "~> 7.1.0"
 
+  # Rails 7.1 calls JSON.parse(json, quirks_mode: true), which json 3.0 rejects
+  gem "json", "< 3"
+
   gem "sprockets-rails"
   gem "sassc-rails"
   gem "ransack", ">= 4.1.0"
