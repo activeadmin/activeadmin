@@ -4,39 +4,35 @@
 
 ### Spreadsheet applications vulnerable to unescaped CSV data
 
-If your CSV export includes untrusted data provided by your users, it's possible
-that they could include an executable formula that could call arbitrary commands
-on your computer. See
+If your CSV export includes untrusted data from users, that data may contain an
+executable formula that can call arbitrary commands on your computer. See
 [#4256](https://github.com/activeadmin/activeadmin/issues/4256) for more
 details.
 
 ## Session Commits & Asset Pipeline
 
-When configuring the asset pipeline ensure that the asset prefix
-(`config.assets.prefix`) is not the same as the namespace of ActiveAdmin
-(default namespace is `/admin`). If they are the same Sprockets will prevent the
-session from being committed. Flash messages won't work and you will be unable to
-use the session for storing anything.
+When you configure the asset pipeline, make sure the asset prefix
+(`config.assets.prefix`) differs from the ActiveAdmin namespace (the default is
+`/admin`). If they match, Sprockets will not commit the session. Flash messages
+will not work, and the session cannot store data.
 
 For more information see [the following
 post](https://www.mobomo.com/2013/03/rails-assets-prefix-may-disable-your-session/).
 
 ## Helpers
 
-There is a known gotcha with helpers. This hopefully will help you to
-find a solution.
+### Helpers may not be included by default
 
-### Helper maybe not included by default
-
-If you use `config.action_controller.include_all_helpers = false` in your
-application config, you need to include it by hand.
+If you set `config.action_controller.include_all_helpers = false` in your
+application configuration, include the helper manually.
 
 #### Solutions
 
-##### First use an override
+##### Use an override
 
-This works for all ActiveAdmin resources at once. Please [follow the Rails
-guidelines for overriding](https://guides.rubyonrails.org/engines.html#improving-engine-functionality) this safely alongside Zeitwerk.
+This applies to all ActiveAdmin resources. Follow the [Rails guidelines for
+overriding](https://guides.rubyonrails.org/engines.html#improving-engine-functionality)
+to use this safely with Zeitwerk.
 
 ```ruby
 ActiveAdmin::BaseController.class_eval do
@@ -44,9 +40,9 @@ ActiveAdmin::BaseController.class_eval do
 end
 ```
 
-##### Second use the `controller` method
+##### Use the `controller` method
 
-This works only for one resource at a time.
+This applies to one resource at a time.
 
 ```ruby
 ActiveAdmin.register User do
@@ -58,9 +54,9 @@ end
 
 ## CSS
 
-To avoid overriding your application styles with the ActiveAdmin styles,
-remove the `require_tree` command from your application's CSS files, where
-the `active_admin.scss` is in the tree.
+To prevent ActiveAdmin styles from overriding your application styles, remove
+the `require_tree` command from the application's CSS file that includes
+`active_admin.scss` in its tree.
 
 ## Deprecation warnings with modern sass build tools
 
@@ -74,16 +70,14 @@ As a quick workaround, you may be able to silence these warnings by passing the 
 
 ### With gems that provides a `search` class method on a model
 
-If a gem defines a `search` class method on a model, this can result in conflicts
-with the same method provided by `ransack` (a dependency of ActiveAdmin).
+If a gem defines a `search` class method on a model, it can conflict with the
+method provided by `ransack`, a dependency of ActiveAdmin.
 
-Each of this conflicts need to solved is a different way. Some solutions are
-listed below.
+Use the solution for the gem that defines the conflicting method:
 
 #### `tire`, `retire` and `elasticsearch-rails`
 
-This conflict can be solved, by using explicitly the `search` method of `tire`,
-`retire` or `elasticsearch-rails`:
+Call the gem's `search` method explicitly:
 
 ##### For `tire` and `retire`
 
@@ -105,11 +99,11 @@ YourModel.solr_search
 
 ## Authentication & Application Controller
 
-The `ActiveAdmin::BaseController` inherits from the `ApplicationController`. Any
-authentication method(s) specified in the `ApplicationController` callbacks will
-be called instead of the authentication method in the active admin config file.
-For example, if the ApplicationController has a callback `before_action
-:custom_authentication_method` and the config file's authentication method is
+`ActiveAdmin::BaseController` inherits from `ApplicationController`. The
+authentication callbacks in `ApplicationController` run instead of the
+authentication method in the Active Admin configuration file. For example, if
+`ApplicationController` has a `before_action :custom_authentication_method`
+callback and the configuration sets
 `config.authentication_method = :authenticate_active_admin_user`, then
-`custom_authentication_method` will be called instead of
+`custom_authentication_method` runs instead of
 `authenticate_active_admin_user`.
