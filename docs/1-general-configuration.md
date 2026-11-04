@@ -132,6 +132,19 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+## Layout partials
+
+Run `rails g active_admin:views` to copy the layout and its partials into your
+app. Copy only the partials you change, so the rest keep receiving Active Admin
+fixes. The layout renders these partials for the page body:
+
++ `active_admin/_page_header.html.erb`: the `#page-header` bar. It renders
+  `_page_heading` and the `#action-items` list.
++ `active_admin/_page_heading.html.erb`: renders `_breadcrumbs` and
+  `_page_title`.
++ `active_admin/_page_content.html.erb`: the grid that holds the page content,
+  rendered with `yield`, and the sidebar.
+
 ## Comments
 
 By default Active Admin includes comments on resources. To disable comments:
