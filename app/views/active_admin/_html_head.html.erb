@@ -11,4 +11,5 @@
   }
 <% end %>
 <%= javascript_importmap_tags "active_admin", importmap: ActiveAdmin.importmap %>
-<%= javascript_import_module_tag(*active_admin_application.javascript_modules) if active_admin_application.javascript_modules.any? %>
+<% javascript_modules = active_admin_application.javascript_modules %>
+<%= javascript_import_module_tag(*javascript_modules) if javascript_modules.any? %>

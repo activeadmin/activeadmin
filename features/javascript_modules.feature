@@ -10,7 +10,7 @@ Feature: JavaScript modules
 
   Scenario: No modules registered
     When I am on the dashboard
-    Then the page should import only the "active_admin" JavaScript module
+    Then the page should import "active_admin"
 
   Scenario: Import registered modules after the entry point
     Given a configuration of:
@@ -18,4 +18,4 @@ Feature: JavaScript modules
       ActiveAdmin.application.javascript_modules = ["my_plugin/index", "other_plugin"]
     """
     When I am on the dashboard
-    Then the page should import the JavaScript modules "my_plugin/index, other_plugin" after "active_admin"
+    Then the page should import "active_admin" followed by "my_plugin/index, other_plugin"
