@@ -151,6 +151,9 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+Append to `javascript_modules` with `<<`. Assigning a new list drops the
+modules that engines added before your initializer ran.
+
 An engine pins its modules from an initializer that runs after Active Admin
 draws its import map:
 
