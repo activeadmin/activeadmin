@@ -132,6 +132,20 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+## Main menu breakpoint
+
+Below `80rem` (the Tailwind `xl` breakpoint) the main menu is a drawer that
+opens from the site header. From that width up it is a fixed side menu. The
+layout uses the `aa-menu` variant from the Active Admin Tailwind plugin for
+this. To change the width, declare the variant again after the `@config` line in
+`app/assets/stylesheets/active_admin.css`:
+
+```css
+@custom-variant aa-menu (@media (width >= 64rem));
+```
+
+To keep the drawer at every width, use `@media not all`.
+
 ## Comments
 
 By default Active Admin includes comments on resources. To disable comments:
