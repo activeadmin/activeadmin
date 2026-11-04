@@ -149,6 +149,11 @@ end
 Replace `:my_engine` with the `as:` name of the `mount` call, or the engine's
 `engine_name` when `mount` has no `as:` option.
 
+Active Admin pages then resolve route helpers against the engine's route set
+only. Draw the Devise routes in the same engine, because the default
+`logout_link_path` is a Devise route helper. Call routes from the host app
+through `main_app`, for example `main_app.books_path`.
+
 ## Comments
 
 By default Active Admin includes comments on resources. To disable comments:
