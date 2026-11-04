@@ -144,8 +144,6 @@ this. To change the width, declare the variant again after the `@config` line in
 @custom-variant aa-menu (@media (width >= 64rem));
 ```
 
-To keep the drawer at every width, use `@media not all`.
-
 ## Comments
 
 By default Active Admin includes comments on resources. To disable comments:
