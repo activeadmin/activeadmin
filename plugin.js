@@ -31,6 +31,10 @@ const svgToTinyDataUri = (() => {
 export default plugin(
   function({ addBase, addComponents, theme }) {
     addBase({
+      // Height of the fixed site header. The layout pads the page by the same amount.
+      ':root': {
+        '--aa-header-height': 'calc(var(--spacing) * 16)',
+      },
       [[
         "[type='text']",
         "[type='email']",
