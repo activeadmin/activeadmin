@@ -34,6 +34,20 @@ module ActiveAdmin
       base.override_resource_class_methods!
     end
 
+    # The responders gem only says the record could not be destroyed, so
+    # append the reasons from its errors.
+    def destroy(options = {}, &block)
+      begin
+        super
+      rescue ActiveRecord::DeleteRestrictionError => e
+        resource.errors.add(:base, e.message)
+        options[:location] ||= smart_collection_url
+        respond_with_dual_blocks(resource, options, &block)
+      end
+      messages = resource.errors.full_messages
+      flash[:alert] = [flash[:alert], *messages].join(" ") if flash[:alert].present? && messages.any?
+    end
+
     private
 
     def page_presenter
