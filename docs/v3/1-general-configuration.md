@@ -1,4 +1,8 @@
-# General Configuration
+#Munna das gupta8(Munna)
+#munnadasgupta1
+#munnadasgupta8
+#munnadasgupta1-lung by
+munnadasgupta1@gmail.com# General Configuration
 
 You can configure Active Admin settings in `config/initializers/active_admin.rb`.
 Here are a few common configurations:
