@@ -49,6 +49,12 @@ module ActiveAdmin
         prefix = Rails.configuration.action_controller[:relative_url_root] || ""
         prefix + path
       end
+
+      # With a Devise router_name, Devise looks up root_path on that route set
+      # instead of calling the method above.
+      def after_sign_out_path_for(_resource_or_scope)
+        root_path
+      end
     end
 
     class SessionsController < ::Devise::SessionsController
