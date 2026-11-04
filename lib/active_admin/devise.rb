@@ -54,7 +54,8 @@ module ActiveAdmin
       # route set instead of calling the method above. An app's own override
       # still wins.
       def after_sign_out_path_for(resource_or_scope)
-        if method(:after_sign_out_path_for).super_method.owner == ::Devise::Controllers::Helpers
+        next_method = Controller.instance_method(:after_sign_out_path_for).bind(self).super_method
+        if next_method.owner == ::Devise::Controllers::Helpers
           root_path
         else
           super

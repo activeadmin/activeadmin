@@ -11,7 +11,11 @@ RSpec.describe ActiveAdmin::Helpers::Routes do
     expect { described_class.no_such_path }.to raise_error(NoMethodError)
   end
 
-  it "uses the route set's default URL options" do
-    expect(described_class.default_url_options).to eq(Rails.application.routes.default_url_options)
+  it "uses the default URL options of ActiveAdmin's route set" do
+    route_set = ActionDispatch::Routing::RouteSet.new
+    route_set.default_url_options = { host: "admin.example.com" }
+    allow(ActiveAdmin.application).to receive(:route_set).and_return(route_set)
+
+    expect(described_class.default_url_options).to eq(host: "admin.example.com")
   end
 end

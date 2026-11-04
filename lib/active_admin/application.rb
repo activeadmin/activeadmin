@@ -149,7 +149,7 @@ module ActiveAdmin
     def routes(rails_router)
       # ActionDispatch::Routing::Mapper has no public reader for its route
       # set in Rails 7.2 to 8.1.
-      set = rails_router.instance_variable_get(:@set)
+      set = rails_router.instance_variable_get(:@set) || Rails.application.routes
       # Controllers pick up route helpers when they are built, so rebuild them
       # if they were loaded for another route set.
       unload! if loaded? && !set.equal?(route_set)

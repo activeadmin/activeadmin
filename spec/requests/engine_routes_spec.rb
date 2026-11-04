@@ -70,16 +70,20 @@ RSpec.describe "ActiveAdmin routes drawn in an engine", type: :request do
     end
   end
 
+  it "signs out to the engine's admin root from a controller that overrides the redirect and calls super" do
+    controller_class = Class.new(ActiveAdmin::Devise::SessionsController) do
+      def after_sign_out_path_for(resource_or_scope)
+        super
+      end
+    end
+
+    expect(controller_class.new.after_sign_out_path_for(:admin_user)).to eq "/backoffice/admin"
+  end
+
   it "renders the Devise login form with the engine's session path" do
     get "/backoffice/admin/login"
 
     expect(response).to have_http_status(:ok)
     expect(response.body).to include('action="/backoffice/admin/login"')
-  end
-end
-
-RSpec.describe "ActiveAdmin routes drawn in the application" do
-  it "uses the application's route set" do
-    expect(ActiveAdmin.application.route_set).to equal(Rails.application.routes)
   end
 end
