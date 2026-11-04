@@ -132,6 +132,18 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+## Layout partials
+
+Run `rails g active_admin:views` to copy the layout and its partials into your
+app. Copy only the partials you change, so the rest keep receiving Active Admin
+fixes. The site header, `#site-header`, renders these partials in order:
+
++ `active_admin/_header_leading.html.erb`: the menu button and the site title.
++ `active_admin/_header_navigation.html.erb`: empty by default. Override it to
+  add navigation between the title and the header actions.
++ `active_admin/_header_actions.html.erb`: the dark mode switch and the user
+  menu.
+
 ## Comments
 
 By default Active Admin includes comments on resources. To disable comments:
