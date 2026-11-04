@@ -27,11 +27,18 @@ module ActiveAdmin
       end
 
       if app.config.importmap.sweep_cache
-        ActiveAdmin.importmap.cache_sweeper(watches: package_path)
+        # Each cache_sweeper(watches:) call replaces the previous watcher, so
+        # build it once, after engines and config/initializers have added
+        # their directories to importmap_watches.
+        app.config.after_initialize { Engine.build_importmap_cache_sweeper }
         ActiveSupport.on_load(:action_controller_base) do
           before_action { ActiveAdmin.importmap.cache_sweeper.execute_if_updated }
         end
       end
+    end
+
+    def self.build_importmap_cache_sweeper
+      ActiveAdmin.importmap.cache_sweeper(watches: ActiveAdmin.application.importmap_watches.map(&:to_s).uniq)
     end
 
     initializer "active_admin.routes" do
