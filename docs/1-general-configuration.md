@@ -132,6 +132,38 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+## JavaScript modules
+
+Active Admin pages use their own import map, `ActiveAdmin.importmap`, and import
+only its `active_admin` entry point. A module pinned in your app's
+`config/importmap.rb` is not loaded on Active Admin pages.
+
+To add a module to every Active Admin page, pin it into `ActiveAdmin.importmap`
+and list it in `javascript_modules`. Active Admin imports these modules after
+`active_admin`, in order:
+
+```ruby
+# config/initializers/active_admin.rb
+ActiveAdmin.importmap.pin "admin/extras", to: "admin/extras.js"
+
+ActiveAdmin.setup do |config|
+  config.javascript_modules << "admin/extras"
+end
+```
+
+An engine pins its modules from an initializer that runs after Active Admin
+draws its import map:
+
+```ruby
+initializer "my_engine.active_admin", after: "active_admin.importmap" do |app|
+  next unless app.config.respond_to?(:importmap)
+
+  ActiveAdmin.importmap.draw(root.join("config/importmap.rb"))
+  app.config.assets.paths << root.join("app/javascript")
+  ActiveAdmin.application.javascript_modules << "my_engine/index"
+end
+```
+
 ## Comments
 
 By default Active Admin includes comments on resources. To disable comments:
