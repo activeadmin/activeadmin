@@ -17,7 +17,10 @@ module ActiveAdmin
     end
 
     def settings
-      @settings ||= SettingsNode.build(ApplicationSettings)
+      @settings ||= SettingsNode.build(ApplicationSettings).tap do |settings|
+        # Engines append with `<<`, which would otherwise change the shared default.
+        settings.importmap_watches = settings.importmap_watches.dup
+      end
     end
 
     def namespace_settings
