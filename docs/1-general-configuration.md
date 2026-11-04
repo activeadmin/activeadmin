@@ -132,6 +132,23 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+## Routes in an engine
+
+You can draw Active Admin's routes inside an engine's `config/routes.rb`. Active
+Admin then builds its route helpers from that engine's route set. When the
+engine also draws the Devise routes, set Devise's `router_name` to the name the
+engine is mounted under, so that the login pages find those routes:
+
+```ruby
+MyEngine::Engine.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config.merge(router_name: :my_engine)
+  ActiveAdmin.routes(self)
+end
+```
+
+Replace `:my_engine` with the `as:` name of the `mount` call, or the engine's
+`engine_name` when `mount` has no `as:` option.
+
 ## Comments
 
 By default Active Admin includes comments on resources. To disable comments:
