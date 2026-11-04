@@ -164,6 +164,25 @@ initializer "my_engine.active_admin", after: "active_admin.importmap" do |app|
   ActiveAdmin.importmap.draw(root.join("config/importmap.rb"))
   app.config.assets.paths << root.join("app/javascript")
   ActiveAdmin.application.javascript_modules << "my_engine/index"
+  ActiveAdmin.application.importmap_watches << root.join("app/javascript")
+end
+```
+
+If the engine vendors JavaScript packages, add its `vendor/javascript` directory
+to `app.config.assets.paths` as well. Propshaft serves only files in the asset
+paths.
+
+In development and test, Active Admin clears its import map cache when a file in
+one of the `importmap_watches` directories changes. The list starts with Active
+Admin's own `app/javascript`. Rails does not watch directories inside installed
+gems, so an engine's entry takes effect only while the engine is loaded from a
+path, such as an engine inside your app or a `path:` gem. When you pin modules
+from your app, add your directory so that edits to those modules reach the
+browser without a restart:
+
+```ruby
+ActiveAdmin.setup do |config|
+  config.importmap_watches << Rails.root.join("app/javascript")
 end
 ```
 

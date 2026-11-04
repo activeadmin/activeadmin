@@ -127,3 +127,37 @@ status_tag nil
 
 The default labels can be configured through the `"en.active_admin.status_tag"`
 locale.
+
+## Custom components
+
+A component class calls `builder_method` to add a method to the Arbre DSL:
+
+```ruby
+class StatCard < Arbre::Component
+  builder_method :stat_card
+
+  def build(title, value)
+    super(class: "stat-card")
+    h3 title
+    para value
+  end
+end
+```
+
+`builder_method` runs when the class body loads, so the component must load
+before Active Admin loads the files that use `stat_card`. Autoloading does not
+help, because nothing references the `StatCard` constant. Keep components outside
+`app/admin` and eager load their directory in a `to_prepare` block. Rails runs
+these blocks at boot and after each code reload, before Active Admin loads its
+resources:
+
+```ruby
+# config/application.rb, or lib/my_engine/engine.rb in an engine
+config.to_prepare do
+  Rails.autoloaders.main.eager_load_dir(Rails.root.join("app/admin_components"))
+end
+```
+
+In an engine, replace `Rails.root` with the engine's `root`. A gem that keeps
+components outside the autoload paths, such as under `lib/`, should `require`
+them from the same `to_prepare` block.
