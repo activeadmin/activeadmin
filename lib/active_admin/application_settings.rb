@@ -18,6 +18,12 @@ module ActiveAdmin
     # include their paths in this load path to provide active_admin UIs
     register :load_paths, [File.expand_path("app/admin", Rails.root)]
 
+    # Directories whose JavaScript changes clear the ActiveAdmin import map
+    # cache in development and test. Engines that pin modules into
+    # ActiveAdmin.importmap append their own directory here. Rails' file
+    # watcher skips directories under Gem.path, so only path gems benefit.
+    register :importmap_watches, [File.expand_path("../../app/javascript", __dir__)]
+
     # Set default localize format for Date/Time values
     register :localize_format, :long
 
@@ -39,5 +45,9 @@ module ActiveAdmin
 
     # Remove sensitive attributes from being displayed, made editable, or exported by default
     register :filter_attributes, [:encrypted_password, :password, :password_confirmation]
+
+    # Import map specifiers that every Active Admin page imports after the
+    # `active_admin` entry point. Pin each one into ActiveAdmin.importmap.
+    register :javascript_modules, []
   end
 end
