@@ -5,11 +5,12 @@ RSpec.describe "importmap_watches" do
   let(:application) { ActiveAdmin.application }
 
   around do |example|
-    original = application.importmap_watches.dup
+    original_watches = application.importmap_watches.dup
+    original_sweeper = ActiveAdmin.importmap.cache_sweeper
     example.run
   ensure
-    application.importmap_watches = original
-    ActiveAdmin::Engine.build_importmap_cache_sweeper
+    application.importmap_watches = original_watches
+    ActiveAdmin.importmap.instance_variable_set(:@cache_sweeper, original_sweeper)
   end
 
   it "watches ActiveAdmin's own JavaScript by default" do
@@ -28,11 +29,13 @@ RSpec.describe "importmap_watches" do
 
   it "clears the import map cache when a file in an added directory changes" do
     Dir.mktmpdir do |dir|
+      file = File.join(dir, "plugin.js")
+      File.write(file, "export default 1")
+      File.utime(Time.now - 60, Time.now - 60, file)
       application.importmap_watches += [Pathname(dir)]
       ActiveAdmin::Engine.build_importmap_cache_sweeper
 
-      File.write(File.join(dir, "plugin.js"), "export default 1")
-      FileUtils.touch(File.join(dir, "plugin.js"), mtime: Time.now + 5)
+      File.utime(Time.now - 1, Time.now - 1, file)
 
       expect(ActiveAdmin.importmap).to receive(:clear_cache)
       ActiveAdmin.importmap.cache_sweeper.execute_if_updated

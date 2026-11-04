@@ -20,7 +20,8 @@ module ActiveAdmin
 
     # Directories whose JavaScript changes clear the ActiveAdmin import map
     # cache in development and test. Engines that pin modules into
-    # ActiveAdmin.importmap append their own directory here.
+    # ActiveAdmin.importmap append their own directory here. Rails' file
+    # watcher skips directories under Gem.path, so only path gems benefit.
     register :importmap_watches, [File.expand_path("../../app/javascript", __dir__)]
 
     # Set default localize format for Date/Time values
