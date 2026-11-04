@@ -16,6 +16,10 @@ Given(/^(a|\d+)( published)?( unstarred| starred)? posts?(?: with the title "([^
   end
 end
 
+Given(/^a post with position (\d+) exists$/) do |position|
+  Post.create! title: "Post #{position}", position: position.to_i
+end
+
 Given(/^a category named "([^"]*)" exists$/) do |name|
   Category.create! name: name
 end
