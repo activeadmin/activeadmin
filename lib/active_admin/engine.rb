@@ -40,21 +40,7 @@ module ActiveAdmin
     def self.build_importmap_cache_sweeper
       watches = ActiveAdmin.application.importmap_watches
       ActiveAdmin.importmap.cache_sweeper(watches: watches)
-      watches.extend(SweptImportmapWatches).freeze
-    end
-
-    # The sweeper reads importmap_watches only when it is built, so a later
-    # append would be ignored. Fail loudly instead.
-    module SweptImportmapWatches
-      %i[<< push append concat unshift prepend insert].each do |name|
-        define_method(name) do |*|
-          raise FrozenError.new(
-            "ActiveAdmin.application.importmap_watches is read when the app boots. " \
-            "Append to it from an initializer, not after initialization.",
-            receiver: self
-          )
-        end
-      end
+      watches.freeze
     end
 
     initializer "active_admin.routes" do
