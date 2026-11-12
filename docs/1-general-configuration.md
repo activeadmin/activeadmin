@@ -178,7 +178,9 @@ Admin's own `app/javascript`. Rails does not watch directories inside installed
 gems, so an engine's entry takes effect only while the engine is loaded from a
 path, such as an engine inside your app or a `path:` gem. When you pin modules
 from your app, add your directory so that edits to those modules reach the
-browser without a restart:
+browser without a restart. Active Admin reads the list once, after all
+initializers have run, and raises an error if you append to it later. Append to
+it from an initializer, not from a `to_prepare` or `after_initialize` block:
 
 ```ruby
 ActiveAdmin.setup do |config|

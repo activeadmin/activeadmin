@@ -158,6 +158,7 @@ config.to_prepare do
 end
 ```
 
-In an engine, replace `Rails.root` with the engine's `root`. A gem that keeps
-components outside the autoload paths, such as under `lib/`, should `require`
-them from the same `to_prepare` block.
+In an engine, replace `Rails.root` with `MyEngine::Engine.root`. A bare `root`
+does not work there, because Rails runs `to_prepare` blocks outside the engine.
+A gem that keeps components outside the autoload paths, such as under `lib/`,
+should `require` them from the same `to_prepare` block.
