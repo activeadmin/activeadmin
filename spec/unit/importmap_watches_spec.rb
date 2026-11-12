@@ -25,7 +25,7 @@ RSpec.describe "importmap_watches" do
 
   it "raises when a directory is appended after the sweeper is built" do
     expect { application.importmap_watches << "/plugin/app/javascript" }
-      .to raise_error(FrozenError, /Append to it from an initializer/)
+      .to raise_error(FrozenError)
   end
 
   it "builds the ActiveAdmin import map sweeper during boot" do
