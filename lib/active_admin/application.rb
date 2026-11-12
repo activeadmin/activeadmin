@@ -47,6 +47,7 @@ module ActiveAdmin
     def route_set
       @route_set || Rails.application.routes
     end
+
     def initialize
       @namespaces = Namespace::Store.new
     end
