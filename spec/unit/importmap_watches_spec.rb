@@ -5,7 +5,7 @@ RSpec.describe "importmap_watches" do
   let(:application) { ActiveAdmin.application }
 
   around do |example|
-    original_watches = application.importmap_watches.dup
+    original_watches = application.importmap_watches
     original_sweeper = ActiveAdmin.importmap.cache_sweeper
     example.run
   ensure
@@ -18,9 +18,14 @@ RSpec.describe "importmap_watches" do
   end
 
   it "does not share appended directories with another application" do
-    application.importmap_watches << "/plugin/app/javascript"
+    ActiveAdmin::Application.new.importmap_watches << "/plugin/app/javascript"
 
     expect(ActiveAdmin::Application.new.importmap_watches).not_to include("/plugin/app/javascript")
+  end
+
+  it "raises when a directory is appended after the sweeper is built" do
+    expect { application.importmap_watches << "/plugin/app/javascript" }
+      .to raise_error(FrozenError, /Append to it from an initializer/)
   end
 
   it "builds the ActiveAdmin import map sweeper during boot" do
@@ -32,7 +37,8 @@ RSpec.describe "importmap_watches" do
       file = File.join(dir, "plugin.js")
       File.write(file, "export default 1")
       File.utime(Time.now - 60, Time.now - 60, file)
-      application.importmap_watches += [Pathname(dir)]
+      application.importmap_watches = application.importmap_watches.dup
+      application.importmap_watches << Pathname(dir)
       ActiveAdmin::Engine.build_importmap_cache_sweeper
 
       File.utime(Time.now - 1, Time.now - 1, file)
