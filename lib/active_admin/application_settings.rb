@@ -39,5 +39,9 @@ module ActiveAdmin
 
     # Remove sensitive attributes from being displayed, made editable, or exported by default
     register :filter_attributes, [:encrypted_password, :password, :password_confirmation]
+
+    # Import map specifiers that every Active Admin page imports after the
+    # `active_admin` entry point. Pin each one into ActiveAdmin.importmap.
+    register :javascript_modules, []
   end
 end

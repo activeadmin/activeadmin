@@ -58,6 +58,14 @@ RSpec.describe ActiveAdmin::Application do
     end.to raise_error(NoMethodError)
   end
 
+  describe "javascript_modules" do
+    it "does not share appended modules with another application" do
+      application.javascript_modules << "my_plugin/index"
+
+      expect(ActiveAdmin::Application.new.javascript_modules).to eq []
+    end
+  end
+
   describe "authentication settings" do
     it "should have no default current_user_method" do
       expect(application.current_user_method).to eq false
