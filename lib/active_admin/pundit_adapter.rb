@@ -56,7 +56,7 @@ module ActiveAdmin
       case subject
       when nil then resource
       when Class then subject.new
-      else subject
+      else undecorate(subject)
       end
     end
 
@@ -118,6 +118,9 @@ module ActiveAdmin
       @policies ||= {}
     end
 
+    def undecorate(subject)
+      ResourceController::Decorators.undecorate(subject)
+    end
   end
 
 end
