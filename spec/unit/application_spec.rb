@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 require "fileutils"
+require "tmpdir"
 
 RSpec.describe ActiveAdmin::Application do
   let(:application) { ActiveAdmin::Application.new }
@@ -81,33 +82,29 @@ RSpec.describe ActiveAdmin::Application do
       expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", application.app_path))
     end
 
-    it "should load files from subdirectories", :changes_filesystem do
-      test_dir = File.expand_path("app/admin/public", application.app_path)
-      test_file = File.expand_path("app/admin/public/posts.rb", application.app_path)
-
-      begin
-        FileUtils.mkdir_p(test_dir)
+    # These use a temporary load path rather than the test app's app/admin,
+    # where files would be picked up by specs running in other workers.
+    it "should load files from subdirectories" do
+      Dir.mktmpdir do |dir|
+        test_file = File.join(dir, "public/posts.rb")
+        FileUtils.mkdir_p(File.dirname(test_file))
         FileUtils.touch(test_file)
+
+        application.load_paths = [dir]
+
         expect(application.files).to include(test_file)
-      ensure
-        FileUtils.remove_entry_secure(test_dir, force: true)
       end
     end
 
-    it "should honor load paths order", :changes_filesystem do
-      test_dir = File.expand_path("app/other-admin", application.app_path)
-      test_file = File.expand_path("app/other-admin/posts.rb", application.app_path)
+    it "should honor load paths order" do
+      Dir.mktmpdir do |dir|
+        FileUtils.touch(File.join(dir, "posts.rb"))
 
-      application.load_paths.unshift(test_dir)
+        application.load_paths.unshift(dir)
 
-      begin
-        FileUtils.mkdir_p(test_dir)
-        FileUtils.touch(test_file)
         expect(application.files.map { |f| File.basename(f) }).to(
           eq(%w(posts.rb admin_users.rb companies.rb dashboard.rb profiles.rb stores.rb))
         )
-      ensure
-        FileUtils.remove_entry_secure(test_dir, force: true)
       end
     end
   end

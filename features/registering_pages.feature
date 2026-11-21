@@ -148,28 +148,6 @@ Feature: Registering Pages
     And I follow "Check"
     Then I should see the content "Chocolate I lØve You!"
 
-  @changes-filesystem
-  Scenario: Adding a page action to a page with erb view
-    Given a configuration of:
-    """
-    ActiveAdmin.register_page "Status" do
-      page_action :check do
-      end
-
-      content do
-        ("Chocolate I lØve You!" + link_to("Check", admin_status_check_path)).html_safe
-      end
-    end
-    """
-    And "app/views/admin/status/check.html.erb" contains:
-      """
-        <div>Chocolate lØves You Too!</div>
-      """
-    When I go to the dashboard
-    And I follow "Status"
-    And I follow "Check"
-    Then I should see the content "Chocolate lØves You Too!"
-
   Scenario: Registering a page with paginated index table for a collection Array
     Given a user named "John Doe" exists
     And a configuration of:

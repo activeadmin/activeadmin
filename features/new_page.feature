@@ -115,32 +115,6 @@ Feature: New Page
     And I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "This is the body"
 
-  @changes-filesystem
-  Scenario: Generating a form from a partial
-    Given "app/views/admin/posts/_form.html.erb" contains:
-    """
-      <% url = @post.new_record? ? admin_posts_path : admin_post_path(@post) %>
-      <%= active_admin_form_for @post, url: url do |f|
-            f.inputs :title, :body
-            f.actions
-          end %>
-    """
-    And a configuration of:
-    """
-      ActiveAdmin.register Post do
-        permit_params :custom_category_id, :author_id, :title, :body, :published_date, :starred
-
-        form partial: "form"
-      end
-    """
-    When I follow "New Post"
-    And I fill in "Title" with "Hello World"
-    And I fill in "Body" with "This is the body"
-    And I press "Create Post"
-    Then I should see "Post was successfully created."
-    And I should see the attribute "Title" with "Hello World"
-    And I should see the attribute "Body" with "This is the body"
-
   Scenario: Displaying fields at runtime
     Given a configuration of:
     """

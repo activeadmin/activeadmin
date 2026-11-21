@@ -92,34 +92,6 @@ Feature: Edit Page
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
 
-  @changes-filesystem
-  Scenario: Generating a form from a partial
-    Given "app/views/admin/posts/_form.html.erb" contains:
-    """
-      <% url = @post.new_record? ? admin_posts_path : admin_post_path(@post) %>
-      <%= active_admin_form_for @post, url: url do |f|
-            f.inputs :title, :body
-            f.actions
-          end %>
-    """
-    And a configuration of:
-    """
-      ActiveAdmin.register Post do
-        permit_params :category, :author, :title, :body, :published_date, :starred
-
-        form partial: "form"
-      end
-    """
-    When I am on the index page for posts
-    And I follow "Edit"
-    Then the "Title" field should contain "Hello World"
-    And the "Body" field should contain ""
-    When I fill in "Title" with "Hello World from update"
-    And I press "Update Post"
-    Then I should see "Post was successfully updated."
-    And I should see the attribute "Title" with "Hello World from update"
-    And I should see the attribute "Author" with "John Doe"
-
   Scenario: Generating a custom form for Tag resource
     Given a configuration of:
     """

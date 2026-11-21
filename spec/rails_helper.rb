@@ -27,6 +27,7 @@ RSpec.configure do |config|
 end
 
 require "support/system"
+require "support/temporary_views"
 
 # Force deprecations to raise an exception.
 ActiveAdmin::DeprecationHelper.behavior = :raise

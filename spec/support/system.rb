@@ -14,6 +14,16 @@ module SystemSpecHelpers
     login_as user, scope: :admin_user
     user
   end
+
+  # Matches a row of a show page's attributes table, e.g.
+  #   expect(page).to have_attribute_value("Title", "Hello World")
+  def have_attribute_value(title, value)
+    xpath = XPath.descendant[XPath.attr(:class).contains_word("attributes-table")]
+      .descendant(:th)[XPath.string.n.equals(title)]
+      .following_sibling(:td)[XPath.string.n.contains(value)]
+
+    have_xpath(xpath)
+  end
 end
 
 RSpec.configure do |config|

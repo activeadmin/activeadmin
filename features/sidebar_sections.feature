@@ -162,36 +162,6 @@ Feature: Sidebar Sections
     And I should see "First List First Item" within the "Help" sidebar
     And I should see "Second List Second Item" within the "Help" sidebar
 
-  @changes-filesystem
-  Scenario: Rendering sidebar by default without a block or partial name
-    Given "app/views/admin/posts/_help_sidebar.html.erb" contains:
-    """
-      <p>Hello World from a partial</p>
-    """
-    And a configuration of:
-    """
-    ActiveAdmin.register Post do
-      sidebar :help
-    end
-    """
-    When I am on the index page for posts
-    Then I should see "Hello World from a partial" within the "Help" sidebar
-
-  @changes-filesystem
-  Scenario: Rendering a partial as the sidebar content
-    Given "app/views/admin/posts/_custom_help_partial.html.erb" contains:
-    """
-      <p>Hello World from a custom partial</p>
-    """
-    And a configuration of:
-    """
-    ActiveAdmin.register Post do
-      sidebar :help, partial: "custom_help_partial"
-    end
-    """
-    When I am on the index page for posts
-    Then I should see "Hello World from a custom partial" within the "Help" sidebar
-
   Scenario: Position sidebar at the top using priority option
     Given a configuration of:
     """
