@@ -27,11 +27,43 @@ module CapybaraHelpers
     have_xpath(xpath)
   end
 
+  # Matches a table header cell by its exact text. With `sortable: true`, it
+  # must also be sortable, e.g.
+  #   expect(page).to have_table_header("Title", sortable: true)
+  def have_table_header(text, sortable: false)
+    have_css(sortable ? "th[data-sortable]" : "th", exact_text: text)
+  end
+
+  # Matches a link in an index table row's actions column, e.g.
+  #   expect(page).to have_member_link("View", href: admin_post_path(post))
+  def have_member_link(text, **options)
+    have_link(text, exact: true, **options) do |link|
+      link.find(:xpath, "..", wait: 0).matches_css?(".data-table-resource-actions", wait: 0)
+    end
+  end
+
   # Matches an index page's link to download the given format, e.g.
   #   expect(page).to have_download_link("CSV")
   # The link must say the format and point at a URL with its extension.
   def have_download_link(format)
     have_link(format, exact: true, href: /\.#{format.downcase}(\?|\z)/)
+  end
+
+  # Returns a table's rows as arrays of cell text, header row included, so
+  # a whole table can be compared at once. A checkbox in a cell reads as
+  # "[ ]". Compare with `match` to use regexes for cells that vary:
+  #
+  #   expect(table_rows(page, "#index_table_posts")).to match([
+  #     ["Id", "Title", "Created At"],
+  #     ["1", "Hello World", /\d{4}/]
+  #   ])
+  def table_rows(container, selector)
+    container.find(selector).all("tr").map do |row|
+      row.all("th, td").map do |cell|
+        checkbox = cell.has_css?("input[type=checkbox]", wait: false) ? "[ ]" : ""
+        checkbox + cell.text(normalize_ws: true)
+      end
+    end
   end
 
   # The response body as a Capybara node, so request specs can use the same

@@ -13,10 +13,6 @@ Around "@csv" do |scenario, block|
   end
 end
 
-Then "I should see nicely formatted datetimes" do
-  expect(page.body).to match(/\w+ \d{1,2}, \d{4} \d{2}:\d{2}/)
-end
-
 Then(/^I should( not)? see a link to download "([^"]*)"$/) do |negate, format|
   method = negate ? :to_not : :to
   expect(page).send method, have_css("a", text: format)

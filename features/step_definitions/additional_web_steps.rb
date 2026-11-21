@@ -73,7 +73,3 @@ end
 Then(/^I should see a validation error "([^"]*)"$/) do |error_message|
   expect(page).to have_css ".inline-errors", text: error_message
 end
-
-Then(/^I should see a table with id "([^"]*)"$/) do |dom_id|
-  page.find("table##{dom_id}")
-end

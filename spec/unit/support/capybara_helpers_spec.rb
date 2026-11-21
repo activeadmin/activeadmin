@@ -54,4 +54,29 @@ RSpec.describe CapybaraHelpers do
       expect(node).not_to have_breadcrumb_link("Posts")
     end
   end
+
+  describe "#have_member_link" do
+    it "matches an exact link label and destination in the actions column" do
+      node = Capybara.string('<div class="data-table-resource-actions"><a href="/posts">Posts</a></div>')
+
+      expect(node).to have_member_link("Posts", href: "/posts")
+      expect(node).not_to have_member_link("Post")
+      expect(node).not_to have_member_link("Posts", href: "/users")
+    end
+
+    it "rejects matching links outside the actions column" do
+      node = Capybara.string(<<~HTML)
+        <a href="/posts">Posts</a>
+        <div class="data-table-resource-actions"><a href="/users">Users</a></div>
+      HTML
+
+      expect(node).not_to have_member_link("Posts", href: "/posts")
+    end
+
+    it "rejects anchors without a destination" do
+      node = Capybara.string('<div class="data-table-resource-actions"><a>Posts</a></div>')
+
+      expect(node).not_to have_member_link("Posts")
+    end
+  end
 end
