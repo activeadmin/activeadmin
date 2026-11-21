@@ -8,28 +8,7 @@ end
 
 Capybara.server = :webrick
 
-module SystemSpecHelpers
-  def login_as_admin(email: "admin@example.com")
-    user = AdminUser.create_with(password: "password", password_confirmation: "password").find_or_create_by!(email: email)
-    login_as user, scope: :admin_user
-    user
-  end
-
-  # Matches a row of a show page's attributes table, e.g.
-  #   expect(page).to have_attribute_value("Title", "Hello World")
-  def have_attribute_value(title, value)
-    xpath = XPath.descendant[XPath.attr(:class).contains_word("attributes-table")]
-      .descendant(:th)[XPath.string.n.equals(title)]
-      .following_sibling(:td)[XPath.string.n.contains(value)]
-
-    have_xpath(xpath)
-  end
-end
-
 RSpec.configure do |config|
-  config.include Warden::Test::Helpers, type: :system
-  config.include SystemSpecHelpers, type: :system
-
   config.before(type: :system) do
     driven_by :rack_test
   end
@@ -49,6 +28,5 @@ RSpec.configure do |config|
   ensure
     ActiveAdmin.application.authentication_method = false
     ActiveAdmin.application.current_user_method = false
-    Warden.test_reset!
   end
 end

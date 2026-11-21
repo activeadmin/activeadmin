@@ -26,6 +26,7 @@ RSpec.configure do |config|
   config.include ActiveAdminIntegrationSpecHelper
 end
 
+require "support/authentication"
 require "support/system"
 require "support/capybara_helpers"
 require "support/resource_registration"
