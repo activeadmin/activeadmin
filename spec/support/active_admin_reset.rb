@@ -3,17 +3,20 @@
 # Resets Active Admin after every example, so each one starts with the test
 # app as it booted. Specs don't need to clean up registrations themselves.
 #
-# Three things carry over between examples otherwise:
+# Four things carry over between examples otherwise:
 #
 # 1. Resources registered in ActiveAdmin.application. Specs that call
 #    ActiveAdmin.register without unloading leave them registered, with
-#    their controllers and routes.
+#    their controllers and routes. Namespaces they add stay registered too,
+#    and unloading resources doesn't remove them.
 # 2. Controller classes from namespaces outside ActiveAdmin.application.
 #    Registering creates a real constant, such as Admin::PostsController,
 #    which Active Admin only removes when that namespace is unloaded. Many
 #    specs register in a throwaway ActiveAdmin::Application or Namespace, or
 #    remove a namespace from ActiveAdmin.application without unloading it.
-# 3. Routes drawn for a different application. Some specs swap
+# 3. Menu items added with Namespace#build_menu. It adds a callback that
+#    runs every time the menu is built, which survives menu resets.
+# 4. Routes drawn for a different application. Some specs swap
 #    ActiveAdmin.application for a temporary one (default_namespace_spec)
 #    and put it back without reloading routes.
 #
@@ -26,12 +29,13 @@
 # 1. Every namespace outside ActiveAdmin.application that registered
 #    something during the example is unloaded with Namespace#unload!.
 # 2. ActiveAdmin.application is reset to how it booted if its namespaces,
-#    registrations or routes changed, or if one of those namespaces shared
-#    a controller class with it (a throwaway :admin namespace registering
-#    "Dashboard", say). Unloading that namespace removes the shared class,
-#    and it may have been changed, so the reset loads the app's own admin
-#    files again, which creates fresh controller classes. Any namespace
-#    added since boot is unloaded and removed first.
+#    registrations, menu build callbacks or routes changed, or if one of
+#    those namespaces shared a controller class with it (a throwaway :admin
+#    namespace registering "Dashboard", say). Unloading that namespace
+#    removes the shared class, and it may have been changed, so the reset
+#    loads the app's own admin files again, which creates fresh controller
+#    classes. Any namespace added since boot is unloaded and removed first,
+#    and each namespace's menu build callbacks are restored.
 #
 # Only Active Admin's own unloading is used, the same as when code reloads
 # in development.
@@ -58,6 +62,7 @@ module ActiveAdminReset
 
     def record_booted_state
       @booted_state = current_state
+      @booted_menu_callbacks = menu_build_callbacks.transform_values(&:dup)
       @booted_route_names = route_names
     end
 
@@ -76,8 +81,21 @@ module ActiveAdminReset
       end
     end
 
+    # The callbacks each namespace's menu runs when it's built, which is where
+    # build_menu adds its items. They have no public accessor.
+    def menu_build_callbacks
+      ActiveAdmin.application.namespaces.to_h do |namespace|
+        [namespace.name, namespace.instance_variable_get(:@menus).instance_variable_get(:@build_callbacks)]
+      end
+    end
+
     def changed_since_boot?
-      current_state != booted_state || route_names != @booted_route_names
+      return true if current_state != booted_state
+      return true if route_names != @booted_route_names
+
+      menu_build_callbacks.any? do |name, callbacks|
+        callbacks.map(&:object_id) != @booted_menu_callbacks.fetch(name).map(&:object_id)
+      end
     end
 
     # Rails loads routes lazily, so this loads them first if needed.
@@ -92,6 +110,10 @@ module ActiveAdminReset
 
       (application.namespaces.names - booted_state.keys).each do |name|
         store.delete(name).unload!
+      end
+
+      menu_build_callbacks.each do |name, callbacks|
+        callbacks.replace(@booted_menu_callbacks.fetch(name))
       end
 
       ActiveAdmin.unload!
