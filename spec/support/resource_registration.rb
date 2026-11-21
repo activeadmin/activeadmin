@@ -10,12 +10,29 @@
 # example in a group shares one, `with_resources_during` in an `around`
 # block does the same job.
 #
-# The registrations are cleared after the example, so they don't carry into
-# later specs in the same worker.
+# After the example, the registrations are cleared and any namespace the
+# block created (e.g. `ActiveAdmin.register Post, namespace: :superadmin`)
+# is removed, so neither carries into later specs in the same worker.
+# Namespaces have to be removed explicitly because unloading resources
+# leaves them registered, and their routes would come back on reload.
 module ResourceRegistrationHelper
   def register_resources(&block)
-    @registered_resources = true
+    @namespaces_before_registration ||= registered_namespace_names
     load_resources(&block)
+  end
+
+  private
+
+  def registered_namespace_names
+    ActiveAdmin.application.namespaces.names
+  end
+
+  def clear_registered_resources
+    added = registered_namespace_names - @namespaces_before_registration
+    namespaces = ActiveAdmin.application.namespaces.instance_variable_get(:@namespaces)
+    added.each { |name| namespaces.delete(name) }
+
+    load_resources {}
   end
 end
 
@@ -24,6 +41,6 @@ RSpec.configure do |config|
   config.include ResourceRegistrationHelper, type: :system
 
   config.after do
-    load_resources {} if @registered_resources
+    clear_registered_resources if @namespaces_before_registration
   end
 end
