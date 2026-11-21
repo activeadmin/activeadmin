@@ -55,10 +55,6 @@ When(/^I go to (.+)$/) do |page_name|
   visit path_to(page_name)
 end
 
-When(/^I visit (.+) twice$/) do |page_name|
-  2.times { visit path_to(page_name) }
-end
-
 When(/^I press "([^"]*)"$/) do |button|
   click_on(button)
 end
