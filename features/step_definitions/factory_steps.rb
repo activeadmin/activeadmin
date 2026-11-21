@@ -24,10 +24,6 @@ Given(/^a (user|publisher) named "([^"]*)" exists$/) do |type, name|
   create_user name, type
 end
 
-Given(/^a store named "([^"]*)" exists$/) do |name|
-  Store.create! name: name
-end
-
 Given(/^I create a new post with the title "([^"]*)"$/) do |title|
   first(:link, "Posts").click
   click_on "New Post"

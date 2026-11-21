@@ -82,7 +82,3 @@ After "@authorization" do |scenario, block|
   ActiveAdmin.application.namespace(:admin).
     authorization_adapter = ActiveAdmin::AuthorizationAdapter
 end
-
-Around "@locale_manipulation" do |scenario, block|
-  I18n.with_locale(:en, &block)
-end
