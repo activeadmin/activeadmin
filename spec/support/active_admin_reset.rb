@@ -3,7 +3,7 @@
 # Resets Active Admin after every example, so each one starts with the test
 # app as it booted. Specs don't need to clean up registrations themselves.
 #
-# Two things carry over between examples otherwise:
+# Three things carry over between examples otherwise:
 #
 # 1. Resources registered in ActiveAdmin.application. Specs that call
 #    ActiveAdmin.register without unloading leave them registered, with
@@ -13,18 +13,21 @@
 #    which Active Admin only removes when that namespace is unloaded. Many
 #    specs register in a throwaway ActiveAdmin::Application or Namespace, or
 #    remove a namespace from ActiveAdmin.application without unloading it.
+# 3. Routes drawn for a different application. Some specs swap
+#    ActiveAdmin.application for a temporary one (default_namespace_spec)
+#    and put it back without reloading routes.
 #
 # Active Admin reopens an existing controller class instead of creating a
-# new one, so either kind of leftover carries its configuration (e.g.
+# new one, so a leftover controller class carries its configuration (e.g.
 # `belongs_to`) into later examples that register the same resource.
 #
 # After each example, and after its own cleanup:
 #
 # 1. Every namespace outside ActiveAdmin.application that registered
 #    something during the example is unloaded with Namespace#unload!.
-# 2. ActiveAdmin.application is reset to how it booted if its namespaces or
-#    registrations changed, or if one of those namespaces shared a
-#    controller class with it (a throwaway :admin namespace registering
+# 2. ActiveAdmin.application is reset to how it booted if its namespaces,
+#    registrations or routes changed, or if one of those namespaces shared
+#    a controller class with it (a throwaway :admin namespace registering
 #    "Dashboard", say). Unloading that namespace removes the shared class,
 #    and it may have been changed, so the reset loads the app's own admin
 #    files again, which creates fresh controller classes. Any namespace
@@ -55,11 +58,12 @@ module ActiveAdminReset
 
     def record_booted_state
       @booted_state = current_state
+      @booted_route_names = route_names
     end
 
     def reset
       shared_controllers = unload_other_namespaces
-      reset_application if shared_controllers || current_state != booted_state
+      reset_application if shared_controllers || changed_since_boot?
     end
 
     private
@@ -70,6 +74,16 @@ module ActiveAdminReset
       ActiveAdmin.application.namespaces.to_h do |namespace|
         [namespace.name, namespace.resources.map(&:controller_name).sort]
       end
+    end
+
+    def changed_since_boot?
+      current_state != booted_state || route_names != @booted_route_names
+    end
+
+    # Rails loads routes lazily, so this loads them first if needed.
+    def route_names
+      Rails.application.reload_routes_unless_loaded
+      Rails.application.routes.named_routes.names.sort
     end
 
     def reset_application
