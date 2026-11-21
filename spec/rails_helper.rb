@@ -32,6 +32,7 @@ require "support/system"
 require "support/capybara_helpers"
 require "support/resource_registration"
 require "support/application_settings"
+require "support/authorization_adapters"
 require "support/temporary_views"
 
 # Force deprecations to raise an exception.
