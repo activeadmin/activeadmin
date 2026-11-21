@@ -37,8 +37,8 @@ RSpec.describe "New page", type: :system do
       click_on "Create Post"
 
       expect(page).to have_text("Post was successfully created.")
-      expect(page).to have_attribute_value("Title", "Hello World")
-      expect(page).to have_attribute_value("Body", "This is the body")
+      expect(page).to have_attributes_table_text("Title", "Hello World")
+      expect(page).to have_attributes_table_text("Body", "This is the body")
     end
   end
 end

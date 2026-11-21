@@ -42,8 +42,8 @@ RSpec.describe "Edit page", type: :system do
       click_on "Update Post"
 
       expect(page).to have_text("Post was successfully updated.")
-      expect(page).to have_attribute_value("Title", "Hello World from update")
-      expect(page).to have_attribute_value("Author", "John Doe")
+      expect(page).to have_attributes_table_text("Title", "Hello World from update")
+      expect(page).to have_attributes_table_text("Author", "John Doe")
     end
   end
 end

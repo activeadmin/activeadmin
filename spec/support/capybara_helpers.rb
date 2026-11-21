@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+# Capybara helpers for request and system specs. Matchers work on a system
+# spec's `page` and on a request spec's `response_html`.
+module CapybaraHelpers
+  # Matches the title in the page header, e.g.
+  #   expect(page).to have_page_title("Posts")
+  def have_page_title(title)
+    have_css("[data-test-page-header] h2", exact_text: title)
+  end
+
+  # The response body as a Capybara node, so request specs can use the same
+  # matchers as system specs:
+  #   expect(response_html).to have_page_title("Posts")
+  def response_html
+    Capybara.string(response.body)
+  end
+end
+
+RSpec.configure do |config|
+  # System specs get these from capybara/rspec. Without them, `have_css` in a
+  # request spec falls back to RSpec's predicate matcher, whose failure
+  # message is only "expected ... to be truthy, got false".
+  config.include Capybara::RSpecMatchers, type: :request
+  config.include CapybaraHelpers, type: :request
+  config.include CapybaraHelpers, type: :system
+end
