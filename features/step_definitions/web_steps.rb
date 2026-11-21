@@ -104,10 +104,6 @@ Then(/^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/) do |l
   end
 end
 
-Then(/^I should be on (.+)$/) do |page_name|
-  expect(URI.parse(current_url).path).to eq path_to page_name
-end
-
 Then(/^I should see a flash with "([^"]*)"$/) do |text|
   expect(page).to have_text text
 end

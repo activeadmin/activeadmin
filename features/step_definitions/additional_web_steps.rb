@@ -1,7 +1,4 @@
 # frozen_string_literal: true
-Then(/^I should see a table header with "([^"]*)"$/) do |content|
-  expect(page).to have_xpath "//th", text: content
-end
 
 Then(/^I should not see a table header with "([^"]*)"$/) do |content|
   expect(page).to have_no_xpath "//th", text: content
@@ -39,14 +36,6 @@ Then(/^I should see a link to "([^"]*)"$/) do |link|
   else
     expect(page).to have_xpath "//a", text: link
   end
-end
-
-Then(/^I should be in the resource section for (.+)$/) do |resource_name|
-  expect(current_url).to include resource_name.tr(" ", "").underscore.pluralize
-end
-
-Then(/^I should see the content "([^"]*)"$/) do |content|
-  expect(page).to have_css "[data-test-page-content]", text: content
 end
 
 Then(/^I should see a validation error "([^"]*)"$/) do |error_message|

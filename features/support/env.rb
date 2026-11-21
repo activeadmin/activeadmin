@@ -61,9 +61,3 @@ end
 
 # Force deprecations to raise an exception.
 ActiveAdmin::DeprecationHelper.behavior = :raise
-
-After "@authorization" do |scenario, block|
-  # Reset back to the default auth adapter
-  ActiveAdmin.application.namespace(:admin).
-    authorization_adapter = ActiveAdmin::AuthorizationAdapter
-end
