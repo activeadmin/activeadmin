@@ -43,16 +43,8 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-Given(/^I am on (.+)$/) do |page_name|
-  visit path_to(page_name)
-end
-
 When(/^I go to (.+)$/) do |page_name|
   visit path_to(page_name)
-end
-
-When(/^I press "([^"]*)"$/) do |button|
-  click_on(button)
 end
 
 When(/^I follow "([^"]*)"$/) do |link|
@@ -61,22 +53,4 @@ end
 
 When(/^I click "(.*?)"$/) do |link|
   click_on(link)
-end
-
-When(/^I (check|uncheck) "([^"]*)"$/) do |action, field|
-  send action, field
-end
-
-Then(/^I should( not)? see( the element)? "([^"]*)"$/) do |negate, is_css, text|
-  should = negate ? :not_to : :to
-  have = is_css ? have_css(text) : have_text(text)
-  expect(page).send should, have
-end
-
-Then(/^I should see the field "([^"]*)" of type "([^"]+)"?$/) do |label, of_type|
-  expect(page).to have_field(label, type: of_type)
-end
-
-Then(/^I should see a flash with "([^"]*)"$/) do |text|
-  expect(page).to have_text text
 end
