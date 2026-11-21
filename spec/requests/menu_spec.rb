@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 require "rails_helper"
 
+# How the main menu is configured and rendered. Expanding nested items and
+# navigating with them needs JavaScript, so that's in spec/system/menu_spec.rb.
 RSpec.describe "Menu", type: :request do
   def have_menu_item(label)
     have_css("#main-menu li a", exact_text: label)
