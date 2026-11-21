@@ -61,11 +61,6 @@ Then(/^I should see a fieldset titled "([^"]*)"$/) do |title|
   expect(page).to have_css "fieldset legend", text: title
 end
 
-Then(/^the "([^"]*)" field should contain the option "([^"]*)"$/) do |field, option|
-  field = find_field(field)
-  expect(field).to have_css "option", text: option
-end
-
 Then(/^I should see the content "([^"]*)"$/) do |content|
   expect(page).to have_css "[data-test-page-content]", text: content
 end

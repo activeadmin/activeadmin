@@ -93,21 +93,6 @@ Then(/^I should see the field "([^"]*)" of type "([^"]+)"?$/) do |label, of_type
   expect(page).to have_field(label, type: of_type)
 end
 
-Then(/^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/) do |field, parent, value|
-  with_scope(parent) do
-    field = find_field(field)
-    value = field.tag_name == "textarea" ? field.text : field.value
-
-    expect(value).to match(/#{value}/)
-  end
-end
-
-Then(/^the "([^"]*)" select(?: within (.*))? should have "([^"]+)" selected$/) do |label, parent, option|
-  with_scope(parent) do
-    expect(page).to have_select(label, selected: option)
-  end
-end
-
 Then(/^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/) do |label, parent, negate|
   with_scope(parent) do
     checkbox = find_field(label)
