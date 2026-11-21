@@ -12,12 +12,15 @@
 #
 # After the example, the registrations are cleared and any namespace the
 # block created (e.g. `ActiveAdmin.register Post, namespace: :superadmin`)
-# is removed, so neither carries into later specs in the same worker.
-# Namespaces have to be removed explicitly because unloading resources
-# leaves them registered, and their routes would come back on reload.
+# is removed, and menu items the block added with `build_menu` are
+# removed, so none of it carries into later specs in the same worker.
+# Unloading resources doesn't undo either: namespaces stay registered (and
+# their routes come back on reload), and build_menu callbacks survive
+# menu resets.
 module ResourceRegistrationHelper
   def register_resources(&block)
     @namespaces_before_registration ||= registered_namespace_names
+    @menu_callbacks_before_registration ||= menu_build_callbacks.transform_values(&:dup)
     load_resources(&block)
   end
 
@@ -45,10 +48,22 @@ module ResourceRegistrationHelper
     ActiveAdmin.application.namespaces.names
   end
 
+  # The callbacks each namespace's menu runs when it's built, which is where
+  # build_menu adds its items.
+  def menu_build_callbacks
+    ActiveAdmin.application.namespaces.to_h do |namespace|
+      [namespace.name, namespace.instance_variable_get(:@menus).instance_variable_get(:@build_callbacks)]
+    end
+  end
+
   def clear_registered_resources
     added = registered_namespace_names - @namespaces_before_registration
     namespaces = ActiveAdmin.application.namespaces.instance_variable_get(:@namespaces)
     added.each { |name| namespaces.delete(name) }
+
+    menu_build_callbacks.each do |name, callbacks|
+      callbacks.replace(@menu_callbacks_before_registration.fetch(name))
+    end
 
     load_resources {}
   end
