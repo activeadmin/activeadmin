@@ -40,7 +40,7 @@ RSpec.describe "Authorization", type: :request do
       get admin_post_path(post_record)
 
       expect(response_html).to have_page_title("Hello World")
-      expect(response_html).to have_no_css("[data-test-action-items] a", text: "Edit Post")
+      expect(response_html).to have_no_css("[data-test-action-items] a", text: "Edit")
     end
 
     it "denies a page" do

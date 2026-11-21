@@ -71,5 +71,6 @@ RSpec.describe "Index pagination", type: :request do
     expect(response_html).to have_text("Showing 11-11")
     expect(response_html).to have_css("[data-test-pagination]")
     expect(response_html).to have_no_css("[data-test-pagination] a[rel=next]")
+    expect(response_html).to have_no_css("[data-test-pagination] a", text: "Next")
   end
 end

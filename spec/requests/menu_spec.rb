@@ -72,7 +72,10 @@ RSpec.describe "Menu", type: :request do
     expect(response_html).to have_menu_item("Users")
     expect(response_html).to have_hidden_menu_item("Posts")
 
-    get admin_users_path
+    users_link = response_html.find("#main-menu li a", exact_text: "Users")
+    expect(users_link[:href]).to eq admin_users_path
+
+    get users_link[:href]
 
     expect(response_html).to have_css("#main-menu li a.selected", exact_text: "Users")
     expect(response_html).to have_nested_menu_item("Posts")
