@@ -26,5 +26,7 @@ RSpec.configure do |config|
   config.include ActiveAdminIntegrationSpecHelper
 end
 
+require "support/system"
+
 # Force deprecations to raise an exception.
 ActiveAdmin::DeprecationHelper.behavior = :raise
