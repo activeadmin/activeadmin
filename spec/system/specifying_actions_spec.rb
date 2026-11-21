@@ -58,8 +58,37 @@ RSpec.describe "Specifying actions", type: :system do
         click_on "Review"
 
         expect(page).to have_text("Review: Hello World")
-        within("[data-test-page-header]") { expect(page).to have_text("Review") }
+        expect(page).to have_page_title("Review")
       end
     end
+  end
+
+  it "calls a custom member action with multiple http methods", js: true do
+    register_resources do
+      ActiveAdmin.register Post do
+        action_item(:get_check, only: :show) do
+          link_to('Get Check', check_admin_post_path)
+        end
+
+        action_item(:post_check, only: :show) do
+          link_to('Post Check', check_admin_post_path, method: :post)
+        end
+
+        member_action :check, method: [:get, :post] do
+          redirect_to admin_post_path(resource), notice: "Checked via #{request.method}"
+        end
+      end
+    end
+    login_as_admin
+    Post.create!(title: "Hello World", starred: nil)
+    visit admin_posts_path
+    click_link "View", exact: true
+    click_link "Get Check", exact: true
+
+    expect(page).to have_text("Checked via GET")
+
+    click_link "Post Check", exact: true
+
+    expect(page).to have_text("Checked via POST")
   end
 end
