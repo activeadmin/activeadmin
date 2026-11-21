@@ -16,21 +16,6 @@ require "#{ActiveAdmin::TestApplication.new.full_app_dir}/config/environment.rb"
 require_relative "rails"
 require_relative "../../spec/support/active_support_deprecation"
 
-require "rspec/mocks"
-World(RSpec::Mocks::ExampleMethods)
-
-Around "@mocks" do |scenario, block|
-  RSpec::Mocks.setup
-
-  block.call
-
-  begin
-    RSpec::Mocks.verify
-  ensure
-    RSpec::Mocks.teardown
-  end
-end
-
 After "@debug" do |scenario|
   # simplecov:disable
   save_and_open_page if scenario.failed?
