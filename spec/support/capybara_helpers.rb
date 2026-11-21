@@ -9,6 +9,13 @@ module CapybaraHelpers
     have_css("[data-test-page-header] h2", exact_text: title)
   end
 
+  # Matches an index page's link to download the given format, e.g.
+  #   expect(page).to have_download_link("CSV")
+  # The link must say the format and point at a URL with its extension.
+  def have_download_link(format)
+    have_link(format, exact: true, href: /\.#{format.downcase}(\?|\z)/)
+  end
+
   # The response body as a Capybara node, so request specs can use the same
   # matchers as system specs:
   #   expect(response_html).to have_page_title("Posts")

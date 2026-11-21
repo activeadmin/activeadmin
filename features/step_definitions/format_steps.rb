@@ -61,7 +61,3 @@ end
 Then(/^the CSV file should start with BOM$/) do
   expect(page.driver.response.body.bytes).to start_with(239, 187, 191)
 end
-
-Then(/^access denied$/) do
-  expect(page).to have_text(I18n.t("active_admin.access_denied.message"))
-end
