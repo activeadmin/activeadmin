@@ -57,10 +57,6 @@ Then(/^I should see the page title "([^"]*)"$/) do |title|
   end
 end
 
-Then(/^I should see a fieldset titled "([^"]*)"$/) do |title|
-  expect(page).to have_css "fieldset legend", text: title
-end
-
 Then(/^I should see the content "([^"]*)"$/) do |content|
   expect(page).to have_css "[data-test-page-content]", text: content
 end
