@@ -41,25 +41,32 @@ module ActiveAdminIntegrationSpecHelper
     arbre(assigns, helpers, &block).children.first
   end
 
-  # A mock action view to test view helpers
-  class MockActionView < ::ActionView::Base
+  # Helpers available to the mock action view used to test view helpers
+  module MockActionViewHelpers
     include ActiveAdmin::LayoutHelper
     include ActiveAdmin::AutoLinkHelper
     include ActiveAdmin::DisplayHelper
     include ActiveAdmin::IndexHelper
     include MethodOrProcHelper
-    include Rails.application.routes.url_helpers
-
-    def compiled_method_container
-      self.class
-    end
   end
 
-  # Returns a fake action view instance to use with our renderers
-  def mock_action_view(base = MockActionView)
+  # Returns a fake action view instance to use with our renderers.
+  #
+  # Rails compiles each template once, into the shared view class that all
+  # real views inherit from. The mock must inherit from that same class:
+  # otherwise a template first rendered by a real request (e.g. in a system
+  # spec) is missing here, and one first rendered here is missing from the
+  # next real request.
+  def mock_action_view
+    view_class = Class.new(ActionView::LookupContext::DetailsKey.view_context_class) do
+      include MockActionViewHelpers
+      # Included here rather than in the module: its `included` hook sets up
+      # default_url_options on the including class.
+      include Rails.application.routes.url_helpers
+    end
     controller = ActionView::TestCase::TestController.new
 
-    base.new(view_paths, {}, controller)
+    view_class.new(view_paths, {}, controller)
   end
 
   # Instantiates a fake decorated controller ready to unit test for a specific action
