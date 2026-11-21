@@ -83,17 +83,6 @@ After "@authorization" do |scenario, block|
     authorization_adapter = ActiveAdmin::AuthorizationAdapter
 end
 
-Around "@silent_unpermitted_params_failure" do |scenario, block|
-  original = ActionController::Parameters.action_on_unpermitted_parameters
-
-  begin
-    ActionController::Parameters.action_on_unpermitted_parameters = false
-    block.call
-  ensure
-    ActionController::Parameters.action_on_unpermitted_parameters = original
-  end
-end
-
 Around "@locale_manipulation" do |scenario, block|
   I18n.with_locale(:en, &block)
 end
