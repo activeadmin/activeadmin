@@ -8,6 +8,7 @@ RSpec.describe "Site title", type: :request do
 
   it "uses a string" do
     set_application_setting(:site_title, "My Great Site")
+    load_default_resources
 
     get admin_root_path
 
@@ -17,6 +18,7 @@ RSpec.describe "Site title", type: :request do
   it "uses a proc, which can call the controller" do
     login_as_admin
     set_application_setting(:site_title, proc { "Hello #{controller.current_admin_user.try(:email) || 'you!'}" })
+    load_default_resources
 
     get admin_root_path
 
@@ -25,7 +27,7 @@ RSpec.describe "Site title", type: :request do
 
   it "uses a namespace's own title in that namespace" do
     set_application_setting(:site_title, "My Great Site")
-    register_resources do
+    load_default_resources do
       ActiveAdmin.application.namespace(:superadmin).site_title = "Namespace Site Title"
       ActiveAdmin.register AdminUser, namespace: :superadmin
     end

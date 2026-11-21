@@ -21,6 +21,24 @@ module ResourceRegistrationHelper
     load_resources(&block)
   end
 
+  # Loads the test app's own app/admin files (dashboard, admin users,
+  # companies, stores, profiles) for the current example, plus anything the
+  # block registers. Use it when a spec relies on those, e.g. the dashboard
+  # at admin_root_path, and doesn't register anything itself.
+  #
+  # register_resources loads them as a side effect: reloading routes calls
+  # ActiveAdmin.routes, which loads the app's admin files. A spec that
+  # registers nothing mustn't rely on what earlier specs left behind, though.
+  # Some (e.g. default_namespace_spec) swap ActiveAdmin.application and leave
+  # routes from a different application. Cucumber reloaded the app's admin
+  # files before every scenario; RSpec doesn't.
+  def load_default_resources
+    register_resources do
+      ActiveAdmin.application.load!
+      yield if block_given?
+    end
+  end
+
   private
 
   def registered_namespace_names
