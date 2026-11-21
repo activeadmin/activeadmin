@@ -14,6 +14,15 @@ module AuthenticationHelpers
     login_as user, scope: :admin_user
     user
   end
+
+  # Turns on the test app's Devise authentication and current user method
+  # for the current example. Request specs run with both off; use this when
+  # a request spec needs Active Admin to know who's signed in, e.g. to
+  # check authorization. Pair it with login_as_admin.
+  def enable_authentication
+    set_application_setting(:authentication_method, :authenticate_admin_user!)
+    set_application_setting(:current_user_method, :current_admin_user)
+  end
 end
 
 RSpec.configure do |config|
