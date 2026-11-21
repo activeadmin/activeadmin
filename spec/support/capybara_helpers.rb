@@ -42,6 +42,24 @@ module CapybaraHelpers
     end
   end
 
+  # Matches an index page scope link by name. Optionally its count
+  # (`count: false` for none) and whether it's selected, e.g.
+  #   expect(page).to have_scope("All", count: 2, selected: true)
+  def have_scope(name, count: nil, selected: nil)
+    selector = ".scopes a"
+    selector += ".index-button-selected" if selected == true
+    selector += ":not(.index-button-selected)" if selected == false
+
+    count_pattern = { nil => "( \\d+)?", false => "" }.fetch(count) { " #{count}" }
+    have_css(selector, text: /\A#{Regexp.escape(name)}#{count_pattern}\z/, normalize_ws: true)
+  end
+
+  # Matches the number of rows in an index table's body, e.g.
+  #   expect(page).to have_table_rows(2)
+  def have_table_rows(count)
+    have_css(".data-table tbody tr", count: count)
+  end
+
   # Matches an index page's link to download the given format, e.g.
   #   expect(page).to have_download_link("CSV")
   # The link must say the format and point at a URL with its extension.
