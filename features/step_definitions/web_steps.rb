@@ -43,10 +43,6 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-When(/^(.*) within (.*)$/) do |step_name, parent|
-  with_scope(parent) { step step_name }
-end
-
 Given(/^I am on (.+)$/) do |page_name|
   visit path_to(page_name)
 end
@@ -67,14 +63,6 @@ When(/^I click "(.*?)"$/) do |link|
   click_on(link)
 end
 
-When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
-  fill_in(field, with: value)
-end
-
-When(/^I select "([^"]*)" from "([^"]*)"$/) do |value, field|
-  select(value, from: field)
-end
-
 When(/^I (check|uncheck) "([^"]*)"$/) do |action, field|
   send action, field
 end
@@ -87,17 +75,6 @@ end
 
 Then(/^I should see the field "([^"]*)" of type "([^"]+)"?$/) do |label, of_type|
   expect(page).to have_field(label, type: of_type)
-end
-
-Then(/^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/) do |label, parent, negate|
-  with_scope(parent) do
-    checkbox = find_field(label)
-    if negate
-      expect(checkbox).not_to be_checked
-    else
-      expect(checkbox).to be_checked
-    end
-  end
 end
 
 Then(/^I should see a flash with "([^"]*)"$/) do |text|

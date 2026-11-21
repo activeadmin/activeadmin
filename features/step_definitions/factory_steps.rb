@@ -15,11 +15,3 @@ Given(/^(a|\d+)( published)?( unstarred| starred)? posts?(?: with the title "([^
     Post.create! title: title % i, body: body, author: author, published_date: published, custom_category_id: category.try(:id), starred: starred
   end
 end
-
-Given(/^a category named "([^"]*)" exists$/) do |name|
-  Category.create! name: name
-end
-
-Given(/^a (user|publisher) named "([^"]*)" exists$/) do |type, name|
-  create_user name, type
-end

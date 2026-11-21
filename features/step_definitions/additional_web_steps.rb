@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-Then(/^I should not see a sortable table header$/) do
-  step %{I should not see "th[data-sortable]"}
-end
-
 Then(/^I should see a link to "([^"]*)"$/) do |link|
   if Capybara.current_driver == Capybara.javascript_driver
     expect(page).to have_xpath "//a", text: link, wait: 30
