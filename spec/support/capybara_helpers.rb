@@ -9,6 +9,14 @@ module CapybaraHelpers
     have_css("[data-test-page-header] h2", exact_text: title)
   end
 
+  # Matches a link in the page header's breadcrumb, e.g.
+  #   expect(page).to have_breadcrumb_link("Posts", href: admin_posts_path)
+  def have_breadcrumb_link(text, **options)
+    have_link(text, exact: true, **options) do |link|
+      link.has_ancestor?("nav[aria-label=breadcrumb]", wait: 0)
+    end
+  end
+
   # Matches the exact normalized label and value in an attributes table, e.g.
   #   expect(page).to have_attributes_table_text("Title", "Hello World")
   def have_attributes_table_text(title, value)
