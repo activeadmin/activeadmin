@@ -3,10 +3,8 @@ require "rails_helper"
 
 RSpec.describe "Index page title", type: :request do
   def register_post_index(&block)
-    load_resources { ActiveAdmin.register(Post, &block) }
+    register_resources { ActiveAdmin.register(Post, &block) }
   end
-
-  after { load_resources {} }
 
   it "uses a string" do
     register_post_index { index title: "Awesome Title" }

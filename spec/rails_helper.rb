@@ -28,6 +28,7 @@ end
 
 require "support/system"
 require "support/capybara_helpers"
+require "support/resource_registration"
 require "support/temporary_views"
 
 # Force deprecations to raise an exception.
