@@ -30,26 +30,38 @@ RSpec.describe "Development reloading" do
     end
   end
 
-  it "picks up new admin files and model changes without a restart" do
+  it "picks up new admin files and model changes without a restart, while signed in" do
     script = File.expand_path("../support/reloading_app_script.rb", __dir__)
     repo_root = File.expand_path("../..", __dir__)
 
     stdout, stderr, status = Open3.capture3(
-      { "RAILS_ENV" => "test" },
+      # Database URLs override database.yml. The child loads a fresh schema,
+      # so it must use the copied app's database rather than an inherited URL.
+      { "RAILS_ENV" => "test", "DATABASE_URL" => nil, "PRIMARY_DATABASE_URL" => nil },
       RbConfig.ruby, script, @app_copy,
       chdir: repo_root
     )
 
     expect(status).to be_success, "reloading script failed:\n#{stderr}\n#{stdout}"
-    results = JSON.parse(stdout[/^RESULTS=(.*)$/, 1])
+    result_json = stdout[/^RESULTS=(.*)$/, 1]
+    expect(result_json).not_to be_nil, "reloading script returned no results:\n#{stderr}\n#{stdout}"
+    results = JSON.parse(result_json)
 
     expect(results).to include(
+      "signed_in_before_registering" => true,
       "menu_before_registering" => false,
+      "signed_in_after_registering" => true,
       "menu_after_registering" => true,
-      "create_status" => 303,
       "created_flash" => true,
+      "blank_title_created_before_validation" => true,
+      "post_titles_before_validation" => ["A", ""],
       "invalid_status" => 422,
-      "validation_error" => true
+      "validation_error" => true,
+      "created_after_invalid" => false,
+      "post_count_after_invalid" => 2,
+      "menu_after_model_change" => true,
+      "created_after_model_change" => true,
+      "post_titles" => ["A", "", "After reload"]
     )
   end
 end
