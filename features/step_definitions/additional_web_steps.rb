@@ -1,33 +1,7 @@
 # frozen_string_literal: true
 
-Then(/^I should not see a table header with "([^"]*)"$/) do |content|
-  expect(page).to have_no_xpath "//th", text: content
-end
-
-Then(/^I should see a sortable table header with "([^"]*)"$/) do |content|
-  expect(page).to have_css "th[data-sortable]", text: content
-end
-
-Then(/^I should not see a sortable table header with "([^"]*)"$/) do |content|
-  expect(page).to have_no_css "th[data-sortable]", text: content
-end
-
 Then(/^I should not see a sortable table header$/) do
   step %{I should not see "th[data-sortable]"}
-end
-
-Then(/^the table "([^"]*)" should have (\d+) rows/) do |selector, count|
-  trs = page.find(selector).all :css, "tr"
-  expect(trs.size).to eq count.to_i
-end
-
-Then(/^the table "([^"]*)" should have (\d+) columns/) do |selector, count|
-  tds = page.find(selector).find("tr:first").all :css, "td"
-  expect(tds.size).to eq count.to_i
-end
-
-Then(/^there should be (\d+) "([^"]*)" tags?$/) do |count, tag|
-  expect(page.all(:css, tag).size).to eq count.to_i
 end
 
 Then(/^I should see a link to "([^"]*)"$/) do |link|
@@ -36,8 +10,4 @@ Then(/^I should see a link to "([^"]*)"$/) do |link|
   else
     expect(page).to have_xpath "//a", text: link
   end
-end
-
-Then(/^I should see a validation error "([^"]*)"$/) do |error_message|
-  expect(page).to have_css ".inline-errors", text: error_message
 end
