@@ -12,16 +12,6 @@ Given(/^I am logged in$/) do
   login_as ensure_user_created("admin@example.com"), scope: :admin_user
 end
 
-Given(/^I am logged in with capybara$/) do
-  ensure_user_created "admin@example.com"
-  step "log out"
-
-  visit new_admin_user_session_path
-  fill_in "Email", with: "admin@example.com"
-  fill_in "Password", with: "password"
-  click_on "Sign In"
-end
-
 Given(/^an admin user "([^"]*)" exists$/) do |email|
   ensure_user_created(email)
 end

@@ -45,12 +45,6 @@ Then(/^I should be in the resource section for (.+)$/) do |resource_name|
   expect(current_url).to include resource_name.tr(" ", "").underscore.pluralize
 end
 
-Then(/^I should see the page title "([^"]*)"$/) do |title|
-  within("[data-test-page-header]") do
-    expect(page).to have_text title
-  end
-end
-
 Then(/^I should see the content "([^"]*)"$/) do |content|
   expect(page).to have_css "[data-test-page-content]", text: content
 end
