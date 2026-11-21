@@ -172,7 +172,9 @@ RSpec.describe ActiveAdmin::PunditAdapter do
     end
 
     context "when retrieve_policy is given a page and namespace is :active_admin" do
-      let(:page) { namespace.register_page "Dashboard" }
+      # Any page name works. "Dashboard" would share the test app's
+      # Admin::DashboardController, since this namespace is also :admin.
+      let(:page) { namespace.register_page "Reports" }
 
       subject(:policy) { auth.retrieve_policy(page) }
 

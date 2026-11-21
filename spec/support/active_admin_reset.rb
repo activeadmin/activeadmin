@@ -28,18 +28,35 @@
 #
 # 1. Every namespace outside ActiveAdmin.application that registered
 #    something during the example is unloaded with Namespace#unload!.
-# 2. ActiveAdmin.application is reset to how it booted if its namespaces,
-#    registrations, menu build callbacks or routes changed, or if one of
-#    those namespaces shared a controller class with it (a throwaway :admin
-#    namespace registering "Dashboard", say). Unloading that namespace
+# 2. ActiveAdmin.application is reset to how it booted if a resource or page
+#    was registered, or its namespaces, menu build callbacks or routes changed.
+#    It also resets if another namespace shared a controller class with it
+#    (a throwaway :admin namespace registering "Dashboard", say). Unloading it
 #    removes the shared class, and it may have been changed, so the reset
 #    loads the app's own admin files again, which creates fresh controller
 #    classes. Any namespace added since boot is unloaded and removed first,
 #    and each namespace's menu build callbacks are restored.
+# 3. If a namespace outside the app shared a controller class with it, the
+#    example fails, after the cleanup above, so the next example still
+#    starts clean. While they share a class, whatever the spec configures
+#    on one also changes the other, which makes the spec's results depend
+#    on the app's registrations. The message names the controller, so the
+#    spec can register under a different namespace or resource name.
 #
 # Only Active Admin's own unloading is used, the same as when code reloads
 # in development.
 module ActiveAdminReset
+  class SharedControllerError < StandardError
+    def initialize(controllers)
+      super(
+        "A namespace outside ActiveAdmin.application registered #{controllers.join(', ')}, " \
+        "which ActiveAdmin.application also had registered, so both used the same controller " \
+        "class. Register it under a different namespace or resource name in the spec, e.g. " \
+        "ActiveAdmin::Namespace.new(application, :test) instead of :admin."
+      )
+    end
+  end
+
   # Records every namespace that registers a resource or page.
   module RecordRegistrations
     def register(...)
@@ -64,11 +81,21 @@ module ActiveAdminReset
       @booted_state = current_state
       @booted_menu_callbacks = menu_build_callbacks.transform_values(&:dup)
       @booted_route_names = route_names
+      registering_namespaces.clear
     end
 
     def reset
+      app_namespaces = ActiveAdmin.application.namespaces.to_a
+      app_registered = registering_namespaces.any? do |namespace|
+        app_namespaces.any? { |app_namespace| app_namespace.equal?(namespace) }
+      end
       shared_controllers = unload_other_namespaces
-      reset_application if shared_controllers || changed_since_boot?
+      reset_application if app_registered || shared_controllers.any? || changed_since_boot?
+      raise SharedControllerError, shared_controllers if shared_controllers.any?
+    ensure
+      # Registrations made by cleanup belong to the restored app, not the
+      # next example.
+      registering_namespaces.clear
     end
 
     private
@@ -124,22 +151,20 @@ module ActiveAdminReset
     end
 
     # Unloads every namespace outside the app that registered something.
-    # Returns whether any of them shared a controller class with the app:
-    # unloading removes controller constants by name, so it removed the
-    # app's controller too.
+    # Returns the controllers any of them shared with the app: unloading
+    # removes controller constants by name, so it removed the app's too.
     def unload_other_namespaces
       app_namespaces = ActiveAdmin.application.namespaces.to_a
       registered = app_namespaces.flat_map { |namespace| namespace.resources.map(&:controller_name) }
-      shared_controllers = false
+      shared_controllers = []
 
       registering_namespaces.each do |namespace|
         next if app_namespaces.any? { |app_namespace| app_namespace.equal?(namespace) }
 
-        shared_controllers ||= namespace.resources.map(&:controller_name).intersect?(registered)
+        shared_controllers |= namespace.resources.map(&:controller_name) & registered
         namespace.unload!
       end
 
-      registering_namespaces.clear
       shared_controllers
     end
   end
