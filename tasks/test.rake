@@ -41,19 +41,6 @@ task :spec do
 end
 
 desc "Run the cucumber scenarios in parallel"
-task cucumber: :"cucumber:all"
-
-namespace :cucumber do
-  desc "Run all cucumber suites"
-  task all: [:regular, :reloading]
-
-  desc "Run the standard cucumber scenarios in parallel"
-  task :regular do
-    sh("bin/parallel_cucumber")
-  end
-
-  desc "Run the cucumber scenarios that test reloading"
-  task :reloading do
-    sh("bin/cucumber --profile class-reloading")
-  end
+task :cucumber do
+  sh("bin/parallel_cucumber")
 end
