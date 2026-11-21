@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 desc "Run the full suite using parallel_tests to run on multiple cores"
-task test: [:setup, :spec, :cucumber]
+task test: [:setup, :spec]
 
 desc "Create a test rails app for the parallel specs to run against if it doesn't exist already"
 task setup: :"setup:create"
@@ -38,9 +38,4 @@ end
 desc "Run all specs in parallel"
 task :spec do
   sh("bin/parallel_rspec")
-end
-
-desc "Run the cucumber scenarios in parallel"
-task :cucumber do
-  sh("bin/parallel_cucumber")
 end
