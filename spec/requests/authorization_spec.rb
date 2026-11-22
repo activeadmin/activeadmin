@@ -55,6 +55,15 @@ RSpec.describe "Authorization", type: :request do
     end
   end
 
+  it "enforces permissions when the adapter is configured by class name" do
+    use_authorization_adapter(:cancan)
+    set_namespace_setting(:admin, :authorization_adapter, "ActiveAdmin::CanCanAdapter")
+
+    get edit_admin_post_path(post_record), headers: { "HTTP_REFERER" => admin_posts_path }
+
+    expect_access_denied
+  end
+
   context "when the current user can read but cannot write" do
     before do
       adapter = Class.new(ActiveAdmin::AuthorizationAdapter) do
