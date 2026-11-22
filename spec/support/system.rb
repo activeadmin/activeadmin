@@ -2,10 +2,6 @@
 require "capybara/rspec"
 require "capybara/cuprite"
 
-Capybara.register_driver(:cuprite) do |app|
-  Capybara::Cuprite::Driver.new(app, process_timeout: 30, timeout: 30)
-end
-
 Capybara.server = :webrick
 
 RSpec.configure do |config|
@@ -14,7 +10,7 @@ RSpec.configure do |config|
   end
 
   config.before(type: :system, js: true) do
-    driven_by :cuprite
+    driven_by :cuprite, options: { process_timeout: 30, timeout: 30 }
   end
 
   # rails_helper disables authentication for unit and request specs. System
