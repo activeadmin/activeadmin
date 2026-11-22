@@ -27,10 +27,8 @@ module ActiveAdmin
       end
 
       it "does not return sensitive attributes" do
-        keep = ActiveAdmin.application.filter_attributes
-        ActiveAdmin.application.filter_attributes = [:published_date]
+        set_application_setting(:filter_attributes, [:published_date])
         expect(subject).to_not include :published_date
-        ActiveAdmin.application.filter_attributes = keep
       end
 
       context "when resource has a counter cache" do

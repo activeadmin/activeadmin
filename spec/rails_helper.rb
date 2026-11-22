@@ -19,6 +19,11 @@ ActiveAdmin.application.authentication_method = false
 ActiveAdmin.application.current_user_method = false
 ActiveAdmin.application.load!
 
+# These adapters register settings when loaded, so load them before the reset
+# helper snapshots the application's settings.
+require "active_admin/cancan_adapter"
+require "active_admin/pundit_adapter"
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
