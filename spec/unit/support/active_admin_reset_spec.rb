@@ -11,7 +11,7 @@ RSpec.describe ActiveAdminReset do
   end
 
   it "restores registrations rebuilt with the same controller and route names" do
-    load_resources do
+    register_resources do
       ActiveAdmin.application.load!
       ActiveAdmin.register(Company) { config.filters = false }
     end

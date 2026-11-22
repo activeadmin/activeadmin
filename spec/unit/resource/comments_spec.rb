@@ -3,7 +3,7 @@ require "rails_helper"
 
 RSpec.describe "ActiveAdmin Comments", type: :controller do
   before do
-    load_resources { ActiveAdmin.register ActiveAdmin::Comment, as: "Comment" }
+    register_resources { ActiveAdmin.register ActiveAdmin::Comment, as: "Comment" }
     @controller = Admin::CommentsController.new
   end
 

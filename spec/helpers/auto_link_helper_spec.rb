@@ -18,7 +18,7 @@ RSpec.describe ActiveAdmin::AutoLinkHelper, type: :helper do
 
   context "when the resource is not registered" do
     before do
-      load_resources {}
+      register_resources {}
     end
 
     it "should return the display name of the object" do
@@ -28,7 +28,7 @@ RSpec.describe ActiveAdmin::AutoLinkHelper, type: :helper do
 
   context "when the resource is registered" do
     before do
-      load_resources do
+      register_resources do
         active_admin_namespace.register Post
       end
     end
@@ -58,7 +58,7 @@ RSpec.describe ActiveAdmin::AutoLinkHelper, type: :helper do
 
   context "when the resource is registered with the show action disabled" do
     before do
-      load_resources do
+      register_resources do
         active_admin_namespace.register(Post) { actions :all, except: :show }
       end
     end
@@ -78,7 +78,7 @@ RSpec.describe ActiveAdmin::AutoLinkHelper, type: :helper do
 
   context "when the resource is registered with the show & edit actions disabled" do
     before do
-      load_resources do
+      register_resources do
         active_admin_namespace.register(Post) do
           actions :all, except: [:show, :edit]
         end

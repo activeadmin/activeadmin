@@ -9,6 +9,10 @@ require "#{ActiveAdmin::TestApplication.new.full_app_dir}/config/environment.rb"
 
 require "rspec/rails"
 
+require "support/arbre_helpers"
+require "support/decorator_helpers"
+require "support/translation_helpers"
+
 # Disabling authentication in specs so that we don't have to worry about
 # it allover the place
 ActiveAdmin.application.authentication_method = false
@@ -22,8 +26,9 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
 
-  require "support/active_admin_integration_spec_helper"
-  config.include ActiveAdminIntegrationSpecHelper
+  config.include ArbreHelpers
+  config.include DecoratorHelpers
+  config.include TranslationHelpers
 end
 
 require "support/active_admin_reset"

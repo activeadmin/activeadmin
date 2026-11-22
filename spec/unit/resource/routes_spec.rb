@@ -72,7 +72,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     end
 
     before do
-      load_resources do
+      register_resources do
         ActiveAdmin.register Category
         ActiveAdmin.register(Post) do
           belongs_to :category
@@ -97,7 +97,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
 
   context "for batch_action handler" do
     before do
-      load_resources { config.batch_actions = true }
+      register_resources { config.batch_actions = true }
     end
 
     context "when register a singular resource" do

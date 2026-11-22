@@ -73,7 +73,7 @@ RSpec.describe ActiveAdmin::Application, type: :request do
     original_application = ActiveAdmin.application
     ActiveAdmin.application = application
 
-    load_resources { ActiveAdmin.register(Category) }
+    register_resources { ActiveAdmin.register(Category) }
 
     yield
 

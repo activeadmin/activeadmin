@@ -16,7 +16,7 @@ RSpec.describe "Memory Leak", type: :request, if: RUBY_ENGINE == "ruby" do
       GC.start
       count = count_instances_of(klass)
 
-      load_resources { ActiveAdmin.register(Category) }
+      register_resources { ActiveAdmin.register(Category) }
 
       GC.start
       GC.disable if previously_disabled

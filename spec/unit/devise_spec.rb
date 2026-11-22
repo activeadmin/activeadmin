@@ -72,7 +72,7 @@ RSpec.describe ActiveAdmin::Devise::Controller do
 
     after do
       # Resume default routes
-      reload_routes!
+      Rails.application.reload_routes!
     end
 
     it "should include scope path in root_path" do

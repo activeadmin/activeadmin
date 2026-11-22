@@ -5,7 +5,7 @@ RSpec.describe "Controller Authorization", type: :controller do
   let(:authorization) { controller.send(:active_admin_authorization) }
 
   before do
-    load_resources { ActiveAdmin.register Post }
+    register_resources { ActiveAdmin.register Post }
     @controller = Admin::PostsController.new
     allow(authorization).to receive(:authorized?)
   end

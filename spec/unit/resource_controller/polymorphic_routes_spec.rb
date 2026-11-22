@@ -10,7 +10,7 @@ RSpec.describe ActiveAdmin::ResourceController::PolymorphicRoutes, type: :contro
       let(:params) { {} }
 
       before do
-        load_resources { post_config }
+        register_resources { post_config }
 
         add_extra_routes
 

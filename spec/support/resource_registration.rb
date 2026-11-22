@@ -17,8 +17,19 @@
 # after every example, including namespaces the block added and menu items
 # added with build_menu.
 module ResourceRegistrationHelper
-  def register_resources(&block)
-    load_resources(&block)
+  def register_resources
+    ActiveAdmin.unload!
+    yield
+    ActiveAdmin.application.namespaces.each(&:reset_menu!)
+    Rails.application.reload_routes!
+  end
+
+  # Keeps registration in the around hook before the example runs.
+  # ActiveAdminReset restores the application after all example cleanup.
+  def with_resources_during(example)
+    register_resources { yield }
+
+    example.run
   end
 
   # Loads the test app's own app/admin files (dashboard, admin users,
@@ -38,6 +49,5 @@ module ResourceRegistrationHelper
 end
 
 RSpec.configure do |config|
-  config.include ResourceRegistrationHelper, type: :request
-  config.include ResourceRegistrationHelper, type: :system
+  config.include ResourceRegistrationHelper
 end

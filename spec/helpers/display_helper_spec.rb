@@ -13,7 +13,7 @@ RSpec.describe ActiveAdmin::DisplayHelper, type: :helper do
     allow(helper).to receive(:active_admin_namespace).and_return(active_admin_namespace)
     allow(helper).to receive(:url_options).and_return(locale: nil)
 
-    load_resources do
+    register_resources do
       ActiveAdmin.register(User)
       ActiveAdmin.register(Post) { belongs_to :user, optional: true }
     end
