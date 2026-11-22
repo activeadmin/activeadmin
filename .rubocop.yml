@@ -390,6 +390,9 @@ RSpec/EmptyLineAfterExampleGroup:
 RSpec/HookArgument:
   Enabled: true
 
+RSpec/LeakyConstantDeclaration:
+  Enabled: true
+
 Style/BlockDelimiters:
   Enabled: true
 
