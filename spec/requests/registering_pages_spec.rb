@@ -196,5 +196,11 @@ RSpec.describe "Registering pages", type: :request do
 
     expect(response_html).to have_page_title("Last Posts")
     expect(response_html).to have_table_rows(1)
+    expect(response_html).to have_table_header("Id", sortable: true)
+    expect(response_html).to have_table_header("Title", sortable: true)
+    expect(response_html).to have_table_header("Author", sortable: true)
+    expect(response_html.find("th", exact_text: "Id")).to have_link("Id", href: admin_last_posts_path(order: "id_desc"), exact: true)
+    expect(response_html.find("th", exact_text: "Title")).to have_link("Title", href: admin_last_posts_path(order: "title_desc"), exact: true)
+    expect(response_html.find("th", exact_text: "Author")).to have_link("Author", href: admin_last_posts_path(order: "author_desc"), exact: true)
   end
 end
