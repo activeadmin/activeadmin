@@ -55,6 +55,62 @@ RSpec.describe "Authorization", type: :request do
     end
   end
 
+  context "when the current user can read but cannot write" do
+    before do
+      adapter = Class.new(ActiveAdmin::AuthorizationAdapter) do
+        def authorized?(action, subject = nil)
+          action == ActiveAdmin::Auth::READ
+        end
+      end
+      set_namespace_setting(:admin, :authorization_adapter, adapter)
+      register_resources { ActiveAdmin.register(Post) { permit_params :title } }
+    end
+
+    it "allows reading the record" do
+      get admin_post_path(post_record)
+
+      expect(response).to have_http_status(:ok)
+      expect(response_html).to have_page_title(post_record.title)
+    end
+
+    it "rejects a direct create request without saving a record" do
+      expect do
+        post admin_posts_path, params: { post: { title: "Not allowed" } },
+                               headers: { "HTTP_REFERER" => admin_posts_path }
+      end.not_to change(Post, :count)
+
+      expect_access_denied
+    end
+
+    it "rejects a direct update request without changing the record" do
+      patch admin_post_path(post_record), params: { post: { title: "Not allowed" } },
+                                          headers: { "HTTP_REFERER" => admin_posts_path }
+
+      expect_access_denied
+      expect(post_record.reload.title).to eq("Hello World")
+    end
+
+    it "rejects a direct delete request without deleting the record" do
+      expect do
+        delete admin_post_path(post_record), headers: { "HTTP_REFERER" => admin_posts_path }
+      end.not_to change(Post, :count)
+
+      expect_access_denied
+      expect(Post.exists?(post_record.id)).to be(true)
+    end
+
+    it "rejects a forged batch delete request without deleting selected records" do
+      expect do
+        post batch_action_admin_posts_path,
+             params: { batch_action: "destroy", collection_selection: [post_record.id] },
+             headers: { "HTTP_REFERER" => admin_posts_path }
+      end.not_to change(Post, :count)
+
+      expect_access_denied
+      expect(Post.exists?(post_record.id)).to be(true)
+    end
+  end
+
   context "with the pundit adapter" do
     before { use_authorization_adapter(:pundit) }
 
