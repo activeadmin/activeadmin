@@ -55,6 +55,12 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
   end
 
+  it "raises NoMethodError for an unknown method in a column definition" do
+    builder = described_class.new { column :title, label: missing_label() }
+
+    expect { builder.exec_columns(Object.new) }.to raise_error(NoMethodError, /missing_label/)
+  end
+
   context "with a symbol column (:title)" do
     let(:builder) do
       ActiveAdmin::CSVBuilder.new do
