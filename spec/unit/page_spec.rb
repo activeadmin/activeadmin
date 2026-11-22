@@ -61,6 +61,21 @@ module ActiveAdmin
       end
     end
 
+    describe "#clear_page_actions!" do
+      it "clears actions registered through the page DSL" do
+        page = namespace.register_page "Reports" do
+          page_action(:download) {}
+          page_action(:refresh, method: :post) {}
+        end
+
+        expect(page.page_actions.map(&:name)).to eq([:download, :refresh])
+
+        page.clear_page_actions!
+
+        expect(page.page_actions).to be_empty
+      end
+    end
+
     it "should not belong_to anything" do
       expect(config.belongs_to?).to eq false
     end
