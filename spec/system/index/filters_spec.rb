@@ -40,6 +40,35 @@ RSpec.describe "Index filters", type: :system do
     expect_current_filter("title_cont", "Hello World 2", label: "Title contains")
   end
 
+  it "changes the predicate and submits the matching query parameter", js: true do
+    Post.create!(title: "Alpha")
+    Post.create!(title: "Alpha Beta")
+    Post.create!(title: "Beta Alpha")
+    register_posts { filter :title }
+
+    visit admin_posts_path
+    find("[data-search-methods]").select("Equals")
+    fill_in "Title", with: "Alpha"
+    click_button "Filter"
+
+    expect(page).to have_table_rows(1)
+    expect(page).to have_css(".data-table td", exact_text: "Alpha")
+    expect_current_filter("title_eq", "Alpha", label: "Title equals")
+    params = Rack::Utils.parse_nested_query(URI(page.current_url).query)
+    expect(params.fetch("q")).to eq("title_eq" => "Alpha")
+
+    find("[data-search-methods]").select("Starts with")
+    click_button "Filter"
+
+    expect(page).to have_table_rows(2)
+    expect(page).to have_css(".data-table td", exact_text: "Alpha")
+    expect(page).to have_css(".data-table td", exact_text: "Alpha Beta")
+    expect(page).to have_no_css(".data-table td", exact_text: "Beta Alpha")
+    expect_current_filter("title_start", "Alpha", label: "Title starts with")
+    params = Rack::Utils.parse_nested_query(URI(page.current_url).query)
+    expect(params.fetch("q")).to eq("title_start" => "Alpha")
+  end
+
   it "escapes the submitted value in the active filter" do
     register_posts { filter :title }
 
