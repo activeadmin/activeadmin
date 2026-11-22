@@ -175,6 +175,7 @@ RSpec.describe ActiveAdminReset do
       stub_const("StubbedCleanupNamespace", Module.new)
       namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :stubbed_cleanup_namespace)
       namespace.register(Post)
+      expect(namespace.resources[Post]).to be_a(ActiveAdmin::Resource)
     end
 
     it "starts the next example with clean registration state" do

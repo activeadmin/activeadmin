@@ -17,7 +17,8 @@ module ActiveAdmin
       @config ||= Resource.new(namespace, Category, options)
     end
 
-    it { respond_to :resource_class }
+    it { expect(config).to respond_to :resource_class }
+    it { expect(config).to respond_to :comments? }
 
     describe "#resource_table_name" do
       it "should return the resource's table name" do

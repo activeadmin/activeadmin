@@ -393,6 +393,9 @@ RSpec/HookArgument:
 RSpec/LeakyConstantDeclaration:
   Enabled: true
 
+RSpec/NoExpectationExample:
+  Enabled: true
+
 Style/BlockDelimiters:
   Enabled: true
 

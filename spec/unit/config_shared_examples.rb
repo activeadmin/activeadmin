@@ -12,14 +12,13 @@ RSpec.shared_examples_for "ActiveAdmin::Resource" do
     end
   end
 
-  it { respond_to :controller_name }
-  it { respond_to :controller }
-  it { respond_to :route_prefix }
-  it { respond_to :route_collection_path }
-  it { respond_to :comments? }
-  it { respond_to :belongs_to? }
-  it { respond_to :action_items? }
-  it { respond_to :sidebar_sections? }
+  it { expect(config).to respond_to :controller_name }
+  it { expect(config).to respond_to :controller }
+  it { expect(config).to respond_to :route_prefix }
+  it { expect(config).to respond_to :route_collection_path }
+  it { expect(config).to respond_to :belongs_to? }
+  it { expect(config).to respond_to :action_items? }
+  it { expect(config).to respond_to :sidebar_sections? }
 
   describe "Naming" do
     it "implements #resource_label" do
