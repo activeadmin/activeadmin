@@ -54,7 +54,7 @@ RSpec.describe ActiveAdmin::Devise::Controller do
   end
 
   context "within a scoped route" do
-    SCOPE = "/aa_scoped"
+    let(:scope_path) { "/aa_scoped" }
 
     before do
       # Remove existing routes
@@ -62,8 +62,9 @@ RSpec.describe ActiveAdmin::Devise::Controller do
       routes.clear!
 
       # Add scoped routes
+      path = scope_path
       routes.draw do
-        scope path: SCOPE do
+        scope path: path do
           ActiveAdmin.routes(self)
           devise_for :admin_users, ActiveAdmin::Devise.config
         end
@@ -76,7 +77,7 @@ RSpec.describe ActiveAdmin::Devise::Controller do
     end
 
     it "should include scope path in root_path" do
-      expect(controller.root_path).to eq "#{SCOPE}/admin"
+      expect(controller.root_path).to eq "#{scope_path}/admin"
     end
   end
 end

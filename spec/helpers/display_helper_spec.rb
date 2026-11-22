@@ -120,11 +120,13 @@ RSpec.describe ActiveAdmin::DisplayHelper, type: :helper do
     context "when no display name method is defined" do
       context "when no ID" do
         let(:resource) do
-          class ThisModel
+          Class.new do
             extend ActiveModel::Naming
-          end
 
-          ThisModel.new
+            def self.name
+              "ThisModel"
+            end
+          end.new
         end
 
         it "should show the model name" do

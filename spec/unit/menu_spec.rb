@@ -3,17 +3,15 @@ require "rails_helper"
 require "active_admin/menu"
 require "active_admin/menu_item"
 
-include ActiveAdmin
-
 RSpec.describe ActiveAdmin::Menu do
   context "with no items" do
     it "should have an empty item collection" do
-      menu = Menu.new
+      menu = described_class.new
       expect(menu.items).to be_empty
     end
 
     it "should accept new items" do
-      menu = Menu.new
+      menu = described_class.new
       menu.add label: "Dashboard"
       expect(menu.items.first.label).to eq "Dashboard"
     end
@@ -21,7 +19,7 @@ RSpec.describe ActiveAdmin::Menu do
 
   context "with many items" do
     let(:menu) do
-      Menu.new do |m|
+      described_class.new do |m|
         m.add label: "Dashboard"
         m.add label: "Blog"
       end
@@ -34,14 +32,14 @@ RSpec.describe ActiveAdmin::Menu do
 
   describe "adding items with children" do
     it "should add an empty item if the parent does not exist" do
-      menu = Menu.new
+      menu = described_class.new
       menu.add parent: "Admin", label: "Users"
 
       expect(menu["Admin"]["Users"]).to be_an_instance_of(ActiveAdmin::MenuItem)
     end
 
     it "should add a child to a parent if it exists" do
-      menu = Menu.new
+      menu = described_class.new
       menu.add parent: "Admin", label: "Users"
       menu.add parent: "Admin", label: "Projects"
 
@@ -49,7 +47,7 @@ RSpec.describe ActiveAdmin::Menu do
     end
 
     it "should assign children regardless of resource file load order" do
-      menu = Menu.new
+      menu = described_class.new
       menu.add parent: "Users", label: "Posts"
       menu.add label: "Users", url: "/some/url"
 
@@ -59,7 +57,7 @@ RSpec.describe ActiveAdmin::Menu do
   end
 
   describe "determining if node is current" do
-    let(:menu) { Menu.new }
+    let(:menu) { described_class.new }
     let(:admin_item) { menu.add label: "Admin" }
     let(:users_item) { menu.add parent: "Admin", label: "Users" }
     let(:posts_item) { menu.add label: "Posts" }

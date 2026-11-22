@@ -3,7 +3,7 @@ require "rails_helper"
 require "csv"
 
 RSpec.describe "Index as CSV", type: :request do
-  BYTE_ORDER_MARK = "\xEF\xBB\xBF".b
+  let(:byte_order_mark) { "\xEF\xBB\xBF".b }
 
   def register_post(**options, &block)
     register_resources { ActiveAdmin.register(Post, **options, &block) }
@@ -19,7 +19,7 @@ RSpec.describe "Index as CSV", type: :request do
     expect(response.headers["Content-Disposition"]).to match(/\Aattachment; filename="#{filename}-\d{4}-\d{2}-\d{2}\.csv"\z/)
     expect(Time.httpdate(response.headers["Last-Modified"])).to be_a(Time)
 
-    CSV.parse(response.body.b.delete_prefix(BYTE_ORDER_MARK).force_encoding(response.body.encoding), col_sep: col_sep)
+    CSV.parse(response.body.b.delete_prefix(byte_order_mark).force_encoding(response.body.encoding), col_sep: col_sep)
   end
 
   default_header = ["Id", "Title", "Body", "Published date", "Position", "Starred", "Foo", "Created at", "Updated at"]
@@ -60,7 +60,7 @@ RSpec.describe "Index as CSV", type: :request do
 
       get admin_posts_path(format: :csv)
 
-      expect(response.body.b).to start_with(BYTE_ORDER_MARK)
+      expect(response.body.b).to start_with(byte_order_mark)
     end
   end
 
@@ -117,7 +117,7 @@ RSpec.describe "Index as CSV", type: :request do
       # force_quotes writes a blank body as "", which parses as an empty string.
       expect(download_csv).to eq [["Title", "Body"], ["012345", ""]]
       expect(response.body).to include('"012345"')
-      expect(response.body.b).not_to start_with(BYTE_ORDER_MARK)
+      expect(response.body.b).not_to start_with(byte_order_mark)
     end
 
     it "adds a byte order mark on every request, not just the first" do
@@ -127,8 +127,8 @@ RSpec.describe "Index as CSV", type: :request do
 
       2.times do
         get admin_posts_path(format: :csv)
-        expect(response.body.b).to start_with(BYTE_ORDER_MARK)
-        expect(response.body.b.delete_prefix(BYTE_ORDER_MARK)).not_to start_with(BYTE_ORDER_MARK)
+        expect(response.body.b).to start_with(byte_order_mark)
+        expect(response.body.b.delete_prefix(byte_order_mark)).not_to start_with(byte_order_mark)
       end
     end
 

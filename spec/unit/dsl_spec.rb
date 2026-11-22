@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-module MockModuleToInclude
-  def self.included(dsl)
-  end
-end
-
 RSpec.describe ActiveAdmin::DSL do
   let(:application) { ActiveAdmin::Application.new }
   let(:namespace) { ActiveAdmin::Namespace.new application, :admin }
@@ -14,9 +9,13 @@ RSpec.describe ActiveAdmin::DSL do
 
   describe "#include" do
     it "should call the included class method on the module that is included" do
-      expect(MockModuleToInclude).to receive(:included).with(dsl)
+      mock_module = Module.new do
+        def self.included(dsl)
+        end
+      end
+      expect(mock_module).to receive(:included).with(dsl)
       dsl.run_registration_block do
-        include MockModuleToInclude
+        include mock_module
       end
     end
   end

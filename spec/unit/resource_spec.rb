@@ -182,20 +182,19 @@ module ActiveAdmin
     end
 
     describe "sort order" do
-      class MockResource
-      end
+      let(:mock_resource) { stub_const("ActiveAdmin::MockResource", Class.new) }
 
       context "when resource class responds to primary_key" do
         it "should sort by primary key desc by default" do
-          expect(MockResource).to receive(:primary_key).and_return("pk")
-          config = Resource.new(namespace, MockResource)
+          expect(mock_resource).to receive(:primary_key).and_return("pk")
+          config = Resource.new(namespace, mock_resource)
           expect(config.sort_order).to eq "pk_desc"
         end
       end
 
       context "when resource class does not respond to primary_key" do
         it "should default to id" do
-          config = Resource.new(namespace, MockResource)
+          config = Resource.new(namespace, mock_resource)
           expect(config.sort_order).to eq "id_desc"
         end
       end

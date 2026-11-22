@@ -10,7 +10,10 @@ module ActiveAdmin
       @config ||= Resource.new(namespace, Category, options)
     end
 
-    module ::Mock class Resource < ActiveRecord::Base; end; end
+    let(:mock_resource) do
+      stub_const("Mock", Module.new)
+      stub_const("Mock::Resource", Class.new(ActiveRecord::Base))
+    end
 
     describe "singular resource name" do
       context "when class" do
@@ -21,7 +24,7 @@ module ActiveAdmin
 
       context "when a class in a module" do
         it "should underscore the module and the class" do
-          expect(Resource.new(namespace, Mock::Resource).resource_name.singular).to eq "mock_resource"
+          expect(Resource.new(namespace, mock_resource).resource_name.singular).to eq "mock_resource"
         end
       end
 
@@ -49,11 +52,11 @@ module ActiveAdmin
 
       context "when a class in a module" do
         it "should include the module and the class" do
-          expect(Resource.new(namespace, Mock::Resource).resource_label).to eq "Mock Resource"
+          expect(Resource.new(namespace, mock_resource).resource_label).to eq "Mock Resource"
         end
 
         it "should include the module and the pluralized class" do
-          expect(Resource.new(namespace, Mock::Resource).plural_resource_label).to eq "Mock Resources"
+          expect(Resource.new(namespace, mock_resource).plural_resource_label).to eq "Mock Resources"
         end
       end
 

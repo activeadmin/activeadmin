@@ -7,14 +7,11 @@ require "tmpdir"
 # copy of the test app in a child process. The copy lives in a temp
 # directory, so the files it edits are never seen by other parallel workers.
 RSpec.describe "Development reloading" do
-  # Everything the app needs at runtime. node_modules, log, tmp and storage
-  # are left out: the child creates its own database.
-  APP_ENTRIES = %w(Gemfile Rakefile app config config.ru db lib public vendor).freeze
-
   around do |example|
     Dir.mktmpdir("activeadmin-reloading") do |dir|
       @app_copy = dir
-      APP_ENTRIES.each do |entry|
+      # The child creates its own database, so node_modules, log, tmp and storage are left out.
+      %w(Gemfile Rakefile app config config.ru db lib public vendor).each do |entry|
         source = Rails.root.join(entry)
         FileUtils.cp_r(source, dir) if source.exist?
       end

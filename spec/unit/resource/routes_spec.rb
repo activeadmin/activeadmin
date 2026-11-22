@@ -4,6 +4,12 @@ require "rails_helper"
 RSpec.describe ActiveAdmin::Resource::Routes do
   let(:application) { ActiveAdmin.application }
   let(:namespace) { application.namespace(:admin) }
+  let(:news_class) do
+    news = Class.new do
+      def self.has_many(*); end
+    end
+    stub_const("News", news)
+  end
 
   context "when in the admin namespace" do
     let(:config) { namespace.resource_for("Category") }
@@ -49,11 +55,10 @@ RSpec.describe ActiveAdmin::Resource::Routes do
   end
 
   context "when registering a plural resource" do
-    class ::News; def self.has_many(*); end end
-    let!(:config) { ActiveAdmin.register News }
+    let(:config) { ActiveAdmin.register news_class }
 
-    around do |example|
-      with_resources_during(example) { config }
+    before do
+      register_resources { config }
     end
 
     it "should return the plural route with _index" do
@@ -118,8 +123,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     end
 
     context "when registering a plural resource" do
-      class ::News; def self.has_many(*); end end
-      let(:config) { ActiveAdmin.register News }
+      let(:config) { ActiveAdmin.register news_class }
 
       it "should return the plural batch action route with _index and given params" do
         params = ActionController::Parameters.new(q: { name_eq: "Any" }, scope: :all)

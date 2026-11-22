@@ -51,8 +51,12 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
 
   context "with a resource that's namespaced" do
     before do
-      module ::Mock; class Resource; def self.has_many(arg1, arg2); end; end; end
-      namespace.register Mock::Resource
+      stub_const("Mock", Module.new)
+      resource = Class.new do
+        def self.has_many(arg1, arg2); end
+      end
+      stub_const("Mock::Resource", resource)
+      namespace.register resource
     end
 
     it "should store the namespaced registered configuration" do

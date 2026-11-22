@@ -202,7 +202,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       @post2 = Post.create!(title: "Hello2", published_date: Date.today - 1.day)
     end
     let(:dummy_controller) do
-      class DummyController
+      Class.new do
         def in_paginated_batches(&block)
           Post.order("published_date DESC").each(&block)
         end
@@ -213,8 +213,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
 
         def view_context
         end
-      end
-      DummyController.new
+      end.new
     end
     let(:builder) do
       ActiveAdmin::CSVBuilder.new do
@@ -233,15 +232,14 @@ RSpec.describe ActiveAdmin::CSVBuilder do
 
   context "build csv using specified encoding and encoding_options" do
     let(:dummy_controller) do
-      class DummyController
+      Class.new do
         def in_paginated_batches(&block)
           Post.all.each(&block)
         end
 
         def view_context
         end
-      end
-      DummyController.new
+      end.new
     end
     let(:builder) do
       ActiveAdmin::CSVBuilder.new(encoding: encoding, encoding_options: opts) do
@@ -280,7 +278,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
 
   context 'csv injection' do
     let(:dummy_controller) do
-      class DummyController
+      Class.new do
         def in_paginated_batches(&block)
           Post.all.each(&block)
         end
@@ -288,8 +286,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
         def view_context
           MethodOrProcHelper
         end
-      end
-      DummyController.new
+      end.new
     end
 
     let(:builder) do

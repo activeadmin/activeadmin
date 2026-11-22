@@ -1,30 +1,6 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-class DefaultPolicy < ApplicationPolicy
-  def respond_to_missing?(method, include_private = false)
-    method.to_s[0...3] == "foo" || super
-  end
-
-  def method_missing(method, *args, &block)
-    method.to_s[4...7] == "yes" if method.to_s[0...3] == "foo"
-  end
-
-  class Scope
-
-    attr_reader :user, :scope
-
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      scope
-    end
-  end
-end
-
 RSpec.describe ActiveAdmin::PunditAdapter do
   describe "full integration" do
     let(:application) { ActiveAdmin::Application.new }
@@ -32,10 +8,38 @@ RSpec.describe ActiveAdmin::PunditAdapter do
     let(:resource) { namespace.register(Post) }
     let(:user) { User.new }
     let(:auth) { namespace.authorization_adapter.new(resource, user) }
-    let(:default_policy_klass) { DefaultPolicy }
+    let(:default_policy_scope) do
+      Class.new do
+        attr_reader :user, :scope
+
+        def initialize(user, scope)
+          @user = user
+          @scope = scope
+        end
+
+        def resolve
+          scope
+        end
+      end
+    end
+    let(:default_policy_klass) do
+      policy = Class.new(ApplicationPolicy) do
+        def respond_to_missing?(method, include_private = false)
+          method.to_s[0...3] == "foo" || super
+        end
+
+        def method_missing(method, *args, &block)
+          method.to_s[4...7] == "yes" if method.to_s[0...3] == "foo"
+        end
+      end
+      stub_const("DefaultPolicy", policy)
+      stub_const("DefaultPolicy::Scope", default_policy_scope)
+      policy
+    end
     let(:default_policy_klass_name) { "DefaultPolicy" }
 
     before do
+      default_policy_klass
       namespace.authorization_adapter = ActiveAdmin::PunditAdapter
     end
 
@@ -55,21 +59,20 @@ RSpec.describe ActiveAdmin::PunditAdapter do
     end
 
     it "should scope the collection" do
-      class RSpec::Mocks::DoublePolicy < ApplicationPolicy
-        class Scope < Struct.new(:user, :scope)
-          def resolve
-            scope
-          end
+      stub_const("RSpec::Mocks::DoublePolicy", Class.new(ApplicationPolicy))
+      scope = Class.new(Struct.new(:user, :scope)) do
+        def resolve
+          scope
         end
       end
+      stub_const("RSpec::Mocks::DoublePolicy::Scope", scope)
 
       collection = double
-      auth.scope_collection(collection, :read)
-      expect(collection).to eq collection
+      expect(auth.scope_collection(collection, :read)).to eq collection
     end
 
     it "works well with method_missing" do
-      allow(auth).to receive(:retrieve_policy).and_return(DefaultPolicy.new(double, double))
+      allow(auth).to receive(:retrieve_policy).and_return(default_policy_klass.new(double, double))
       expect(auth.authorized?(:foo_no)).to eq false
       expect(auth.authorized?(:foo_yes)).to eq true
       expect(auth.authorized?(:bar_yes)).to eq false
@@ -81,24 +84,24 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       end
 
       it "looks for a namespaced policy" do
-        expect(Pundit).to receive(:policy).with(anything, [:foobar, Post]).and_return(DefaultPolicy.new(double, double))
+        expect(Pundit).to receive(:policy).with(anything, [:foobar, Post]).and_return(default_policy_klass.new(double, double))
         auth.authorized?(:read, Post)
       end
 
       it "looks for a namespaced policy scope" do
         collection = double
-        expect(Pundit).to receive(:policy_scope!).with(anything, [:foobar, collection]).and_return(DefaultPolicy::Scope.new(double, double))
+        expect(Pundit).to receive(:policy_scope!).with(anything, [:foobar, collection]).and_return(default_policy_scope.new(double, double))
         auth.scope_collection(collection, :read)
       end
 
       it "uses the resource when no subject given" do
-        expect(Pundit).to receive(:policy).with(anything, [:foobar, resource]).and_return(DefaultPolicy::Scope.new(double, double))
+        expect(Pundit).to receive(:policy).with(anything, [:foobar, resource]).and_return(default_policy_scope.new(double, double))
         auth.authorized?(:index)
       end
     end
 
     it "uses the resource when no subject given" do
-      expect(Pundit).to receive(:policy).with(anything, resource).and_return(DefaultPolicy::Scope.new(double, double))
+      expect(Pundit).to receive(:policy).with(anything, resource).and_return(default_policy_scope.new(double, double))
       auth.authorized?(:index)
     end
 
@@ -116,13 +119,13 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       end
 
       it "looks for a namespaced policy" do
-        expect(Pundit).to receive(:policy).with(anything, [:pub, Publisher]).and_return(DefaultPolicy.new(double, double))
+        expect(Pundit).to receive(:policy).with(anything, [:pub, Publisher]).and_return(default_policy_klass.new(double, double))
         auth.authorized?(:read, Publisher)
       end
 
       it "fallbacks to the policy without namespace" do
         expect(Pundit).to receive(:policy).with(anything, [:pub, Publisher]).and_return(nil)
-        expect(Pundit).to receive(:policy).with(anything, Publisher).and_return(DefaultPolicy.new(double, double))
+        expect(Pundit).to receive(:policy).with(anything, Publisher).and_return(default_policy_klass.new(double, double))
 
         auth.authorized?(:read, Publisher)
 
