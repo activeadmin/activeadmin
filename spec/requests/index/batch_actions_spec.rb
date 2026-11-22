@@ -8,6 +8,15 @@ RSpec.describe "Batch action configuration", type: :request do
     register_resources { ActiveAdmin.register(Post, &block) }
   end
 
+  it "uses the default confirmation message when confirm is true" do
+    register_posts { batch_action(:flag, confirm: true) {} }
+
+    get admin_posts_path
+
+    action = response_html.find("[data-batch-action-item][data-action=flag]")
+    expect(action["data-confirm"]).to eq("Are you sure you want to do this?")
+  end
+
   it "omits the dropdown when every action is hidden" do
     register_posts do
       batch_action :destroy, false
