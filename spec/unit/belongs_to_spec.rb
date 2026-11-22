@@ -38,10 +38,11 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
       let(:blog_post_config) { ActiveAdmin.register Blog::Post }
       let(:belongs_to) { ActiveAdmin::Resource::BelongsTo.new blog_post_config, :blog_author, class_name: "Blog::Author" }
       before do
-        class Blog::Author
+        author = Class.new do
           include ActiveModel::Naming
         end
-        @blog_author_config = ActiveAdmin.register Blog::Author
+        stub_const("Blog::Author", author)
+        @blog_author_config = ActiveAdmin.register author
       end
       it "should return the target resource" do
         expect(belongs_to.target).to eq @blog_author_config

@@ -41,7 +41,7 @@ RSpec.describe ActiveAdmin::Namespace do
       end
 
       after do
-        load_resources {}
+        register_resources {}
       end
 
       it "should not crash" do

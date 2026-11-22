@@ -4,7 +4,6 @@ ignore: |
   node_modules/
   tmp/
   vendor/
-  cucumber.yml
 rules: # https://yamllint.readthedocs.io/en/stable/rules.html
   comments:
     min-spaces-from-content: 1

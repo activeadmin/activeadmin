@@ -8,7 +8,7 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 - **Backend**: Ruby on Rails (currently Rails ~> 8.1.0)
 - **Frontend**: JavaScript (ES6+), Tailwind CSS, Flowbite
-- **Testing**: RSpec (unit tests), Cucumber (feature tests), Capybara (integration tests)
+- **Testing**: RSpec (unit, request and system specs), Capybara (system specs)
 - **Build Tools**: Rollup (JavaScript bundling), cssbundling-rails
 - **Key Dependencies**: Devise (authentication), Ransack (search), Formtastic (forms), Kaminari (pagination)
 
@@ -35,14 +35,9 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 - Unit tests are in `spec/unit/`
 - Request specs are in `spec/requests/`
 - Helper specs are in `spec/helpers/`
-- Run RSpec tests: `bundle exec rspec`
-
-### Feature Tests (Cucumber)
-- Cucumber features are in `features/`
-- Uses Capybara with Cuprite (headless Chrome)
-- Cucumber scenarios require Chrome to be installed
-- Run Cucumber tests: `bundle exec cucumber`
-- Lint Gherkin files: `npm run gherkin-lint`
+- System specs are in `spec/system/` and use Capybara
+- Browser system specs (`js: true`) require Chrome
+- Run RSpec tests: `bin/parallel_rspec`
 
 ### Running All Tests
 - Run the complete test suite: `bin/rake`
@@ -82,21 +77,19 @@ bin/rake local db:migrate   # Run migrations
 - `lib/active_admin/` - Core framework code
 - `app/` - Rails application components (controllers, helpers, views, assets)
 - `spec/` - RSpec tests
-- `features/` - Cucumber feature tests
 - `docs/` - VitePress documentation (run with `npm run docs:dev`)
 
 ## Important Guidelines
 
 1. **Minimal Changes**: Make surgical, precise changes. Don't refactor unrelated code.
 2. **Backward Compatibility**: Active Admin is a widely-used gem. Maintain backward compatibility unless explicitly breaking changes are intended.
-3. **Test Coverage**: Include tests for new features. Prefer RSpec specs (especially request specs) over Cucumber features when possible, as specs are easier to work with and maintain.
+3. **Test Coverage**: Include RSpec specs for new features. Use request specs for rendering checks and system specs for user flows.
 4. **Documentation**: Update documentation in `docs/` if adding user-facing features.
 5. **Internationalization**: Support i18n - translation files are in `config/locales/`
 6. **Security**: This is an administration framework so be extra cautious with security implications.
 7. **Code Quality**: Always run ALL relevant linters before submitting any PR to ensure code follows project style guidelines:
    - Ruby code: `bundle exec rubocop`
    - JavaScript code: `npm run lint`
-   - Gherkin files: `npm run gherkin-lint`
    - Run these linters BEFORE requesting code review or submitting the PR.
 
 ## Contributing Workflow
@@ -107,7 +100,6 @@ bin/rake local db:migrate   # Run migrations
 4. **Run ALL linters BEFORE submitting PR**:
    - Ruby code: `bundle exec rubocop`
    - JavaScript code: `npm run lint`
-   - Gherkin files: `npm run gherkin-lint`
 5. View changes in browser: `bin/rake local server`
 6. Submit pull request with passing CI
 

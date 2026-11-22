@@ -21,7 +21,7 @@ a branch with a descriptive name.
 
 ### Get the test suite running
 
-Make sure you're using a recent Ruby and Node version. You'll also need Chrome installed in order to run Cucumber scenarios.
+Make sure you're using a recent Ruby and Node version. You'll also need Chrome installed to run browser system specs.
 
 Now install the development dependencies:
 
@@ -39,6 +39,12 @@ bin/rake
 
 The task will generate a sample Rails application in `tmp/test_apps` to run the
 test suite against.
+
+Use request specs to check responses and rendered content. Use system specs to
+check user flows through links and forms. Tag a system example `js: true` when
+it needs JavaScript, such as a confirmation dialog, a dropdown menu, or a link
+that sends POST or DELETE through `data-method`. These examples run in Chrome;
+other system examples use Rack::Test.
 
 If you want to test against a Rails version different from the latest, make sure
 you use the correct Gemfile, for example:

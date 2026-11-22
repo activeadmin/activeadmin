@@ -38,12 +38,12 @@ RSpec.describe "Routing", type: :routing do
     context "with a custom path set in route_options" do
       before do
         namespaces[:admin].route_options = { path: "/custom-path" }
-        reload_routes!
+        Rails.application.reload_routes!
       end
 
       after do
         namespaces[:admin].route_options = {}
-        reload_routes!
+        Rails.application.reload_routes!
       end
 
       it "should route using the custom path" do

@@ -17,11 +17,11 @@ module ActiveAdmin
       end
 
       it "should allow to setup custom ordering class" do
-        MyOrderClause = Class.new(ActiveAdmin::OrderClause)
+        my_order_clause = Class.new(ActiveAdmin::OrderClause)
         dsl.run_registration_block do
-          config.order_clause = MyOrderClause
+          config.order_clause = my_order_clause
         end
-        expect(resource_config.order_clause).to eq(MyOrderClause)
+        expect(resource_config.order_clause).to eq(my_order_clause)
         expect(application.order_clause).to eq(ActiveAdmin::OrderClause)
       end
     end

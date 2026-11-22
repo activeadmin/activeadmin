@@ -115,7 +115,7 @@ RSpec.describe ActiveAdmin::ResourceController, type: :controller do
   describe "action methods" do
     around do |example|
       with_resources_during(example) do
-        load_resources { ActiveAdmin.register Post }
+        register_resources { ActiveAdmin.register Post }
       end
     end
 

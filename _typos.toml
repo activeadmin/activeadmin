@@ -15,6 +15,5 @@ extend-ignore-identifiers-re = [
 extend-exclude = [
   "config/locales/*",
   "!config/locales/en*.yml",
-  "features/step_definitions/batch_action_steps.rb",
   "vendor/*"
 ]
