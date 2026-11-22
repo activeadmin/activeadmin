@@ -13,7 +13,7 @@ fr:
         destroy: Supprimer
       selection_toggle_explanation: "(Inverser la sélection)"
       successfully_destroyed:
-        one: 1 %{model} supprimé(e)
+        one: "%{count} %{model} supprimé(e)"
         other: "%{count} %{plural_model} supprimé(e)s"
     blank_slate:
       content: Il n'y a pas encore de %{resource_name}.

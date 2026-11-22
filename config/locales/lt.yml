@@ -13,7 +13,7 @@ lt:
         destroy: Šalinti
       selection_toggle_explanation: "(Žymėti)"
       successfully_destroyed:
-        one: Sėkmingai pašalintas 1 %{model}
+        one: Sėkmingai pašalintas %{count} %{model}
         other: Sėkmingai pašalinti %{count} %{plural_model}
     blank_slate:
       content: Nėra %{resource_name}.

@@ -15,7 +15,7 @@ hr:
       successfully_destroyed:
         few: Uspješno su obrisana %{count} %{plural_model}
         many: Uspješno je obrisano %{count} %{plural_model}
-        one: Uspješno je obrisan 1 %{model}
+        one: Uspješno je obrisan %{count} %{model}
         other: Uspješno je obrisano %{count} %{plural_model}
     blank_slate:
       content: Još uvijek ne postoji niti jedan zapis tipa %{resource_name}.

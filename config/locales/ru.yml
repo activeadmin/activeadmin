@@ -15,7 +15,7 @@ ru:
       successfully_destroyed:
         few: 'Успешно удалено: %{count} %{plural_model}'
         many: 'Успешно удалено: %{count} %{plural_model}'
-        one: 'Успешно удалено: 1 %{model}'
+        one: 'Успешно удалено: %{count} %{model}'
         other: 'Успешно удалено: %{count} %{plural_model}'
     blank_slate:
       content: Пока нет %{resource_name}.

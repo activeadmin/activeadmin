@@ -11,7 +11,7 @@ lv:
         destroy: Delete
       selection_toggle_explanation: "(Toggle Selection)"
       successfully_destroyed:
-        one: Successfully deleted 1 %{model}
+        one: Successfully deleted %{count} %{model}
         other: Successfully deleted %{count} %{plural_model}
     blank_slate:
       content: Sadaļā '%{resource_name}' nav neviena ieraksta.

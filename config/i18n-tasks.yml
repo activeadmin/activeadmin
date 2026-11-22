@@ -25,6 +25,8 @@ search:
   strict: false
 
 ignore_inconsistent_interpolations:
+  # Czech and Slovak zero forms need the singular %{model} placeholder.
+  - active_admin.batch_actions.successfully_destroyed.zero
   - active_admin.new_model
   - active_admin.edit_model
   - active_admin.delete_model
