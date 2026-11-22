@@ -11,6 +11,12 @@ RSpec.describe MethodOrProcHelper do
   end
 
   describe "#call_method_or_exec_proc" do
+    [nil, false, 42].each do |value|
+      it "returns #{value.inspect} without calling it" do
+        expect(context.call_method_or_exec_proc(value)).to eq(value)
+      end
+    end
+
     it "should call the method in the context when a symbol" do
       expect(context.call_method_or_exec_proc(:receiver_in_context)).to eq receiver
     end
@@ -29,6 +35,12 @@ RSpec.describe MethodOrProcHelper do
   end
 
   describe "#call_method_or_proc_on" do
+    [nil, false, 42].each do |value|
+      it "returns #{value.inspect} without calling the receiver" do
+        expect(context.call_method_or_proc_on(receiver, value)).to eq(value)
+      end
+    end
+
     [:hello, "hello"].each do |key|
       context "when a #{key.class}" do
         it "should call the method on the receiver" do
