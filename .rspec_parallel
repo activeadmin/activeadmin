@@ -1,3 +1,2 @@
---require <%= "#{__dir__}/spec/support/simplecov_regular_env.rb" %>
 --format progress
 --format ParallelTests::RSpec::RuntimeLogger --out tmp/parallel_runtime_rspec.log

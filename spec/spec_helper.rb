@@ -1,7 +1,9 @@
 # frozen_string_literal: true
-require_relative "support/simplecov_helper"
-
-ActiveAdmin::TestSupport::SimpleCovHelper.start("RSpec")
+if ENV["COVERAGE"] == "true"
+  require "simplecov"
+  SimpleCov.command_name ["RSpec", ENV["TEST_ENV_NUMBER"]].compact.join(" ").rstrip
+  SimpleCov.start
+end
 
 require_relative "support/matchers/perform_database_query_matcher"
 require_relative "support/shared_contexts/capture_stderr"

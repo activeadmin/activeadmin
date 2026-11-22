@@ -14,12 +14,6 @@ namespace :setup do
 
   desc "Makes test app creation code available"
   task :require do
-    if ENV["COVERAGE"] == "true"
-      require_relative "../spec/support/simplecov_helper"
-
-      ActiveAdmin::TestSupport::SimpleCovHelper.start("test app creation")
-    end
-
     require_relative "test_application"
   end
 

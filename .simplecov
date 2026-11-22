@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-SimpleCov.profiles.define "activeadmin" do
+SimpleCov.configure do
   skip "tmp/development_apps/"
   skip "tmp/test_apps/"
   skip "tasks/test_application.rb"

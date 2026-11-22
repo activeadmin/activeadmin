@@ -16,9 +16,11 @@
 # assert on.
 
 require "json"
-require_relative "simplecov_helper"
-
-ActiveAdmin::TestSupport::SimpleCovHelper.start(["reloading", ENV["TEST_ENV_NUMBER"]].join(" ").rstrip)
+if ENV["COVERAGE"] == "true"
+  require "simplecov"
+  SimpleCov.command_name ["reloading", ENV["TEST_ENV_NUMBER"]].compact.join(" ").rstrip
+  SimpleCov.start
+end
 
 app_dir = ARGV.fetch(0)
 
