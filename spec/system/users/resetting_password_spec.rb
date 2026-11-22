@@ -35,11 +35,12 @@ RSpec.describe "Password reset", type: :system do
     click_button "Reset My Password"
     admin_user.update!(reset_password_sent_at: 1.month.ago)
     visit edit_admin_user_password_path(reset_password_token: "foobarbaz")
-    fill_in "admin_user_password", with: "password"
-    fill_in "Password confirmation", with: "wrong"
+    fill_in "admin_user_password", with: "new-password"
+    fill_in "Password confirmation", with: "new-password"
     click_button "Change my password"
 
     expect(page).to have_text("expired")
     expect(admin_user.reload.valid_password?("password")).to be(true)
+    expect(admin_user.valid_password?("new-password")).to be(false)
   end
 end
