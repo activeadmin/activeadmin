@@ -32,6 +32,21 @@ RSpec.describe ActiveAdmin::MenuCollection do
     end
   end
 
+  describe "#exists?" do
+    it "tracks a menu from creation through clearing" do
+      expect(menus.exists?(:reports)).to be(false)
+
+      menus.add :reports, label: "Sales"
+
+      expect(menus.exists?(:reports)).to be(true)
+      expect(menus.exists?(:missing)).to be(false)
+
+      menus.clear!
+
+      expect(menus.exists?(:reports)).to be(false)
+    end
+  end
+
   describe "#on_build" do
     it "runs a callback when fetching a menu" do
       menus.on_build do |m|
