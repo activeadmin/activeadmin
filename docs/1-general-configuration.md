@@ -132,6 +132,19 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+## Site header height
+
+The site header is fixed to the top of the page, and the layout pads the page
+by the header's height. Both read the `--aa-header-height` CSS variable, which
+defaults to `4rem`. To change the height, set the variable in
+`app/assets/stylesheets/active_admin.css`:
+
+```css
+:root {
+  --aa-header-height: 2.5rem;
+}
+```
+
 ## Comments
 
 By default Active Admin includes comments on resources. To disable comments:
