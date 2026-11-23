@@ -339,7 +339,7 @@ RSpec.describe "Index filters", type: :system do
 
       register_association_filters(maximum: 2, predicate: "_cont")
       visit admin_posts_path
-      fill_in "Category name cont", with: "Astro"
+      fill_in "Category name cont", with: "stro"
       click_button "Filter"
 
       expect(page).to have_table_rows(2)
