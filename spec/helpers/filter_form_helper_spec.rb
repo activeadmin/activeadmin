@@ -653,17 +653,23 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
   describe "conditional display" do
     [:if, :unless].each do |verb|
       should = verb == :if ? "should" : "shouldn't"
-      if_true = verb == :if ? :to : :to_not
-      if_false = verb == :if ? :to_not : :to
       context "with #{verb.inspect} proc" do
         it "#{should} be displayed if true" do
           body = filter :body, verb => proc { true }
-          expect(body).send if_true, have_field("q[body_cont]")
+          if verb == :if
+            expect(body).to have_field("q[body_cont]")
+          else
+            expect(body).to have_no_field("q[body_cont]")
+          end
         end
 
         it "#{should} be displayed if false" do
           body = filter :body, verb => proc { false }
-          expect(body).send if_false, have_field("q[body_cont]")
+          if verb == :if
+            expect(body).to have_no_field("q[body_cont]")
+          else
+            expect(body).to have_field("q[body_cont]")
+          end
         end
 
         it "should still be hidden on the second render" do
