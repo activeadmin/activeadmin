@@ -132,6 +132,62 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+## JavaScript modules
+
+Active Admin pages use their own import map, `ActiveAdmin.importmap`, and import
+only its `active_admin` entry point. A module pinned in your app's
+`config/importmap.rb` is not loaded on Active Admin pages.
+
+To add a module to every Active Admin page, pin it into `ActiveAdmin.importmap`
+and list it in `javascript_modules`. Active Admin imports these modules after
+`active_admin`, in order:
+
+```ruby
+# config/initializers/active_admin.rb
+ActiveAdmin.importmap.pin "admin/extras", to: "admin/extras.js"
+
+ActiveAdmin.setup do |config|
+  config.javascript_modules << "admin/extras"
+end
+```
+
+Append to `javascript_modules` with `<<`. Assigning a new list drops the
+modules that engines added before your initializer ran.
+
+An engine pins its modules from an initializer that runs after Active Admin
+draws its import map:
+
+```ruby
+initializer "my_engine.active_admin", after: "active_admin.importmap" do |app|
+  next unless app.config.respond_to?(:importmap)
+
+  ActiveAdmin.importmap.draw(root.join("config/importmap.rb"))
+  app.config.assets.paths << root.join("app/javascript")
+  ActiveAdmin.application.javascript_modules << "my_engine/index"
+  ActiveAdmin.application.importmap_watches << root.join("app/javascript")
+end
+```
+
+If the engine vendors JavaScript packages, add its `vendor/javascript` directory
+to `app.config.assets.paths` as well. Propshaft serves only files in the asset
+paths.
+
+In development and test, Active Admin clears its import map cache when a file in
+one of the `importmap_watches` directories changes. The list starts with Active
+Admin's own `app/javascript`. Rails does not watch directories inside installed
+gems, so an engine's entry takes effect only while the engine is loaded from a
+path, such as an engine inside your app or a `path:` gem. When you pin modules
+from your app, add your directory so that edits to those modules reach the
+browser without a restart. Active Admin reads the list once, after all
+initializers have run, and raises an error if you append to it later. Append to
+it from an initializer, not from a `to_prepare` or `after_initialize` block:
+
+```ruby
+ActiveAdmin.setup do |config|
+  config.importmap_watches << Rails.root.join("app/javascript")
+end
+```
+
 ## Comments
 
 By default Active Admin includes comments on resources. To disable comments:
