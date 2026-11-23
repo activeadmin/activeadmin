@@ -23,6 +23,15 @@ module ActiveAdmin
       # Reference to the Resource object which initialized
       # this controller
       attr_accessor :active_admin_config
+
+      # Controllers inherit the host app's route helpers. When ActiveAdmin's
+      # routes live in an engine's route set, include that set's helpers last
+      # so they resolve against it.
+      def inherited(klass)
+        super
+        route_set = ActiveAdmin.application.route_set
+        klass.include(route_set.url_helpers) unless route_set.equal?(Rails.application.routes)
+      end
     end
 
     include BaseController::Authorization

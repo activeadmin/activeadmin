@@ -1,7 +1,6 @@
 <div class="mt-6 text-sm">
 <%- if controller_name != 'sessions' %>
-  <% scope = Devise::Mapping.find_scope!(resource_name) %>
-  <%= link_to t('active_admin.devise.links.sign_in'), main_app.send(:"new_#{scope}_session_path") %>
+  <%= link_to t('active_admin.devise.links.sign_in'), new_session_path(resource_name) %>
   <br>
 <% end -%>
 

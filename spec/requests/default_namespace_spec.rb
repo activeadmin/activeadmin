@@ -79,5 +79,7 @@ RSpec.describe ActiveAdmin::Application, type: :request do
 
   ensure
     ActiveAdmin.application = original_application
+    # The routes still hold the temporary application's namespace.
+    reload_routes!
   end
 end

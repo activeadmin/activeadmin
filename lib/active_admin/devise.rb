@@ -49,6 +49,18 @@ module ActiveAdmin
         prefix = Rails.configuration.action_controller[:relative_url_root] || ""
         prefix + path
       end
+
+      # With a Devise router_name, Devise's default looks up root_path on that
+      # route set instead of calling the method above. An app's own override
+      # still wins.
+      def after_sign_out_path_for(resource_or_scope)
+        next_method = Controller.instance_method(:after_sign_out_path_for).bind(self).super_method
+        if next_method.owner == ::Devise::Controllers::Helpers
+          root_path
+        else
+          super
+        end
+      end
     end
 
     class SessionsController < ::Devise::SessionsController
