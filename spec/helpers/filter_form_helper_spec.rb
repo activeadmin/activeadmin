@@ -236,12 +236,10 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
 
   describe "string attribute, as a select" do
     let(:body) { filter :title, as: :select }
-    let(:builder) { ActiveAdmin::Inputs::Filters::SelectInput }
 
     context "when loading collection from DB" do
       it "should use pluck for efficiency" do
-        expect_any_instance_of(builder).to receive(:pluck_column) { [] }
-        body
+        expect { body }.to perform_database_query('SELECT DISTINCT "posts"."title" FROM "posts"')
       end
 
       it "should remove original ordering to prevent PostgreSQL error" do
@@ -254,14 +252,13 @@ RSpec.describe ActiveAdmin::FormHelper, type: :helper do
       end
 
       context "and a statement timeout error occurs" do
-        let(:body) { filter :title, as: :select, collection: ["foo"] }
-        let(:input_super_class) { Formtastic::Inputs::Base::Collections }
+        let(:body) do
+          exception = db_timeout_exception
+          filter :title, as: :select, collection: proc { raise exception }
+        end
+
         let(:db_timeout_exception) { ActiveRecord::QueryCanceled.new("ERROR: canceling statement due to statement timeout") }
         let(:expected_exception_message) { "ERROR: canceling statement due to statement timeout while querying the values for the ActiveAdmin :title filter" }
-
-        before do
-          expect_any_instance_of(input_super_class).to receive(:collection).and_raise(db_timeout_exception)
-        end
 
         it "should raise a database timeout error with a message indicating which filter was the cause" do
           expect { body }.to raise_error(ActiveRecord::QueryCanceled, expected_exception_message)
