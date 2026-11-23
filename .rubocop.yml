@@ -408,6 +408,9 @@ RSpec/LeakyConstantDeclaration:
 RSpec/NoExpectationExample:
   Enabled: true
 
+RSpec/OverwritingSetup:
+  Enabled: true
+
 Style/BlockDelimiters:
   Enabled: true
 
