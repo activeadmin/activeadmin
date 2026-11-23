@@ -381,6 +381,9 @@ Rails/FilePath:
 Rails/RootPathnameMethods:
   Enabled: true
 
+RSpec/AroundBlock:
+  Enabled: true
+
 RSpec/EmptyLineAfterExample:
   Enabled: true
 
