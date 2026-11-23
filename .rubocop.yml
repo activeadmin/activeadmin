@@ -408,6 +408,9 @@ RSpec/IdenticalEqualityAssertion:
 RSpec/LeakyConstantDeclaration:
   Enabled: true
 
+RSpec/LeakyLocalVariable:
+  Enabled: true
+
 RSpec/MissingExpectationTargetMethod:
   Enabled: true
 

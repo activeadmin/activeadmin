@@ -4,6 +4,8 @@ require "csv"
 
 RSpec.describe "Index as CSV", type: :request do
   let(:byte_order_mark) { "\xEF\xBB\xBF".b }
+  let(:default_header) { ["Id", "Title", "Body", "Published date", "Position", "Starred", "Foo", "Created at", "Updated at"] }
+  let(:timestamp) { /\A\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC\z/ }
 
   def register_post(**options, &block)
     register_resources { ActiveAdmin.register(Post, **options, &block) }
@@ -21,9 +23,6 @@ RSpec.describe "Index as CSV", type: :request do
 
     CSV.parse(response.body.b.delete_prefix(byte_order_mark).force_encoding(response.body.encoding), col_sep: col_sep)
   end
-
-  default_header = ["Id", "Title", "Body", "Published date", "Position", "Starred", "Foo", "Created at", "Updated at"]
-  timestamp = /\A\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC\z/
 
   describe "default columns" do
     before { Post.create!(title: "Hello World") }
