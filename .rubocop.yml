@@ -393,6 +393,9 @@ RSpec/EmptyLineAfterExampleGroup:
 RSpec/ExpectInLet:
   Enabled: true
 
+RSpec/Focus:
+  Enabled: true
+
 RSpec/HookArgument:
   Enabled: true
 
