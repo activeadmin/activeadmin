@@ -414,6 +414,9 @@ RSpec/OverwritingSetup:
 RSpec/RepeatedExample:
   Enabled: true
 
+RSpec/UnspecifiedException:
+  Enabled: true
+
 Style/BlockDelimiters:
   Enabled: true
 
