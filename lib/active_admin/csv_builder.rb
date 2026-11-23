@@ -45,8 +45,8 @@ module ActiveAdmin
     def build(controller, csv)
       columns = exec_columns controller.view_context
       bom = options[:byte_order_mark]
-      column_names = options.delete(:column_names) { true }
-      csv_options = options.except :encoding_options, :humanize_name, :byte_order_mark
+      column_names = options.fetch(:column_names, true)
+      csv_options = options.except :encoding_options, :humanize_name, :byte_order_mark, :column_names
 
       csv << bom if bom
 
