@@ -15,6 +15,15 @@ module ActiveAdmin
       stub_const("Mock::Resource", Class.new(ActiveRecord::Base))
     end
 
+    describe "#param_key" do
+      it "uses the registered name when the resource class has no model_name" do
+        resource_class = stub_const("LegacyPost", Class.new)
+        resource = Resource.new(namespace, resource_class, as: "Archived Post")
+
+        expect(resource.param_key).to eq("archived_post")
+      end
+    end
+
     describe "singular resource name" do
       context "when class" do
         it "should be the underscored singular resource name" do
