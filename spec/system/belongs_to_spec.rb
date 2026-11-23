@@ -35,9 +35,13 @@ RSpec.describe "Belongs to", type: :system do
     expect(page).to have_css("form[action='/admin/users/#{jane.id}/posts/#{jane_post.id}']")
     expect(page).to have_breadcrumb_link("Hello World")
 
+    fill_in "Title", with: "Jane's updated post"
+    fill_in "Body", with: "Updated body"
     click_button "Update Post"
 
     expect(page).to have_text("Post was successfully updated.")
+    expect(jane_post.reload).to have_attributes(title: "Jane's updated post", body: "Updated body", author_id: jane.id)
+    expect(john_post.reload.title).to eq("Hello World")
   end
 
   it "updates a child resource page with custom configuration" do
@@ -48,6 +52,7 @@ RSpec.describe "Belongs to", type: :system do
         permit_params :title
 
         form do |f|
+          f.inputs { f.input :title }
           f.actions
         end
       end
@@ -59,9 +64,12 @@ RSpec.describe "Belongs to", type: :system do
     expect(page).to have_css("form[action='/admin/users/#{jane.id}/posts/#{jane_post.id}']")
     expect(page).to have_breadcrumb_link("Hello World")
 
+    fill_in "Title", with: "Jane's custom post"
     click_button "Update Post"
 
     expect(page).to have_text("Post was successfully updated.")
+    expect(jane_post.reload).to have_attributes(title: "Jane's custom post", author_id: jane.id)
+    expect(john_post.reload.title).to eq("Hello World")
   end
 
   it "creates a child resource page" do
@@ -107,6 +115,10 @@ RSpec.describe "Belongs to", type: :system do
         belongs_to :user
 
         form do |f|
+          f.inputs do
+            f.input :title
+            f.input :body
+          end
           f.actions
         end
       end
@@ -116,6 +128,15 @@ RSpec.describe "Belongs to", type: :system do
     click_link "New Post", exact: true
 
     expect(page).to have_css("form[action='/admin/users/#{jane.id}/posts']")
+
+    fill_in "Title", with: "Post with early permitted params"
+    fill_in "Body", with: "Permitted body"
+
+    expect { click_button "Create Post" }.to change(Post, :count).by(1)
+
+    expect(page).to have_text("Post was successfully created.")
+    created_post = Post.find_by!(title: "Post with early permitted params")
+    expect(created_post).to have_attributes(body: "Permitted body", author_id: jane.id)
   end
 
   it "renders a child resource page" do
