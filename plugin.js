@@ -29,7 +29,10 @@ const svgToTinyDataUri = (() => {
 })();
 
 export default plugin(
-  function({ addBase, addComponents, theme }) {
+  function({ addBase, addComponents, addVariant, theme }) {
+    // Width at which the main menu turns from a drawer into a fixed side menu.
+    addVariant('aa-menu', '@media (width >= 80rem)');
+
     addBase({
       [[
         "[type='text']",
