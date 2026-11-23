@@ -417,6 +417,9 @@ RSpec/RepeatedExample:
 RSpec/UnspecifiedException:
   Enabled: true
 
+RSpec/VoidExpect:
+  Enabled: true
+
 Style/BlockDelimiters:
   Enabled: true
 
