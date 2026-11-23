@@ -11,6 +11,18 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
     expect(resource.filters).to be_a Hash
   end
 
+  it "keeps explicit filters when an API resource has no default filters" do
+    namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
+    resource = ActiveAdmin::Resource.new(namespace, ApiPost)
+
+    expect(resource.filters).to be_empty
+
+    resource.preserve_default_filters!
+    resource.add_filter :title_cont, as: :string
+
+    expect(resource.filters).to eq(title_cont: { as: :string })
+  end
+
   it "should return the defaults if no filters are set" do
     expect(resource.filters.keys).to match_array(
       [
