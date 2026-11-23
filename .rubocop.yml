@@ -399,6 +399,9 @@ RSpec/Focus:
 RSpec/HookArgument:
   Enabled: true
 
+RSpec/IdenticalEqualityAssertion:
+  Enabled: true
+
 RSpec/LeakyConstantDeclaration:
   Enabled: true
 
