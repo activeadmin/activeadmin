@@ -411,6 +411,9 @@ RSpec/NoExpectationExample:
 RSpec/OverwritingSetup:
   Enabled: true
 
+RSpec/RepeatedExample:
+  Enabled: true
+
 Style/BlockDelimiters:
   Enabled: true
 
