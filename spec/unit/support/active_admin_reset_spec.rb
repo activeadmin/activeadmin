@@ -71,6 +71,18 @@ RSpec.describe ActiveAdminReset do
     expect(ActiveAdmin.application.site_title).to eq(original)
   end
 
+  it "removes menu callbacks added to a boot namespace" do
+    namespace = ActiveAdmin.application.namespace(:admin)
+    namespace.build_menu { |menu| menu.add(id: :temporary, label: "Temporary", url: "/temporary") }
+    namespace.reset_menu!
+
+    expect(namespace.fetch_menu(:default)[:temporary]).to be_present
+
+    described_class.reset
+
+    expect(namespace.fetch_menu(:default)[:temporary]).to be_nil
+  end
+
   it "restores mutable strings changed in place" do
     original = ActiveAdmin.application.site_title.dup
     ActiveAdmin.application.site_title << " changed"

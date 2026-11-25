@@ -97,14 +97,4 @@ RSpec.describe "Menu", type: :request do
     expect(response_html).to have_nested_menu_item("Categories")
     expect(response_html).to have_nested_menu_item("Posts")
   end
-
-  it "doesn't keep items added with build_menu after the example" do
-    load_default_resources
-
-    get admin_root_path
-
-    expect(response_html).to have_menu_item("Dashboard")
-    expect(response_html).not_to have_menu_item("Custom Menu")
-    expect(response_html).not_to have_menu_item("Delete Menu")
-  end
 end
