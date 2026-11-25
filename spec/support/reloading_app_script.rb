@@ -19,7 +19,7 @@ require "json"
 if ENV["COVERAGE"] == "true"
   require "simplecov"
   SimpleCov.command_name ["reloading", ENV["TEST_ENV_NUMBER"]].compact.join(" ").rstrip
-  SimpleCov.start
+  SimpleCov.start { finalize_merge false }
 end
 
 app_dir = ARGV.fetch(0)
