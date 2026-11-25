@@ -162,6 +162,21 @@ RSpec.describe "Index as CSV", type: :request do
       expect(download_csv).to eq [["012345", ""]]
     end
 
+    it "leaves out column names with column_names: false on every request" do
+      set_application_setting(:csv_options, { col_sep: ",", force_quotes: true })
+      register_post do
+        csv(column_names: false) do
+          column :title
+          column :body
+        end
+      end
+      Post.create!(title: "012345")
+
+      2.times do
+        expect(download_csv).to eq [["012345", ""]]
+      end
+    end
+
     it "uses a decorator's methods" do
       register_post do
         decorate_with PostDecorator
