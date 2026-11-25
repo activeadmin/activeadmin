@@ -32,20 +32,6 @@ module ResourceRegistrationHelper
     example.run
   end
 
-  # Loads the test app's own app/admin files (dashboard, admin users,
-  # companies, stores, profiles) for the current example, plus anything the
-  # block registers. Use it when a spec relies on those, e.g. the dashboard
-  # at admin_root_path, and doesn't register anything itself.
-  #
-  # Every example starts with them loaded, routes included (see
-  # spec/support/active_admin_reset.rb), so this mainly makes a spec's
-  # dependence on them explicit.
-  def load_default_resources
-    register_resources do
-      ActiveAdmin.application.load!
-      yield if block_given?
-    end
-  end
 end
 
 RSpec.configure do |config|

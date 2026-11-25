@@ -35,7 +35,7 @@ RSpec.describe "Index blank slate", type: :request do
   end
 
   it "uses a custom link" do
-    load_default_resources do
+    register_resources do
       ActiveAdmin.register Post do
         index(blank_slate_link: -> { link_to("Go to dashboard", admin_root_path) }) { |post| }
       end
