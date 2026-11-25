@@ -23,6 +23,12 @@ RSpec.describe "Index blank slate", type: :request do
     expect(response_html).to have_no_css("th[data-sortable]")
     expect(response_html).to have_no_css(".data-table")
     expect(response_html).to have_no_css("[data-test-pagination]")
+
+    get blank_slate.find_link("Create one", exact: true)[:href]
+
+    expect(response).to have_http_status(:ok)
+    expect(response_html).to have_page_title("New Post")
+    expect(response_html).to have_button("Create Post")
   end
 
   it "has no create link when there's no new action" do
