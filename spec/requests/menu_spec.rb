@@ -17,7 +17,7 @@ RSpec.describe "Menu", type: :request do
   end
 
   it "hides a resource's item with menu false" do
-    load_default_resources { ActiveAdmin.register(Post) { menu false } }
+    register_resources { ActiveAdmin.register(Post) { menu false } }
 
     get admin_root_path
 
@@ -26,7 +26,7 @@ RSpec.describe "Menu", type: :request do
   end
 
   it "uses a custom label" do
-    load_default_resources { ActiveAdmin.register(Post) { menu label: "Articles" } }
+    register_resources { ActiveAdmin.register(Post) { menu label: "Articles" } }
 
     get admin_root_path
 
@@ -35,7 +35,7 @@ RSpec.describe "Menu", type: :request do
   end
 
   it "adds a non-resource item" do
-    load_default_resources do
+    register_resources do
       ActiveAdmin.application.namespace(:admin).build_menu do |menu|
         menu.add label: "Custom Menu", url: :admin_dashboard_path
       end
@@ -52,7 +52,7 @@ RSpec.describe "Menu", type: :request do
   end
 
   it "adds a non-resource item with method delete" do
-    load_default_resources do
+    register_resources do
       ActiveAdmin.application.namespace(:admin).build_menu do |menu|
         menu.add label: "Delete Menu", url: :admin_dashboard_path, html_options: { method: :delete }
       end
@@ -64,7 +64,7 @@ RSpec.describe "Menu", type: :request do
   end
 
   it "nests a resource under another resource's item" do
-    load_default_resources do
+    register_resources do
       ActiveAdmin.register User
       ActiveAdmin.register(Post) { menu parent: "Users" }
     end
@@ -84,7 +84,7 @@ RSpec.describe "Menu", type: :request do
   end
 
   it "nests resources under a parent that isn't a resource" do
-    load_default_resources do
+    register_resources do
       ActiveAdmin.register(Category) { menu parent: "Anything" }
       ActiveAdmin.register(Post) { menu parent: "Anything" }
     end
