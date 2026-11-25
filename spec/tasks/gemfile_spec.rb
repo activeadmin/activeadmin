@@ -1,4 +1,7 @@
 # frozen_string_literal: true
+require "open3"
+require "tmpdir"
+
 RSpec.describe "Gemfile sanity" do
   # Strips the BUNDLED WITH section from a Gemfile.lock content string.
   # This section only contains the Bundler version used and can differ between environments
@@ -25,8 +28,14 @@ RSpec.describe "Gemfile sanity" do
     gemfile = ENV["BUNDLE_GEMFILE"] || "Gemfile"
     current_lockfile = File.read("#{gemfile}.lock")
 
-    new_lockfile = Bundler.with_original_env do
-      `bundle lock --print`
+    new_lockfile = Dir.mktmpdir("activeadmin-lockfile") do |dir|
+      path = File.join(dir, "Gemfile.lock")
+      File.write(path, current_lockfile)
+      output, status = Bundler.with_original_env do
+        Open3.capture2e("bundle", "lock", "--gemfile", gemfile, "--lockfile", path)
+      end
+      expect(status).to be_success, output
+      File.read(path)
     end
 
     msg = "Please update #{gemfile}'s lock file with `BUNDLE_GEMFILE=#{gemfile} bundle install --all` and commit the result"
