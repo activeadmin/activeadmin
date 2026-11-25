@@ -49,9 +49,14 @@ RSpec.describe "Index as CSV", type: :request do
     it "is named after a resource's alias" do
       register_post(as: "MyArticle")
 
-      rows = download_csv(path: admin_my_articles_path(format: :csv), filename: "my-articles")
+      get admin_my_articles_path
+      link = response_html.find_link("CSV", exact: true)
+      rows = download_csv(path: link[:href], filename: "my-articles")
 
-      expect(rows.first).to eq default_header
+      expect(rows).to match [
+        default_header,
+        [/\A\d+\z/, "Hello World", nil, nil, nil, nil, nil, timestamp, timestamp]
+      ]
     end
 
     it "starts with a byte order mark" do
