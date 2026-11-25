@@ -91,4 +91,4 @@ append_file "db/seeds.rb", "\n\n" + <<~RUBY
   ActiveAdmin::Comment.insert_all(comment_data)
 RUBY
 
-rails_command "db:seed"
+rails_command "db:seed", abort_on_failure: true

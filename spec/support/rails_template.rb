@@ -6,11 +6,11 @@ gem "cssbundling-rails"
 # Manifest already exists in Rails 7.2
 create_file "app/assets/config/manifest.js", skip: true
 
-rails_command "css:install:tailwind"
+rails_command "css:install:tailwind", abort_on_failure: true
 # Remove default configuration generated: https://github.com/rails/cssbundling-rails/blob/v1.4.2/lib/install/tailwind/install.rb#L7
 remove_file "app/assets/stylesheets/application.tailwind.css"
 
-rails_command "importmap:install"
+rails_command "importmap:install", abort_on_failure: true
 
 initial_timestamp = Time.now.strftime("%Y%m%d%H%M%S").to_i
 
@@ -72,7 +72,7 @@ end
 
 environment 'config.hosts << ".ngrok-free.app"', env: :development
 
-# Make sure we can turn on class reloading in feature specs.
+# Allow the reloading spec to enable class reloading when its app boots.
 gsub_file "config/environments/test.rb", /config.enable_reloading = false/, "config.enable_reloading = !!ENV['CLASS_RELOADING']"
 
 environment "config.active_record.maintain_test_schema = false", env: :test
@@ -109,25 +109,8 @@ directory File.expand_path("templates/public", __dir__), "public", force: true
 
 route "root to: redirect('admin')" if ENV["RAILS_ENV"] != "test"
 
-# Rails doesn't write test.sqlite3 files if we run `db:migrate:reset` or `db:drop db:create db:migrate` in a single command.
-# That's why we run it in two steps.
-rails_command "db:drop db:create", env: ENV["RAILS_ENV"]
-rails_command "db:migrate", env: ENV["RAILS_ENV"]
+rails_command "db:migrate", abort_on_failure: true
 
 if ENV["RAILS_ENV"] == "test"
   inject_into_file "config/database.yml", "<%= ENV['TEST_ENV_NUMBER'] %>", after: "test.sqlite3"
-
-  require "parallel_tests"
-  ParallelTests.determine_number_of_processes(nil).times do |n|
-    copy_file File.expand_path("storage/test.sqlite3", destination_root), "storage/test.sqlite3#{n + 1}"
-
-    # Copy Write-Ahead-Log (-wal) and Wal-Index (-shm) files.
-    # Files were introduced by rails 7.1 sqlite3 optimizations (https://github.com/rails/rails/pull/49349/files).
-    %w(shm wal).each do |suffix|
-      file = File.expand_path("storage/test.sqlite3-#{suffix}", destination_root)
-      if File.exist?(file)
-        copy_file File.expand_path("storage/test.sqlite3-#{suffix}", destination_root), "storage/test.sqlite3#{n + 1}-#{suffix}", mode: :preserve
-      end
-    end
-  end
 end
