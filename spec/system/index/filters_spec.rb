@@ -250,6 +250,7 @@ RSpec.describe "Index filters", type: :system do
 
   it "filters when no default scope is set" do
     post
+    Post.create!(title: "Other post")
     register_posts do
       scope :all
       scope(:published) { |posts| posts.where.not(published_date: nil) }
@@ -262,6 +263,7 @@ RSpec.describe "Index filters", type: :system do
 
     expect_current_filter("title_cont", "Hello", label: "Title contains")
     expect(page).to have_table_rows(1)
+    expect(page).to have_css(".data-table td", exact_text: post.title)
   end
 
   it "lets a resource enable active filters when disabled at application level" do
