@@ -47,7 +47,7 @@ RSpec.describe "Index pagination", type: :request do
 
     get admin_posts_path
 
-    expect(response_html).to have_css("[data-test-page-content]")
+    expect(response_html).to have_table_rows(31)
     expect(response_html).to have_no_css("[data-test-pagination]")
   end
 
