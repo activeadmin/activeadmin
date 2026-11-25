@@ -37,8 +37,10 @@ Now you should be able to run the entire suite using:
 bin/rake
 ```
 
-The task will generate a sample Rails application in `tmp/test_apps` to run the
-test suite against.
+The task uses a generated Rails app in `tmp/test_apps`. It creates the app if
+needed and rebuilds it when the templates, fixtures, generators, setup code, or
+Gemfile lockfile change.
+Keep test app changes in the template or fixtures so they survive a rebuild.
 
 Use request specs to check responses and rendered content. Use system specs to
 check user flows through links and forms. Tag a system example `js: true` when
@@ -59,14 +61,14 @@ At this point, you're ready to make your changes. Feel free to ask for help.
 
 ### View your changes in a Rails application
 
-Make sure to take a look at your changes in a browser. To boot up a test Rails app:
+Start the local development app to check your changes in a browser.
 
 ```sh
 bin/rake local server
 ```
 
-This will automatically create a Rails app if none already exists, and store it
-in the `tmp/development_apps` folder.
+This creates a Rails app in `tmp/development_apps` if needed. Later runs reuse it
+so you can edit the app while testing in the browser.
 
 You should now be able to open <http://localhost:3000/admin> in your browser and log in using `admin@example.com` and `password`.
 

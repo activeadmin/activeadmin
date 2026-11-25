@@ -7,6 +7,11 @@ require_relative "../tasks/test_application"
 
 require "#{ActiveAdmin::TestApplication.new.full_app_dir}/config/environment.rb"
 
+# Each worker loads the generated schema into its own test database when needed.
+unless ENV["DATABASE_URL"].present? || ENV["PRIMARY_DATABASE_URL"].present?
+  ActiveRecord::Migration.load_schema_if_pending!
+end
+
 require "rspec/rails"
 
 require "support/arbre_helpers"
