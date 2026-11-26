@@ -79,4 +79,30 @@ RSpec.describe ActiveAdmin::LayoutHelper, type: :helper do
       expect(helper.flash_messages).to_not include "hideme"
     end
   end
+
+  describe "flash messages partial" do
+    before do
+      allow(helper).to receive(:active_admin_application).and_return(ActiveAdmin::Application.new)
+    end
+
+    it "renders every flash key with a data-flash-type attribute" do
+      flash[:notice] = "Saved"
+      flash[:custom] = "Custom message"
+
+      html = Capybara.string(helper.render("active_admin/flash_messages"))
+
+      expect(html).to have_css "[data-flash-type='notice']", text: "Saved"
+      expect(html).to have_css "[data-flash-type='custom']", text: "Custom message"
+    end
+
+    it "styles warning like alert and success like notice" do
+      flash[:warning] = "Careful"
+      flash[:success] = "Done"
+
+      html = Capybara.string(helper.render("active_admin/flash_messages"))
+
+      expect(html).to have_css "[data-flash-type='warning'].bg-yellow-50", text: "Careful"
+      expect(html).to have_css "[data-flash-type='success'].bg-green-50", text: "Done"
+    end
+  end
 end
